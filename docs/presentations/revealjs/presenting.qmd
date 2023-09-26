@@ -1,0 +1,493 @@
+---
+title: "Presenting Slides"
+---
+
+## Overview
+
+This article covers the mechanics of presenting slides with Reveal. Basic navigation is done using the following keyboard shortcuts:
+
+| Action                     | Keys                                       |
+|----------------------------|--------------------------------------------|
+| Next slide                 | <kbd>→</kbd> <kbd>SPACE</kbd> <kbd>N</kbd> |
+| Previous slide             | <kbd>←</kbd> <kbd>P</kbd>                  |
+| Navigate without fragments | <kbd>Alt →</kbd> <kbd>Alt ←</kbd>          |
+| Jump to first/last slide   | <kbd>Shift →</kbd> <kbd>Shift ←</kbd>      |
+
+::: {.callout-tip appearance="simple"}
+You will often want to enter fullscreen mode when presenting. You can do this by pressing the <kbd>F</kbd> key.
+:::
+
+In addition to basic keyboard navigation, Reveal supports several more advanced capabilities, including:
+
+-   Navigation menu and overview mode
+-   Speaker view (w/ speaker notes,timer, and preview of upcoming slides)
+-   Printing to PDF and publishing as self contained HTML
+-   Drawing on top of slides & chalkboard/whiteboard mode
+-   Multiplex, which allows your audience to follow the slides of the presentation you are controlling on their own phone, tablet or laptop.
+
+These capabilities are described below.
+
+## Navigation Menu
+
+Quarto includes a built in version of the [reveal.js-menu](https://github.com/denehyg/reveal.js-menu) plugin. You can access the navigation menu using the button <kbd>![](images/navigation-menu-icon.png){style="padding-bottom: 1px;" width="15" height="13"}</kbd> located in the bottom left corner of the presentation. Clicking the button opens a slide navigation menu that enables you to easily jump to any slide:
+
+::: {layout="[4,4]"}
+![](images/navigation-menu-button.png){.border fig-alt="Screen shot of basic reveal.js slide with no overlays."}
+
+![](images/navigation-menu-open.png){.border fig-alt="Screenshot of reveal.js slide with menu plugin open on the left. The menu bar has the Slides tab open, which shows a selectable list of all of the slides in the presentation."}
+:::
+
+::: {.callout-tip appearance="simple"}
+You can also open the navigation menu by pressing the <kbd>M</kbd> key.
+:::
+
+The navigation menu also includes a **Tools** pane that provides access to the various other navigation tools including Fullscreen, Speaker View, Overview Mode, and Print to PDF.
+
+Use the following options to customize the appearance and behavior of the menu:
+
+| Option    | Description                                                                                                        |
+|-----------|--------------------------------------------------------------------------------------------------------------------|
+| `side`    | Side of the presentation where the menu will be shown. `left` or `right` (defaults to `left`).                     |
+| `width`   | Width of the menu (`normal`, `wide`, `third`, `half`, `full`, or any valid css length value). Defaults to `normal` |
+| `numbers` | Add slide numbers to menu items.                                                                                   |
+
+For example:
+
+``` yaml
+format:
+  revealjs:
+    menu:
+      side: right
+      width: wide
+```
+
+You can hide the navigation menu by specifying the `menu: false` option:
+
+``` yaml
+format:
+  revealjs:
+    menu: false
+```
+
+Note that you can still open the menu using the <kbd>M</kbd> key even if the button is hidden.
+
+## Overview Mode
+
+Overview mode provides an alternate view that shows you a thumbnail for each slide:
+
+![](images/overview-mode.png){.border fig-alt="Screenshot of slides shown in overview mode, showing a series of thumbnails for the slides in the presentation."}
+
+::: {.callout-tip appearance="simple"}
+You can enable Overview Mode by pressing the <kbd>O</kbd> key.
+:::
+
+## Slide Zoom
+
+Hold down the <kbd>Alt</kbd> key (or <kbd>Ctrl</kbd> in Linux) and click on any element to zoom towards it. Try zooming in on one of these images:
+
+```{=html}
+<iframe class="reveal-demo border" src="demo/mini/zoom.html"></iframe>
+```
+<kbd>Alt</kbd> or <kbd>Ctrl</kbd> click again to zoom back out.
+
+## Speaker View
+
+The speaker view shows the current slide along with the upcoming slide, a timer, and any speaker notes associated with the current slide:
+
+![](images/speaker-view.png){.border fig-alt="Screenshot of reveal.js presentation in Speaker View. On the right, the active slide is shown. The left column contains three sections which show (from top to bottom): the upcoming slide, time (both elapsed and clock time), and a section where speaker notes go."}
+
+::: {.callout-tip appearance="simple"}
+You can enable Speaker View by pressing the <kbd>S</kbd> key.
+:::
+
+You can add speaker notes to a slide using a div with class `.notes`. For example:
+
+``` markdown
+## Slide with speaker notes
+
+Slide content
+
+::: {.notes}
+Speaker notes go here.
+:::
+```
+
+## Slide Numbers
+
+You can add slide numbers to your presentation using the `slide-number` option. You can also control in which contexts slide numbers appear using the `show-slide-number` option. For example, here we configure slides numbers for printed output only:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+---
+```
+
+In addition to a simple `true` or `false` value, the `slide-number` option can also specify a format. Available formats include:
+
+| Value | Description                           |
+|-------|---------------------------------------|
+| `c/t` | Slide number / total slides (default) |
+| `c`   | Slide number only                     |
+| `h/v` | Horizontal / Vertical slide number    |
+| `h.v` | Horizontal . Vertical slide number    |
+
+See [Vertical Slides](advanced.qmd#vertical-slides) for additional information on vertical slides.
+
+The `show-slide-number` option supports the following values:
+
+| Value     | Description                                  |
+|-----------|----------------------------------------------|
+| `all`     | Show slide numbers in all contexts (default) |
+| `print`   | Only show slide numbers when printing to PDF |
+| `speaker` | Only show slide numbers in the speaker view  |
+
+## Print to PDF
+
+Reveal presentations can be exported to PDF via a special print stylesheet.
+
+::: callout-note
+Note: This feature has only been confirmed to work in [Google Chrome](https://google.com/chrome) and [Chromium](https://www.chromium.org/Home).
+:::
+
+To Print to PDF, do the following:
+
+1.  Toggle into Print View using the <kbd>E</kbd> key (or using the [Navigation Menu])
+2.  Open the in-browser print dialog (CTRL/CMD+P).
+3.  Change the **Destination** setting to **Save as PDF**.
+4.  Change the **Layout** to **Landscape**.
+5.  Change the **Margins** to **None**.
+6.  Enable the **Background graphics** option.
+7.  Click **Save** 🎉
+
+Here's what the Chrome print dialog would look like with these settings enabled:
+
+![](images/print-to-pdf.png){.border fig-alt="Screenshot of Chrome print dialog with the first slide/page of 27 shown on the left, and print options on the right. The Destination print option has Save as PDF selected."}
+
+### Print Options
+
+There are a number of options that affected printed output that you may want to configure prior to printing:
+
+| Option                    | Description                                                                                                                                                                          |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `show-notes`              | Include speaker notes (`true`, `false`, or `separate-page)`                                                                                                                          |
+| `slide-number`            | Include slide numbers (`true` or `false`)                                                                                                                                            |
+| `pdf-max-pages-per-slide` | Slides that are too tall to fit within a single page will expand onto multiple pages. You can limit how many pages a slide may expand to using the `pdf-max-pages-per-slide` option. |
+| `pdf-separate-fragments`  | Slides with multiple fragments are printed on a single page by default. To create a page for each fragment set this option to `true`.                                                |
+
+For example, the following specifies that we want to print speaker notes on their own page and include slide numbers:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    show-notes: separate-page
+    slide-number: true
+---
+```
+
+## Preview Links
+
+Reveal makes it easy to incorporate navigation to external websites into the flow of presentations using the `preview-links` option.
+
+When you click on a hyperlink with `preview-links: true`, the link will be navigated to in an iframe that overlays the slide. For example, here we've clicked on a [Matplotlib](https://matplotlib.org/) link and the website opens on top of the slide (you'd click the close button at top right to hide it):
+
+![](images/matplotlib.png){.border fig-alt="Screenshot of matplotlib landing page."}
+
+Available values for `preview-link` include:
+
+| Option  | Description                                                                             |
+|---------|-----------------------------------------------------------------------------------------|
+| `auto`  | Preview links when presenting in full-screen mode (otherwise navigate to them normally) |
+| `true`  | Always preview links                                                                    |
+| `false` | Never preview links (the default)                                                       |
+
+For example, here we set `preview-links` to `auto`:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    preview-links: auto
+---
+```
+
+You can also set this option on a per-link basis. These two links respectively enable and disable preview:
+
+``` markdown
+[Preview](https://example.com){preview-link="true"}
+
+[NoPreview](https://example.com){preview-link="false"}
+```
+
+## Slide Tone
+
+Slide tone plays a subtle sound when you change slides. It was [requested by a blind user](https://github.com/yihui/xaringan/issues/214) and enables presenters to hear an auditory signal of their progress through the slides. Enable slide tone with:
+
+``` yaml
+format:
+  revealjs:
+    slide-tone: true
+```
+
+The tones increase in pitch for each slide from a low C to a high C note. The tone pitch stays the same for incremental slides.
+
+The implementation of slide tone was adapted from the [slide tone plugin](https://github.com/gadenbuie/xaringanExtra/blob/master/docs/slide-tone/libs/slide-tone/slide-tone.js) in xaringanExtra.
+
+## Auto-Slide
+
+Presentations can be configured to step through slides automatically, without any user input. To enable this you will need to specify an interval for slide changes using the `auto-slide` option (the interval is provided in milliseconds). The `loop` option can additionally be specified to continue presenting in a loop once all the slides have been shown.
+
+For example, here we specify that we want to advance every 5 seconds and continue in a loop:
+
+``` yaml
+---
+title: "Presentation"
+format: 
+  revealjs: 
+    auto-slide: 5000
+    loop: true
+---
+```
+
+A play/pause control element will automatically appear for auto-sliding decks. Sliding is automatically paused if the user starts interacting with the deck. It's also possible to pause or resume sliding by pressing <kbd>A</kbd> on the keyboard.
+
+You can disable the auto-slide controls and prevent sliding from being paused by specifying `auto-slide-stoppable: false`.
+
+### Slide Timing
+
+It's also possible to override the slide duration for individual slides and fragments by using the `autoslide` attribute (this attribute also works on [Fragments](advanced.qmd#fragments){data-heading="Fragments"}). For example, here we set the auto-slide value to 2 seconds:
+
+``` markdown
+## Slide Title {autoslide=2000}
+```
+
+## Publishing
+
+There are two main ways to publish Reveal presentations:
+
+1.  As a PDF file---see [Print to PDF] above for details on how to do this.
+
+2.  As an HTML file. For HTML, it's often most convenient to distribute the presentation as a single self contained file. To do this, specify the `embed-resources` option:
+
+    ``` yaml
+    ---
+    title: "Presentation"
+    format:
+      revealjs:
+        embed-resources: true
+    ---
+    ```
+
+    All of the dependent images, CSS styles, and other assets will be contained within the HTML file created by Quarto. 
+    
+    ::: {.callout-note appearance="simple"}
+    Note that specifying `embed-resources` can slow down rendering by a couple of seconds, so you may want to enable `embed-resources` only when you are ready to publish. Also note that Reveal plugin [Chalkboard] is not compatible with `embed-resources` --- when [Chalkboard] plugin is enabled, specifying `embed-resources: true` will result an error.
+    :::
+
+See the documentation on [Publishing HTML](../../publishing/index.qmd) for details on additional ways to publish Reveal presentations including GitHub Pages and Posit Connect.
+
+## Navigation Options
+
+There are several navigational cues provided as part of Reveal presentations and corresponding options that control them:
+
+| Option      | Description                                                                                                                                                                  |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `controls`  | Show arrow controls for navigating through slides (defaults to `auto`, which will show controls when vertical slides are present or when the deck is embedded in an iframe). |
+| `progress`  | Show a progress bar at the bottom (defaults to `true`).                                                                                                                      |
+| `history`   | Push slide changes to the browser history. Defaults to `true`, which means that the browser Forward/Back buttons can be used for slide navigation.                           |
+| `hash-type` | Type of URL hash to use for slides. Defaults to `title` which is derived from the slide title. You can also specify `number`.                                         |
+
+For example, the following configuration hides the progress bar and specifies that we want to use browser history:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    progress: false
+    history: true
+---
+```
+
+## Chalkboard
+
+Quarto includes a built-in version of the [reveal.js-chalkboard](https://github.com/rajgoel/reveal.js-plugins/tree/master/chalkboard) plugin. Specify the `chalkboard: true` option to enable the plugin, which enables you to draw on a notes canvas on top of your slides and/or open up an empty chalkboard within your presentation:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    chalkboard: true
+---
+```
+
+::: {.callout-warning appearance="simple"}
+Note that Reveal plugin [Chalkboard] is not compatible with `embed-resources` output --- when [Chalkboard] plugin is enabled, specifying `embed-resources: true` will result an error.
+:::
+
+Here are what the notes canvas and chalkboard look like when activated:
+
+::: {layout="[4,4]"}
+![](images/drawing-canvas.png){.border fig-alt="Slide with notes canvas activated has a panel on the left to select colors, and a menu bar at the bottom with a paintbrush. One of the words in the slide header has been underlined with the brush in blue."}
+
+![](images/chalkboard.png){.border fig-alt="Screenshot of chalboard canvas with color selector on the left, and paintbrush tool at the bottom. The background is dark, and the equation 'y = mx + b' has been drawn in white with a chalky texture."}
+:::
+
+To toggle the notes canvas on and off use the <kbd>![](images/canvas-icon.png){width="19" height="17"}</kbd> button or the <kbd>C</kbd> key.
+
+To toggle the chalkboard on and off use the <kbd>![](images/chalkboard-icon.png){width="19" height="20"}</kbd> button or the <kbd>B</kbd> key.
+
+Here are all of the keyboard shortcuts associated with the notes canvas and chalkboard:
+
+| Action                  | Key                  |
+|-------------------------|----------------------|
+| Toggle notes canvas     | <kbd>C</kbd>         |
+| Toggle chalkboard       | <kbd>B</kbd>         |
+| Reset all drawings      | <kbd>BACKSPACE</kbd> |
+| Clear drawings on slide | <kbd>DEL</kbd>       |
+| Cycle colors forward    | <kbd>X</kbd>         |
+| Cycle colors backward   | <kbd>Y</kbd>         |
+| Download drawings       | <kbd>D</kbd>         |
+
+The following mouse and touch gestures can be used for interacting with drawings:
+
+-   Click on the buttons at the bottom left to toggle the notes canvas or chalkboard
+
+-   Click on the color picker at the left to change the color (the color picker is only visible if the notes canvas or chalkboard is active)
+
+-   Click on the up/down arrows on the right to switch among multiple chalkboard (the up/down arrows are only available for the chalkboard)
+
+-   Click the left mouse button and drag to write on notes canvas or chalkboard
+
+-   Click the right mouse button and drag to wipe away previous drawings
+
+-   Touch and move to write on notes canvas or chalkboard
+
+-   Touch and hold for half a second, then move to wipe away previous drawings
+
+### Restoring Drawings
+
+The <kbd>D</kbd> key downloads any active drawings into a JSON file. You can then restore these drawings when showing your presentation using the `src` option. For example:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    chalkboard:
+      src: drawings.json
+---
+```
+
+### Chalkboard Options
+
+The following options are available to customize the behavior and appearance of the chalkboard:
+
+| Option              | Description                                                                                                                                         |
+|---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `theme`             | Can be set to either `chalkboard` (default) or `whiteboard`.                                                                                        |
+| `boardmarker-width` | The drawing width of the boardmarker; larger values draw thicker line. Defaults to `3`.                                                             |
+| `chalk-width`       | The drawing width of the chalk; larger values draw thicker lines. Defaults to `7`.                                                                  |
+| `chalk-effect`      | A float in the range `[0.0, 1.0]`, the intensity of the chalk effect on the chalk board. Full effect (default) `1.0`, no effect `0.0`.              |
+| `src`               | Optional file name for pre-recorded drawings (download drawings using the <kbd>D</kbd> key).                                                        |
+| `read-only`         | Configuration option to prevent changes to existing drawings. If set to `true` no changes can be made, if set to false `false` changes can be made, |
+| `buttons`           | Add chalkboard buttons at the bottom of the slide (defaults to `true`)                                                                              |
+| `transition`        | Gives the duration (in milliseconds) of the transition for a slide change, so that the notes canvas is drawn after the transition is completed.     |
+
+For example, the following configuration specifies that we want to use the `whiteboard` theme with a (thicker) boardmarker width, and that we want to hide the chalkboard buttons at the bottom of each slide:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    chalkboard:
+      theme: whiteboard
+      boardmarker-width: 5
+      buttons: false
+---
+```
+
+If you disable the chalkboard buttons globally you can selectively re-enable them for indvidual slides with the `chalkboard-buttons` attribute. For example:
+
+``` markdown
+## Slide Title {chalkboard-buttons="true"}
+```
+
+You can also use `chalkboard-buttons="false"` to turn off the buttons for individual slides.
+
+## Multiplex
+
+Quarto includes a built-in version of the [Reveal Multiplex](https://github.com/reveal/multiplex) plugin. The multiplex plugin allows your audience to follow the slides of the presentation you are controlling on their own phone, tablet or laptop. When you change slides in your master presentations everyone will follow and see the same content on their own device.
+
+Creating a Reveal presentation that supports multiplex is straightforward. Just specify the `multiplex: true` option as follows:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    multiplex: true
+---
+```
+
+Rendering the presentation will result in two HTML files being created by Quarto:
+
+| File                        | Description                                                                                                                        |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `presentation.html`         | This is the file you should publish online and that your audience should view.                                                     |
+| `presentation-speaker.html` | This is the file that you should present from . This file can remain on your computer and does not need to be published elsewhere. |
+
+The two versions of the presentation will be synchronized such that when the speaker version switches slides the viewers also all switch to the same slide.
+
+### Multiplex Server {.unlisted}
+
+Behind the scenes there is a multiplex server that is synchronizing slide events between the viewer and speaker versions of the presentation. Note that the this server does not actually see any of the slide content, it is only used to synchronize events.
+
+By default, a server created and hosted by the Revealjs team is used for this: <https://reveal-multiplex.glitch.me/>. This server is used by default when you specify `multiplex: true`.
+
+#### Running your own server
+
+If you want to run your own version of this server its source code is here: <https://github.com/reveal/multiplex/blob/master/index.js>.
+
+You can then configure multiplex to use an alternate server as follows:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    multiplex: 
+      url: 'https://myserver.example.com/
+---
+```
+
+Note that Quarto calls the multiplex server behind the scenes to provision a id and secret for your presentation. If you want to provision your own id and secret you can do so at <https://reveal-multiplex.glitch.me/> (or using your custom hosted server URL) and provide them explicitly in YAML:
+
+``` yaml
+---
+title: "Presentation"
+format:
+  revealjs:
+    multiplex: 
+      id: '1ea875674b17ca76'
+      secret: '13652805320794272084'
+---
+```
+
+Note that the `secret` value will be included in only the speaker version of the presentation.
+
+## Learning More
+
+See these articles lo learn more about using Reveal:
+
+-   [Reveal Basics](index.qmd) covers the basic mechanics of creating presentations.
+-   [Advanced Reveal](advanced.qmd) delves into transitions, animations, advanced layout and positioning, and other options available for customizing presentations.
+-   [Reveal Themes](themes.qmd) talks about using and customizing existing themes as well as creating brand new themes.

@@ -1,0 +1,104 @@
+---
+pagetitle: "Gallery"
+format:
+  html:
+    toc: false
+image: articles/advanced-layout-pdf.png
+search: false
+execute:
+  echo: false
+listing:
+  - id: gallery
+    template: gallery.ejs
+    contents: gallery.yml
+description: |
+  A gallery of example documents, websites, books, and presentations created with Quarto.
+---
+
+::: {#hero-banner .column-screen}
+::: {.grid .column-page}
+::: {.headline .g-col-lg-6 .g-col-12 .g-col-md-12}
+::: h1
+Gallery
+:::
+
+Quarto can produce a wide variety of output formats. Here are some examples:
+
+-   [Articles & Reports](#articles-reports)
+-   [Presentations](#presentations)
+-   [Interactive Docs](#interactive-docs)
+-   [Websites](#websites)
+-   [Books](#books)
+:::
+
+```{r}
+#| classes: '.g-col-lg-6 .g-col-12 .g-col-md-12'
+source("carousel.R")
+carousel("gallery-carousel", 5000, 
+         yaml.load_file("carousel.yml"))
+```
+:::
+:::
+
+::: {#gallery .column-page}
+:::
+
+```{=html}
+<style>
+
+#hero-banner {
+  padding-top: 35px;
+  background-color: rgb(237,243,249);
+}
+
+#quarto-content main { 
+  margin-top: 0;
+  padding-top: 0;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+.headline {
+font-size: 1.25em;
+font-weight: 300;
+padding-bottom: 1em;
+}
+
+.headline p {
+  margin: 0;
+  padding-bottom: 0.2rem;
+}
+
+.headline a {
+  text-decoration: none;
+}
+
+.headline ul li {
+  margin-bottom: 0.3em;
+}
+
+.carousel.card {
+  padding-top: 2em;
+}
+
+.carousel img {
+  width: 70%;
+  margin-bottom: 110px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  margin-bottom: 110px;
+}
+
+.carousel-caption {
+  padding-top: 1em;
+}
+
+.touch {
+  
+}
+</style>
+```

@@ -1,0 +1,101 @@
+---
+title: "Download Quarto"
+subtitle: "Install a release or pre-release build of Quarto."
+format:
+  html:
+    include-in-header: 
+      - '_download.html'
+    include-after-body: 
+      text: |
+        <script type="text/javascript">
+        window['quarto-download-prerelease'] = true;
+        window['quarto-download-release'] = true;
+        window['quarto-download-archives'] = true;
+        window["quarto-prerelease-mode"] = '{{< meta prerelease-mode >}}';
+        </script>
+page-layout: full
+toc: false
+anchor-sections: false
+editor: source
+image: /images/hero_right.png
+listing:
+  id: download-older
+  contents: 
+    - id: version12
+      title: v1.2.475
+      date: 2023/03/22
+      path: https://github.com/quarto-dev/quarto-cli/releases/tag/v1.2.475
+    - id: version11
+      title: v1.1.189
+      date: 2022/09/04
+      path: https://github.com/quarto-dev/quarto-cli/releases/tag/v1.1.189
+    - id: version10
+      title: v1.0.38
+      date: 2022/08/04
+      path: https://github.com/quarto-dev/quarto-cli/releases/tag/v1.0.38
+  fields: 
+    - title
+    - date
+    - path
+  field-display-names: 
+    path: "Url"
+  field-links: 
+    - path
+    - title
+  type: table
+  filter-ui: false
+  sort-ui: false
+---
+
+
+::: {.content-visible when-profile="rc"}
+
+::: {.panel-tabset}
+
+## **{{< meta prerelease-title >}}** --- v[]{.download-pre-version}
+
+{{< include _download-pre.md >}}
+
+
+## **Current Release** --- v[]{.download-version}
+
+{{< include _download.md >}}
+
+## **Older Releases**
+
+Pages containing all installers for the most recent releases of older versions of Quarto are linked below.
+
+:::{#download-older}
+
+:::
+
+:::
+
+:::
+
+::: {.content-hidden when-profile="rc"}
+
+::: {.panel-tabset}
+
+## **Current Release** --- v[]{.download-version}
+
+{{< include _download.md >}}
+
+## **{{< meta prerelease-title >}}** --- v[]{.download-pre-version}
+
+{{< include _download-pre.md >}}
+
+## **Older Releases**
+
+Pages containing all installers for the most recent releases of older versions of Quarto are linked below.
+
+:::{#download-older}
+
+:::
+
+:::
+
+:::
+
+
+

@@ -1,0 +1,173 @@
+---
+title: About Pages
+---
+
+## Overview
+
+Quarto makes it easy to create a simple about page for an individual or organization. When the `about` option is provided for a document, a special template will be used to layout the content of the current page with a custom layout designed to present a person or organization.
+
+For example:
+
+``` markdown
+---
+title: "Finley Malloc"
+about:
+  template: jolla
+  image: profile.jpg
+  links:
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com
+    - icon: github
+      text: Github
+      href: https://github.com
+---
+
+Finley Malloc is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Finley enjoys spending  time unicycling and playing with her pet iguana.
+
+## Education
+
+University of California, San Diego | San Diego, CA
+PhD in Mathematics | Sept 2011 - June 2015
+
+Macalester College | St. Paul MA
+B.A in Economics | Sept 2007 - June 2011
+
+## Experience
+
+Wengo Analytics | Head Data Scientist | April 2018 - present
+
+GeoScynce | Chief Analyst | Spet 2012 - April 2018
+```
+
+The contents of this page will be laid out using the `jolla` template with the `profile.jpg` image, and generate a set of links for the items specified in `links`.
+
+You can write and format the content of the page however you'd like - when the page is rendered, Quarto will use the content and options provided in the `about` option to create the about page, arranging the content content of the `about` option with the content in the page itself.
+
+## Templates
+
+Quarto includes 5 built in templates, drawing inspiration from the [Postcards R Package](https://cran.r-project.org/web/packages/postcards/readme/README.html). Built in templates include:
+
+-   `jolla`
+-   `trestles`
+-   `solana`
+-   `marquee`
+-   `broadside`
+
+Each template will position the about elements with the content in a different layout. Select the template using the `template` option:
+
+``` yaml
+about:
+  template: trestles
+```
+
+Here is a preview of each of the templates:
+
+::: panel-tabset
+### jolla
+
+![](images/about-jolla.png){.border fig-alt="Screenshot of About page with jolla template. Photo is a centered circle above a heading with the author's name. There is a centered paragraph below the header, a separator line, and then buttons for twitter and github centered at the bottom."}
+
+### trestles
+
+![](images/about-trestles.png){.border fig-alt="Screenshot of About page with trestles template. On the left-hand side there is a rectangular photo above the author's name, and two buttons (one for twitter, and one for github below). On the right hand side there is a paragraph of body text followed by headered sections for Education and Experience."}
+
+### solana
+
+![](images/about-solana.png){.border fig-alt="Screenshot of About page with solana template. The left-hand side has the name as a main header with buttons for twitter and github below it. Below the buttons there is a paragraph of body text, followed by headered sections for Education and Experience. In the upper right-hand column there is a rectangular image."}
+
+### marquee
+
+![](images/about-marquee.png){.border fig-alt="Screenshot of About page with marquee template. A large square image is at the top. Beneath that the author's name is a header, and there is a paragraph of body text, followed by headered sections for Education and Experience. Centered at the bottom of the page are links to Twitter and GitHub with their respective icons next to them."}
+
+### broadside
+
+![](images/about-broadside.png){.border fig-alt="Screenshot of About page with broadside template. The left side is a rectangular image. On the right-hand side the author's name is a header, and there is a paragraph of body text, followed by headered sections for Education and Experience. Centered at the bottom of the page are links to Twitter and GitHub with their respective icons next to them."}
+:::
+
+### Image
+
+The image for the about page will be read from the document-level `image` option:
+
+``` yaml
+title: Finley Malloc
+image: profile.jpg
+about:
+  template: jolla
+```
+
+In addition, you can customize how the image is displayed in the page to better meet your needs by setting the following options.
+
+| option        | description                                                                           | templates                     |
+|------------------|----------------------------------|--------------------|
+| `image-width` | A valid CSS width for your image.                                                     | all                           |
+| `image-shape` | The shape of the image on the about page. Choose from:`rectangle`, `round`, `rounded` | `jolla`, `solana`, `trestles` |
+| `image-alt`   | Alternative text for image                                                            | all                           |
+| `image-title` | Title for image                                                                       | all                           |
+
+For example:
+
+``` yaml
+title: Finley Malloc
+image: profile.png
+about:
+  template: trestles
+  image-width: 10em
+  image-shape: round
+```
+
+### Links
+
+Your about page also may contain a set of links to other resources about you or your organization. Each template will render these links in a slightly different way. Here are the options that you can specify for each link:
+
+| Option       | Description                                                                                                                        |
+|-------------------|-----------------------------------------------------|
+| `href`       | Link to file contained with the project or an external URL.                                                                        |
+| `text`       | Text to display for navigation item (defaults to the document `title` if not provided).                                            |
+| `icon`       | Name of one of the standard [Bootstrap 5 icons](https://icons.getbootstrap.com/) (e.g. "github", "twitter", "share", etc.).        |
+| `aria-label` | [Accessible label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) for the navigation item. |
+
+## Partial Page Content
+
+By default, the about page will be generated using the entire contents of the page. If you'd like, however, you may also choose to use only a portion of the page's content to populate the about template. In this case, you can specify an `id` for the about page in the document front matter. When rendering the page, Quarto will find any `div` with that `id` and use the contents of that `div` to populate the about template. The `div` that provided the contents will be replaced with the formatted 'about' content. For example, you could write:
+
+``` markdown
+---
+title: "Finley Malloc"
+about:
+  id: hero-heading
+  template: jolla
+  image: profile.jpg
+  links:
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com
+    - icon: github
+      text: Github
+      href: https://github.com
+---
+
+### This content appears above the formatted about page content.
+
+:::{#hero-heading}
+
+Finley Malloc is the Chief Data Scientist at Wengo Analytics. When not innovating on data platforms, Finley enjoys spending  time unicycling and playing with her pet iguana.
+
+## Education
+
+University of California, San Diego | San Diego, CA
+PhD in Mathematics | Sept 2011 - June 2015
+
+Macalester College | St. Paul MA
+B.A in Economics | Sept 2007 - June 2011
+
+## Experience
+
+Wengo Analytics | Head Data Scientist | April 2018 - present
+
+GeoScynce | Chief Analyst | Sept 2012 - April 2018
+
+:::
+
+### This content appears below the formatted about page content.
+```

@@ -1,0 +1,52 @@
+---
+title: Appendices
+---
+
+## Overview
+
+HTML pages rendered with Quarto include a formatted appendix at the end of the article. The appendix includes sections for citations and footnotes in the document, as well the attribution information (if specified) for the document itself.
+
+A simple example document appendix looks like:
+
+![](images/document-appendix-simple.png){.border fig-alt="Appendix with two sections: References, and Footnotes."}
+
+To learn more about including document attribution information in the appendix, see [Creating Citeable Articles](/docs/authoring/create-citeable-articles.qmd).
+
+## Custom Appendix Sections
+
+Sections of your document can be added to the Appendix that appears at the end of your article by adding the `.appendix` class to any header. For example:
+
+``` yaml
+## Acknowledgments {.appendix}
+
+I am grateful for the insightful comments offered by the anonymous peer reviewers at Books & Texts. The generosity and expertise of one and all have improved this study in innumerable ways and saved me from many errors; those that inevitably remain are entirely my own responsibility.
+```
+
+Any sections marked with the `.appendix` class will be included at the front of the appendix in the order in which they appear in the document. A more complete example appendix including attribution and the above custom appendix section looks like:
+
+![](images/document-appendix-full.png){.border fig-alt="Appendix with Acknowledgements, References, Footnes, and Citation sections. The Citation section contains both BibTex citation, and plain text for attribution."}
+
+## License
+
+If you include a license in the front matter or citation information for your document, a 'Reuse' section will automatically be added to the appendix. Read more about specifying a license in [Front Matter](/docs/authoring/front-matter.qmd#license).
+
+Here is an example of a complete appendix including all the fields with an Attribution-ShareAlike Creative Commons license.
+
+![](images/document-appendix-reuse.png){.border fig-alt="Appendix with Acknowledgements, References, Footnotes, Reuse, and Citation sections. The Reuse section contains a link to the Attribution-ShareAlike Creative Commons license."}
+
+
+## Appendix Style
+
+You can control how Quarto process the appendix of your document using the `appendix-style` option. There are three options available:
+
+`default`
+
+:   The default appendix treatment create a smaller font face and gathers the various sections into stylized groups at the end of the document.
+
+`plain`
+
+:   The plain treatment will do all the appendix processing (gathering and organizing the sections at the end of the document, creating sections like 'Reuse'), but will not apply the default appendix styling.
+
+`none`
+
+:   `none` disables appendix processing altogether. Content will not be processed or organized and information like 'Citation' and 'Reuse' will not be included in the document.

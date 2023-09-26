@@ -1,0 +1,206 @@
+---
+pagetitle: "Martini CG Force-Field"
+page-layout: custom
+section-divs: false
+toc: false
+css: index.css
+editor: source
+description: | 
+  A General Purpose Coarse-Grained Force Field. Supports Gromacs and OpenMM.
+hide-description: true
+image: martini.gif
+resources: 
+  - images/martini_animation.mp4
+---
+
+::: {.hero-banner}
+
+
+::: {.content-block}
+
+::: {.hero-text}
+# Welcome to the Martini FF Initiative
+
+### A General Purpose Coarse-Grained Force Field.
+
+- Feed with bullet points of Martini's main features.
+- Feed with bullet points of Martini's main features.
+- Feed with bullet points of Martini's main features.
+- Feed with bullet points of Martini's main features.
+- Feed with bullet points of Martini's main features.
+
+### Maybe include a cool quote about Martini...
+
+::: {.hero-buttons}
+[Get Started](docs/get-started/){.btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"}
+[Guide](docs/guide/){#btn-guide .btn-action .btn .btn-info .btn-lg role="button"}
+::: 
+:::
+
+::: {.hero-animation}
+
+<video autoplay muted playsinline loop>
+<source src="images/martini_animation.mp4" type="video/mp4"/>
+</video>
+:::
+:::
+:::
+
+::: {.hello-quarto .alt-background}
+::: {.content-block}
+
+::: {.hello-quarto-banner}
+# Jump right in ...
+<ul class="nav nav-pills" id="hello-quarto-tab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="python-tab" data-bs-toggle="tab" data-bs-target="#python" type="button" role="tab" aria-controls="python" aria-selected="true">Gromacs</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="knitr-tab" data-bs-toggle="tab" data-bs-target="#knitr" type="button" role="tab" aria-controls="knitr" aria-selected="false">OpenMM</button>
+  </li>
+</ul>
+:::
+
+<div class="tab-content" id="hello-quarto-tabcontent">
+
+<div class="tab-pane fade  show active" id="python" role="tabpanel" aria-labelledby="python-tab">
+
+Some words about how to use Martini on [Gromacs](https://www.gromacs.org), followed for a couple of pictures of how it should look like.
+
+::: {.grid}
+::: {.g-col-lg-6 .g-col-12}
+![](images/demo-jupyter-plain.png){.hello-output fig-alt="Example Jupyter notebook entitled Palmer Penguins with code cells, text, and a scatterplot." height="605"}
+:::
+
+::: {.g-col-lg-6 .g-col-12 style="background-color: white; border: 1px solid #dee2e6; height: 605px;"}
+![](images/demo-jupyter-output.png){fig-alt="Output of example Jupyter notebook, Palmer Penguins, in HTML showing title, metadata, text, code, and scatterplot. At the top there is a dropdown option to show or hide the code."}
+:::
+:::
+
+</div>
+
+<div class="tab-pane fade" id="knitr" role="tabpanel" aria-labelledby="knitr-tab">
+
+Some words about how to use Martini on [OpenMM](https://openmm.org), followed for a couple of pictures of how it should look like.
+
+::: {.grid}
+::: {.g-col-lg-6 .g-col-12}
+````markdown
+---
+title: "ggplot2 demo"
+author: "Norah Jones"
+date: "5/22/2021"
+format: 
+  html:
+    fig-width: 8
+    fig-height: 4
+    code-fold: true
+---
+
+## Air Quality
+
+@fig-airquality further explores the impact of temperature on ozone level.
+
+```{{r}}
+#| label: fig-airquality
+#| fig-cap: "Temperature and ozone level."
+#| warning: false
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess"
+)
+```
+
+
+````
+:::
+
+::: {.g-col-lg-6 .g-col-12}
+![](images/hello-knitr.png){.hello-output fig-alt="Example output with title (ggplot2 demo), author (Norah Jones), and date (5/22/2021). Below is a header reading Air Quality followed by body text (Figure 1 further explores the impact of temperature on ozone level.) with a toggleable code field, and figure with caption Figure 1 Temperature and ozone level."}
+:::
+:::
+
+</div>
+</div>
+
+
+::: {.grid}
+
+
+:::
+:::
+:::
+
+
+::: {.content-block}
+::: {.features}
+
+::: {.feature}
+### Link to relevant resource in the ecosystem
+Brief description here...
+
+::: {.learn-more}
+[Learn more »](http://cgmartini.nl)
+:::
+:::
+
+::: {.feature}
+### Link to relevant resource in the ecosystem
+Brief description here...
+
+::: {.learn-more}
+[Learn more »](http://cgmartini.nl)
+:::
+:::
+
+::: {.feature}
+### Link to relevant resource in the ecosystem
+Brief description here...
+
+::: {.learn-more}
+[Learn more »](http://cgmartini.nl)
+:::
+:::
+
+::: {.feature}
+### Link to relevant resource in the ecosystem
+Brief description here...
+
+::: {.learn-more}
+[Learn more »](http://cgmartini.nl)
+:::
+:::
+
+::: {.feature}
+### Link to relevant resource in the ecosystem
+Brief description here...
+
+::: {.learn-more}
+[Learn more »](http://cgmartini.nl)
+:::
+:::
+
+::: {.feature}
+### Link to relevant resource in the ecosystem
+Brief description here....
+
+::: {.learn-more}
+[Learn more »](http://cgmartini.nl)
+:::
+:::
+
+:::
+:::
+
+
+::: {.get-started .alt-background}
+::: {.content-block}
+
+[Get Started](docs/get-started/index.html){.btn-action-primary  .btn-action .btn .btn-success .btn-lg role="button" style="margin-top: 1em;"}
+
+:::
+:::
+

@@ -1,0 +1,172 @@
+---
+title: "Creating a Website"
+format: 
+  html:
+    output-file: index.html
+---
+
+## Overview
+
+Quarto Websites are a convenient way to publish groups of documents. Documents published as part of a website share navigational elements, rendering options, and visual style.
+
+Website navigation can be provided through a global navbar, a sidebar with links, or a combination of both for sites that have multiple levels of content. You can also enable full text search for websites.
+
+Quarto websites can be published to a wide variety of destinations including GitHub Pages, Netlify, Posit Connect, or any other static hosting service or intranet web server. See the documentation on [Publishing Websites](../publishing/index.qmd) for additional details.
+
+## Quick Start
+
+Follow the Quick Start for your tool of choice to get a simple website up and running. After covering the basics, read on to learn about website navigation and other more advanced website features.
+
+::: {.panel-tabset group="tools-tabset"}
+
+### VS Code
+
+To create a new website project within VS Code, execute the **Quarto: Create Project** command from the command-palette:
+
+![](images/vscode-create-project-command.png)
+
+Then, select **Website Project**:
+
+![](images/vscode-create-project-website.png){.border}
+
+You'll be prompted to select a parent directory to create the project within. Then, you'll be asked to name the directory for your website project:
+
+![](images/vscode-create-project-directory.png){.border}
+
+The new website project will be created and opened within VS Code. Click the **Render** button to preview the website:
+
+![](images/vscode-create-project-render.png)
+
+The preview will show to the right of the source file. As you re-render `index.qmd` or render other files like `about.qmd`, the preview is automatically updated.
+
+
+### RStudio
+
+To create a new website project within RStudio, use the **New Project** command and select **Quarto Website**:
+
+:::{layout-ncol="2"}
+
+![](images/rstudio-project-new-directory.png){.border}
+
+![](images/rstudio-project-website.png){.border}
+:::
+
+Then, provide a directory name and other relevant options for the website:
+
+![](images/rstudio-project-website-options.png){.border fig-alt="A section of the 'New Project Wizard' menu from Rstudio. This section is titled 'Create Quarto Website'. The Quarto logo is displayed on the left. On the right are fields for 'Directory name', and 'Create project as subdirectory of:'. Underneath that are options for 'Engine'. The option for 'Engine' is set to 'None'. Underneath are options for 'Create a git repository', and 'Use visual markdown editor'.There are buttons for 'Create Project' and 'Cancel' arranged side-by-side in the bottom right of the window. There is an option to 'Open in new session' in the button left corner."}
+
+Click the **Render** button to preview the website:
+
+![](images/rstudio-project-website-preview.png)
+
+The preview will show to the right of the source file. As you re-render `index.qmd` or render other files like `about.qmd`, the preview is automatically updated.
+
+
+### Terminal
+
+To create a new website project from the Terminal, use the `quarto create project` command, following the prompt to select the type and to provide a name for the project (will be used as the directory name):
+
+```{.bash filename="Terminal"}
+quarto create project website mysite
+```
+
+This will create the scaffolding for a simple website in the `mysite` sub-directory. Use the `quarto preview` command to render and preview the website:
+
+```{.bash filename="Terminal"}
+quarto preview mysite
+```
+
+The website preview will open in a new web browser. As you edit and save `index.qmd` (or other files like `about.qmd`) the preview is automatically updated.
+
+:::
+
+
+
+
+
+## Workflow
+
+Above we demonstrated how to create and edit a simple website. In this section we go into more depth on website workflow.
+
+### Config File
+
+Every website has a `_quarto.yml` config file that provides website options as well as defaults for HTML documents created within the site. For example, here is the default config file for the simple site created above:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+
+website:
+  title: "today"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+```
+
+See the documentation on [Website Navigation](website-navigation.qmd) and [Website Tools](website-tools.qmd) for additional details on website configuration. See [HTML Documents](/docs/output-formats/html-basics.qmd) for details on customizing HTML format options.
+
+### Website Preview
+
+If you are using VS Code or RStudio, the **Render** button automatically renders and runs `quarto preview` in an embedded window. You can also do the same thing from the Terminal if need be:
+
+``` {.bash filename="Terminal"}
+# preview the website in the current directory
+quarto preview
+```
+
+Note that when you preview a site (either using VS Code / RStudio integrated tools or from the terminal)  changes to configuration files (e.g. `_quarto.yml`) as well as site resources (e.g. theme or CSS files) will cause an automatic refresh of the preview.
+
+You can customize the behavior of the preview server (port, whether it opens a browser, etc.) using command line options or the `_quarto.yml` config file. See `quarto preview help` or the [project file reference](/docs/reference/projects/options.qmd#preview) for additional details.
+
+
+::: callout-important
+As you preview your site, pages will be rendered and updated. However, if you make changes to global options (e.g. `_quarto.yml` or included files) you need to fully re-render your site to have all of the changes reflected. Consequently, you should always fully `quarto render` your site before deploying it, even if you have already previewed changes to some pages with the preview server.
+:::
+
+
+### Website Render
+
+To render (but not preview) a website, use the `quarto render` command, which will render the website into the `_site` directory by default:
+
+``` {.bash filename="Terminal"}
+# render the website in the current directory
+quarto render 
+```
+
+See the [Project Basics](../projects/quarto-projects.qmd) article to learn more about working with projects, including specifying an explicit list of files to render, as well as adding custom pre and post render scripts to your project.
+
+{{< include ../projects/_render-targets.md >}}
+
+
+## Linking
+
+When creating links between pages in your site, you can provide the source file as the link target (rather than the `.html` file). You can also add hash identifiers (`#)` to the source file if you want to link to a particular section in the document. For example:
+
+``` markdown
+[about](about.qmd)
+[about](about.qmd#section)
+```
+
+One benefit of using this style of link as opposed to targeting `.html` files directly is that if you at some point convert your site to a [book](../books/book-basics.qmd) the file-based links will automatically resolve to section links for formats that produce a single file (e.g. PDF or MS Word).
+
+## Learning More
+
+Once you've got a basic website up and running check out these articles for various ways to enhance your site:
+
+[Website Navigation](website-navigation.qmd) describes various ways to add navigation to a website, including top-level navigation bars, sidebars, or hybrid designs that uses both. This article also covers adding full-text search as well as a site-wide footer.
+
+[Website Tools](website-tools.qmd) covers adding social metadata (e.g. for Twitter Cards) and Google Analytics to your site, as well as enabling users to toggle between dark and light color schemes.
+
+[Website Options](../reference/projects/websites.qmd) provides a comprehensive reference to all of the available website options.
+
+[Code Execution](../projects/code-execution.qmd) provides tips for optimizing the rendering of sites with large numbers of documents or expensive computations.
+
+[Publishing Websites](../publishing/index.qmd) enumerates the various options for publishing websites including GitHub Pages, Netlify, and Posit Connect.

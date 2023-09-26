@@ -1,0 +1,20 @@
+---
+title: "Quarto Extensions"
+listing: 
+  id: listing-revealjs
+  contents: 
+    - listings/revealjs.yml
+    - listings/revealjs-formats.yml
+metadata-files: 
+  - listings/_metadata.yml
+---
+
+{{< include _listing-preamble.qmd >}}
+
+### Revealjs Extensions {.unlisted}
+
+::: {#listing-revealjs .column-body-outset-right}
+:::
+
+{{< include _listing-footer.qmd >}}
+
