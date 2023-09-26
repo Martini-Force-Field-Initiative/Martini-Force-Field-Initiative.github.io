@@ -47,20 +47,18 @@ website:
     title: false
     collapse-below: lg
     left:
-      - text: "Overview"
+      - text: "Home"
         href: index.qmd
-      - text: "Get Started"
-        href: docs/get-started/index.qmd
-      - text: "Guide"
-        href: docs/guide/index.qmd
+      - text: "About"
+        href: index.qmd
       - text: "Downloads"
+        href: docs/get-started/index.qmd
+      - text: "Tutorials"
+        href: docs/guide/index.qmd
+      - text: "Publications"
         href: docs/extensions/index.qmd
-      - text: "Tools"
+      - text: "Contact"
         href: docs/extensions/index.qmd
-      - text: "News"
-        href: docs/blog/index.qmd
-      - text: "Gallery"
-        href: docs/gallery/index.qmd
       - text: "Help"
         menu:
           - text: "Report a Bug"
