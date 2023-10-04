@@ -1,0 +1,11 @@
+---
+page-layout: full
+---
+## Martini tutorials
+
+The tutorial exercises described here aim to help you familiarize yourself with some of the basic and more advanced aspects of using GROMACS to perform coarse-grained simulations. The main focus is on the semi-empirical MARTINI model. Familiarity with GROMACS is assumed; for explanation of how to work with GROMACS and the specification of force field and run parameters we refer to the GROMACS user manual and web-pages (www.gromacs.org). There is an excellent GROMACS tutorial available at: [http://md.chem.rug.nl/~mdcourse/index.html](http://md.chem.rug.nl/~mdcourse/index.html)
+
+The current tutorial follows a historical track, starting with the MARTINI model for lipids. It then goes on to describe how to set up simulations with proteins (and peptides), combine an elastic network with MARTINI (ElNeDyn), and ends with more advanced topics, like reverse mapping (i.e. fine graining from a coarse-grained structure), polarizable water and visualizing coarse grain structures. The material can be covered in as much time as you like, and the speed at which you go through this material depends on the computational facilities available, your GROMACS skills, and the time you take to consider what you’re doing. The set-up is modular, however, and depending on you particular interest, you may change the order of the exercises. You could either leave long runs overnight to return to them the next day, or use ”pre-prepared” intermediate and result files that can be downloaded.
+
+*These tutorials were originally written for the MARTINI winterschool 2008 in Helsinki by Lars Schäfer, Andrzej Rzepiela, and Martti Louhivuori, subsequently updated by Clement Arnarez, Alex de Vries and Djurre de Jong for the CECAM Coarse grain workshop 2011 and further updated by Clement Arnarez, Helgi Ingólfsson, Manuel Nuno Melo and Jaakko Uusitalo for the 2nd Molecular Simulation Summer School at the University of Calgary.*
+

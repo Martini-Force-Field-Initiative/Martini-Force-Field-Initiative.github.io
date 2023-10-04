@@ -1,0 +1,16 @@
+---
+title: Multiscaling
+format: html
+---
+
+### AdResS simulation of MARTINI solvents
+<hr>
+
+These are the systems simulated in [Zavadlav, J., Melo, M. N., Vicente Cunha, A., De Vries, A. H., Marrink, S. J., & Praprotnik, M. (2014). Adaptive resolution simulation of MARTINI solvents. Journal of Chemical Theory and Computation](http://cgmartini.nl/pubs.acs.org/doi/abs/10.1021/ct5001523), using GROMACS.
+
+- [Martini water + bundled SPC](http://cgmartini.nl/images/applications/solvent_AdResS/bundled.tgz): this simulation requires modifications to GROMACS 4.6.5, included in this patch. See the supporting information in the paper for details on the modifications.
+- [Butane](http://cgmartini.nl/images/applications/solvent_AdResS/butane.tgz): can be simulated using the standard version of GROMACS (4.6.4 was used in the paper). If the modified GROMACS version is used instead, adress_ex_forcecap should be set to the capping distance (try something between 0.1 and 0.2) instead of the capping magnitude.
+
+The archive for each system contains the respective pre-converged thermodynamic force table.
+
+ 

@@ -1,0 +1,58 @@
+---
+title: Polymers
+format: html
+---
+
+### PEO polymers in water
+<hr>
+
+Equilibrated at T=300K, constant pressure P=1 bar.
+System size: 56 peo polymers (of 36 monomers), water 13312.
+
+- [peo36.gro](http://cgmartini.nl/images/applications/polymers/peo36.gro)
+- [peo36.mdp](http://cgmartini.nl/images/applications/polymers/peo36.mdp)
+- [peo36.top](http://cgmartini.nl/images/applications/polymers/peo36.top)
+
+### PSS and PDADMA polyelectrolytes
+<hr>
+
+(provided by Jens Smiatek, [smiatek@icp.uni-stuttgart.de](smiatek@icp.uni-stuttgart.de))
+
+Parameter files for PSS, poly(styrene sulfonate), and PDADMA, poly(diallyldimethylammonium), with 30 monomers. Also includes the Martini 2.2P parameter file including polystyrene beads (martini_v2.2P_PS.itp)
+
+- [parameters-polyelectrolytes.tar.gz](http://cgmartini.nl/images/applications/polymers/parameters-polyelectrolytes.tar.gz)
+
+An example application to simulate an equilibrated PSS/PDADMA mixture including ions and water with all necessary parameter files.
+
+- [example-polyelectrolyte-mixture.tar.gz](http://cgmartini.nl/images/applications/polymers/example-polyelectrolyte-mixture.tar.gz)
+
+Furthermore, a free program to generate topology files for arbitrarily long PSS or PDADMA chains can be found at:
+[https://github.com/martinvoegele/martini-polyelectrolytes](https://github.com/martinvoegele/martini-polyelectrolytes)
+
+The corresponding article can be cited as:
+
+- Coarse-grained simulations of polyelectrolyte complexes: MARTINI models for poly(styrene sulfonate) and poly(diallyldimethylammonium). **Vögele, Martin and Holm, Christian and Smiatek, Jens.** The Journal of Chemical Physics, 143, 243151 (2015), DOI:[http://dx.doi.org/10.1063/1.4937805](http://dx.doi.org/10.1063/1.4937805)
+
+### Polystyrene
+<hr>
+
+(provided by Luca Monticelli)
+
+System composition: 1 polystyrene chain (of 100 monomers), 2652 benzenes.
+
+- [polystyrene_benz.gro](http://cgmartini.nl/images/applications/polymers/polystyrene_benz.gro)
+- [polystyrene_benz.mdp](http://cgmartini.nl/images/applications/polymers/polystyrene_benz.mdp)
+- [polystyrene_benz.top](http://cgmartini.nl/images/applications/polymers/polystyrene_benz.top)
+- [martini_v2.1_SP.itp](http://cgmartini.nl/images/applications/polymers/martini_v2.1_PS.itp)
+
+### PEGylated lipids
+<hr>
+
+(provided by Hwankyu Lee)
+
+Equilibrated at T=296K, constant pressure P=1 bar.
+System size: 10269 DPPC lipids, 231 DPPE-PEG45 lipids, 394844 waters, 231 Na+ ions
+
+- [pegylatedlipid.gro](http://cgmartini.nl/images/applications/polymers/pegylatedlipid.gro)
+- [pegylatedlipid.mdp](http://cgmartini.nl/images/applications/polymers/pegylatedlipid.mdp)
+- [pegylatedlipid.top](http://cgmartini.nl/images/applications/polymers/pegylatedlipid.top)

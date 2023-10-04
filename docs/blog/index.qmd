@@ -1,0 +1,20 @@
+---
+title: Martini Blog
+subtitle: Latest news related to the Martini FF Initiative
+listing:
+  sort: "date desc"
+  type: default
+  contents: "posts/*/index.qmd"
+  sort-ui: false
+  filter-ui: false
+  categories: numbered
+  feed: true
+  image-height: 120px
+  image-placeholder: ../../images/favicon.png
+  page-size: 6
+page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: body
+comments: false
+search: false
+---
