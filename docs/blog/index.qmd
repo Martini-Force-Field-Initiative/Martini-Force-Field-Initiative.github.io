@@ -1,17 +1,20 @@
 ---
-title: Quarto Blog
-subtitle: News, tips, and commentary about all things Quarto
+title: Martini Blog
+subtitle: Latest news related to the Martini FF Initiative
 listing:
   sort: "date desc"
+  type: default
   contents: "posts/*/index.qmd"
   sort-ui: false
   filter-ui: false
-  categories: true
+  categories: numbered
   feed: true
+  image-height: 120px
+  image-placeholder: ../../images/favicon.png
+  page-size: 6
 page-layout: full
-margin-header: signup.html
 title-block-banner: "#EDF3F9"
 title-block-banner-color: body
+comments: false
 search: false
-image: quarto-blog-v2.png
 ---

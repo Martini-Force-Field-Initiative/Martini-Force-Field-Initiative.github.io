@@ -1,0 +1,135 @@
+---
+title: RNA
+format: html
+---
+
+**NOTE:** You can download all the files required for this tutorial and the DNA tutorial from [here](http://cgmartini.nl/images/stories/tutorial/2017/na-tutorials_20170815.tar). Please note that you have to adjust some of the paths (mostly location of the force field files) below if you use this package.
+ 
+#### **Setup of a double stranded RNA**
+
+This is a brief tutorial on how to set up a simulation of a double stranded RNA molecule with the recent Martini force field parameters. Since RNA is very similar to DNA from the chemical point of view, the Martini RNA parameters are highly based on the DNA model. This also allows to have full compatibility with the DNA model and the other existing models in the Martini universe.
+ 
+To make this tutorial more general, you should download the latest Martini DNA and RNA release from [here](http://cgmartini.nl/images/stories/tutorial/2017/na-tutorials_20170815.tar). It includes the itp files for both molecules as well as a modified martinize script to coarse grain nucleic acids. As Martini DNA, Martini RNA can be used to model both single-stranded as well as double-stranded RNA. It also provides two separate elastic networks: a soft model has a cutoff of $1.2 \;nm$ and a force constant of $13 \;kJ\; mol^{-1} \;nm^{-2}$ and the stiff model has a cutoff of $1.0\; nm$ and a $500\; kJ \;mol^{-1} \;nm^{-2}$ force constant.
+ 
+This tutorial will show only an example of creating a dsRNA topology using the stiff elastic network but a dsRNA topology with soft network or a ssRNA topology without elastic network can be created using the same procedure. For dsRNA structures the stiff elastic network is a good starting point for seeing how your system behaves in a CG simulation. There are also options for creating elastic networks for more complicated DNA structure; martinize-dna options all-stiff and all-soft are meant to be starting points for creating topologies for such structures but they are beyond the scope of this tutorial. The package includes a `README` file that should have sufficient instructions for creating the other types of RNA (and DNA) topologies after you have finished this tutorial.
+ 
+1. Unpack the tutorial files you downloaded (it expands to na-tutorials).
+
+``` bash
+$ tar -xvzf na-tutorials_20170815.tar
+```
+ 
+2. Go to the folder `na-tutorials/rna-tutorial/dsRNA-setup`. Martinize works now also for RNA molecules. As for DNA, martinize-nucleotide.py for RNA works best with cleaned up .gro files so you should first remove other atoms from the .pdb file and convert it to a .gro file. You will find the .pdb file for the [1RNA](http://www.rcsb.org/pdb/explore.do?structureId=1rna) pdb code. NOTE that a download from the PDB website can give you a file called 1rna.pdb. The file 1RNA.pdb (NOTE CAPIIALS) is provided in the archive, so you do not need to download.
+ 
+``` bash
+$ grep -v HETATM 1RNA.pdb > aa-1rna.pdb
+$ gmx editconf -f aa-1rna.pdb -o aa-1rna.gro
+```
+ 
+3. Next we can use the script martinize-nucleotide.py (supplied for you in the current directory) to create a Martini RNA topology for 1RNA. 
+ 
+``` bash
+$ python martinize-nucleotide.py -type ds-stiff -f aa-1rna.gro -o cg-1rna.top -x cg-1rna.pdb
+```
+ 
+This will create the coarse-grained model of the 1RNA molecule (coordinates in cg-1rna.pdb) and the topology file (cg-1rna.top, which refers to Nucleic_A+Nucleic_B.itp). Next, you need to change the .top file to include the correct .itp files. This can be done with your favorite text editor but scriptable options are given below. Note: there are two sets of commands here, the first for Mac OSX, the second for Linux. In both cases, the backslashes (\\) need to be typed as indicated.
+
+OSX
+
+``` bash
+$ sed -i .bak 's/#include "martini.itp"/#include "martini_v2.1-dna.itp"\
+#include "martini_v2.0_ions.itp"/' cg-1rna.top 
+```
+ 
+and Linux
+
+``` bash
+$ cp cg-1rna.top cg-1rna.top.bak 
+$ sed -i 's/#include "martini.itp"/#include "martini_v2.1-dna.itp"\n#include "martini_v2.0_ions.itp"/' cg-1rna.top 
+```
+ 
+4. You can now visualize the mapping of the 1RNA molecule by opening both the atomistic and coarse-grained structures in VMD. (The visualization is clearer if you show the CG structure as small VDW spheres.)
+ 
+``` bash
+$ vmd -m aa-1rna.pdb cg-1rna.pdb
+```
+ 
+5. Next you need to create a simulation box for the RNA molecule and solvate it as well as add counterions. You will find a pre-equilibrated coarse-grained water box in the downloaded folder. You can also download it from [here](http://cgmartini.nl/images/applications/water/water.gro).
+ 
+``` bash
+$ gmx editconf -f cg-1rna.pdb -d 1.2 -bt dodecahedron -o box.gro
+$ gmx solvate -cp box.gro -cs water.gro -o bw.gro -radius 0.22 -maxsol 1250
+```
+ 
+You can replace water with ions in .top file without using genion at the same time as we add waters there. Note: the next line assumes that exactly 1226 water beads were added to the DNA by the genbox tool; the first 1100 added beads are designated as normal water beads, the next 100 beads are designated as anti-freeze water beads, and the final 26 beads are designated as sodium ions.  
+
+``` bash
+$ printf "\nW         1100\nWF         100\nNA          26\n" >> cg-1rna.top
+```
+ 
+6. Use the `em.mdp` provided in the directory to run an energy minimization (integrator = steep, nsteps = 100).
+ 
+``` bash
+$ gmx grompp -f em.mdp -c bw.gro -p cg-1rna.top -o 01-em -maxwarn 1
+$ gmx mdrun -v -deffnm 01-em 
+```
+ 
+7. Next, you can run a short equilibration of 1 ns. Note, a smaller time step might be needed for initial equilibration (10 fs). 
+
+``` bash
+$ gmx grompp -f equil.mdp -c 01-em.gro -p cg-1rna.top -o 02-eq
+$ gmx mdrun -v -deffnm 02-eq -rdd 2.0
+```
+ 
+8. Now you are ready to start your first RNA simulation. Use the `mdrun.mdp` file to produce a longer simulation. This time we will be running a 10 ns production run. Note that with the elastic network the domain cell size needs to be kept fairly large (option -rdd 2.0).
+ 
+``` bash
+$ gmx grompp -f mdrun.mdp -c 02-eq.gro -p cg-1rna.top -o 03-run
+$ gmx mdrun -v -deffnm 03-run -rdd 2.0
+```
+ 
+9. You can visualize the movements of the RNA, ions and waters using VMD while your simulation is still running (you will need to open a new terminal). Note that bonds in Martini are longer than bonds normally shown in VMD. Please consult [the VMD tutorial](./visualizing_martini.qmd) to get better visualization.  It may be advisable to convert your trajectory so that molecules are not split over the periodic boundaries (using gmx trjconv -pbc whole) before viewing. It needs a bit more trickery to ensure that both RNA strands are shown close to each other, see the description in the [protein tutorial](./proteins.qmd).
+ 
+``` bash
+$ vmd 02-eq.gro 03-run.xtc
+```
+ 
+#### **RNA and Backward**
+ 
+RNA structures can be backmapped into atomistic resolution using Backward. Before starting this part of the tutorial you should first go and do the [Backward tutorial](./others.qmd). The RNA backmapping files are as of now not yet part of the downloadable backward package but files for CHARMM are in the tutorial package in the backmapping folder together with the backward scripts. Next, we will first coarse-grain a dsRNA structure and then backmap it back to atomistic resolution.
+ 
+1. Got to the `na-tutorials/rna-tutorial/backmapping` directory and cleanup and convert the given RNA structure 1RNA.pdb to a gro file in a reasonable simulation box.
+
+``` bash
+$ gmx editconf -f ../dsRNA-setup/1RNA.pdb -d 1.4 -o aa-1rna.gro
+```
+ 
+2. Create a CG structure using martinize-dna.py.
+
+``` bash
+$ python ../dsRNA-setup/martinize-nucleotide.py -f aa-1rna.gro -type ds-stiff -p cg-1rna.top -x cg-1rna.pdb
+```
+ 
+3. Solvate the CG structure.
+ 
+``` bash
+$ gmx solvate -cp cg-1rna.pdb -cs ../dsRNA-setup/water.gro -radius 0.22 -o cg-1rna-water.gro
+```
+ 
+4. Create an atomistic topology file for the system. Choose charmm27 and tip3p when prompted.
+
+``` bash
+$ gmx pdb2gmx -f ../dsRNA-setup/aa-1rna.pdb
+```
+ 
+5. Edit the file `topol.top` to point explicitly to the `tip3p.itp` file provided for you (it will not recognize it in the standard path unfortunately). Thus, replace the line `#include "charmm27/tip3p.itp"` near the end of the file by `#include "./tip3p.itp"`. Run the initram.sh script to perform the backmapping. Initram goes through a number of energy minimization and short MD runs (with positions restraints), have a look inside the script!
+
+``` bash
+$ ./initram.sh -f cg-1rna-water.gro -o aa-charmm.gro -to charmm36 -p topol.top
+```
+ 
+6. Compare the initial structure to the backmapped structure.
+
+``` bash
+$ vmd -m cg-1rna.gro aa-charmm.gro
+```

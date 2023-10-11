@@ -1,0 +1,45 @@
+---
+title: Solvent systems
+format: html
+---
+
+### Martini solvent boxes
+<hr>
+Thanks to the contribution of [Sebastian Franco Ulloa](https://www.sebastianfu.com/), we can now provide our users with a small library of pre-equilibrated solvent boxes, ranging from acetamide to trans-octadecane.
+
+You can download the files [here](http://cgmartini.nl/images/Martini_solvents.zip).
+
+### Salt solution
+<hr>
+Equilibrated at T=300K, P=1 bar.
+System size: sodium 8, chloride 8, water 388.
+
+- [nacl+wat.gro](http://cgmartini.nl/images/applications/salt/nacl+wat.gro)
+- [nacl+wat.mdp](http://cgmartini.nl/images/applications/salt/nacl+wat.mdp)
+- [nacl+wat.top](http://cgmartini.nl/images/applications/salt/nacl+wat.top)
+
+### Hexadecane slab in water
+<hr>
+
+Equilibrated at T=300K, constant area and perpendicular Pz=1 bar.
+System size: hexadecane 100, water 400.
+
+- [hexadecane_slab.gro](http://cgmartini.nl/images/applications/alkanes/hexadecane_slab.gro)
+- [hexadecane_slab.mdp](http://cgmartini.nl/images/applications/alkanes/hexadecane_slab.mdp)
+- [hexadecane_slab.top](http://cgmartini.nl/images/applications/alkanes/hexadecane_slab.top)
+
+### Pure water solvent
+<hr>
+
+Equilibrated at T=300K, P=1 bar.
+System size: water 2000 (corresponding to 8000 real water molecules).
+
+- [water.gro](http://cgmartini.nl/images/applications/water/water.gro)
+- [water.mdp](http://cgmartini.nl/images/applications/water/water.mdp)
+- [water.top](http://cgmartini.nl/images/applications/water/water.top)
+
+A box with 1824 polarizable waters, equilibrated at T=300K, P = 1 bar.
+
+- [polarize-water.gro](http://cgmartini.nl/images/applications/water/polarize-water.gro)
+- [polarize-water.mdp](http://cgmartini.nl/images/applications/water/polarize-water.mdp)
+- [polarize-water.top](http://cgmartini.nl/images/applications/water/polarize-water.top)
