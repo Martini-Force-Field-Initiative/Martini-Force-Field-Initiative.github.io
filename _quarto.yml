@@ -58,19 +58,19 @@ website:
       - text: "Tutorials"
         href: docs/tutorials/index.qmd
       - text: "Discussions"
-        href: docs/tutorials/index.qmd
+        href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions
       - text: "Publications"
         href: docs/publications/index.qmd
       - text: "Contact"
         href: docs/contact.qmd
       - text: "Help"
         menu:
-          - text: "Report a Bug"
+          - text: "Report issues"
             icon: "bug"
-            href: "https://github.com/Martini-Force-Field-Initiative" #TODO: open general repo for issues
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" #TODO: open general repo for issues
           - text: "Ask a Question"
             icon: "chat-right-text"
-            href: "https://github.com/Martini-Force-Field-Initiative"  #TODO: change this to discussions
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a"
           - text: "FAQ"
             icon: "question-circle"
             href: docs/faq/index.qmd
