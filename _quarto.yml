@@ -39,9 +39,9 @@ website:
         aria-label: Martini GitHub
       # - icon: rss
       #   href: TBA
-      #   aria-label: Martini Blog RSS        
+      #   aria-label: Martini Blog RSS
   navbar:
-    background: "#fdfffc" 
+    background: "#fdfffc"
     logo: images/martini.gif
     logo-alt: "martini logo."
     title: false
@@ -83,7 +83,7 @@ website:
         text: Martini GitHub
       # - icon: rss
       #   href: # TBA
-      #   text: Martini Blog RSS        
+      #   text: Martini Blog RSS
 
   sidebar:
     - id: blog
@@ -116,7 +116,7 @@ website:
             - docs/downloads/force-field-parameters/lipids.qmd
         - section: "Example applications"
           contents:
-            - docs/downloads/example-applications/solvent-systems.qmd           
+            - docs/downloads/example-applications/solvent-systems.qmd
             - docs/downloads/example-applications/lipid-membranes.qmd
             - docs/downloads/example-applications/lipid-vesicles.qmd
             - docs/downloads/example-applications/micelles.qmd
@@ -125,7 +125,7 @@ website:
             - docs/downloads/example-applications/polymers.qmd
             - docs/downloads/example-applications/other-systems.qmd
         - section: "Tools"
-          contents: 
+          contents:
             - docs/downloads/tools/proteins-and-bilayers.qmd
             - docs/downloads/tools/resolution-transformation.qmd
             - docs/downloads/tools/visualization.qmd
@@ -137,7 +137,7 @@ website:
       style: "floating"
       collapse-level: 1
       align: left
-      contents: 
+      contents:
         - text: <b>Tutorials</b><hr>
         # - section: "Martini 2 Tutorials"
         #   href: docs/tutorials/Legacy/martini2/index.qmd
@@ -159,7 +159,7 @@ website:
         #   href: docs/tutorials/martini/index.qmd
         # - text: "Martini 3 Tutorials (2021 Martini online workshop)"
         #   href: docs/tutorials/Martini3/index.qmd
-        #   contents: 
+        #   contents:
         #     - docs/tutorials/Martini3/lectures.qmd
         #     - docs/tutorials/Martini3/tutorials.qmd
         - text: "Lectures"
@@ -168,11 +168,12 @@ website:
           href: docs/tutorials/Martini3/tutorials.qmd
         - text: "Legacy Material"
           href: docs/tutorials/Legacy/martini3/index.qmd
-          # contents: 
-          #   - docs/tutorials/Legacy/martini3/index.qmd
+          contents:
+            - docs/tutorials/martini3/small_molecule_binding.qmd
+            - docs/tutorials/martini3/parameterizing_small_molecule.qmd
         # - section: "Martini 3 Tutorials (Legacy Beta Tutorials)"
         #   href: docs/tutorials/martini3/index.qmd
-        #   contents: 
+        #   contents:
         #     - docs/tutorials/martini3/small_molecule_binding.qmd
         #     - docs/tutorials/martini3/parameterizing_small_molecule.qmd
     - id: publications
@@ -180,7 +181,7 @@ website:
       style: "floating"
       collapse-level: 2
       align: left
-      contents: 
+      contents:
         - text: <b>Publications by year</b><hr>
         - docs/publications/2023.qmd
         - docs/publications/2022.qmd
@@ -203,15 +204,15 @@ website:
         - docs/publications/2005.qmd
         - docs/publications/2004.qmd
         - docs/publications/2003.qmd
-          
-          
+
+
 
 bibliography: references.bib
 
 format:
   html:
     toc: true
-    theme: 
+    theme:
       light: [default, theme.scss]
     code-copy: true
     code-overflow: wrap
@@ -232,5 +233,5 @@ freeze: true
 editor: visual
 
 profile:
-  group: 
+  group:
     - [prerelease,rc]
