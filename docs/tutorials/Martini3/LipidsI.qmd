@@ -50,13 +50,13 @@ The value of the flag ```-radius``` (default van der Waals radii) has to be incr
 Using the gromacs tool ```solvate```, add 6 CG waters per lipid (note that this corresponds to 24 all-atom waters per lipid, 768 in total). ```gmx solvate``` needs to have the structure of an equilibrated water box to use as a template to fill the empty space in 128_noW.gro. The website has one (```water.gro```) available for you under the [Example applications -> Solvent systems](http://cgmartini.nl/index.php/example-applications2/solvent-systems) section; download it:
 
 ``` bash
-$ wget http://cgmartini.nl/images/applications/water/water.gro
+wget http://cgmartini.nl/images/applications/water/water.gro
 ```
 
 You can now run solvate:
 
 ``` bash
-$ gmx solvate -cp 128_noW.gro -cs water.gro -o waterbox.gro -maxsol 768 -radius 0.21
+gmx solvate -cp 128_noW.gro -cs water.gro -o waterbox.gro -maxsol 768 -radius 0.21
 ```
 
 Also here, the value of the flag ```-radius``` is used to reflect the size of Martini CG beads. A new file, ```waterbox.gro``` is produced containing the 128 lipids and added water beads.
@@ -108,24 +108,20 @@ This might take approximately 10 minutes on a single CPU but by default ```gmx m
 gmx view -f dppc-md.xtc -s dppc-md.tpr
 ```
 
-or, alternatively, use VMD or pymol. Both VMD and pymol suffer from the fact that Martini bonds
-are usually not drawn because they are much longer than standard bonds and the default
-visualization is not very informative. For visualization with pymol this is solved most easily by
-converting the trajectory to .pdb format, explicitly writing out all bonds (select System or DPPC,
-depending on whether you want to visualize the entire system or only the lipids). The
-disadvantage is that very large files are produced in this conversion!
-$ gmx trjconv -s dppc-md.tpr -f dppc-md.xtc -o dppc-md.pdb -pbc whole -conect
-$ pymol dppc-md.pdb
-For VMD, a plugin script cg_bonds-v5.tcl was written that takes the GROMACS topology file
-and adds the Martini bonds defined in the topology (this file is included in the directory for
-your convenience, but you would normally want to download it from the Tools ->
-Visualization section of the website, store it in a generally useful location and refer to it when
-needed). A useful preprocessing step for VMD visualization is to avoid molecules being split
-over the periodic boundary, because if they are, very long bonds will be drawn between them.
-A script do_vmd.sh has been prepared for you for visualization using VMD. You will probably
-need to make the script executable.
-$ chmod +x do_vmd.sh
-$ ./do_vmd.sh
+or, alternatively, use VMD or pymol. Both VMD and pymol suffer from the fact that Martini bonds are usually not drawn because they are much longer than standard bonds and the default visualization is not very informative. For visualization with pymol this is solved most easily by converting the trajectory to ```.pdb``` format, explicitly writing out all bonds (select System or DPPC, depending on whether you want to visualize the entire system or only the lipids). The disadvantage is that very large files are produced in this conversion!
+
+```bash
+gmx trjconv -s dppc-md.tpr -f dppc-md.xtc -o dppc-md.pdb -pbc whole -conect
+pymol dppc-md.pdb 
+```
+
+For VMD, a plugin script ```cg_bonds-v5.tcl``` was written that takes the GROMACS topology file and adds the Martini bonds defined in the topology (this file is included in the directory for your convenience, but you would normally want to download it from the [Tools -> Visualization](http://cgmartini.nl/index.php/tools2/visualization) section of the website, store it in a generally useful location and refer to it when needed). A useful preprocessing step for VMD visualization is to avoid molecules being split over the periodic boundary, because if they are, very long bonds will be drawn between them. A script ```do_vmd.sh``` has been prepared for you for visualization using VMD. You will probably need to make the script executable.
+
+```bash
+chmod +x do_vmd.sh
+./do_vmd.sh
+```
+
 The initial and final snapshots should look similar to Fig. 1, at least if the self-assembly
 resulted in a bilayer in the allotted time, which is not guaranteed. You may have noticed,
 however, that there is relatively little water, and some part of the initial solvated box is
