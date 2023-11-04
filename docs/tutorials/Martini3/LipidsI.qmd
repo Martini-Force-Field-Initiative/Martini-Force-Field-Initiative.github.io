@@ -228,6 +228,7 @@ gmx analyze -f area.xvg -ee -b 15000
 ```
 
 #### Bilayer thickness
+<hr>
 
 To get the bilayer thickness, use ```gmx density```. You can get the density for a number of different functional groups in the lipid (e.g., phosphate and ammonium headgroup beads, carbon tail beads, etc) by feeding an appropriate index-file to ```gmx density``` (make one with ```gmx make_ndx```; you can select, e.g., the phosphate beads by typing a ```P*```; type ```q``` to exit , this leaves you with an index file named ```index.ndx```). You can obtain an estimate of the bilayer thickness from the distance between the headgroup peaks in the density profile.
 
@@ -248,6 +249,7 @@ Compare your results to those from small-angle neutron scattering experiments<su
 * area per lipid = 0.65 ± 0.05 nm<sup>2
 
 #### Lateral diffusion
+<hr>
 
 Before calculating the lateral diffusion, remove jumps over the box boundaries (```gmx trjconv -pbc nojump```). Then, calculate the lateral diffusion using ```gmx msd```. Take care to remove the overall center of mass motion (```-rmcomm```), and to fit the line only to the linear regime of the mean-square-displacement curve (```-beginfit``` and ```-endfit``` options of ```gmx msd```). To get the lateral diffusion, choose the ```-lateral z``` option.
 
@@ -260,6 +262,7 @@ xmgrace msd.xvg
 In comparing the diffusion coefficient obtained from a Martini simulation to a measured one, one can expect a faster diffusion at the CG level due to the smoothened free energy landscape (note, however, that the use of a defined conversion factor is no longer recommended, as it can vary significantly depending on the molecule in question). Also note that the tool averages over all lipids to produce the MSD curve. It is probably much better to analyze the motion of each lipid individually and remove center-of-mass motion per leaflet. This requires some scripting on your part and is not included in this tutorial.
 
 #### Order parameters
+<hr>
 
 Now, we will calculate the (second-rank) order parameter, which is defined as:
 
@@ -277,6 +280,7 @@ python do-order-gmx5.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DPPC
 Will, for example, read 15 to 30 ns from the trajectory ```md.xtc```. The simulation has 128 DPPC lipids and the output is the P2, calculated relative to the Z-axis, and average over results from every 20th equally-spaced snapshot in the trajectory. Results are available as output and in the files ```order.dat``` and ```S-profile.dat```; the latter is a profile that can be compared to published profiles, e.g. in Ref.<sup>[1]</sup> (remember, DSPC and DPPC share the same Martini representation!).
 
 #### Advanced: additional analyses
+<hr>
 
 Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the ```gromacs``` package, see [the gromacs manual](https://manual.gromacs.org/documentation/current/user-guide/index.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](http://cgmartini.nl/index.php/tools2/other-tools). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python [MDAnalysis package](https://www.mdanalysis.org/).
 
@@ -286,17 +290,22 @@ Different scientific questions require different methods of analysis and no set 
 Lipids can be thought of as modular molecules. In this section, we investigate the effect of changes in the lipid tails and in the headgroups on the properties of lipid bilayers using the Martini model. We will **i)** introduce a double bond in the lipid tails, and **ii)** change the lipid headgroups from phosphatidylcholine (PC) to phosphatidylethanolamine (PE).
 
 #### Unsaturated tails
+<hr>
 
 To introduce a double bond in the tail, we will replace the DSPC lipids by DOPC. Set up a directory for the DOPC system. Enter that directory. Compare the Martini 3 topologies of these two lipids in the phospholipids ```.itp```. You will see that the number of beads for these lipids is the same, and in the same headgroup-glycerol-tails order. You can therefore set up a DOPC bilayer quite simply from your DSPC result. Copy over the ```.top``` and ```.mdp``` file from the equilibration DSPC run. Copy the final frame of the DSPC run to serve as the starting frame of the DOPC run. Replace DPPC by DOPC in your ```.top``` and ```.mdp``` files, and ```gmx grompp``` will do the rest for you (you can ignore the ”atom name does not match” warnings of ```grompp```); you do this by adding the ```-maxwarn``` option to the ```gmx grompp``` command, e.g. ```gmx grompp -maxwarn``` 3 allows a maximum of 3 warnings and will still produce a ```.tpr``` file). Execute the simulation, or, if you are impatient, use the trajectory provided for you as ```spontaneous-assembly/equilibration/dopc/dopc-ext.xtc```. NOTE: if you take this shortcut, and because the lipids DSPC and DOPC have exactly the same number of beads, you can use the ```.tpr``` file from DSPC to analyze the ```dopc-ext.xtc``` file.
 
 #### Changing the headgroups
+<hr>
 
 Similarly, starting again from the final snapshot of the DSPC simulation, you can easily change the head groups from PC to PE, yielding DPPE. Also for this system, run a 30 ns MD simulation, or, if you are impatient, use the trajectory provided for you as ```spontaneous-assembly/equilibration/dspe/dspe-ext.xtc```. NOTE: as above, when taking this shortcut, and because the lipids DSPC and DPPE have exactly the same number of beads, you can use the ```.tpr``` file from DSPC to analyze the ```dspe-ext.xtc file```. Compare the above properties (area per lipid, thickness, order parameter, diffusion) between the three bilayers (DSPC, DOPC, DSPE). Do the observed changes match your expectations? Why/why not? Discuss.
 
 ### Tools and scripts used in this tutorial
+<hr>
+
 ```gromacs``` ([http://www.gromacs.org/](http://www.gromacs.org/))
 
 ### References
+<hr>
 
 [1] Marrink, S. J., De Vries, A. H., and Mark, A. E. (2004) Coarse grained model for semiquantitative lipid simulations. J. Phys. Chem. B 108, 750–760. DOI:10.1021/jp036508g
 
