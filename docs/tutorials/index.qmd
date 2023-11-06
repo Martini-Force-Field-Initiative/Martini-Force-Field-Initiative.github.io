@@ -1,7 +1,12 @@
 ---
 page-layout: full
 ---
-## Martini 3 tutorials
+## Martini force field tutorials
+
+#### [🎓 Martini lectures](Martini3/lectures.qmd)   
+#### [🛠️ Hands-on tutorials](Martini3/tutorials.qmd)   
+#### [🕸️ Legacy Material](Legacy/index.qmd)
+<hr>
 
 The material offered here aims to help you familiarize yourself with some of the basic and more advanced aspects of performing Martini 3 coarse-grained simulations.  The material follows a historical track, starting with the MARTINI model for lipids. It goes on to describe how to set up simulations with proteins (and peptides), and then continues with more advanced topics, like backmapping (i.e. fine graining from a coarse-grained structure), parameterization of new molecules, and more. 
 
@@ -9,7 +14,7 @@ The material offered here aims to help you familiarize yourself with some of the
 
 For the tutorials, familiarity with GROMACS is assumed; for an explanation of how to work with GROMACS and the specification of force field and run parameters we refer to the [GROMACS user manual and web-pages](www.gromacs.org). There is also an excellent GROMACS tutorial available [elsewhere](http://md.chem.rug.nl/~mdcourse/index.html). The material can be covered in as much time as you like, and the speed at which you go through this material depends on the computational facilities available, your GROMACS skills, and the time you take to consider what you’re doing. The set-up is modular, however, and depending on you particular interest, you may change the order of the exercises. You could either leave long runs overnight to return to them the next day, or use ”pre-prepared” intermediate and result files that can be downloaded.
 
-Finally, a set of [legacy tutorials]() pertaining to older iterations of Martini is also available.
+Finally, a set of [legacy tutorials](Legacy/index.qmd) pertaining to older iterations of Martini is also available.
 
 *This material was originally written for the 2008 MARTINI winterschool in Helsinki, and has since been updated for numerous other workshops by several Martini developers (in no particular order): Lars Schäfer, Andrzej Rzepiela, Martti Louhivuori, Clement Arnarez, Alex de Vries, Djurre de Jong, Helgi Ingólfsson, Manuel Nuno Melo and Jaakko Uusitalo, Pim Frederix, Ignacio Faustino Paulo C. T. Souza, Siewert-Jan Marrink, Tsjerk Wassenaar, Luca Monticelli, Riccardo Alessandri, Raul Mera A., Sebastian Thallmair, Fabian Grünewald, Weria Pezeshkian, Peter Tieleman, Besian I. Sejdiu, Luís Borges-Araújo, Melanie König, Selim Sami, Liu Y., Daniel Pastor.*
 

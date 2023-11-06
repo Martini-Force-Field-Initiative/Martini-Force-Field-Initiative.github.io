@@ -6,8 +6,6 @@ A PDF version of this tutorial is available [here](http://cgmartini.nl/images/st
 
 In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](lpborgesaraujo@tecnico.ulisboa.pt) or [m.n.melo@itqb.unl.pt](m.n.melo@itqb.unl.pt)
 
- 
-
 ### Complex mixtures with Insane
 <hr>
 
@@ -91,14 +89,7 @@ If you have VMD installed and name your ```.tpr``` file and output ```trajectory
 ```phase_sep.xtc```, respectively, you can load a similar visualization to that in Fig. 1 by running
 the ```do_vmd.sh``` script.
 
-# Fig 1 here.
-Figure 1 | Gel-liquid phase separation in a 3:1 DBPC:DIPC mixture. A) Structure
-immediately after construction by insane.py B) After a 20 ns long simulation the grid
-structure is gone. C,D,E) After about 1µs at 283 K this lipid mixture phase separates into ld
-and so domains; D and E show the top view of the simulation, and in E only the first bead of
-each acyl tail of the top leaflet is represented, highlighting the gel-phase hexagonal packing
-(VMD’s use of multi-frame position averaging further highlights the honeycomb pattern). In
-all panels DBPC is in blue and DIPC in red.
+![Figure 1 | Gel-liquid phase separation in a 3:1 DBPC:DIPC mixture. A) Structure immediately after construction by insane.py B) After a 20 ns long simulation the grid structure is gone. C,D,E) After about 1µs at 283 K this lipid mixture phase separates into ld and so domains; D and E show the top view of the simulation, and in E only the first bead of each acyl tail of the top leaflet is represented, highlighting the gel-phase hexagonal packing (VMD’s use of multi-frame position averaging further highlights the honeycomb pattern). In all panels DBPC is in blue and DIPC in red.](LipidsII/Fig1.png)
 
 #### Analysis — hexagonality
 <hr>
@@ -139,8 +130,7 @@ host defense peptides [REF1+2]. Lysyl-PG consists of the ester of phosphatidylgl
 with the amino acid lysine (Fig 2). However, even though the lysine and PG topologies are
 available for Martini 3, there is no conjugated lysyl-PG topology yet.
 
-# Fig2 here.
-Figure 2 | Structure of the Lysyl-PG headgroup
+![Figure 2 | Structure of the Lysyl-PG headgroup.](LipidsII/Fig2.png)
 
 #### Creating the lysyl-PG topology
 <hr>
@@ -254,8 +244,10 @@ to distortions of the starting structures than, for example, atomistic simulatio
 us to construct complex membranes from very simple lipid templates. (See the insane
 publication for more details [2].)
 While different versions of insane have slightly different template formatting (compare with
-the GitHub version, for instance), the overall approach is very similar. Use your text editor of
+the [GitHub version](https://github.com/Tsjerk/Insane), for instance), the overall approach is very similar. Use your text editor of
 choice to open the insane.py file and look for the DPPC definition.
+
+```bash
 # PROTOLIPID (diacylglycerol), 18 beads
 #
 # 1-3-4-6-7--9-10-11-12-13-14 < -- This is the Lipid template
@@ -270,11 +262,13 @@ lipidsa.update({ # 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 "DPPC":(moltype, " - - - NC3 - PO4 GL1 GL2 C1A C2A C3A C4A - - C1B C2B C3B C4B - -
 "),
 (…)
+```
+
 A lipid template is defined by setting the relative x,y,z pseudocoordinates for each of the
-particles in the pseudotemplate in lipidsx, lipidsy and lipidsz respectively. Each lipid entry
-will then populate the particles in the template as required. If you scroll around insane.py you
+particles in the pseudotemplate in ```lipidsx```, ```lipidsy``` and ```lipidsz```, respectively. Each lipid entry will then populate the particles in the template as required. If you scroll around ```insane.py``` you
 will notice that some families of lipids will have their own templates, such as glycolipids or
 cardiolipins.
+
 Note that the order in which the atoms are defined in the topology matters when defining the
 lipid template. While lipid atoms in Martini are typically roughly ordered from top to bottom
 (outermost headgroup bead to innermost acyl chain bead) this may not always be the case
@@ -283,6 +277,7 @@ typically the outermost beads). This is the case with our topology, where the ba
 (BB) is defined before the most superficial SC2 bead. While we could re-order and adapt our
 topology to fit one of the pre-existing templates, we will create our own template specific to
 lysyl-PG.
+
 Start by drawing out the template for lysyl-PG, using the DPPC or POPG template as a guide.
 If you are struggling with visualizing the structure, pen and paper are your friends! Having
 drawn the template, assign x,y,z pseudocoordinates for each of the beads, based on the
@@ -292,7 +287,9 @@ between beads since, as it was previously mentioned, Martini is quite robust in 
 rough starting conformations. Distances of 0.5 or 1 between beads are typical.
 While it is worth noting that there are many valid templates, in the end, your lysyl-PG
 template should look something like this (note the difference in z-positions relative to the
-existing diacylglycerol templates of moltype = "lipid"):
+existing diacylglycerol templates of ```moltype = "lipid"```):
+
+```bash
 # Lysyl-PG
 # This is the Lysyl-PG lipid template
 # 3 1-4-5-6--8--9-10-11-12-13 SC2 BB – GL0 – PO4 – GL1 – C1A – (…)
@@ -311,22 +308,29 @@ lipidsa.update({ # 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
 "POLPG":moltype, " BB SC1 SC2 GL0 PO4 GL1 GL2 C1A C2A C3A C4A - - C1B C2B C3B C4B -
 - "),
 })
-If you’ve correctly added this entry to insane.py, you should now be able to assemble
+```
+
+If you’ve correctly added this entry to ```insane.py```, you should now be able to assemble
 membranes containing lysyl-PG. Assemble a membrane composed of 5:1 POPG:Lysyl-PG
 using insane:
+
+```bash
 python2 insane.py -l POPG:5 -l POLPG:1 -x 25 -y 25 -z 11 -pbc cubic -sol W -o
 membrane.gro -p topol.top
+```
+
 And use it as a starting point to run a simulation with this complex membrane mixture,
 following the steps mentioned in the Lipid Bilayers I tutorial. If you are using the version of
 insane that we pack with the tutorial, you can further refine it by adding POLPG to the charges
-dictionary, which will allow you to use insane’s -salt and -neutral flags to get ionic strength
+dictionary, which will allow you to use insane’s ```-salt``` and ```-neutral``` flags to get ionic strength
 and system neutralization in one go.
+
 ### Tools and scripts used in this tutorial
 <hr>
 
-gromacs (http://www.gromacs.org/)
-insane.py (downloadable here)
-MDAnalysis package (MDAnalysis)
+ * gromacs ([http://www.gromacs.org/](http://www.gromacs.org/))
+ * ```insane.py``` (downloadable [here](http://cgmartini.nl/images/tools/insane/insane.py))
+ * MDAnalysis package ([MDAnalysis](http://www.mdanalysis.org/))
 
 ### References
 <hr>
@@ -334,6 +338,7 @@ MDAnalysis package (MDAnalysis)
 [1] Thermotropic Phase Transitions of Pure Lipids in Model Membranes and Their
 Modifications by Membrane Proteins, Dr. John R. Silvius, Lipid-Protein Interactions, John
 Wiley & Sons, Inc., New York, 1982
+
 [2] Wassenaar, T. A., Ingólfsson, H. I., et al. Computational Lipidomics with insane: A
 Versatile Tool for Generating Custom Membranes for Molecular Simulations (2015) J. Chem.
 Theory Comput. 11, 2144–2155. DOI:10.1021/acs.jctc.5b00209

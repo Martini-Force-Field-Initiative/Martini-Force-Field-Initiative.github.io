@@ -127,10 +127,8 @@ chmod +x do_vmd.sh
 The initial and final snapshots should look similar to ```Fig. 1```, at least if the self-assembly resulted in a bilayer in the allotted time, which is not guaranteed. You may have noticed, however, that there is relatively little water, and some part of the initial solvated box is actually devoid of water. This helps to more or less guarantee a bilayer, but does make the simulation a little less realistic. You can test by solvating the lipids with more solvent. You can do this by changing the ```-maxsol``` flag on the ```gmx solvate``` command.
 In the meantime, have a close look at the DPPC section of the phospholipid ```.itp``` file. The available bead types and their interactions are defined in ```martini_v3.0.0.itp``` and described in the 2021 Martini 3 paper<sup>[[3]](#references)</sup>. Understanding how these files work, will help you work with the Martini 3 model and define new molecules or refine existing models.
 
-#### Add Fig.1 here 
-Figure 1 | DPPC bilayer formation. A) 64 randomly localized DPPC lipid molecules with
-water. B) After a 30 ns long simulation the DPPC lipids have aggregated together and
-formed a bilayer.
+![Figure 1 | DPPC bilayer formation. A) 64 randomly localized DPPC lipid molecules with water. B) After a 30 ns long simulation the DPPC lipids have aggregated together and formed a bilayer.](LipidsI/Fig1.png)
+
 
 When the simulation has finished, check whether you got a bilayer. If yes, check if the formed membrane is normal to the z-axis (i.e., that the membrane is situated in the xy-plane). Have a look at the self-assembly process: can you recognize intermediate states, such as micelles, and do you see metastable structures such as a water pore (water spanning the membrane interior) and/or a lipid bridge (lipid tail(s) spanning the water layer)?
 

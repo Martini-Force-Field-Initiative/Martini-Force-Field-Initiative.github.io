@@ -28,6 +28,12 @@ unzip FreeEnergyTechniques.zip
 ### Free sampling
 <hr>
 
+***
+> **_The material offered in this page is LEGACY material._** This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren't cool things to be learned here! Have a look!
+If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click [here](../../index.qmd) to go back!
+
+***
+
 The first method for determining the logarithm of the partition coefficient P of a molecule between two different solvents (e.g. hexadecane and water) makes use of an unbiased CG-MD simulation. The $log(P_{water-hexadecane})$ can be calculated by comparing the occupancy of your molecule of interest in the two phases. This yields the ratio of the time the molecule spends in each phase – the partition coefficient P – which can be used to calculate the free energy difference between the phases by making use of the statistical mechanics definition of Gibbs free energy $\Delta G$.
 
 $$ \Delta G = -RTln(P) $$
