@@ -11,18 +11,19 @@ If you are looking for the current iterations of the Martini force field lecture
 
 In this tutorial, we will set up a coarse-grained (CG) simulation in the new Martini 3.0 force field of a protein – ligand system. The ligand will be initially placed in the solvent phase of the system, and throughout the simulation find the protein binding pocket. As an example, we will simulate the binding of benzene to the L99A mutant of T4 lysozyme. Setting up a CG simulation consists of two main steps, followed by the analysis:
 
-1. [Converting an atomistic structure (protein and substrate) to CG resolution and generating a Martini topology.](http://cgmartini.nl/index.php/martini-3-tutorials/small-molecule-binding#1A.)
+1. [Converting an atomistic structure (protein and substrate) to CG resolution and generating a Martini topology.](#converting-atomistic-structure-to-cg-resolution)
 
-1. [Placing the protein in a simulation cell, adding the ligand, water, and ions, and running the simulation.](http://cgmartini.nl/index.php/martini-3-tutorials/small-molecule-binding#2A.)
+1. [Placing the protein in a simulation cell, adding the ligand, water, and ions, and running the simulation.](#setting-up-the-simulation-box)
 
-1. [Analyzing the trajectory.](http://cgmartini.nl/index.php/martini-3-tutorials/small-molecule-binding#3A.)
+1. [Analyzing the trajectory.](#analysis)
 
-**Note1**: This tutorial, now based on the Martini 3 open-beta version ([v.3.0.b.3.2](http://cgmartini.nl/index.php/martini3beta)), will be updated as soon as the final parameters of Martini 3 are available (the paper is under review right now).
+**Note1**: This tutorial, now based on the Martini 3 open-beta version ([v.3.0.b.3.2](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini3_beta/martini_3.0.b.3.2.tar)), will be updated as soon as the final parameters of Martini 3 are available (the paper is under review right now).
 
 **Note2**: Martinize2 can also be used to martinize your protein. However this new version is still under development. You can take martinize2 from [https://github.com/marrink-lab/vermouth-martinize](https://github.com/marrink-lab/vermouth-martinize). Any issue should be reported in the github page.
 
 **Note3**: For protein complexes (e.g., dimers, tetramers, etc.) you should consider using the "`–merge`" flag in martinize. In this situation, an elastic network can be added between the proteins. These two approaches are important to better mimic hydrogen bonds and to perfect packing, which is essential for a stable protein complex (for the same reasons for which it is needed for a folded protein).
 
+### Converting atomistic structure to CG resolution
 #### 1A. Download the crystal structure of the T4 lysozyme from the Protein Data Bank (PDB)
 <hr>
 
@@ -54,6 +55,7 @@ If all went well, the previous step should have generated three files: `CG.pdb`,
 
 This step will have appended additional angle (`SC-BB-BB-SC`) and dihedral (`SC-BB-BB and BB-BB-SC`) parameters to the `.itp` file. Note that `bbsc.sh` is only there to call the actual `VMD` script (`addDihedral.tcl`) handing it over the `Protein_A.itp` and `CG.pdb` as arguments.
 
+### Setting up the simulation box
 #### 2A. Solvate the protein
 <hr>
 
@@ -63,7 +65,7 @@ Since we now have both the coordinates and topology of the Martini 3 protein, we
 /usr/bin/python2.7 insane.py -f CG.pdb -o CG.gro -pbc cubic -box 10,10,10 -salt 0.15 -charge auto -sol W
 ```
 
-You can look for more details about the insane.py script [here](http://www.cgmartini.nl/index.php/downloads/tools/239-insane). The output file (`CG.gro`) contains `NA+`, `CL-`, and `W` residues. Check how many and add specify it in the `CG.top` file.
+You can look for more details about the insane.py script [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane). The output file (`CG.gro`) contains `NA+`, `CL-`, and `W` residues. Check how many and add specify it in the `CG.top` file.
 
 ``` text
 [ molecules ] 
@@ -114,9 +116,7 @@ gmx grompp -p CG.top -f md.mdp -c CG-eq.gro -maxwarn 5 -n index.ndx
 gmx mdrun -v -c CG-md.gro -x traj_comp.xtc
 ```
 
-More information about Martini simulations can be found [here](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/proteins-gmx5).
-
-#### 3. Analysis
+### 3. Analysis
 <hr>
 
 Once the simulation has finished, a trajectory (`traj_comp.xtc`) should have been generated. An RMS alignment of the protein will take care of the rotational and translational motion.

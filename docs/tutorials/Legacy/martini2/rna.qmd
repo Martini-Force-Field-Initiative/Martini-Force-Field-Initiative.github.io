@@ -9,13 +9,13 @@ If you are looking for the current iterations of the Martini force field lecture
 
 ***
 
-**NOTE:** You can download all the files required for this tutorial and the DNA tutorial from [here](http://cgmartini.nl/images/stories/tutorial/2017/na-tutorials_20170815.tar). Please note that you have to adjust some of the paths (mostly location of the force field files) below if you use this package.
+**NOTE:** You can download all the files required for this tutorial and the DNA tutorial from [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/na-tutorials_20170815.tar). Please note that you have to adjust some of the paths (mostly location of the force field files) below if you use this package.
  
 #### **Setup of a double stranded RNA**
 
 This is a brief tutorial on how to set up a simulation of a double stranded RNA molecule with the recent Martini force field parameters. Since RNA is very similar to DNA from the chemical point of view, the Martini RNA parameters are highly based on the DNA model. This also allows to have full compatibility with the DNA model and the other existing models in the Martini universe.
  
-To make this tutorial more general, you should download the latest Martini DNA and RNA release from [here](http://cgmartini.nl/images/stories/tutorial/2017/na-tutorials_20170815.tar). It includes the itp files for both molecules as well as a modified martinize script to coarse grain nucleic acids. As Martini DNA, Martini RNA can be used to model both single-stranded as well as double-stranded RNA. It also provides two separate elastic networks: a soft model has a cutoff of $1.2 \;nm$ and a force constant of $13 \;kJ\; mol^{-1} \;nm^{-2}$ and the stiff model has a cutoff of $1.0\; nm$ and a $500\; kJ \;mol^{-1} \;nm^{-2}$ force constant.
+To make this tutorial more general, you should download the latest Martini DNA and RNA release from [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/na-tutorials_20170815.tar). It includes the itp files for both molecules as well as a modified martinize script to coarse grain nucleic acids. As Martini DNA, Martini RNA can be used to model both single-stranded as well as double-stranded RNA. It also provides two separate elastic networks: a soft model has a cutoff of $1.2 \;nm$ and a force constant of $13 \;kJ\; mol^{-1} \;nm^{-2}$ and the stiff model has a cutoff of $1.0\; nm$ and a $500\; kJ \;mol^{-1} \;nm^{-2}$ force constant.
  
 This tutorial will show only an example of creating a dsRNA topology using the stiff elastic network but a dsRNA topology with soft network or a ssRNA topology without elastic network can be created using the same procedure. For dsRNA structures the stiff elastic network is a good starting point for seeing how your system behaves in a CG simulation. There are also options for creating elastic networks for more complicated DNA structure; martinize-dna options all-stiff and all-soft are meant to be starting points for creating topologies for such structures but they are beyond the scope of this tutorial. The package includes a `README` file that should have sufficient instructions for creating the other types of RNA (and DNA) topologies after you have finished this tutorial.
  
@@ -60,7 +60,7 @@ $ sed -i 's/#include "martini.itp"/#include "martini_v2.1-dna.itp"\n#include "ma
 $ vmd -m aa-1rna.pdb cg-1rna.pdb
 ```
  
-5. Next you need to create a simulation box for the RNA molecule and solvate it as well as add counterions. You will find a pre-equilibrated coarse-grained water box in the downloaded folder. You can also download it from [here](http://cgmartini.nl/images/applications/water/water.gro).
+5. Next you need to create a simulation box for the RNA molecule and solvate it as well as add counterions. You will find a pre-equilibrated coarse-grained water box in the downloaded folder. You can also download it from [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/water.gro).
  
 ``` bash
 $ gmx editconf -f cg-1rna.pdb -d 1.2 -bt dodecahedron -o box.gro

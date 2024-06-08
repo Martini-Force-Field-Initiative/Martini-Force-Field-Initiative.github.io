@@ -3,92 +3,34 @@ title: Tutorials
 format: html
 ---
 
+<hr>
 
-- [1: Lipid bilayers I — Self-assembly](LipidsI.qmd)
+1. [`Lipid bilayers - Part I: Self-assembly`](LipidsI/index.qmd)
 
-<!-- A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_1/Lipid_bilayers_I_lpara_mnmelo.docx.pdf).
+1. [`Lipid bilayers - Part II: Complex mixtures using Insane`](LipidsII/index.qmd)
 
-In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](lpborgesaraujo@tecnico.ulisboa.pt) or [m.n.melo@itqb.unl.pt](m.n.melo@itqb.unl.pt) -->
+1. [`Proteins - Part I: Basics and Martinize 2`](ProteinsI/index.qmd)
 
-- [2: Lipid bilayers II - Complex mixtures using Insane](LipidsII.qmd)
+1. [`Proteins - Part II: TM proteins and Protein complexes`](ProteinsII/index.qmd)
 
-<!-- A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_1/Lipid_bilayers_II_lpara_mnmelo.docx.pdf).
+1. [`Backward`](Backward/index.qmd)
 
-In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](lpborgesaraujo@tecnico.ulisboa.pt) or [m.n.melo@itqb.unl.pt](m.n.melo@itqb.unl.pt) -->
+1. [`MAD - MArtini Database`](MAD/index.qmd)
 
-- [3: Proteins - Part I: Basic and Martinize 2]()
+1. [`Parametrization of a new small molecule`](Small_Molecule_Parametrization/index.qmd)
 
-<!-- A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_2/tutorial_3_protein_part1.pdf). The files required for this tutorial (including worked files) can be downloaded from [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_2/tutorial_protein_part1.zip).
+1. [`Protein-small molecule binding`](Protein_Ligand_Binding/index.qmd)
 
-In case of issues, please contact [thallmair@fias.uni-frankfurt.de](thallmair@fias.uni-frankfurt.de) or [paulo.telles-de-souza@ibcp.fr](paulo.telles-de-souza@ibcp.fr)
+1. [`Polyply`](Polyply/index.qmd)
 
-(if you just landed here, we recommend you follow the [tutorial about lipid bilayers first](#lipid-bilayers-i-—-self-assembly)) -->
+1. [`TS2CG`](TS2CG/index.qmd)
 
-- [4: Backward]()
+1. [`Running Martini simulation with ddcMD`](ddcMD/index.qmd)
 
-<!-- Consult tutorial [here](http://cgmartini.nl/index.php/2021-martini-online-workshop/tutorials/566-4-backward).
+1. [`Titratable Martini`](Titratable_Martini/index.qmd)
 
-In case of issues, please contact [t.a.wassenaar@rug.nl](t.a.wassenaar@rug.nl). -->
+1. [`prolintpy - Automate the analysis and visualization of protein-lipid interactions.`](ProLint/index.qmd)
 
+1. [`Dual resolution membrane tutorial`](Dual_Resolution_Membrane/index.qmd)
 
-- [5: MAD - MArtini Database]()
-
-<!-- Unlike the other tutorials, this one is a demonstration on how to use the MAD server. You can watch it [here](https://youtu.be/fcaSbsaBCLY). -->
-
-- [6: Parametrization of a new small molecule]()
-
-<!-- In case of issues, please contact [alessandri@uchicago.edu](alessandri@uchicago.edu).
-
-This tutorial is available for download [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_7/M3tutorials--parameterizing-a-new-small-molecule.pdf). Required files and worked examples can be downloaded [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_7/files-m3-newsm.zip), and files for Bartender can be obtained [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_7/files-m3-bartender.zip). -->
-
-- [7: Proteins Part II – TM proteins and Protein complexes]()
-
-<!-- A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_6/tutorial_7_protein_part2.pdf).  The files required for this tutorial (including worked files) can be downloaded from [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_6/tutorial_proteins_part2.zip).
-
-In case of issues, please contact [paulo.telles-de-souza@ibcp.fr](paulo.telles-de-souza@ibcp.fr).
-
-(if you just landed here, we recommend you follow the tutorials about Lipid bilayers, [Part I](#lipid-bilayers-i-—-self-assembly) and [Part II](#lipid-bilayers-ii---complex-mixtures-using-insane), and also the [Proteins Part I](#proteins---part-i-basic-and-martinize-2) first) -->
-
-- [8: Protein-small molecule binding]()
-
-<!-- In case of issues, please contact [paulo.telles-de-souza@ibcp.fr](paulo.telles-de-souza@ibcp.fr).
-
-A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_4/tutorial_protein_small_molecule_binding.pdf). The files required for this tutorial can be downloaded from [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_4/tutorial_small_molecule-protein_binding.zip). -->
-
-- [9: Polyply]()
-
-<!-- Consult tutorial [here](http://cgmartini.nl/index.php/2021-martini-online-workshop/tutorials/559-8-polyply).
-
-In case of issues, please contact [f.grunewald@rug.nl](f.grunewald@rug.nl). -->
-
-- [10: TS2CG]()
-
-<!-- Note: A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_9/TS2CG%20tut.pdf).
-
-In case of issues, please contact [w.pezeshkian@rug.nl](w.pezeshkian@rug.nl) or [m.konig@rug.nl](m.konig@rug.nl) -->
-
-- [11: Running Martini simulation with ddcMD]()
-
-<!-- Note: Input data for this tutorial can be downloaded [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_10/ddcMD-Martini-tautorial.tar.gz). A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_10/ddcMD%20martini%20tutorials-v2.pdf).
-
-In case of issues, please contact [ingolfsson1@llnl.gov](ingolfsson1@llnl.gov)
-
-(if you just landed here, we recommend you follow the [tutorial about lipid bilayers first](#lipid-bilayers-i-—-self-assembly)) -->
-
-- [12: Titratable Martini]()
-
-<!-- This tutorial is available for download [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_11/titratable_tutorial.pdf), and the required files can be downloaded [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_11/titratable_martini_tutorial_files.zip).
-
-Tutorial written by Selim Sami and Fabian Grünewald. In case of issues, please contact [s.sami@rug.nl](s.sami@rug.nl) or [f.grunewald@rug.nl](f.grunewald@rug.nl) -->
-
-- [13: prolintpy - Automate the analysis and visualization of protein-lipid interactions.]()
-
-<!-- A (outdated) pdf version of this tutorial can be downloaded [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_12/prolintpy_TielemanLab.pdf)!
-
-In case of issues, please contact [besian.sejdiu@stjude.org](besian.sejdiu@stjude.org) or [tieleman@ucalgary.ca](tieleman@ucalgary.ca) -->
-
-- [14: Dual resolution membrane tutorial]()
-
-<!-- A pdf version of this tutorial can be downloaded [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_13/Dual%20resolution%20membrane%20tutorial.pdf), and the required files are available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_13/vs_membrane_tutorial.zip).
-
-In case of issues, please contact [y.liu@rug.nl](y.liu@rug.nl) -->
+<hr>

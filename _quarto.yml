@@ -98,12 +98,11 @@ website:
       collapse-level: 1
       align: left
       contents:
-        - text: <b>Download categories</b><hr>
-        - section: "Force field parameters"
+        - text: <b>Summary</b><hr>
+          href: docs/downloads/index.qmd
+        - section: "🖱 Force field parameters"
           contents:
             - docs/downloads/force-field-parameters/particle-definitions.qmd
-            - docs/downloads/force-field-parameters/input-parameters.qmd
-            - docs/downloads/force-field-parameters/general-topology.qmd
             - docs/downloads/force-field-parameters/aminoacids.qmd
             - docs/downloads/force-field-parameters/solvents.qmd
             - docs/downloads/force-field-parameters/ions.qmd
@@ -114,7 +113,11 @@ website:
             - docs/downloads/force-field-parameters/dna.qmd
             - docs/downloads/force-field-parameters/rna.qmd
             - docs/downloads/force-field-parameters/lipids.qmd
-        - section: "Example applications"
+        - section: "🗄 Example input files"
+          contents:
+            - docs/downloads/example-input-files/general-topology.qmd
+            - docs/downloads/example-input-files/md-parameters.qmd
+        - section: "🧑‍💻️ Example applications"
           contents:
             - docs/downloads/example-applications/solvent-systems.qmd
             - docs/downloads/example-applications/lipid-membranes.qmd
@@ -124,49 +127,25 @@ website:
             - docs/downloads/example-applications/peptides.qmd
             - docs/downloads/example-applications/polymers.qmd
             - docs/downloads/example-applications/other-systems.qmd
-        - section: "Tools"
+        - section: "⚒️ Tools"
           contents:
             - docs/downloads/tools/proteins-and-bilayers.qmd
             - docs/downloads/tools/resolution-transformation.qmd
             - docs/downloads/tools/visualization.qmd
             - docs/downloads/tools/other-tools.qmd
-        - text: "Lectures"
-          href: docs/downloads/lectures/index.qmd
     - id: tutorials
       title: "Tutorials"
       style: "floating"
       collapse-level: 1
       align: left
       contents:
-        - text: <b>Tutorials</b><hr>
-        # - section: "Martini 2 Tutorials"
-        #   href: docs/tutorials/Legacy/martini2/index.qmd
-        #   contents:
-        #     - docs/tutorials/Legacy/martini2/lipids_and_lipidome.qmd
-        #     - docs/tutorials/Legacy/martini2/polymers.qmd
-        #     - docs/tutorials/Legacy/martini2/hybrid_models.qmd
-        #     - docs/tutorials/Legacy/martini2/parametrizing.qmd
-        #     - docs/tutorials/Legacy/martini2/high_throughput.qmd
-        #     - docs/tutorials/Legacy/martini2/proteins.qmd
-        #     - docs/tutorials/Legacy/martini2/rna.qmd
-        #     - docs/tutorials/Legacy/martini2/dna.qmd
-        #     - docs/tutorials/Legacy/martini2/visualizing_martini.qmd
-        #     - docs/tutorials/Legacy/martini2/others.qmd
-        #     - docs/tutorials/Legacy/martini2/free_energy.qmd
-        #     - docs/tutorials/Legacy/martini2/metadynamics.qmd
-        #     - docs/tutorials/Legacy/martini2/physisorption.qmd
-        # - text: "Martini workshops"
-        #   href: docs/tutorials/martini/index.qmd
-        # - text: "Martini 3 Tutorials (2021 Martini online workshop)"
-        #   href: docs/tutorials/Martini3/index.qmd
-        #   contents:
-        #     - docs/tutorials/Martini3/lectures.qmd
-        #     - docs/tutorials/Martini3/tutorials.qmd
-        - text: "Lectures"
+        - text: <b>Summary</b><hr>
+          href: docs/tutorials/index.qmd
+        - text: "🎓 Martini Lectures"
           href: docs/tutorials/Martini3/lectures.qmd
-        - text: "Tutorials"
+        - text: "🛠️ Hands-on Tutorials"
           href: docs/tutorials/Martini3/tutorials.qmd
-        - text: "Legacy Material"
+        - text: "🕸️ Legacy Material"
           href: docs/tutorials/Legacy/index.qmd
         # - section: "Martini 3 Tutorials (Legacy Beta Tutorials)"
         #   href: docs/tutorials/martini3/index.qmd

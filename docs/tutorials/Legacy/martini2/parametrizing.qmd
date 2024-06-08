@@ -51,7 +51,7 @@ Based on other lipid mappings and the connectivity lower down in the file, and t
 
 Now you have a topology. You can download also the coordinates for DPGS, remove beads 4-9 and use those coordinates for a minimization in vacuum. This coordinate file can then be used to partly fill an empty simulation volume with randomly placed molecules. Water may be added, 10% of the water may be made into anti-freeze water, and a self-assembly simulation may be run as in the lipid tutorial. 
 
-If you've done all that, you may want to have a look at how one of us did it by downloading [this archive](http://cgmartini.nl/images/stories/tutorial/2017/asymbolalipid.tar.gz). 200 molecules certainly like to form a bilayer, but it does not appear all that bent, maybe because the different head groups not separated on the different sides of the amphiphile layer as proposed by Masuda and Shimizu. This may again be due to the limited number of molecules, the periodic boundary conditions and/or some of the parameters, or much longer relaxation times being required to allow the lipids to flip-flop. This is where the fun starts! You are free to change interaction strengths one level up or down, which means you could test different bead assignments. It may be useful to check whether a single molecule in water has the correct flexibility by running an atomistic simulation and performing the mapping. A similar procedure is shown below for toluene and elsewhere in the lipid and polymer tutorials. Have fun!       
+If you've done all that, you may want to have a look at how one of us did it by downloading [this archive](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/asymbolalipid.tar). 200 molecules certainly like to form a bilayer, but it does not appear all that bent, maybe because the different head groups not separated on the different sides of the amphiphile layer as proposed by Masuda and Shimizu. This may again be due to the limited number of molecules, the periodic boundary conditions and/or some of the parameters, or much longer relaxation times being required to allow the lipids to flip-flop. This is where the fun starts! You are free to change interaction strengths one level up or down, which means you could test different bead assignments. It may be useful to check whether a single molecule in water has the correct flexibility by running an atomistic simulation and performing the mapping. A similar procedure is shown below for toluene and elsewhere in the lipid and polymer tutorials. Have fun!       
 
 ### Parametrizing a new molecule based on atomistic simulations
 <hr>
@@ -69,9 +69,9 @@ For toluene you can run the simulations using (click on the files to download):
 gmx grompp -f gromos.mdp -c gromos.gro -p gromos.top -o gromos
 gmx mdrun -v -deffnm gromos
 ```
-- [gromos.mdp](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/gromos.mdp)
-- [gromos.gro](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/gromos.gro)
-- [gromos.top](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/gromos.top)
+- [gromos.mdp](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/gromos.mdp)
+- [gromos.gro](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/gromos.gro)
+- [gromos.top](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/gromos.top)
 
 This lets you do a simulation of a single toluene molecule in decane as a solvent. Notice that the 1 ns simulation time used in the example is enough because toluene is such a simple molecule.
 
@@ -95,7 +95,7 @@ echo 2 | gmx trjconv -s gromos.tpr -f gromos.xtc -pbc whole -o whole.xtc
 seq 0 2 | gmx traj -f whole.xtc -s gromos.tpr -oxt MAPPED/mapped.xtc -n mapping.ndx -com -ng 3
 where 3 is the number of CG beads in your molecule and the 'seq 0 2' avoids having to type all index groups. Inspect the file mapping.ndx to see how the atoms of toluene are grouped into the CG beads.
 ```
-- [mapping.ndx](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/mapping.ndx)
+- [mapping.ndx](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/mapping.ndx)
 
 **4) Create the CG itp file for the molecule of interest.** This has to be done by hand, although some copy-pasting from existing itp files might help to get the format right. The different directives you (probably) need are:
 
@@ -115,7 +115,7 @@ cd MAPPED
 gmx grompp -f minimization.mdp -c toluene.gro -p cg.top -o cg.tpr -maxwarn 1
 ```
 
-**6) Generate target CG distributions from the CG mapped trajectory.** Go back to the drawing table and identify between which beads there should be bonded interactions (bonds, constraints, angles, proper and improper dihedrals). Measure the length/angle of these interactions in you mapped-to-CG atomistic simulations from step 3 (mapped.xtc). To do this, create index files for bonds with a directive for "[bonds]" containing (multiple) pairs of CG beads; for angles, "[angles]" containing triples; and for dihedrals, "[dihedrals]" with quartets. Write scripts that generate distributions for all bonds, angles, and dihedrals you are interested in. For toluene, there are three bonds and three angles (around the triangle). The index files [bonds.ndx](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/bonds.ndx) and [angles.ndx](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/angles.ndx) as well as a bash script [DOBONDEDANALYSIS.sh](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/DOBONDEDANALYSIS.sh) to generate all distributions are available as an example of how to do this. You may of course use your favorite scripting tool (e.g. python) . Finally, you can also do it by hand, just one example:
+**6) Generate target CG distributions from the CG mapped trajectory.** Go back to the drawing table and identify between which beads there should be bonded interactions (bonds, constraints, angles, proper and improper dihedrals). Measure the length/angle of these interactions in you mapped-to-CG atomistic simulations from step 3 (mapped.xtc). To do this, create index files for bonds with a directive for "[bonds]" containing (multiple) pairs of CG beads; for angles, "[angles]" containing triples; and for dihedrals, "[dihedrals]" with quartets. Write scripts that generate distributions for all bonds, angles, and dihedrals you are interested in. For toluene, there are three bonds and three angles (around the triangle). The index files [bonds.ndx](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/bonds.ndx) and [angles.ndx](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/angles.ndx) as well as a bash script [DOBONDEDANALYSIS.sh](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/DOBONDEDANALYSIS.sh) to generate all distributions are available as an example of how to do this. You may of course use your favorite scripting tool (e.g. python) . Finally, you can also do it by hand, just one example:
 
 ``` bash
 echo 0 | gmx distance -s cg.tpr -f mapped.xtc -n bonds.ndx -oall bond_0.xvg
@@ -133,7 +133,7 @@ In some cases it might be sufficient to calculate the average and standard devia
 These are the distributions you want to reproduce as well as you can. If they are nicely unimodal, you can take the average value as the parameter for the bond distance and bond angle, respectively, in your first martini topology, with some reasonable guess for the force constants.
 
 
-**7) Create CG simulation.** Extract one frame from your mapped trajectory and solvate it in the same solvent as the atomistic simulation. Create a top file (include the general martini itp files and the newly created molecule itp and add the right number of molecules (solute and solvent)). Create a Martini mdp file (see examples on the website). Simulate the initial form of the CG molecule (you probably will have to energy minimize and maybe relax for a few thousand steps at a smaller timestep, e.g. 5fs). [You can prepare files yourself and gather them from the Martini site, or you can download the itp files [martini_v2.0.itp](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/martini_v2.0.itp), [martini_v2.0_solvents.itp](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/martini_v2.0_solvents.itp) and [martini_toluene.itp](http://cgmartini.nl/images/stories/tutorial/2017/parametrization/martini_toluene.itp), and take it from there.] It may be wise to create a separate directory for the CG system, for example take1.
+**7) Create CG simulation.** Extract one frame from your mapped trajectory and solvate it in the same solvent as the atomistic simulation. Create a top file (include the general martini itp files and the newly created molecule itp and add the right number of molecules (solute and solvent)). Create a Martini mdp file (see examples on the website). Simulate the initial form of the CG molecule (you probably will have to energy minimize and maybe relax for a few thousand steps at a smaller timestep, e.g. 5fs). [You can prepare files yourself and gather them from the Martini site, or you can download the itp files [martini_v2.0.itp](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/martini_v2.0.itp), [martini_v2.0_solvents.itp](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/martini_v2.0_solvents.itp) and [martini_toluene.itp](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/martini_toluene.itp), and take it from there.] It may be wise to create a separate directory for the CG system, for example take1.
 
 ``` bash
 cd ..

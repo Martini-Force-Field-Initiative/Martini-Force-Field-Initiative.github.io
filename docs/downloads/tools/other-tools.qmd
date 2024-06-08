@@ -6,7 +6,7 @@ format: html
 ### Simulated evaporation and scattering
 <hr>
 
-[Here](http://cgmartini.nl/images/tools/OPV/2017RAlessandri-JAmChemSoc_suppfiles.zip) an archive containing the necessary files to run a P3HT:PCBM evaporation (solvent is chlorobenzene) and to produce simulated scattering curves as described in:
+[Here](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/morphology_suppfile.zip) an archive containing the necessary files to run a P3HT:PCBM evaporation (solvent is chlorobenzene) and to produce simulated scattering curves as described in:
 
 - **R. Alessandri, J. J. Uusitalo, A. H. de Vries, R. W. A. Havenith, and S. J. Marrink.** *Bulk Heterojunction Morphologies with Atomistic Resolution from Coarse-Grain Solvent Evaporation Simulations.* JACS, 2017, 139, 3697-3705. [open access](http://pubs.acs.org/doi/abs/10.1021/jacs.6b11717)
 
@@ -14,51 +14,51 @@ Please check the README files in the respective folders for an explanation on ho
 
 [Here](https://figshare.com/articles/P3HT_and_PCBM_atomistic_force_fields/5051593) you can find atomistic force fields.
 
-For another example, [here](http://cgmartini.nl/images/tools/OPV/2017LQiu-JMaterChemA_evaporation.zip) an archive containing the necessary files to run a PTEG-1:N-DMBI evaporations (the solvent is now chloroform) as described in:
+For another example, [here](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/evaporation.zip) an archive containing the necessary files to run a PTEG-1:N-DMBI evaporations (the solvent is now chloroform) as described in:
 
 - **L. Qiu, J. Liu, R. Alessandri, X. Qiu, M. Koopmans, R.W.A. Havenith, S.J. Marrink, R.C. Chiechi, L.J.A. Koster, J.C. Hummelen.** *Enhancing doping efficiency by improving host-dopant miscibility for fullerene-based n-type thermoelectrics.* Journal of Material Chemistry A, 5:21234-2124, 2017. [online](http://pubs.rsc.org/en/content/articlelanding/2017/ta/c7ta06609k#!divAbstract)
 
 Please check the README file. Atomistic force fields are available from both the [Supporting Information](http://dx.doi.org/10.1039/C7TA06609K) and on [figshare](https://figshare.com/articles/PTEG-1_PP_and_N-DMBI_atomistic_force_fields/5458144).
 
-For further questions, please contact Riccardo Alessandri: [r.alessandri@rug.nl](r.alessandri@rug.nl)
+For further questions, please contact Riccardo Alessandri: [r.alessandri@rug.nl](mailto: r.alessandri@rug.nl)
 
 ### Improved angle potentials
 <hr>
 
 The restricted bending potential is now available in standard GROMACS. It is angle type number 10, see also the manual. This makes the special code referred to below unnecessary. The description of the potential is still valid.
 
-Here you find a customized version of Gromacs with our improved angle potentials for CG simulations, together with example input files: [TORSION-WEB.zip](http://cgmartini.nl/images/tools/anglepots/TORSION_WEB.zip)
+Here you find a customized version of Gromacs with our improved angle potentials for CG simulations, together with example input files: [TORSION-WEB.zip](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/TORSION_WEB.zip)
 
-Please consult the [readme-file](http://cgmartini.nl/images/tools/anglepots/ReadMe.pdf) for a detailed explanation on using these potentials, and the following manuscript in which the methods have been introduced:
+Please consult the [readme-file](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/ReadMe.pdf) for a detailed explanation on using these potentials, and the following manuscript in which the methods have been introduced:
 
 - **M. Bulacu, N. Goga, W. Zhao, G. Rossi, L. Monticelli, X. Periole, D.P. Tieleman, S.J. Marrink.** *Improved angle potentials for coarse-grained molecular dynamics simulations.* JCTC, in press, 2013. DOI:10.1021/ct400219n. [abstract](http://pubs.acs.org/doi/abs/10.1021/ct400219n)
 
-For further questions, please contace Monica Bulacu: [m.i.bulacu@gmail.com](m.i.bulacu@gmail.com)
+For further questions, please contace Monica Bulacu: [m.i.bulacu@gmail.com](mailto: m.i.bulacu@gmail.com)
 
 ### do-order
 <hr>
 
 A python script that calculates the order parameter for Martini lipids using version 5 and higher; after 5, gromacs continues with version 2016. Please note that this script has not been tested on many different simulations and might need manual editing.
 
-- [do-order-gmx5.py](http://cgmartini.nl/images/tools/do-order-gmx5.py)
+- [do-order-gmx5.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/do-order-gmx5.py)
 
 A python script that calculates the order parameter for Martini lipids. Please note that this script has not been tested on many different simulations and might need manual editing.
 
-- [do-order-multi.py](http://cgmartini.nl/images/tools/do-order-multi.py)
+- [do-order-multi.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/do-order-multi.py)
 
 ### Martini lipid .itp generator
 <hr>
 
 A python script to help creates customized Martini lipid topologies based on the Martini 2.0 building blocks and rules. Warning, it is very easy to create unrealistic topologies so only use if you know what you are doing and with careful testing.
 
-- [lipid-martini-itp-v05.py](http://cgmartini.nl/images/tools/lipid-martini-itp-v05.py)
-- [lipid-martini-itp-v06.py](http://cgmartini.nl/images/tools/lipid-martini-itp-v06.py)
+- [lipid-martini-itp-v05.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/lipid-martini-itp-v05.py)
+- [lipid-martini-itp-v06.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/lipid-martini-itp-v06.py)
 
-### Martini lipid .itp generator
+### Cross sectional area calculation
 <hr>
 
 #### <span style="color:blue"> **Usage** </span>
-We propose here [a gromacs tool](http://cgmartini.nl/images/tools/cross-sectional-area.tar.gz) that can be used to calculate the cross sectional area of membrane protein (or similar inclusion) in membrane. Schematically illustrated in the next figure:
+We propose here [a gromacs tool](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/cross-sectional-area.tar) that can be used to calculate the cross sectional area of membrane protein (or similar inclusion) in membrane. Schematically illustrated in the next figure:
 
 ![](cross_sectional_area.jpg)
 
@@ -85,7 +85,7 @@ The line above calculates the average lateral pressure profile outside the prote
 
 `proteinformDENS.dat` and `3Dpp.dat` (3D pressure field, ascii format) should be the output from `g_density3Darea`. Grid spacing must be exactly the same.
 
-For more information contact Samuli Ollila ([oollila@cc.hut.fi](oollila@cc.hut.fi)).
+For more information contact Samuli Ollila ([oollila@cc.hut.fi](mailto: oollila@cc.hut.fi)).
 
 #### <span style="color:blue"> **Remark** </span>
 The code **DOES NOT** remove rotation or translation and the protein should be whole inside the box in all frames. This can be done by the following way (to be adapted to each system of course):
@@ -110,11 +110,11 @@ Details of the method are published in:
 
 - M. Fuhrmans, S.J. Marrink, A tool for the morphological analysis of mixtures of lipids and water in computer simulations, J. Mol. Mod. 17:1755-1766, 2011. [open access](http://www.springerlink.com/content/v0tj71wt86745001/)
 
-The required c programs can be downloaded here: [MIA-source](http://cgmartini.nl/images/tools/MIA/MIA%20Source.tar.gz)
+The required c programs can be downloaded here: [MIA-source](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/MIA+Source.tar)
 
-A description how to use the package: [MIA.pdf](http://cgmartini.nl/images/tools/MIA/mia.pdf)
+A description how to use the package: [MIA.pdf](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/mia.pdf)
 
-For questions please contact Marc Fuhrmans ([m.fuhrmans@gmail.com](m.fuhrmans@gmail.com))
+For questions please contact Marc Fuhrmans ([m.fuhrmans@gmail.com](mailto: m.fuhrmans@gmail.com))
 
 ### 3D pressure field
 <hr>
@@ -127,9 +127,9 @@ If you use the code, please cite:
 
 Here are some useful tools for the analysis of the resulting local pressure field grid:
 
-- [pressure-tools.tar.gz](http://cgmartini.nl/images/tools/3Dpressure/pressure-tools.tar.gz)
+- [pressure-tools.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/pressure-tools.tar)
 
-If you have further question, you can contact either Samuli Ollila ([oollila@cc.hut.fi](oollila@cc.hut.fi)) or Martti Louhivuori.
+If you have further question, you can contact either Samuli Ollila ([oollila@cc.hut.fi](mailto: oollila@cc.hut.fi)) or Martti Louhivuori.
 
 ### Mean-field boundaries
 <hr>
@@ -138,5 +138,5 @@ Implicit, mean-field force approximation (MFFA) boundary potentials offer a comp
 
 - Risselada et al. (2008) Application of mean field boundary potentials in simulations of lipid vesicles. J Phys Chem B 112:7438-7447
 
-In order to use the method you need [Gromacs/MFFA](http://cgmartini.nl/images/tools/MFFA/mffa-4.0.5.tar.gz), which is a custom version of Gromacs that supports MFFA potentials. Simple [instructions](http://cgmartini.nl/images/tools/MFFA/mffa.html) and an [example](http://cgmartini.nl/images/tools/MFFA/mffa-example.tar.gz) system also available.
+In order to use the method you need [Gromacs/MFFA](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/mffa-4.0.5.tar), which is a custom version of Gromacs that supports MFFA potentials. Simple [instructions](mffa_instructions.html) and an [example](https://martini-library.s3.us-east-2.amazonaws.com/tools/other_tools/mffa-example.tar) system also available.
 

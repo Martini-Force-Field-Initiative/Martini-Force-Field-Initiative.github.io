@@ -4,7 +4,8 @@ subtitle: "General Purpose Coarse-Grained Force Field"
 toc: true
 ---
 
-## Introduction
+<hr>
+
 The Martini force field is a coarse-grain (CG) force field suited for molecular dynamics simulations of biomolecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: Non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas bonded interactions are derived from reference all-atom simulations.
 
 The model uses a four-to-one mapping, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. In order to keep the model simple, only four main types of interaction sites are defined: polar, non-polar, apolar, and charged. Each particle type has a number of subtypes, which allow for an accurate representation of the chemical nature of the underlying atomistic structure.

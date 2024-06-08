@@ -9,8 +9,8 @@ If you are looking for the current iterations of the Martini force field lecture
 
 ***
 
-In case of issues, please contact [alessandri@uchicago.edu](alessandri@uchicago.edu)
-This tutorial is available for download [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_7/M3tutorials--parameterizing-a-new-small-molecule.pdf). Required files and worked examples can be downloaded [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_7/files-m3-newsm.zip), and files for Bartender can be obtained [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_7/files-m3-bartender.zip).
+In case of issues, please contact [alessandri@uchicago.edu](mailto:alessandri@uchicago.edu)
+This tutorial is available for download [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini3_beta/parametrizing_new_molecule/M3tutorials--parameterizing-a-new-small-molecule.pdf). Required files and worked examples can be downloaded [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini3_beta/parametrizing_new_molecule/files-m3-newsm.zip), and files for Bartender can be obtained [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini3_beta/parametrizing_new_molecule/files-m3-bartender.zip).
 
 <hr>
 
@@ -46,7 +46,7 @@ This tutorial is available for download [here](http://cgmartini.nl/images/storie
 
 In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule. The aim is to have a pragmatic description of the Martini 3 coarse-graining (CGing) principles described in Refs. [[1]](https://doi.org/10.1038/s41592-021-01098-3) and [[2]](https://doi.org/10.33774/chemrxiv-2021-1qmq9), which follow the main ideas outlined in the seminal Martini 2 work [[3]](https://pubs.acs.org/doi/abs/10.1021/jp071097f). Among other things, you may want to parametrize a small molecule with Martini 3 in order to perform protein-ligand binding simulations [[4]](https://doi.org/10.33774/chemrxiv-2021-1qmq9) or perhaps test the solubility of a molecular dopant in different environments [[5]](https://doi.org/10.1002/adma.201704630).
 
-This tutorial is based on the analogous [Martini 2 tutorial](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/parametrzining-new-molecule-gmx5) but takes into account some important aspects which changed in Martini 3. We will use as an example the molecule *1-ethylnaphthalene*, and make use of Gromacs versions 2019.x or later.
+This tutorial is based on the analogous [Martini 2 tutorial](../martini2/parametrizing.qmd) but takes into account some important aspects which changed in Martini 3. We will use as an example the molecule *1-ethylnaphthalene*, and make use of Gromacs versions 2019.x or later.
 
 <p align="center"> ![](7-1.png) </p>
 
@@ -135,7 +135,7 @@ cd  ../3_mapped
 cp  ../2_atom-to-bead-mapping/ENAP_oplsaaTOcg_cgbuilder.ndx  mapping.ndx
 ```
 
-Now, we took into account the hydrogens because **center of geometry (COG)-based mapping of AA structures, done taking into account the hydrogen atoms, constitutes the standard procedure for obtaining bonded parameters in Martini 3** [[1]](https://doi.org/10.1038/s41592-021-01098-3)-[[2]](https://doi.org/10.33774/chemrxiv-2021-1qmq9). Hence, we need to consider the hydrogens when mapping the AA structure to CG resolution. Because of a gmx traj unexpected behavior (a potential bug, see note [8]), if we want to stick to gmx traj ([like in the good ol' days](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/parametrzining-new-molecule-gmx5); alternatives include, e.g., using the [MDAnalysis](https://www.mdanalysis.org/) Python library), we need a little hack before being able to run `gmx traj`. Namely, we need to first create an AA tpr file with the atoms of the atomistic structure all having the same mass. To do this, still from the `3_mapped` folder, create a new itp with the modified masses:
+Now, we took into account the hydrogens because **center of geometry (COG)-based mapping of AA structures, done taking into account the hydrogen atoms, constitutes the standard procedure for obtaining bonded parameters in Martini 3** [[1]](https://doi.org/10.1038/s41592-021-01098-3)-[[2]](https://doi.org/10.33774/chemrxiv-2021-1qmq9). Hence, we need to consider the hydrogens when mapping the AA structure to CG resolution. Because of a gmx traj unexpected behavior (a potential bug, see note [8]), if we want to stick to gmx traj ([like in the good old days](../martini2/parametrizing.qmd); alternatives include, e.g., using the [MDAnalysis](https://www.mdanalysis.org/) Python library), we need a little hack before being able to run `gmx traj`. Namely, we need to first create an AA tpr file with the atoms of the atomistic structure all having the same mass. To do this, still from the `3_mapped` folder, create a new itp with the modified masses:
 
 ``` bash
 cp  ../1_AA-reference/ENAP_LigParGen.itp  ENAP_LigParGen_COG.itp
@@ -202,7 +202,7 @@ bash 4_create_CG_tpr.sh
 The script will:
 
 1. extract one frame from your trajectory (mapping it to CG resolution, of course);
-1. use the frame, along with the top and mdp files ([see examples of the latter on the website](http://cgmartini.nl/index.php/force-field-parameters/input-parameters)) to create a CG.tpr file for your molecule.
+1. use the frame, along with the top and mdp files to create a CG.tpr file for your molecule.
 
 #### 5) Generate target CG distributions from the CG mapped trajectory
 <hr>
@@ -349,7 +349,7 @@ The agreement is very good. Note that the bimodality of the distributions of the
 
 ##### 8.1) Partitioning free energies
 
-Partitioning free energies (see [tutorial on how to compute them](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/partitioning-techniques)) constitute particularly good reference experimental data.
+Partitioning free energies (see [tutorial on how to compute them](../martini2/free_energy.qmd)) constitute particularly good reference experimental data.
 
 In the case of 1-ethyl-naphthalene, a model using 5 TC5 beads for the naphthalene ring, and a TC3 bead for the ethyl group, leads to the following (excellent!) agreement with available partitioning data (the experimental values are from Ref. [[10]](https://pubs.acs.org/doi/abs/10.1021/ci400112k)):
 
@@ -459,7 +459,7 @@ and Bartender is ready to use!
 
 ##### 9.2) Preparing Bartender input files
 
-In the following step you will need the bartender python script, and a few input fils. You can download the necessary input files [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/bartender-input.zip)!
+In the following step you will need the bartender python script, and a few input fils. You can download the necessary input files [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini3_beta/parametrizing_new_molecule/files-m3-bartender.zip)!
 
 Bartender requires an input file and a geometry file.
 

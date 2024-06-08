@@ -8,7 +8,7 @@ format: html
 
 Thanks to Stephen Fairweather, and the excellent work of O'Mara and coworkers, we are happy to share newly parameterized Martini models of lipids such as plasmalogens, hyrdoxylated sphingholipids, and Forssman lipids. For more information, check out the publication: [https://doi.org/10.1063/5.0040887](https://doi.org/10.1063/5.0040887)
 
-You can download the topologies and other data from [here](http://cgmartini.nl/images/parameters/epithelial_membrane-main.zip)!
+You can download the topologies and other data from [here](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/epithelial_membrane-main.zip)!
 
 ### Brain plasma membrane
 <hr>
@@ -26,7 +26,7 @@ For simulation files and parameters, see [bbs.llnl.gov/neuronal-membrane-data.ht
 
 Everything you need in order to simulate your own thylakoid membrane.
 
-[This package](http://cgmartini.nl/images/applications/thylakoid/THYLAKOIDS.zip) contains both coarse grained and fine grained parameter files for the simulation of the thylakoid membranes of cyanobacteria (Thermosynechococcus vulcanus) and plants (spinach, Spinacia oleracea)
+[This package](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/THYLAKOIDS.zip) contains both coarse grained and fine grained parameter files for the simulation of the thylakoid membranes of cyanobacteria (Thermosynechococcus vulcanus) and plants (spinach, Spinacia oleracea)
 
 - **F.J. van Eerden, D.H. de Jong, A.H. de Vries, T. A. Wassenaar, S.J. Marrink.** Characterization of thylakoid lipid membranes from cyanobacteria and higher plants by molecular dynamics simulations. BBA-Biomembranes, 1848:1319–1330, 2015. [DOI:10.1016/j.bbamem.2015.02.025](http://dx.doi.org/10.1016/j.bbamem.2015.02.025)
 
@@ -39,11 +39,11 @@ An idealized mammalian plasma membrane composed of 63 different lipid types.
 
 Force field parameters are provided for all the lipids used as well as setup and coordinate files for the large plasma membrane simulation (~20.000 lipids) at 0, 20 and 40 microseconds.
 
-- [plasma_membrane.zip](http://cgmartini.nl/images/applications/plasma/plasma_membrane.zip)
+- [plasma_membrane.zip](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/plasma_membrane.zip)
 
 And for a smaller (~6.600 lipids) simulation after 10 microseconds. 
 
-- [plasma_membrane_small.zip](http://cgmartini.nl/images/applications/plasma/plasma_membrane_small.zip)
+- [plasma_membrane_small.zip](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/plasma_membrane_small.zip)
 
 <img src="plasma_membrane_TOC.jpg" width="300" style="padding-left:5%;"/>
 
@@ -52,7 +52,7 @@ And for a smaller (~6.600 lipids) simulation after 10 microseconds.
 
 Parameter files for various membranes composed of glycolipids (MGDG, DGDG, SQDG, PI, PIP2, GCER, GM1)
 
-- [glycolipids.zip](http://cgmartini.nl/images/applications/glycolipids/glycolipids.zip)
+- [glycolipids.zip](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/Files.zip)
 
 ### Bi-lamellar DOPE system
 <hr>
@@ -60,9 +60,9 @@ Parameter files for various membranes composed of glycolipids (MGDG, DGDG, SQDG,
 Non-equilibrated, expected to form an inverted hexagonal phase at T > 330K.
 System composition: lipids 1024, water 800.
 
-- [dope_2bilayer_lowhydration.gro](http://cgmartini.nl/images/applications/bilayer/dope_2bilayer_lowhydration.gro)
-- [dope_2bilayer_lowhydration.mdp](http://cgmartini.nl/images/applications/bilayer/dope_2bilayer_lowhydration.mdp)
-- [dope_2bilayer_lowhydration.top](http://cgmartini.nl/images/applications/bilayer/dope_2bilayer_lowhydration.top)
+- [dope_2bilayer_lowhydration.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dope_2bilayer_lowhydration.gro)
+- [dope_2bilayer_lowhydration.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dope_2bilayer_lowhydration.mdp)
+- [dope_2bilayer_lowhydration.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dope_2bilayer_lowhydration.top)
 
 ### Model raft bilayer
 <hr>
@@ -70,9 +70,9 @@ System composition: lipids 1024, water 800.
 Equilibrated at T=295K, zero surface tension.
 System composition: DPPC 828, Di-C18:2-PC 540, cholesterol 576 (0.42:0.28:0.3 ratio), water 12600.
 
-- [raft.gro](http://cgmartini.nl/images/applications/bichol/raft.gro)
-- [raft.mpd](http://cgmartini.nl/images/applications/bichol/raft.mdp)
-- [raft.top](http://cgmartini.nl/images/applications/bichol/raft.top)
+- [raft.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/raft.gro)
+- [raft.mpd](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/raft.mdp)
+- [raft.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/raft.top)
 
 ### Bolalipid membranes
 <hr>
@@ -80,25 +80,25 @@ System composition: DPPC 828, Di-C18:2-PC 540, cholesterol 576 (0.42:0.28:0.3 ra
 Systems of pure cyclic and acyclic bolalipid bilayers:
 
 * 128 cyclic di-dPPC (all trans) at T = 363
-    - [bola-cyclic-128trans.gro](http://cgmartini.nl/images/applications/bola/bola_cyclic_128trans_0loop.gro)
-    - [bola-cyclic.mdp](http://cgmartini.nl/images/applications/bola/bola_cyclic.mdp)
-    - [bola-cyclic.top](http://cgmartini.nl/images/applications/bola/bola_cyclic.top)
+    - [bola-cyclic-128trans.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_128trans_0loop.gro)
+    - [bola-cyclic.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic.mdp)
+    - [bola-cyclic.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic.top)
 * 126 cyclic di-DPPC (122 trans - 4 loop) at T = 363
-    - [bola-cyclic-122trans-4loop.gro](http://cgmartini.nl/images/applications/bola/bola_cyclic_122trans_4loop.gro)
-    - [bola-cyclic.mdp](http://cgmartini.nl/images/applications/bola/bola_cyclic.mdp)
-    - [bola-cyclic.top](http://cgmartini.nl/images/applications/bola/bola_cyclic.top)
+    - [bola-cyclic-122trans-4loop.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_122trans_4loop.gro)
+    - [bola-cyclic.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic.mdp)
+    - [bola-cyclic.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic.top)
 * 128 acyclic di-DPPC (all trans) at T = 323
-    - [bola-acyclic-128trans.gro](http://cgmartini.nl/images/applications/bola/bola_acyclic_128trans_0loop.gro)
-    - [bola-acyclic.mdp](http://cgmartini.nl/images/applications/bola/bola_acyclic.mdp)
-    - [bola-acyclic.top](http://cgmartini.nl/images/applications/bola/bola_acyclic.top)
+    - [bola-acyclic-128trans.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_acyclic_128trans_0loop.gro)
+    - [bola-acyclic.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_acyclic.mdp)
+    - [bola-acyclic.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_acyclic.top)
 * 128 acyclic di-DPPC (112 trans 16 loop) at T = 323
-    - [bola-acyclic-112trans-16loop.gro](http://cgmartini.nl/images/applications/bola/bola_acyclic_112trans_16loop.gro)
-    - [bola-acyclic.mdp](http://cgmartini.nl/images/applications/bola/bola_acyclic.mdp)
-    - [bola-acyclic.top](http://cgmartini.nl/images/applications/bola/bola_acyclic.top)
+    - [bola-acyclic-112trans-16loop.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_acyclic_112trans_16loop.gro)
+    - [bola-acyclic.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_acyclic.mdp)
+    - [bola-acyclic.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_acyclic.top)
 * 26 cyclic di-DPPC (trans) + 204 DPPC  at T = 323
-    - [bola-cyclic+dppc.gro](http://cgmartini.nl/images/applications/bola/bola_cyclic_dppc.gro)
-    - [bola-cyclic+dppc.mdp](http://cgmartini.nl/images/applications/bola/bola_cyclic_dppc.mdp)
-    - [bola-cyclic+dppc.top](http://cgmartini.nl/images/applications/bola/bola_cyclic_dppc.top)
+    - [bola-cyclic+dppc.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_dppc.gro)
+    - [bola-cyclic+dppc.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_dppc.mdp)
+    - [bola-cyclic+dppc.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_dppc.top)
 
 ### Poly-unsaturated lipid/cholesterol bilayer
 <hr>
@@ -106,9 +106,9 @@ Systems of pure cyclic and acyclic bolalipid bilayers:
 Equilibrated at T=298K, zero surface tension.
 System composition: DAPC 38, cholesterol 4 (0.1 mole fraction), water 142.
 
-- [dapc_chol.gro](http://cgmartini.nl/images/applications/bichol/dapc_chol.gro)
-- [dapc_chol.mdp](http://cgmartini.nl/images/applications/bichol/dapc_chol.mdp)
-- [dapc_chol.top](http://cgmartini.nl/images/applications/bichol/dapc_chol.top)
+- [dapc_chol.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dapc_chol.gro)
+- [dapc_chol.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dapc_chol.mdp)
+- [dapc_chol.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dapc_chol.top)
 
 ### DPPC/cholesterol bilayer
 <hr>
@@ -116,9 +116,9 @@ System composition: DAPC 38, cholesterol 4 (0.1 mole fraction), water 142.
 Equilibrated at T=300K, zero surface tension.
 System composition: DPPC 38, cholesterol 16 (0.3 mole fraction), water 350.
 
-- [dppc_chol.gro](http://cgmartini.nl/images/applications/bichol/dppc_chol.gro)
-- [dppc_chol.mdp](http://cgmartini.nl/images/applications/bichol/dppc_chol.mdp)
-- [dppc_chol.top](http://cgmartini.nl/images/applications/bichol/dppc_chol.top)
+- [dppc_chol.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_chol.gro)
+- [dppc_chol.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_chol.mdp)
+- [dppc_chol.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_chol.top)
 
 ### DOPC and POPE membranes
 <hr>
@@ -127,12 +127,12 @@ Equilibrated at T=300K, zero surface tension.
 System size: lipids 128, water 1500.
 Warning these bilayers were constructed using self-assembly and can therefore be slightly asymmetrical, for guaranteed symmetrical bilayers we advise using a bilayer building tool, such as [insane](http://cgmartini.nl/index.php/tools2/proteins-and-bilayers).
 
-- [dopc_bilayer.gro](http://cgmartini.nl/images/applications/bilayer/dopc_bilayer.gro)
-- [dopc_bilayer.mdp](http://cgmartini.nl/images/applications/bilayer/dopc_bilayer.mdp)
-- [dopc_bilayer.top](http://cgmartini.nl/images/applications/bilayer/dopc_bilayer.top)
-- [pope_bilayer.gro](http://cgmartini.nl/images/applications/bilayer/pope_bilayer.gro)
-- [pope_bilayer.mdp](http://cgmartini.nl/images/applications/bilayer/pope_bilayer.mdp)
-- [pope_bilayer.top](http://cgmartini.nl/images/applications/bilayer/pope_bilayer.top)
+- [dopc_bilayer.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dopc_bilayer.gro)
+- [dopc_bilayer.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dopc_bilayer.mdp)
+- [dopc_bilayer.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dopc_bilayer.top)
+- [pope_bilayer.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/pope_bilayer.gro)
+- [pope_bilayer.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/pope_bilayer.mdp)
+- [pope_bilayer.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/pope_bilayer.top)
 
 ### DPPC/cholesterol bilayer
 <hr>
@@ -140,9 +140,9 @@ Warning these bilayers were constructed using self-assembly and can therefore be
 Equilibrated at T=325K, zero surface tension.
 System size: lipids 128, water 2000.
 
-- [dppc_bilayer.gro](http://cgmartini.nl/images/applications/bilayer/dppc_bilayer.gro)
-- [dppc_bilayer.mdp](http://cgmartini.nl/images/applications/bilayer/dppc_bilayer.mdp)
-- [dppc_bilayer.top](http://cgmartini.nl/images/applications/bilayer/dppc_bilayer.top)
+- [dppc_bilayer.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_bilayer.gro)
+- [dppc_bilayer.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_bilayer.mdp)
+- [dppc_bilayer.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_bilayer.top)
 
 ### Triton TX-100 in a DPPC bilayer
 <hr>
@@ -151,7 +151,7 @@ System size: lipids 128, water 2000.
 
 Parameter file for Triton TX-100, a .gro and .top files of a DPPC bilayer with TX-100 inserted and a simulation parameter file.
 
-- [triton_dppc.tgz](http://cgmartini.nl/images/applications/tx100/triton_dppc.tgz)
+- [triton_dppc.tgz](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/triton_dppc.tar)
 
 The corresponding article can be cited as:
 
@@ -164,7 +164,7 @@ The corresponding article can be cited as:
 
 Parameter file for peroxidized POPC and DOPC and  a 512 (256 per leaflet) small lipid bilayer and a 8192 (4096 per leaflet) large lipid bilayer.
 
-- [peroxidized-martini-lipids.zip](http://cgmartini.nl/images/applications/peroxidized-lipids/peroxidized-martini-lipids.zip)
+- [peroxidized-martini-lipids.zip](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/peroxidized-martini-lipids.zip)
 
 The corresponding article can be cited as
 

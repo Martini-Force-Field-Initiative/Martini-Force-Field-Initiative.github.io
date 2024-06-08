@@ -10,13 +10,13 @@ The aim of this set of practicals is to familiarize with free energy techniques 
 
 In particular, we will calculate the partition coefficient of a CG bead in water and hexadecane using free sampling, umbrella sampling and thermodynamic integration. These methodologies have a number of practical applications, e.g. to study free energies of solvation/hydration, free energies of binding of a small molecule (e.g. a drug molecule) to a receptor (e.g. a protein), and the free energy cost of point mutations.
 
-All files needed for this part of the tutorial can be found in the FreeEnergyTechniques folder in [FreeEnergyTechniques.zip](http://cgmartini.nl/images/stories/tutorial/2017/FreeEnergyTechniques_updated_2022.zip). Each part of this tutorial has its own directory which itself contains a folder called files_DoItYourself. There you can find the necessary files to follow the tutorial. For the second and the third part (umbrella sampling and thermodynamic integration) we also provide a worked version in the folder files_worked.
+All files needed for this part of the tutorial can be found in the FreeEnergyTechniques folder in [FreeEnergyTechniques.zip](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/FreeEnergyTechniques.zip). Each part of this tutorial has its own directory which itself contains a folder called files_DoItYourself. There you can find the necessary files to follow the tutorial. For the second and the third part (umbrella sampling and thermodynamic integration) we also provide a worked version in the folder files_worked.
 
 Open a terminal (ctrl-a) and download the .zip file to your desktop (or some other convenient place):
 
 ``` bash
 cd ~/Desktop
-wget http://www.cgmartini.nl/images/stories/tutorial/2017/FreeEnergyTechniques_updated_2022.zip
+wget https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/FreeEnergyTechniques.zip
 ```
 
 Unpack the downloaded file:
@@ -195,7 +195,7 @@ Frequently, unbiased MD simulations cannot be the appropriate technique to study
 
 - Use the weighted histogram analysis method (WHAM) to extract the potential of mean force (PMF) and calculate $\Delta G_{HD-W}$ and $log(P_{HD-W})$.
 
-More details of the theory behind the US technique can be found in reference [[3](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/partitioning-techniques#Ref3)]. Hereafter, we describe step by step how to perform the US simulation. Now, let us start the hands-on section.
+More details of the theory behind the US technique can be found in reference [[3](free_energy.qmd)]. Hereafter, we describe step by step how to perform the US simulation. Now, let us start the hands-on section.
 
 ##### **Generating the windows along the RC**
 To perform US simulations, we must generate a series of configurations along the RC. These configurations will serve as the starting points for the US windows, which can be performed as parallel independent simulations. Figure 2 illustrates the principles: The top image illustrates the RC of the Na bead in the water-hexadecane biphasic mixture. We can start from water to hexadecane or vice versa, using the z-axis of the box as RC (x-axis in the image). The middle image corresponds to the independent simulations conducted within each sampling window along the RC, with the Na bead being restrained in that window by an umbrella biasing potential. The bottom images shows the ideal result as a histogram of configurations, with neighboring windows overlapping such that a continuous free energy function can later be derived from these simulations.

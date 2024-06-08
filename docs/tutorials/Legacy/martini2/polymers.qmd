@@ -18,7 +18,7 @@ Parametrization of polymers follows pretty much the standard procedure for the p
 
 - When dealing with an oligomer, the behavior of residues close to the termini is often not representative of that of the rest of the molecule. It is a good idea to obtain reference distributions from a polymer chain long enough that a consistent behavior is obtained for the central residues. If the termini behave very differently, it might be worth assigning a different set of potentials to those.
 
-- You may find that Martini cannot faithfully reproduce the long-range structural organization you aim for, no matter how many potentials you use or how finer you make the mapping. Before you throw in the towel it can be an acceptable approach to use an elastic network to restrain the beads to the conformation you want (see the [example of proteins](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/proteins-gmx5#soluble-elastic)). The flexibility afforded by the network is tunable, and might be enough to satisfy your needs.
+- You may find that Martini cannot faithfully reproduce the long-range structural organization you aim for, no matter how many potentials you use or how finer you make the mapping. Before you throw in the towel it can be an acceptable approach to use an elastic network to restrain the beads to the conformation you want (see the [example of proteins](proteins.qmd#soluble-protein-the-elastic-network-approach)). The flexibility afforded by the network is tunable, and might be enough to satisfy your needs.
 
 - Some polymers can establish different intramolecular dipole interactions or salt bridges depending on conformation (think carbonyl–amide h-bonding in proteins). A single set of bead types may then be insufficient to describe the effective polarity of all the conformations of the polymer. This requires a different bead type assignment for each conformation, just like the polarity of backbone beads in Martini proteins depends on their secondary structure. Beware that such an assignment is static, and won't change during a simulation if the conformations change. This approach is therefore most useful when you are sure that the polymer conformation will be kept (for instance, when restraining it with an elastic network).
 
@@ -29,7 +29,7 @@ Parametrization of polymers follows pretty much the standard procedure for the p
 ### Parametrization of a polymer melt: 200 PEG 9mers at 300K
 <hr>
 
-Download the base files for this tutorial [here](http://cgmartini.nl/images/stories/tutorial/2017/polymer-tutorial/PEG_parametrization.tgz). Download and unpack the archive (tar -xzvf PEG_parametrization.tgz unpacks to the directory tree PEG_parametrization).
+Download the base files for this tutorial [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/PEG_parametrization.tar). Download and unpack the archive (tar -xzvf PEG_parametrization.tgz unpacks to the directory tree PEG_parametrization).
 
 In this tutorial we carry out the Martini parametrization of a PEG9 molecule from target atomistic data. The focus will be to match the mapped distribution of bonded conformations, as well as average density and molecular radius-of-gyration. For the time being, bead assignment will be only done to match the Martini building blocks — without adjustment for the matching of partition properties.
 
@@ -258,7 +258,7 @@ Typically, free-energy is matched to partition data taken between aqueous and ap
 
 ##### **Melt-Water partition**
 
-The solvation free energies of our PEG9 molecule have been determined by thermodynamic integration (TI) at the fine-grain level. You can access that data [here](http://cgmartini.nl/images/stories/tutorial/2017/polymer-tutorial/TI_tutorial.tgz). The archive unpacks (tar -xzvf TI_tutorial.tgz) to a directory tree TI_tutorial. This archive contains the atomistic data and a `CG` directory with `H2O` and `Melt` subdirectories ready for you to populate with your systems.
+The solvation free energies of our PEG9 molecule have been determined by thermodynamic integration (TI) at the fine-grain level. You can access that data [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/TI_tutorial.tar). The archive unpacks (tar -xzvf TI_tutorial.tgz) to a directory tree TI_tutorial. This archive contains the atomistic data and a `CG` directory with `H2O` and `Melt` subdirectories ready for you to populate with your systems.
 
 In each directory you will perform simulations to calculate the respective solvation free energy. You will do this by decoupling the nonbonded interactions between solute (a single PEG9 molecule) and each of the solvents. This decoupling will be done gradually, over 10 steps, so that it is possible to calculate a free energy difference between each. You will need the .itp file of the topology you optimized for PEG9, and two .top files: one for the melt system and another one for a 1 PEG + several waters.
 

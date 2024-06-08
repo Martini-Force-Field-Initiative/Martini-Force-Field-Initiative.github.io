@@ -61,41 +61,41 @@ For ongoing development of Go-Martini, see the webpage of Adolfo Poma: [http://p
 
 The following script, based on work of Corradi et al. [1], is provided for all your lipid fingerprint analysis needs. Special thanks to Amanda Buyan and Helgi Ingólfsson!
 
-Download the script [here](http://cgmartini.nl/images/lipid-PM-counter-fix-v3.0.py). Please note that Python 2.7 (or equivalent) is required. For help on how to use it, simply type "python lipid-PM-counter-fix-v3.0.py -h"
+Download the script [here](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/lipid-PM-counter-fix-v3.0.py). Please note that Python 2.7 (or equivalent) is required. For help on how to use it, simply type "python lipid-PM-counter-fix-v3.0.py -h"
 
 [1] **V. Corradi, E. Mendez-Villuendas, H.I. Ingólfsson, R.X. Gu, I. Siuda, M.N. Melo, A. Moussatova, L.J. DeGagné, B.I. Sejdiu, G. Singh, T.A. Wassenaar, K. Delgado Magnero, S.J. Marrink, D.P. Tieleman**. Lipid–Protein Interactions Are Unique Fingerprints for Membrane Proteins. ACS Central Science 4:709–717, 2018
 
 ### martinize
 <hr>
 
-Martinize is a python script to generate Martini protein topology and structure files based on an atomistic structure file. It replaces the old [seq2itp](http://cgmartini.nl/index.php/tools2/36-downloads/tools/62-seq2itp), [atom2cg](http://cgmartini.nl/index.php/tools2/36-downloads/tools/107-atom2cg) and [ElNeDyn](http://cgmartini.nl/index.php/tools2/36-downloads/tools/118-end5) scripts. The produced topology and structure files are in a format suitable for Gromacs.
+Martinize is a python script to generate Martini protein topology and structure files based on an atomistic structure file. It replaces the old [seq2itp](#seq2itp), [atom2cg](#atom2cg) and [ElNeDyn](#elnedyn) scripts. The produced topology and structure files are in a format suitable for Gromacs.
 
 The current version (2.x) has been used rather extensively, however it might still contain errors or bugs. Any feedback is more than welcome! The script is "concatenated": all the different classes, modules and forcefields are in one file. If you want to make changes yourself or add a forcefield we have a modular version available. If you would like to use this, send us an e-mail.
 
 You can now also download the latest martinize from [GitHub](https://github.com/cgmartini/martinize.py). The major updates are always added also here below:
 
-* [martinize.py](http://cgmartini.nl/images/tools/martinize/martinize-2.6/martinize.py) and python 3 version [martinize.py](http://cgmartini.nl/images/tools/martinize/python3/martinize-2.6/martinize.py) (version 2.6, May 12 2016)
+* [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_6.py) and python 3 version [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_6_py3.py) (version 2.6, May 12 2016)
     - The option for the elastic bond lower cutoff (-el) is now correctly recognized.
     - Cys bonds in gro-files and pdb-files without chain identifier are now correctly identified.
     - Many, many code clean-ups and restructuring.
 
-* [martinize.py](http://cgmartini.nl/images/tools/martinize/martinize-2.5/martinize.py) (version 2.5, August 11 2015)
+* [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_5.py) (version 2.5, August 11 2015)
     - Removed warnings about beta status of Martini 2.2.
     - Bug fix: Fixed cases where Cys-Cys constraints were not recognized as such.
 
-* [martinize.py](http://cgmartini.nl/images/tools/martinize/martinize-2.4/martinize.py) (version 2.4, August 18 2013)
+* [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_4.py) (version 2.4, August 18 2013)
     - Inverted "define NO_RUBBER_BANDS" behavior.
     - Changed protein backbone constraints to bonds.
     - Changed HIS BB-SC constraint to bonds.
     - Bug fix: Cys-bond length and force constant.
     - Bug fix: Position restraints are correctly written out when multiple chains are merged.
 
-* [martinize.py](http://cgmartini.nl/images/tools/martinize/martinize-2.3/martinize.py) (version 2.3, February 13 2013)
+* [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_3.py) (version 2.3, February 13 2013)
     - Bug fix: Correctly call dssp.
     - Bug fix: Correct error message when atoms are missing.
     - Bug fix: Correctly merge topologies of multiple change in case of Martini 2.2P.
 
-* [martinize.py](http://cgmartini.nl/images/tools/martinize/martinize-2.2/martinize.py) (version 2.2, November 27 2012)
+* [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_2.py) (version 2.2, November 27 2012)
     - Added charged His to all forcefields and options to choose the His-charge state.
     - Bug fix: correctly handle .gro files.
     - Bug fix: Correctly handle .pdb files containing hydrogens.
@@ -103,33 +103,29 @@ You can now also download the latest martinize from [GitHub](https://github.com/
     - Fixed small inconsistencies in elnedyn forcefields.
     - Cleaned up and added help text and warning messages.
 
-* [martinize.py](http://cgmartini.nl/images/tool/martinize/martinize-2.1/martinize.py) (version 2.1, August 23 2012)
-    - Bug fix: bond length in Martini 2.2 & 2.2p.
-    - Bug fix: assignment of secondary structure.
-
-* [martinize.py](http://cgmartini.nl/images/tools/martinize/martinize-2.0/martinize.py) (version 2.0, July 25 2012)
+* [martinize.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_2_0.py) (version 2.0, July 25 2012)
     - Major clean-up and restructuring of the code.
     - Changed forcefield selection. Forcefield now available: Martini 2.1, Martini 2.1P, Martini 2.2, Martini 2.2P, Elnedyn, Elnedyn 2.2 and Elnedyn 2.2P.
     - Added function to handle new polar and charged residues in Martini 2.2P.
     - Several small bug fixes.
 
-* [martinize-1.2.py](http://cgmartini.nl/images/tools/martinize/martinize-1.2.py) (version 1.2, May 22th 2012)
+* [martinize-1.2.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_1_2.py) (version 1.2, May 22th 2012)
     - Fixed bug with counter in multi chain topologies.
     - Corrected wrong collagen parameters.
     - Fixed bug involving BBBB dihedrals in extended regions.
     - Fixed bug when giving secondary structure as string.
     - A test set is now available.
 
-* [martinize-1.1.py](http://cgmartini.nl/images/tools/martinize/martinize-1.1.py) (version 1.1)
+* [martinize-1.1.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_1_1.py) (version 1.1)
     - Fixed bug in pdb read-in.
     - Clean up of code.
 
-* [martinize-1.0.py](http://cgmartini.nl/images/tools/martinize/martinize-1.0.py) (version 1.0)
+* [martinize-1.0.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_1_0.py) (version 1.0)
 
 ### Insane
 <hr>
 
-- [insane.py](http://cgmartini.nl/images/tools/insane/insane.py)
+- [insane.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/insane.py)
 
 *insane.py* is a python script to setup Martini bilayer systems. It handles a broad range of different lipid types, is very flexible with respect to box types and can insert a (CG) protein structure in the bilayer if one is given. Help text and options are obtained by typing: insane.py -h
 
@@ -150,9 +146,9 @@ The rationale for the use of EN is to control the conformation of the protein wh
 
 One notable detail is that the description of the bonded terms defined in original Martini for proteins has been slightly modified to accommodate for the placement of the backbone bead on the Calpha instead on the center-of-mass of the backbone atoms. The non-bonded terms were used as in the original force field.
 
-In the following you'll find a tar.gz file containing the scripts and programs (listed below) that will allow you to build the topology of protein from a pdb file. The file HowTo-ElNeDyn.pdf describes the steps to follow and a tutorial ia available [here](http://cgmartini.nl/index.php/component/content/37-martini-tutorials/tutorial2/184-elastic-networks17?Itemid=350).
+In the following you'll find a tar.gz file containing the scripts and programs (listed below) that will allow you to build the topology of protein from a pdb file. 
 
-**Download:** [ElNeDyn-2.1.tar.gz](http://cgmartini.nl/images/tools/elnedyn/ElNeDyn-2.1.tar.gz)
+**Download:** [ElNeDyn-2.1.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/ElNeDyn-2.1.tar)
 
 Files and short description:
 - AA.dat : contains the definition of the amino acids.
@@ -170,7 +166,7 @@ The development of *ElNeDyn* is done in close collaboration with Prof. [M. A. Ce
 ### DAFT - Docking Assay For Transmembrane Components
 <hr>
 
-- [daft.tgz](http://cgmartini.nl/images/tools/daft/daft.tgz)
+- [daft.tar](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/daft.tar)
 
 DAFT is a method for investigating protein-protein and protein-lipid interactions by running many association simulations. These allow identifying the binding hotspots and alternative binding sites.
 
@@ -192,23 +188,23 @@ Check the script's project page for more information on usage and to submit bugs
 ### seq2itp
 <hr>
 
-A perl script to build your own peptide/protein topology (.itp). Use the -h option to see what it can do. As input it requires the amino acid sequence (.seq) and the secondary structure information (.ssd). Check out also the toy peptide example on the [application page](http://cgmartini.nl/index.php/example-applications2/35-downloads/exampleapplications?layout=blog).
+A perl script to build your own peptide/protein topology (.itp). Use the -h option to see what it can do. As input it requires the amino acid sequence (.seq) and the secondary structure information (.ssd). 
 
-- [seq2itp.pl](http://cgmartini.nl/images/tools/seq2itp/seq2itp.pl) (version 1.1.5)
-- [martini_v2.1_example.seq](http://cgmartini.nl/images/tools/seq2itp/martini_v2.1_example.seq)
-- [martini_v2.1_example.ssd](http://cgmartini.nl/images/tools/seq2itp/martini_v2.1_example.ssd)
+- [seq2itp.pl](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/seq2itp.pl) (version 1.1.5)
+- [martini_v2.1_example.seq](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martini_v2.1_example.seq)
+- [martini_v2.1_example.ssd](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martini_v2.1_example.ssd)
 
 ### atom2cg
 <hr>
 
 A simple awk script that converts an atomistic PDB file to a coarse grained PDB file.
 
-- [atom2cg_v2.1.awk](http://cgmartini.nl/images/tools/atom2cg_v2.1.awk)
+- [atom2cg_v2.1.awk](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/atom2cg_v2.1.awk)
 
 ### molmaker.py: Create molecule coordinates from their .itps
 <hr>
 
-- [molmaker.py](https://raw.githubusercontent.com/mnmelo/molmaker/master/molmaker.py)
+- [molmaker.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/molmaker.py)
 
 This tool creates a .gro from an .itp file. It works by randomly scattering coordinates along a linear stretch and then performing an evil minimization as VdW and charges are faded in (using the free energy code). As you already guess, it's totally useless for proteins unless you want a linear segment (in which case it works pretty well!).
 

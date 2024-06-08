@@ -12,7 +12,7 @@ If you are looking for the current iterations of the Martini force field lecture
 ##### **Self-assembly of functionalized alkanes on a graphite surface**
 <hr>
  
-This tutorial guides you on how to perform self-assembly simulations on a graphite flake using a special version of the coarse-grained force-field MARTINI [1], similar to work done in publication [2]. The Martini force-field was originally developed for lipids [1] and then extended to many other systems including self-assembly on a graphite flake [2,3]. For learning purposes, we will limit ourselves to a tiny graphite flake with a small number of adsorbent molecules. Such simulations can be done on a personal computer within 2h. The tutorial is prepared for GROMACS 2016 versions and may need (small) changes in other versions. All files for this tutorial can be found [in this zip file](http://cgmartini.nl/images/stories/tutorial/2019/PhysisorptionTutorial.zip).
+This tutorial guides you on how to perform self-assembly simulations on a graphite flake using a special version of the coarse-grained force-field MARTINI [1], similar to work done in publication [2]. The Martini force-field was originally developed for lipids [1] and then extended to many other systems including self-assembly on a graphite flake [2,3]. For learning purposes, we will limit ourselves to a tiny graphite flake with a small number of adsorbent molecules. Such simulations can be done on a personal computer within 2h. The tutorial is prepared for GROMACS 2016 versions and may need (small) changes in other versions. All files for this tutorial can be found [in this zip file](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/Physisortion_Tutorial.zip).
 
 The aim of the tutorial is two-fold:
 
@@ -20,7 +20,7 @@ The aim of the tutorial is two-fold:
 
 - it contains a method to construct a regularly packed surface consisting of a number of layers of beads: this method can be used to construct any such surface or crystal regardless of the nature of the beads or application
 
-This tutorial assumes a basic knowledge of the Linux operating system and some experience with gromacs. It is helpful to have a basic understanding of the gromacs molecular dynamics package and the Martini force-field. You can find tutorials on these topics at [http://cgmartini.nl](http://cgmartini.nl) and [http://www.mdtutorials.com/gmx/lysozyme/index.html](http://www.mdtutorials.com/gmx/lysozyme/index.html). 
+This tutorial assumes a basic knowledge of the Linux operating system and some experience with gromacs. It is helpful to have a basic understanding of the gromacs molecular dynamics package and the Martini force-field. You can find tutorials on these topics at the [Tutorials section](../../index.qmd) and [http://www.mdtutorials.com/gmx/lysozyme/index.html](http://www.mdtutorials.com/gmx/lysozyme/index.html). 
 
  
 In this tutorial, we will perform a simple simulation of self-assembly (that is adsorption and rearrangement) on a graphite surface from a random configuration of adsorbent in a solvent. We will study here self-assembly of a linear functionalized alkane, AM25, which consist of 6 beads (two P1 polar and four C1 apolar beads, respectively, arranged as C1-P1-C1-C1-P1-C1), which can represent N,N′-decanomethylenebispentamide (C4H9-CO-NH-(CH2)10-NH-CO-C4H9). For more information, look into publication [2]. As a solvent, we use phenyloctane, which in its coarse-grained representation consist of 5 beads (three SC4 beads in a ring and two C1 beads in a tail)
