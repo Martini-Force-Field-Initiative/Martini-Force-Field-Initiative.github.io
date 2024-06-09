@@ -1,0 +1,16 @@
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>One martini is all right. Two are too many, and three are not enough.</i> - James Thurber",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>

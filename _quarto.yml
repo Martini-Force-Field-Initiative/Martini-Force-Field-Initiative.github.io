@@ -14,32 +14,25 @@ website:
   page-navigation: true
   search:
     type: overlay
-    # algolia:   #TODO: take a look at Algolia searching engine and how to use it
-    #   index-name: prod_QUARTO
-    #   application-id: ZPJB5I1QN7
-    #   search-only-api-key: 41be6c1e0a7fea4a51b107810facf577
-    #   analytics-events: true
-    #   show-logo: true
+
   page-footer:
-    # left: |
-    #   Made with love and [Quarto](https://quarto.org).
+    background: "#fdfffc"
+    left: 
+      - text: <div class="footer-left"></div>
     center:
-      - text: "About"
-        href: about.qmd
-      - text: "FAQ"
-        href: docs/faq/index.qmd
-      - text: "License"
-        href: license.qmd
-    right:
       - icon: twitter
-        href: https://twitter.com  # TBA
+        href: https://x.com/cg_martini
         aria-label: Martini Twitter
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         aria-label: Martini GitHub
-      # - icon: rss
-      #   href: TBA
-      #   aria-label: Martini Blog RSS
+      - icon: "question-circle"
+        href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a
+        aria-label: Ask a Question
+    right: 
+      - text: <div class="footer-right">Maintained by the Martini Developers Team <img src="https://martini-library.s3.us-east-2.amazonaws.com/icon.png" alt="Icon"> </div>
+   
+
   navbar:
     background: "#fdfffc"
     logo: images/martini.gif
@@ -49,49 +42,56 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "News"
-        href: docs/blog/index.qmd
-      - text: "About"
-        href: about.qmd
-      - text: "Downloads"
-        href: docs/downloads/index.qmd
+      # - text: "About"
+      #   href: about.qmd
       - text: "Tutorials"
         href: docs/tutorials/index.qmd
-      - text: "Discussions"
-        href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions
+      - text: "Downloads"
+        href: docs/downloads/index.qmd
+      # - text: "Discussions"
+      #   href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions
       - text: "Publications"
         href: docs/publications/index.qmd
+      - text: "Announcements"
+        href: docs/blog/index.qmd
       - text: "Contact"
         href: docs/contact.qmd
       - text: "Help"
         menu:
-          - text: "Report issues"
-            icon: "bug"
-            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" #TODO: open general repo for issues
-          - text: "Ask a Question"
+          - text: "Discussion Board"
             icon: "chat-right-text"
-            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a"
-          - text: "FAQ"
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions"
+          - text: "Report an Issue"
+            icon: "bug"
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" 
+          - text: "Ask a Question"
             icon: "question-circle"
-            href: docs/faq/index.qmd
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a"
     tools:
       - icon: twitter
-        href: https://twitter.com  # TBA
+        href: https://x.com/cg_martini
         text: Martini Twitter
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         text: Martini GitHub
-      # - icon: rss
-      #   href: # TBA
-      #   text: Martini Blog RSS
 
   sidebar:
-    - id: blog
-      title: "Blog"
-
-    - id: about
-      title: "About"
-
+    # - id: about
+    #   title: "About"
+    - id: tutorials
+      title: "Tutorials"
+      style: "floating"
+      collapse-level: 1
+      align: left
+      contents:
+        - text: <b>Summary</b><hr>
+          href: docs/tutorials/index.qmd
+        - text: "🎓 Martini Lectures"
+          href: docs/tutorials/Martini3/lectures.qmd
+        - text: "🛠️ Hands-on Tutorials"
+          href: docs/tutorials/Martini3/tutorials.qmd
+        - text: "🕸️ Legacy Material"
+          href: docs/tutorials/Legacy/index.qmd
     - id: downloads
       title: "Downloads"
       style: "floating"
@@ -133,25 +133,6 @@ website:
             - docs/downloads/tools/resolution-transformation.qmd
             - docs/downloads/tools/visualization.qmd
             - docs/downloads/tools/other-tools.qmd
-    - id: tutorials
-      title: "Tutorials"
-      style: "floating"
-      collapse-level: 1
-      align: left
-      contents:
-        - text: <b>Summary</b><hr>
-          href: docs/tutorials/index.qmd
-        - text: "🎓 Martini Lectures"
-          href: docs/tutorials/Martini3/lectures.qmd
-        - text: "🛠️ Hands-on Tutorials"
-          href: docs/tutorials/Martini3/tutorials.qmd
-        - text: "🕸️ Legacy Material"
-          href: docs/tutorials/Legacy/index.qmd
-        # - section: "Martini 3 Tutorials (Legacy Beta Tutorials)"
-        #   href: docs/tutorials/martini3/index.qmd
-        #   contents:
-        #     - docs/tutorials/martini3/small_molecule_binding.qmd
-        #     - docs/tutorials/martini3/parameterizing_small_molecule.qmd
     - id: publications
       title: "Publications"
       style: "floating"
@@ -180,8 +161,10 @@ website:
         - docs/publications/2005.qmd
         - docs/publications/2004.qmd
         - docs/publications/2003.qmd
-
-
+    - id: blog
+      title: "Announcements"
+    - id: contact
+      title: "Contact"
 
 bibliography: references.bib
 
@@ -189,7 +172,7 @@ format:
   html:
     toc: true
     theme:
-      light: [default, theme.scss]
+      light: [default, cosmo, theme.scss]
     code-copy: true
     code-overflow: wrap
     css: styles.css
@@ -198,11 +181,12 @@ format:
       sidebar-width: 250px
       body-width: 900px
       margin-width: 300px
-
+    include-in-header: 
+      - file: random-quotes.html 
+        
 
 filters:
   - filters/tools-tabset.lua
-
 
 freeze: true
 
