@@ -1,0 +1,20 @@
+---
+title: <i class="fa-solid fa-cheese"></i> Lipidome
+format: html
+---
+
+Available Martini lipid topologies are listed below according to their major category. Additional information for each lipid, other topologies (e.g. Dry Martini, alternative, old), and supporting files can be found on the subpage of each lipid. Collections of lipid topologies can be found at the bottom of this page for ease of download. For explanation of the lipid naming schema and the Martini lipid parameterization philosophy see the [Martini lipid details](martini_lipids_details.qmd) page. For further background reading on the Martini lipidome, see:
+
+- **T.A. Wassenaar, H.I. Ingólfsson, R.A. Böckmann, D.P. Tieleman, S.J. Marrink**. *Computational lipidomics with insane: a versatile tool for generating custom membranes for molecular simulations.* JCTC, 11:2144–2155, 2015. [abstract](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00209)
+
+If you have developed additional Martini lipid topologies and would like to post them here please contact Siewert J. Marrink [s.j.marrink@rug.nl](mailto: s.j.marrink@rug.nl) or Helgi I. Ingolfsson [h.i.ingolfsson@rug.nl](mailto: h.i.ingolfsson@rug.nl).
+
+### Phosphatidylcholine (PC)
+<hr>
+
+|         Lipid                    |     Coordinates   |    Parameters   |     Mapping      |
+|------------------------------|-------------------|-----------------|------------------|
+|	di-C08:0-C10:0 PC (DTPC)	   | [DTPC-em.gro]()   |  Current: [itp](http://cgmartini.nl/images/parameters/lipids/PC/DTPC/martini_v2.0_DTPC_01.itp)    |                 |
+|   di-C12:0-C14:0 PC (DLPC)   |  [DLPC-em.gro]()|    Current: [itp]() | CHARMM: [map]() <br> GROMOS: [map]() |
+
+ 

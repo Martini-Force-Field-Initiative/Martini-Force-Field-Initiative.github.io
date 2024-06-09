@@ -102,19 +102,30 @@ website:
       contents:
         - text: <b>Summary</b><hr>
           href: docs/downloads/index.qmd
-        - section: "🖱 Force field parameters"
+        - section: "🫧 Force field parameters"
           contents:
-            - docs/downloads/force-field-parameters/particle-definitions.qmd
-            - docs/downloads/force-field-parameters/aminoacids.qmd
-            - docs/downloads/force-field-parameters/solvents.qmd
-            - docs/downloads/force-field-parameters/ions.qmd
-            - docs/downloads/force-field-parameters/sugars.qmd
-            - docs/downloads/force-field-parameters/polymers.qmd
-            - docs/downloads/force-field-parameters/others.qmd
-            - docs/downloads/force-field-parameters/dry-martini.qmd
-            - docs/downloads/force-field-parameters/dna.qmd
-            - docs/downloads/force-field-parameters/rna.qmd
-            - docs/downloads/force-field-parameters/lipids.qmd
+            - section: <i class="fa-solid fa-dice-three"></i> Martini 3
+              contents:
+                - docs/downloads/force-field-parameters/martini3/particle-definitions.qmd
+                - docs/downloads/force-field-parameters/martini3/aminoacids.qmd
+                - docs/downloads/force-field-parameters/martini3/lipidome.qmd
+                - docs/downloads/force-field-parameters/martini3/nucleic_acids.qmd
+                - docs/downloads/force-field-parameters/martini3/carbohydrates.qmd
+                - docs/downloads/force-field-parameters/martini3/polymers.qmd
+                - docs/downloads/force-field-parameters/martini3/solvents.qmd
+                - docs/downloads/force-field-parameters/martini3/ions.qmd
+            - section: <i class="fa-solid fa-dice-two"></i> Martini 2
+              contents:
+                - docs/downloads/force-field-parameters/martini2/particle-definitions.qmd
+                - docs/downloads/force-field-parameters/martini2/aminoacids.qmd
+                - docs/downloads/force-field-parameters/martini2/lipidome.qmd
+                - docs/downloads/force-field-parameters/martini2/nucleic_acids.qmd
+                - docs/downloads/force-field-parameters/martini2/carbohydrates.qmd
+                - docs/downloads/force-field-parameters/martini2/polymers.qmd
+                - docs/downloads/force-field-parameters/martini2/solvents.qmd
+                - docs/downloads/force-field-parameters/martini2/ions.qmd
+                - docs/downloads/force-field-parameters/martini2/others.qmd
+                - docs/downloads/force-field-parameters/martini2/dry-martini.qmd
         - section: "🗄 Example input files"
           contents:
             - docs/downloads/example-input-files/general-topology.qmd
