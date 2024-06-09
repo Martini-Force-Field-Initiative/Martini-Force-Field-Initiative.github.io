@@ -11,35 +11,6 @@ if (!kPlatformMac) {
 
 </script>
 
-<!-- <script>
-   document.addEventListener("DOMContentLoaded", function() {
-    function checkFooter() {
-        const leftFooter = document.querySelector('.footer-left');
-      //   const rightFooter = document.querySelector('.footer-right');
-        if (leftFooter && rightFooter) {
-            const leftFooterHeight = leftFooter.offsetHeight;
-            // const rightFooterHeight = rightFooter.offsetHeight;
-            const leftFooterLineHeight = parseInt(window.getComputedStyle(leftFooter).lineHeight);
-            // const rightFooterLineHeight = parseInt(window.getComputedStyle(rightFooter).lineHeight);
-            // if (leftFooterHeight > leftFooterLineHeight || rightFooterHeight > rightFooterLineHeight) {
-            if (leftFooterHeight > leftFooterLineHeight) {
-                leftFooter.classList.add('hidden-footer');
-               //  rightFooter.classList.add('hidden-footer');
-            } else {
-                leftFooter.classList.remove('hidden-footer');
-                  // rightFooter.classList.remove('hidden-footer');
-            }
-        }
-    }
-
-    // Initial check
-    checkFooter();
-
-    // Check when window is resized
-    window.addEventListener('resize', checkFooter);
-   });
-</script> -->
-
 <script>
    document.addEventListener("DOMContentLoaded", function() {
     function checkLeftFooter() {
@@ -65,7 +36,7 @@ if (!kPlatformMac) {
 
     // Check when window is resized
     window.addEventListener('resize', checkLeftFooter);
-});
+   });
 </script>
 
 
