@@ -5,18 +5,18 @@ format: html
 
 ### Martini 2.2 N-Glycans
 
-Topologies for Martini 2.2 glycans are available for download [here](http://cgmartini.nl/images/glycanparameters.zip), courtesy of César López Bautista and co-workers. See the [publication](https://academic.oup.com/glycob/advance-article/doi/10.1093/glycob/cwab017/6179202?guestAccessKey=643c0c9f-d406-4433-98ff-45b4a347faa8) for more information.
+Topologies for Martini 2.2 glycans are available for download [here](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/carbohydrates/PARAMETERS.itp), courtesy of César López Bautista and co-workers. See the [publication](https://academic.oup.com/glycob/advance-article/doi/10.1093/glycob/cwab017/6179202?guestAccessKey=643c0c9f-d406-4433-98ff-45b4a347faa8) for more information.
 
 
 ### Common mono- and disaccharides, and amylose.
 
-- [martini_v2.0_sugars.itp](http://cgmartini.nl/images/parameters/ITP/martini_v2.0_sugars.itp)
+- [martini_v2.0_sugars.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/carbohydrates/martini_v2.0_sugars.itp)
 
 ### Beta-cyclodextrin, Dimethyl-cyclodextrin and Hydroxypropyl-cyclodextrin
 
-The user needs to incorporate a new bead type in the case of beta cyclodextrin which is included in the martini_v2.1_pc.itp included in the package. Beta cyclodextrin is represented as a dimer, since it is the most populated type in solution. However it can be easily transformed into a monomer if necessary.
+The user needs to incorporate a new bead type in the case of beta cyclodextrin which is included in the `martini_v2.1_pc.itp` included in the package. Beta cyclodextrin is represented as a dimer, since it is the most populated type in solution. However it can be easily transformed into a monomer if necessary.
 
-- [cyclodextrin.tgz](http://cgmartini.nl/images/parameters/ITP/cyclodextrin.tgz)
+- [cyclodextrin.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/carbohydrates/cyclodextrin.tar)
 
 When using this model please cite:
 

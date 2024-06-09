@@ -9,23 +9,23 @@ Martini DNA parameters are available as a package with a martinize-dna script to
 
 An example of an all atomistic 24 bp dsDNA in pdb format, together with its course grained mapping and bonded parameters, using the stiff elastic network settings (20180125).
 
-- [24bp_AA2CG_stiff.tar.gz](http://cgmartini.nl/images/parameters/dna/24bp_AA2CG_stiff.tar.gz)
+- [24bp_AA2CG_stiff.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/24bp_AA2CG_stiff.tar)
 
 ![](dna_image.png)
 
-- [martini-dna-150909.tgz](http://cgmartini.nl/images/parameters/dna/martini-dna-150909.tgz)
+- [martini-dna-150909.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150909.tar)
 
 [martini_v2.1P-dna.itp: Fixed missing T-bead - S-bead interactions.]
 
-- [martini-dna-150817.tgz](http://cgmartini.nl/images/parameters/dna/martini-dna-150817.tgz)
+- [martini-dna-150817.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150817.tar)
 
 [dna_backmapping_files: Fixed a bug in CHARMM36 thymine files.]
 
-- [martini-dna-150814.tgz](http://cgmartini.nl/images/parameters/dna/martini-dna-150814.tgz)
+- [martini-dna-150814.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150814.tar)
 
 [martinize-dna.py: Changed the default cut-off for separating chains to 4 Angstroms.]
 
-- [martini-dna-150722.tgz](http://cgmartini.nl/images/parameters/dna/martini-dna-150722.tgz)
+- [martini-dna-150722.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150722.tar)
 
 For details see:
 
@@ -34,11 +34,11 @@ For details see:
 
 ### RNA
 
-Ever expanding on the diversity in our forcefields, we have added RNA to the  Martini force field [1]. For feedback on the RNA package please communicate via the forum or send an e-mail to [i.faustino@rug.nl](i.faustino@rug.nl).
+Ever expanding on the diversity in our forcefields, we have added RNA to the  Martini force field [1]. For feedback on the RNA package please communicate via the forum or send an e-mail to [i.faustino@rug.nl](mailto: i.faustino@rug.nl).
 
-The Martini RNA comes in a package with a martinize script to generate the Martini topology files for RNA and DNA molecules. It also includes a backmapping file to convert the coarse RNA into atomistic RNA (AMBER and CHARMM) using our [backmapping procedure](http://cgmartini.nl/index.php/tutorials-general-introduction/others#Backward) [2]. If you want to start running your first Martini RNA system, you can follow the tutorial we have prepared [here](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/tutorial-martini-rna-gmx5).
+The Martini RNA comes in a package with a martinize script to generate the Martini topology files for RNA and DNA molecules. It also includes a backmapping file to convert the coarse RNA into atomistic RNA (AMBER and CHARMM) using our [backmapping procedure](../../../tutorials/Martini3/Backward/index.qmd) [2]. If you want to start running your first Martini RNA system, you can follow the tutorial we have prepared [here](../../../tutorials/Legacy/martini2/rna.qmd).
 
-- [na-tutorials_20170815.tar](http://cgmartini.nl/images/stories/tutorial/2017/na-tutorials_20170815.tar)
+- [na-tutorials_20170815.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/rna/na-tutorials_20170815.tar)
 
 [1] Uusitalo, Jaakko J., et al. Martini Coarse-Grained Force Field: Extension to RNA. Biophys. J. 2017. 113, 2, 246-256. [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/28633759)
 
