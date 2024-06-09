@@ -41,22 +41,24 @@ website:
     collapse-below: lg
     left:
       - text: "Home"
+        icon: house-fill
         href: index.qmd
       # - text: "About"
       #   href: about.qmd
       - text: "Tutorials"
+        icon: mortarboard-fill 
         href: docs/tutorials/index.qmd
-      - text: "Downloads"
+      - text: "{{< fa solid meteor >}} Downloads"
         href: docs/downloads/index.qmd
       # - text: "Discussions"
       #   href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions
-      - text: "Publications"
+      - text: "{{< fa solid newspaper >}} Publications"
         href: docs/publications/index.qmd
-      - text: "Announcements"
+      - text: "{{< fa solid bullhorn >}} Announcements"
         href: docs/blog/index.qmd
-      - text: "Contact"
+      - text: "{{< fa regular address-book >}} Contact"
         href: docs/contact.qmd
-      - text: "Help"
+      - text: "{{< fa solid circle-info >}}Help"
         menu:
           - text: "Discussion Board"
             icon: "chat-right-text"
