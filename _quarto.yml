@@ -6,7 +6,6 @@ website:
   title: "Martini CG Force-field"
   image: "images/martini.gif"
   favicon: "images/favicon.png"
-  # google-analytics: "G-"    # TODO: Pass Google Tag measurement Id.
   open-graph: true
   twitter-card: true
   site-url: http://cgmartini.nl
@@ -40,24 +39,27 @@ website:
     title: false
     collapse-below: lg
     left:
+
       - text: "Home"
         icon: house-fill
         href: index.qmd
-      # - text: "About"
-      #   href: about.qmd
+
       - text: "Tutorials"
         icon: mortarboard-fill 
         href: docs/tutorials/index.qmd
+
       - text: "{{< fa solid meteor >}} Downloads"
         href: docs/downloads/index.qmd
-      # - text: "Discussions"
-      #   href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions
+
       - text: "{{< fa solid newspaper >}} Publications"
         href: docs/publications/index.qmd
+
       - text: "{{< fa solid bullhorn >}} Announcements"
         href: docs/blog/index.qmd
+
       - text: "{{< fa regular address-book >}} Contact"
         href: docs/contact.qmd
+
       - text: "{{< fa solid circle-info >}}Help"
         menu:
           - text: "Discussion Board"
@@ -69,6 +71,7 @@ website:
           - text: "Ask a Question"
             icon: "question-circle"
             href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a"
+    
     tools:
       - icon: twitter
         href: https://x.com/cg_martini
@@ -78,8 +81,7 @@ website:
         text: Martini GitHub
 
   sidebar:
-    # - id: about
-    #   title: "About"
+
     - id: tutorials
       title: "Tutorials"
       style: "floating"
@@ -94,6 +96,7 @@ website:
           href: docs/tutorials/Martini3/tutorials.qmd
         - text: "🕸️ Legacy Material"
           href: docs/tutorials/Legacy/index.qmd
+
     - id: downloads
       title: "Downloads"
       style: "floating"
@@ -146,6 +149,7 @@ website:
             - docs/downloads/tools/resolution-transformation.qmd
             - docs/downloads/tools/visualization.qmd
             - docs/downloads/tools/other-tools.qmd
+
     - id: publications
       title: "Publications"
       style: "floating"
@@ -174,8 +178,10 @@ website:
         - docs/publications/2005.qmd
         - docs/publications/2004.qmd
         - docs/publications/2003.qmd
+
     - id: blog
       title: "Announcements"
+      
     - id: contact
       title: "Contact"
 
