@@ -60,7 +60,7 @@ website:
       - text: "{{< fa regular address-book >}} Contact"
         href: docs/contact/contact.qmd
 
-      - text: "{{< fa solid circle-info >}}Help"
+      - text: "{{< fa solid circle-info >}} Help"
         menu:
           - text: "Discussion Board"
             icon: "chat-right-text"
@@ -152,32 +152,12 @@ website:
 
     - id: publications
       title: "Publications"
-      style: "floating"
-      collapse-level: 2
-      align: left
-      contents:
-        - text: <b>Publications by year</b><hr>
-        - docs/publications/2023.qmd
-        - docs/publications/2022.qmd
-        - docs/publications/2021.qmd
-        - docs/publications/2020.qmd
-        - docs/publications/2019.qmd
-        - docs/publications/2018.qmd
-        - docs/publications/2017.qmd
-        - docs/publications/2016.qmd
-        - docs/publications/2015.qmd
-        - docs/publications/2014.qmd
-        - docs/publications/2013.qmd
-        - docs/publications/2012.qmd
-        - docs/publications/2011.qmd
-        - docs/publications/2010.qmd
-        - docs/publications/2009.qmd
-        - docs/publications/2008.qmd
-        - docs/publications/2007.qmd
-        - docs/publications/2006.qmd
-        - docs/publications/2005.qmd
-        - docs/publications/2004.qmd
-        - docs/publications/2003.qmd
+      contents: 
+        - text: "<img src='./../../../../images/martini_glass.jpeg' style='height: 100%; width: 100%; object-fit: contain' />"
+        - text: "{{< fa solid paperclip >}} Curated list of the most relevant papers describing the Martini FF Initiative." 
+          href: https://scholar.google.com/citations?hl=en&user=N71qbKgAAAAJ&view_op=list_works&sortby=pubdate
+          
+        
 
     - id: blog
       title: "Announcements"

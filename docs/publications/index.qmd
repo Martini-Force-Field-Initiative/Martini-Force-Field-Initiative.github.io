@@ -1,10 +1,23 @@
 ---
+title: "Publications"
+subtitle: Complete list of articles featuring the Martini FF Initiative.
+listing:
+  - id: articles
+    contents: "entries/*/**.qmd"
+    type: default
+    template: ../../ejs/article.ejs
+    categories: numbered
+    sort:
+      - "year desc"
+      - "title"
+    sort-ui: [title,author,publication,year]
+    filter-ui: [title,author,publication,year]
+    page-size: 6
+    field-display-names: 
+      publication: "Publication"
+      year: "Year"
+    feed: true  
 page-layout: full
+title-block-banner: "#EDF3F9"
+title-block-banner-color: body
 ---
-## Publications
-
-List of articles from our group, or in collaboration with others, featuring the Martini force field
-
-For a complete list of publications from our group, [check here](http://www.rug.nl/research/molecular-dynamics/publications/publications_pure)
-
-For a list of the main papers describing Martini, [check here](https://scholar.google.com/citations?hl=en&user=N71qbKgAAAAJ&authuser=1&scilu=&scisig=AMD79ooAAAAAXYhf6q67IkURG2cS-8dBePGULFimfV6R&gmla=AJsN-F4gekbhRj5jGDDQ-2ZezpCQFFcUJelbtNJUbwGvBhAhGP1CZFpHTbOfMLkdQORvZEsOBhwJHTBz7JR1ycxFpMUFLPfx20u2RsKTZcY07yFCgWomRtk&sciund=17182581380692271779&gmla=AJsN-F7zwshWPn3qWJvj5WMNIKTZcSlCVsjcuN8H-d89y5sMvGqCRn4Zf6INruiC1hmr0REahmpk_ZyW-LfP0LclQU1rHY3AZSDiSUzqSQqZKzG3zi2kWfg&sciund=7904069873642454661&gmla=AJsN-F7QJXiZtQm3yGuJW0aIcGL0j-afJhdWYjVd-lynBhHDC8E_gIAjywxCR0-RSHW7BDE_CzMyZeft1Yqyc-V7qAO_g7IJf3MkOhtq7nX1KyXqkD2yfc0&sciund=8022746687600405948&gmla=AJsN-F7gjKKlV_3BhuUvAFAGgT0xI49NgVhjFj3Uc76PXK000c0vy6Myq1s7MDc1pNnkCQJlvE9u8smPVdIqDl_IymPTwnY12gZHcy6woofAuJ1q1ZpCg4w&sciund=16674144928985563961&gmla=AJsN-F6leNqa65j_ogNMGt0rgI6aqp6_ObIyx3TIXwFdIN8TvVDbIqJ7RUnoc8UGnQRsicpp_-1GxFrayMAcL3h3UQhuJ2R0NJ6hvL0n-0BFdxHOUIv2sYg&sciund=5409462464681415128&gmla=AJsN-F7t8Tt0qwjc3qVwmyz8ly4PUg0SHlPiarAvi1Cg5LVDI0g1KhBO2A4SxWuGtWWdUNreT3PnVKTbky0lCKJOAPnD_cWOUFRxljMNqpdeWtg7wuJrKZs&sciund=7673021604821726893&gmla=AJsN-F5K2ep_mOwJvwA9LSOEUi0Rlaixki1X4dZOjdJ3W6Ao_e2jeJg7D4lzDt0kCWjMYQ7MXQWY0HVKDwNujcrN7xtjlvp5mCNi28V1p_oqpDIGJqC5nwY&sciund=2588055821420545806&gmla=AJsN-F7mHWJbhrnqQVDslEbjQydP5zrClGb41SpF8MjQBBgkjWBBjM56lDjhZdsTgZYGqyxs7B02lGG7QeZsnODY9esS9aswGmw6xZGpG6qwBQ_QkvyxfIA&sciund=14925947861697387916&gmla=AJsN-F7UfQxIKnZLYq-bu_X4bINT2PW5Ow8kvy5qLSn0Nd8-XrzxVxFjycOYMYLQhbpfIhsUl_17Kxh8_nKaJabNUrI02EGOa96VoA6JJntBTy7Nr6262RI&sciund=590521644600298237&gmla=AJsN-F5Mi_hQwDCyIc4vZk8aghpPviy5aggjCrzBOXblsAldPRV-mCv2mKZ5o-V6T_L9_4f7H-l7YIvoEPnXJy4Hibdu3BDKGQB381_NtgozcOAXIWWPSF8&sciund=710238946039875334&gmla=AJsN-F7x70lj78XeS3dMFI0yWxcJpkpZVdGraXIViNReo0aguCEvCx3Qbxm0N8cMGKmsp9D2Pn-syPfhefUjkHe3Vo3O4h8Jwr12nJh-Sw9M7nFGa18ecg4&sciund=4096334398360942426&gmla=AJsN-F4euJP7V9-9E0HiW4H8PkikG5Keo-C_oZHk2QKpbhMFvTzuj3sdx3j1CG2kwRpOygN4-BBAzbRzzpZQt4IDMkttiRoWMf8ihQT03rXZiS74377Y7AA&sciund=6160224723761174820&gmla=AJsN-F7hBvHJmAeLcqYU4-_7yAvti1qt9rQy101yJOfEfjp3q86WcLQaeEmTdxojuzxBcZodiPSAN_SyY0LKjkhEodHn56lrhaVUFQPkqG7Jprkff&gmla=AJsN-F7e1R281klhwqPdyzRD33Kq86GWCOXPJQBjFnWa57ozGm81gisglyk1TGfkkgvVRKUp6xgmXHexni4p2weKhg0-v-4wUulw4MEMgHInWfM3T-TGLSs&sciund=12676941147796706303)
