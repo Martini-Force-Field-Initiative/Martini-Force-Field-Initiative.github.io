@@ -4,15 +4,29 @@ format: html
 ---
 <hr>
 
-### Martini 2
+The particle definition file is required for all simulations and specifies the coarse-grained particle types and interaction matrix in Martini 2. It also contains the topology of water particles. Version 2.1 or 2.2 are required for peptides and proteins, while versions 2.P, 2.2P and 2.2refP (RF, PME) are for use in combination with the polarizable water model. 
 
-The definition of all CG particle types plus the interaction matrix. It also contains the topology for water particles. This file is required for all simulations. Version 2.1 or 2.2 are required for peptides & proteins, and version 2.P, 2.2P and 2.2refP (RF, PME) for use in combination with the polarizable water model. References can be found in the headers of the corresponding ITP files. (updated: dd-mm-yyyy)
+**References to these works can be found in the headers of the corresponding `.itp` files.**
 
-- [martini_v2.0.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.0.itp)
-- [martini_v2.1.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.1.itp)
-- [martini_v2.2.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2.itp) (updated: 05-12-2012)
-- [martini_v2.P.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.P.itp)
-- [martini_v2.2P.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2P.itp) (updated: 05-12-2012)
-- [martini_v2.2refP.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2refP.itp) (updated: 06-02-2017)
-- [martini_v2.2polIon.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2polIon.tar) (updated: 06-08-2018) Contains martini_v2.2refP.itp + NaCl
-- [martini_v2.3P.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.3P.itp) (updated 09-03-2020)
+----------------------------------------------------------------------
+
+- [martini_v2.2.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2.itp) | (last modified: 04-12-2012)
+
+- [martini_v2.1.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.1.itp) | (last modified: 26-01-2011)
+
+- [martini_v2.0.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.0.itp) | (last modified: 22-02-2011)
+
+
+----------------------------------------------------------------------
+
+- [martini_v2.3P.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.3P.itp) (last modified: 09-03-2020)
+
+- [martini_v2.2polIon.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2polIon.tar) (last modified: 06-08-2018) <br>[Contains martini_v2.2refP.itp + NaCl parameters]
+
+- [martini_v2.2refP.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2refP.itp) (last modified: 06-02-2017)
+
+- [martini_v2.2P.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.2P.itp) (last modified: 05-12-2012)
+
+- [martini_v2.P.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/particle-definitions/martini_v2.P.itp) | (last modified: 14-04-2010)
+
+----------------------------------------------------------------------

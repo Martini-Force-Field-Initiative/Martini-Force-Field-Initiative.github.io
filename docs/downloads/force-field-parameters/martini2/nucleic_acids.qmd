@@ -2,44 +2,47 @@
 title: <i class="fa-solid fa-dna"></i> Nucleic Acids
 format: html
 ---
+<hr>
 
-### DNA
+### Deoxyribonucleic acid (DNA)
 
-Martini DNA parameters are available as a package with a martinize-dna script to generate Martini topology files for DNA.
+----------------------------------------------------------------------
 
-An example of an all atomistic 24 bp dsDNA in pdb format, together with its course grained mapping and bonded parameters, using the stiff elastic network settings (20180125).
 
-- [24bp_AA2CG_stiff.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/24bp_AA2CG_stiff.tar)
+Martini 2 DNA parameters are available below including a `martinize-dna` script to generate Martini topology files for DNA molecules. In addition, an example of an all atomistic *24 bp dsDNA* in `pdb` format, together with its course grained mapping and bonded parameters, using the stiff elastic network settings is provided [here](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/24bp_AA2CG_stiff.tar). For further background reading on the Martini 2 DNA parameters, see:
+
+- **J.J. Uusitalo, H.I. Ingólfsson, P. Akhshi, D.P. Tieleman, S.J. Marrink**. *Martini coarse-grained force field: extension to DNA.* JCTC, (doi: [10.1021/acs.jctc.5b00286](http://dx.doi.org/10.1021/acs.jctc.5b00286))
 
 ![](dna_image.png)
 
-- [martini-dna-150909.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150909.tar)
+**References to these works can be found in the headers of the corresponding `.itp` files.**
 
-[martini_v2.1P-dna.itp: Fixed missing T-bead - S-bead interactions.]
+----------------------------------------------------------------------
 
-- [martini-dna-150817.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150817.tar)
+|         Version                    |     Description   |
+|------------------------------------|-------------------|
+| [martini-dna-150909.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150909.tar)  |      martini_v2.1P-dna.itp: Fixed missing T-bead - S-bead interactions.       |
+|[martini-dna-150817.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150817.tar)    | dna_backmapping_files: Fixed a bug in CHARMM36 thymine files.|
+|[martini-dna-150814.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150814.tar)    | martinize-dna.py: Changed the default cut-off for separating chains to 4 Angstroms.|
+|[martini-dna-150722.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150722.tar)  |  Original release   |
 
-[dna_backmapping_files: Fixed a bug in CHARMM36 thymine files.]
+----------------------------------------------------------------------
 
-- [martini-dna-150814.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150814.tar)
+### Ribonucleic acid (RNA)
 
-[martinize-dna.py: Changed the default cut-off for separating chains to 4 Angstroms.]
+----------------------------------------------------------------------
 
-- [martini-dna-150722.tgz](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150722.tar)
+The Martini 2 RNA parameters are available as a package with a martinize script to generate the Martini 2 topology files for RNA molecules. It also includes a backmapping file to convert the coarse RNA resolution into atomistic RNA (AMBER and CHARMM) using the backmapping procedure described [here](../../../tutorials/Martini3/Backward/index.qmd). In addition, a tutorial to start running your first Martini 2 RNA system is available [here](../../../tutorials/Legacy/martini2/rna.qmd). For further background reading on the Martini 2 DNA parameters, see:
 
-For details see:
+- **J.J. Uusitalo, H.I. Ingólfsson, S.J. Marrink, I. Faustino**. *Martini Coarse-Grained Force Field: Extension to RNA.* Biophys. J., (doi: [10.1016/j.bpj.2017.05.043](https://pubmed.ncbi.nlm.nih.gov/28633759/))
 
-- J.J. Uusitalo, H.I. Ingólfsson, P. Akhshi, D.P. Tieleman, S.J. Marrink - Martini coarse-grained force field: extension to DNA, JCTC (doi: [10.1021/acs.jctc.5b00286](http://dx.doi.org/10.1021/acs.jctc.5b00286))
+**References to these works can be found in the headers of the corresponding `.itp` files.**
 
+----------------------------------------------------------------------
 
-### RNA
+|         Version                    |     Description   |
+|------------------------------------|-------------------|
+|[na-tutorials_20170815.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/rna/na-tutorials_20170815.tar) |   Original release    |
 
-Ever expanding on the diversity in our forcefields, we have added RNA to the  Martini force field [1]. For feedback on the RNA package please communicate via the forum or send an e-mail to [i.faustino@rug.nl](mailto: i.faustino@rug.nl).
+----------------------------------------------------------------------
 
-The Martini RNA comes in a package with a martinize script to generate the Martini topology files for RNA and DNA molecules. It also includes a backmapping file to convert the coarse RNA into atomistic RNA (AMBER and CHARMM) using our [backmapping procedure](../../../tutorials/Martini3/Backward/index.qmd) [2]. If you want to start running your first Martini RNA system, you can follow the tutorial we have prepared [here](../../../tutorials/Legacy/martini2/rna.qmd).
-
-- [na-tutorials_20170815.tar](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/nucleic_acids/rna/na-tutorials_20170815.tar)
-
-[1] Uusitalo, Jaakko J., et al. Martini Coarse-Grained Force Field: Extension to RNA. Biophys. J. 2017. 113, 2, 246-256. [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/28633759)
-
-[2] Wassenaar, T. A., Pluhackova, K., Böckmann, R. A., Marrink, S. J., and Tieleman, D. P. (2014) Going Backward: A Flexible Geometric Approach to Reverse Transformation from Coarse Grained to Atomistic Models. J. Chem. Theory Comput. 10, 676–690. [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/26580045)

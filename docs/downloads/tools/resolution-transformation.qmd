@@ -2,6 +2,7 @@
 title: Resolution transformation
 format: html
 ---
+<hr>
 
 ### TS2CG: Triangulated Surfaces to Coarse Grain
 <hr>
@@ -9,6 +10,8 @@ format: html
 TS2CG is an algorithm to backmap a triangulated surface to a corresponding coarse-grained model.
  
 The software can be downloaded from this [link](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/TS2CG-master.zip), or by visiting [https://github.com/marrink-lab/TS2CG](https://github.com/marrink-lab/TS2CG).
+
+<hr>
 
 ### Backward
 <hr>
@@ -29,12 +32,16 @@ More extensive information and a tutorial can be found [[here]](../../tutorials/
 
 [The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded here.](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/backward-v5.zip)
 
+<hr>
+
 ### Convert Martini water to polarizable water
 <hr>
 
 - [triple-w.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/triple-w.pyhttps://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/triple-w.py)
 
 Script to convert the water in CG Martini system to polarizable water. For an example how to use this script, click [here](../../tutorials/Legacy/martini2/others.qmd#polarizable-water).
+
+<hr>
 
 ### Resolution transformation
 <hr>
@@ -49,3 +56,4 @@ We recommend you use Backward instead of this tool. For details about this tool 
 
 You may also try an automized resolution transformation provided by Angel Pineiro, see [http://smmb.usc.es/sugarpie/sugarpie.php](http://smmb.usc.es/sugarpie/sugarpie.php).
 
+<hr>

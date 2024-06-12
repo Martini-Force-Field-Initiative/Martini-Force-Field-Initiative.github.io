@@ -3,17 +3,22 @@ title: <i class="fa-solid fa-wine-glass-empty"></i> Dry Martini
 format: html
 ---
 
-**Try out the next flavor of the Martini force field for lipids: Dry Martini.** Still without olives.
+<hr>
 
-In this version of Martini, water beads were completely removed from our simulation boxes. We adapted the interactions between beads by slightly tweaking the interaction levels and tuning some bonded parameter to reproduce the properties observed with the standard Martini force field. The new force field developed has been shown to nicely reproduce bilayer properties for a large variety of lipids.
+In this version of Martini 2, water beads were completely removed from our simulation boxes. Interactions between beads are adapted by slightly tweaking the interaction levels and tuning some bonded parameter to reproduce the properties observed with the standard Martini 2 force field. The new force field developed has been shown to nicely reproduce bilayer properties for a large variety of lipids.
 
-Dry Martini is so far available **only for lipids**. A couple of small membrane proteins have been shown to perform equivalently compared to the regular Martini model; adaptation for proteins in (dry) solution is still in progress.
+**Dry Martini** is so far available only for lipids. A couple of small membrane proteins have been shown to perform equivalently compared to the regular Martini 2 model. Pleaase file the parameter files below and run your first Martini simulations without aqueous solvent! For further background reading on **Dry Martini**, see:
 
-Curious? Excited? Download the parameter files and run your first Martini simulations without aqueous solvent!
+- **C. Arnarez, J.J. Uusitalo, M.F. Masman, H.I. Ingólfsson, D.H. de Jong, M.N. Melo, X. Periole, A.H. de Vries, S.J. Marrink**. *Dry Martini: coarse grained implicit water force field for (bio)molecular simulations.* JCTC, (doi: [10.1021/ct500477k](http://pubs.acs.org/doi/abs/10.1021/ct500477k?journalCode=jctcce))
 
-- [Dry_Martini_v2.1](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/dry_martini/Dry_Martini_v2.1_20160523.zip) (Updated 23 May 2016, all "O"-lipids now use the 4 bead oleyl tail parameters and PO tails are in correct order.)
+**References to these works can be found in the headers of the corresponding `.itp` files.**
 
-- [Dry_Martini_v2.1](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/dry_martini/Dry_Martini_v2.zip)
+----------------------------------------------------------------------
 
-Wanna read more? Check this out:
-- C. Arnarez, J.J. Uusitalo, M.F. Masman, H.I. Ingólfsson, D.H. de Jong, M.N. Melo, X. Periole, A.H. de Vries, S.J. Marrink - Dry Martini: coarse grained implicit water force field for (bio)molecular simulations, JCTC (doi: [10.1021/ct500477k](http://pubs.acs.org/doi/abs/10.1021/ct500477k?journalCode=jctcce))
+- [Dry_Martini_v2.1](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/dry_martini/Dry_Martini_v2.1_20160523.zip)  | (last modified: 23-05-2016) <br>
+*All "O"-lipids now use the 4 bead oleyl tail parameters and PO tails are in correct order.*
+
+- [Dry_Martini_v2.1](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/dry_martini/Dry_Martini_v2.zip)  | (original release) 
+
+----------------------------------------------------------------------
+

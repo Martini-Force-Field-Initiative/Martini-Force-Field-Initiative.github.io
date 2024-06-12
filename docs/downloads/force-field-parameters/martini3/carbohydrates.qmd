@@ -3,21 +3,17 @@ title: <i class="fa-solid fa-ice-cream"></i> Carbohydrates
 format: html
 ---
 
-### Martini 2.2 N-Glycans
+<hr>
 
-Topologies for Martini 2.2 glycans are available for download [here](http://cgmartini.nl/images/glycanparameters.zip), courtesy of César López Bautista and co-workers. See the [publication](https://academic.oup.com/glycob/advance-article/doi/10.1093/glycob/cwab017/6179202?guestAccessKey=643c0c9f-d406-4433-98ff-45b4a347faa8) for more information.
+Martini 3 parameters for carbohydrates. For further background reading on the Martini 3 carbohydrates, see:
+
+- **Grünewald F., *et. al.***. *Martini 3 Coarse-Grained Force Field for Carbohydrates.* JCTC, 2022. <br>(doi: [10.1021/acs.jctc.2c00757](https://doi.org/10.1021/acs.jctc.2c00757))
 
 
-### Common mono- and disaccharides, and amylose.
+**Reference to this work can be found in the header of the corresponding `.itp` file.**
 
-- [martini_v2.0_sugars.itp](http://cgmartini.nl/images/parameters/ITP/martini_v2.0_sugars.itp)
+----------------------------------------------------------------------
 
-### Beta-cyclodextrin, Dimethyl-cyclodextrin and Hydroxypropyl-cyclodextrin
+- TBA
 
-The user needs to incorporate a new bead type in the case of beta cyclodextrin which is included in the martini_v2.1_pc.itp included in the package. Beta cyclodextrin is represented as a dimer, since it is the most populated type in solution. However it can be easily transformed into a monomer if necessary.
-
-- [cyclodextrin.tgz](http://cgmartini.nl/images/parameters/ITP/cyclodextrin.tgz)
-
-When using this model please cite:
-
-- **López, C. A., de Vries, A. H., & Marrink, S. J.** Computational microscopy of cyclodextrin mediated cholesterol extraction from lipid model membranes. Scientific Reports, 3, 2071 (**2013**). [http://doi.org/10.1038/srep02071](http://doi.org/10.1038/srep02071)
+----------------------------------------------------------------------

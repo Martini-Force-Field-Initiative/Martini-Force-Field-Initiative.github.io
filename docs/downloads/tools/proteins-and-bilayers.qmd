@@ -3,12 +3,16 @@ title: Proteins and bilayers
 format: html
 ---
 
+<hr>
+
 ### ProLint
 <hr>
 
 The Tieleman group has developed a new webserver coined ProLint, a user-friendly framework for the automated analysis and interactive visualization of Protein-Lipid interactions, supporting the Martini forcefield. The webportal can be accessed at [https://www.prolint.ca/](https://www.prolint.ca/), and details are described in [this paper](https://academic.oup.com/nar/advance-article/doi/10.1093/nar/gkab409/6285263).
 
 For questions, please contact Peter Tieleman ([tieleman@ucalgary.ca](mailto: tieleman@ucalgary.ca))
+
+<hr>
 
 ### PCALipids Tool
 <hr>
@@ -26,12 +30,16 @@ A brief tutorial: [https://github.com/membrane-systems/PCAlipids/blob/master/tut
 
 For questions please contact Khalid Mustafin ([khalid.mustafin@phystech.edu](mailto: khalid.mustafin@phystech.edu)), Pavel Buslaev ([pbuslaev@phystech.edu](mailto: pbuslaev@phystech.edu)) or Ivan Gushchin ([ivan.gushchin@phystech.edu](mailto: ivan.gushchin@phystech.edu)).
 
+<hr>
+
 ### MDVoxelSegmentation
 <hr>
 
 When working with large systems containing multiple bilayers or other dynamic macroscopic objects, it tends to come more natural to give these aggregates an identity of their own. This is exactly what MDAVoxelSegmentation does for amphipathic Martini systems. It not only detects bilayers/leaflets or other aggregates using a voxel based architecture, but it also keeps track of such entities over time. For more information take a look at the [github](https://github.com/BartBruininks/MDVoxelSegmentation) or contact the developers! As an appetizer we added a rendered movie and graph describing how the transfection of dsDNA from a lipid-DNA complex occurs over a membrane (doi: [10.7554/eLife.52012](https://doi.org/10.7554/eLife.52012)).
 
 ![](voxel.png)
+
+<hr>
 
 ### Nanodisc builder
 <hr>
@@ -44,6 +52,8 @@ The tool, developed by Lisbeth Kjølbye in the group of Birgit Schiøtt, can be 
 
 A paper describing the tool and showing examples of its validation is published in JCIM: [https://pubs.acs.org/doi/10.1021/acs.jcim.1c00157](https://pubs.acs.org/doi/10.1021/acs.jcim.1c00157)
 
+<hr>
+
 ### Leaflet identification and analysis
 <hr>
 
@@ -51,10 +61,14 @@ Wlison et al. introduce a collection of membrane analysis tools suitable for Mar
 
 See also the associated paper: [https://www.sciencedirect.com/science/article/pii/S2667160321000090](https://www.sciencedirect.com/science/article/pii/S2667160321000090)
 
+<hr>
+
 ### Go-Martini
 <hr>
 
 For ongoing development of Go-Martini, see the webpage of Adolfo Poma: [http://pomalab.ippt.pan.pl/web/index.html](http://pomalab.ippt.pan.pl/web/index.html)
+
+<hr>
 
 ### Analyze lipid fingerprints
 <hr>
@@ -64,6 +78,8 @@ The following script, based on work of Corradi et al. [1], is provided for all y
 Download the script [here](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/lipid-PM-counter-fix-v3.0.py). Please note that Python 2.7 (or equivalent) is required. For help on how to use it, simply type "python lipid-PM-counter-fix-v3.0.py -h"
 
 [1] **V. Corradi, E. Mendez-Villuendas, H.I. Ingólfsson, R.X. Gu, I. Siuda, M.N. Melo, A. Moussatova, L.J. DeGagné, B.I. Sejdiu, G. Singh, T.A. Wassenaar, K. Delgado Magnero, S.J. Marrink, D.P. Tieleman**. Lipid–Protein Interactions Are Unique Fingerprints for Membrane Proteins. ACS Central Science 4:709–717, 2018
+
+<hr>
 
 ### martinize
 <hr>
@@ -122,6 +138,8 @@ You can now also download the latest martinize from [GitHub](https://github.com/
 
 * [martinize-1.0.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martinize_v_1_0.py) (version 1.0)
 
+<hr>
+
 ### Insane
 <hr>
 
@@ -132,6 +150,8 @@ You can now also download the latest martinize from [GitHub](https://github.com/
 Read much more about insane from the insane paper: [DOI: 10.1021/acs.jctc.5b00209](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00209)
 
 2015.06.25 – *insane* was updated adding a few features, fixing a few bug and the lipid templates now use the new lipid-naming schema, the old templates are still available with a .o after the name e.g. “DHPC.o”.
+
+<hr>
 
 ### ElNeDyn
 <hr>
@@ -163,6 +183,8 @@ For more information contact Xavier Periole ([x.periole@rug.nl](mailto: x.periol
 
 The development of *ElNeDyn* is done in close collaboration with Prof. [M. A. Ceruso](http://www.sci.ccny.cuny.edu/~mceruso/) at the CCNY-CUNY in New York City, USA.
 
+<hr>
+
 ### DAFT - Docking Assay For Transmembrane Components
 <hr>
 
@@ -173,6 +195,8 @@ DAFT is a method for investigating protein-protein and protein-lipid interaction
 DAFT is a bundle of programs and supporting files, and comprises martinize, martinate, insane, and several MARTINI interaction table generating Python scripts, toghether with the standard lipid, ion and solvent topologies. The user interface is formed by the bash script daft.sh (see daft.sh -h for more information).
 
 More background on this DAFT approach can be read in the DAFT paper: [DOI: 10.1021/ct5010092](http://pubs.acs.org/doi/abs/10.1021/ct5010092)
+
+<hr>
 
 ### Flux calculator
 <hr>
@@ -185,6 +209,8 @@ Please cite [J. Am. Chem. Soc., 2017, 139 (7), pp 2664–2671](https://pubs.acs.
 
 Check the script's project page for more information on usage and to submit bugs.
 
+<hr>
+
 ### seq2itp
 <hr>
 
@@ -194,12 +220,16 @@ A perl script to build your own peptide/protein topology (.itp). Use the -h opti
 - [martini_v2.1_example.seq](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martini_v2.1_example.seq)
 - [martini_v2.1_example.ssd](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/martini_v2.1_example.ssd)
 
+<hr>
+
 ### atom2cg
 <hr>
 
 A simple awk script that converts an atomistic PDB file to a coarse grained PDB file.
 
 - [atom2cg_v2.1.awk](https://martini-library.s3.us-east-2.amazonaws.com/tools/proteins_and_bilayers/atom2cg_v2.1.awk)
+
+<hr>
 
 ### molmaker.py: Create molecule coordinates from their .itps
 <hr>
@@ -211,4 +241,6 @@ This tool creates a .gro from an .itp file. It works by randomly scattering coor
 Additionally, molmaker.py will likely not preserve your chiral centers unless you protect them in your topology using some sort of dihedral potential/restraint. Alternatively you might want to hand-correct each center using other tools and then energy-minimizing.
 
 Check the -h flag for more details. Please report bugs in the [GitHub project](https://github.com/mnmelo/molmaker).
+
+<hr>
 

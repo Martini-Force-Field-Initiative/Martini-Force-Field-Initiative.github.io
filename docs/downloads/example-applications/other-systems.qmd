@@ -2,32 +2,7 @@
 title: Other systems
 format: html
 ---
-
-### Mycolic Acids
 <hr>
-
-Groenewald, Wilma; Bulacu, Monica; Croft, Anna; Marrink, Siewert-Jan (2019): [Molecular Dynamics of Mycolic Acid Monolayers](https://doi.org/10.26434/chemrxiv.7881215.v1). ChemRxiv. Preprint.
- 
-**Abstract**
-Mycobacterium tuberculosis, the organism responsible for TB infection in
-humans, is inherently resilient against host defences and anti-TB drugs. This
-persistence is attributed partly to the presence of lipids, such as mycolic acids
-(MAs), which make the cell wall impermeable. To study the conformational
-dynamics of MAs, we present a coarse-grained model for a representative α-MA
-(AMA) from Mycobacterium tuberculosis using the MARTINI force field. The
-model is used to simulate monolayers of different sizes; a small monolayer
-consisting of 220 MAs and a large monolayer consisting of 1972 MAs. The
-model could replicate key features of experimental monolayers such as phase
-changes and the collapse point. By studying the conformation of MAs in the
-simulated monolayers, it was found that AMA did not fold into the W-
-conformation at large surface areas but was only folded at the head group to give
-a wide U-shape. On monolayer compression, the MA chains came closer
-together, into a narrower U-shape, and an ordered monolayer was formed before
-it collapsed.
-
-<!-- The zip files below contain all the files needed to run the small and large bilayer systems using GROMACS.
-
-[SmallMonolayer.zip](http://cgmartini.nl/images/applications/other/SmallMonolayer.zip) [LargeMonolayer.zip](http://cgmartini.nl/images/applications/other/LargeMonolayer.zip) -->
 
 ### Phytochemicals
 <hr>
@@ -49,6 +24,8 @@ And the phytochemicals parameter file:
 
 - [martini_v2.0_phytochemicals.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.0_phytochemicals.itp)
 
+<hr>
+
 ### Docosane physisorption on graphite from heptane
 <hr>
 
@@ -67,6 +44,8 @@ Starting conformation contains 18,000 graphite surface particles (5 layers) GRAP
 
 - [start.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/start.gro)
 
+<hr>
+
 ### DNA strand
 <hr>
 
@@ -79,6 +58,8 @@ Double stranded DNA, 12 base pair
 - [dna.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.itp)
 - [dna.pdb](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.pdb)
 - [dna.vmd](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.vmd) (to view the elastic network)
+
+<hr>
 
 ### Voltage sensitive dyes
 <hr>
@@ -99,6 +80,8 @@ System size: 1 dye, 2 sodium counterions, lipids 128, water 1481
 - [dye4.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye4.top)
 - [dye4.ndx](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye4.ndx)
 
+<hr>
+
 ### Fullerenes
 <hr>
 
@@ -112,3 +95,5 @@ System size: 64 fullerenes,  1152 octane molecules
 - [fullerenes_in_octane.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/fullerenes_in_octane.gro)
 - [fullerene.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/fullerene.mdp)
 - [martini_v2.1_CNP.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.1_CNP.itp)
+
+<hr>
