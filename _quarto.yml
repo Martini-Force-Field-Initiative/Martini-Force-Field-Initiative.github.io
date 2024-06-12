@@ -179,8 +179,6 @@ website:
     - id: contact
       title: "Contact"
 
-bibliography: references.bib
-
 format:
   html:
     toc: true
@@ -189,17 +187,14 @@ format:
     code-copy: true
     code-overflow: wrap
     css: styles.css
-    include-after-body: js.html
+    include-after-body: 
+      - file: random-quotes.html 
     grid:
       sidebar-width: 250px
       body-width: 900px
       margin-width: 300px
     include-in-header: 
       - file: random-quotes.html 
-        
-
-filters:
-  - filters/tools-tabset.lua
 
 freeze: true
 
