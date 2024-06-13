@@ -1,5 +1,5 @@
 ---
-title: Martini Blog
+title: Martini Announcements {{< fa brands servicestack >}}
 subtitle: Latest news related to the Martini FF Initiative
 listing:
   sort: "date desc"
@@ -7,12 +7,12 @@ listing:
   contents: "posts/*/index.qmd"
   sort-ui: false
   filter-ui: false
-  categories: numbered
+  categories: false
+  image-placeholder: ../../images/martini_glass.jpeg
   feed: true
-  image-height: 120px
-  image-placeholder: ../../images/favicon.png
-  page-size: 6
-page-layout: full
+  page-size: 50
+page-layout: article
+margin-header: signup.html
 title-block-banner: "#EDF3F9"
 title-block-banner-color: body
 comments: false
