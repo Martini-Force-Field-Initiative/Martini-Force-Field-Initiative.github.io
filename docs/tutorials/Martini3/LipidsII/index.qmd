@@ -2,9 +2,14 @@
 title: Lipid bilayers II
 format: html
 ---
-A PDF version of this tutorial is available [here](http://cgmartini.nl/images/stories/workshop2021/tutorials/tutorial_1/Lipid_bilayers_II_lpara_mnmelo.docx.pdf).
 
-In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](mailto: lpborgesaraujo@tecnico.ulisboa.pt) or [m.n.melo@itqb.unl.pt](mailto: m.n.melo@itqb.unl.pt)
+<hr>
+In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](mailto: lpborgesaraujo@tecnico.ulisboa.pt) or [m.n.melo@itqb.unl.pt](mailto: m.n.melo@itqb.unl.pt).
+<hr>
+
+### Summary
+- [`Complex mixtures with Insane`](#complex-mixtures-with-insane)
+- 
 
 ### Complex mixtures with Insane
 <hr>
@@ -17,77 +22,53 @@ Bilayers I tutorial.
 Depending on the version of Insane you run, and on whether you run the supplied analysis,
 you will need to have installed the numpy and MDAnalysis Python packages. You can typically
 install them via the pip command:
-```bash
+`bash
 pip3 install --user numpy mdanalysis
-```
+`
 ***
 
 When setting up large and/or complex bilayers it can be more convenient, or necessary, to
-start with a bilayer close to equilibrium rather than trying to get the bilayer to self-assemble.
-This can be done by concatenating (e.g. using ```gmx genconf```) and/or altering previously formed
-bilayers, but an easier approach is to use a bilayer formation program such as insane.py
-(available in the directory ```scripts/``` or downloadable in the [Tools -> Proteins and bilayers](http://cgmartini.nl/index.php/tools2/proteins-and-bilayers)
-section of the website, under the insane topic. You can also check its [GitHub repo](https://github.com/Tsjerk/Insane) for the
-most up-to-date version, and instructions on installing with ```pip```).
+start with a bilayer close to equilibrium rather than trying to get the bilayer to self-assemble. This can be done by concatenating (e.g. using `gmx genconf`) and/or altering previously formed bilayers, but an easier approach is to use a bilayer formation program such as insane.py (available in the directory `scripts/` or downloadable in the [Tools -> Proteins and bilayers](http://cgmartini.nl/index.php/tools2/proteins-and-bilayers)
+section of the website, under the insane topic. You can also check its [GitHub repo](https://github.com/Tsjerk/Insane) for the most up-to-date version, and instructions on installing with `pip`).
 
 Insane (INSert membrANE) is a CG building tool that generates membranes by distributing
 lipids over a grid. Lipid structures are derived from simple template definitions. Many are
 already included with the program (see below on how to add new ones). The program uses
-two grids, one for the inner and one for the outer leaflet, and distributes the lipids randomly
-over the grid cells with numbers according to the relative quantities specified. This allows for
-building asymmetric bilayers with specific lipid compositions. The program also allows for
-adding solvent and ions, using a similar grid protocol to distribute them over a 3D grid.
-Finally, Insane script can also be used to set up a complex (or simple!) bilayer system
-including membrane protein, see the Martini protein tutorial. Additional information about
-the functionality of Insane can be found by running ```insane.py -h```.
+two grids, one for the inner and one for the outer leaflet, and distributes the lipids randomly over the grid cells with numbers according to the relative quantities specified. This allows for building asymmetric bilayers with specific lipid compositions. The program also allows for adding solvent and ions, using a similar grid protocol to distribute them over a 3D grid. Finally, Insane script can also be used to set up a complex (or simple!) bilayer system including membrane protein, see the Martini protein tutorial. Additional information about the functionality of Insane can be found by running `insane.py -h`.
 
-Because Insane deals mostly with structure generation, it can be used for both Martini 2 and 3
-lipids, to the extent that they keep the same number of beads and mapping. However, beware
-that this may not be always true for future Martini 3 lipid models. Conversely, not all the lipid
-types you’ll find available in Insane have been implemented in Martini 3.
+Because Insane deals mostly with structure generation, it can be used for both Martini 2 and 3 lipids, to the extent that they keep the same number of beads and mapping. However, beware
+that this may not be always true for future Martini 3 lipid models. Conversely, not all the lipid types you’ll find available in Insane have been implemented in Martini 3.
 
 As with other tutorials, this one offers a worked version with all the intermediate steps
-(```LipidBilayers_Part2_Worked.tar.gz```), and a bare one, that expects you to do and simulate more
-(```LipidBilayers_Part2.tar.gz```). Unpack the tutorial’s archive and enter the directory
-```complex-bilayers/```. We will create with insane.py a fully hydrated 3:1 mole ratio bilayer of
-dibehenoyl-phosphatidylcholine (DBPC) : dilinoleyl-phosphatidylcholine (DIPC), with
-physiological ion concentrations. DBPC has long saturated chains (22:0), whereas DIPC’s are
-shorter and polyunsaturated (18:2). Because of its saturation, DBPC has a gel-to-liquid
-transition temperature of 348 K; DIPC’s transition occurs at 216 K[1]
-. By simulating a mixture
-of these lipids at an intermediate temperature, we can expect the formation of two coexisting
-phases: a gel one enriched in DBPC, and a liquid one enriched in DIPC. In this tutorial we
-will be running a simulation at 283K, using DBPC and DIPC as opposite extremes to ensure
-a successful separation. We do this because Martini can’t (yet) always model this sort of
-phase separation when lipid transition temperatures are closer together; hopefully
-parameterization advances coupled to Martini 3 will be able to solve this!
+(`LipidBilayers_Part2_Worked.tar.gz`), and a bare one, that expects you to do and simulate more (`LipidBilayers_Part2.tar.gz`). Unpack the tutorial’s archive and enter the directory `complex-bilayers/`. We will create with insane.py a fully hydrated 3:1 mole ratio bilayer of dibehenoyl-phosphatidylcholine (DBPC) : dilinoleyl-phosphatidylcholine (DIPC), with physiological ion concentrations. DBPC has long saturated chains (22:0), whereas DIPC’s are shorter and polyunsaturated (18:2). Because of its saturation, DBPC has a gel-to-liquid transition temperature of 348 K; DIPC’s transition occurs at 216 K[1]. By simulating a mixture of these lipids at an intermediate temperature, we can expect the formation of two coexisting phases: a gel one enriched in DBPC, and a liquid one enriched in DIPC. In this tutorial we will be running a simulation at 283K, using DBPC and DIPC as opposite extremes to ensure a successful separation. We do this because Martini can’t (yet) always model this sort of phase separation when lipid transition temperatures are closer together; hopefully parameterization advances coupled to Martini 3 will be able to solve this!
 
-Start by running insane.py:
-```bash
+Start by running `insane.py`:
+
+`bash
 $ python insane.py -salt 0.15 -x 25 -y 25 -z 11 -sol W -o membrane.gro -l DIPC:1 -l DBPC:3 -p topol.top
-```
+`
 
-This will generate an initial configuration for the system ```membrane.gro``` (Fig. 1A) and a starting
-point for a working topology ```topol.top```, which you must complete and correct (depending on
-the version of ```insane.py```, your ```topol.top``` may have some includes referring to Martini 2 ```.itps```,
+This will generate an initial configuration for the system `membrane.gro` (Fig. 1A) and a starting
+point for a working topology `topol.top`, which you must complete and correct (depending on
+the version of `insane.py`, your `topol.top` may have some includes referring to Martini 2 `.itps`,
 and some incompatible ion name spellings).
-Then, energy minimize the structure and gently equilibrate the system using the provided ```.mdp```
+Then, energy minimize the structure and gently equilibrate the system using the provided `.mdp`
 files. Note, because this simulation contains multiple components you will have to make an
-index file (using ```gmx make_ndx```) and group all the lipids together and all the solvent together to
-fit the specified groups in the ```.mdp``` files; the ```.mdp``` files provided expect the index group names
+index file (using `gmx make_ndx`) and group all the lipids together and all the solvent together to
+fit the specified groups in the `.mdp` files; the `.mdp` files provided expect the index group names
 Bilayer and Solvent.
 As all the bilayer lipids and solvent were placed on a grid (Fig. 1A), even after minimization
 they can still be in an energetically unfavorable state. Due to the large forces involved it is
 sometimes (but not always) necessary to run a few equilibrium simulations using a short time
 step (1-10 fs) before running production simulations with longer Martini time steps (we will
-be using 20 fs). The initial grid order imposed by ```insane.py``` should relax in a few ns (Fig. 1B),
+be using 20 fs). The initial grid order imposed by `insane.py` should relax in a few ns (Fig. 1B),
 we recommend simulating for 5-30 ns using the Berendsen pressure coupling algorithm, to
 relax the membrane area, before switching to Parrinello-Rahman for the production run. This
 mixture separates in about one microsecond at a temperature of 283 K (Fig. 1C,D,E). If you
 don’t want to wait that long for your simulation, a sample run is provided for you under ???.
-If you have VMD installed and name your ```.tpr``` file and output ```trajectory phase_sep.tpr```,
-```phase_sep.xtc```, respectively, you can load a similar visualization to that in Fig. 1 by running
-the ```do_vmd.sh``` script.
+If you have VMD installed and name your `.tpr` file and output `trajectory phase_sep.tpr`,
+`phase_sep.xtc`, respectively, you can load a similar visualization to that in Fig. 1 by running
+the `do_vmd.sh` script.
 
 ![Figure 1 | Gel-liquid phase separation in a 3:1 DBPC:DIPC mixture. A) Structure immediately after construction by insane.py B) After a 20 ns long simulation the grid structure is gone. C,D,E) After about 1µs at 283 K this lipid mixture phase separates into ld and so domains; D and E show the top view of the simulation, and in E only the first bead of each acyl tail of the top leaflet is represented, highlighting the gel-phase hexagonal packing (VMD’s use of multi-frame position averaging further highlights the honeycomb pattern). In all panels DBPC is in blue and DIPC in red.](LipidsII/Fig1.png)
 
@@ -96,7 +77,7 @@ the ```do_vmd.sh``` script.
 
 This system can be subjected to several types of analysis (see the [Lipid Bilayers I tutorial](LipidsI.qmd) for
 general examples). Some specific analyses can be used to characterize this phase separation.
-Namely, those that look at lipid order and contacts (sadly, the ```do_order.py``` script you may have
+Namely, those that look at lipid order and contacts (sadly, the `do_order.py` script you may have
 used in the Lipid Bilayers I tutorial is not compatible with lipid mixtures). Here we’ll
 quantify the ‘hexagonality’ of the lipid tail packing along the phase transition. In this
 measurement, that looks only at the tails’ first beads (see Fig 1B to understand why), a lipid
@@ -107,13 +88,13 @@ tail is said to be hexagonally packed if:
 
 These criteria may yield some false positives and some false negatives, but are simple enough
 for this application (beware that different studies may employ different criteria for
-hexagonality). The script ```hexagonality.py``` computes this for you, for every frame, and outputs
-a ```hexagonality.xvg``` you can quickly plot with xmgrace. Make the script executable, if needed,
+hexagonality). The script `hexagonality.py` computes this for you, for every frame, and outputs
+a `hexagonality.xvg` you can quickly plot with xmgrace. Make the script executable, if needed,
 run it, and appreciate the quantitative view of the degree of phase separation along time:
-```bash
+`bash
 ./hexagonality.py -f phase_sep.xtc -s topol.tpr
 xmgrace hexagonality.xvg
-```
+`
 
 ### Adding a new lipid headgroup: lysyl-PG
 <hr>
@@ -137,28 +118,28 @@ available for Martini 3, there is no conjugated lysyl-PG topology yet.
 
 To create the lysyl-PG topology, we will combine the pre-existing lysine and POPG
 topologies for Martini 3 by employing a simple conjugation, assuming a bond between the
-amino acid backbone (```BB```) and the PG glycerol (```GL0```) with the same characteristics as the
-phosphate – glycerol bond (```PO4 – GL0```) already in place.
+amino acid backbone (`BB`) and the PG glycerol (`GL0`) with the same characteristics as the
+phosphate – glycerol bond (`PO4 – GL0`) already in place.
 
-Enter the directory ```NewHeadgroup/``` within the tutorial’s archive. Start by finding the topology
+Enter the directory `NewHeadgroup/` within the tutorial’s archive. Start by finding the topology
 for POPG within the Martini 3 phospholipid topologies
-(```./martini_v3.0.0_phospholipids_v1.itp```), as well as the topology for lysine within the Martini
+(`./martini_v3.0.0_phospholipids_v1.itp`), as well as the topology for lysine within the Martini
 3 amino acid topology file
-(```./martini_v3.0.0_proteins/force_fields/martini3001/aminoacids.ff```). Create a new file named
-```lysylPG.itp``` and copy over the two topologies.
+(`./martini_v3.0.0_proteins/force_fields/martini3001/aminoacids.ff`). Create a new file named
+`lysylPG.itp` and copy over the two topologies.
 
 Take a moment to look at the two topologies. These two must now be combined onto a single
 topology, taking care not to break any of the bonded parameters already in place. The
 simplest way of doing this is by using the POPG topology as a template and adding the lysine
-parameters on top. As such, start by renaming the molecule by changing the name in the ```[ moleculetype ]```
- section to POLPG. We can then start merging the ```[ atoms ]``` section by adding
+parameters on top. As such, start by renaming the molecule by changing the name in the `[ moleculetype ]`
+ section to POLPG. We can then start merging the `[ atoms ]` section by adding
 the list of lysine atoms/beads to the top of the POPG atoms already in place. Care must now
 be taken to correctly renumber all of the atom entries as well as to change the residue names
 to POLPG.
 
-At this point, your ```[ moleculetype ]``` and ```[ atoms ]``` sections should look something like this:
+At this point, your `[ moleculetype ]` and `[ atoms ]` sections should look something like this:
 
-```bash
+`bash
 [moleculetype]
 ; molname nrexcl
 POLPG 1
@@ -173,52 +154,52 @@ POLPG 1
    7  N4a    1  POLPG  GL2   7    0
    8   C1    1  POLPG  C1A   8    0
 (continues …)
-```
+`
 
-Now take a look at the bonded parameters in place in the ```[bonds]``` and ```[angles]``` sections.
+Now take a look at the bonded parameters in place in the `[bonds]` and `[angles]` sections.
 Notice that since we renumbered the atom list, the POPG bonded parameters no longer
 correspond to the correct atoms/beads. To fix this we simply need to update the numbering on
 the bonded potentials to the current bead numbers:
 The previous harmonic bond definition:
 
-```bash
+`bash
 [bonds]
 ; i j funct length force.c.
 1 2 1 0.36 7000 ;GL0 – PO4 bond
 (…)
-```
+`
 
 After renumbering will now be:
 
-```bash
+`bash
 [bonds]
 ; i j funct length force.c.
 4 5 1 0.36 7000 ;GL0 – PO4 bond
 (…)
-```
+`
 
-Renumber the POPG bonded parameters in the ```[ bonds ]``` and ```[ angles ]``` sections. After
+Renumber the POPG bonded parameters in the `[ bonds ]` and `[ angles ]` sections. After
 you’ve done this we can now add the lysine bonded parameters. The lysine topology contains
-2 bonds and 1 angle potential. Since we added the lysine atoms/beads first in the ```[ atoms ]```
+2 bonds and 1 angle potential. Since we added the lysine atoms/beads first in the `[ atoms ]`
 section we can simply add those to the list without needing to renumber them.
 
 At this point we will now have the two topologies fully merged, however, the lysine and
 POPG moieties are not yet connected together! To connect them together we must add an
-additional bonded potential, linking the POPG glycerol (```GL0```) to the lysine backbone (```BB```).
-To do this we will assume that the bond in place is similar to the ```PO4 – GL0``` in place. As
-such, create a new bonded potential linking the ```GL0``` and ```BB``` beads with the same potential
-type, bond length and force constant as that of the ```PO4 – GL0``` bond.
+additional bonded potential, linking the POPG glycerol (`GL0`) to the lysine backbone (`BB`).
+To do this we will assume that the bond in place is similar to the `PO4 – GL0` in place. As
+such, create a new bonded potential linking the `GL0` and `BB` beads with the same potential
+type, bond length and force constant as that of the `PO4 – GL0` bond.
 Note that now that the glycerol group of the PG moiety is forming an ester bond with the
-lysine backbone, the chemical properties of the ```GL0``` bead will be different from those when it
+lysine backbone, the chemical properties of the `GL0` bead will be different from those when it
 was free. As such, we must change the bead type to account for the decrease in polarity from
 the loss of the hydroxyl group. Taking other Martini 3 models as examples, and with
-inspiration from the “Martini 3.0 Bible” [REF] we can tentatively lower the ```GL0``` bead’s
+inspiration from the “Martini 3.0 Bible” [REF] we can tentatively lower the `GL0` bead’s
 polarity from P4 polarity to P1. The lysyl-PG topology is now complete.
 
 ***
 > **_Note_** that this was a “coarse” approach to the parameterization of a lipid headgroup, where
-some assumptions were made for the sake of simplicity and brevity (e.g. assuming the ```GL0 – BB```
- ester bond behaves as the ```PO4 – GL0``` bond, assuming lysine conformation dynamics
+some assumptions were made for the sake of simplicity and brevity (e.g. assuming the `GL0 – BB`
+ ester bond behaves as the `PO4 – GL0` bond, assuming lysine conformation dynamics
 remain the same when bonded to POPG, assuming the modified glycerol moiety is correctly
 represented by a P1 bead, etc.). However, this model could serve as a starting point for the
 refinement of a finer, more accurate model, focusing on the linkage details: bonds, angles,
@@ -247,7 +228,7 @@ While different versions of insane have slightly different template formatting (
 the [GitHub version](https://github.com/Tsjerk/Insane), for instance), the overall approach is very similar. Use your text editor of
 choice to open the insane.py file and look for the DPPC definition.
 
-```bash
+`bash
 # PROTOLIPID (diacylglycerol), 18 beads
 #
 # 1-3-4-6-7--9-10-11-12-13-14 < -- This is the Lipid template
@@ -262,10 +243,10 @@ lipidsa.update({ # 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 "DPPC":(moltype, " - - - NC3 - PO4 GL1 GL2 C1A C2A C3A C4A - - C1B C2B C3B C4B - -
 "),
 (…)
-```
+`
 
 A lipid template is defined by setting the relative x,y,z pseudocoordinates for each of the
-particles in the pseudotemplate in ```lipidsx```, ```lipidsy``` and ```lipidsz```, respectively. Each lipid entry will then populate the particles in the template as required. If you scroll around ```insane.py``` you
+particles in the pseudotemplate in `lipidsx`, `lipidsy` and `lipidsz`, respectively. Each lipid entry will then populate the particles in the template as required. If you scroll around `insane.py` you
 will notice that some families of lipids will have their own templates, such as glycolipids or
 cardiolipins.
 
@@ -287,9 +268,9 @@ between beads since, as it was previously mentioned, Martini is quite robust in 
 rough starting conformations. Distances of 0.5 or 1 between beads are typical.
 While it is worth noting that there are many valid templates, in the end, your lysyl-PG
 template should look something like this (note the difference in z-positions relative to the
-existing diacylglycerol templates of ```moltype = "lipid"```):
+existing diacylglycerol templates of `moltype = "lipid"`):
 
-```bash
+`bash
 # Lysyl-PG
 # This is the Lysyl-PG lipid template
 # 3 1-4-5-6--8--9-10-11-12-13 SC2 BB – GL0 – PO4 – GL1 – C1A – (…)
@@ -308,28 +289,28 @@ lipidsa.update({ # 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
 "POLPG":moltype, " BB SC1 SC2 GL0 PO4 GL1 GL2 C1A C2A C3A C4A - - C1B C2B C3B C4B -
 - "),
 })
-```
+`
 
-If you’ve correctly added this entry to ```insane.py```, you should now be able to assemble
+If you’ve correctly added this entry to `insane.py`, you should now be able to assemble
 membranes containing lysyl-PG. Assemble a membrane composed of 5:1 POPG:Lysyl-PG
 using insane:
 
-```bash
+`bash
 python2 insane.py -l POPG:5 -l POLPG:1 -x 25 -y 25 -z 11 -pbc cubic -sol W -o
 membrane.gro -p topol.top
-```
+`
 
 And use it as a starting point to run a simulation with this complex membrane mixture,
 following the steps mentioned in the Lipid Bilayers I tutorial. If you are using the version of
 insane that we pack with the tutorial, you can further refine it by adding POLPG to the charges
-dictionary, which will allow you to use insane’s ```-salt``` and ```-neutral``` flags to get ionic strength
+dictionary, which will allow you to use insane’s `-salt` and `-neutral` flags to get ionic strength
 and system neutralization in one go.
 
 ### Tools and scripts used in this tutorial
 <hr>
 
  * gromacs ([http://www.gromacs.org/](http://www.gromacs.org/))
- * ```insane.py``` (downloadable [here](http://cgmartini.nl/images/tools/insane/insane.py))
+ * `insane.py` (downloadable [here](http://cgmartini.nl/images/tools/insane/insane.py))
  * MDAnalysis package ([MDAnalysis](http://www.mdanalysis.org/))
 
 ### References
