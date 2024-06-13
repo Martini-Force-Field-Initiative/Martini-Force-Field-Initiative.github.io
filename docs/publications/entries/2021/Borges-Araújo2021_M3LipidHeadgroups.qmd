@@ -1,0 +1,33 @@
+---
+title: "Improved Parameterization of Phosphatidylinositide Lipid Headgroups for the Martini 3 Coarse-Grain Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Luís Borges-Araújo, Paulo C. T. Souza, Fábio Fernandes, and Manuel N. Melo"         # Paper authors (required)
+year: "2021"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: "https://chemrxiv.org/engage/api-gateway/chemrxiv/assets/orp/resource/item/60c73cc09abda23f26f8b5d6/original/improved-parameterization-of-phosphatidylinositide-lipid-headgroups-for-the-martini-3-coarse-grain-force-field.pdf"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.1c00615"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/suppl/10.1021/acs.jctc.1c00615/suppl_file/ct1c00615_si_001.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Lipid membranes
+  - Phopholipids
+  - Parametrization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Borges-Araújo, L., Souza, P. C., Fernandes, F., & Melo, M. N. (2021). Improved parameterization of phosphatidylinositide lipid headgroups for the Martini 3 coarse-grain force field. Journal of Chemical Theory and Computation, 18(1), 357-373.
+
+## Abstract
+
+Phosphoinositides are a family of membrane phospholipids that play crucial roles in membrane regulatory events. As such, these lipids are often a key part of molecular dynamics simulation studies of biological membranes, in particular of those employing coarse-grain models because of the potential long times and sizes of the involved membrane processes. Version 3 of the widely used Martini coarse-grain force field has been recently published, greatly refining many aspects of biomolecular interactions. In order to properly use it for lipid membrane simulations with phosphoinositides, we put forth the Martini 3-specific parameterization of inositol, phosphatidylinositol, and seven physiologically relevant phosphorylated derivatives of phosphatidylinositol. Compared to parameterizations for earlier Martini versions, focus was put on a more accurate reproduction of the behavior seen in both atomistic simulations and experimental studies, including the signaling-relevant phosphoinositide interaction with divalent cations. The models that we develop improve upon the conformational dynamics of phosphoinositides in the Martini force field and provide stable topologies at typical Martini time steps. They are able to reproduce experimentally known protein-binding poses as well as phosphoinositide aggregation tendencies. The latter was tested both in the presence and absence of calcium and included correct behavior of PI(4,5)P2 calcium-induced clusters, which can be of relevance for regulation.

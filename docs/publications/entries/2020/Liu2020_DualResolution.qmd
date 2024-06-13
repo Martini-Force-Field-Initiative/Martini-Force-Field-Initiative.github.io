@@ -1,0 +1,34 @@
+---
+title: "Dual Resolution Membrane Simulations Using Virtual Sites"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Yang Liu, Alex H De Vries, Jonathan Barnoud, Weria Pezeshkian, Josef Melcr, Siewert J Marrink"         # Paper authors (required)
+year: "2020"           # Publication year (required)
+publication: "The Journal of Physical Chemistry B"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jpcb.0c01842"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jpcb.0c01842?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Methods
+  - Vesicles
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Liu, Y., De Vries, A. H., Barnoud, J., Pezeshkian, W., Melcr, J., & Marrink, S. J. (2020). Dual resolution membrane simulations using virtual sites. The Journal of Physical Chemistry B, 124(19), 3944-3953.
+
+## Abstract
+
+All-atomistic (AA) and coarse-grain (CG) simulations have been successfully applied to investigate a broad range of biomolecular processes. However, the accessible time and length scales of AA simulation are limited and the specific molecular details of CG simulation are simplified. Here, we propose a virtual site (VS) based hybrid scheme that can concurrently couple AA and CG resolutions in a single membrane simulation, mitigating the shortcomings of either representation. With some adjustments to make the AA and CG force fields compatible, we demonstrate that lipid bilayer properties are well kept in our hybrid approach. Our VS hybrid method was also applied to simulate a small lipid vesicle, with the inner leaflet and interior solvent represented in AA, and the outer leaflet together with exterior solvent at the CG level. Our multiscale method opens the way to investigate biomembrane properties at increased computational efficiency, in particular applications involving large solvent filled regions.

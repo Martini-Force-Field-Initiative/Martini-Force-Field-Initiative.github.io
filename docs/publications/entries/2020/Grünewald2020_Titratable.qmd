@@ -1,0 +1,35 @@
+---
+title: "Titratable Martini model for constant pH simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Fabian Grünewald, Paulo CT Souza, Haleh Abdizadeh, Jonathan Barnoud, Alex H de Vries, Siewert J Marrink"         # Paper authors (required)
+year: "2020"           # Publication year (required)
+publication: "The Journal of Chemical Physics"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1063/5.0014258"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Methods
+  - Proteins
+  - Journal article
+  - pH
+  - Lipid membranes
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Grünewald, F., Souza, P. C., Abdizadeh, H., Barnoud, J., de Vries, A. H., & Marrink, S. J. (2020). Titratable Martini model for constant pH simulations. The Journal of chemical physics, 153(2).
+
+## Abstract
+
+In this work, we deliver a proof of concept for a fast method that introduces pH effects into classical coarse-grained (CG) molecular dynamics simulations. Our approach is based upon the latest version of the popular Martini CG model to which explicit proton mimicking particles are added. We verify our approach against experimental data involving several different molecules and different environmental conditions. In particular, we compute titration curves, pH dependent free energies of transfer, and lipid bilayer membrane affinities as a function of pH. Using oleic acid as an example compound, we further illustrate that our method can be used to study passive translocation in lipid bilayers via protonation. Finally, our model reproduces qualitatively the expansion of the macromolecule dendrimer poly(propylene imine) as well as the associated pKa shift of its different generations. This example demonstrates that our model is able to pick up collective interactions between titratable sites in large molecules comprising many titratable functional groups.
