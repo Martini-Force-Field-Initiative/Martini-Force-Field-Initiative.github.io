@@ -163,7 +163,6 @@ iframe.reveal-demo {
 
 }
 
-
 .link-cards .card {
   border: none;
   padding: 0;
@@ -347,5 +346,37 @@ iframe.reveal-demo {
   padding-right: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+/* listing cards  */
+.card {
+  /* margin-top: -10%; */
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    border-radius: 8px 8px 0px 0px;
+}
+  
+.card-title {
+  font-weight: 600;
+}
+
+.column-page-left {
+  margin-top: 0%;
+  padding-top: 0rem;
+  margin-right: 1%;
+  /* padding-right: 8rem; */
+}
+
+.default .page-columns {
+  margin-bottom: 0%;
+}
+
+.mc_embed_signup {
+  padding-left: 5%;
 }
 
