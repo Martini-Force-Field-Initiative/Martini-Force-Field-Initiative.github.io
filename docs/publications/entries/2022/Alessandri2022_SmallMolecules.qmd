@@ -1,0 +1,33 @@
+---
+title: "Martini 3 Coarse-Grained Force Field: Small Molecules"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Riccardo Alessandri, Jonathan Barnoud, Anders S. Gertsen, Ilias Patmanidis, Alex H. deVries, Paulo C. T. Souza, and Siewert J. Marrink"         # Paper authors (required)
+year: "2022"           # Publication year (required)
+publication: "Advanced Theory and Simulations"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1002/adts.202100391"            # URL of DOI (required)  
+materials: "https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fadts.202100391&file=adts202100391-sup-0001-SuppMat.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Small molecules
+  - Protocol
+  - Parametrization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Alessandri, R., Barnoud, J., Gertsen, A. S., Patmanidis, I., de Vries, A. H., Souza, P. C., & Marrink, S. J. (2022). Martini 3 coarse‐grained force field: small molecules. Advanced Theory and Simulations, 5(1), 2100391.
+
+## Abstract
+
+The recent re-parametrization of the Martini coarse-grained force field, Martini 3, improved the accuracy of the model in predicting molecular packing and interactions in molecular dynamics simulations. Here, we describe how small molecules can be accurately parametrized within the Martini 3 framework and present a database of validated small molecule models. We pay particular attention to the description of aliphatic and aromatic ring-like structures, which are ubiquitous in small molecules such as solvents and drugs or in building blocks constituting macromolecules such as proteins and synthetic polymers. In Martini 3, ring-like structures are described by models that use higher resolution coarse-grained particles (small and tiny particles). As such, the present database constitutes one of the cornerstones of the calibration of the new Martini 3 small and tiny particle sizes. The models show excellent partitioning behavior and solvent properties. Miscibility trends between different bulk phases are also captured, completing the set of thermodynamic properties considered during the parametrization. We also show how the new bead sizes allow for a good representation of molecular volume, which translates into better structural properties such as stacking distances. We further present design strategies to build Martini 3 models for small molecules of increased complexity.

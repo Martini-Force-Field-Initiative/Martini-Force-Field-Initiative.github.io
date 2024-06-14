@@ -1,0 +1,37 @@
+---
+title: "Polyply; a python suite for facilitating simulations of macromolecules and nanomaterials"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Fabian Grünewald, Riccardo Alessandri, Peter C. Kroon, Luca Monticelli, Paulo C. T. Souza & Siewert J. Marrink"         # Paper authors (required)
+year: "2022"           # Publication year (required)
+publication: "Nature communications"    # Journal or similar (required)
+preprint: "https://arxiv.org/abs/2105.05890"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1038/s41467-021-27627-4"            # URL of DOI (required)  
+materials: "https://www.nature.com/articles/s41467-021-27627-4#Sec15"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Polymers
+  - Nanoparticles
+  - Materials science
+  - DNA
+  - RNA
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Grünewald, F., Alessandri, R., Kroon, P. C., Monticelli, L., Souza, P. C., & Marrink, S. J. (2022). Polyply; a python suite for facilitating simulations of macromolecules and nanomaterials. Nature communications, 13(1), 68.
+
+## Abstract
+
+Molecular dynamics simulations play an increasingly important role in the rational design of (nano)-materials and in the study of biomacromolecules. However, generating input files and realistic starting coordinates for these simulations is a major bottleneck, especially for high throughput protocols and for complex multi-component systems. To eliminate this bottleneck, we present the polyply software suite that provides 1) a multi-scale graph matching algorithm designed to generate parameters quickly and for arbitrarily complex polymeric topologies, and 2) a generic multi-scale random walk protocol capable of setting up complex systems efficiently and independent of the target force-field or model resolution. We benchmark quality and performance of the approach by creating realistic coordinates for polymer melt simulations, single-stranded as well as circular single-stranded DNA. We further demonstrate the power of our approach by setting up a microphase-separated block copolymer system, and by generating a liquid-liquid phase separated system inside a lipid vesicle.

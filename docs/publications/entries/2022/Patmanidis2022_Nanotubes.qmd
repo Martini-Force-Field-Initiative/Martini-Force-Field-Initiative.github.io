@@ -1,0 +1,34 @@
+---
+title: "Modelling structural properties of cyanine dye nanotubes at coarse-grained level"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Ilias Patmanidis, Paulo C. T. Souza, Selim Sami, Remco W. A. Havenith, Alex H. de Vries and Siewert J. Marrink"         # Paper authors (required)
+year: "2022"           # Publication year (required)
+publication: "Nanoscale advances"    # Journal or similar (required)
+preprint: "https://chemrxiv.org/engage/chemrxiv/article-details/6225df5597f2102530002d0d"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1039/D2NA00158F"            # URL of DOI (required)  
+materials: "https://www.rsc.org/suppdata/d2/na/d2na00158f/d2na00158f1.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Self-assembly
+  - Nanoparticles
+  - Multi-scale
+  - Parametrization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Patmanidis, I., Souza, P. C., Sami, S., Havenith, R. W., de Vries, A. H., & Marrink, S. J. (2022). Modelling structural properties of cyanine dye nanotubes at coarse-grained level. Nanoscale advances, 4(14), 3033-3042.
+
+## Abstract
+
+Self-assembly is a ubiquitous process spanning from biomolecular aggregates to nanomaterials. Even though the resulting aggregates can be studied through experimental techniques, the dynamic pathways of the process and the molecular details of the final structures are not necessarily easy to resolve. Consequently, rational design of self-assembling aggregates and their properties remains extremely challenging. At the same time, modelling the self-assembly with computational methods is not trivial, because its spatio-temporal scales are usually beyond the limits of all-atom based simulations. The use of coarse-grained (CG) models can alleviate this limitation, but usually suffers from the lack of optimised parameters for the molecular constituents. In this work, we describe the procedure of parametrizing a CG Martini model for a cyanine dye (C8S3) that self-assembles into hollow double-walled nanotubes. First, we optimised the model based on quantum mechanics calculations and all-atom reference simulations, in combination with available experimental data. Then, we conducted random self-assembly simulations, and the performance of our model was tested on preformed assemblies. Our simulations provide information on the time-dependent local arrangement of this cyanine dye, when aggregates are being formed. Furthermore, we provide guidelines for designing and optimising parameters for similar self-assembling nanomaterials.

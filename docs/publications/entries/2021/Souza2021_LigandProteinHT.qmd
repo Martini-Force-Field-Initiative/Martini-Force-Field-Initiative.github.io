@@ -1,0 +1,33 @@
+---
+title: "Perspectives on high-throughput ligand/protein docking with martini MD simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Paulo C. T. Souza, Vittorio Limongelli, Sangwook Wu, Siewert J. Marrink and Luca Monticelli"         # Paper authors (required)
+year: "2021"           # Publication year (required)
+publication: "Frontiers in Molecular Biosciences"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.3389/fmolb.2021.657222"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Review
+  - Proteins
+  - Small molecules
+  - Drug design
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Souza, P. C., Limongelli, V., Wu, S., Marrink, S. J., & Monticelli, L. (2021). Perspectives on high-throughput ligand/protein docking with martini MD simulations. Frontiers in Molecular Biosciences, 8, 657222.
+
+## Abstract
+
+Molecular docking is central to rational drug design. Current docking techniques suffer, however, from limitations in protein flexibility and solvation models and by the use of simplified scoring functions. All-atom molecular dynamics simulations, on the other hand, feature a realistic representation of protein flexibility and solvent, but require knowledge of the binding site. Recently we showed that coarse-grained molecular dynamics simulations, based on the most recent version of the Martini force field, can be used to predict protein/ligand binding sites and pathways, without requiring any a priori information, and offer a level of accuracy approaching all-atom simulations. Given the excellent computational efficiency of Martini, this opens the way to high-throughput drug screening based on dynamic docking pipelines. In this opinion article, we sketch the roadmap to achieve this goal.

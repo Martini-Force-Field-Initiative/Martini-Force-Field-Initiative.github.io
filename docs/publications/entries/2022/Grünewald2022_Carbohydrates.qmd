@@ -1,0 +1,34 @@
+---
+title: "Martini 3 Coarse-Grained Force Field for Carbohydrates"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Fabian Grünewald, Mats H. Punt, Elizabeth E. Jefferys, Petteri A. Vainikka, Melanie König, Valtteri Virtanen, Travis A. Meyer, Weria Pezeshkian, Adam J. Gormley, Maarit Karonen, Mark S. P. Sansom, Paulo C. T. Souza and Siewert J. Marrink"         # Paper authors (required)
+year: "2022"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: "https://arxiv.org/abs/2207.05635"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.2c00757"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.2c00757?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Forcefield
+  - Parametrization
+  - Glycans
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Grünewald, F., Punt, M. H., Jefferys, E. E., Vainikka, P. A., König, M., Virtanen, V., ... & Marrink, S. J. (2022). Martini 3 coarse-grained force field for carbohydrates. Journal of Chemical Theory and Computation, 18(12), 7555-7569.
+
+## Abstract
+
+The Martini 3 force field is a full reparametrization of the Martini coarse-grained model for biomolecular simulations. Due to the improved interaction balance, it allows for a more accurate description of condensed phase systems. In the present work, we develop a consistent strategy to parametrize carbohydrate molecules accurately within the framework of Martini 3. In particular, we develop a canonical mapping scheme which decomposes arbitrarily large carbohydrates into a limited number of fragments. Bead types for these fragments have been assigned by matching physicochemical properties of mono- and disaccharides. In addition, guidelines for assigning bonds, angles, and dihedrals were developed. These guidelines enable a more accurate description of carbohydrate conformations than in the Martini 2 force field. We show that models obtained with this approach are able to accurately reproduce osmotic pressures of carbohydrate water solutions. Furthermore, we provide evidence that the model differentiates correctly the solubility of the polyglucoses dextran (water-soluble) and cellulose (water insoluble but soluble in ionic liquids). Finally, we demonstrate that the new building blocks can be applied to glycolipids. We show they are able to reproduce membrane properties and induce binding of peripheral membrane proteins. These test cases demonstrate the validity and transferability of our approach.
