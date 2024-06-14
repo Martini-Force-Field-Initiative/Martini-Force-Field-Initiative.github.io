@@ -1,0 +1,33 @@
+---
+title: "Reactive Martini: Chemical Reactions in Coarse-Grained Molecular Dynamics Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Selim Sami and Siewert J. Marrink"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.2c01186"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.2c01186?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Forcefield
+  - Methods
+  - Small molecules
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Sami, S., & Marrink, S. J. (2023). Reactive Martini: Chemical Reactions in Coarse-Grained Molecular Dynamics Simulations. Journal of Chemical Theory and Computation, 19(13), 4040-4046.
+
+## Abstract
+
+Chemical reactions are ubiquitous in both materials and the biophysical sciences. While coarse-grained (CG) molecular dynamics simulations are often needed to study the spatiotemporal scales present in these fields, chemical reactivity has not been explored thoroughly in CG models. In this work, a new approach to model chemical reactivity is presented for the widely used Martini CG Martini model. Employing tabulated potentials with a single extra particle for the angle dependence, the model provides a generic framework for capturing bonded topology changes using nonbonded interactions. As a first example application, the reactive model is used to study the macrocycle formation of benzene-1,3-dithiol molecules through the formation of disulfide bonds. We show that starting from monomers, macrocycles with sizes in agreement with experimental results are obtained using reactive Martini. Overall, our reactive Martini framework is general and can be easily extended to other systems. All of the required scripts and tutorials to explain its use are provided online.

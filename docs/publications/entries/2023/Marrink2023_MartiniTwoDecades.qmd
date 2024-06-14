@@ -1,0 +1,33 @@
+---
+title: "Two decades of Martini: Better beads, broader scope"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Siewert J. Marrink, Luca Monticelli, Manuel N. Melo, Riccardo Alessandri, D. Peter Tieleman and Paulo C. T. Souza"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "Wiley Interdisciplinary Reviews: Computational Molecular Science"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1002/wcms.1620"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Review
+  - Forcefield
+  - Methods
+  - Parametrization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Marrink, S. J., Monticelli, L., Melo, M. N., Alessandri, R., Tieleman, D. P., & Souza, P. C. (2023). Two decades of Martini: Better beads, broader scope. Wiley Interdisciplinary Reviews: Computational Molecular Science, 13(1), e1620.
+
+## Abstract
+
+The Martini model, a coarse-grained force field for molecular dynamics simulations, has been around for nearly two decades. Originally developed for lipid-based systems by the groups of Marrink and Tieleman, the Martini model has over the years been extended as a community effort to the current level of a general-purpose force field. Apart from the obvious benefit of a reduction in computational cost, the popularity of the model is largely due to the systematic yet intuitive building-block approach that underlies the model, as well as the open nature of the development and its continuous validation. The easy implementation in the widely used Gromacs software suite has also been instrumental. Since its conception in 2002, the Martini model underwent a gradual refinement of the bead interactions and a widening scope of applications. In this review, we look back at this development, culminating with the release of the Martini 3 version in 2021. The power of the model is illustrated with key examples of recent important findings in biological and material sciences enabled with Martini, as well as examples from areas where coarse-grained resolution is essential, namely high-throughput applications, systems with large complexity, and simulations approaching the scale of whole cells.
