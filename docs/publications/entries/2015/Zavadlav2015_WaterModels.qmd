@@ -1,0 +1,32 @@
+---
+title: "Adaptive resolution simulation of polarizable supramolecular coarse-grained water models"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Julija Zavadlav, Manuel N. Melo, Siewert J. Marrink, and Matej Praprotnik"         # Paper authors (required)
+year: "2015"           # Publication year (required)
+publication: "The Journal of Chemical Physics"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1063/1.4923008"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Solvents
+  - Multi-scale
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Zavadlav, J., Melo, M. N., Marrink, S. J., & Praprotnik, M. (2015). Adaptive resolution simulation of polarizable supramolecular coarse-grained water models. The Journal of Chemical Physics, 142(24).
+
+## Abstract
+
+Multiscale simulations methods, such as adaptive resolution scheme, are becoming increasingly popular due to their significant computational advantages with respect to conventional atomistic simulations. For these kind of simulations, it is essential to develop accurate multiscale water models that can be used to solvate biophysical systems of interest. Recently, a 4-to-1 mapping was used to couple the bundled-simple point charge water with the MARTINI model. Here, we extend the supramolecular mapping to coarse-grained models with explicit charges. In particular, the two tested models are the polarizable water and big multiple water models associated with the MARTINI force field. As corresponding coarse-grained representations consist of several interaction sites, we couple orientational degrees of freedom of the atomistic and coarse-grained representations via a harmonic energy penalty term. This additional energy term aligns the dipole moments of both representations. We test this coupling by studying the system under applied static external electric field. We show that our approach leads to the correct reproduction of the relevant structural and dynamical properties.

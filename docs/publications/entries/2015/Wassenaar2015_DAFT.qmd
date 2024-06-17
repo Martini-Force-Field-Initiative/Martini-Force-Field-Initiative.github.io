@@ -1,0 +1,33 @@
+---
+title: "High-Throughput Simulations of Dimer and Trimer Assembly of Membrane Proteins. The DAFT Approach"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Tsjerk A. Wassenaar, Kristyna Pluhackova, Anastassiia Moussatova, Durba Sengupta, Siewert J. Marrink, D. Peter Tieleman, and Rainer A. Böckmann"         # Paper authors (required)
+year: "2015"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct5010092"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Proteins
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Wassenaar, T. A., Pluhackova, K., Moussatova, A., Sengupta, D., Marrink, S. J., Tieleman, D. P., & Böckmann, R. A. (2015). High-throughput simulations of dimer and trimer assembly of membrane proteins. The DAFT approach. Journal of chemical theory and computation, 11(5), 2278-2291.
+
+## Abstract
+
+Interactions between membrane proteins are of great biological significance and are consequently an important target for pharmacological intervention. Unfortunately, it is still difficult to obtain detailed views on such interactions, both experimentally, where the environment hampers atomic resolution investigation, and computationally, where the time and length scales are problematic. Coarse grain simulations have alleviated the later issue, but the slow movement through the bilayer, coupled to the long life times of nonoptimal dimers, still stands in the way of characterizing binding distributions. In this work, we present DAFT, a Docking Assay For Transmembrane components, developed to identify preferred binding orientations. The method builds on a program developed recently for generating custom membranes, called insane (INSert membrANE). The key feature of DAFT is the setup of starting structures, for which optimal periodic boundary conditions are devised. The purpose of DAFT is to perform a large number of simulations with different components, starting from unbiased noninteracting initial states, such that the simulations evolve collectively, in a manner reflecting the underlying energy landscape of interaction. The implementation and characteristic features of DAFT are explained, and the efficacy and relaxation properties of the method are explored for oligomerization of glycophorin A dimers, polyleucine dimers and trimers, MS1 trimers, and rhodopsin dimers. The results suggest that, for simple helices, such as GpA and polyleucine, in POPC/DOPC membranes series of 500 simulations of 500 ns each allow characterization of the helix dimer orientations and allow comparing associating and nonassociating components. However, the results also demonstrate that short simulations may suffer significantly from nonconvergence of the ensemble and that using too few simulations may obscure or distort features of the interaction distribution. For trimers, simulation times exceeding several microseconds appear needed, due to the increased complexity. Similarly, characterization of larger proteins, such as rhodopsin, takes longer time scales due to the slower diffusion and the increased complexity of binding interfaces. DAFT and its auxiliary programs have been made available from http://cgmartini.nl/, together with a working example.

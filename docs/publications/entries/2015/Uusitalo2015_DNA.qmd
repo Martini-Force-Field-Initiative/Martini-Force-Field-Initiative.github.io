@@ -1,0 +1,33 @@
+---
+title: "Martini Coarse-Grained Force Field: Extension to DNA"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Jaakko J. Uusitalo, Helgi I. Ingólfsson, Parisa Akhshi, D. Peter Tieleman, and Siewert J. Marrink"         # Paper authors (required)
+year: "2015"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.5b00286"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00286"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - DNA
+  - Parametrization
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Uusitalo, J. J., Ingólfsson, H. I., Akhshi, P., Tieleman, D. P., & Marrink, S. J. (2015). Martini coarse-grained force field: extension to DNA. Journal of chemical theory and computation, 11(8), 3932-3945.
+
+## Abstract
+
+We systematically parameterized a coarse-grained (CG) model for DNA that is compatible with the Martini force field. The model maps each nucleotide into six to seven CG beads and is parameterized following the Martini philosophy. The CG nonbonded interactions are based on partitioning of the nucleobases between polar and nonpolar solvents as well as base–base potential of mean force calculations. The bonded interactions are fit to single-stranded DNA (ssDNA) atomistic simulations and an elastic network is used to retain double-stranded DNA (dsDNA) and other specific DNA conformations. We present the implementation of the Martini DNA model and demonstrate the properties of individual bases, ssDNA as well as dsDNA, and DNA–protein complexes. The model opens up large-scale simulations of DNA interacting with a wide range of other (bio)molecules that are available within the Martini framework.

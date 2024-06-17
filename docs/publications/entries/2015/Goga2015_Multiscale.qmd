@@ -1,0 +1,33 @@
+---
+title: "Benchmark of Schemes for Multiscale Molecular Dynamics Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "N. Goga, M. N. Melo, A. J. Rzepiela, A. H. de Vries†, A. Hadar, S. J. Marrink, and H. J. C. Berendsen"         # Paper authors (required)
+year: "2015"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct501102b"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Enhanced sampling
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Goga, N., Melo, M. N., Rzepiela, A. J., De Vries, A. H., Hadar, A., Marrink, S. J., & Berendsen, H. J. C. (2015). Benchmark of schemes for multiscale molecular dynamics simulations. Journal of Chemical Theory and Computation, 11(4), 1389-1398.
+
+## Abstract
+
+In multiscale molecular dynamics simulations the accuracy of detailed models is combined with the efficiency of a reduced representation. For several applications — namely those of sampling enhancement — it is desirable to combine fine-grained (FG) and coarse-grained (CG) approaches into a single hybrid approach with an adjustable mixing parameter. We present a benchmark of three algorithms that use a mixing of the two representation layers using a Lagrangian formalism. The three algorithms use three different approaches for keeping the particles at the FG level of representation together: 1) addition of forces, 2) mass scaling, and 3) temperature scaling. The benchmark is applied to liquid hexadecane and includes an evaluation of the average configurational entropy of the FG and CG subsystems. The temperature-scaling scheme achieved a 3-fold sampling speedup with little deviation of FG properties. The addition-of-forces scheme kept FG properties the best but provided little sampling speedup. The mass-scaling scheme yielded a 5-fold speedup but deviated the most from FG properties.
