@@ -1,0 +1,35 @@
+---
+title: "Lipid and Peptide Diffusion in Bilayers: The Saffman–Delbrück Model and Periodic Boundary Conditions"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Richard M. Venable, Helgi I. Ingólfsson, Michael G. Lerner, B. Scott Perrin, Jr., Brian A. Camley, Siewert J. Marrink, Frank L. H. Brown, and Richard W. Pastor"         # Paper authors (required)
+year: "2017"           # Publication year (required)
+publication: "The Journal of Physical Chemistry B"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jpcb.6b09111"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Lipid membranes
+  - Proteins
+  - Methods
+  - Multi-scale
+  - Phopholipids
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Venable, R. M., Ingólfsson, H. I., Lerner, M. G., Perrin Jr, B. S., Camley, B. A., Marrink, S. J., ... & Pastor, R. W. (2017). Lipid and Peptide Diffusion in Bilayers: The Saffman–Delbrück Model and Periodic Boundary Conditions. The Journal of Physical Chemistry B, 121(15), 3443-3457.
+
+## Abstract
+
+The periodic Saffman–Delbrück (PSD) model, an extension of the Saffman–Delbrück model developed to describe the effects of periodic boundary conditions on the diffusion constants of lipids and proteins obtained from simulation, is tested using the coarse-grained Martini and all-atom CHARMM36 (C36) force fields. Simulations of pure Martini dipalmitoylphosphatidylcholine (DPPC) bilayers and those with one embedded gramicidin A (gA) dimer or one gA monomer with sizes ranging from 512 to 2048 lipids support the PSD model. Underestimates of D∞ (the value of the diffusion constant for an infinite system) from the 512-lipid system are 35% for DPPC, 45% for the gA monomer, and 70% for the gA dimer. Simulations of all-atom DPPC and dioleoylphosphatidylcholine (DOPC) bilayers yield diffusion constants not far from experiment. However, the PSD model predicts that diffusion constants at the sizes of the simulation should underestimate experiment by approximately a factor of 3 for DPPC and 2 for DOPC. This likely implies a deficiency in the C36 force field. A Bayesian method for extrapolating diffusion constants of lipids and proteins in membranes obtained from simulation to infinite system size is provided.
