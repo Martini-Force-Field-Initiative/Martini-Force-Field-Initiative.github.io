@@ -1,0 +1,34 @@
+---
+title: "Adaptive resolution simulation of an atomistic DNA molecule in MARTINI salt solution"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "J. Zavadlav, R. Podgornik, M.N. Melo, S.J. Marrink & M. Praprotnik"         # Paper authors (required)
+year: "2016"           # Publication year (required)
+publication: "The European Physical Journal Special Topics"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1140/epjst/e2016-60117-8"            # URL of DOI (required)  
+materials: "https://link.springer.com/article/10.1140/epjst/e2016-60117-8#Sec1"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - DNA
+  - Methods
+  - Multi-scale
+  - Solvents
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Zavadlav, J., Podgornik, R., Melo, M. N., Marrink, S. J., & Praprotnik, M. (2016). Adaptive resolution simulation of an atomistic DNA molecule in MARTINI salt solution. The European Physical Journal Special Topics, 225, 1595-1607.
+
+## Abstract
+
+We present a dual-resolution model of a deoxyribonucleic acid (DNA) molecule in a bathing solution, where we concurrently couple atomistic bundled water and ions with the coarse-grained MARTINI model of the solvent. We use our fine-grained salt solution model as a solvent in the inner shell surrounding the DNA molecule, whereas the solvent in the outer shell is modeled by the coarse-grained model. The solvent entities can exchange between the two domains and adapt their resolution accordingly. We critically asses the performance of our multiscale model in adaptive resolution simulations of an infinitely long DNA molecule, focusing on the structural characteristics of the solvent around DNA. Our analysis shows that the adaptive resolution scheme does not produce any noticeable artifacts in comparison to a reference system simulated in full detail. The effect of using a bundled-SPC model, required for multiscaling, compared to the standard free SPC model is also evaluated. Our multiscale approach opens the way for large scale applications of DNA and other biomolecules which require a large solvent reservoir to avoid boundary effects.

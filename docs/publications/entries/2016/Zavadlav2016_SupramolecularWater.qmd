@@ -1,0 +1,33 @@
+---
+title: "Adaptive Resolution Simulation of Supramolecular Water: The Concurrent Making, Breaking, and Remaking of Water Bundles"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Julija Zavadlav, Siewert J. Marrink, and Matej Praprotnik"         # Paper authors (required)
+year: "2016"           # Publication year (required)
+publication: "Journal of chemical theory and computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.6b00536"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/abs/10.1021/acs.jctc.6b00536"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Solvents
+  - Multi-scale
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Zavadlav, J., Marrink, S. J., & Praprotnik, M. (2016). Adaptive resolution simulation of supramolecular water: the concurrent making, breaking, and remaking of water bundles. Journal of chemical theory and computation, 12(8), 4138-4145.
+
+## Abstract
+
+The adaptive resolution scheme (AdResS) is a multiscale molecular dynamics simulation approach that can concurrently couple atomistic (AT) and coarse-grained (CG) resolution regions, i.e., the molecules can freely adapt their resolution according to their current position in the system. Coupling to supramolecular CG models, where several molecules are represented as a single CG bead, is challenging, but it provides higher computational gains and connection to the established MARTINI CG force field. Difficulties that arise from such coupling have been so far bypassed with bundled AT water models, where additional harmonic bonds between oxygen atoms within a given supramolecular water bundle are introduced. While these models simplify the supramolecular coupling, they also cause in certain situations spurious artifacts, such as partial unfolding of biomolecules. In this work, we present a new clustering algorithm SWINGER that can concurrently make, break, and remake water bundles and in conjunction with the AdResS permits the use of original AT water models. We apply our approach to simulate a hybrid SPC/MARTINI water system and show that the essential properties of water are correctly reproduced with respect to the standard monoscale simulations. The developed hybrid water model can be used in biomolecular simulations, where a significant speed up can be obtained without compromising the accuracy of the AT water model.
