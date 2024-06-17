@@ -1,0 +1,32 @@
+---
+title: "Adaptive Resolution Simulation of MARTINI Solvents"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Julija Zavadlav, Manuel N. Melo, Ana V. Cunha, Alex H. de Vries, Siewert J. Marrink, and Matej Praprotnik"         # Paper authors (required)
+year: "2014"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct5001523"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Solvents
+  - Multi-scale
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Zavadlav, J., Melo, M. N., Cunha, A. V., De Vries, A. H., Marrink, S. J., & Praprotnik, M. (2014). Adaptive resolution simulation of MARTINI solvents. Journal of Chemical Theory and Computation, 10(6), 2591-2598.
+
+## Abstract
+
+We present adaptive resolution molecular dynamics simulations of aqueous and apolar solvents using coarse-grained molecular models that are compatible with the MARTINI force field. As representatives of both classes of solvents we have chosen liquid water and butane, respectively, at ambient temperature. The solvent molecules change their resolution back and forth between the atomistic and coarse-grained representations according to their positions in the system. The difficulties that arise from coupling to a coarse-grained model with a multimolecule mapping, for example, 4-to-1 mapping in the case of the Simple Point Charge (SPC) and MARTINI water models, could be successfully circumvented by using bundled water models. We demonstrate that the presented multiscale approach faithfully reproduces the structural and dynamical properties computed by reference fully atomistic molecular dynamics simulations. Our approach is general and can be used with any atomistic force field to be linked with the MARTINI force field.
