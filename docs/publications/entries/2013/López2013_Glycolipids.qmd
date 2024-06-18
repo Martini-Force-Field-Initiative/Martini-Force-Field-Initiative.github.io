@@ -1,0 +1,34 @@
+---
+title: "Martini Force Field Parameters for Glycolipids"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "César A. López, Zofie Sovova, Floris J. van Eerden, Alex H. de Vries, and Siewert J. Marrink"         # Paper authors (required)
+year: "2013"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct3009655"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Parametrization
+  - Phopholipids
+  - Glycans
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> López, C. A., Sovova, Z., van Eerden, F. J., de Vries, A. H., & Marrink, S. J. (2013). Martini force field parameters for glycolipids. Journal of chemical theory and computation, 9(3), 1694-1708.
+
+## Abstract
+
+We present an extension of the Martini coarse-grained force field to glycolipids. The glycolipids considered here are the glycoglycerolipids monogalactosyldiacylglycerol (MGDG), sulfoquinovosyldiacylglycerol (SQDG), digalactosyldiacylglycerol (DGDG), and phosphatidylinositol (PI) and its phosphorylated forms (PIP, PIP2), as well as the glycosphingolipids galactosylceramide (GCER) and monosialotetrahexosylganglioside (GM1). The parametrization follows the same philosophy as was used previously for lipids, proteins, and carbohydrates focusing on the reproduction of partitioning free energies of small compounds between polar and nonpolar solvents. Bonded parameters are optimized by comparison to lipid conformations sampled with an atomistic force field, in particular with respect to the representation of the most populated states around the glycosidic linkage. Simulations of coarse-grained glycolipid model membranes show good agreement with atomistic simulations as well as experimental data available, especially concerning structural properties such as electron densities, area per lipid, and membrane thickness. Our coarse-grained model opens the way to large scale simulations of biological processes in which glycolipids are important, including recognition, sorting, and clustering of both external and membrane bound proteins.

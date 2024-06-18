@@ -1,0 +1,34 @@
+---
+title: "Mixing MARTINI: Electrostatic Coupling in Hybrid Atomistic–Coarse-Grained Biomolecular Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Tsjerk A. Wassenaar, Helgi I. Ingólfsson, Marten Prieß, Siewert J. Marrink, and Lars V. Schäfer"         # Paper authors (required)
+year: "2013"           # Publication year (required)
+publication: "The Journal of Physical Chemistry B"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/jp311533p"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Proteins
+  - Lipid membranes
+  - Solvents
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Wassenaar, T. A., Ingólfsson, H. I., Prieß, M., Marrink, S. J., & Schäfer, L. V. (2013). Mixing MARTINI: electrostatic coupling in hybrid atomistic–coarse-grained biomolecular simulations. The Journal of Physical Chemistry B, 117(13), 3516-3530.
+
+## Abstract
+
+Hybrid molecular dynamics simulations of atomistic (AA) solutes embedded in coarse-grained (CG) environment can substantially reduce the computational cost with respect to fully atomistic simulations. However, interfacing both levels of resolution is a major challenge that includes a balanced description of the relevant interactions. This is especially the case for polar solvents such as water, which screen the electrostatic interactions and thus require explicit electrostatic coupling between AA and CG subsystems. Here, we present and critically test computationally efficient hybrid AA/CG models. We combined the Gromos atomistic force field with the MARTINI coarse-grained force field. To enact electrostatic coupling, two recently developed CG water models with explicit electrostatic interactions were used: the polarizable MARTINI water model and the BMW model. The hybrid model was found to be sensitive to the strength of the AA–CG electrostatic coupling, which was adjusted through the relative dielectric permittivity εr(AA–CG). Potentials of mean force (PMFs) between pairs of amino acid side chain analogues in water and partitioning free enthalpies of uncharged amino acid side chain analogues between apolar solvent and water show significant differences between the hybrid simulations and the fully AA or CG simulations, in particular for charged and polar molecules. For apolar molecules, the results obtained with the hybrid AA/CG models are in better agreement with the fully atomistic results. The structures of atomistic ubiquitin solvated in CG water and of a single atomistic transmembrane α-helix and the transmembrane portion of an atomistic mechanosensitive channel in CG lipid bilayers were largely maintained during 50–100 ns of AA/CG simulations, partly due to an overstabilization of intramolecular interactions. This work highlights some key challenges on the way toward hybrid AA/CG models that are both computationally efficient and sufficiently accurate for biomolecular simulations.
