@@ -1,0 +1,33 @@
+---
+title: "Dimerization of Amino Acid Side Chains: Lessons from the Comparison of Different Force Fields"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Djurre H. de Jong, Xavier Periole, and Siewert J. Marrink"         # Paper authors (required)
+year: "2012"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct200599d"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Proteins
+  - Multi-scale
+  - Solvents
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> de Jong, D. H., Periole, X., & Marrink, S. J. (2012). Dimerization of amino acid side chains: lessons from the comparison of different force fields. Journal of Chemical Theory and Computation, 8(3), 1003-1014.
+
+## Abstract
+
+The interactions between amino acid side chains govern protein secondary, tertiary, and quaternary structure formation. For molecular modeling approaches to be able to realistically describe these phenomena, the underlying force fields have to represent these interactions as accurately as possible. Here, we compare the side chain–side chain interactions for a number of commonly used force fields, namely the all-atom OPLS, the united-atom GROMOS, and the coarse-grain MARTINI force field. We do so by calculating the dimerization free energies between selected pairs of side chains and structural characterization of their binding modes. To mimic both polar and nonpolar environments, the simulations are performed in water, n-octanol, and decane. In general, reasonable correlations are found between all three force fields, with deviations on the order of 1 kT in aqueous solvent. In apolar solvent, however, significantly larger differences are found, especially for charged amino acid pairs between the OPLS and GROMOS force fields, and for polar interactions in the MARTINI force field in comparison to the higher resolution models. Interestingly, even in cases where the dimerization free energies are similar, the binding mode may differ substantially between the force fields. This was found to be especially the case for aromatic residues. In addition to the inter-force-field comparison, we compared the various force fields to a knowledge-based potential. The two independent approaches show good correlation in aqueous solvent with an exception of aromatic residues for which the interaction strength is lower in the knowledge-based potentials.
