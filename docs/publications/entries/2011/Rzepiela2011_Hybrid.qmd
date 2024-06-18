@@ -1,0 +1,33 @@
+---
+title: "Hybrid simulations: combining atomistic and coarse-grained force fields using virtual sites"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Andrzej J. Rzepiela, Martti Louhivuori, Christine Peter and Siewert J. Marrink"         # Paper authors (required)
+year: "2011"           # Publication year (required)
+publication: "Physical Chemistry Chemical Physics"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1039/C0CP02981E"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Multi-scale
+  - Solvents
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Rzepiela, A. J., Louhivuori, M., Peter, C., & Marrink, S. J. (2011). Hybrid simulations: combining atomistic and coarse-grained force fields using virtual sites. Physical Chemistry Chemical Physics, 13(22), 10437-10448.
+
+## Abstract
+
+Hybrid simulations, in which part of the system is represented at atomic resolution and the remaining part at a reduced, coarse-grained, level offer a powerful way to combine the accuracy associated with the atomistic force fields to the sampling speed obtained with coarse-grained (CG) potentials. In this work we introduce a straightforward scheme to perform hybrid simulations, making use of virtual sites to couple the two levels of resolution. With the help of these virtual sites interactions between molecules at different levels of resolution, i.e. between CG and atomistic molecules, are treated the same way as the pure CG–CG interactions. To test our method, we combine the Gromos atomistic force field with a number of coarse-grained potentials, obtained through several approaches that are designed to obtain CG potentials based on an existing atomistic model, namely iterative Boltzmann inversion, force matching, and a potential of mean force subtraction procedure (SB). We also explore the use of the MARTINI force field for the CG potential. A simple system, consisting of atomistic butane molecules dissolved in CG butane, is used to study the performance of our hybrid scheme. Based on the potentials of mean force for atomistic butane in CG solvent, and the properties of 1 : 1 mixtures of atomistic and CG butane which should exhibit ideal mixing behavior, we conclude that the MARTINI and SB potentials are particularly suited to be combined with the atomistic force field. The MARTINI potential is subsequently used to perform hybrid simulations of atomistic dialanine peptides in both CG butane and water. Compared to a fully atomistic description of the system, the hybrid description gives similar results provided that the dielectric screening of water is accounted for. Within the field of biomolecules, our method appears ideally suited to study e.g.protein-ligand binding, where the active site and ligand are modeled in atomistic detail and the rest of the protein, together with the solvent, is coarse-grained.
