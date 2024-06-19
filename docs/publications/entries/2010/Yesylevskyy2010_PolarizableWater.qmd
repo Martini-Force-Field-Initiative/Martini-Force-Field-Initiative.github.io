@@ -1,0 +1,33 @@
+---
+title: "Polarizable Water Model for the Coarse-Grained MARTINI Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Semen O. Yesylevskyy, Lars V. Schäfer, Durba Sengupta, and Siewert J. Marrink"         # Paper authors (required)
+year: "2010"           # Publication year (required)
+publication: "PLoS computational biology"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1371/journal.pcbi.1000810"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Solvents
+  - Forcefield
+  - Parametrization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Yesylevskyy, S. O., Schäfer, L. V., Sengupta, D., & Marrink, S. J. (2010). Polarizable water model for the coarse-grained MARTINI force field. PLoS computational biology, 6(6), e1000810.
+
+## Abstract
+
+Coarse-grained (CG) simulations have become an essential tool to study a large variety of biomolecular processes, exploring temporal and spatial scales inaccessible to traditional models of atomistic resolution. One of the major simplifications of CG models is the representation of the solvent, which is either implicit or modeled explicitly as a van der Waals particle. The effect of polarization, and thus a proper screening of interactions depending on the local environment, is absent. Given the important role of water as a ubiquitous solvent in biological systems, its treatment is crucial to the properties derived from simulation studies. Here, we parameterize a polarizable coarse-grained water model to be used in combination with the CG MARTINI force field. Using a three-bead model to represent four water molecules, we show that the orientational polarizability of real water can be effectively accounted for. This has the consequence that the dielectric screening of bulk water is reproduced. At the same time, we parameterized our new water model such that bulk water density and oil/water partitioning data remain at the same level of accuracy as for the standard MARTINI force field. We apply the new model to two cases for which current CG force fields are inadequate. First, we address the transport of ions across a lipid membrane. The computed potential of mean force shows that the ions now naturally feel the change in dielectric medium when moving from the high dielectric aqueous phase toward the low dielectric membrane interior. In the second application we consider the electroporation process of both an oil slab and a lipid bilayer. The electrostatic field drives the formation of water filled pores in both cases, following a similar mechanism as seen with atomistically detailed models.

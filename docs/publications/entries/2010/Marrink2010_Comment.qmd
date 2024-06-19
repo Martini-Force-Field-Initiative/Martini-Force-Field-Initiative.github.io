@@ -1,0 +1,31 @@
+---
+title: "Comment on “On using a too large integration time step in molecular dynamics simulations of coarse-grained molecular models” by M. Winger, D. Trzesniak, R. Baron and W. F. van Gunsteren, Phys. Chem. Chem. Phys., 2009, 11, 1934"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Siewert J. Marrink,a   Xavier Periole,a   D. Peter Tielemanb  and  Alex H. de Vriesa  "         # Paper authors (required)
+year: "2010"           # Publication year (required)
+publication: "Physical Chemistry Chemical Physics"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1039/B915293H"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Marrink, S. J., Periole, X., Tieleman, D. P., & de Vries, A. H. (2010). Comment on “On using a too large integration time step in molecular dynamics simulations of coarse-grained molecular models” by M. Winger, D. Trzesniak, R. Baron and WF van Gunsteren, Phys. Chem. Chem. Phys., 2009, 11, 1934. Physical Chemistry Chemical Physics, 12(9), 2254-2256.
+
+## Abstract
+
+In a recent study published in this journal, Winger et al. investigate the magnitude of the time step to integrate the equations of motion in simulations with the coarse-grained MARTINI force field, using an implementation3 of MARTINI in the GROMOS software. Based primarily on the drift in temperature and the magnitude of the energy fluctuations in bulk liquids, the authors conclude that a time step not exceeding 10 fs should be used to avoid artificial energy flow into or out of the system. In most applications of the MARTINI model to date, time steps of 20–40 fs have been used. Thus, the observation of Winger et al. raises questions about possible artefacts caused by the apparent use of a too large integration time step. Although we appreciate the effort put into testing our model, we do not support the conclusions drawn.

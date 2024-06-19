@@ -1,0 +1,34 @@
+---
+title: "Reconstruction of atomistic details from coarse-grained structures"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Andrzej J. Rzepiela, Lars V. Schäfer, Nicolae Goga, H. Jelger Risselada, Alex H. De Vries, and Siewert J. Marrink"         # Paper authors (required)
+year: "2010"           # Publication year (required)
+publication: "Journal of computational chemistry"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1002/jcc.21415"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Methods
+  - Proteins
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Rzepiela, A. J., Schäfer, L. V., Goga, N., Risselada, H. J., De Vries, A. H., & Marrink, S. J. (2010). Reconstruction of atomistic details from coarse‐grained structures. Journal of computational chemistry, 31(6), 1333-1343.
+
+## Abstract
+
+We present an algorithm to reconstruct atomistic structures from their corresponding coarse-grained (CG) representations and its implementation into the freely available molecular dynamics (MD) program package GROMACS. The central part of the algorithm is a simulated annealing MD simulation in which the CG and atomistic structures are coupled via restraints. A number of examples demonstrate the application of the reconstruction procedure to obtain low-energy atomistic structural ensembles from their CG counterparts. We reconstructed individual molecules in vacuo (NCQ tripeptide, dipalmitoylphosphatidylcholine, and cholesterol), bulk water, and a WALP transmembrane peptide embedded in a solvated lipid bilayer. The first examples serve to optimize the parameters for the reconstruction procedure, whereas the latter examples illustrate the applicability to condensed-phase biomolecular systems.

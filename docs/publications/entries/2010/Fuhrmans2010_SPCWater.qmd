@@ -1,0 +1,32 @@
+---
+title: "Effects of bundling on the properties of the SPC water model"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Marc Fuhrmans, Barbara P. Sanders, Siewert-Jan Marrink & Alex H. de Vries"         # Paper authors (required)
+year: "2010"           # Publication year (required)
+publication: "Theoretical Chemistry Accounts"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1007/s00214-009-0590-4"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Solvents
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Fuhrmans, M., Sanders, B. P., Marrink, S. J., & de Vries, A. H. (2010). Effects of bundling on the properties of the SPC water model. Theoretical Chemistry Accounts, 125, 335-344.
+
+## Abstract
+
+Simultaneous representation of molecules at an all-atom and coarse-grained level, as required by multiscaling molecular dynamics simulations, poses problems for the treatment of small molecules. If more than one of these molecules are mapped to a single coarse-grained interaction site, unrestricted movement in the all-atom representation can make a meaningful correspondence of the coordinates between the two representations impossible. Restricting the relative movement of molecules mapped to the same coarse-grained interaction site solves that problem, but will have consequences for the properties of the model. Here we investigate the effects of introducing bundling to the common simple point charge (SPC) water model and present a bundled water model that preserves important properties of SPC water relevant for multiscaling.
