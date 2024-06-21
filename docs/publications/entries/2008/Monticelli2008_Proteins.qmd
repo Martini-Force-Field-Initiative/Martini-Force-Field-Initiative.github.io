@@ -1,0 +1,33 @@
+---
+title: "The MARTINI Coarse-Grained Force Field: Extension to Proteins"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Luca Monticelli, Senthil K. Kandasamy, Xavier Periole, Ronald G. Larson, D. Peter Tieleman, and Siewert-Jan Marrink"         # Paper authors (required)
+year: "2008"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct700324x"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Forcefield
+  - Proteins
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Monticelli, L., Kandasamy, S. K., Periole, X., Larson, R. G., Tieleman, D. P., & Marrink, S. J. (2008). The MARTINI coarse-grained force field: extension to proteins. Journal of chemical theory and computation, 4(5), 819-834.
+
+## Abstract
+
+Many biologically interesting phenomena occur on a time scale that is too long to be studied by atomistic simulations. These phenomena include the dynamics of large proteins and self-assembly of biological materials. Coarse-grained (CG) molecular modeling allows computer simulations to be run on length and time scales that are 2–3 orders of magnitude larger compared to atomistic simulations, providing a bridge between the atomistic and the mesoscopic scale. We developed a new CG model for proteins as an extension of the MARTINI force field. Here, we validate the model for its use in peptide-bilayer systems. In order to validate the model, we calculated the potential of mean force for each amino acid as a function of its distance from the center of a dioleoylphosphatidylcholine (DOPC) lipid bilayer. We then compared amino acid association constants, the partitioning of a series of model pentapeptides, the partitioning and orientation of WALP23 in DOPC lipid bilayers and a series of KALP peptides in dimyristoylphosphatidylcholine and dipalmitoylphosphatidylcholine (DPPC) bilayers. A comparison with results obtained from atomistic models shows good agreement in all of the tests performed. We also performed a systematic investigation of the partitioning of five series of polyalanine−leucine peptides (with different lengths and compositions) in DPPC bilayers. As expected, the fraction of peptides partitioned at the interface increased with decreasing peptide length and decreasing leucine content, demonstrating that the CG model is capable of discriminating partitioning behavior arising from subtle differences in the amino acid composition. Finally, we simulated the concentration-dependent formation of transmembrane pores by magainin, an antimicrobial peptide. In line with atomistic simulation studies, disordered toroidal pores are formed. In conclusion, the model is computationally efficient and effectively reproduces peptide−lipid interactions and the partitioning of amino acids and peptides in lipid bilayers.
