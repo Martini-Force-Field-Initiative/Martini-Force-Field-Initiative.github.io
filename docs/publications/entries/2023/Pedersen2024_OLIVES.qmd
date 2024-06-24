@@ -1,0 +1,33 @@
+---
+title: "OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Kasper B Pedersen, Luís Borges-Araújo, Amanda D Stange, Paulo CT Souza, Siewert-Jan Marrink, and Birgit Schiøtt"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "chemRxiv"    # Journal or similar (required)
+preprint: "https://chemrxiv.org/engage/chemrxiv/article-details/655728cc2c3c11ed71929939"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.26434/chemrxiv-2023-6d61w"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Methods
+  - Forcefield
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Pedersen, K. B., Borges-Araújo, L., Stange, A. D., Souza, P. C., Marrink, S. J., & Schiøtt, B. (2023). OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field.
+
+## Abstract
+
+Coarse-grained molecular dynamics simulations enable the modeling of increasingly complex systems at millisecond timescales. The transferable coarse-grained force field Martini 3 has shown great promise in modeling a wide range of biochemical processes, yet folded proteins in Martini 3 are not stable without the application of external bias potentials like elastic networks or Go-like models. We herein develop an algorithm, called OLIVES, which identifies native contacts with hydrogen bond capabilities in coarse-grained proteins and use it to implement a novel Go-like model for Martini 3. We show that the protein structure instability originates, in part, from the lack of hydrogen bond energy in the coarse-grained force field representation. By using realistic hydrogen bond energies obtained from literature ab initio calculations, it is demonstrated that protein stability can be recovered by the reintroduction of a coarse-grained hydrogen bond network and that OLIVES removes the need for secondary structure restraints. OLIVES is validated against known protein complexes, and at the same time addresses the open question of whether there is a need for protein quaternary structure bias in Martini 3 simulations. It is shown that OLIVES can reduce the number of bias terms, hereby speeding up Martini 3 simulations of proteins by up to ≈ 30 % on GPU architecture compared to the established GoMARTINI Go-like model.
