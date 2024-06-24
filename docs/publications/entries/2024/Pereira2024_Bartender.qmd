@@ -1,0 +1,33 @@
+---
+title: "Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Gilberto P Pereira, Riccardo Alessandri, Moisés Domínguez, Rocío Araya-Osorio, Linus Grünewald, Luís Borges-Araújo, Sangwook Wu, Siewert J Marrink, Paulo Cesar Telles de Souza, and Raul Mera-Adasme"         # Paper authors (required)
+year: "2024"           # Publication year (required)
+publication: "chemRxiv"    # Journal or similar (required)
+preprint: "https://chemrxiv.org/engage/chemrxiv/article-details/6662ca0b21291e5d1d45aa7e"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.26434/chemrxiv-2024-62kh1-v2"            # URL of DOI (required)  
+materials: "https://chemrxiv.org/engage/api-gateway/chemrxiv/assets/orp/resource/item/6662ca0b21291e5d1d45aa8f/original/supporting-information.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Methods
+  - Parametrization
+  - Multi-scale
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Pereira, G. P., Alessandri, R., Domínguez, M., Araya-Osorio, R., Grünewald, L., Borges-Araújo, L., ... & Mera-Adasme, R. (2024). Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics.
+
+## Abstract
+
+Coarse-grained (CG) molecular dynamics (MD) simulations have grown in applicability over the years. The recently released version of the Martini CG force field (Martini 3) has been successfully applied to simulate many processes, including protein-ligand binding. However, the current ligand parameterization scheme is manual and requires an a priori reference all-atom (AA) simulation for benchmarking. For systems with suboptimal AA parameters, which are often unknown, this translates into a CG model which does not reproduce the true dynamical behavior of the underlying molecule. Here we present Bartender, a quantum mechanics (QM)/MD-based parameterization tool written in Go. Bartender harnesses the power of QM simulations and produces reasonable bonded terms for Martini 3 CG models of small molecules in an efficient and user-friendly manner. For small, ring-like molecules, Bartender generates models whose properties are indistinguishable from the human-made models. For more complex, drug-like ligands, it is able to fit functional forms beyond simple harmonic dihedrals, and thus better captures their dynamical behavior. Bartender has the power to both increase the efficiency and the accuracy of Martini 3-based high-throughput applications by producing stable and physically realistic CG models.

@@ -1,0 +1,33 @@
+---
+title: "There and back again: bridging meso- and nano-scales to understand lipid vesicle patterning"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Julie Cornet, Nelly Coulonges, Weria Pezeshkian, Maël Penissat-Mahaut, Siewert-Jan Marrink, Nicolas Destainville, Matthieu Chavent, and Manoel Manghi"         # Paper authors (required)
+year: "2024"           # Publication year (required)
+publication: "Soft Matter"    # Journal or similar (required)
+preprint: "https://arxiv.org/abs/2401.05785"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1039/D4SM00089G"            # URL of DOI (required)  
+materials: "https://www.rsc.org/suppdata/d4/sm/d4sm00089g/d4sm00089g1.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Vesicles
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Cornet, J., Coulonges, N., Pezeshkian, W., Penissat-Mahaut, M., Desgrez-Dautet, H., Marrink, S. J., ... & Manghi, M. (2024). There and back again: bridging meso-and nanoscales to understand lipid vesicle patterning. Soft Matter.
+
+## Abstract
+
+We describe a complete methodology to bridge the scales between nanoscale molecular dynamics and (micrometer) mesoscale Monte Carlo simulations in lipid membranes and vesicles undergoing phase separation, in which curving molecular species are furthermore embedded. To go from the molecular to the mesoscale, we notably appeal to physical renormalization arguments enabling us to rigorously infer the mesoscale interaction parameters from its molecular counterpart. We also explain how to deal with the physical timescales at stake at the mesoscale. Simulating the as-obtained mesoscale system enables us to equilibrate the long wavelengths of the vesicles of interest, up to the vesicle size. Conversely, we then backmap from the meso- to the nano-scale, which enables us to equilibrate in turn the short wavelengths down to the molecular length-scales. By applying our approach to the specific situation of patterning a vesicle membrane, we show that macroscopic membranes can thus be equilibrated at all length-scales in achievable computational time offering an original strategy to address the fundamental challenge of timescale in simulations of large bio-membrane systems.
