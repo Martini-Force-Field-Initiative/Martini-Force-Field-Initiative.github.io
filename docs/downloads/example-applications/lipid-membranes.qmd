@@ -12,8 +12,6 @@ Thanks to Stephen Fairweather, and the excellent work of O'Mara and coworkers, w
 
 You can download the topologies and other data from [here](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/epithelial_membrane-main.zip)!
 
-<hr>
-
 ### Brain plasma membrane
 <hr>
 
@@ -23,9 +21,7 @@ For simulation files and parameters, see [bbs.llnl.gov/neuronal-membrane-data.ht
 
 - **H.I. Ingólfsson, T.S. Carpenter, H. Bhatia, P.T. Bremer, S.J. Marrink, F.C. Lightstone.** Computational Lipidomics of the Neuronal Plasma Membrane. Biophys. J. 113:2271–2280, 2017. [open access](http://www.cell.com/biophysj/abstract/S0006-3495(17)31132-3)
 
-<img src="brain_plasmamembrane.jpg" width="200" style="padding-left:5%;"/>
-
-<hr>
+<!-- <img src="brain_plasmamembrane.jpg" width="200" style="padding-left:5%;"/> -->
 
 ### DIY Thylakoid simulation kit
 <hr>
@@ -35,8 +31,6 @@ Everything you need in order to simulate your own thylakoid membrane.
 [This package](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/THYLAKOIDS.zip) contains both coarse grained and fine grained parameter files for the simulation of the thylakoid membranes of cyanobacteria (Thermosynechococcus vulcanus) and plants (spinach, Spinacia oleracea)
 
 - **F.J. van Eerden, D.H. de Jong, A.H. de Vries, T. A. Wassenaar, S.J. Marrink.** Characterization of thylakoid lipid membranes from cyanobacteria and higher plants by molecular dynamics simulations. BBA-Biomembranes, 1848:1319–1330, 2015. [DOI:10.1016/j.bbamem.2015.02.025](http://dx.doi.org/10.1016/j.bbamem.2015.02.025)
-
-<hr>
 
 ### Plasma membrane
 <hr>
@@ -53,9 +47,7 @@ And for a smaller (~6.600 lipids) simulation after 10 microseconds.
 
 - [plasma_membrane_small.zip](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/plasma_membrane_small.zip)
 
-<img src="plasma_membrane_TOC.jpg" width="300" style="padding-left:5%;"/>
-
-<hr>
+<!-- <img src="plasma_membrane_TOC.jpg" width="300" style="padding-left:5%;"/> -->
 
 ### Glycolipid membranes
 <hr>
@@ -63,8 +55,6 @@ And for a smaller (~6.600 lipids) simulation after 10 microseconds.
 Parameter files for various membranes composed of glycolipids (MGDG, DGDG, SQDG, PI, PIP2, GCER, GM1)
 
 - [glycolipids.zip](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/Files.zip)
-
-<hr>
 
 ### Bi-lamellar DOPE system
 <hr>
@@ -76,8 +66,6 @@ System composition: lipids 1024, water 800.
 - [dope_2bilayer_lowhydration.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dope_2bilayer_lowhydration.mdp)
 - [dope_2bilayer_lowhydration.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dope_2bilayer_lowhydration.top)
 
-<hr>
-
 ### Model raft bilayer
 <hr>
 
@@ -87,8 +75,6 @@ System composition: DPPC 828, Di-C18:2-PC 540, cholesterol 576 (0.42:0.28:0.3 ra
 - [raft.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/raft.gro)
 - [raft.mpd](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/raft.mdp)
 - [raft.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/raft.top)
-
-<hr>
 
 ### Bolalipid membranes
 <hr>
@@ -116,8 +102,6 @@ Systems of pure cyclic and acyclic bolalipid bilayers:
     - [bola-cyclic+dppc.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_dppc.mdp)
     - [bola-cyclic+dppc.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/bola_cyclic_dppc.top)
 
-<hr>
-
 ### Poly-unsaturated lipid/cholesterol bilayer
 <hr>
 
@@ -128,8 +112,6 @@ System composition: DAPC 38, cholesterol 4 (0.1 mole fraction), water 142.
 - [dapc_chol.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dapc_chol.mdp)
 - [dapc_chol.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dapc_chol.top)
 
-<hr>
-
 ### DPPC/cholesterol bilayer
 <hr>
 
@@ -139,8 +121,6 @@ System composition: DPPC 38, cholesterol 16 (0.3 mole fraction), water 350.
 - [dppc_chol.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_chol.gro)
 - [dppc_chol.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_chol.mdp)
 - [dppc_chol.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_chol.top)
-
-<hr>
 
 ### DOPC and POPE membranes
 <hr>
@@ -156,8 +136,6 @@ Warning these bilayers were constructed using self-assembly and can therefore be
 - [pope_bilayer.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/pope_bilayer.mdp)
 - [pope_bilayer.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/pope_bilayer.top)
 
-<hr>
-
 ### DPPC bilayer
 <hr>
 
@@ -167,8 +145,6 @@ System size: lipids 128, water 2000.
 - [dppc_bilayer.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_bilayer.gro)
 - [dppc_bilayer.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_bilayer.mdp)
 - [dppc_bilayer.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/lipid_membranes/dppc_bilayer.top)
-
-<hr>
 
 ### Triton TX-100 in a DPPC bilayer
 <hr>
@@ -182,8 +158,6 @@ Parameter file for Triton TX-100, a .gro and .top files of a DPPC bilayer with T
 The corresponding article can be cited as:
 
 - MARTINI Coarse‑Grained Model of Triton TX‑100 in Pure DPPC Monolayer and Bilayer Interfaces. **Antonio Pizzirusso, Antonio De Nicola, and Giuseppe Milano.** The Journal of Physical Chemistry B, Just Accepted Manuscript. DOI:[http://dx.doi.org/10.1021/acs.jpcb.6b00646](http://dx.doi.org/10.1021/acs.jpcb.6b00646)
-
-<hr>
 
 ### Peroxidized lipids
 <hr>

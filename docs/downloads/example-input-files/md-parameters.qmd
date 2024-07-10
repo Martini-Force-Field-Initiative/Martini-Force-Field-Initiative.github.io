@@ -9,16 +9,11 @@ These are some example of a general input parameter files for molecular dynamics
 
 - **D.H. de Jong, S. Baoukina, H.I. Ingólfsson, Marrink S.J.** Martini straight: boosting performance using a shorter cutoff and GPUs. Comput. Phys. Commun., 199:1-7, 2016. [doi:10.1016/j.cpc.2015.09.014](http://www.sciencedirect.com/science/article/pii/S0010465515003628)
 
-<hr>
-
 ### Martini 3
 <hr>
 - [martini_v3.x_example.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_input_files/mdps/martini_v3.x_example.mdp)
 
-<hr>
-
 ### Martini 2
-
 <hr>
 
 Based on the extensive testing, we recommend the new-rf.mdp parameters for most cases. However not all systems have been tested and we recommend you do your own tests. In addition, for consistency within a project the same `.mdp` options should always be used.
