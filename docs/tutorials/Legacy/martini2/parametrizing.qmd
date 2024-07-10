@@ -26,7 +26,7 @@ The first step is therefore to split the molecule in reasonable building blocks.
 
 Let us call the new molecule GDAL (for glucose-dodecane-acid-lipid). You can probably think of a much better name, but this is the name that will be assumed in the following...
 
-You will need to write a topology file for the molecule. You may start from scratch, or you may take an existing file and edit it. A good candidate may be the GCER lipid. GCER itself is just the name of the head group linked to a ceramide; if we look in the Martini lipidome, we find a ceramide lipid, [DPGS](../../downloads/force-field-parameters/lipids.qmd#glycosphingolipids), with two tails, that may well be useful as a template. Some part of the .itp file is shown here: 
+You will need to write a topology file for the molecule. You may start from scratch, or you may take an existing file and edit it. A good candidate may be the GCER lipid. GCER itself is just the name of the head group linked to a ceramide; if we look in the Martini lipidome, we find a ceramide lipid, [DPGS](../../../downloads/force-field-parameters/martini2/lipidome.qmd#glycosphingolipids), with two tails, that may well be useful as a template. Some part of the .itp file is shown here: 
 
 ``` text
 [ moleculetype ]
