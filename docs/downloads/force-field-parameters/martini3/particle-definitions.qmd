@@ -4,16 +4,16 @@ format: html
 ---
 <hr>
 
-### We are glad to announce the release and publication of MARTINI 3!
+The particle definition file is required for all simulations and specifies the coarse-grained particle types and interaction matrix in Martini 3. In the file below you will find the particle definitions in Martini 3, as well as the topology of proteins, solvents, ions, lipids, nucleobases, carbohydrates, and small molecules, as defined in its original release. [Here](https://github.com/ricalessandri/Martini3-small-molecules/blob/main/tutorials/building_block_table.pdf)'s a table (in continuous expansion) to help with understanding Martini 3's bead types. 
 
-Please read and cite the associated publication when using the new version: [PCT Souza, et al., Nat. Methods, 2021](https://www.nature.com/articles/s41592-021-01098-3#Sec13).
+<hr>
 
-The parameters are available for download [here](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini3/martini_v300.zip).
+- [martini_v300.zip](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini3/martini_v300.zip)
 
-An extended collection of Martini 3 models for small molecules is now available [here](https://github.com/ricalessandri/Martini3-small-molecules/blob/main/models/martini_v3.0.0_small_molecules_v1.itp) [(R. Alessandri, et al., Adv. Theory Simul., 2022](https://doi.org/10.1002/adts.202100391)).
+<hr>
 
-And [here](https://github.com/ricalessandri/Martini3-small-molecules/blob/main/tutorials/building_block_table.pdf)'s a table (in continuous expansion) to help with choosing bead types.
+In addition to this centralized folder, individual `.itp` files will be provided in the respective sections for each molecule type, including further extensions and refinements. 
 
-Please enjoy Martini 3 responsibly! Make sure to <u>read the publication with the supplementary information</u>, and stay tuned for new and improved Martini 3 [tutorials](../../../tutorials/Martini3/tutorials.qmd).
+**Please read and cite the associated publication when using it: [PCT Souza, et al., Nat. Methods, 2021](https://www.nature.com/articles/s41592-021-01098-3#Sec13). And enjoy Martini 3 responsibly!**
 
-----------------------------------------------------------------------
+<hr>
