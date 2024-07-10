@@ -1,0 +1,34 @@
+---
+title: "Improved Angle Potentials for Coarse-Grained Molecular Dynamics Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Monica Bulacu, Nicolae Goga, Wei Zhao, Giulia Rossi, Luca Monticelli, Xavier Periole, D. Peter Tieleman, and Siewert J. Marrink"         # Paper authors (required)
+year: "2013"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct400219n"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Forcefield
+  - Polymers
+  - Parametrization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Bulacu, M., Goga, N., Zhao, W., Rossi, G., Monticelli, L., Periole, X., ... & Marrink, S. J. (2013). Improved angle potentials for coarse-grained molecular dynamics simulations. Journal of chemical theory and computation, 9(8), 3282-3292.
+
+## Abstract
+
+Potentials routinely used in atomistic molecular dynamics simulations are not always suitable for modeling systems at coarse-grained resolution. For example, in the calculation of traditional torsion angle potentials, numerical instability is often encountered in the case of very flexible molecules. To improve the stability and accuracy of coarse-grained molecular dynamics simulations, we propose two approaches. The first makes use of improved forms for the angle potentials: the restricted bending (ReB) potential prevents torsion angles from visiting unstable or unphysical configurations and the combined bending-torsion (CBT) potential smoothly flattens the interactions when such configurations are sampled. In the second approach, dummy-assisted dihedral (DAD), the torsion potential is applied differently: instead of acting directly on the beads, it acts on virtual beads, bound to the real ones. For simple geometrical reasons, the unstable region is excluded from the accessible conformational space. The benefits of the new approaches are demonstrated in simulations of polyethylene glycol (PEG), polystyrene (PS), and polypeptide molecules described by the MARTINI coarse-grained force field. The new potentials are implemented in an in-house version of the Gromacs package, publicly available.

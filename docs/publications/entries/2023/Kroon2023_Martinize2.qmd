@@ -1,0 +1,37 @@
+---
+title: "Martinize2 and Vermouth: Unified Framework for Topology Generation"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Peter C. Kroon, Fabian Grünewald, Jonathan Barnoud, Marco van Tilburg, Paulo C. T. Souza, Tsjerk A. Wassenaar, Siewert-Jan Marrink"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "eLife"    # Journal or similar (required)
+preprint: "https://arxiv.org/abs/2212.01191"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.7554/eLife.90627.2"            # URL of DOI (required)  
+materials: "https://elifesciences.org/reviewed-preprints/90627#s5"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Forcefield
+  - Methods
+  - Proteins
+  - RNA
+  - DNA
+  - Post-translational modifications
+  - Small molecules
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Kroon, P. C., Grunewald, F., Barnoud, J., van Tilburg, M., Souza, P. C. T., Wassenaar, T. A., & Marrink, S. J. (2023). Martinize2 and Vermouth: Unified Framework for Topology Generation. eLife, 12.
+
+## Abstract
+
+Ongoing advances in force field and computer hardware development enable the use of molecular dynamics (MD) to simulate increasingly complex systems with the ultimate goal of reaching cellular complexity. At the same time, rational design by high-throughput (HT) simulations is another forefront of MD. In these areas, the Martini coarse-grained force field, especially the latest version (i.e. v3), is being actively explored because it offers enhanced spatial-temporal resolution. However, the automation tools for preparing simulations with the Martini force field, accompanying the previous version, were not designed for HT simulations or studies of complex cellular systems. Therefore, they become a major limiting factor. To address these shortcomings, we present the open-source vermouth python library. Vermouth is designed to become the unified framework for developing programs, which prepare, run, and analyze Martini simulations of complex systems. To demonstrate the power of the vermouth library, the martinize2 program is showcased as a generalization of the martinize script, originally aimed to set up simulations of proteins. In contrast to the previous version, martinize2 automatically handles protonation states in proteins and post-translation modifications, offers more options to fine-tune structural biases such as the elastic network, and can convert nonprotein molecules such as ligands. Finally, martinize2 is used in two high-complexity benchmarks. The entire I-TASSER protein template database as well as a subset of 200,000 structures from the AlphaFold Protein Structure Database are converted to CG resolution and we illustrate how the checks on input structure quality can safeguard HT applications.

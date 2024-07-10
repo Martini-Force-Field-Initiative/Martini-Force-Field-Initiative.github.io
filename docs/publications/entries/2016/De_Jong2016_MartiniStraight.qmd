@@ -1,0 +1,33 @@
+---
+title: "MARTINI straight: Boosting performance using a shorter cutoff and GPUs"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Djurre H De Jong, Svetlana Baoukina, Helgi I Ingólfsson, Siewert J Marrink"         # Paper authors (required)
+year: "2016"           # Publication year (required)
+publication: "Computer Physics Communications"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1016/j.cpc.2015.09.014"            # URL of DOI (required)  
+materials: "https://www.sciencedirect.com/science/article/pii/S0010465515003628#s000100"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Solvents
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> De Jong, D. H., Baoukina, S., Ingólfsson, H. I., & Marrink, S. J. (2016). Martini straight: Boosting performance using a shorter cutoff and GPUs. Computer Physics Communications, 199, 1-7.
+
+## Abstract
+
+In molecular dynamics simulations, sufficient sampling is of key importance and a continuous challenge in the field. The coarse grain Martini force field has been widely used to enhance sampling. In its original implementation, this force field applied a shifted Lennard-Jones potential for the non-bonded van der Waals interactions, to avoid problems related to a relatively short cutoff. Here we investigate the use of a straight cutoff Lennard-Jones potential with potential modifiers. Together with a Verlet neighbor search algorithm, the modified potential allows the use of GPUs to accelerate the computations in Gromacs. We find that this alternative potential has little influence on most of the properties studied, including partitioning free energies, bulk liquid properties and bilayer properties. At the same time, energy conservation is kept within reasonable bounds. We conclude that the newly proposed straight cutoff approach is a viable alternative to the standard shifted potentials used in Martini, offering significant speedup even in the absence of GPUs.

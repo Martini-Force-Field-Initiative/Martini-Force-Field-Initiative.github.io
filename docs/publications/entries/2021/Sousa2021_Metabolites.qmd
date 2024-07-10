@@ -1,0 +1,33 @@
+---
+title: "Coarse-Grained Parameterization of Nucleotide Cofactors and Metabolites: Protonation Constants, Partition Coefficients, and Model Topologies"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Filipe M Sousa, Luís MP Lima, Clément Arnarez, Manuela M Pereira, Manuel N Melo"         # Paper authors (required)
+year: "2021"           # Publication year (required)
+publication: "Journal of Chemical Information and Modeling"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jcim.0c01077"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/suppl/10.1021/acs.jcim.0c01077/suppl_file/ci0c01077_si_001.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Parametrization
+  - Journal article
+  - Metabolites
+  - Cofactors
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Sousa, F. M., Lima, L. M., Arnarez, C., Pereira, M. M., & Melo, M. N. (2021). Coarse-grained parameterization of nucleotide cofactors and metabolites: protonation constants, partition coefficients, and model topologies. Journal of Chemical Information and Modeling, 61(1), 335-346.
+
+## Abstract
+
+Nucleotides are structural units relevant not only in nucleic acids but also as substrates or cofactors in key biochemical reactions. The size- and timescales of such nucleotide–protein interactions fall well within the scope of coarse-grained molecular dynamics, which holds promise of important mechanistic insight. However, the lack of specific parameters has prevented accurate coarse-grained simulations of protein interactions with most nucleotide compounds. In this work, we comprehensively develop coarse-grained parameters for key metabolites/cofactors (FAD, FMN, riboflavin, NAD, NADP, ATP, ADP, AMP, and thiamine pyrophosphate) in different oxidation and protonation states as well as for smaller molecules derived from them (among others, nicotinamide, adenosine, adenine, ribose, thiamine, and lumiflavin), summing up a total of 79 different molecules. In line with the Martini parameterization methodology, parameters were tuned to reproduce octanol–water partition coefficients. Given the lack of existing data, we set out to experimentally determine these partition coefficients, developing two methodological approaches, based on 31P-NMR and fluorescence spectroscopy, specifically tailored to the strong hydrophilicity of most of the parameterized compounds. To distinguish the partition of each relevant protonation species, we further potentiometrically characterized the protonation constants of key molecules. This work successfully builds a comprehensive and relevant set of computational models that will boost the biochemical application of coarse-grained simulations. It does so based on the measurement of partition and acid–base physicochemical data that, in turn, covers important gaps in nucleotide characterization.

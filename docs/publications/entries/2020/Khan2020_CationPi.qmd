@@ -1,0 +1,34 @@
+---
+title: "Capturing Choline–Aromatics Cation− π Interactions in the MARTINI Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Hanif M Khan, Paulo CT Souza, Sebastian Thallmair, Jonathan Barnoud, Alex H De Vries, Siewert J Marrink, Nathalie Reuter"         # Paper authors (required)
+year: "2020"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.9b01194"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.9b01194?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Forcefield
+  - Journal article
+  - Lipid membranes
+  - Phopholipids
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Khan, H. M., Souza, P. C., Thallmair, S., Barnoud, J., De Vries, A. H., Marrink, S. J., & Reuter, N. (2020). Capturing choline–aromatics cation− π interactions in the MARTINI force field. Journal of chemical theory and computation, 16(4), 2550-2560.
+
+## Abstract
+
+Cation−π interactions play an important role in biomolecular recognition, including interactions between membrane phosphatidylcholine lipids and aromatic amino acids of peripheral proteins. While molecular mechanics coarse grain (CG) force fields are particularly well suited to simulate membrane proteins in general, they are not parameterized to explicitly reproduce cation−π interactions. We here propose a modification of the polarizable MARTINI coarse grain (CG) model enabling it to model membrane binding events of peripheral proteins whose aromatic amino acid interactions with choline headgroups are crucial for their membrane binding. For this purpose, we first collected and curated a dataset of eight peripheral proteins from different families. We find that the MARTINI CG model expectedly underestimates aromatics–choline interactions and is unable to reproduce membrane binding of the peripheral proteins in our dataset. Adjustments of the relevant interactions in the polarizable MARTINI force field yield significant improvements in the observed binding events. The orientation of each membrane-bound protein is comparable to reference data from all-atom simulations and experimental binding data. We also use negative controls to ensure that choline–aromatics interactions are not overestimated. We finally check that membrane properties, transmembrane proteins, and membrane translocation potential of mean force (PMF) of aromatic amino acid side-chain analogues are not affected by the new parameter set. This new version “MARTINI 2.3P” is a significant improvement over its predecessors and is suitable for modeling membrane proteins including peripheral membrane binding of peptides and proteins.

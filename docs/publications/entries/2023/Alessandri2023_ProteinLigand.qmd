@@ -1,0 +1,36 @@
+---
+title: "A Practical Introduction to Martini 3 and its Application to Protein-Ligand Binding Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Riccardo Alessandri, Sebastian Thallmair, Cristina Gil Herrero, Raúl Mera-Adasmem, Siewert J. Marrink and Paulo C. T. Souza"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "A Practical Guide to Recent Advances in Multiscale Modeling and Simulation of Biomolecules"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1063/9780735425279_001"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Book chapter
+  - Protocol
+  - Methods
+  - Proteins
+  - Small molecules
+  - Lipid membranes
+  - Drug design
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Alessandri, R., Thallmair, S., Herrero, C. G., Mera-Adasme, R., Marrink, S. J., & Souza, P. C. (2023). A practical introduction to martini 3 and its application to protein-ligand binding simulations. In A Practical Guide to Recent Advances in Multiscale Modeling and Simulation of Biomolecules (pp. 1-1). Melville, New York: AIP Publishing LLC.
+
+## Abstract
+
+Martini 3 is the new version of a widely used coarse-grained (CG) model that have been extensively parameterized to reproduce experimental and thermodynamic data. Based on a building-block approach, the new version shows a better coverage of the chemical space and more accurate predictions of interactions and molecular packing in general. Given these improvements, the Martini 3 model allows new applications such as studies involving protein–ligand interactions. In this chapter, a summary of the key elements of the new Martini version is presented, followed by an example of a practical application: a simulation of caffeine binding to the buried pocket of the adenosine A2A receptor, which is part of the GPCR family. Formulated as a hands-on tutorial, this chapter contains guidelines to build CG models of important systems, such as small drug-like molecules, transmembrane proteins, and lipid membranes. Finally, the last sections contain an outlook of possible future developments and notes describing useful information, limitations, and tips about Martini.

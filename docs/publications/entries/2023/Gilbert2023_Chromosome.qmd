@@ -1,0 +1,33 @@
+---
+title: "Dynamics of chromosome organization in a minimal bacterial cell"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Benjamin R. Gilbert, Zane R. Thornburg, Troy A. Brier, Jan A. Stevens, Fabian Grünewald, John E. Stone, Siewert J. Marrink and Zaida Luthey-Schulten"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "Frontiers in Cell and Developmental Biology"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.3389/fcell.2023.1214962"            # URL of DOI (required)  
+materials: "https://www.frontiersin.org/articles/10.3389/fcell.2023.1214962/full#h12"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - DNA
+  - Multi-scale
+  - Vesicles
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Gilbert, B. R., Thornburg, Z. R., Brier, T. A., Stevens, J. A., Grünewald, F., Stone, J. E., ... & Luthey-Schulten, Z. (2023). Dynamics of chromosome organization in a minimal bacterial cell. Frontiers in Cell and Developmental Biology, 11.
+
+## Abstract
+
+Computational models of cells cannot be considered complete unless they include the most fundamental process of life, the replication and inheritance of genetic material. By creating a computational framework to model systems of replicating bacterial chromosomes as polymers at 10 bp resolution with Brownian dynamics, we investigate changes in chromosome organization during replication and extend the applicability of an existing whole-cell model (WCM) for a genetically minimal bacterium, JCVI-syn3A, to the entire cell-cycle. To achieve cell-scale chromosome structures that are realistic, we model the chromosome as a self-avoiding homopolymer with bending and torsional stiffnesses that capture the essential mechanical properties of dsDNA in Syn3A. In addition, the conformations of the circular DNA must avoid overlapping with ribosomes identitied in cryo-electron tomograms. While Syn3A lacks the complex regulatory systems known to orchestrate chromosome segregation in other bacteria, its minimized genome retains essential loop-extruding structural maintenance of chromosomes (SMC) protein complexes (SMC-scpAB) and topoisomerases. Through implementing the effects of these proteins in our simulations of replicating chromosomes, we find that they alone are sufficient for simultaneous chromosome segregation across all generations within nested theta structures. This supports previous studies suggesting loop-extrusion serves as a near-universal mechanism for chromosome organization within bacterial and eukaryotic cells. Furthermore, we analyze ribosome diffusion under the influence of the chromosome and calculate in silico chromosome contact maps that capture inter-daughter interactions. Finally, we present a methodology to map the polymer model of the chromosome to a Martini coarse-grained representation to prepare molecular dynamics models of entire Syn3A cells, which serves as an ultimate means of validation for cell states predicted by the WCM.

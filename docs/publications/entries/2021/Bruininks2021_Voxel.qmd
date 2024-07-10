@@ -1,0 +1,34 @@
+---
+title: "Sequential Voxel-Based Leaflet Segmentation of Complex Lipid Morphologies"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Bart M. H. Bruininks*, Albert S. Thie, Paulo C. T. Souza, Tsjerk A. Wassenaar, Shirin Faraji, and Siewert J. Marrink"         # Paper authors (required)
+year: "2021"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.1c00446"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.1c00446?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Lipid membranes
+  - Methods
+  - Vesicles
+  - Micelles
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Bruininks, B. M., Thie, A. S., Souza, P. C., Wassenaar, T. A., Faraji, S., & Marrink, S. J. (2021). Sequential voxel-based leaflet segmentation of complex lipid morphologies. Journal of Chemical Theory and Computation, 17(12), 7873-7885.
+
+## Abstract
+
+As molecular dynamics simulations increase in complexity, new analysis tools are necessary to facilitate interpreting the results. Lipids, for instance, are known to form many complicated morphologies, because of their amphipathic nature, becoming more intricate as the particle count increases. A few lipids might form a micelle, where aggregation of tens of thousands could lead to vesicle formation. Millions of lipids comprise a cell and its organelle membranes, and are involved in processes such as neurotransmission and transfection. To study such phenomena, it is useful to have analysis tools that understand what is meant by emerging entities such as micelles and vesicles. Studying such systems at the particle level only becomes extremely tedious, counterintuitive, and computationally expensive. To address this issue, we developed a method to track all the individual lipid leaflets, allowing for easy and quick detection of topological changes at the mesoscale. By using a voxel-based approach and focusing on locality, we forego costly geometrical operations without losing important details and chronologically identify the lipid segments using the Jaccard index. Thus, we achieve a consistent sequential segmentation on a wide variety of (lipid) systems, including monolayers, bilayers, vesicles, inverted hexagonal phases, up to the membranes of a full mitochondrion. It also discriminates between adhesion and fusion of leaflets. We show that our method produces consistent results without the need for prefitting parameters, and segmentation of millions of particles can be achieved on a desktop machine.

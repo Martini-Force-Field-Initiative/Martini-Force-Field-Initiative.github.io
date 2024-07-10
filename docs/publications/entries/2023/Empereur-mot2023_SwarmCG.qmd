@@ -1,0 +1,35 @@
+---
+title: "Automatic Optimization of Lipid Models in the Martini Force Field Using SwarmCG"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Charly Empereur-mot, Kasper B. Pedersen, Riccardo Capelli, Martina Crippa, Cristina Caruso, Mattia Perrone, Paulo C. T. Souza, Siewert J. Marrink and Giovanni M. Pavan"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "Journal of chemical information and modeling"    # Journal or similar (required)
+preprint: "https://chemrxiv.org/engage/chemrxiv/article-details/642e9c97736114c96301544d"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jcim.3c00530"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jcim.3c00530?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Lipid membranes
+  - Phopholipids
+  - Parametrization
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Empereur-Mot, C., Pedersen, K. B., Capelli, R., Crippa, M., Caruso, C., Perrone, M., ... & Pavan, G. M. (2023). Automatic Optimization of Lipid Models in the Martini Force Field Using SwarmCG. Journal of chemical information and modeling, 63(12), 3827-3838.
+
+## Abstract
+
+After two decades of continued development of the Martini coarse-grained force field (CG FF), further refinment of the already rather accurate Martini lipid models has become a demanding task that could benefit from integrative data-driven methods. Automatic approaches are increasingly used in the development of accurate molecular models, but they typically make use of specifically designed interaction potentials that transfer poorly to molecular systems or conditions different than those used for model calibration. As a proof of concept, here, we employ SwarmCG, an automatic multiobjective optimization approach facilitating the development of lipid force fields, to refine specifically the bonded interaction parameters in building blocks of lipid models within the framework of the general Martini CG FF. As targets of the optimization procedure, we employ both experimental observables (top-down references: area per lipid and bilayer thickness) and all-atom molecular dynamics simulations (bottom-up reference), which respectively inform on the supra-molecular structure of the lipid bilayer systems and on their submolecular dynamics. In our training sets, we simulate at different temperatures in the liquid and gel phases up to 11 homogeneous lamellar bilayers composed of phosphatidylcholine lipids spanning various tail lengths and degrees of (un)saturation. We explore different CG representations of the molecules and evaluate improvements a posteriori using additional simulation temperatures and a portion of the phase diagram of a DOPC/DPPC mixture. Successfully optimizing up to ∼80 model parameters within still limited computational budgets, we show that this protocol allows the obtainment of improved transferable Martini lipid models. In particular, the results of this study demonstrate how a fine-tuning of the representation and parameters of the models may improve their accuracy and how automatic approaches, such as SwarmCG, may be very useful to this end.

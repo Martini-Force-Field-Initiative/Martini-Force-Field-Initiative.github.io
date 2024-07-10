@@ -1,0 +1,34 @@
+---
+title: "Shocker-a molecular dynamics protocol and tool for accelerating and analyzing the effects of osmotic shocks"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Marco PA van Tilburg, Siewert J Marrink, Melanie König, and Fabian Grünewald"         # Paper authors (required)
+year: "2024"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: "https://www.biorxiv.org/content/10.1101/2023.08.16.553535v1?med=mas"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.3c00961"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.3c00961?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Solvents
+  - Vesicles
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> van Tilburg, M. P., Marrink, S. J., König, M., & Grünewald, F. (2023). Shocker─ A Molecular Dynamics Protocol and Tool for Accelerating and Analyzing the Effects of Osmotic Shocks. Journal of Chemical Theory and Computation, 20(1), 212-223.
+
+## Abstract
+
+The process of osmosis, a fundamental phenomenon in life, drives water through a semipermeable membrane in response to a solute concentration gradient across this membrane. In vitro, osmotic shocks are often used to drive shape changes in lipid vesicles, for instance, to study fission events in the context of artificial cells. While experimental techniques provide a macroscopic picture of large-scale membrane remodeling processes, molecular dynamics (MD) simulations are a powerful tool to study membrane deformations at the molecular level. However, simulating an osmotic shock is a time-consuming process due to slow water diffusion across the membrane, making it practically impossible to examine its effects in classic MD simulations. In this article, we present Shocker, a Python-based MD tool for simulating the effects of an osmotic shock by selecting and relocating water particles across a membrane over the course of several pumping cycles. Although this method is primarily aimed at efficiently simulating volume changes in vesicles, it can also handle membrane tubes and double bilayer systems. Additionally, Shocker is force field-independent and compatible with both coarse-grained and all-atom systems. We demonstrate that our tool is applicable to simulate both hypertonic and hypotonic osmotic shocks for a range of vesicular and bilamellar setups, including complex multicomponent systems containing membrane proteins or crowded internal solutions.

@@ -1,0 +1,33 @@
+---
+title: "MARTINI coarse-grained force field: extension to RNA"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Jaakko J Uusitalo, Helgi I Ingólfsson, Siewert J Marrink, Ignacio Faustino"         # Paper authors (required)
+year: "2017"           # Publication year (required)
+publication: "Biophysical journal"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1016/j.bpj.2017.05.043"            # URL of DOI (required)  
+materials: "https://www.cell.com/cms/10.1016/j.bpj.2017.05.043/attachment/f9692cae-c249-46cf-bd15-92ce3c0b4727/mmc1.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - RNA
+  - Journal article
+  - Parametrization
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Uusitalo, J. J., Ingólfsson, H. I., Marrink, S. J., & Faustino, I. (2017). Martini coarse-grained force field: extension to RNA. Biophysical journal, 113(2), 246-256.
+
+## Abstract
+
+RNA has an important role not only as the messenger of genetic information but also as a regulator of gene expression. Given its central role in cell biology, there is significant interest in studying the structural and dynamic behavior of RNA in relation to other biomolecules. Coarse-grain molecular dynamics simulations are a key tool to that end. Here, we have extended the coarse-grain Martini force field to include RNA after our recent extension to DNA. In the same way DNA was modeled, the tertiary structure of RNA is constrained using an elastic network. This model, therefore, is not designed for applications involving RNA folding but rather offers a stable RNA structure for studying RNA interactions with other (bio)molecules. The RNA model is compatible with all other Martini models and opens the way to large-scale explicit-solvent molecular dynamics simulations of complex systems involving RNA.

@@ -1,0 +1,34 @@
+---
+title: "Nonconverged Constraints Cause Artificial Temperature Gradients in Lipid Bilayer Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Sebastian Thallmair, Matti Javanainen, Balázs Fábián, Hector Martinez-Seara, and Siewert J. Marrink"         # Paper authors (required)
+year: "2021"           # Publication year (required)
+publication: "The Journal of Physical Chemistry B"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jpcb.1c03665"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jpcb.1c03665?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Lipid membranes
+  - Sterols
+  - Methods
+  - Phopholipids
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Thallmair, S., Javanainen, M., Fábián, B., Martinez-Seara, H., & Marrink, S. J. (2021). Nonconverged constraints cause artificial temperature gradients in lipid bilayer simulations. The Journal of Physical Chemistry B, 125(33), 9537-9546.
+
+## Abstract
+
+Molecular dynamics (MD) simulations have become an indispensable tool to investigate phase separation in model membrane systems. In particular, simulations based on coarse-grained (CG) models have found widespread use due to their increased computational efficiency, allowing for simulations of multicomponent lipid bilayers undergoing phase separation into liquid-ordered and liquid-disordered domains. Here, we show that a significant temperature difference between molecule types can artificially arise in CG MD membrane simulations with the standard Martini simulation parameters in GROMACS. In particular, the linear constraint solver (LINCS) algorithm does not converge with its default settings, resulting in serious temperature differences between molecules in a time step-dependent manner. We demonstrate that the underlying reason for this behavior is the presence of highly constrained moieties, such as cholesterol. Their presence can critically impact numerous structural and dynamic membrane properties obtained from such simulations. Furthermore, any preference of these molecules toward a certain membrane phase can lead to spatial temperature gradients, which can amplify the degree of phase separation or even induce it in compositions that would otherwise mix well. We systematically investigated the effect of the integration time step and LINCS settings on membrane properties. Our data show that for cholesterol-containing membranes, a time step of 20 fs should be combined with at least lincs_iter = 2 and lincs_order = 12, while using a time step of 30 fs requires at least lincs_iter = 3 and lincs_order = 12 to bring the temperature differences to a level where they do not perturb central membrane properties. Moreover, we show that in cases where stricter LINCS settings are computationally too demanding, coupling the lipids in multiple groups to the temperature bath offers a practical workaround to the problem, although the validity of this approach should be further verified. Finally, we show that similar temperature gradients can also emerge in atomistic simulations using the CHARMM force field in combination with settings that allow for a 5 fs integration step.

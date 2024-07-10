@@ -1,0 +1,33 @@
+---
+title: "A Practical View of the MARTINI Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Bart MH Bruininks, Paulo CT Souza, Siewert J Marrink"         # Paper authors (required)
+year: "2019"           # Publication year (required)
+publication: "Biomolecular Simulations"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1007/978-1-4939-9608-7_5"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - DNA
+  - Book chapter
+  - Protocol
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Bruininks, B. M., Souza, P. C., & Marrink, S. J. (2019). A practical view of the martini force field. Biomolecular Simulations: Methods and Protocols, 105-127.
+
+## Abstract
+
+Martini is a coarse-grained (CG) force field suitable for molecular dynamics (MD) simulations of (bio)molecular systems. It is based on mapping of two to four heavy atoms to one CG particle. The effective interactions between the CG particles are parametrized to reproduce partitioning free energies of small chemical compounds between polar and apolar phases. In this chapter, a summary of the key elements of this CG force field is presented, followed by an example of practical application: a lipoplex-membrane fusion experiment. Formulated as hands-on practice, this chapter contains guidelines to build CG models of important biological systems, such as asymmetric bilayers and double-stranded DNA. Finally, a series of notes containing useful information, limitations, and tips are described in the last section.

@@ -1,0 +1,34 @@
+---
+title: "Improved Parameters for the Martini Coarse-Grained Protein Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Djurre H. de Jong, Gurpreet Singh, W. F. Drew Bennett, Clement Arnarez, Tsjerk A. Wassenaar, Lars V. Schäfer, Xavier Periole, D. Peter Tieleman, and Siewert J. Marrink"         # Paper authors (required)
+year: "2013"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct300646g"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Parametrization
+  - Forcefield
+  - Lipid membranes
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> De Jong, D. H., Singh, G., Bennett, W. D., Arnarez, C., Wassenaar, T. A., Schafer, L. V., ... & Marrink, S. J. (2013). Improved parameters for the martini coarse-grained protein force field. Journal of chemical theory and computation, 9(1), 687-697.
+
+## Abstract
+
+The Martini coarse-grained force field has been successfully used for simulating a wide range of (bio)molecular systems. Recent progress in our ability to test the model against fully atomistic force fields, however, has revealed some shortcomings. Most notable, phenylalanine and proline were too hydrophobic, and dimers formed by polar residues in apolar solvents did not bind strongly enough. Here, we reparametrize these residues either through reassignment of particle types or by introducing embedded charges. The new parameters are tested with respect to partitioning across a lipid bilayer, membrane binding of Wimley–White peptides, and dimerization free energy in solvents of different polarity. In addition, we improve some of the bonded terms in the Martini protein force field that lead to a more realistic length of α-helices and to improved numerical stability for polyalanine and glycine repeats. The new parameter set is denoted Martini version 2.2.

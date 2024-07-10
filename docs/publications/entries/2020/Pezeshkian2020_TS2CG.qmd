@@ -1,0 +1,35 @@
+---
+title: "Backmapping triangulated surfaces to coarse-grained membrane models"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Weria Pezeshkian, Melanie König, Tsjerk A Wassenaar, Siewert J Marrink"         # Paper authors (required)
+year: "2020"           # Publication year (required)
+publication: "Nature communications"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1038/s41467-020-16094-y"            # URL of DOI (required)  
+materials: "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-020-16094-y/MediaObjects/41467_2020_16094_MOESM1_ESM.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Multi-scale
+  - Methods
+  - Vesicles
+  - Lipid membranes
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Pezeshkian, W., König, M., Wassenaar, T. A., & Marrink, S. J. (2020). Backmapping triangulated surfaces to coarse-grained membrane models. Nature communications, 11(1), 2296.
+
+## Abstract
+
+Many biological processes involve large-scale changes in membrane shape. Computer simulations of these processes are challenging since they occur across a wide range of spatiotemporal scales that cannot be investigated in full by any single current simulation technique. A potential solution is to combine different levels of resolution through a multiscale scheme. Here, we present a multiscale algorithm that backmaps a continuum membrane model represented as a dynamically triangulated surface (DTS) to its corresponding molecular model based on the coarse-grained (CG) Martini force field. Thus, we can use DTS simulations to equilibrate slow large-scale membrane conformational changes and then explore the local properties at CG resolution. We demonstrate the power of our method by backmapping a vesicular bud induced by binding of Shiga toxin and by transforming the membranes of an entire mitochondrion to near-atomic resolution. Our approach opens the way to whole cell simulations at molecular detail.

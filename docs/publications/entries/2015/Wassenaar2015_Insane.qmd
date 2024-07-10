@@ -1,0 +1,35 @@
+---
+title: "Computational Lipidomics with insane: A Versatile Tool for Generating Custom Membranes for Molecular Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Tsjerk A. Wassenaar, Helgi I. Ingólfsson, Rainer A. Böckmann, D. Peter Tieleman, and Siewert J. Marrink"         # Paper authors (required)
+year: "2015"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.5b00209"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00209"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Lipid membranes
+  - Methods
+  - Phopholipids
+  - Sterols
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Wassenaar, T. A., Ingólfsson, H. I., Bockmann, R. A., Tieleman, D. P., & Marrink, S. J. (2015). Computational lipidomics with insane: a versatile tool for generating custom membranes for molecular simulations. Journal of chemical theory and computation, 11(5), 2144-2155.
+
+## Abstract
+
+For simulations of membranes and membrane proteins, the generation of the lipid bilayer is a critical step in the setup of the system. Membranes comprising multiple components pose a particular challenge, because the relative abundances need to be controlled and the equilibration of the system may take several microseconds. Here we present a comprehensive method for building membrane containing systems, characterized by simplicity and versatility. The program uses preset, coarse-grain lipid templates to build the membrane, and also allows on-the-fly generation of simple lipid types by specifying the headgroup, linker, and lipid tails on the command line. The resulting models can be equilibrated, after which a relaxed atomistic model can be obtained by reverse transformation. For multicomponent membranes, this provides an efficient means for generating equilibrated atomistic models. The method is called insane, an acronym for INSert membrANE. The program has been made available, together with the complementary method for reverse transformation, at http://cgmartini.nl/. This work highlights the key features of insane and presents a survey of properties for a large range of lipids as a start of a computational lipidomics project.

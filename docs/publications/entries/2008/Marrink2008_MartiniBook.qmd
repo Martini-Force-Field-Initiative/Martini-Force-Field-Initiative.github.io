@@ -1,0 +1,32 @@
+---
+title: "The MARTINI force field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Siewert J. Marrink, Marc Fuhrmans, H. Jelger Risselada, and Xavier Periole"         # Paper authors (required)
+year: "2008"           # Publication year (required)
+publication: "Coarse graining of condensed phase and biomolecular systems"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1201/9781420059564"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Book chapter
+  - Forcefield
+  - Protocol
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Marrink, S. J., Fuhrmans, M., Risselada, H. J., & Periole, X. (2008). The MARTINI force field. CRC Press: New York.
+
+## Abstract
+
+The use of coarse-grained (CG) models in a variety of simulation techniques has proven to be a valuable tool to probe the time and length scales of systems beyond what is feasible with traditional all-atom (AA) models. Applications to lipid systems in particular, pioneered by Smit et al.,1 have become widely used. A large diversity of coarse-graining approaches is available; they range from qualitative, solvent-free models, via more realistic models with explicit water, to models including chemical speci city (for recent reviews see Refs. 2-4). Models within this latter category are typically parameterized based on comparison to atomistic simulations, using inverted Monte Carlo schemes5-7 or force matching8 approaches. Our own model,9,10 coined the MARTINI forcefield, has also been developed in close connection with atomistic models; however, the philosophy of our coarse-graining approach is different. Instead of focusing on an accurate reproduction of structural details at a particular state point for a specic system, we aim for a broader range of applications without the need to reparameterize the model each time. We do so by extensive calibration of the chemical building blocks of the CG force eld against thermodynamic data, in particular oil/water partitioning coefficients. This is similar in spirit to the recent development of the GROMOS forcefield.11 Processes such as lipid self-assembly, peptide membrane binding, and protein-protein recognition depend critically on the degree to which the constituents partition between polar and nonpolar environments. The use of a consistent strategy for the development of compatible CG and atomic-level forcefields is of additional importance for its intended use in multiscale applications.12 The overall aim of our coarse-graining approach is to provide a simple model that is computationally fast and easy to use, yet exible enough to be applicable to a large range of biomolecular systems.

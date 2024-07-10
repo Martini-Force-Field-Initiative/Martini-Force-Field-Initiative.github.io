@@ -1,0 +1,34 @@
+---
+title: "Parameterization of palmitoylated cysteine, farnesylated cysteine, geranylgeranylated cysteine, and myristoylated glycine for the martini force field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Yoav Atsmon-Raz, D Peter Tieleman"         # Paper authors (required)
+year: "2017"           # Publication year (required)
+publication: "The Journal of Physical Chemistry B"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jpcb.7b10175"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/abs/10.1021/acs.jpcb.7b10175"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Parametrization
+  - Proteins
+  - Post-translational modifications
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Atsmon-Raz, Y., & Tieleman, D. P. (2017). Parameterization of palmitoylated cysteine, farnesylated cysteine, geranylgeranylated cysteine, and myristoylated glycine for the martini force field. The Journal of Physical Chemistry B, 121(49), 11132-11143.
+
+## Abstract
+
+Peripheral membrane proteins go through various post-translational modifications that covalently bind fatty acid tails to specific amino acids. These post-translational modifications significantly alter the lipophilicity of the modified proteins and allow them to anchor to biological membranes. Over 1000 different proteins have been identified to date that require such membrane–protein interactions to carry out their biological functions, including members of the Src and Ras superfamilies that play key roles in cell signaling and carcinogenesis. We have used all-atom simulations with the CHARMM36 force field to parameterize four of the most common post-translational modifications for the Martini 2.2 force field: palmitoylated cysteine, farnesylated cysteine, geranylgeranylated cysteine, and myristoylated glycine. The parameters reproduce the key features of clusters of configurations of the different anchors in lipid membranes as well as the water–octanol partitioning free energies of the anchors, which are crucial for the correct reproduction of the expected biophysical behavior of peripheral membrane proteins at the membrane–water interface. Implementation in existing Martini setup tools facilitates the use of the new parameters.

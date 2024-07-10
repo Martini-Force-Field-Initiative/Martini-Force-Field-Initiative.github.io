@@ -1,0 +1,33 @@
+---
+title: "Dry Martini, a Coarse-Grained Force Field for Lipid Membrane Simulations with Implicit Solvent"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Clément Arnarez, Jaakko J. Uusitalo, Marcelo F. Masman, Helgi I. Ingólfsson, Djurre H. de Jong, Manuel N. Melo, Xavier Periole, Alex H. de Vries, and Siewert J. Marrink"         # Paper authors (required)
+year: "2015"           # Publication year (required)
+publication: "Journal of chemical theory and computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct500477k"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Forcefield
+  - Solvents
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Arnarez, C., Uusitalo, J. J., Masman, M. F., Ingólfsson, H. I., De Jong, D. H., Melo, M. N., ... & Marrink, S. J. (2015). Dry Martini, a coarse-grained force field for lipid membrane simulations with implicit solvent. Journal of chemical theory and computation, 11(1), 260-275.
+
+## Abstract
+
+Coarse-grained (CG) models allow simulation of larger systems for longer times by decreasing the number of degrees of freedom compared with all-atom models. Here we introduce an implicit-solvent version of the popular CG Martini model, nicknamed “Dry” Martini. To account for the omitted solvent degrees of freedom, the nonbonded interaction matrix underlying the Martini force field was reparametrized. The Dry Martini force field reproduces relatively well a variety of lipid membrane properties such as area per lipid, bilayer thickness, bending modulus, and coexistence of liquid-ordered and disordered domains. Furthermore, we show that the new model can be applied to study membrane fusion and tether formation, with results similar to those of the standard Martini model. Membrane proteins can also be included, but less quantitative results are obtained. The absence of water in Dry Martini leads to a significant speedup for large systems, opening the way to the study of complex multicomponent membranes containing millions of lipids.

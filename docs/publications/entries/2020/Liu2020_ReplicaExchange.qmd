@@ -1,0 +1,34 @@
+---
+title: "Coupling Coarse-Grained to Fine-Grained Models via Hamiltonian Replica Exchange"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Yang Liu, Weria Pezeshkian, Jonathan Barnoud, Alex H de Vries, Siewert J Marrink"         # Paper authors (required)
+year: "2020"           # Publication year (required)
+publication: "Journal of chemical theory and computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.0c00429"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.0c00429"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Multi-scale
+  - Enhanced sampling
+  - Solvents
+  - Journal article
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Liu, Y., Pezeshkian, W., Barnoud, J., De Vries, A. H., & Marrink, S. J. (2020). Coupling coarse-grained to fine-grained models via Hamiltonian Replica Exchange. Journal of Chemical Theory and Computation, 16(8), 5313-5322.
+
+## Abstract
+
+The energy landscape of biomolecular systems contains many local minima that are separated by high energy barriers. Sampling this landscape in molecular dynamics simulations is a challenging task and often requires the use of enhanced sampling techniques. Here, we increase the sampling efficiency by coupling the fine-grained (FG) GROMOS force field to the coarse-grained (CG) Martini force field via the Hamiltonian replica exchange method (HREM). We tested the efficiency of this procedure using a lutein/octane system. In traditional simulations, cis–trans transitions of lutein are barely observed due to the high energy barrier separating these states. However, many of these transitions are sampled with our HREM scheme. The proposed method offers new possibilities for enhanced sampling of biomolecular conformations, making use of CG models without compromising the accuracy of the FG model.

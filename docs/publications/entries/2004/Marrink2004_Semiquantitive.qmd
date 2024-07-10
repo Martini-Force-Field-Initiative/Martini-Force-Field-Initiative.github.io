@@ -1,0 +1,34 @@
+---
+title: "Coarse Grained Model for Semiquantitative Lipid Simulations"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Siewert J. Marrink, Alex H. de Vries, and Alan E. Mark"         # Paper authors (required)
+year: "2004"           # Publication year (required)
+publication: "The Journal of Physical Chemistry B"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/jp036508g"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Lipid membranes
+  - Parametrization
+  - Forcefield
+  - Phopholipids
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Marrink, S. J., De Vries, A. H., & Mark, A. E. (2004). Coarse grained model for semiquantitative lipid simulations. The Journal of Physical Chemistry B, 108(2), 750-760.
+
+## Abstract
+
+This paper describes the parametrization of a new coarse grained (CG) model for lipid and surfactant systems. Reduction of the number of degrees of freedom together with the use of short range potentials makes it computationally very efficient. Compared to atomistic models a gain of 3−4 orders of magnitude can be achieved. Micrometer length scales or millisecond time scales are therefore within reach. To encourage applications, the model is kept very simple. Only a small number of coarse grained atom types are defined, which interact using a few discrete levels of interaction. Despite the computational speed and the simplistic nature of the model, it proves to be both versatile in its applications and accurate in its predictions. We show that densities of liquid alkanes from decane up to eicosane can be reproduced to within 5%, and the mutual solubilities of alkanes in water and water in alkanes can be reproduced within 0.5 kT of the experimental values. The CG model for dipalmitoylphosphatidylcholine (DPPC) is shown to aggregate spontaneously into a bilayer. Structural properties such as the area per headgroup and the phosphate−phosphate distance match the experimentally measured quantities closely. The same is true for elastic properties such as the bending modulus and the area compressibility, and dynamic properties such as the lipid lateral diffusion coefficient and the water permeation rate. The distribution of the individual lipid components along the bilayer normal is very similar to distributions obtained from atomistic simulations. Phospholipids with different headgroup (ethanolamine) or different tail lengths (lauroyl, stearoyl) or unsaturated tails (oleoyl) can also be modeled with the CG force field. The experimental area per headgroup can be reproduced for most lipids within 0.02 nm2. Finally, the CG model is applied to nonbilayer phases. Dodecylphosphocholine (DPC) aggregates into small micelles that are structurally very similar to ones modeled atomistically, and DOPE forms an inverted hexagonal phase with structural parameters in agreement with experimental data.

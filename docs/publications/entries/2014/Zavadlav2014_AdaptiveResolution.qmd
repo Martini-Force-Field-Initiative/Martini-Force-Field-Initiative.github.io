@@ -1,0 +1,33 @@
+---
+title: "Adaptive resolution simulation of an atomistic protein in MARTINI water"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Julija Zavadlav, Manuel Nuno Melo, Siewert J. Marrink, and Matej Praprotnik"         # Paper authors (required)
+year: "2014"           # Publication year (required)
+publication: "The Journal of chemical physics"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1063/1.4863329"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Solvents
+  - Multi-scale
+  - Proteins
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Zavadlav, J., Melo, M. N., Marrink, S. J., & Praprotnik, M. (2014). Adaptive resolution simulation of an atomistic protein in MARTINI water. The Journal of chemical physics, 140(5).
+
+## Abstract
+
+We present an adaptive resolution simulation of protein G in multiscale water. We couple atomistic water around the protein with mesoscopic water, where four water molecules are represented with one coarse-grained bead, farther away. We circumvent the difficulties that arise from coupling to the coarse-grained model via a 4-to-1 molecule coarse-grain mapping by using bundled water models, i.e., we restrict the relative movement of water molecules that are mapped to the same coarse-grained bead employing harmonic springs. The water molecules change their resolution from four molecules to one coarse-grained particle and vice versa adaptively on-the-fly. Having performed 15 ns long molecular dynamics simulations, we observe within our error bars no differences between structural (e.g., root-mean-squared deviation and fluctuations of backbone atoms, radius of gyration, the stability of native contacts and secondary structure, and the solvent accessible surface area) and dynamical properties of the protein in the adaptive resolution approach compared to the fully atomistically solvated model. Our multiscale model is compatible with the widely used MARTINI force field and will therefore significantly enhance the scope of biomolecular simulations.

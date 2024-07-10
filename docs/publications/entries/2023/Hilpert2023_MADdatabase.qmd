@@ -1,0 +1,36 @@
+---
+title: "Facilitating CG Simulations with MAD: The MArtini Database Server"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Cécile Hilpert, Louis Beranger, Paulo C. T. Souza, Petteri A. Vainikka, Vincent Nieto, Siewert J. Marrink, Luca Monticelli and Guillaume Launay"         # Paper authors (required)
+year: "2023"           # Publication year (required)
+publication: "Journal of chemical information and modeling"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jcim.2c01375"            # URL of DOI (required)  
+materials: "https://mad.ibcp.fr/tutorial/database.html"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Parametrization
+  - Small molecules
+  - Phopholipids
+  - Metabolites
+  - Materials science
+  - Cofactors
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Hilpert, C., Beranger, L., Souza, P. C., Vainikka, P. A., Nieto, V., Marrink, S. J., ... & Launay, G. (2023). Facilitating CG simulations with MAD: The MArtini database server. Journal of chemical information and modeling, 63(3), 702-710.
+
+## Abstract
+
+The MArtini Database (MAD - https://mad.ibcp.fr) is a web server designed for the sharing of structures and topologies of molecules parametrized with the Martini coarse-grained (CG) force field. MAD can also convert atomistic structures into CG structures and prepare complex systems (including proteins, lipids, etc.) for molecular dynamics (MD) simulations at the CG level. It is dedicated to the generation of input files for Martini 3, the most recent version of this popular CG force field. Specifically, the MAD server currently includes tools to submit or retrieve CG models of a wide range of molecules (lipids, carbohydrates, nanoparticles, etc.), transform atomistic protein structures into CG structures and topologies, with fine control on the process and assemble biomolecules into large systems, and deliver all files necessary to start simulations in the GROMACS MD engine.

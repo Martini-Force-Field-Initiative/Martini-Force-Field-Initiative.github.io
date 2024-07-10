@@ -1,0 +1,34 @@
+---
+title: "Going Backward: A Flexible Geometric Approach to Reverse Transformation from Coarse Grained to Atomistic Models"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Tsjerk A. Wassenaar, Kristyna Pluhackova, Rainer A. Böckmann, Siewert J. Marrink, and D. Peter Tieleman"         # Paper authors (required)
+year: "2014"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct400617g"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Multi-scale
+  - Proteins
+  - Lipid membranes
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Wassenaar, T. A., Pluhackova, K., Bockmann, R. A., Marrink, S. J., & Tieleman, D. P. (2014). Going backward: a flexible geometric approach to reverse transformation from coarse grained to atomistic models. Journal of chemical theory and computation, 10(2), 676-690.
+
+## Abstract
+
+The conversion of coarse-grained to atomistic models is an important step in obtaining insight about atomistic scale processes from coarse-grained simulations. For this process, called backmapping or reverse transformation, several tools are available, but these commonly require libraries of molecule fragments or they are linked to a specific software package. In addition, the methods are usually restricted to specific molecules and to a specific force field. Here, we present an alternative method, consisting of geometric projection and subsequent force-field based relaxation. This method is designed to be simple and flexible, and offers a generic solution for resolution transformation. For simple systems, the conversion only requires a list of particle correspondences on the two levels of resolution. For special cases, such as nondefault protonation states of amino acids and virtual sites, a target particle list can be specified. The mapping uses simple building blocks, which list the particles on the different levels of resolution. For conversion to higher resolution, the initial model is relaxed with several short cycles of energy minimization and position-restrained MD. The reconstruction of an atomistic backbone from a coarse-grained model is done using a new dedicated algorithm. The method is generic and can be used to map between any two particle based representations, provided that a mapping can be written. The focus of this work is on the coarse-grained MARTINI force field, for which mapping definitions are written to allow conversion to and from the higher-resolution force fields GROMOS, CHARMM, and AMBER, and to and from a simplified three-bead lipid model. Together, these offer the possibility to simulate mesoscopic membrane structures, to be transformed to MARTINI and subsequently to an atomistic model for investigation of detailed interactions. The method was tested on a set of systems ranging from a simple, single-component bilayer to a large protein–membrane–solvent complex. The results demonstrate the efficiency and the efficacy of the new approach.

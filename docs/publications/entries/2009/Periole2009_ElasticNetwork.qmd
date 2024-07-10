@@ -1,0 +1,33 @@
+---
+title: "Combining an Elastic Network With a Coarse-Grained Molecular Force Field: Structure, Dynamics, and Intermolecular Recognition"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Xavier Periole, Marco Cavalli, Siewert-Jan Marrink, and Marco A. Ceruso"         # Paper authors (required)
+year: "2009"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/ct9002114"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Proteins
+  - Methods
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Periole, X., Cavalli, M., Marrink, S. J., & Ceruso, M. A. (2009). Combining an elastic network with a coarse-grained molecular force field: structure, dynamics, and intermolecular recognition. Journal of chemical theory and computation, 5(9), 2531-2543.
+
+## Abstract
+
+Structure-based and physics-based coarse-grained molecular force fields have become attractive approaches to gain mechanistic insight into the function of large biomolecular assemblies. Here, we study how both approaches can be combined into a single representation, that we term ELNEDIN. In this representation an elastic network is used as a structural scaffold to describe and maintain the overall shape of a protein and a physics-based coarse-grained model (MARTINI-2.1) is used to describe both inter- and intramolecular interactions in the system. The results show that when used in molecular dynamics simulations ELNEDIN models can be built so that the resulting structural and dynamical properties of a protein, including its collective motions, are comparable to those obtained using atomistic protein models. We then evaluate the behavior of such models in (1) long, microsecond time-scale, simulations, (2) the modeling of very large macromolecular assemblies, a viral capsid, and (3) the study of a protein−protein association process, the reassembly of the ROP homodimer. The results for this series of tests indicate that ELNEDIN models allow microsecond time-scale molecular dynamics simulations to be carried out readily, that large biological entities such as the viral capsid of the cowpea mosaic virus can be stably modeled as assemblies of independent ELNEDIN models, and that ELNEDIN models show significant promise for modeling protein−protein association processes.
