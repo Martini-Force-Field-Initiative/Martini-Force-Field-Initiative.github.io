@@ -349,3 +349,5 @@ This shell script automates the invocation of backward.py to generate the starti
 Once `initram.sh` finishes you have your atomistic system ready! Judge the quality of the conversion by visualizing both CG and atomistic `.gro` files superimposed. Or take the generated structure for a test run using an approriate `.mdp` file, which you can find in the `AA` directory.
 
 If the process exits with errors during the minimization/equilibration you can just try rerunning it: the atom assignment to the bead space is done randomly and bad luck can cause a botched backmapping.
+
+<hr>

@@ -169,3 +169,5 @@ echo 2 | gmx trjconv -f md.xtc -s md.tpr -pbc whole -o mapped.xtc
 Repeat until you're happy with the result, then move to the last step.
 
 **9) Compare to experimental results.** Partitioning free energies (we are currently working on a tutorial explaining how to efficiently calculate those for Martini molecules) are particularly good, but for pure liquids also densities can be used or any other experimental number you can lay your hands on.
+
+<hr>
