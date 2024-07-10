@@ -1,0 +1,60 @@
+---
+title: <i class="fa-brands fa-mixer"></i> Polymers
+format: html
+---
+
+<hr>
+
+
+Available Martini 2 polymer topologies are listed below according to their major category. In addition, you can use [Martini_PolyPly](https://github.com/fgrunewald/Martini_PolyPly) to generate GROMACS itp files of polymers from a monomer itp-file and generate coordinates of polymer molecules from a complete topology file. 
+
+**References to these works can be found in the headers of the corresponding `.itp` files.**
+
+---------------------------------------------------------------------------
+
+### Branched polymers
+<hr>
+
+|         Molecule                    |     Coordinates   |    Topology   |     Mapping      |
+|-------|---------------------------------------|--------|------|
+|Poly(amidoamine) dendimer (PAMAM)	| [martini_v2.0_PAMAM_G5.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pamam/martini_v2.0_PAMAM_G5.gro) |[[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pamam/martini_v2.0_PEO_PS_CNP.itp)   |  Not available |
+
+---------------------------------------------------------------------------
+
+### Linear polymers
+
+---------------------------------------------------------------------------
+
+|         Molecule                    |     Coordinates   |    Topology   |     Mapping      |
+|-------|---------------------------------------|--------|------|
+|Poly(ethylene glycol) (PEG)                | [martini_v2.0_PEO_27.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/peg/martini_v2.0_PEO_27.gro)     | [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/peg/martini_v2.0_PEO_PS_CNP.itp) <br> For polarizable water: [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/peg/martini_v2.2refP_PEO.itp) |  Not available |
+|Poly(styrene)	(PS)                  | Single chain: [martini_v2.0_PS_100.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/ps/martini_v2.0_PS_100.gro) <br> 100mer in Benzene [martini_v2.0_PS_in_BENZ.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/ps/martini_v2.0_PS_in_BENZ.gro)     |  [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/ps/martini_v2.0_PEO_PS_CNP.itp) |  Not available   |
+|Poly(3-hexylthiophene-2,5-diyl) (P3HT)   |  [martini_v2.0_P3HT_48.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/p3ht/martini_v2.0_P3HT_48.gro)   |  [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/p3ht/martini_v2.0_PEO_PS_CNP.itp)  |  Not available   |
+|Poly (styrene sulfonate)   (PSS) | [martini_v2.2P_PSS_30.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pss/martini_v2.2P_PSS_30.gro)   | [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pss/martini_v2.2P_PS.itp) |   Not available |
+|Poly(diallyl dimethyl ammonium) (PDADMA)	    |   [martini_v2.2P_PDADMA_30.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pdadma/martini_v2.2P_PDADMA_30.gro) | [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pdadma/martini_v2.2P_PS.itp)  |  Not available   |
+|Polypropylene	            (PP)            | [martini_v2.0_PP_100.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pp/martini_v2.0_PP_100.gro)    | [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pp/martini_v2.0_PEO_PS_CNP.itp) |  Not available    |
+|Polyethylene	              (PE)          | [martini_v2.0_PE_80.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pe/martini_v2.0_PE_80.gro)  |  [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pe/martini_v2.0_PEO_PS_CNP.itp)  |  Not available   |
+
+---------------------------------------------------------------------------
+
+### Others
+<hr>
+
+
+A list of everything which does not really fit in any of the above.
+
+|         Molecule                    |     Coordinates   |    Topology   |     Mapping      |
+|-------|---------------------------------------|--------|------|
+|Poly(styrene)-b-poly(ethylene oxide)	<br>(PS-b-PEO) | [martini_v2.0_PSbPEO_10_23.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/psbpeo/martini_v2.0_PSbPEO_10_23.gro) |  [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/psbpeo/martini_v2.0_PEO_PS_CNP.itp) | Not available  |
+|PEGylated-DPPC		(PEL-DPPC) | [martini_v2.0_PEL_45.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pegdppc/martini_v2.0_PEL_45.gro) <br> [martini_v2.0_PEL_45_brush.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pegdppc/martini_v2.0_PEL_45_brush.gro) <br> [martini_v2.0_PEL_45_mushroom.gro](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pegdppc/martini_v2.0_PEL_45_mushroom.gro) |  [[itp]](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/pegdppc/martini_v2.0_PEO_PS_CNP.itp) | Not available  |
+
+---------------------------------------------------------------------------
+
+### Collections
+<hr>
+
+This is an legacy collection of the polymer related parameters. PEG and PEO, a PEGylated lipid, a G5 PAMAM dendrimer, polystyrene, and P3HT
+
+- [martini_v2.0_polymers.itp](https://martini-library.s3.us-east-2.amazonaws.com/ff_parameters/martini2/polymers/martini_v2.0_polymers.itp)
+
+---------------------------------------------------------------------------

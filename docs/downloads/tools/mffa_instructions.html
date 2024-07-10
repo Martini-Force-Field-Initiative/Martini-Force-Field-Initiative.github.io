@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Gromacs/MFFA</title>
+	<meta name="Author" content="Martti Louhivuori">
+	<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" href="http://www.w3.org/StyleSheets/Core/Midnight" type="text/css">
+	<!-- <link rel="stylesheet" href="mara.css" type="text/css"> -->
+</head>
+<body>
+	<div class="ylaviite">
+		<a href="./">Info</a>
+		<a href="publications.html">Publications</a>
+		<a href="softa/">Software</a>
+		<!--		<span>Gromacs/MFFA</span>-->
+	</div>
+	<div id="polku">> <a href="softa/">software</a> > mffa</div>
+
+	<h1>Gromacs/MFFA</h1>
+	<p>Gromacs/MFFA is a customised <a href="http://www.gromacs.org">Gromacs</a> 
+	version that supports user-defined, implicit, mean-field force approximation 
+	(<a href="#mffa">MFFA</a>) boundary potentials. It offers a computationally efficient method to 
+	simulate e.g. large vesicular systems in spherical liquid droplets.</p>
+	
+	<p>Gromacs/MFFA was originally written by Jelger Risselada for Gromacs 3.1.4 
+	and has been subsequently ported e.g. to Gromacs 4 by Martti Louhivuori.
+	The <a href="#download">current version</a> is stable (at least in the machines we have used) and 
+	suitable for production runs (AFAIK), but since Gromacs/MFFA is still under 
+	active development one should always 
+	<span class="huom">carefully validate all results</span> obtained by it.
+	For instructions on how to use it, see <a href="#howto">below</a>.</p>
+
+	<p>The current maintainer of Gromacs/MFFA is Martti Louhivuori. 
+	If you have any suggestions / bug reports, please send a sufficiently 
+	detailed description to 
+	<a href="mailto:m.j.louhivuori@rug.nl">m.j.louhivuori@rug.nl</a>. 
+
+	<a name="download"><h2>Download</h2></a>
+	<ul>
+		<li>Gromacs/MFFA 4.0.5 (<a href="softa/mffa-4.0.5.tar.gz" onClick='javascript: pageTracker._trackPageview("/downloads/mffa-4.0.5.tar.gz");'>source</a>)</li>
+		<li>Gromacs/MFFA 3.3.3 (<a href="softa/mffa-3.3.3.tar.gz" onClick='javascript: pageTracker._trackPageview("/downloads/mffa-3.3.3.tar.gz");'>source</a>)</li>
+		<li><a href="softa/mffa-example.tar.gz" onClick='javascript: pageTracker._trackPageview("/downloads/mffa-example.tar.gz");'>example system</a></li>
+	</ul>
+	
+	<a name="mffa"><h2>Mean-field force approximation</h2></a>
+	<p>A mean-field force approximation (MFFA) potential is an implicit 
+	interaction potential that mimics a bulk solvent phase. It is intended to 
+	match the effective, net interaction a particle would feel from the solvent 
+	particles replaced by the potential.</p>
+	
+	<p>Brooks and Karplus showed [1] that such a mean-field potential can be 
+	readily calculated from the radial distribution function (RDF) of a pure 
+	liquid system. The exact form of the MFFA potential depends on the geometry 
+	of the boundary, but e.g. for a Lennard-Jones liquid it has the same kind of 
+	attractive and repulsive regimes as the LJ-potential.</p>
+
+	<p>The main advantage of replacing part of the explicit solvent with an 
+	implicit MFFA potential is, of course, computational efficiency. It is 
+	trivial to show that e.g. for a spherical system the number of particles 
+	increases cubicly with an increase in the radius of the system. In practice 
+	this means that one spends a relatively large proportion of computational 
+	resources on the (less important) bulk solvent surrounding the system of 
+	interest. An enveloping MFFA potential allows one to use a thinner bulk 
+	layer of explicit solvent, and thus improves computational efficiency 
+	dramatically. MFFA boundary potentials have been shown [2] to also have
+	sometimes other secondary advantages e.g. through a molding effect to 
+	speed up spontaneous formation of lipid vesicles. It is also possible to 
+	create a pressure gradient across a vesicle e.g. by coupling two independent 
+	MFFA potentials (one inside and one outside) to different ambient 
+	pressures.</p>
+	
+	<ol>
+		<li>Brooks CL & Karplus M (1983) Deformable stochastic boundaries in molecular 
+		dynamics. J&nbsp;Chem&nbsp;Phys 79:6312-6325</li>
+		<li>Risselada et al. (2008) Application of mean field boundary potentials 
+		in simulations of lipid vesicles. J&nbsp;Phys&nbsp;Chem&nbsp;B 112:7438-7447</li>
+	</ol>
+
+	<a name="howto"><h2>Quick HOW-TO</h2></a>
+
+	<h3>1) Prepare RDF</h3>
+	<p>Set-up and run an equilibrium simulation of a pure liquid system under the 
+	same environmental conditions that you wish to use for the MFFA simulation. 
+	Of course, you need to use a large enough simulation box and run for long 
+	enough to achieve proper statistics for a good quality RDF. Once done, use 
+	<span class="komento">g_rdf</span> to obtain the actual solvent-solvent 
+	RDF:</p>
+
+	<div class="terminaali">
+		<!--		<div class="shell">in bash:</div>-->
+		<span>echo 0 0 | g_rdf -f traj.xtc -s topol.tpr -o rdf.xvg -bin 0.001</span>
+	</div>
+
+	<h3>2) Prepare simulation system</h3>
+	<p>Set-up the actual simulation system that you want to run with 
+	Gromacs/MFFA. E.g. to simulate something in a spherical droplet of water 
+	instead of the normal periodic box, you need to surround the (periodic) 
+	system with a spherical water shell of required dimensions.	This is readily 
+	done using <span class="komento">editconf</span>, 
+	<span class="komento">genbox</span>, and a Python-script called 
+	<span class="komento">clean-sphere.py</span> 
+	(available from <a href="http://md.chem.rug.nl/~mara/softa/">here</a>).</p>
+
+	<p>So, first edit the box to be large enough and center the system of 
+	interest:</p>
+	<div class="terminaali">
+		<span>editconf -f periodic.gro -o center.gro -box 40 40 40 -c</span>
+	</div>
+	<p>Note: the box dimensions should be at least couple of nm larger than the 
+	actual size of droplet. This is to ensure that there is no "tunneling" 
+	through the MFFA potential in combination with the periodic boundaries that 
+	will still be turned on for computational efficiency. Since this won't 
+	have a negative effect on the performance of the MD engine, you may just as 
+	well use a relatively large vacuum to avoid any "tunneling" events.</p>
+
+	<p>Then solvate the rest of the box (van der Waals radius is increased 
+	for Martini CG water):</p>
+	<div class="terminaali">
+		<span>genbox -cp center.gro -cs water.gro -o solvated.gro -vdwd 0.235</span>
+	</div>
+	<p>And then remove all water that is beyond the MFFA boundary to make a nice, 
+	round water droplet:</p>
+	<div class="terminaali">
+		<span>python clean-sphere.py W 15.0 solvated.gro -o droplet.gro</span>
+	</div>
+	<p>If using a different solvent than CG water, you need to replace "W" with 
+	the correct residue name.</p>
+
+	<h3>3) Calculate MFFA</h3>
+	<p>Once you have your system defined, you need to prepare a matching MFFA 
+	boundary that will envelope the droplet. This is simple to do, but may 
+	require a little bit of trial and error to get the dimensions correct 
+	(we'll come back to this in step 5).</p>
+
+	<p>The easiest way to prepare a MFFA boundary potential for a Lennard-Jones 
+	type solvent (such as Martini CG water), is to use the tool 
+	<span class="komento">g_mffa</span> included in Gromacs/MFFA. For our 30nm 
+	diameter water droplet, this would be done with the command:
+	<div class="terminaali">
+		<span>g_mffa -f rdf.xvg -o mffa.sdb -quench -inner 0 -outer 15 -center 20 20 20 -rho RHO</span>
+	</div>
+	<p>where RHO is the number density of the solvent (step 1). If using a 
+	different solvent than Martini CG water, it may be necessary to change some 
+	of the other parameters as well (such as the van der Waals radius of solvent 
+	particles, the LJ parameters, interaction cut-off etc.). The 
+	<span class="optio">-quench</span> option selects the type of the boundary 
+	potential:</p>
+	<ul>
+		<li>SPHERE -- spherical boundary potential</li>
+		<li>QUENCH -- spherical boundary that is coupled to an external pressure bath</li>
+		<li>LINEAR -- wall-like boundary</li>
+	</ul>
+
+	<h3>4) Set-up simulation parameters</h3>
+	<p>Next, you'll need to set up system topology (.top), MD parameters 
+	(.mdp) etc. just as you would do for a normal simulation. The only change 
+	you need to do is to set the following options in the .mdp file:</p>
+	<div class="optiot">
+		<span># inner cavity growth rate</span><br>
+		userreal1 = 0.000<br>
+		<span># softness of pressure coupling</span><br>
+		userreal2 = 1000<br>
+		<span># SD friction</span><br>
+		userreal3 = 60<br>
+		<span># random generator seed (half-sphere if neg., sphere if pos.)</span><br>
+		userreal4 = 813451<br>
+		<span># apply pressure coupling also on the inner cavity (1=ON, 0=OFF)</span><br>
+		<span># if set to 2, the internal cavity pressure is calculated from the virial</span><br>
+		userint1 = 0
+	</div>
+	
+	<h3>5) Test and fine tune MFFA</h3>
+	<p>Once everything is ready, you should run a short (few ns) simulation to 
+	equilibrate (at least roughly) the system with the MFFA boundary. If all 
+	goes well, the boundary doesn't need to contract/expand too much, but will 
+	only fluctuate around the original radius, and you are set to go for longer 
+	simulations.</p>
+
+	<p>If you observe a clear shrinking/expanding of the boundary, i.e. the 
+	position (=radius) of the potential (the third line in the .sdb file) 
+	changed by more than, let's say, a nanometer, then you should go back to 
+	step 3 and re-calculate a more proper MFFA potential; i.e. use the final 
+	radius of the short run as the <span class="optio">-outer</span> radius of 
+	the new MFFA potential. Repeat until you have a MFFA potential that 
+	corresponds (roughly) to the geometry of the equilibrated droplet.</p>
+
+	<p>The main difference from running normal Gromacs is that you need to 
+	provide at least one MFFA potential (.sdb) to 
+	<span class="komento">mdrun</span> using the <span class="optio">-sb</span> 
+	option.</p>
+	
+	<div class="terminaali">
+		<span>mdrun -sb common.sdb</span>
+	</div>
+
+	<p>If you have multiple potentials (e.g. a fully repulsive one for lipids 
+	to prevent them sticking to the boundary) you need to supply them like this: 
+	<span class="optio">-sb "one.sdb#two.sdb"</span> and also provide a 
+	boundary-index file (.ndb) created with <span class="komento">ndx2ndb</span>
+	(included in Gromacs/MFFA). 
+	The order of the potentials is decided by the order in which you picked the 
+	groups in <span class="komento">ndx2ndb</span>. 
+
+	<div class="terminaali">
+		<span>mdrun -sb "water.sdb#lipid.sdb" -nb index.ndb</span>
+	</div>
+
+	<h3>6) Go! Go!</h3>
+	<p>Finally, you can run long production simulations to study the next BIG 
+	THING&trade;...</p>
+	
+	<div class="alaviite"><span>2.9.2009</span></div>
+
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-11188632-1");
+			pageTracker._trackPageview();
+			} catch(err) {}</script>
+</body>
+</html>
+

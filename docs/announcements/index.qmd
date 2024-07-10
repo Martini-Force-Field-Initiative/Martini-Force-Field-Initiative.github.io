@@ -1,0 +1,25 @@
+---
+title: Martini Announcements 
+subtitle: Latest news related to the Martini FF Initiative
+listing:
+  sort: "date desc"
+  type: grid
+  fields: [image, date, title, author, description]
+  grid-columns: 3
+  grid-item-border: false
+  grid-item-align: left
+  contents: "posts/*/**.qmd"
+  sort-ui: false
+  filter-ui: false
+  categories: false
+  image-placeholder: ../../images/martini_glass.jpeg
+  image-height: 100px
+  feed: true
+  page-size: 50
+page-layout: full
+margin-header: signup.html
+title-block-banner: "#EDF3F9"
+title-block-banner-color: body
+comments: false
+search: false
+---

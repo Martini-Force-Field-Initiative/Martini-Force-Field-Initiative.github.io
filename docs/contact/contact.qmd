@@ -1,0 +1,104 @@
+---
+title: "Contact the Martini FF Initiative"
+toc: true
+title-block-banner: "#EDF3F9"
+---
+:::{.columns}
+:::{.column width=65%}
+
+- **E-mail:** [S.J.Marrink@rug.nl](mailto:S.J.Marrink@rug.nl)
+
+- **Telephone:** +31-50-3634457
+
+- **Address:** \
+[Groningen Biomolecular Sciences and Biotechnology Institute](http://www.rug.nl/research/gbb/) & <br> [Zernike Institute for Advanced Materials](http://www.rug.nl/research/zernike/) <br> University of Groningen <br> Nijenborgh 7 <br> 9747 AG Groningen <br> The Netherlands
+
+- **Homepage:** [http://www.rug.nl/staff/s.j.marrink/](http://www.rug.nl/staff/s.j.marrink/)
+:::
+:::{.column width=5%}
+
+:::
+:::{.column width=22%}
+![**Prof. Dr. Siewert-Jan Marrink**](sjmarrink.jpg){width=205px}
+:::
+:::
+
+<style>
+/* Style for the form container */
+.form-container {
+  max-width: 96%;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top:38px
+}
+
+/* Style for form labels */
+.form-label {
+  font-weight: bold;
+}
+
+/* Style for input fields */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Style for submit button */
+.form-submit {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Hover effect for submit button */
+.form-submit:hover {
+  background-color: #0056b3;
+}
+
+</style>
+
+<!-- <hr> -->
+
+<script>
+function submitForm() {
+  var name = document.getElementById("name").value;
+  var institution = document.getElementById("institution").value;
+  var subject = document.getElementById("subject").value;
+  var message = document.getElementById("message").value;
+
+  var body = "Name: " + name + "\n\n" +
+             "Institution: " + institution + "\n\n" +
+             "Subject: " + subject + "\n\n" +
+             "Message: " + message;
+
+  var mailtoURL = "mailto:S.J.Marrink@rug.nl" +
+                  "?subject=" + encodeURIComponent(subject) +
+                  "&body=" + encodeURIComponent(body);
+
+  document.location.href = mailtoURL;
+}
+</script>
+
+<div class="form-container">
+  <form onsubmit="submitForm(); return false;">
+    <label class="form-label" for="name">Name:</label><br>
+    <input class="form-input" type="text" id="name" name="name" required><br>
+    <label class="form-label" for="institution">Institution:</label><br>
+    <input class="form-input" type="text" id="institution" name="institution" required><br>
+    <label class="form-label" for="subject">Subject:</label><br>
+    <input class="form-input" type="text" id="subject" name="subject"><br>
+    <label class="form-label" for="message">Message:</label><br>
+    <textarea class="form-input" id="message" name="message" rows="4" required></textarea><br>
+    <input class="form-submit" type="submit" value="Send">
+  </form>
+</div>

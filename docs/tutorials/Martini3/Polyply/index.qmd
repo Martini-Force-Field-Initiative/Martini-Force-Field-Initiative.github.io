@@ -1,0 +1,60 @@
+---
+title: "Polyply: generating input parameters and coordinates"
+format: html
+---
+
+<hr>
+In case of issues, please contact [f.grunewald@rug.nl](mailto: f.grunewald@rug.nl).
+<hr>
+
+### Summary
+- [`Introduction`](#introduction)
+- [`Part 1: Melts and Blends`](#part-1-melts-and-blends)
+- [`Part 2: PEGylated lipid bilayers`](#part-2-pegylated-lipid-bilayers)
+- [`Part 3: Early life in a Vesicle`](#part-3-early-life-in-a-vesicle)
+- [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
+- [`References`](#references)
+
+### Introduction
+<hr>
+
+This tutorial has three independent parts. It is recommended to start with part 1. However, people familiar with Martini can also go to part 2/3 independently. The tutorials cover applications and usage of `Polyply`, a python suite for facilitating simulations of (bio-)macromolecules and nanomaterials<sup>[[1]](#references)</sup>.
+
+### Part 1: Melts and Blends
+<hr>
+
+In this tutorial you will learn how to generate simple polymer melts and blends with `polyply` using Martini3. It takes about 10min to complete the Tutorial and covers the basic functionality of `polyply` `.itp` file generation and coordinate generation. No prior knowledge is required to start this tutorial, but it is useful as background for the other two tutorials. Follow the link to get to the tutorial:
+
+* [https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-martini-polymer-melts:-martini-polymer-melts](https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-martini-polymer-melts:-martini-polymer-melts)
+
+![](fig1.png)
+
+### Part 2: PEGylated lipid bilayers
+<hr>
+
+In this tutorial you will learn how to generate PEGylated lipid bilayers. It serves as an example tp explains how to connect a biomolecule to a polymer, build brushes, use pre-build coordinates from other programs. Follow the link to get to the tutorial:
+
+* [https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-PEGylated-lipid-bilayers:-PEGylated-lipid-bilayers](https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-PEGylated-lipid-bilayers:-PEGylated-lipid-bilayers)
+
+![](fig2.png)
+
+### Part 3: Early life in a Vesicle
+<hr>
+
+In this tutorial you will generate a model system for early life. In particular you will fill a vesicle with a phase separated mixture of PEO and Dextran (a carbohydrate polymer). This tutorial covers how to build phase separated systems, use pre-build coordinates from other programs, generate `.itp` files for branched molecules, generate statistical distributions of polymers. The Tutorial comes in the form of a jupyter notebook ([https://jupyter.org/](https://jupyter.org/)). Make sure to have `polyply` installed before opening it. If you work within a virtual environment you will need to add the jupyter kernel before running the notebook. Instructions can be found in the notebook [here](https://martini-library.s3.us-east-2.amazonaws.com/m3_tutorials/Polyply/tutorial.zip).
+
+![](fig3.png)
+
+### Tools and scripts used in this tutorial
+<hr>
+
+- `GROMACS` ([http://www.gromacs.org/](http://www.gromacs.org/))
+
+- `Polyply` ([https://github.com/marrink-lab/polyply_1.0](https://github.com/marrink-lab/polyply_1.0))
+
+### References
+<hr>
+
+[1] Grünewald, F., Alessandri, R., Kroon, P. C., Monticelli, L., Souza, P. C., & Marrink, S. J. (2021). Polyply: a python suite for facilitating simulations of (bio-) macromolecules and nanomaterials. arXiv preprint arXiv:2105.05890.
+
+<hr>

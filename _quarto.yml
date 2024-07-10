@@ -6,7 +6,6 @@ website:
   title: "Martini CG Force-field"
   image: "images/martini.gif"
   favicon: "images/favicon.png"
-  # google-analytics: "G-"    # TODO: Pass Google Tag measurement Id.
   open-graph: true
   twitter-card: true
   site-url: http://cgmartini.nl
@@ -14,81 +13,89 @@ website:
   page-navigation: true
   search:
     type: overlay
-    # algolia:   #TODO: take a look at Algolia searching engine and how to use it
-    #   index-name: prod_QUARTO
-    #   application-id: ZPJB5I1QN7
-    #   search-only-api-key: 41be6c1e0a7fea4a51b107810facf577
-    #   analytics-events: true
-    #   show-logo: true
+
   page-footer:
-    # left: |
-    #   Made with love and [Quarto](https://quarto.org).
+    background: "#fdfffc"
+    left: 
+      - text: <div class="footer-left"></div>
     center:
-      - text: "About"
-        href: about.qmd
-      - text: "FAQ"
-        href: docs/faq/index.qmd
-      - text: "License"
-        href: license.qmd
-    right:
       - icon: twitter
-        href: https://twitter.com  # TBA
+        href: https://x.com/cg_martini
         aria-label: Martini Twitter
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         aria-label: Martini GitHub
-      # - icon: rss
-      #   href: TBA
-      #   aria-label: Martini Blog RSS        
+      - icon: "question-circle"
+        href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a
+        aria-label: Ask a Question
+    right: 
+      - text: <div class="footer-right">Maintained by the Martini Developers Team <img src="https://martini-library.s3.us-east-2.amazonaws.com/icon.png" alt="Icon"> </div>
+   
+
   navbar:
-    background: "#fdfffc" 
+    background: "#fdfffc"
     logo: images/martini.gif
     logo-alt: "martini logo."
     title: false
     collapse-below: lg
     left:
+
       - text: "Home"
+        icon: house-fill
         href: index.qmd
-      - text: "News"
-        href: docs/blog/index.qmd
-      - text: "About"
-        href: about.qmd
-      - text: "Downloads"
-        href: docs/downloads/index.qmd
+
       - text: "Tutorials"
+        icon: mortarboard-fill 
         href: docs/tutorials/index.qmd
-      - text: "Publications"
+
+      - text: "{{< fa solid meteor >}} Downloads"
+        href: docs/downloads/index.qmd
+
+      - text: "{{< fa solid newspaper >}} Publications"
         href: docs/publications/index.qmd
-      - text: "Contact"
-        href: docs/contact.qmd
-      - text: "Help"
+
+      - text: "{{< fa solid bullhorn >}} Announcements"
+        href: docs/announcements/index.qmd
+
+      - text: "{{< fa regular address-book >}} Contact"
+        href: docs/contact/contact.qmd
+
+      - text: "{{< fa solid circle-info >}} Help"
         menu:
-          - text: "Report a Bug"
-            icon: "bug"
-            href: "https://github.com/Martini-Force-Field-Initiative" #TODO: open general repo for issues
-          - text: "Ask a Question"
+          - text: "Discussion Board"
             icon: "chat-right-text"
-            href: "https://github.com/Martini-Force-Field-Initiative"  #TODO: change this to discussions
-          - text: "FAQ"
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions"
+          - text: "Report an Issue"
+            icon: "bug"
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" 
+          - text: "Ask a Question"
             icon: "question-circle"
-            href: docs/faq/index.qmd
+            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a"
+    
     tools:
       - icon: twitter
-        href: https://twitter.com  # TBA
+        href: https://x.com/cg_martini
         text: Martini Twitter
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         text: Martini GitHub
-      # - icon: rss
-      #   href: # TBA
-      #   text: Martini Blog RSS        
 
   sidebar:
-    - id: blog
-      title: "Blog"
 
-    - id: about
-      title: "About"
+    - id: tutorials
+      title: "Tutorials"
+      style: "floating"
+      collapse-level: 1
+      align: left
+      contents:
+        - text: <b>Summary</b><hr>
+          href: docs/tutorials/index.qmd
+        - text: "🎓 Martini Lectures"
+          href: docs/tutorials/Martini3/lectures.qmd
+        - text: "🛠️ Hands-on Tutorials"
+          href: docs/tutorials/Martini3/tutorials.qmd
+        - text: "🕸️ Legacy Material"
+          href: docs/tutorials/Legacy/index.qmd
 
     - id: downloads
       title: "Downloads"
@@ -96,25 +103,39 @@ website:
       collapse-level: 1
       align: left
       contents:
-        - text: <b>Download categories</b><hr>
-        - section: "Force field parameters"
+        - text: <b>Summary</b><hr>
+          href: docs/downloads/index.qmd
+        - section: "🫧 Force field parameters"
           contents:
-            - docs/downloads/force-field-parameters/particle-definitions.qmd
-            - docs/downloads/force-field-parameters/input-parameters.qmd
-            - docs/downloads/force-field-parameters/general-topology.qmd
-            - docs/downloads/force-field-parameters/aminoacids.qmd
-            - docs/downloads/force-field-parameters/solvents.qmd
-            - docs/downloads/force-field-parameters/ions.qmd
-            - docs/downloads/force-field-parameters/sugars.qmd
-            - docs/downloads/force-field-parameters/polymers.qmd
-            - docs/downloads/force-field-parameters/others.qmd
-            - docs/downloads/force-field-parameters/dry-martini.qmd
-            - docs/downloads/force-field-parameters/dna.qmd
-            - docs/downloads/force-field-parameters/rna.qmd
-            - docs/downloads/force-field-parameters/lipids.qmd
-        - section: "Example applications"
+            - section: <i class="fa-solid fa-dice-three"></i> Martini 3
+              contents:
+                - docs/downloads/force-field-parameters/martini3/particle-definitions.qmd
+                - docs/downloads/force-field-parameters/martini3/aminoacids.qmd
+                - docs/downloads/force-field-parameters/martini3/lipidome.qmd
+                - docs/downloads/force-field-parameters/martini3/nucleic_acids.qmd
+                - docs/downloads/force-field-parameters/martini3/carbohydrates.qmd
+                - docs/downloads/force-field-parameters/martini3/polymers.qmd
+                - docs/downloads/force-field-parameters/martini3/solvents.qmd
+                - docs/downloads/force-field-parameters/martini3/ions.qmd
+            - section: <i class="fa-solid fa-dice-two"></i> Martini 2
+              contents:
+                - docs/downloads/force-field-parameters/martini2/particle-definitions.qmd
+                - docs/downloads/force-field-parameters/martini2/aminoacids.qmd
+                - docs/downloads/force-field-parameters/martini2/lipidome.qmd
+                - docs/downloads/force-field-parameters/martini2/nucleic_acids.qmd
+                - docs/downloads/force-field-parameters/martini2/carbohydrates.qmd
+                - docs/downloads/force-field-parameters/martini2/polymers.qmd
+                - docs/downloads/force-field-parameters/martini2/solvents.qmd
+                - docs/downloads/force-field-parameters/martini2/ions.qmd
+                - docs/downloads/force-field-parameters/martini2/others.qmd
+                - docs/downloads/force-field-parameters/martini2/dry-martini.qmd
+        - section: "🗄 Example input files"
           contents:
-            - docs/downloads/example-applications/solvent-systems.qmd           
+            - docs/downloads/example-input-files/general-topology.qmd
+            - docs/downloads/example-input-files/md-parameters.qmd
+        - section: "🧑‍💻️ Example applications"
+          contents:
+            - docs/downloads/example-applications/solvent-systems.qmd
             - docs/downloads/example-applications/lipid-membranes.qmd
             - docs/downloads/example-applications/lipid-vesicles.qmd
             - docs/downloads/example-applications/micelles.qmd
@@ -122,105 +143,49 @@ website:
             - docs/downloads/example-applications/peptides.qmd
             - docs/downloads/example-applications/polymers.qmd
             - docs/downloads/example-applications/other-systems.qmd
-        - section: "Tools"
-          contents: 
+        - section: "⚒️ Tools"
+          contents:
             - docs/downloads/tools/proteins-and-bilayers.qmd
             - docs/downloads/tools/resolution-transformation.qmd
             - docs/downloads/tools/visualization.qmd
             - docs/downloads/tools/other-tools.qmd
-        - text: "Lectures"
-          href: docs/downloads/lectures/index.qmd
-    - id: tutorials
-      title: "Tutorials"
-      style: "floating"
-      collapse-level: 1
-      align: left
-      contents: 
-        - text: <b>Tutorials</b><hr>
-        - section: "Martini 3 Tutorials"
-          href: docs/tutorials/martini3/index.qmd
-          contents: 
-            - docs/tutorials/martini3/small_molecule_binding.qmd
-            - docs/tutorials/martini3/parameterizing_small_molecule.qmd
-        - section: "Martini 2 Tutorials"
-          href: docs/tutorials/martini2/index.qmd
-          contents:
-            - docs/tutorials/martini2/lipids_and_lipidome.qmd
-            - docs/tutorials/martini2/polymers.qmd
-            - docs/tutorials/martini2/hybrid_models.qmd
-            - docs/tutorials/martini2/parametrizing.qmd
-            - docs/tutorials/martini2/high_throughput.qmd
-            - docs/tutorials/martini2/proteins.qmd
-            - docs/tutorials/martini2/rna.qmd
-            - docs/tutorials/martini2/dna.qmd
-            - docs/tutorials/martini2/visualizing_martini.qmd
-            - docs/tutorials/martini2/others.qmd
-            - docs/tutorials/martini2/free_energy.qmd
-            - docs/tutorials/martini2/metadynamics.qmd
-            - docs/tutorials/martini2/physisorption.qmd
-        - text: "Martini workshops"
-          href: docs/tutorials/martini/index.qmd
-        - text: "2021 Martini online workshop"
-          href: docs/tutorials/workshop2021/index.qmd
-          contents: 
-            - docs/tutorials/workshop2021/lectures.qmd
-            - docs/tutorials/workshop2021/tutorials.qmd
+
     - id: publications
       title: "Publications"
-      style: "floating"
-      collapse-level: 2
-      align: left
       contents: 
-        - text: <b>Publications by year</b><hr>
-        - docs/publications/2023.qmd
-        - docs/publications/2022.qmd
-        - docs/publications/2021.qmd
-        - docs/publications/2020.qmd
-        - docs/publications/2019.qmd
-        - docs/publications/2018.qmd
-        - docs/publications/2017.qmd
-        - docs/publications/2016.qmd
-        - docs/publications/2015.qmd
-        - docs/publications/2014.qmd
-        - docs/publications/2013.qmd
-        - docs/publications/2012.qmd
-        - docs/publications/2011.qmd
-        - docs/publications/2010.qmd
-        - docs/publications/2009.qmd
-        - docs/publications/2008.qmd
-        - docs/publications/2007.qmd
-        - docs/publications/2006.qmd
-        - docs/publications/2005.qmd
-        - docs/publications/2004.qmd
-        - docs/publications/2003.qmd
+        - text: "<img src='./../../../../images/martini_glass.jpeg' style='height: 100%; width: 100%; object-fit: contain' />"
+        - text: "{{< fa solid paperclip >}} Curated list of the most relevant papers describing the Martini FF Initiative." 
+          href: https://scholar.google.com/citations?hl=en&user=N71qbKgAAAAJ&view_op=list_works&sortby=pubdate
           
-          
+        
 
-bibliography: references.bib
+    - id: announcements
+      title: "Announcements"
+
+    - id: contact
+      title: "Contact"
 
 format:
   html:
     toc: true
-    theme: 
-      light: [default, theme.scss]
+    theme:
+      light: [default, cosmo, theme.scss]
     code-copy: true
     code-overflow: wrap
     css: styles.css
-    include-after-body: js.html
+    include-after-body: 
+      - file: random-quotes.html 
     grid:
       sidebar-width: 250px
       body-width: 900px
       margin-width: 300px
-
-
-filters:
-  - filters/tools-tabset.lua
-
+    include-in-header: 
+      - file: random-quotes.html 
 
 freeze: true
 
 editor: visual
 
 profile:
-  group: 
+  group:
     - [prerelease,rc]

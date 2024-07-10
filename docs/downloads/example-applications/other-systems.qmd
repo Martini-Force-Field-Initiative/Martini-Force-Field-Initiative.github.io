@@ -2,70 +2,49 @@
 title: Other systems
 format: html
 ---
-
-### Mycolic Acids
 <hr>
-
-Groenewald, Wilma; Bulacu, Monica; Croft, Anna; Marrink, Siewert-Jan (2019): [Molecular Dynamics of Mycolic Acid Monolayers](https://doi.org/10.26434/chemrxiv.7881215.v1). ChemRxiv. Preprint.
- 
-**Abstract**
-Mycobacterium tuberculosis, the organism responsible for TB infection in
-humans, is inherently resilient against host defences and anti-TB drugs. This
-persistence is attributed partly to the presence of lipids, such as mycolic acids
-(MAs), which make the cell wall impermeable. To study the conformational
-dynamics of MAs, we present a coarse-grained model for a representative α-MA
-(AMA) from Mycobacterium tuberculosis using the MARTINI force field. The
-model is used to simulate monolayers of different sizes; a small monolayer
-consisting of 220 MAs and a large monolayer consisting of 1972 MAs. The
-model could replicate key features of experimental monolayers such as phase
-changes and the collapse point. By studying the conformation of MAs in the
-simulated monolayers, it was found that AMA did not fold into the W-
-conformation at large surface areas but was only folded at the head group to give
-a wide U-shape. On monolayer compression, the MA chains came closer
-together, into a narrower U-shape, and an ordered monolayer was formed before
-it collapsed.
-
-The zip files below contain all the files needed to run the small and large bilayer systems using GROMACS.
-
-[SmallMonolayer.zip](http://cgmartini.nl/images/applications/other/SmallMonolayer.zip) [LargeMonolayer.zip](http://cgmartini.nl/images/applications/other/LargeMonolayer.zip)
 
 ### Phytochemicals
 <hr>
 
 Phytochemicals Initial structures for the five phytochemicals: capsaicin (cap), curucmin (cur), epigallocatechin gallate (EGCG), genistein (gen), and resveratrol (res); and those five phytochemicals in a POPC bilayer (512 POPC lipids, 6000 CG waters, and 48 phytochemicals each) simulated for 2 μs.
 
-- [cap-CG.gro](http://cgmartini.nl/images/applications/phytochemicals/cap-CG.gro)
-- [cur-CG.gro](http://cgmartini.nl/images/applications/phytochemicals/cur-CG.gro)
-- [EGCG-CG.gro](http://cgmartini.nl/images/applications/phytochemicals/EGCG-CG.gro)
-- [gen-CG.gro](http://cgmartini.nl/images/applications/phytochemicals/gen-CG.gro)
-- [res-CG.gro](http://cgmartini.nl/images/applications/phytochemicals/res-CG.gro)
-- [POPC-cap-2us.gro](http://cgmartini.nl/images/applications/phytochemicals/POPC-cap-2us.gro)
-- [POPC-cur-2us.gro](http://cgmartini.nl/images/applications/phytochemicals/POPC-cur-2us.gro)
-- [POPC-EGCG-2us.gro](http://cgmartini.nl/images/applications/phytochemicals/POPC-EGCG-2us.gro)
-- [POPC-gen-2us.gro](http://cgmartini.nl/images/applications/phytochemicals/POPC-gen-2us.gro)
-- [POPC-res-2us.gro](http://cgmartini.nl/images/applications/phytochemicals/POPC-res-2us.gro)
+- [cap-CG.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/cap-CG.gro)
+- [cur-CG.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/cur-CG.gro)
+- [EGCG-CG.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/EGCG-CG.gro)
+- [gen-CG.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/gen-CG.gro)
+- [res-CG.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/res-CG.gro)
+- [POPC-cap-2us.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/POPC-cap-2us.gro)
+- [POPC-cur-2us.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/POPC-cur-2us.gro)
+- [POPC-EGCG-2us.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/POPC-EGCG-2us.gro)
+- [POPC-gen-2us.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/POPC-gen-2us.gro)
+- [POPC-res-2us.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/POPC-res-2us.gro)
 
 And the phytochemicals parameter file:
 
-- [martini_v2.0_phytochemicals.itp](http://cgmartini.nl/images/parameters/ITP/martini_v2.0_phytochemicals.itp)
+- [martini_v2.0_phytochemicals.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.0_phytochemicals.itp)
+
+<hr>
 
 ### Docosane physisorption on graphite from heptane
 <hr>
 
 System for simulation of preferred physisorption of long-chain alkane (6 beads, representing docosane) from short-chain alkane (2-bead, representing heptane).
 
-- [sams.top](http://cgmartini.nl/images/applications/physisorption/sams.top)
-- [sams.mdp](http://cgmartini.nl/images/applications/physisorption/sams.mdp)
+- [sams.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/sams.top)
+- [sams.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/sams.mdp)
 REQUIRES special parameter files!
 
-- [martini_v2.g.itp](http://cgmartini.nl/images/applications/physisorption/martini_v2.g.itp)
-- [martini_v2.0_solvents.itp](http://cgmartini.nl/images/applications/physisorption/martini_v2.0_solvents.itp)
-- [martini_v2.g_graphite.itp](http://cgmartini.nl/images/applications/physisorption/martini_v2.g_graphite.itp)
-- [adsorbant_docosane.itp](http://cgmartini.nl/images/applications/physisorption/adsorbant_docosane.itp)
+- [martini_v2.g.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.g.itp)
+- [martini_v2.0_solvents.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.0_solvents.itp)
+- [martini_v2.g_graphite.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.g_graphite.itp)
+- [adsorbant_docosane.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/adsorbant_docosane.itp)
 
 Starting conformation contains 18,000 graphite surface particles (5 layers) GRAP, and in total 600 docosane molecules (DOCO) and 16,200 heptane molecules (OCT).
 
-- [start.gro](http://cgmartini.nl/images/applications/physisorption/start.gro)
+- [start.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/start.gro)
+
+<hr>
 
 ### DNA strand
 <hr>
@@ -74,11 +53,13 @@ Double stranded DNA, 12 base pair
 
 (provided by Syma Khalid)
 
-- [dna.mdp](http://cgmartini.nl/images/applications/dna/dna.mdp)
-- [dna.top](http://cgmartini.nl/images/applications/dna/dna.top)
-- [dna.itp](http://cgmartini.nl/images/applications/dna/dna.itp)
-- [dna.pdb](http://cgmartini.nl/images/applications/dna/dna.pdb)
-- [dna.vmd](http://cgmartini.nl/images/applications/dna/dna.vmd) (to view the elastic network)
+- [dna.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.mdp)
+- [dna.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.top)
+- [dna.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.itp)
+- [dna.pdb](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.pdb)
+- [dna.vmd](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dna.vmd) (to view the elastic network)
+
+<hr>
 
 ### Voltage sensitive dyes
 <hr>
@@ -86,18 +67,20 @@ Double stranded DNA, 12 base pair
 Voltage sensitive dye Di-4-ASPBS bound to a POPC membrane
 System size: 1 dye, lipids 128, water 1489
 
-- [dye1.gro](http://cgmartini.nl/images/applications/other/dye1.gro)
-- [dye1.mdp](http://cgmartini.nl/images/applications/other/dye1.mdp)
-- [dye1.top](http://cgmartini.nl/images/applications/other/dye1.top)
-- [dye1.ndx](http://cgmartini.nl/images/applications/other/dye1.ndx)
+- [dye1.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye1.gro)
+- [dye1.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye1.mdp)
+- [dye1.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye1.top)
+- [dye1.ndx](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye1.ndx)
 
 A charged voltage sensitive dye Di-12P-ASPBS bound to a POPC membrane
 System size: 1 dye, 2 sodium counterions, lipids 128, water 1481
 
-- [dye4.gro](http://cgmartini.nl/images/applications/other/dye4.gro)
-- [dye4.mdp](http://cgmartini.nl/images/applications/other/dye4.mdp)
-- [dye4.top](http://cgmartini.nl/images/applications/other/dye4.top)
-- [dye4.ndx](http://cgmartini.nl/images/applications/other/dye4.ndx)
+- [dye4.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye4.gro)
+- [dye4.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye4.mdp)
+- [dye4.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye4.top)
+- [dye4.ndx](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/dye4.ndx)
+
+<hr>
 
 ### Fullerenes
 <hr>
@@ -107,8 +90,10 @@ System size: 1 dye, 2 sodium counterions, lipids 128, water 1481
 Equilibrated at T=310K, constant pressure P=1 bar.
 System size: 64 fullerenes,  1152 octane molecules
 
-- [fullerene.itp](http://cgmartini.nl/images/applications/fullerene/fullerene.itp)
-- [fullerene.top](http://cgmartini.nl/images/applications/fullerene/fullerene.top)
-- [fullerene.gro](http://cgmartini.nl/images/applications/fullerene/fullerenes_in_octane.gro)
-- [fullerene.mdp](http://cgmartini.nl/images/applications/fullerene/fullerene.mdp)
-- [martini_v2.1_CNT.itp](http://cgmartini.nl/images/applications/fullerene/martini_v2.1_CNP.itp)
+- [fullerene.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/fullerene.itp)
+- [fullerene.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/fullerene.top)
+- [fullerenes_in_octane.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/fullerenes_in_octane.gro)
+- [fullerene.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/fullerene.mdp)
+- [martini_v2.1_CNP.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/other_systems/martini_v2.1_CNP.itp)
+
+<hr>

@@ -2,13 +2,16 @@
 title: Resolution transformation
 format: html
 ---
+<hr>
 
 ### TS2CG: Triangulated Surfaces to Coarse Grain
 <hr>
 
 TS2CG is an algorithm to backmap a triangulated surface to a corresponding coarse-grained model.
  
-The software can be downloaded from this [link](http://cgmartini.nl/images/TS2CG-master.zip), or by visiting [https://github.com/marrink-lab/TS2CG](https://github.com/marrink-lab/TS2CG).
+The software can be downloaded from this [link](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/TS2CG-master.zip), or by visiting [https://github.com/marrink-lab/TS2CG](https://github.com/marrink-lab/TS2CG).
+
+<hr>
 
 ### Backward
 <hr>
@@ -21,33 +24,36 @@ When using this method, please cite:
 
 **Going Backward: A Flexible Geometric Approach to Reverse Transformation from Coarse Grained to Atomistic Models** *Tsjerk A. Wassenaar, Kristyna Pluhackova, Rainer A. Böckmann, Siewert J. Marrink, and D. Peter Tieleman* J. Chem. Theory Comput., 10:676-690, 2014. [DOI: 10.1021/ct400617g](http://pubs.acs.org/doi/abs/10.1021/ct400617g)
 
-More extensive information and a tutorial can be found on the Martini website, follow [this link](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/others-gmx5#Backward). 
+More extensive information and a tutorial can be found [[here]](../../tutorials/Martini3/Backward/index.qmd). 
 
-[The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded here.](http://cgmartini.nl/images/tools/backward/backward.zip)
+[The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded here.](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/backward.zip)
 
-[The initram.sh script for version 5 can be downloaded here.](http://cgmartini.nl/images/tools/backward/initram-v5.sh)
+[The initram.sh script for version 5 can be downloaded here.](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/initram-v5.sh)
 
-When your system has lipids, we recommend downloading the mapping files for them from [the lipidome library](http://cgmartini.nl/index.php/force-field-parameters/lipids).
+[The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded here.](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/backward-v5.zip)
 
-[The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded here.](http://cgmartini.nl/images/tools/backward/backward-v5.zip)
+<hr>
 
 ### Convert Martini water to polarizable water
 <hr>
 
-- [triple-w.py](http://cgmartini.nl/images/tools/water2polarizable/triple-w.py)
+- [triple-w.py](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/triple-w.pyhttps://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/triple-w.py)
 
-Script to convert the water in CG Martini system to polarizable water. For an example how to use this script, click [here](http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/others-gmx5#Polarizable-water).
+Script to convert the water in CG Martini system to polarizable water. For an example how to use this script, click [here](../../tutorials/Legacy/martini2/others.qmd#polarizable-water).
+
+<hr>
 
 ### Resolution transformation
 <hr>
 
-Custom version of Gromacs to reintroduce atomistic details to CG structures [gmx_rev.tar.gz](http://cgmartini.nl/images/tools/gmx_rev/gmx_rev.tar.gz).
+Custom version of Gromacs to reintroduce atomistic details to CG structures [gmx_rev.tar.gz](https://martini-library.s3.us-east-2.amazonaws.com/tools/resolution_transformation/gmx_rev.tar).
 
 If you use the code, please cite:
 
 - [Rzepiela et al. Reconstruction of atomistic details from coarse grained structures J. Comp. Chem, 31-1333-1343, 2010.](http://www3.interscience.wiley.com/journal/123244279/abstract) 
 
-We recommend you use Backward instead of this tool. For details about this tool please contact Andrzej Rzepiela ([Andrzej.Rzepiela@physik.uni-freiburg.de](Andrzej.Rzepiela@physik.uni-freiburg.de))
+We recommend you use Backward instead of this tool. For details about this tool please contact Andrzej Rzepiela ([Andrzej.Rzepiela@physik.uni-freiburg.de](mailto: Andrzej.Rzepiela@physik.uni-freiburg.de))
 
 You may also try an automized resolution transformation provided by Angel Pineiro, see [http://smmb.usc.es/sugarpie/sugarpie.php](http://smmb.usc.es/sugarpie/sugarpie.php).
 
+<hr>

@@ -5,7 +5,9 @@
 }
 }
 
-
+.hidden-footer {
+  display: none;
+}
 
 @media (max-width: 1060px) and (min-width: 991.98px) {
 
@@ -161,7 +163,6 @@ iframe.reveal-demo {
 
 }
 
-
 .link-cards .card {
   border: none;
   padding: 0;
@@ -294,25 +295,6 @@ iframe.reveal-demo {
   margin-bottom: 2px;
 }
 
-/*
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link {
-  text-align: center;
-  margin-right: 10px;
-  margin-top: 10px;
-  color: inherit;
-  width: 102px;
-  font-size: 0.8em;
-}
- 
-.panel-tabset[data-group="tools-tabset"] .nav-tabs .nav-link img {
-  width: 45px;
-  height: 45px;
-  margin-left: 10px;
-  display: block;
-  margin-bottom: 2px;
-}
-*/
-
 
 .download-text {
   font-size: 1.1em;
@@ -336,3 +318,65 @@ iframe.reveal-demo {
 .illustration {
   border: 1px solid #dee2e6;
 }
+
+.quarto-about-jolla p.subtitle {
+  text-align: center;
+ }
+ 
+ .card-other-values {
+   margin-bottom: 0;
+ }
+ 
+ .quarto-grid-item .card-other-values tr > td:first-of-type {
+     font-weight: 600;
+     padding-right: 0;
+     padding-left: 0;
+     vertical-align: top;
+     width: 50%;
+ }
+
+.pub-list a.btn {
+  font-size: 80%;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-right: 0.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* listing cards  */
+.card {
+  /* margin-top: -10%; */
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    border-radius: 8px 8px 0px 0px;
+}
+  
+.card-title {
+  font-weight: 600;
+}
+
+.column-page-left {
+  margin-top: 0%;
+  padding-top: 0rem;
+  margin-right: 1%;
+  /* padding-right: 8rem; */
+}
+
+.default .page-columns {
+  margin-bottom: 0%;
+}
+
+.mc_embed_signup {
+  padding-left: 5%;
+}
+

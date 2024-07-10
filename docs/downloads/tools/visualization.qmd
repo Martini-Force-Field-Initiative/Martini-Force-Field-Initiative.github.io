@@ -2,15 +2,16 @@
 title: Visualization
 format: html
 ---
+<hr>
 
 ### Rendering CG bonds & constraints with VMD
 <hr>
 
 We modified and re-wrote (check this [page](http://www.gromacs.org/Developer_Zone/Programming_Guide/VMD)) a small `Tcl` script to read and draw Martini bonds and constraints in VMD. The bonds of the elastic networks can be drawn as well. In some cases, the script needs to read the gromacs .tpr file. For this reason, there is a latest version for use with gromacs 5 (and later) .tpr files.
 
-The script for use with gromacs 5 can be found here: [cg_bonds-v5.tcl](http://cgmartini.nl/images/tools/VMD/cg_bonds-v5.tcl).
+The script for use with gromacs 5 can be found here: [cg_bonds-v5.tcl](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_bonds-v5.tcl).
 
-The script can be found here: [cg_bonds.tcl](http://cgmartini.nl/images/tools/VMD/cg_bonds.tcl) (previous version: [cg_bonds.tcl.old](http://cgmartini.nl/images/tools/VMD/cg_bonds.tcl.old)).
+The script can be found here: [cg_bonds.tcl](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_bonds.tcl) (previous version: [cg_bonds.tcl.old](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_bonds.tcl.old)).
 
 #### <span style="color:blue"> **Usage** </span>
 
@@ -50,7 +51,7 @@ Then you can remove Martini bonds with the `cg_delete_martini_bonds`; and the cy
 - <strike>We need a compiled version of `gromacs` around and the `gmxdump` executable to extract bonds/constraints (which takes time); wait for the next version! It will certainly read `.top` and `.itp` files.</strike> <span style="color:red">**Added!**</span> The previous method (`gmxdump`) is still working; and watch out, flags have slightly changed.
 - <strike>The table given in output (and the script in general) is not totally reliable in some cases; hand written topologies for examples...</strike><span style="color:red">**Removed.**</span>
 - Version of VMD should be superior to `1.8.5` (excluded) to run this script properly. The current version of `VMD` is `1.9` (august 2011).
-- <strike>Not really an issue but: `cg_bonds` draws ALL bonds/constraints of the system; what if we want to</strike>[Render the secondary structure](http://cgmartini.nl/index.php/tools2/36-downloads/tools/164-rb8)<strike>and draw them only for some residues?</strike><span style="color:red">**Well... Use the good representation.**</span>
+- <strike>Not really an issue but: `cg_bonds` draws ALL bonds/constraints of the system; what if we want to</strike>[Render the secondary structure](#rendering-cg-helices--sheets-with-vmd)<strike>and draw them only for some residues?</strike><span style="color:red">**Well... Use the good representation.**</span>
 - `Tcl` needs an empty line at the end of the files it reads (`.top` and `.itp`)!
 - On the same level, `Tcl` seems to understand differently the simple and double quotes... Please check that before shouting.
 - <strike>Script doesn't extract (yet!) harmonic bonds of "regular" elastic networks built with the `martinize.py` script for instance (elastic bonds defined as type 6; this comment is not valid for ElNeDyn, which defines elastic bonds as type 1).</strike><span style="color:red">**Fixed!**</span>
@@ -74,14 +75,16 @@ The few lines above will:
 
 All these line will be applied to the molecule with the `VMD`-defined ID 0 (or "`top`").
 
-For feedback or problems contact [c.arnarez@rug.nl](c.arnarez@rug.nl) or post to the platform.
+For feedback or problems contact [c.arnarez@rug.nl](mailto: c.arnarez@rug.nl) or post to the platform.
+
+<hr>
 
 ### Rendering CG helices & sheets with VMD
 <hr>
 
 We gathered and extended the set of small `Tcl` scripts available in our group to draw protein secondary structure in VMD-like fashion.
 
-The script can be found here: [cg_secondary_structure.tcl](http://cgmartini.nl/images/tools/VMD/cg_secondary_structure.tcl)
+The script can be found here: [cg_secondary_structure.tcl](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_secondary_structure.tcl)
 
 #### <span style="color:blue"> **Usage** </span>
 
@@ -181,4 +184,6 @@ There is still a bunch of small graphical issues (thanks to drop a mail to the c
 - `Tcl` needs an empty line at the end of the files it reads!
 - On the same level, `Tcl` seems to understand differently simple and double quotes... Please check that before shouting.
 
-For feedback or problems contact [c.arnarez@rug.nl](c.arnarez@rug.nl) or post to the platform.
+For feedback or problems contact [c.arnarez@rug.nl](mailto: c.arnarez@rug.nl) or post to the platform.
+
+<hr>
