@@ -72,7 +72,7 @@ title-block-banner: "#EDF3F9"
 <script>
 function submitForm() {
 
-  const apiEndpoint = 'https://3cknh7pjj3.execute-api.ca-central-1.amazonaws.com/prod/contacts/new';
+  const apiEndpoint = 'https://z9d3yt990g.execute-api.ca-central-1.amazonaws.com/prod/contacts/new';
 
   const contactName = document.getElementById("name").value;
   const contactEmail = document.getElementById("email").value;
