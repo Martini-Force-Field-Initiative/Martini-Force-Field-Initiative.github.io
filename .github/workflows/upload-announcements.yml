@@ -1,11 +1,9 @@
 name: Upload Announcements to S3 Bucket
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - 3-implement-email-subscriptionnewsletter
-    paths:
-      - announcements/*.md
+    branches: 3-implement-email-subscriptionnewsletter
 
 jobs:
   upload:
