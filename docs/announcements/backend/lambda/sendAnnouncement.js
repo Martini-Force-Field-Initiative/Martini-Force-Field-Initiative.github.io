@@ -26,7 +26,20 @@ exports.handler = async (event) => {
           Destination: { ToAddresses: [item.email] },
           Message: {
             Subject: { Data: `New Announcement: ${key}` },
-            Body: { Html: { Data: `${announcementContent}<br><br><a href="https://se8uiyvcg0.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">Unsubscribe</a>` } },
+            Body: { Html: { Data: 
+              `
+              ${announcementContent}
+              
+              <br><br>
+              
+              <hr style="border: 0.5px solid #000;">
+              If you no longer wish to receive emails from us, you can <a href="https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">unsubscribe from our mailing list</a>.
+              
+              <hr style="border: 0.5px solid #000;">
+
+              <i>Maintained by the Martini Developers Team.</i>
+              `
+            } },
           },
         };
         return ses.sendEmail(emailParams).promise();
