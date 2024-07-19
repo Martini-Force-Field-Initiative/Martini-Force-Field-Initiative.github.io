@@ -3,6 +3,8 @@ import { Construct } from 'constructs';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as s3n from 'aws-cdk-lib/aws-s3-notifications';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as ses from 'aws-cdk-lib/aws-ses';
 
@@ -20,6 +22,12 @@ export class AnnouncementsStack extends cdk.Stack {
     const verificationTable = new dynamodb.Table(this, 'VerificationTable', {
       partitionKey: { name: 'email', type: dynamodb.AttributeType.STRING },
       tableName: 'VerificationTable',
+    });
+
+    // Create an S3 bucket for announcements
+    const bucket = new s3.Bucket(this, 'AnnouncementBucket', {
+      bucketName: 'martini-announcements',
+      versioned: true,
     });
 
     // Create Lambda functions
@@ -65,10 +73,23 @@ export class AnnouncementsStack extends cdk.Stack {
       },
     });
 
+    // Create a Lambda function for sending announcement emails
+    const sendAnnouncementFunction = new lambda.Function(this, 'SendAnnouncementFunction', {
+      runtime: lambda.Runtime.NODEJS_16_X,
+      code: lambda.Code.fromAsset('lambda'),
+      handler: 'sendAnnouncement.handler',
+      environment: {
+        TABLE_NAME: table.tableName,
+        BUCKET_NAME: bucket.bucketName,
+      },
+    });
+
     // Grant permissions
     table.grantReadWriteData(subscribeFunction);
     table.grantReadWriteData(unsubscribeFunction);
     table.grantReadWriteData(sendEmailFunction);
+    table.grantReadWriteData(sendAnnouncementFunction);
+    bucket.grantRead(sendAnnouncementFunction);
     verificationTable.grantReadWriteData(subscribeFunction);
     verificationTable.grantReadWriteData(verifyEmailFunction);
 
@@ -81,6 +102,10 @@ export class AnnouncementsStack extends cdk.Stack {
       resources: [verificationTable.tableArn],
     }));
     sendEmailFunction.addToRolePolicy(new iam.PolicyStatement({
+      actions: ['ses:SendEmail', 'ses:SendRawEmail'],
+      resources: ['*'],
+    }));
+    sendAnnouncementFunction.addToRolePolicy(new iam.PolicyStatement({
       actions: ['ses:SendEmail', 'ses:SendRawEmail'],
       resources: ['*'],
     }));
@@ -109,5 +134,8 @@ export class AnnouncementsStack extends cdk.Stack {
     const verifyEmail = api.root.addResource('verifyEmail');
     const verifyEmailIntegration = new apigateway.LambdaIntegration(verifyEmailFunction);
     verifyEmail.addMethod('GET', verifyEmailIntegration);
+
+    // Add S3 event notification to trigger the Lambda function on new announcements
+    bucket.addEventNotification(s3.EventType.OBJECT_CREATED, new s3n.LambdaDestination(sendAnnouncementFunction));
   }
 }
