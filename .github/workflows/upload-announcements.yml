@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: 3-implement-email-subscriptionnewsletter
-    paths: docs/announcements/posts/*.md
 
 jobs:
   upload:
