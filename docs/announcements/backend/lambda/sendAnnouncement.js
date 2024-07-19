@@ -26,7 +26,7 @@ exports.handler = async (event) => {
           Destination: { ToAddresses: [item.email] },
           Message: {
             Subject: { Data: `New Announcement: ${key}` },
-            Body: { Html: { Data: `${announcementContent}<br><br><a href="https://se8uiyvcg0.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}">Unsubscribe</a>` } },
+            Body: { Html: { Data: `${announcementContent}<br><br><a href="https://se8uiyvcg0.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">Unsubscribe</a>` } },
           },
         };
         return ses.sendEmail(emailParams).promise();

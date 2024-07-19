@@ -45,7 +45,10 @@ exports.handler = async (event) => {
         // Move the email to the subscribed table
         const subscribeParams = {
             TableName: process.env.TABLE_NAME,
-            Item: { email },
+            Item: { 
+                email: email,
+                token: token, 
+            },
         };
         await dynamoDb.put(subscribeParams).promise();
 

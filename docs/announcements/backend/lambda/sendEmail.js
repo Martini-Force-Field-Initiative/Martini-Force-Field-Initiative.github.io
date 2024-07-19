@@ -13,14 +13,14 @@ exports.handler = async (event) => {
 
   try {
     const data = await dynamoDb.scan(params).promise();
-    const emails = data.Items.map(item => item.email);
+    const emails = data.Items;
 
-    const sendEmailPromises = emails.map(email => {
-      const unsubscribeLink = `https://se8uiyvcg0.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(email)}`;
+    const sendEmailPromises = emails.map(item => {
+      const unsubscribeLink = `https://se8uiyvcg0.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}`;
       const emailParams = {
         Source: 'daniel.ramirezecheme@ucalgary.ca',
         Destination: {
-          ToAddresses: [email],
+          ToAddresses: [item.email],
         },
         Message: {
           Subject: { Data: emailSubject },
