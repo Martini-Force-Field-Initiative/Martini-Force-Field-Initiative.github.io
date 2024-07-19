@@ -63,16 +63,6 @@ export class AnnouncementsStack extends cdk.Stack {
       },
     });
 
-    // Create a Lambda function for sending emails
-    const sendEmailFunction = new lambda.Function(this, 'SendEmailFunction', {
-      runtime: lambda.Runtime.NODEJS_16_X,
-      code: lambda.Code.fromAsset('lambda'),
-      handler: 'sendEmail.handler',
-      environment: {
-        TABLE_NAME: table.tableName,
-      },
-    });
-
     // Create a Lambda function for sending announcement emails
     const sendAnnouncementFunction = new lambda.Function(this, 'SendAnnouncementFunction', {
       runtime: lambda.Runtime.NODEJS_16_X,
@@ -87,7 +77,6 @@ export class AnnouncementsStack extends cdk.Stack {
     // Grant permissions
     table.grantReadWriteData(subscribeFunction);
     table.grantReadWriteData(unsubscribeFunction);
-    table.grantReadWriteData(sendEmailFunction);
     table.grantReadWriteData(sendAnnouncementFunction);
     bucket.grantRead(sendAnnouncementFunction);
     verificationTable.grantReadWriteData(subscribeFunction);
@@ -100,10 +89,6 @@ export class AnnouncementsStack extends cdk.Stack {
     verifyEmailFunction.addToRolePolicy(new iam.PolicyStatement({
       actions: ['dynamodb:PutItem', 'dynamodb:UpdateItem'],
       resources: [verificationTable.tableArn],
-    }));
-    sendEmailFunction.addToRolePolicy(new iam.PolicyStatement({
-      actions: ['ses:SendEmail', 'ses:SendRawEmail'],
-      resources: ['*'],
     }));
     sendAnnouncementFunction.addToRolePolicy(new iam.PolicyStatement({
       actions: ['ses:SendEmail', 'ses:SendRawEmail'],
@@ -124,11 +109,6 @@ export class AnnouncementsStack extends cdk.Stack {
     const unsubscribe = api.root.addResource('unsubscribe');
     const unsubscribeIntegration = new apigateway.LambdaIntegration(unsubscribeFunction);
     unsubscribe.addMethod('GET', unsubscribeIntegration);
-
-    // Define the send email API endpoint and integrate it with the Lambda function
-    const sendEmail = api.root.addResource('sendEmail');
-    const sendEmailIntegration = new apigateway.LambdaIntegration(sendEmailFunction);
-    sendEmail.addMethod('POST', sendEmailIntegration);
 
     // Define the verify email API endpoint and integrate it with the Lambda function
     const verifyEmail = api.root.addResource('verifyEmail');
