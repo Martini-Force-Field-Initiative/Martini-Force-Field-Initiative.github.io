@@ -3,7 +3,6 @@ name: Upload Announcements to S3 Bucket
 on:
   push:
     branches:
-      - main
       - 3-implement-email-subscriptionnewsletter
     paths:
       - announcements/*.md
