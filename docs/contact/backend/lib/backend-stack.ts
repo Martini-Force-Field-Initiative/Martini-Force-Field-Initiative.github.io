@@ -42,6 +42,7 @@ export class ContactsStack extends Stack {
 
     // provision the DynamoDB contact table
     const contactTable = new dynamodb.Table(this, 'ContactTable', {
+          tableName: 'Contacts',
           partitionKey: { name: 'contactId', type: dynamodb.AttributeType.STRING },
           billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
           encryption: dynamodb.TableEncryption.DEFAULT,
@@ -65,8 +66,8 @@ export class ContactsStack extends Stack {
         contactQueue.grantSendMessages(createContactFunction); // allow the createContact lambda function to send messages to the contact processing queue
 
     // creates an API Gateway REST API
-    const restApi = new apigateway.RestApi(this, 'EmailServiceApi', {
-          restApiName: 'EmailService',
+    const restApi = new apigateway.RestApi(this, 'ContactsServiceApi', {
+          restApiName: 'Contacts Service',
         });
 
     // create an api gateway resource '/contacts/new'
