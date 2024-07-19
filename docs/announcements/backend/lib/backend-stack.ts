@@ -14,14 +14,12 @@ export class AnnouncementsStack extends cdk.Stack {
     const table = new dynamodb.Table(this, 'Subscribers', {
       partitionKey: { name: 'email', type: dynamodb.AttributeType.STRING },
       tableName: 'Subscribers',
-      removalPolicy: cdk.RemovalPolicy.DESTROY, // Not recommended for production code
     });
     
     // Create a DynamoDB table to store the verification tokens
     const verificationTable = new dynamodb.Table(this, 'VerificationTable', {
       partitionKey: { name: 'email', type: dynamodb.AttributeType.STRING },
       tableName: 'VerificationTable',
-      removalPolicy: cdk.RemovalPolicy.DESTROY, // Not recommended for production code
     });
 
     // Create Lambda functions
