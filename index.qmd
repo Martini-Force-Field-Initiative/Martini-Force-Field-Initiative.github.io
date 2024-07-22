@@ -34,12 +34,12 @@ resources:
 </head>
 
 <!--  It doesn't work with class. We nned to put style  -->
-<div style=" flex-direction: column; width: 100%; height: 100vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip;  contain: content; display: flex; align-items: center; justify-content: center; background: #f2f8fc;">
+<div style=" flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip;  contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9;">
 
 <!-- <div class="animation-container"> -->
 <css-doodle>
   <style>
-    @grid: 50x1 / 51vmin;
+    @grid: 50x1 / 50vmin;
     :container {
       perspective: 58vmin;
     }
@@ -56,8 +56,8 @@ resources:
 
     border-radius: 50%;
     transform-style: preserve-3d;
-    animation: scale-up 30s linear infinite;
-    animation-delay: calc(@i * -.4s);
+    animation: scale-up 28s linear infinite;
+    animation-delay: calc(@i * -.6s);
 
     @keyframes scale-up {
       0% {
@@ -84,8 +84,8 @@ resources:
 <h1 style="font-size: 2.2em; color: #2d5c80; text-align: center;"> Welcome to the Martini FF Initiative </h1>
 
 <div class="buttons">
+<button class="btn-21"> <span> Learn more </span> </button>
 <button class="btn-21"> <span> Get started </span> </button>
-<button class="btn-21"> <span> Downloads </span> </button>
 </div>
 
 </div>
