@@ -15,28 +15,9 @@ resources:
 ---
 
 ```{=HTML}
-
-<head>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">  
-
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "gh3qhfx6uq");
-</script>
-
-</head>
-
 <!--  It doesn't work with class. We nned to put style  -->
 <div style=" flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip;  contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9;">
 
-<!-- <div class="animation-container"> -->
 <css-doodle>
   <style>
     @grid: 50x1 / 50vmin;
@@ -79,9 +60,8 @@ resources:
     }
   </style>
 </css-doodle>
-<!-- </div> -->
 
-<h1 style="font-size: 2.3em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force-Field Initiative </h1>
+<h1 style="font-size: 2.3em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force Field Initiative </h1>
 <h5 style="font-size: 1.3em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
 
 <div class="buttons">
@@ -91,13 +71,5 @@ resources:
 
 </div>
 
-
 <script src="doodle.js"></script>
-<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@100&family=Urbanist:wght@100;900&display=swap');
-</style>
 ```
-
-
