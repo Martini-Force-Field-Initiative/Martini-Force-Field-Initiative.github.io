@@ -15,7 +15,7 @@ resources:
 ---
 
 ```{=HTML}
-<!--  It doesn't work with class. We nned to put style  -->
+<!--  It doesn't work with class. We need to put style  -->
 <div style=" flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip;  contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9;">
 
 <css-doodle>
@@ -65,11 +65,71 @@ resources:
 <h5 style="font-size: 1.3em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
 
 <div class="buttons">
-<button class="btn-21"> <span> Learn more </span> </button>
+<button class="btn-21" onclick="window.location='#learn-more'"> <span> Learn more </span> </button>
 <button class="btn-21"> <span> Get started </span> </button>
 </div>
 
 </div>
 
 <script src="doodle.js"></script>
+```
+
+```{=HTML}
+<!-- Second div for additional content -->
+<div id="learn-more" style="display: flex; width: 100%; height: 110vh; background: #ffffff; padding: 15px;">
+
+  <!-- Left side with text -->
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+    <h2 style="font-size: 2em; color: #2d5c80;">About the Martini Force Fiel Initiative</h2>
+    <p style="font-size: 1.2em; color: #2d5c80;">
+      The Martini Force Field is a widely used coarse-grained force field for biomolecular simulations. It enables the study of large-scale biomolecular processes and complex systems with computational efficiency.
+    </p>
+    <p style="font-size: 1.2em; color: #2d5c80;">
+      Our initiative aims to enhance and expand the capabilities of the Martini Force Field, providing the scientific community with a robust tool for molecular simulations. Join us to explore the potential of this powerful modeling approach.
+    </p>
+  </div>
+
+  <!-- Right side with images -->
+  <div style="flex: 1; display: flex; align-items: center; overflow: hidden; position: relative;">
+    <div class="image-slider" style="width: 100%; height: 100%; position: relative;">
+
+      <!-- Images -->
+      <img src="images/favicon.png" alt="Simulation 1" class="slide" style="width: 100%; height: auto; position: absolute; top: 0; left: 0; transition: opacity 1s;">
+      <img src="images/background.jpg" alt="Simulation 2" class="slide" style="width: 100%; height: auto; position: absolute; top: 0; left: 0; transition: opacity 1s; opacity: 0;">
+      <img src="images/favicon.png" alt="Simulation 3" class="slide" style="width: 100%; height: auto; position: absolute; top: 0; left: 0; transition: opacity 1s; opacity: 0;">
+      <!-- Add more images as needed -->
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Optional: Add CSS for image slider -->
+<style>
+  .image-slider img {
+    opacity: 0;
+  }
+
+  .image-slider img.active {
+    opacity: 1;
+  }
+</style>
+
+<!-- JavaScript for automatic slideshow -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.image-slider .slide');
+    const totalSlides = slides.length;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % totalSlides;
+      slides[currentSlide].classList.add('active');
+    }
+
+    slides[currentSlide].classList.add('active');
+    setInterval(showNextSlide, 2000);
+  });
+</script>
 ```
