@@ -1,44 +1,3 @@
-/* css styles */
-
-html{
-  scroll-behavior: smooth;
-}
-
-.image img {
-  width: 600px;
-  display: block;
-  height: auto;
-  animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 3s; /* don't forget to set a duration! */
-}
-
-.image_mob img {
-  display: none;
-}
-
-
-
-/* Media query for smaller screens */
-@media only screen and (max-width: 617px) {
-  .grid-container {
-    grid-template-columns: 1fr; /* change to one column for smaller screens */
-  }
-  
-  .image img {
-  display: none;
-}
-  
-  .image_mob img {
-  width: 300px;
-  height: auto;
-  display: block;
-  animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 3s;
-}
-  
-  
-}
-
 :root{
 
   --text-light:  white;
@@ -58,25 +17,20 @@ html{
   box-sizing: border-box;
 }
 
-
-
 .btn-21 {
   cursor: pointer;
-  bottom: -60px;
-  animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 3s; 
+  bottom: -40px;
   font-weight: bold;
-  // text-transform: uppercase;
   width: 120px;
   height: 40px;
   position: relative;
   color: #2d5c80;
-  // transition: all 0.5s ease-in-out;
   border-radius: 0px;
   background: transparent;
   overflow: hidden;
   border: none;
-  margin-right: 55px;
+  margin-right: 40px;
+  margin-left: 40px;
 }
 
 .btn-21:before {
@@ -228,4 +182,5 @@ html{
 .buttons {
   margin: 0 auto;
   display: inline-block;
+  text-align: center;
 }
