@@ -61,7 +61,6 @@ resources:
         transform: translate3d(0, 0, 1vmin);
       }
     }
-    /* z-index: 0; */
   </style>
 </css-doodle>
 
@@ -69,7 +68,7 @@ resources:
 <h5 style="font-size: 1.6em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
 
 <div class="buttons">
-<button class="btn-21" onclick="window.location='#learn-more'"> <span> Learn more </span> </button>
+<button class="btn-21" onclick="scrollToDiv()"> <span> Learn more </span> </button>
 <!-- <button class="btn-21" onclick="window.location='docs/tutorials/index.html'"> <span> Get started </span> </button> -->
 </div>
 
@@ -77,12 +76,12 @@ resources:
 
 
 <!-- Second div with an ID for anchoring -->
-<div id="learn-more" style="display: flex; width: 100%; height: 110vh; background: #ffffff; padding: 15px;">
+<div style="display: flex; width: 100%; height: 95vh; background: #ffffff; padding: 15px;">
 
   <!-- Left side with text -->
   <div class="full-width" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
     <h2 style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
-    <p style="font-size: 1.1em; color: #2d5c80;">
+    <p class="learn-more" style="font-size: 1.1em; color: #2d5c80;">
       Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of biomolecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.
     </p>
     <p style="font-size: 1.1em; color: #2d5c80;">
@@ -153,6 +152,28 @@ resources:
 
   // Initially show the first slide
   showSlide(0);
+
+  // Function to scroll to the second div
+  function scrollToDiv() {
+    const targetElement = document.querySelector('.learn-more');
+    const startPosition = window.pageYOffset;
+    const targetPosition = targetElement.getBoundingClientRect().top;
+    const distance = targetPosition;
+    const duration = 2000; // Duration in milliseconds for slower scrolling
+    let start = null;
+
+    window.requestAnimationFrame(step);
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const progress = timestamp - start;
+      const percentage = Math.min(progress / duration, 1);
+      window.scrollTo(0, startPosition + distance * percentage);
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      }
+    }
+  }
 </script>
 
 <script src="doodle.js"></script>
