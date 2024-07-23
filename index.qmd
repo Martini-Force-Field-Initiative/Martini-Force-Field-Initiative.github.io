@@ -17,7 +17,7 @@ resources:
 
 ```{=HTML}
 <!--  It doesn't work with class. We need to put style  -->
-<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.png'); background-size: scale-down;">
+<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.png'); background-size: cover;">
 
 <div class="background-overlay"></div>
 
@@ -68,12 +68,10 @@ resources:
 <h5 style="font-size: 1.6em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
 
 <div class="buttons">
-<button class="btn-21" onclick="scrollToDiv()"> <span> Learn more </span> </button>
-<!-- <button class="btn-21" onclick="window.location='docs/tutorials/index.html'"> <span> Get started </span> </button> -->
+<button href="#" class="btn-21" onclick="scrollToElement('.learn-more'); return false;"> <span> Learn more </span> </button>
 </div>
 
 </div>
-
 
 <!-- Second div with an ID for anchoring -->
 <div style="display: flex; width: 100%; height: 95vh; background: #ffffff; padding: 15px;">
@@ -81,10 +79,10 @@ resources:
   <!-- Left side with text -->
   <div class="full-width" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
     <h2 style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
-    <p class="learn-more" style="font-size: 1.1em; color: #2d5c80;">
+    <p style="font-size: 1.1em; color: #2d5c80;">
       Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of biomolecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.
     </p>
-    <p style="font-size: 1.1em; color: #2d5c80;">
+    <p class="learn-more" style="font-size: 1.1em; color: #2d5c80;">
       The model uses a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. In order to keep the model simple, only four main types of interaction sites are defined: polar, non-polar, apolar, and charged. Each particle type has a number of subtypes, which allow for an accurate representation of the chemical nature of the underlying atomistic representation.
     </p>
     <p style="font-size: 1.1em; color: #2d5c80;">
@@ -123,6 +121,7 @@ resources:
 
 
 <!-- JavaScript for automatic slideshow -->
+<script src="https://cdn.jsdelivr.net/gh/LieutenantPeacock/SmoothScroll@1.2.0/src/smoothscroll.min.js" integrity="sha384-UdJHYJK9eDBy7vML0TvJGlCpvrJhCuOPGTc7tHbA+jHEgCgjWpPbmMvmd/2bzdXU" crossorigin="anonymous"></script>
 <script>
   let currentSlideIndex = 0;
   const slides = document.querySelectorAll('.image-slider .slide');
@@ -154,9 +153,9 @@ resources:
   showSlide(0);
 
   // Function to scroll to the second div
-  function scrollToDiv() {
-    const targetElement = document.querySelector('.learn-more');
-    targetElement.scrollIntoView({ behavior: 'smooth'});
+  function scrollToElement(selector) {
+    const targetElement = document.querySelector(selector);
+    smoothScroll({toElement: targetElement, duration: 2000});
   }
 </script>
 
