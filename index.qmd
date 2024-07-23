@@ -15,61 +15,6 @@ resources:
 ---
 
 ```{=HTML}
-<head>
-  <style>
-    .image-slider-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      padding-bottom: 40px; /* Adjust this value to maintain constant distance */
-    }
-
-    .image-slider {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .image-slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; 
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 1s;
-    }
-    
-    .image-slider img.active {
-      opacity: 1;
-    }
-    
-    .dots {
-      position: absolute;
-      bottom: 20px; /* Adjust this value to maintain constant distance from the bottom of the container */
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 10px;
-    }
-    
-    .dots .dot {
-      width: 10px;
-      height: 10px;
-      background-color: #ccc;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    .dots .dot.active {
-      background-color: #2d5c80;
-    }
-  </style>
-</head>
-
 <!--  It doesn't work with class. We need to put style  -->
 <div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9;">
 
@@ -121,16 +66,17 @@ resources:
 
 <div class="buttons">
 <button class="btn-21" onclick="window.location='#learn-more'"> <span> Learn more </span> </button>
-<button class="btn-21"> <span> Get started </span> </button>
+<button class="btn-21" onclick="window.location='docs/tutorials/index.html'"> <span> Get started </span> </button>
 </div>
 
 </div>
+
 
 <!-- Second div with an ID for anchoring -->
 <div id="learn-more" style="display: flex; width: 100%; height: auto; background: #ffffff; padding: 15px;">
 
   <!-- Left side with text -->
-  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+  <div class="full-width" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
     <h2 style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
     <p style="font-size: 1.1em; color: #2d5c80;">
       Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of biomolecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.
@@ -144,29 +90,34 @@ resources:
   </div>
 
   <!-- Right side with images -->
-  <div style="flex: 1; display: flex; align-items: center; overflow: hidden; position: relative;">
-    <div class="image-slider-container" style="width: 100%; height: 100%; position: relative;">
-      <div class="image-slider" style="width: 100%; height: 100%; position: relative;">
+  <div class="image-slider-container" style="flex: 1;">
+    <div class="image-slider">
 
-        <!-- Images -->
-        <img src="images/favicon.png" alt="Simulation 1" class="slide active">
-        <img src="images/favicon.png" alt="Simulation 2" class="slide">
-        <img src="images/favicon.png" alt="Simulation 3" class="slide">
-        <!-- Add more images as needed -->
+      <!-- Images -->
+      <img src="images/favicon.png" alt="Showcase 1" class="slide active">
+      <img src="images/Genome.png" alt="Showcase 2" class="slide">
+      <img src="images/ribosomes.png" alt="Showcase 3" class="slide">
+      <img src="images/peptide.png" alt="Showcase 4" class="slide">
+      <img src="images/membrane.png" alt="Showcase 5" class="slide">
+      <img src="images/protein.gif" alt="Showcase 6" class="slide">
+      <!-- Add more images as needed -->
 
-      </div>
+    </div>
 
-      <!-- Navigation dots -->
-      <div class="dots">
-        <div class="dot active" onclick="currentSlide(0)"></div>
-        <div class="dot" onclick="currentSlide(1)"></div>
-        <div class="dot" onclick="currentSlide(2)"></div>
-        <!-- Add more dots as needed -->
-      </div>
+    <!-- Navigation dots -->
+    <div class="dots">
+      <div class="dot active" onclick="currentSlide(0)"></div>
+      <div class="dot" onclick="currentSlide(1)"></div>
+      <div class="dot" onclick="currentSlide(2)"></div>
+      <div class="dot" onclick="currentSlide(3)"></div>
+      <div class="dot" onclick="currentSlide(4)"></div>
+      <div class="dot" onclick="currentSlide(5)"></div>
+      <!-- Add more dots as needed -->
     </div>
   </div>
 
 </div>
+
 
 <!-- JavaScript for automatic slideshow -->
 <script>
@@ -194,7 +145,7 @@ resources:
     showSlide(index);
   }
 
-  setInterval(showNextSlide, 2000);
+  setInterval(showNextSlide, 5000);
 
   // Initially show the first slide
   showSlide(0);
