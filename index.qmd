@@ -73,7 +73,7 @@ resources:
 
 
 <!-- Second div with an ID for anchoring -->
-<div id="learn-more" style="display: flex; width: 100%; height: auto; background: #ffffff; padding: 15px;">
+<div id="learn-more" style="display: flex; width: 100%; height: 100vh; background: #ffffff; padding: 15px;">
 
   <!-- Left side with text -->
   <div class="full-width" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
@@ -90,16 +90,16 @@ resources:
   </div>
 
   <!-- Right side with images -->
-  <div class="image-slider-container" style="flex: 1;">
+  <div class="image-slider-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
     <div class="image-slider">
 
       <!-- Images -->
       <img src="images/favicon.png" alt="Showcase 1" class="slide active">
       <img src="images/Genome.png" alt="Showcase 2" class="slide">
       <img src="images/ribosomes.png" alt="Showcase 3" class="slide">
-      <img src="images/peptide.png" alt="Showcase 4" class="slide">
-      <img src="images/membrane.png" alt="Showcase 5" class="slide">
-      <img src="images/protein.gif" alt="Showcase 6" class="slide">
+      <img src="images/peptide.png" alt="Showcase 4" class="slide"  style="object-fit: contain">
+      <img src="images/membrane.png" alt="Showcase 5" class="slide" style="object-fit: cover">
+      <img src="images/protein.gif" alt="Showcase 6" class="slide"  style="object-fit: contain">
       <!-- Add more images as needed -->
 
     </div>
