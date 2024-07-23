@@ -12,32 +12,35 @@ description: |
 hide-description: true
 resources: 
   - images/martini.gif
+  - images/home.png
 ---
 
 ```{=HTML}
 <!--  It doesn't work with class. We need to put style  -->
-<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9;">
+<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.png'); background-size: scale-down;">
+
+<div class="background-overlay"></div>
 
 <css-doodle>
   <style>
-    @grid: 50x1 / 50vmin;
+    @grid: 35x1 / 56vmin;
     :container {
-      perspective: 58vmin;
+      perspective: 60vmin;
     }
     background: @m(
       @r(200, 240), 
       radial-gradient(
-        @p(blue, green, yellow, white) 15%,
+        @p(blue, green, yellow, white) 10%,
         transparent 40%
       ) @r(100%) @r(100%) / @r(1%, 3%) @lr no-repeat
     );
 
-    @size: 50%;
+    @size: 45%;
     @place-cell: center;
 
     border-radius: 50%;
     transform-style: preserve-3d;
-    animation: scale-up 28s linear infinite;
+    animation: scale-up 30s linear infinite;
     animation-delay: calc(@i * -.6s);
 
     @keyframes scale-up {
@@ -58,22 +61,23 @@ resources:
         transform: translate3d(0, 0, 1vmin);
       }
     }
+    /* z-index: 0; */
   </style>
 </css-doodle>
 
-<h1 style="font-size: 2.3em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force Field Initiative </h1>
-<h5 style="font-size: 1.3em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
+<h1 style="font-size: 2.6em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force Field Initiative </h1>
+<h5 style="font-size: 1.6em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
 
 <div class="buttons">
 <button class="btn-21" onclick="window.location='#learn-more'"> <span> Learn more </span> </button>
-<button class="btn-21" onclick="window.location='docs/tutorials/index.html'"> <span> Get started </span> </button>
+<!-- <button class="btn-21" onclick="window.location='docs/tutorials/index.html'"> <span> Get started </span> </button> -->
 </div>
 
 </div>
 
 
 <!-- Second div with an ID for anchoring -->
-<div id="learn-more" style="display: flex; width: 100%; height: 100vh; background: #ffffff; padding: 15px;">
+<div id="learn-more" style="display: flex; width: 100%; height: 110vh; background: #ffffff; padding: 15px;">
 
   <!-- Left side with text -->
   <div class="full-width" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
@@ -90,7 +94,7 @@ resources:
   </div>
 
   <!-- Right side with images -->
-  <div class="image-slider-container" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
+  <div class="image-slider-container" style="flex: 1; padding: 20px;">
     <div class="image-slider">
 
       <!-- Images -->

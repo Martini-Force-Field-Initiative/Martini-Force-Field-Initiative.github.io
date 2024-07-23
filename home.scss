@@ -91,43 +91,43 @@
 }
 
 .btn-21:hover {
-  color: #A1A32B;
+  color: #797a19;
 }
 
 .btn-21:hover:before {
-  background: linear-gradient(to right, transparent, #A1A32B);
+  background: linear-gradient(to right, transparent, #797a19);
 }
 
 .btn-21:hover:after {
-  background: linear-gradient(to bottom, transparent, #A1A32B);
+  background: linear-gradient(to bottom, transparent, #797a19);
 }
 
 .btn-21 span:hover:before {
-  background: linear-gradient(to top, transparent, #A1A32B);
+  background: linear-gradient(to top, transparent, #797a19);
 }
 
 .btn-21 span:hover:after {
-  background: linear-gradient(to left, transparent, #A1A32B);
+  background: linear-gradient(to left, transparent, #797a19);
 }
 
 .btn-21:active:before {
-  background: linear-gradient(to right, transparent, #2d5c80);
+  background: linear-gradient(to right, transparent, #797a19);
 }
 
 .btn-21:active:after {
-  background: linear-gradient(to bottom, transparent, #2d5c80);
+  background: linear-gradient(to bottom, transparent, #797a19);
 }
 
 .btn-21 span:active:before {
-  background: linear-gradient(to top, transparent, #2d5c80);
+  background: linear-gradient(to top, transparent, #797a19);
 }
 
 .btn-21 span:active:after {
-  background: linear-gradient(to left, transparent, #2d5c80);
+  background: linear-gradient(to left, transparent, #797a19);
 }
 
 .btn-21:active {
-  color: #2d5c80;
+  color: #797a19;
 }
 
 @keyframes btn-21-right {
@@ -247,4 +247,15 @@
   .full-width {
     flex: 0 0 100%;
   }
+}
+
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(240, 240, 240, 0.85); /* Semi-transparent overlay */
+  z-index: -1; /* Make sure it is behind other content */
 }
