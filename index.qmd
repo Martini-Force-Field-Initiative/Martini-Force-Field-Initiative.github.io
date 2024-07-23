@@ -156,23 +156,7 @@ resources:
   // Function to scroll to the second div
   function scrollToDiv() {
     const targetElement = document.querySelector('.learn-more');
-    const startPosition = window.pageYOffset;
-    const targetPosition = targetElement.getBoundingClientRect().top;
-    const distance = targetPosition;
-    const duration = 2000; // Duration in milliseconds for slower scrolling
-    let start = null;
-
-    window.requestAnimationFrame(step);
-
-    function step(timestamp) {
-      if (!start) start = timestamp;
-      const progress = timestamp - start;
-      const percentage = Math.min(progress / duration, 1);
-      window.scrollTo(0, startPosition + distance * percentage);
-      if (progress < duration) {
-        window.requestAnimationFrame(step);
-      }
-    }
+    targetElement.scrollIntoView({ behavior: 'smooth'});
   }
 </script>
 

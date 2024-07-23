@@ -259,3 +259,7 @@
   background: rgba(240, 240, 240, 0.85); /* Semi-transparent overlay */
   z-index: -1; /* Make sure it is behind other content */
 }
+
+.learn-more {
+  scroll-behavior: smooth; /* <-- for smooth scroll */
+}
