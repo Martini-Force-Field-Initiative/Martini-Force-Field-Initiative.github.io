@@ -12,16 +12,16 @@ description: |
 hide-description: true
 resources: 
   - images/martini.gif
-  - images/home.png
+  - images/home.jpeg
 ---
 
 ```{=HTML}
 <head>
   <style>
     .container {
-      width: 56vmin;
-      height: 56vmin;
-      perspective: 60vmin;
+      width: 40vmin;
+      height: 40vmin;
+      perspective: 58vmin;
       position: relative;
       display: flex;
       justify-content: center;
@@ -29,15 +29,15 @@ resources:
     }
 
     .doodle {
-      width: 45%;
-      height: 45%;
+      width: 35%;
+      height: 35%;
       background: radial-gradient(
-        blue 10%, transparent 40%
+        blue 10%, transparent 25%
       ) 0 0 / 2% 2% no-repeat;
       border-radius: 50%;
       position: absolute;
       transform-style: preserve-3d;
-      animation: scale-up 30s linear infinite;
+      animation: scale-up 25s linear infinite;
     }
 
     @keyframes scale-up {
@@ -46,7 +46,7 @@ resources:
         transform: translate3d(0, 0, 0) rotate(0);
       }
       10% { 
-        opacity: 1; 
+        opacity: 0.5; 
       }
       95% {
         transform: translate3d(0, 0, 50vmin) rotate(360deg);
@@ -60,7 +60,7 @@ resources:
 </head>
 
 <!--  It doesn't work with class. We need to put style  -->
-<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.png'); background-size: cover;">
+<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.jpeg'); background-size: cover;">
 
 <div class="background-overlay"></div>
 
@@ -99,7 +99,7 @@ resources:
     <div class="image-slider">
 
       <!-- Images -->
-      <img src="images/favicon.png" alt="Showcase 1" class="slide active">
+      <img src="images/cell2.png" alt="Showcase 1" class="slide active">
       <img src="images/Genome.png" alt="Showcase 2" class="slide">
       <img src="images/ribosomes.png" alt="Showcase 3" class="slide">
       <img src="images/peptide.png" alt="Showcase 4" class="slide"  style="object-fit: contain">
@@ -159,23 +159,23 @@ resources:
   // Function to scroll to the second div
   function scrollToElement(selector) {
     const targetElement = document.querySelector(selector);
-    smoothScroll({toElement: targetElement, duration: 1500});
+    smoothScroll({toElement: targetElement, duration: 1000});
   }
 </script>
 
 <script>
   const container = document.querySelector('.container');
 
-  for (let i = 0; i < 35; i++) {
+  for (let i = 0; i < 28; i++) {
     const doodle = document.createElement('div');
     doodle.className = 'doodle';
-    doodle.style.animationDelay = `${i * -0.6}s`;
+    doodle.style.animationDelay = `${i * -0.8}s`;
     
     // Randomize background color and size
-    const colors = ['blue', 'green', 'yellow', 'white'];
+    const colors = ['blue', 'green', 'yellow'];
     const color = colors[Math.floor(Math.random() * colors.length)];
-    const size = Math.random() * 2 + 1;
-    doodle.style.background = `radial-gradient(${color} 10%, transparent 40%)`;
+    const size = 0.9 * 2.1 + 1.3;
+    doodle.style.background = `radial-gradient(${color} 10%, transparent 25%)`;
     doodle.style.backgroundSize = `${size}% ${size}%`;
 
     container.appendChild(doodle);
