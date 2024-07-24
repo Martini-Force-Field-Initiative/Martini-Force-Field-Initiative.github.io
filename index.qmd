@@ -1,5 +1,5 @@
 ---
-pagetitle: "Martini Force-Field Initiative"
+pagetitle: "Martini Force Field Initiative"
 page-layout: custom
 section-divs: false
 toc: false
@@ -21,7 +21,7 @@ resources:
 
 <div class="background-overlay"></div>
 
-<css-doodle>
+<!-- <css-doodle>
   <style>
     @grid: 35x1 / 56vmin;
     :container {
@@ -62,7 +62,7 @@ resources:
       }
     }
   </style>
-</css-doodle>
+</css-doodle> -->
 
 <h1 style="font-size: 2.6em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force Field Initiative </h1>
 <h5 style="font-size: 1.6em; color: #2d5c80; text-align: center;"> A general purpose coarse-grained force field for biomolecular simulations </h5>
@@ -74,15 +74,15 @@ resources:
 </div>
 
 <!-- Second div with an ID for anchoring -->
-<div style="display: flex; width: 100%; height: 95vh; background: #ffffff; padding: 15px;">
+<div style="display: flex; width: 100%; min-height: 95vh; background: #ffffff; padding: 15px;">
 
   <!-- Left side with text -->
-  <div class="full-width" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 20px;">
-    <h2 style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
+  <div class="full-width" style="flex: 1; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center; padding: 20px;">
+    <h2 class="learn-more" style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
     <p style="font-size: 1.1em; color: #2d5c80;">
       Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of biomolecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.
     </p>
-    <p class="learn-more" style="font-size: 1.1em; color: #2d5c80;">
+    <p style="font-size: 1.1em; color: #2d5c80;">
       The model uses a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. In order to keep the model simple, only four main types of interaction sites are defined: polar, non-polar, apolar, and charged. Each particle type has a number of subtypes, which allow for an accurate representation of the chemical nature of the underlying atomistic representation.
     </p>
     <p style="font-size: 1.1em; color: #2d5c80;">
@@ -155,7 +155,7 @@ resources:
   // Function to scroll to the second div
   function scrollToElement(selector) {
     const targetElement = document.querySelector(selector);
-    smoothScroll({toElement: targetElement, duration: 2000});
+    smoothScroll({toElement: targetElement, duration: 1500});
   }
 </script>
 
