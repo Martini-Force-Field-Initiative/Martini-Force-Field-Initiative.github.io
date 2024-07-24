@@ -3,9 +3,9 @@ project:
   output-dir: _site
 
 website:
-  title: "Martini CG Force-field"
+  title: "Martini Force Field Initiative"
   image: "images/martini.gif"
-  favicon: "images/favicon.png"
+  favicon: "images/favicon.jpg"
   open-graph: true
   twitter-card: true
   site-url: http://cgmartini.nl
@@ -37,6 +37,7 @@ website:
     logo: images/martini.gif
     logo-alt: "martini logo."
     title: false
+    pinned: false
     collapse-below: lg
     left:
 
@@ -153,7 +154,7 @@ website:
     - id: publications
       title: "Publications"
       contents: 
-        - text: "<img src='./../../../../images/martini_glass.jpeg' style='height: 100%; width: 100%; object-fit: contain' />"
+        - text: "<img src='/images/martini_glass.jpeg' style='height: 100%; width: 100%; object-fit: contain' />"
         - text: "{{< fa solid paperclip >}} Curated list of the most relevant papers describing the Martini FF Initiative." 
           href: https://scholar.google.com/citations?hl=en&user=N71qbKgAAAAJ&view_op=list_works&sortby=pubdate
           

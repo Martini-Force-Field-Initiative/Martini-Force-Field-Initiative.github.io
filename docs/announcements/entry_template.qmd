@@ -1,0 +1,16 @@
+---
+title: ""       # Title of the announcement (required)
+description: |  # Short description of the announcement (required)
+  ""            
+sideber: false  # do not change
+toc: false      # do not change
+author: ""     # Author of the announcement (required)
+date: ""       # Date of the announcement with format DD/MM/YYYY (required)
+image: ""      # path to image file (optional): If not provided, the default image for announcements will be used
+---
+
+<!-- 
+The text below is just an example. Please replace it with the actual description of the announcement. You can use markdown syntax to format the text.
+-->
+
+The group of Tieleman has completed an implementation of Martini 2 and Martini 3 in the OpenMM molecular dynamics software package. OpenMM is a flexible molecular dynamics package widely used for methods development and is competitive in speed on GPUs with other commonly used packages. OpenMM has facilities to easily implement new force field terms, external forces and fields, and other non-standard features, which were used to implement all force field terms of Martini 2 and Martini 3. This allows OpenMM simulations, starting with GROMACS topology files that are processed by custom scripts, with all the added flexibility of OpenMM. For details, see the paper of [MacCallum et al., Biophys J., 2023](https://doi.org/10.1016/j.bpj.2023.04.007).

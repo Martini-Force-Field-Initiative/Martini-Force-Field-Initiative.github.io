@@ -1,0 +1,25 @@
+name: Upload Announcements to S3 Bucket
+
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ca-central-1
+
+    - name: Sync announcements to S3
+      run: |
+        aws s3 sync docs/announcements/posts/ s3://martini-announcements/ --exclude "*" --include "*/*.qmd"

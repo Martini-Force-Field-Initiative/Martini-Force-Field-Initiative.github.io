@@ -6,7 +6,7 @@ title-block-banner: "#EDF3F9"
 :::{.columns}
 :::{.column width=65%}
 
-- **E-mail:** [S.J.Marrink@rug.nl](mailto:S.J.Marrink@rug.nl)
+- **E-mail:** [s.j.marrink@rug.nl](mailto:S.J.Marrink@rug.nl)
 
 - **Telephone:** +31-50-3634457
 
@@ -71,21 +71,29 @@ title-block-banner: "#EDF3F9"
 
 <script>
 function submitForm() {
-  var name = document.getElementById("name").value;
-  var institution = document.getElementById("institution").value;
-  var subject = document.getElementById("subject").value;
-  var message = document.getElementById("message").value;
 
-  var body = "Name: " + name + "\n\n" +
-             "Institution: " + institution + "\n\n" +
-             "Subject: " + subject + "\n\n" +
-             "Message: " + message;
+  const apiEndpoint = 'https://yozz7sue4d.execute-api.ca-central-1.amazonaws.com/prod/contacts/new';
 
-  var mailtoURL = "mailto:S.J.Marrink@rug.nl" +
-                  "?subject=" + encodeURIComponent(subject) +
-                  "&body=" + encodeURIComponent(body);
+  const contactName = document.getElementById("name").value;
+  const contactEmail = document.getElementById("email").value;
+  const contactInstitution = document.getElementById("institution").value;
+  const contactSubject = document.getElementById("subject").value;
+  const contactMessage = document.getElementById("message").value;
 
-  document.location.href = mailtoURL;
+  const constantData = {
+    "contactName": contactName,
+    "contactEmail": contactEmail,
+    "contactInstitution": contactInstitution,
+    "contactSubject": contactSubject,
+    "contactMessage": contactMessage
+  };
+
+  //Your post request using FETCH
+  fetch(apiEndpoint, {
+          method: 'POST',
+          body: JSON.stringify(constantData),
+          });
+  alert("Your Contact Form has been sent successfully!");
 }
 </script>
 
@@ -93,10 +101,12 @@ function submitForm() {
   <form onsubmit="submitForm(); return false;">
     <label class="form-label" for="name">Name:</label><br>
     <input class="form-input" type="text" id="name" name="name" required><br>
+    <label class="form-label" for="email">Email:</label><br>
+    <input class="form-input" type="email" id="email" name="email" required><br>
     <label class="form-label" for="institution">Institution:</label><br>
     <input class="form-input" type="text" id="institution" name="institution" required><br>
     <label class="form-label" for="subject">Subject:</label><br>
-    <input class="form-input" type="text" id="subject" name="subject"><br>
+    <input class="form-input" type="text" id="subject" name="subject" required><br>
     <label class="form-label" for="message">Message:</label><br>
     <textarea class="form-input" id="message" name="message" rows="4" required></textarea><br>
     <input class="form-submit" type="submit" value="Send">
