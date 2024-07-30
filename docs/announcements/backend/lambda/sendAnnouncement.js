@@ -25,7 +25,7 @@ exports.handler = async (event) => {
       const subscribers = await dynamoDb.scan({ TableName: tableName }).promise();
       const emailPromises = subscribers.Items.map(item => {
         const emailParams = {
-          Source: 'daniel.ramirezecheme@ucalgary.ca',
+          Source: 'noreply@cgmartini.nl',
           Destination: { ToAddresses: [item.email] },
           Message: {
             Subject: { Data: `New Announcement from the Martini FF Initiative.` },

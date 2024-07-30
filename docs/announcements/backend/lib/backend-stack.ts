@@ -38,8 +38,8 @@ export class AnnouncementsStack extends cdk.Stack {
       environment: {
         TABLE_NAME: table.tableName,
         VERIFICATION_TABLE_NAME: verificationTable.tableName,
-        BASE_URL: 'https://your-website.com', // Replace with your actual base URL
-        SOURCE_EMAIL: 'daniel.ramirezecheme@ucalgary.ca', // Replace with your actual source email
+        BASE_URL: 'https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/', // Replace with your actual base URL
+        SOURCE_EMAIL: 'noreply@cgmartini.nl', // Replace with your actual source email
       },
     });
 
@@ -49,6 +49,7 @@ export class AnnouncementsStack extends cdk.Stack {
       code: lambda.Code.fromAsset('lambda'),
       handler: 'verifyEmail.handler',
       environment: {
+        TABLE_NAME: table.tableName,
         VERIFICATION_TABLE_NAME: verificationTable.tableName,
       },
     });
@@ -77,6 +78,7 @@ export class AnnouncementsStack extends cdk.Stack {
     // Grant permissions
     table.grantReadWriteData(subscribeFunction);
     table.grantReadWriteData(unsubscribeFunction);
+    table.grantReadWriteData(verifyEmailFunction);
     table.grantReadWriteData(sendAnnouncementFunction);
     bucket.grantRead(sendAnnouncementFunction);
     verificationTable.grantReadWriteData(subscribeFunction);

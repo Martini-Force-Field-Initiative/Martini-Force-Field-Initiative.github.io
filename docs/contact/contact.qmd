@@ -2,31 +2,83 @@
 title: "Contact the Martini FF Initiative"
 toc: true
 title-block-banner: "#EDF3F9"
+page-layout: full
 ---
+
+<div class="rounded-container">
+
 :::{.columns}
-:::{.column width=65%}
+:::{.column width=5%}
 
-- **E-mail:** [s.j.marrink@rug.nl](mailto:S.J.Marrink@rug.nl)
+:::
+:::{.column width=60%}
 
-- **Telephone:** +31-50-3634457
+- **Team Leader:** *Prof. Dr. Siewert-Jan Marrink* ([s.j.marrink@rug.nl](mailto:S.J.Marrink@rug.nl))
 
-- **Address:** \
-[Groningen Biomolecular Sciences and Biotechnology Institute](http://www.rug.nl/research/gbb/) & <br> [Zernike Institute for Advanced Materials](http://www.rug.nl/research/zernike/) <br> University of Groningen <br> Nijenborgh 7 <br> 9747 AG Groningen <br> The Netherlands
+- **Affiliation:** \
+[Groningen Biomolecular Sciences and Biotechnology Institute](http://www.rug.nl/research/gbb/) and <br> 
+[Zernike Institute for Advanced Materials](http://www.rug.nl/research/zernike/) <br>
+University of Groningen, The Netherlands
 
-- **Homepage:** [http://www.rug.nl/staff/s.j.marrink/](http://www.rug.nl/staff/s.j.marrink/)
+- **Group homepage:** [https://www.rug.nl/research/molecular-dynamics/](https://www.rug.nl/research/molecular-dynamics/)
 :::
 :::{.column width=5%}
 
 :::
 :::{.column width=22%}
-![**Prof. Dr. Siewert-Jan Marrink**](sjmarrink.jpg){width=205px}
+![](sjmarrink.jpg){width=180px}
 :::
 :::
+</div>
+
+<div class="rounded-container">
+
+:::{.columns}
+:::{.column width=5%}
+
+:::
+:::{.column width=60%}
+
+- **Active member:** *Prof. Dr. Peter Tieleman* ([tieleman@ucalgary.ca](mailto:tieleman@ucalgary.ca))
+
+- **Affiliation:** \
+[Centre for Molecular Simulation](https://ucalgary.ca/molecular-simulation/home) and <br> 
+Department of Biological Sciences <br>
+University of Calgary, Canada
+
+- **Group homepage:** [https://live-ucalgary.ucalgary.ca/biocomputing/home](https://live-ucalgary.ucalgary.ca/biocomputing/home)
+:::
+:::{.column width=5%}
+
+:::
+:::{.column width=22%}
+![](ptieleman.jpeg){width=180px}
+:::
+:::
+</div>
 
 <style>
+header {
+  background-color: black;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.rounded-container {
+  width: 80%; /* Set the width of the container */
+  height: auto; /* Set the height of the container */
+  margin: auto; /* Center the container */
+  border: 1px solid #000; /* Set the border color and thickness */
+  border-radius: 15px; /* Set the border radius */
+  padding: 20px; /* Set the padding inside the container */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for effect */
+  margin-bottom: 30px;
+}
+
 /* Style for the form container */
 .form-container {
-  max-width: 96%;
+  max-width: 90%;
   margin: auto;
   padding: 20px;
   border-radius: 8px;

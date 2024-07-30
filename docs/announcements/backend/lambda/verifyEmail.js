@@ -1,18 +1,21 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const queryString = require('querystring');
 
 const verificationTable = process.env.VERIFICATION_TABLE_NAME;
+const subscribeTable = process.env.TABLE_NAME;
 
 exports.handler = async (event) => {
     console.log("Event:", JSON.stringify(event));
-    const queryParams = queryString.parse(event.queryStringParameters);
-    const { token, email } = queryParams;
+    
+    // Parse the query parameters
+    const queryParams = event.queryStringParameters;
+    const token = queryParams ? queryParams.token : null;
+    const email = queryParams ? queryParams.email : null;
 
     if (!token || !email) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ message: 'Invalid request' }),
+            body: JSON.stringify({ message: token }),
         };
     }
 
@@ -44,7 +47,7 @@ exports.handler = async (event) => {
 
         // Move the email to the subscribed table
         const subscribeParams = {
-            TableName: process.env.TABLE_NAME,
+            TableName: subscribeTable,
             Item: { 
                 email: email,
                 token: token, 

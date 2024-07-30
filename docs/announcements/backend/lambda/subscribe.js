@@ -46,7 +46,7 @@ exports.handler = async (event) => {
         await dynamoDb.put(verificationParams).promise();
 
         // Send a verification email
-        const verificationUrl = `${baseUrl}/verify?token=${token}&email=${encodeURIComponent(email)}`;
+        const verificationUrl = `${baseUrl}/verifyEmail?token=${token}&email=${encodeURIComponent(email)}`;
         const emailParams = {
             Destination: {
                 ToAddresses: [email],
