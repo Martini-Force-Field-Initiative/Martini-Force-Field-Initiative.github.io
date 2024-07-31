@@ -1,43 +1,88 @@
 <!-- Begin Signup Form -->
+<style>
+    .subscription-container {
+        padding: 1em;
+        max-width: 400px;
+        margin: auto;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+    .subscription-container p {
+        font-weight: 600;
+        margin-bottom: 0.5em;
+    }
+    .subscription-container span {
+        font-size: 0.9em;
+        color: #555;
+    }
+    .subscription-container form {
+        margin-top: 1em;
+    }
+    .subscription-container input[type="email"] {
+        font-size: 4vw; /* Responsive font size */
+        padding: 0.5em;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .subscription-container input[type="submit"] {
+        min-width: 150px;
+        font-size: 4vw; /* Responsive font size */
+        margin-top: 1em;
+        padding: 0.5em 1em;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+    }
+    .subscription-container input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+    .subscription-container img {
+        margin-top: 1em;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 50%;
+    }
+
+    /* Media query for larger screens */
+    @media (min-width: 600px) {
+        .subscription-container input[type="email"], 
+        .subscription-container input[type="submit"] {
+            font-size: 1em; /* Standard font size for larger screens */
+        }
+    }
+</style>
 <script>
     function NewSubscription() {
-    
-    const apiEndpoint = 'https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
+        const apiEndpoint = 'https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
+        const newEmail = document.getElementById("email").value;
+        const newRequest = { "email": newEmail };
 
-    const newEmail = document.getElementById("email").value;
-
-    const newRequest = {
-    "email": newEmail
-    };
-
-    //Your post request using FETCH
-    fetch(apiEndpoint, {
+        fetch(apiEndpoint, {
             method: 'POST',
             body: JSON.stringify(newRequest),
-            });
-    document.getElementById('email').value = '';
-    alert("Please check your inbox for a verification email if this is the first time you subscribe!");
+        });
+        document.getElementById('email').value = '';
+        alert("Please check your inbox for a verification email if this is the first time you subscribe!");
     }
 </script>
-<div style="padding-bottom: 1em; max-width: 400px;">
-    <center><p style="font-weight: 600; margin-bottom: 0;">Join our Community</p>
-    <span style="font-size: 0.9em;">Get notified of new posts by email:</span>
-  <form onsubmit="NewSubscription(); return false;">
-      <div>
-        <div>
-        <input type="email" id="email" name="email" placeholder="Type your email here" aria-label="Type your email here" style="font-size: 0.8em; padding: .2em;">
-        </div>      
-
-        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" tabindex="-1" value=""></div>
-        <div>
-            <div style="display: flex; align-items: center; justify-content: center;">
-                <input type="submit" value="Subscribe" name="subscribe" style="min-width: 150px; font-size: 0.8em; margin-top: 4%;" class="button btn btn-light btn-sm">
-            </div>
-        </div>
-      </div>
-  </form>
-  <img src="../../images/background.jpg" alt="mart" style="margin-top: 1em; height: 200px; object-fit: contain; border-radius: 50%">
-  <p id="message"></p>
-    </center>
+<div class="subscription-container">
+    <p>Join our Community</p>
+    <span>Get notified of new posts by email:</span>
+    <form onsubmit="NewSubscription(); return false;">
+        <input type="email" id="email" name="email" placeholder="Type your email here" aria-label="Type your email here" required>
+        <input type="submit" value="Subscribe" name="subscribe" class="button btn btn-light btn-sm">
+    </form>
+    <img src="../../images/background.jpg" alt="Background">
+    <p id="message"></p>
 </div>
 <!--End signup form-->
