@@ -54,7 +54,7 @@ exports.createContact = async (event) => {
 };
 
 exports.processContact = async (event) => {
-    const SOURCE_EMAIL = 'danipastor1997@gmail.com';
+    const SOURCE_EMAIL = 'noreply@cgmartini.nl';
     const recordPromises = event.Records.map(async (record) => {
         const { body } = record;
         const { contact, admin } = JSON.parse(body);

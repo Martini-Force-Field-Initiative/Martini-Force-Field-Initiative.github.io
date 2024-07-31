@@ -28,7 +28,7 @@ exports.handler = async (event) => {
           Source: 'noreply@cgmartini.nl',
           Destination: { ToAddresses: [item.email] },
           Message: {
-            Subject: { Data: `New Announcement from the Martini FF Initiative.` },
+            Subject: { Data: `New Announcement from the Martini Force Field Initiative.` },
             Body: { Html: { Data: 
               `
               <h3>Title<hr></h3>

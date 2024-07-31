@@ -57,7 +57,20 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ message: 'Email verified successfully' }),
+            headers: {
+                'Content-Type': 'text/html',
+            },
+            body: `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Email Verification</title>
+                </head>
+                <body>
+                    <h1>Email verified successfully</h1>
+                </body>
+                </html>
+            `,
         };
     } catch (error) {
         console.error("Error:", error);

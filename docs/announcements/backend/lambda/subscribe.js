@@ -58,7 +58,7 @@ exports.handler = async (event) => {
                     },
                 },
                 Subject: {
-                    Data: 'Email Verification',
+                    Data: 'Email Verification for Martini Announcements.',
                 },
             },
             Source: process.env.SOURCE_EMAIL,
