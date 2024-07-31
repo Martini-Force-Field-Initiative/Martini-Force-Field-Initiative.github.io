@@ -16,8 +16,7 @@ website:
 
   page-footer:
     background: "#fdfffc"
-    left: 
-      - text: <div class="footer-left"></div>
+    left: <div class="footer-left"></div>
     center:
       - icon: twitter
         href: https://x.com/cg_martini
@@ -28,8 +27,7 @@ website:
       - icon: "question-circle"
         href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a
         aria-label: Ask a Question
-    right: 
-      - text: <div class="footer-right">Maintained by the Martini Developers Team <img src="https://martini-library.s3.us-east-2.amazonaws.com/icon.png" alt="Icon"> </div>
+    right: <div class="footer-right">Maintained by the Martini Developers Team <img src="https://martini-library.s3.us-east-2.amazonaws.com/icon.png" alt="Icon"> </div>
    
 
   navbar:
