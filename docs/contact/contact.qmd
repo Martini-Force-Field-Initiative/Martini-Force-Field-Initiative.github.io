@@ -325,6 +325,13 @@ function submitForm() {
           body: JSON.stringify(constantData),
           });
   alert("Your Contact Form has been sent successfully!");
+
+  // Clear the form
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("institution").value = "";
+  document.getElementById("subject").value = "";
+  document.getElementById("message").value = "";
 }
 </script>
 

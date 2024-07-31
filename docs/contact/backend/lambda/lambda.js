@@ -108,7 +108,7 @@ Martini Developers Team
                     }
                 },
                 Subject: {
-                    Data: "Confirmation of Your Contact Form Submission.",
+                    Data: "Confirmation of Your Contact Form Submission to the Martini Force Field Initiative.",
                     Charset: 'UTF-8'
                 }
             },
