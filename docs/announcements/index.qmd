@@ -30,7 +30,7 @@ search: false
         .banner {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             background: #70afcd;
             padding: 10px;
             border-radius: 8px;
@@ -44,8 +44,8 @@ search: false
         .banner label {
             margin-right: 10px;
             font-weight: bold;
-            /* color: #565756; */
-            z-index: 1;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .banner input[type="email"] {
             padding: 6px;
@@ -54,6 +54,8 @@ search: false
             width: 250px;
             margin-right: 10px;
             font-size: 16px;
+            text-align: center;
+            justify-content: center;
         }
         .banner button {
             padding: 6px 20px;
@@ -75,11 +77,43 @@ search: false
     </style>
 </head>
 <body>
-    <div class="banner">
-        <label for="email">Join the community to get notified of new Martini announcements:</label>
+    <div class="banner" id="banner">
+        <label for="email" id="label" > Join the community to always get notified &#8594; </label>
         <input type="email" id="email" name="email" placeholder="Type your email here">
-        <button type="submit">Subscribe</button>
+        <button onclick="NewSubscription(); return false;" type="submit">Subscribe</button>
     </div>
+    <script>
+        function updateLabelText() {
+            const label = document.getElementById('label');
+            const bannerWidth = document.getElementById('banner').offsetWidth;
+            const labelWidth = label.offsetWidth;
+            
+            if (bannerWidth <= 800 && bannerWidth > 400) { // Adjust this value as needed
+                label.textContent = 'Join the community \u2192 ';
+            } else if (bannerWidth <= 400) {
+                label.textContent = '';
+            } else {
+                label.textContent = 'Join the community to always get notified \u2192 ';
+            }
+        }
+
+        window.addEventListener('resize', updateLabelText);
+        window.addEventListener('load', updateLabelText);
+
+        function NewSubscription() {
+            const apiEndpoint = 'https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
+            const newEmail = document.getElementById("email").value;
+            const newRequest = { "email": newEmail };
+
+            fetch(apiEndpoint, {
+                method: 'POST',
+                body: JSON.stringify(newRequest),
+            });
+            document.getElementById('email').value = '';
+            document.getElementById('email').placeholder = 'Welcome to our community!';
+            alert("Please check your inbox for a verification email if this is the first time you subscribe!");
+        }
+    </script>
 </body>
 ```
 <!--End signup form-->
