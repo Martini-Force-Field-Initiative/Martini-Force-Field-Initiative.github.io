@@ -17,9 +17,69 @@ listing:
   feed: true
   page-size: 50
 page-layout: full
-margin-header: signup.html
 title-block-banner: "#EDF3F9"
 title-block-banner-color: body
 comments: false
 search: false
 ---
+
+<!-- Begin Signup Form -->
+```{=HTML}
+<head>
+    <style>
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: #70afcd;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-top: -25px;
+        }
+        .banner label {
+            margin-right: 10px;
+            font-weight: bold;
+            /* color: #565756; */
+            z-index: 1;
+        }
+        .banner input[type="email"] {
+            padding: 6px;
+            border: none;
+            border-radius: 10px;
+            width: 250px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .banner button {
+            padding: 6px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #476a7c;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+        .banner button:hover {
+            background-color: #EDF3F9;
+            color: #343a40;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <label for="email">Join the community to get notified of new Martini announcements:</label>
+        <input type="email" id="email" name="email" placeholder="Type your email here">
+        <button type="submit">Subscribe</button>
+    </div>
+</body>
+```
+<!--End signup form-->
