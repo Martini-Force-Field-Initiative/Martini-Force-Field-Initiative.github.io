@@ -78,9 +78,11 @@ search: false
 </head>
 <body>
     <div class="banner" id="banner">
-        <label for="email" id="label" > Join the community to always get notified &#8594; </label>
-        <input type="email" id="email" name="email" placeholder="Type your email here">
-        <button onclick="NewSubscription(); return false;" type="submit">Subscribe</button>
+        <form onsubmit="NewSubscription(); return false;">
+            <label for="email" id="label" > Join the community to always get notified &#8594; </label>
+            <input type="email" id="email" name="email" placeholder="Type your email here" required>
+            <button type="submit">Subscribe</button>
+        </form>
     </div>
     <script>
         function updateLabelText() {

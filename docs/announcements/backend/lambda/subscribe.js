@@ -53,8 +53,12 @@ exports.handler = async (event) => {
             },
             Message: {
                 Body: {
-                    Text: {
-                        Data: `Please verify your email by clicking the following link: ${verificationUrl}`,
+                    Html: {
+                        Data: `
+                        Please verify your email by clicking the following link: ${verificationUrl}. <br><br>
+
+                        <em>Note: If you did not submit a contact form to us, please ignore this email.</em>
+                        `,
                     },
                 },
                 Subject: {

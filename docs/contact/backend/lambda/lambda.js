@@ -92,17 +92,19 @@ Message: ${Message}
         await ses.sendEmail(sesParams).promise();
 
         const confirmationMessage = `
-Dear ${Name},
+Dear ${Name}, <br><br>
 
-Thank you for reaching out to us. We have received your contact form and will get back to you shortly.
+Thank you for reaching out to us. This email is to confirm that we have received your contact form and will get back to you shortly. <br><br>
 
-Best regards,
-Martini Developers Team
+Best regards, <br>
+Martini Developers Team<br><br>
+
+<em>Note: If you did not submit a contact form to us, please ignore this email.</em>
         `;
         const confirmationParams = {
             Message: {
                 Body: {
-                    Text: {
+                    Html: {
                         Data: confirmationMessage,
                         Charset: 'UTF-8'
                     }

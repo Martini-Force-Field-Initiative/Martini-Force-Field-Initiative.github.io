@@ -303,7 +303,7 @@ header {
 <script>
 function submitForm() {
 
-  const apiEndpoint = 'https://yozz7sue4d.execute-api.ca-central-1.amazonaws.com/prod/contacts/new';
+  const apiEndpoint = 'https://mdt6v01ou1.execute-api.ca-central-1.amazonaws.com/prod/contacts/new';
 
   const contactName = document.getElementById("name").value;
   const contactEmail = document.getElementById("email").value;
