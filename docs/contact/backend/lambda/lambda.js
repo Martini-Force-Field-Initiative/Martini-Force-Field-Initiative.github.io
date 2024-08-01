@@ -90,36 +90,6 @@ Message: ${Message}
             }
         };
         await ses.sendEmail(sesParams).promise();
-
-        const confirmationMessage = `
-Dear ${Name}, <br><br>
-
-Thank you for reaching out to us. This email is to confirm that we have received your contact form and will get back to you shortly. <br><br>
-
-Best regards, <br>
-Martini Developers Team<br><br>
-
-<em>Note: If you did not submit a contact form to us, please ignore this email.</em>
-        `;
-        const confirmationParams = {
-            Message: {
-                Body: {
-                    Html: {
-                        Data: confirmationMessage,
-                        Charset: 'UTF-8'
-                    }
-                },
-                Subject: {
-                    Data: "Confirmation of Your Contact Form Submission to the Martini Force Field Initiative.",
-                    Charset: 'UTF-8'
-                }
-            },
-            Source: SOURCE_EMAIL,
-            Destination: {
-                ToAddresses: [Email]
-            }
-        };
-        await ses.sendEmail(confirmationParams).promise();
     });
     await Promise.all(recordPromises);
 }
