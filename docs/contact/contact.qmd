@@ -347,7 +347,7 @@ function submitForm() {
     <input class="form-input" type="text" id="subject" name="subject" required><br>
     <label class="form-label" for="message">Message:</label><br>
     <textarea class="form-input" id="message" name="message" rows="4" required></textarea><br>
-    <input class="form-submit" type="submit" value="Send">
+    <center><input class="form-submit" type="submit" value="Submit"></center>
   </form>
 </div>
 
