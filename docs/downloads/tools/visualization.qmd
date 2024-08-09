@@ -9,9 +9,9 @@ format: html
 
 We modified and re-wrote (check this [page](http://www.gromacs.org/Developer_Zone/Programming_Guide/VMD)) a small `Tcl` script to read and draw Martini bonds and constraints in VMD. The bonds of the elastic networks can be drawn as well. In some cases, the script needs to read the gromacs .tpr file. For this reason, there is a latest version for use with gromacs 5 (and later) .tpr files.
 
-The script for use with gromacs 5 can be found here: [cg_bonds-v5.tcl](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_bonds-v5.tcl).
+The script for use with gromacs 5 can be found here: [cg_bonds-v5.tcl](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds-v5.tcl).
 
-The script can be found here: [cg_bonds.tcl](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_bonds.tcl) (previous version: [cg_bonds.tcl.old](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_bonds.tcl.old)).
+The script can be found here: [cg_bonds.tcl](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds.tcl) (previous version: [cg_bonds.tcl.old](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds.tcl.old)).
 
 #### <span style="color:blue"> **Usage** </span>
 
@@ -82,7 +82,7 @@ For feedback or problems contact [c.arnarez@rug.nl](mailto: c.arnarez@rug.nl) or
 
 We gathered and extended the set of small `Tcl` scripts available in our group to draw protein secondary structure in VMD-like fashion.
 
-The script can be found here: [cg_secondary_structure.tcl](https://martini-library.s3.us-east-2.amazonaws.com/tools/visualization/cg_secondary_structure.tcl)
+The script can be found here: [cg_secondary_structure.tcl](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_secondary_structure.tcl)
 
 #### <span style="color:blue"> **Usage** </span>
 

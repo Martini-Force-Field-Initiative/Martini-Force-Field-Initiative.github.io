@@ -95,7 +95,7 @@ The backward procedure implements a few other more sophisticated mechanisms to p
 ### Backmapping Aquaporin 1
 <hr>
 
-Here we backmapp a CG membrane embedded aquaporin 1 into CHARMM36 atomistic coordinates, as described in<sup>[[2]](#references)</sup>. The files for this part of the tutorial are available in [aquaporine_backmap.zip](https://martini-library.s3.us-east-2.amazonaws.com/m3_tutorials/Backward/aquaporine_backmap.zip). Missing residues were added to aquaporin 1 and it was converted to Martini CG coordinates, solvated in a CG POPC bilayer with ions and polarizable water. Then simulated for 100 ns at the CG level with position restrains on the protein, see<sup>[[2]](#references)</sup> for method details and `CG_posre.gro` for final coordinates. Note, without position restrains on the protein the CG protein might (depending on the protein in question and the CG force field used) evolve to far away from a possible fine-grained structure, rendering backmapping impossible.
+Here we backmapp a CG membrane embedded aquaporin 1 into CHARMM36 atomistic coordinates, as described in<sup>[[2]](#references)</sup>. The files for this part of the tutorial are available in [aquaporine_backmap.zip](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Backward/aquaporine_backmap.zip). Missing residues were added to aquaporin 1 and it was converted to Martini CG coordinates, solvated in a CG POPC bilayer with ions and polarizable water. Then simulated for 100 ns at the CG level with position restrains on the protein, see<sup>[[2]](#references)</sup> for method details and `CG_posre.gro` for final coordinates. Note, without position restrains on the protein the CG protein might (depending on the protein in question and the CG force field used) evolve to far away from a possible fine-grained structure, rendering backmapping impossible.
 
 We are going to use the `initram.sh` script, which calls `backward.py` and then runs a series of minimization and equilibrium simulations to get the final backmapped structure. To run the script we need the following:
 
@@ -120,7 +120,7 @@ After successful backmapping the `aa_charmm.gro` file will contain POPC membrane
 ### Backmapping from Martini 3
 <hr>
 
-Backmapping from Martini 3 configurations follows the same procedure described above. You only need to chage your mapping files. You can find a beta version of the Mapping files to backmap to CHARMM36 [here](https://martini-library.s3.us-east-2.amazonaws.com/m3_tutorials/Backward/aquaporine_backmap.zip).
+Backmapping from Martini 3 configurations follows the same procedure described above. You only need to chage your mapping files. You can find a beta version of the Mapping files to backmap to CHARMM36 [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Backward/aquaporine_backmap.zip).
 
 ### Tools and scripts used in this tutorial
 <hr>

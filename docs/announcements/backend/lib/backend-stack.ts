@@ -24,11 +24,8 @@ export class AnnouncementsStack extends cdk.Stack {
       tableName: 'VerificationTable',
     });
 
-    // Create an S3 bucket for announcements
-    const bucket = new s3.Bucket(this, 'AnnouncementBucket', {
-      bucketName: 'martini-announcements',
-      versioned: true,
-    });
+    // Reference to S3 martiniff-library bucket for announcements
+    const bucket = s3.Bucket.fromBucketName(this, 'AnnouncementBucket', 'martiniff-library');
 
     // Create Lambda functions
     const subscribeFunction = new lambda.Function(this, 'SubscribeFunction', {

@@ -8,7 +8,7 @@ format: html
 ### Bacterial cell wall peptidoglycan
 <hr>
 
-A Martini model of bacterial cell wall peptidoglycan is now available, thanks to the nice work of Vaiwala et al. Download the files [here](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/peptidoglycan_Ecoli.zip)!
+A Martini model of bacterial cell wall peptidoglycan is now available, thanks to the nice work of Vaiwala et al. Download the files [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/peptidoglycan_Ecoli.zip)!
 Any queries regarding the model should be addressed to the authors (see below). 
  
 The zip-archive contains the forcefield parameters (.itp) files and the structure (.gro) files of the single, 7, and 21 chains conformer for the peptidoglycan layer of the bacterial cell envelope, along with the README file. The details for the parameterization can be found in:
@@ -20,10 +20,10 @@ Rakesh Vaiwala, Pradyumn Sharma, Mrinalini Puranik, K. Ganapathy Ayappa. [Develo
 
 KALP (23 residue) in a DPPC bilayer
 
-- [kalp_DPPC.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/kalp_DPPC.mdp)
-- [kalp_DPPC.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/kalp_DPPC.top)
-- [kalp.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/kalp.itp)
-- [kalp_DPPC.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/kalp_DPPC.gro)
+- [kalp_DPPC.mdp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/kalp_DPPC.mdp)
+- [kalp_DPPC.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/kalp_DPPC.top)
+- [kalp.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/kalp.itp)
+- [kalp_DPPC.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/kalp_DPPC.gro)
 
 ### Collagen Triple Helix
 <hr>
@@ -34,9 +34,9 @@ Collagen triple helix in vacuum
 
 Note: the required ``collagen.itp'' file can be generated using the martinize script
 
-- [collagen.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/collagen.mdp)
-- [collagen.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/collagen.top)
-- [collagen.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/collagen.gro)
+- [collagen.mdp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/collagen.mdp)
+- [collagen.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/collagen.top)
+- [collagen.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/collagen.gro)
 
 ### HA fusion peptides
 <hr>
@@ -47,14 +47,14 @@ Topologies for the wildtype at pH 5.0 and pH 7.4, and mutants W14A and G1V,
 and coordinate files for a system of 256 DOPE lipids with 4 WT peptides
 either in a randomized solution or in a stalk-phase
 
-- [WT_pH5.0.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/WT_pH5.0.itp)
-- [WT_pH7.4.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/WT_pH7.4.itp)
-- [W14A.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/W14A.itp)
-- [G1V.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/G1V.itp)
-- [mixed_4WTpH5.0.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mixed_4WTpH5.0.top)
-- [mixed_4WTpH5.0.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mixed_4WTpH5.0.gro)
-- [stalkphase_4WTpH5.0.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/stalk-phase_4WTpH5.0.top)
-- [stalkphase_4WTpH5.0.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/stalk-phase_4WTpH5.0.gro)
+- [WT_pH5.0.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/WT_pH5.0.itp)
+- [WT_pH7.4.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/WT_pH7.4.itp)
+- [W14A.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/W14A.itp)
+- [G1V.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/G1V.itp)
+- [mixed_4WTpH5.0.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mixed_4WTpH5.0.top)
+- [mixed_4WTpH5.0.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mixed_4WTpH5.0.gro)
+- [stalkphase_4WTpH5.0.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/stalk-phase_4WTpH5.0.top)
+- [stalkphase_4WTpH5.0.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/stalk-phase_4WTpH5.0.gro)
 
 ### Actin with ADP and ATP
 <hr>
@@ -63,17 +63,17 @@ Interested in using Martini for ADP or ATP with actin?
 
 The attached .zip -file contains topologies for ADP, ATP as well as ADP-actin and ATP-actin systems. PDB files are provided for ADP- and ATP-actin, as well as the F-actin strand. As an added bonus, there's a short bash script which allows the user to build fibers of arbitrary lengths from one of the PDB files (2zwh.pdb).
 
-Download the files [here](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/Actin_ADP_ATP.zip)!
+Download the files [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/Actin_ADP_ATP.zip)!
 
 ### Glycophorin in DPPC membrane
 <hr>
 
 Glycophorin A monomer in a DPPC bilayer. These simulations have been ran with an older, unpublished version of the MARTINI forcefield. Use with the greatest care.
 
-- [gly_A_monomer_DPPC.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/gly_A_monomer_DPPC.mdp)
-- [gly_A_monomer_DPPC.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/gly_A_monomer_DPPC.top)
-- [gly_A_monomer.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/gly_A_monomer.itp)
-- [gly_A_monomer_DPPC.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/gly_A_monomer_DPPC.gro)
+- [gly_A_monomer_DPPC.mdp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/gly_A_monomer_DPPC.mdp)
+- [gly_A_monomer_DPPC.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/gly_A_monomer_DPPC.top)
+- [gly_A_monomer.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/gly_A_monomer.itp)
+- [gly_A_monomer_DPPC.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/gly_A_monomer_DPPC.gro)
 
 ### MscL in a bilayer
 <hr>
@@ -82,12 +82,12 @@ MscL channel embedded in a DOPC  bilayer
 
 (both an open and closed state are provided)
 
-- [mscl.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mscl.mdp)
-- [mscl.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mscl.top)
-- [mscl.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mscl.itp)
-- [mscl.ndx](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mscl.ndx)
-- [mscl-closed.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mscl-closed.gro)
-- [mscl-open.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/mscl-open.gro)
+- [mscl.mdp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mscl.mdp)
+- [mscl.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mscl.top)
+- [mscl.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mscl.itp)
+- [mscl.ndx](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mscl.ndx)
+- [mscl-closed.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mscl-closed.gro)
+- [mscl-open.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/mscl-open.gro)
 
 ### Toy peptide
 <hr>
@@ -97,10 +97,10 @@ Half of the peptide is helical, the other half beta strand.
 Equilibrated at T=300K, P=1 bar.
 System composition: 1 peptide, water 1538.
 
-- [toypeptide.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/toypeptide.gro)
-- [toypeptide.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/toypeptide.mdp)
-- [toypeptide.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/toypeptide.top)
-- [toypeptide.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/toypeptide.itp)
+- [toypeptide.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/toypeptide.gro)
+- [toypeptide.mdp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/toypeptide.mdp)
+- [toypeptide.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/toypeptide.top)
+- [toypeptide.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/toypeptide.itp)
 
 ### Amyloid Fibrils
 <hr>
@@ -108,9 +108,9 @@ System composition: 1 peptide, water 1538.
 Equilibrated at T=300K, constant pressure P=1 bar.
 System size: 27 hiAPP (human islet amyloid polypeptide) fibrils,  59271 waters
 
-- [fibril.gro](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/fibril.gro)
-- [fibril.mdp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/fibril.mdp)
-- [fibril.top](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/fibril.top)
-- [fibril.itp](https://martini-library.s3.us-east-2.amazonaws.com/example_applications/peptides/fibril.itp)
+- [fibril.gro](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/fibril.gro)
+- [fibril.mdp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/fibril.mdp)
+- [fibril.top](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/fibril.top)
+- [fibril.itp](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/peptides/fibril.itp)
 
 <hr>

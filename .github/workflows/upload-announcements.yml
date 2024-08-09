@@ -22,4 +22,4 @@ jobs:
 
     - name: Sync announcements to S3
       run: |
-        aws s3 sync docs/announcements/posts/ s3://martini-announcements/ --exclude "*" --include "*/*.qmd"
+        aws s3 sync docs/announcements/posts/ s3://martiniff-library/2_Announcements/ --exclude "*" --include "*/*.qmd"
