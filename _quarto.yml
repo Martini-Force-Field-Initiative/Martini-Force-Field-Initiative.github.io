@@ -21,12 +21,12 @@ website:
       - icon: twitter
         href: https://x.com/cg_martini
         aria-label: Martini Twitter
+      - text: "{{< iconify hugeicons:help-circle size=lg title=FAQs label=FAQs >}}"
+        href: docs/faq/index.qmd
+        aria-label: FAQs
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         aria-label: Martini GitHub
-      - icon: "question-circle"
-        href: https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a
-        aria-label: Ask a Question
     right: <div class="footer-right">Maintained by the Martini Developers Team <img src="https://martini-library.s3.us-east-2.amazonaws.com/icon.png" alt="Icon"> </div>
    
 
@@ -67,9 +67,9 @@ website:
           - text: "Report an Issue"
             icon: "bug"
             href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" 
-          - text: "Ask a Question"
+          - text: "FAQs"
             icon: "question-circle"
-            href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions/categories/q-a"
+            href: docs/faq/index.qmd
     
     tools:
       - icon: twitter
