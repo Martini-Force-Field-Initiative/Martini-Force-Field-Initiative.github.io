@@ -59,7 +59,7 @@ export class ContactsStack extends Stack {
           environment: {
             CONTACT_TABLE_NAME: contactTable.tableName,
             CONTACT_PROCESSING_QUEUE_URL: contactQueue.queueUrl,
-            ADMIN_EMAIL: 'daniel.ramirezecheme@ucalgary.ca',
+            ADMIN_EMAIL: 'tieleman@ucalgary.ca',
           }
         });
         contactTable.grantWriteData(createContactFunction); // allow the createContact lambda function to write to the contact table
