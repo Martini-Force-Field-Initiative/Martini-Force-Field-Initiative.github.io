@@ -45,7 +45,7 @@ After getting the CG structure and topology of KALP, we can start by solvating t
 #### Self-assembly approach
 <hr>
 
-A bilayer self-assembly dynamics, as presented in the first module of the [lipid tutorial part I](../LipidsI/index.qmd), will result in the self-insertion of the KALP inside the bilayer (Fig. 1). **The files required for this tutorial (including worked files) can be downloaded from [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip).**
+A bilayer self-assembly dynamics, as presented in the first module of the [lipid tutorial part I](../LipidsI/index.qmd), will result in the self-insertion of the KALP inside the bilayer (Fig. 1). **The files required for this tutorial (including worked files) can be downloaded from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip).**
 
 1. The first steps are to generate a simulations box containing KALP, POPC, water and ions. This can be done by the following commands:
 
@@ -212,7 +212,7 @@ It is worth mention that `martinize2` allows you to easily manipulate the elasti
 #### Comparison between models
 <hr>
 
-With two simulations of the same protein complex using different approaches for elastic network, you can now compare the trajectories with different Martini protein models. If you do not want to wait, some pre-run trajectories can be found in the [tutorial folder](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip). As in [Protein tutorial part I](../ProteinsI/index.qmd) RMSD and RMSF can be calculated using `GROMACS` tools (`gmx rms` and `gmx rmsf`) <sup>[[15]](#references)</sup> while `VMD` <sup>[[16]](#references)</sup> or `Pymol` can be used to visualize the trajectories. 
+With two simulations of the same protein complex using different approaches for elastic network, you can now compare the trajectories with different Martini protein models. If you do not want to wait, some pre-run trajectories can be found in the [tutorial folder](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip). As in [Protein tutorial part I](../ProteinsI/index.qmd) RMSD and RMSF can be calculated using `GROMACS` tools (`gmx rms` and `gmx rmsf`) <sup>[[15]](#references)</sup> while `VMD` <sup>[[16]](#references)</sup> or `Pymol` can be used to visualize the trajectories. 
 
 Based on the results of Figure 3, try now figure out which approach is the best in this case. One aspect to consider is that we used a HIV-1 Protease conformation from a structure with a ligand (holo state) but the simulations was performed without the ligand (apo state).  What the literature indicate about previous NMR, crystallography and MD simulations studies with apo states of this enzyme?
 

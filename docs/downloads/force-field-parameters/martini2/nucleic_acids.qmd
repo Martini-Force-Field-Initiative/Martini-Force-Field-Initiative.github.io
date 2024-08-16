@@ -7,7 +7,7 @@ format: html
 ### Deoxyribonucleic acid (DNA)
 <hr>
 
-Martini 2 DNA parameters are available below including a `martinize-dna` script to generate Martini topology files for DNA molecules. In addition, an example of an all atomistic *24 bp dsDNA* in `.pdb` format, together with its course grained mapping and bonded parameters, using the stiff elastic network settings is provided [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/24bp_AA2CG_stiff.tar). For further background reading on the Martini 2 DNA parameters, see:
+Martini 2 DNA parameters are available below including a `martinize-dna` script to generate Martini topology files for DNA molecules. In addition, an example of an all atomistic *24 bp dsDNA* in `.pdb` format, together with its course grained mapping and bonded parameters, using the stiff elastic network settings is provided [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/24bp_AA2CG_stiff.tar). For further background reading on the Martini 2 DNA parameters, see:
 
 - **J.J. Uusitalo, H.I. Ingólfsson, P. Akhshi, D.P. Tieleman, S.J. Marrink**. *Martini coarse-grained force field: extension to DNA.* JCTC, (doi: [10.1021/acs.jctc.5b00286](http://dx.doi.org/10.1021/acs.jctc.5b00286))
 
@@ -17,10 +17,10 @@ Martini 2 DNA parameters are available below including a `martinize-dna` script 
 
 |         Version                    |     Description   |
 |------------------------------------|-------------------|
-| [martini-dna-150909.tar](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150909.tar)  |      martini_v2.1P-dna.itp: Fixed missing T-bead - S-bead interactions.       |
-|[martini-dna-150817.tar](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150817.tar)    | dna_backmapping_files: Fixed a bug in CHARMM36 thymine files.|
-|[martini-dna-150814.tar](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150814.tar)    | martinize-dna.py: Changed the default cut-off for separating chains to 4 Angstroms.|
-|[martini-dna-150722.tar](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150722.tar)  |  Original release   |
+| [martini-dna-150909.tar](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150909.tar)  |      martini_v2.1P-dna.itp: Fixed missing T-bead - S-bead interactions.       |
+|[martini-dna-150817.tar](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150817.tar)    | dna_backmapping_files: Fixed a bug in CHARMM36 thymine files.|
+|[martini-dna-150814.tar](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150814.tar)    | martinize-dna.py: Changed the default cut-off for separating chains to 4 Angstroms.|
+|[martini-dna-150722.tar](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/dna/martini-dna-150722.tar)  |  Original release   |
 
 ### Ribonucleic acid (RNA)
 <hr>
@@ -33,7 +33,7 @@ The Martini 2 RNA parameters are available as a package with a martinize script 
 
 |         Version                    |     Description   |
 |------------------------------------|-------------------|
-|[na-tutorials_20170815.tar](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/rna/na-tutorials_20170815.tar) |   Original release    |
+|[na-tutorials_20170815.tar](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/nucleic_acids/rna/na-tutorials_20170815.tar) |   Original release    |
 
 <hr>
 

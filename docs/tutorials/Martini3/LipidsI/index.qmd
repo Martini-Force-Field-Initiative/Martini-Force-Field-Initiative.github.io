@@ -25,13 +25,13 @@ In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](mailto: lp
 ### Introduction
 <hr>
 
-The Martini coarse-grained (CG) model was originally developed for lipids<sup>[[1,2]](#references)</sup>. The underlying philosophy of Martini is to build an extendable CG model based on simple modular building blocks and to use only few parameters and standard interaction potentials to maximize applicability and transferability. Martini 3 greatly expanded the number of possible interactions, but retains this building-block approach<sup>[[3]](#references)</sup>. Due to the modularity of Martini, a large set of different lipid types has been parameterized. Their parameters are available with the [Martini 3 release archive](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip). In this tutorial, you will learn how to set up lipid-water system simulations with lipids from this collection, with a focus on bilayers. You will also study a number of standard bilayer properties.
+The Martini coarse-grained (CG) model was originally developed for lipids<sup>[[1,2]](#references)</sup>. The underlying philosophy of Martini is to build an extendable CG model based on simple modular building blocks and to use only few parameters and standard interaction potentials to maximize applicability and transferability. Martini 3 greatly expanded the number of possible interactions, but retains this building-block approach<sup>[[3]](#references)</sup>. Due to the modularity of Martini, a large set of different lipid types has been parameterized. Their parameters are available with the [Martini 3 release archive](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip). In this tutorial, you will learn how to set up lipid-water system simulations with lipids from this collection, with a focus on bilayers. You will also study a number of standard bilayer properties.
 
 These tutorials assume a basic understanding of the Linux operating system and the `gromacs` molecular dynamics (MD) simulation package. An excellent `gromacs` tutorial is available at: [http://www.mdtutorials.com/gmx/](http://www.mdtutorials.com/gmx/).
 
 The aim of the tutorial is to create and study properties of CG Martini models of lipid bilayer membranes. First, we will attempt to spontaneously self-assemble a DPPC bilayer and check various properties that characterize lipid bilayers, such as the area per lipid, bilayer thickness, order parameters, and diffusion. Next, we will change the nature of the lipid head groups and tails, and study how that influences the properties. Finally, we will move on to creating more complex multicomponent bilayers.
 
-You can download all the files, including worked examples of this tutorial (GROMACS version 2021): [`bilayer-lipidome-tutorial-GMX5_20170408.tar`](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/LipidsI/bilayer-lipidome-tutorial-GMX5_20170408.tar), this is a rather large archive. A smaller set that expects you to do more yourself is recommended and is named: [`bilayer-lipidome-tutorial-GMX5_2017Aug04.tar`](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/LipidsI/bilayer-lipidome-tutorial-GMX5_2017Aug04.tar) Unpack one of the lipidome-tutorial.tar archives (NOTE: both expand to a directory called `bilayer-lipidome-tutorial`), and enter the `bilayer-lipidome-tutorial` directory:
+You can download all the files, including worked examples of this tutorial (GROMACS version 2021): [`bilayer-lipidome-tutorial-GMX5_20170408.tar`](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/LipidsI/bilayer-lipidome-tutorial-GMX5_20170408.tar), this is a rather large archive. A smaller set that expects you to do more yourself is recommended and is named: [`bilayer-lipidome-tutorial-GMX5_2017Aug04.tar`](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/LipidsI/bilayer-lipidome-tutorial-GMX5_2017Aug04.tar) Unpack one of the lipidome-tutorial.tar archives (NOTE: both expand to a directory called `bilayer-lipidome-tutorial`), and enter the `bilayer-lipidome-tutorial` directory:
 
 ``` bash
 tar -xzvf bilayer-lipidome-tutorial-GMX5_2017Aug04.tar
@@ -44,7 +44,7 @@ cd bilayer-lipidome-tutorial
 We will begin with self-assembling a dipalmitoyl-phosphatidylcholine (DPPC) bilayer from a random configuration of lipids and water in the simulation box. Enter the `spontaneous-assembly/initial_assembly` subdirectory. The first step is to create a simulation box containing a random configuration of 128 DPPC lipids. This can be done by starting from a file containing a single DPPC molecule, which you can get from the [Martini lipidome](../../../downloads/force-field-parameters/martini2/lipidome.qmd#phosphatidylcholine-(pc)), under the entry for DPPC. Download the `DPPC-em.gro` file (but not any `.itp` file from there, as those are specific for Martini 2):
 
 ``` bash
-wget https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC-em.gro
+wget https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC-em.gro
 ```
 
 ***
@@ -64,7 +64,7 @@ The value of the flag `-radius` (default van der Waals radii) has to be increase
 Using the `gromacs` tool `solvate`, add 6 CG waters per lipid (note that this corresponds to 24 all-atom waters per lipid, 768 in total). `gmx solvate` needs to have the structure of an equilibrated water box to use as a template to fill the empty space in `128_noW.gro`. The website has one (`water.gro`) available for you to download [[here]](../../../downloads/example-applications/solvent-systems.qmd):
 
 ``` bash
-wget https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/solvent_systems/water.gro
+wget https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/solvent_systems/water.gro
 ```
 
 You can now run solvate:
@@ -75,10 +75,10 @@ gmx solvate -cp 128_noW.gro -cs water.gro -o waterbox.gro -maxsol 768 -radius 0.
 
 Also here, the value of the flag `-radius` is used to reflect the size of Martini CG beads. A new file, `waterbox.gro` is produced containing the 128 lipids and added water beads.
 
-Now you will perform an energy minimization of the solvated system, to get rid of high forces between beads that may have been placed quite close to each other. The settings file `minimization.mdp` is provided for you, but you will need the topology for water and for the DPPC lipid, and to organize them as a `.top` file. From the website’s [Downloads -> Force field parameters -> Martini3 -> Particle definitions](../../../downloads/force-field-parameters/martini3/particle-definitions.qmd) section you can get the zip file for the [Martini 3 release](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip), which contains the relevant topologies:
+Now you will perform an energy minimization of the solvated system, to get rid of high forces between beads that may have been placed quite close to each other. The settings file `minimization.mdp` is provided for you, but you will need the topology for water and for the DPPC lipid, and to organize them as a `.top` file. From the website’s [Downloads -> Force field parameters -> Martini3 -> Particle definitions](../../../downloads/force-field-parameters/martini3/particle-definitions.qmd) section you can get the zip file for the [Martini 3 release](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip), which contains the relevant topologies:
 
 ``` bash
-wget https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip
+wget https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip
 unzip martini_v300.zip
 ```
 

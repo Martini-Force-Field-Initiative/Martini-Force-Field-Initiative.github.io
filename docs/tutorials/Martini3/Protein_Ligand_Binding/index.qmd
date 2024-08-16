@@ -19,7 +19,7 @@ In case of issues, please contact [paulo.telles-de-souza@ibcp.fr](mailto: paulo.
 ### Introduction
 <hr>
 
-In this tutorial, we will set up a coarse-grained (CG) simulation for a protein–ligand system using the new Martini 3.0 force field. The ligand will be initially placed in the solvent phase of the system, and throughout the simulation find the protein binding pocket. As an example, we will simulate the binding of benzene to different mutants of T4 lysozyme<sup>[[1-3]](#references)</sup>. You can find all necessary files to perform the simulations [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Protein_ligand_binding/tutorial_protein_ligand_binding.zip). The same system was already simulated before<sup>[[4,5]](#references)</sup> with Martini 2 and with the open-beta version of Martini 3.
+In this tutorial, we will set up a coarse-grained (CG) simulation for a protein–ligand system using the new Martini 3.0 force field. The ligand will be initially placed in the solvent phase of the system, and throughout the simulation find the protein binding pocket. As an example, we will simulate the binding of benzene to different mutants of T4 lysozyme<sup>[[1-3]](#references)</sup>. You can find all necessary files to perform the simulations [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Protein_ligand_binding/tutorial_protein_ligand_binding.zip). The same system was already simulated before<sup>[[4,5]](#references)</sup> with Martini 2 and with the open-beta version of Martini 3.
 
 ### 1. Converting an atomistic structure -protein and ligand- to CG resolution and generating a Martini topology
 <hr>

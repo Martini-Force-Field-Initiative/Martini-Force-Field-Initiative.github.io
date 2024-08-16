@@ -34,7 +34,7 @@ In case of issues, please contact [alessandri@uchicago.edu](mailto: alessandri@u
 
 In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule. The aim is to have a pragmatic description of the Martini 3 coarse-graining (CGing) principles <sup>[[1,2]](#references)</sup>, which follow the main ideas outlined in the seminal Martini 2 work <sup>[[3]](#references)</sup>. Among other things, you may want to parametrize a small molecule with Martini 3 in order to perform protein-ligand binding simulations <sup>[[4]](#references)</sup> or perhaps test the solubility of a molecular dopant in different environments <sup>[[5]](#references)</sup>.
 
-We will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2019.x or later. Required files and worked examples can be downloaded [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/parametrize_new_small_molecule.zip), and files for Bartender can be obtained [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip).
+We will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2019.x or later. Required files and worked examples can be downloaded [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/parametrize_new_small_molecule.zip), and files for Bartender can be obtained [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip).
 
 ![Figure 1 | 1-ethylnaphthalene.](fig1.png)
 
@@ -466,7 +466,7 @@ Hence, this step of the tutorial can replace steps [1](#generate-atomistic-refer
 #### 9.1 Installing Bartender
 <hr>
 
-To install `Bartender`, first uncompress the `m3_bartender.zip` provided in the [Introduction](#introduction) (if you did't download it then, you can also download it [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip)) and access the `.tgz` file inside. Uncompress the `.tgz` file into a directory and set the `BTROOT` environment variable to point to that directory. Optionally, you can add `BTROOT` to `PATH`. 
+To install `Bartender`, first uncompress the `m3_bartender.zip` provided in the [Introduction](#introduction) (if you did't download it then, you can also download it [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip)) and access the `.tgz` file inside. Uncompress the `.tgz` file into a directory and set the `BTROOT` environment variable to point to that directory. Optionally, you can add `BTROOT` to `PATH`. 
 
 Let us go through this installation process. Say your home directory is `/home/alfred`, and you have the `Bartender` `.tgz` file in that folder (you can find the `.tgz` file among the downloaded files). Switch to that directory:
 
@@ -567,7 +567,7 @@ If we open the `gmx_out.itp` file, we will see that Bartender will have generate
 
 - `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
 
-- `Bartender` (downloadable [here](https://martiniff-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip))
+- `Bartender` (downloadable [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip))
 
 ### References
 <hr>

@@ -9,7 +9,7 @@ format: html
 
 TS2CG is an algorithm to backmap a triangulated surface to a corresponding coarse-grained model.
  
-The software can be downloaded from this [link](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/TS2CG-master.zip), or by visiting [https://github.com/marrink-lab/TS2CG](https://github.com/marrink-lab/TS2CG).
+The software can be downloaded from this [link](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/TS2CG-master.zip), or by visiting [https://github.com/marrink-lab/TS2CG](https://github.com/marrink-lab/TS2CG).
 
 ### Backward
 <hr>
@@ -24,23 +24,23 @@ When using this method, please cite:
 
 More extensive information and a tutorial can be found [[here]](../../tutorials/Martini3/Backward/index.qmd). 
 
-[The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded here.](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward.zip)
+[The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded here.](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward.zip)
 
-[The initram.sh script for version 5 can be downloaded here.](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/initram-v5.sh)
+[The initram.sh script for version 5 can be downloaded here.](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/initram-v5.sh)
 
-[The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded here.](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip)
+[The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded here.](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip)
 
 ### Convert Martini water to polarizable water
 <hr>
 
-- [triple-w.py](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.pyhttps://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.py)
+- [triple-w.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.pyhttps://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.py)
 
 Script to convert the water in CG Martini system to polarizable water. For an example how to use this script, click [here](../../tutorials/Legacy/martini2/others.qmd#polarizable-water).
 
 ### Resolution transformation
 <hr>
 
-Custom version of Gromacs to reintroduce atomistic details to CG structures [gmx_rev.tar.gz](https://martiniff-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/gmx_rev.tar).
+Custom version of Gromacs to reintroduce atomistic details to CG structures [gmx_rev.tar.gz](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/gmx_rev.tar).
 
 If you use the code, please cite:
 
