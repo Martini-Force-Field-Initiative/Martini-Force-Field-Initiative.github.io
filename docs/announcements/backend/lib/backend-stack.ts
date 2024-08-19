@@ -35,7 +35,7 @@ export class AnnouncementsStack extends cdk.Stack {
       environment: {
         TABLE_NAME: table.tableName,
         VERIFICATION_TABLE_NAME: verificationTable.tableName,
-        BASE_URL: 'https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/', // Replace with your actual base URL
+        BASE_URL: 'https://q8hgi2weih.execute-api.ca-central-1.amazonaws.com/prod/', // Replace with your actual base URL
         SOURCE_EMAIL: 'noreply@cgmartini.nl', // Replace with your actual source email
       },
     });

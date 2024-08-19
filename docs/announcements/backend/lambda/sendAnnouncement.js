@@ -43,7 +43,7 @@ exports.handler = async (event) => {
               <br><br>
 
               <hr style="border: 0.5px solid #000;">
-              <em>If you no longer wish to receive emails from us, you can <a href="https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">unsubscribe from our mailing list</a>.</em>
+              <em>If you no longer wish to receive emails from us, you can <a href="https://q8hgi2weih.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">unsubscribe from our mailing list</a>.</em>
               
               <hr style="border: 0.5px solid #000;">
 

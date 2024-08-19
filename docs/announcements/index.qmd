@@ -103,7 +103,7 @@ search: false
         window.addEventListener('load', updateLabelText);
 
         function NewSubscription() {
-            const apiEndpoint = 'https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
+            const apiEndpoint = 'https://q8hgi2weih.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
             const newEmail = document.getElementById("email").value;
             const newRequest = { "email": newEmail };
 
