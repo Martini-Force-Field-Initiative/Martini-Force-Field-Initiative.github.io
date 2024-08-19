@@ -25,10 +25,10 @@ exports.handler = async (event) => {
       const subscribers = await dynamoDb.scan({ TableName: tableName }).promise();
       const emailPromises = subscribers.Items.map(item => {
         const emailParams = {
-          Source: 'daniel.ramirezecheme@ucalgary.ca',
+          Source: 'noreply@cgmartini.nl',
           Destination: { ToAddresses: [item.email] },
           Message: {
-            Subject: { Data: `New Announcement from the Martini FF Initiative.` },
+            Subject: { Data: `New Announcement from the Martini Force Field Initiative.` },
             Body: { Html: { Data: 
               `
               <h3>Title<hr></h3>
@@ -43,7 +43,7 @@ exports.handler = async (event) => {
               <br><br>
 
               <hr style="border: 0.5px solid #000;">
-              If you no longer wish to receive emails from us, you can <a href="https://ilidpuzbe9.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">unsubscribe from our mailing list</a>.
+              <em>If you no longer wish to receive emails from us, you can <a href="https://q8hgi2weih.execute-api.ca-central-1.amazonaws.com/prod/unsubscribe?email=${encodeURIComponent(item.email)}&token=${item.token}">unsubscribe from our mailing list</a>.</em>
               
               <hr style="border: 0.5px solid #000;">
 

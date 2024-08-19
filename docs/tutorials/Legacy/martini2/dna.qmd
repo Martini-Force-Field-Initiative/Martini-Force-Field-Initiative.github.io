@@ -9,7 +9,7 @@ If you are looking for the current iterations of the Martini force field lecture
 
 ***
 
-**NOTE:** You can download all the files required for this tutorial from [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/na-tutorials_20170815.tar). Please note that you have to adjust some of the paths (mostly location of the force field files) below if you use this package.
+**NOTE:** You can download all the files required for this tutorial from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/na-tutorials_20170815.tar). Please note that you have to adjust some of the paths (mostly location of the force field files) below if you use this package.
 
 #### **Setting up double-stranded DNA**
 <hr>
@@ -58,7 +58,7 @@ $ sed -i 's/#include "martini.itp"/#include "martini_v2.1-dna.itp"\n#include "ma
 $ vmd -m 1BNA-cleaned.pdb cg-1bna.pdb
 ```
 
-5. Next you need to create a simulation box for DNA and solvate it as well as add counterions. (You will find a pre-equilibrated box of water [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/water.gro).)
+5. Next you need to create a simulation box for DNA and solvate it as well as add counterions. (You will find a pre-equilibrated box of water [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/water.gro).)
 
 ``` bash
 $ gmx editconf -f cg-1bna.pdb -d 1.2 -bt dodecahedron -o box.gro
@@ -217,7 +217,7 @@ $ vmd -m 1j46.pdb complex_CG.pdb
 
 4. As in the double stranded DNA tutorial for 1BNA, we will create a .top file that includes the .itp files. We can copy the dna.top file and modify to include the correct .itp files. With the experience from previous tutorial, would you be able to write a .top file for the system yourself? Check by comparing your result to the provided file cg-complex.top.
 
-5. Next we will solvate the solute creating a box around it as well as adding counterions. We will use the same water.gro file that we used previously to create the 1BNA CG model. (Download water box from [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/water.gro).) Note that by concatenating the protein and DNA files, the combined coordinate file is seen as two separate frames by GROMACS tools. Therefore, we need a preprocessing step.
+5. Next we will solvate the solute creating a box around it as well as adding counterions. We will use the same water.gro file that we used previously to create the 1BNA CG model. (Download water box from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/water.gro).) Note that by concatenating the protein and DNA files, the combined coordinate file is seen as two separate frames by GROMACS tools. Therefore, we need a preprocessing step.
 
 ``` bash
 $ grep ATOM complex_CG.pdb > complex_CG-cleaned.pdb

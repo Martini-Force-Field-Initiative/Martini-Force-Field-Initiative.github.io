@@ -54,7 +54,7 @@ exports.createContact = async (event) => {
 };
 
 exports.processContact = async (event) => {
-    const SOURCE_EMAIL = 'danipastor1997@gmail.com';
+    const SOURCE_EMAIL = 'noreply@cgmartini.nl';
     const recordPromises = event.Records.map(async (record) => {
         const { body } = record;
         const { contact, admin } = JSON.parse(body);
@@ -90,34 +90,6 @@ Message: ${Message}
             }
         };
         await ses.sendEmail(sesParams).promise();
-
-        const confirmationMessage = `
-Dear ${Name},
-
-Thank you for reaching out to us. We have received your contact form and will get back to you shortly.
-
-Best regards,
-Martini Developers Team
-        `;
-        const confirmationParams = {
-            Message: {
-                Body: {
-                    Text: {
-                        Data: confirmationMessage,
-                        Charset: 'UTF-8'
-                    }
-                },
-                Subject: {
-                    Data: "Confirmation of Your Contact Form Submission.",
-                    Charset: 'UTF-8'
-                }
-            },
-            Source: SOURCE_EMAIL,
-            Destination: {
-                ToAddresses: [Email]
-            }
-        };
-        await ses.sendEmail(confirmationParams).promise();
     });
     await Promise.all(recordPromises);
 }

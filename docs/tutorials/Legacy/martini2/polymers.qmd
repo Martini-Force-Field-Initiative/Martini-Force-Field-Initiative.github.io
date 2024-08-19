@@ -29,7 +29,7 @@ Parametrization of polymers follows pretty much the standard procedure for the p
 ### Parametrization of a polymer melt: 200 PEG 9mers at 300K
 <hr>
 
-Download the base files for this tutorial [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/PEG_parametrization.tar). Download and unpack the archive (tar -xzvf PEG_parametrization.tgz unpacks to the directory tree PEG_parametrization).
+Download the base files for this tutorial [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/PEG_parametrization.tar). Download and unpack the archive (tar -xzvf PEG_parametrization.tgz unpacks to the directory tree PEG_parametrization).
 
 In this tutorial we carry out the Martini parametrization of a PEG9 molecule from target atomistic data. The focus will be to match the mapped distribution of bonded conformations, as well as average density and molecular radius-of-gyration. For the time being, bead assignment will be only done to match the Martini building blocks — without adjustment for the matching of partition properties.
 
@@ -258,7 +258,7 @@ Typically, free-energy is matched to partition data taken between aqueous and ap
 
 ##### **Melt-Water partition**
 
-The solvation free energies of our PEG9 molecule have been determined by thermodynamic integration (TI) at the fine-grain level. You can access that data [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/TI_tutorial.tar). The archive unpacks (tar -xzvf TI_tutorial.tgz) to a directory tree TI_tutorial. This archive contains the atomistic data and a `CG` directory with `H2O` and `Melt` subdirectories ready for you to populate with your systems.
+The solvation free energies of our PEG9 molecule have been determined by thermodynamic integration (TI) at the fine-grain level. You can access that data [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/TI_tutorial.tar). The archive unpacks (tar -xzvf TI_tutorial.tgz) to a directory tree TI_tutorial. This archive contains the atomistic data and a `CG` directory with `H2O` and `Melt` subdirectories ready for you to populate with your systems.
 
 In each directory you will perform simulations to calculate the respective solvation free energy. You will do this by decoupling the nonbonded interactions between solute (a single PEG9 molecule) and each of the solvents. This decoupling will be done gradually, over 10 steps, so that it is possible to calculate a free energy difference between each. You will need the .itp file of the topology you optimized for PEG9, and two .top files: one for the melt system and another one for a 1 PEG + several waters.
 

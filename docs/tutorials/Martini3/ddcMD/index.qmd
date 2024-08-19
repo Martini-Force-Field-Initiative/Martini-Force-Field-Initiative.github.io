@@ -20,7 +20,7 @@ In case of issues, please contact [ingolfsson1@llnl.gov](mailto: ingolfsson1@lln
 ### Introduction
 <hr>
 
-Note: All input data for this tutorial can be downloaded [here](https://martini-library.s3.us-east-2.amazonaws.com/m3_tutorials/ddcMD/ddcMD-Martini-tautorial.tar.gz). If you just landed here, we recommend you follow the [tutorials about lipid bilayers first](../tutorials.qmd).
+Note: All input data for this tutorial can be downloaded [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ddcMD/ddcMD-Martini-tautorial.tar.gz). If you just landed here, we recommend you follow the [tutorials about lipid bilayers first](../tutorials.qmd).
 
 The Martini force field has been implemented within Lawrence Livermore National Laboratory’s molecular dynamics program, `ddcMD`. This implementation has been fully ported to GPU. By executing all computations on the GPU `ddcMD-Martini` frees up CPU resources for other tasks and allows for full GPU utilization on systems with low CPU to GPU ratio. For a description of this implementation and benchmarking see Zhang et al. 2020<sup>[[1]](#references)</sup>.
 

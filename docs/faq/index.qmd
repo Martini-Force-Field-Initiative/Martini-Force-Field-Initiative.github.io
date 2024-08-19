@@ -1,0 +1,97 @@
+---
+title: "Frequently Asked Questions <hr>"
+---
+
+
+# 🌍 General
+## Can I mix Martini 2.x and Martini 3.x models?
+No! Mixing Martini 2.x and Martini 3.x models are not compatible due to differences in their force fields and parametrization. The Martini 3.x force field represents a significant update from Martini 2.x, with changes in bead types, interaction parameters, and overall philosophy of modeling. These updates can lead to inconsistencies if you try to mix models from the two versions in the same simulation.
+
+## Can I use Martini to study protein folding?
+No, at the moment the secondary structure is an input parameter of the model, which implies that secondary structure elements remain fixed during the simulation. Tertiary structural changes, however, are allowed and in principle realistically described with Martini. This applies to both Martini 2 and Martini 3.
+
+## How should I interpret the time scale?
+Martini dynamics are faster than all-atom dynamics due to the smoother coarse-grained interactions, which lack the fine-grained degrees of freedom that cause effective friction in atomistic models. Based on comparisons of diffusion constants between the Martini model and atomistic models, the effective time sampled using Martini is 3-8 times larger. When interpreting simulation results with the Martini model, a standard conversion factor of 4 is typically used, representing the effective speed-up in diffusion dynamics of Martini water compared to real water. A similar acceleration is observed in other processes, such as the permeation rate of water across a membrane, the sampling of lipid configurational space, and the aggregation rate of lipids into bilayers or vesicles.
+
+However, the speed-up factor can vary in different systems or processes. For protein systems, extensive testing of the actual speed-up due to coarse-grained dynamics has not been performed, though simulations of rhodopsin have shown protein translational and rotational diffusion to be in good agreement with experimental data. Charged molecules have shown much larger speed-up factors.  In general, the time scale of Martini simulations should be interpreted with caution.
+
+## How to reintroduce atomistic detail into Martini?
+Several resolution conversion tools are available to go from CG to AA. [Backward](../downloads/tools/resolution-transformation.qmd#backward), [cg2at](https://github.com/owenvickery/cg2at), [ezAlign](https://www.mdpi.com/1420-3049/29/15/3557), among others. Check these out as well as some of our [tutorials](../tutorials/Martini3/tutorials.qmd).
+
+## Is Martini supported by other sofware packages apart from Gromacs?
+Yes, it is implemented also in NAMD, GROMOS, and current efforts are porting it to CHARMM. A reduced version of Martini is also available through the Material Studio commercial software. Note that, for each of these software packages, the Martini implementation might differ - to an unknown extent - with that of the GROMACS implementation, so you should be careful when using Martini 'abroad'.
+
+
+# 💻 Input parameters
+## Which mdp options should I use?
+We provide recommended GROMACS mdp parameter files for both [Martini 2](../downloads/example-input-files/md-parameters.qmd#martini-2) and [Martini 3](../downloads/example-input-files/md-parameters.qmd#martini-3).
+
+## How large can the time step be?
+Martini has been parameterized using time steps in the range of 20-40 fs. Whether you can use 40 fs or have to settle for a somewhat smaller time step depends on your system, and on your attitude toward coarse-grained modeling, as explained below. Most users stick to 20 fs.
+
+First, it's important to understand that the Martini force field is not an atomistically detailed force field. It is based on several assumptions, the most significant being the neglect of certain atomistic degrees of freedom. Consequently, the interactions between particles are effective rather than detailed, resulting in a highly simplified energy landscape. This simplification allows for much faster sampling, albeit at the cost of some detail. The strength of coarse-grained models lies in their ability to sample the energy landscape efficiently rather than accurately. This contrasts with traditional all-atom models, where a more realistic energy landscape necessitates precise integration schemes. The inherent "fuzziness" of the Martini model makes small artificial energy sinks or sources less problematic compared to atomistic simulations.
+
+Second, and most importantly, structural properties are quite robust with respect to the time step used in simulations. For instance, using a time step of 40 fs does not noticeably affect the structural properties of the systems investigated. Thermodynamic properties, such as the free energy of solvation, also appear insensitive to time step size. Therefore, if the goal is to generate representative ensembles quickly, larger time steps seem acceptable.
+
+Based on these points, we conclude that time steps exceeding 10 fs can be used with the Martini force field. While one might debate the first point (i.e., the "idealist" versus "pragmatic" view of CG simulations), the second point (i.e., the insensitivity of structural and thermodynamic properties to time step size) suggests that reducing the time step to 10 fs or below is unnecessary and wastes computational resources. However, time steps of 40 fs or more may push the limits for certain systems. We recommend a time step of 20-30 fs.
+
+As always, it's essential to verify that your results are not biased by the choices you make. Since the greatest simplifications occur at the level of interaction potentials, this is best done by comparing your results with those obtained using more detailed models.
+
+[1] M.Winger, D. Trzesniak, R. Baron, W.F. van Gunsteren. On using a too large integration time step in molecular dynamics simulations of coarse-grained molecular models, Phys. Chem. Chem. Phys., 2009, 11, 1934-1941.<br>
+[2] S.J. Marrink, X. Periole, D.P. Tieleman, A.H. de Vries. Comment on using a too large integration time step in molecular dynamics simulations of coarse-grained molecular models. Phys. Chem. Chem. Phys., 12:2254-2256, 2010.
+
+## Can I do free energy calculations with Martini?
+Yes you can! Some examples can be found in our [tutorials](../tutorials/Martini3/tutorials.qmd).
+
+
+# ⚙️ Topologies
+## How do I create a topology for a new molecule?
+You can find in-depth step-by-step guides on how to parameterize new molecules in our tutorial sections. Available for both Martini 2 and Martini 3.
+
+## How to set-up a protein simulation?
+Setting up a CG protein simulation consists basically of two steps: 1) converting an atomistic protein structure into a CG model and 2) generating a suitable Martini topology. These steps are described in detail in our tutorial section.
+
+## Are nucleotides available in Martini 3?
+Not yet! We are in the process to develop an extension of Martini 3 toward nucleotides. Check out the available model for Martini 2.
+
+## Is polarizable water available in Martini 3?
+Not yet! We are in the process of developing polarizable water for Martini 3. Check out the available model for Martini 2.
+
+## How do I use the Martini 2 polarizable water model and when should I use it?
+How? Easy, use the special martini_v2.P.itp file in which the polarizable water model is defined - it also contains the full interaction matrix with all other particles. You can combine it with any other topology file, either 2.0 or 2.1. Only in the latter case please note that particle types AC1 and AC2, used for certain apolar amino acids, are obsolete and should be replaced by norma C1 and C2 particle types. Furthermore, don't forget to set the relative dielectric screening to eps=2.5 instead of eps=15 in standard Martini. See the example mdp file, have a look at the example applications featuring a box of pure polarizable water, and check out the script to convert standard water into polarizable water. And last, please have a look at the paper describing the polarizable model:
+
+[1] S.O. Yesylevskyy, L.V. Schafer, D. Sengupta, S.J. Marrink. Polarizable water model for the coarse-grained Martini force field. PLoS Comp. Biol, 6:e1000810, 2010. open access.
+
+When? We first note that the polarizable Martini water model is not meant to replace the standard Martini water model, but should be viewed as an alternative with improved properties in some, but similar behaviour at reduced efficiency in other applications. It is 2 to 3 times more expensive than standard Martini because the polarizable water bead has three particles. In combination with PME, which you can do with the polairzable model, it is even slower. However, for systems or processes in which charges or polar particles are present in a low-dielectric medium (e.g., inside a bilayer, or protein), the polarizable water model is much more realistic as it captures the dielectric inhomogeneity of the system. Furthermore, the effect of electrostatic fields (both external and internal) is modeled more realistically. In fact you may even simulate cool phenomena like electroporation.
+
+
+# 🛠 Frequent problems
+## My simulation keeps crashing, what can I do?
+The following is a list of suggestions that might help you stabilize your system:
+ - Reduce the time step somewhat, some applications require 20 fs rather than 30-40 fs. If you need to go below 20 fs something else is likely to be wrong.
+ - Increase the neighbourlist update frequency and/or neighborlist cutoff size.
+ - Replace contraints by (stiff) bonds, recommended during minimization
+ - Replace stiff bonds by constraints, this will increase stability and allow larger time steps. Stiff bonds are bonds with a force constant exceeding ~ 10000 kJ mol-1 nm-2.
+ - For beta-strands, you might try using distance constraints, available as option in the itp-generating script. If proteins keep crashing in general, try adding an elastic network to your protein, using ELNEDYN.
+ - Play with your topology, you might have conflicting bonded potentials. Also make sure you have the appropriate exclusions (nearest neighbours should alway be excluded, but sometimes 2nd or 3rd nearest neighbours as well.
+ - When using dihedral potentials (i,j,k,l) make sure you have the i,j,k and j,k,l angle potentials defined, and that both are far away from 180 and/or 0 degrees.
+
+## My water is freezing, help!
+Unwanted freezing of water is a known problem in Martini 2. It has already been observed and discussed in our previous work [1,2,3]. Please note the following points:
+
+ - although the LJ parameters for water (ε=5.0 kJ mol-1, σ=0.47 nm) bring it into the solid state region of the LJ phase diagram, the use of a shift potential reduces the long-range attractive part. Consequently, the CG water is more fluid compared to the standard LJ particle.
+ - We have previously [2] determined the freezing temperature of the CG water as 290 +/- 5K. While this is admittedly higher than it should be, in most applications freezing is not observed as long as no nucleation site is formed. Apart from simulations performed at lower temperatures, rapid freezing is therefore a potential problem in systems where a nucleation site is already present (a solid surface, but also an ordered bilayer surface may act as one) or when periodicity enhances the long range ordering (e.g., for small volumes of water).
+ - In those cases in which the freezing poses a problem, a simple pragmatic solution has been presented in the form of antifreeze particles. This works in some cases, but has apparently given problems in combination with solid supports. Therefore, be careful to check that your antifreeze particles do not cluster. You may also switch to the polarizable water model which has a lower melting temperature [4].
+
+In Martini 3 this issue is not as common anymore. However, it can still happen, especially when using very high ion concentrations (> 1M range).
+
+[1] S.J. Marrink, H.J. Risselada, S. Yefimov, D.P. Tieleman and A.H. de Vries. The MARTINI force field: Coarse grained model for biomolecular simulations. J. Phys. Chem. B, 2007, 111, 7812-7824.<br>
+[2] S.J. Marrink, A.H. de Vries and A.E. Mark, Coarse grained model for semiquantitative lipid simulations, J. Phys. Chem. B, 2004, 108, 750–760.<br>
+[3] S.J. Marrink, X. Periole, D.P. Tieleman, A.H. de Vries. Comment on using a too large integration time step in molecular dynamics simulations of coarse-grained molecular models. Phys. Chem. Chem. Phys., 12:2254-2256, 2010. abstract<br>
+[4] S.O. Yesylevskyy, L.V. Schafer, D. Sengupta, S.J. Marrink. Polarizable water model for the coarse-grained Martini force field. PLoS Comp. Biol, 6:e1000810, 2010. open access.
+
+## My protein starts deforming, help!
+Time to use an elastic network or Go Model in combination with your Martini protein. See our [Tutorials](../tutorials/Martini3/tutorials.qmd) page.
+
+## Who can I contact with further questions?
+Check our [contact us](../contact/contact.qmd) page!

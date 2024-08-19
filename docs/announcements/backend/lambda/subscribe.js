@@ -46,19 +46,23 @@ exports.handler = async (event) => {
         await dynamoDb.put(verificationParams).promise();
 
         // Send a verification email
-        const verificationUrl = `${baseUrl}/verify?token=${token}&email=${encodeURIComponent(email)}`;
+        const verificationUrl = `${baseUrl}/verifyEmail?token=${token}&email=${encodeURIComponent(email)}`;
         const emailParams = {
             Destination: {
                 ToAddresses: [email],
             },
             Message: {
                 Body: {
-                    Text: {
-                        Data: `Please verify your email by clicking the following link: ${verificationUrl}`,
+                    Html: {
+                        Data: `
+                        Please verify your email by clicking the following link: ${verificationUrl}. <br><br>
+
+                        <em>Note: If you did not submit a subscription request to the Martini Force Field Initiative, please ignore this email.</em>
+                        `,
                     },
                 },
                 Subject: {
-                    Data: 'Email Verification',
+                    Data: 'Email Verification for Martini Announcements.',
                 },
             },
             Source: process.env.SOURCE_EMAIL,

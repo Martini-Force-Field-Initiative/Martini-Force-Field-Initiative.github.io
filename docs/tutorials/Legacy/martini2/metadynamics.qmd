@@ -21,7 +21,7 @@ In general, our goal is to describe a chemical reaction such as dimerization in 
 ### System and file preparation
 <hr>
 
-First things first, we need to build a system with the molecules we are interested in. You can download all the files you need to create a cubic box with water and two naphthalene molecules [here](https://martini-library.s3.us-east-2.amazonaws.com/legacy_material/martini2/files.tar) (you will also find all scripts needed for the analysis). To run a simulation with Gromacs, you also need topology files and MD parameters (top, itp and mdp) that you can found in the same directory. The following commands will do the trick.
+First things first, we need to build a system with the molecules we are interested in. You can download all the files you need to create a cubic box with water and two naphthalene molecules [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/files.tar) (you will also find all scripts needed for the analysis). To run a simulation with Gromacs, you also need topology files and MD parameters (top, itp and mdp) that you can found in the same directory. The following commands will do the trick.
 
 ``` bash
 # download and extract all files to your working directory

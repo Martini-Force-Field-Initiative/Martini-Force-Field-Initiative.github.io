@@ -1,6 +1,6 @@
 ---
 title: Martini Announcements 
-subtitle: Latest news related to the Martini FF Initiative
+subtitle: Latest news related to the Martini Force Field Initiative
 listing:
   sort: "date desc"
   type: grid
@@ -17,9 +17,105 @@ listing:
   feed: true
   page-size: 50
 page-layout: full
-margin-header: signup.html
 title-block-banner: "#EDF3F9"
 title-block-banner-color: body
 comments: false
 search: false
 ---
+
+<!-- Begin Signup Form -->
+```{=HTML}
+<head>
+    <style>
+        .banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #70afcd;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            margin-top: -25px;
+        }
+        .banner label {
+            margin-right: 10px;
+            font-weight: bold;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .banner input[type="email"] {
+            padding: 6px;
+            border: none;
+            border-radius: 10px;
+            width: 250px;
+            margin-right: 10px;
+            font-size: 16px;
+            text-align: center;
+            justify-content: center;
+        }
+        .banner button {
+            padding: 6px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #fff;
+            color: #476a7c;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+        .banner button:hover {
+            background-color: #EDF3F9;
+            color: #343a40;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner" id="banner">
+        <form onsubmit="NewSubscription(); return false;">
+            <label for="email" id="label" > Join the community to always get notified &#8594; </label>
+            <input type="email" id="email" name="email" placeholder="Type your email here" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+    <script>
+        function updateLabelText() {
+            const label = document.getElementById('label');
+            const bannerWidth = document.getElementById('banner').offsetWidth;
+            const labelWidth = label.offsetWidth;
+            
+            if (bannerWidth <= 800 && bannerWidth > 400) { // Adjust this value as needed
+                label.textContent = 'Join the community \u2192 ';
+            } else if (bannerWidth <= 400) {
+                label.textContent = '';
+            } else {
+                label.textContent = 'Join the community to always get notified \u2192 ';
+            }
+        }
+
+        window.addEventListener('resize', updateLabelText);
+        window.addEventListener('load', updateLabelText);
+
+        function NewSubscription() {
+            const apiEndpoint = 'https://q8hgi2weih.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
+            const newEmail = document.getElementById("email").value;
+            const newRequest = { "email": newEmail };
+
+            fetch(apiEndpoint, {
+                method: 'POST',
+                body: JSON.stringify(newRequest),
+            });
+            document.getElementById('email').value = '';
+            document.getElementById('email').placeholder = 'Welcome to our community!';
+            alert("Please check your inbox for a verification email if this is the first time you subscribe!");
+        }
+    </script>
+</body>
+```
+<!--End signup form-->
