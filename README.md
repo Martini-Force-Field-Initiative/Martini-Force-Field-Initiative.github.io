@@ -4,7 +4,7 @@ Martini is a coarse-grained force field suited for molecular dynamics simulation
 
 ## How to Contribute
 
-We welcome contributions from the community and appreciate your efforts to improve and expand the Martini Force Field Initiative website! This guide provides a step-by-step walkthrough of how to contribute, including setting up your environment, making your changes, and submitting them for review.
+We welcome contributions from the community and appreciate your efforts to improve and expand the Martini Force Field Initiative website! This guide provides a step-by-step walkthrough of how to contribute to this website, including setting up your environment, making your changes, and submitting pull requests for review.
 
 ### 1. Setting Up Your Environment
 Before you begin contributing, you need to set up your local environment to work with [Quarto](https://quarto.org) and this repository.
@@ -43,8 +43,8 @@ Navigate to [this GitHub repository](https://github.com/Martini-Force-Field-Init
 Clone your fork to your local workstation using the following commands:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/your-username/Martini-Force-Field-Initiative.github.io.git
+cd Martini-Force-Field-Initiative.github.io/
 ```
 
 ### 2. Types of Contributions
@@ -53,8 +53,8 @@ There are six main types of contributions you can make to the website:
 #### 2.1. Adding New Publications
 
 1. Navigate to [docs/publications/entry_template.qmd](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/docs/publications/entry_template.qmd).
-1. Copy the template file to the appropriate year folder under `docs/publications/entries/`, and rename it with a unique identifier, e.g., `author-first_word_in_title.qmd`.
-1. Fill in the required fields in the template. The headers are self-explanatory, and the content should follow best-practice Markdown syntax.
+1. Copy the template file to the appropriate folder by year under `docs/publications/entries/`, and rename it with a unique identifier, e.g., `author-first_word_in_title.qmd`.
+1. Fill in the required fields in the template. The attribute in the headers are self-explanatory, and the content should follow best-practice Markdown syntax.
 1. Preview the website locally using the following command from the root directory of the repository:
     ```bash
     quarto preview --port 4040
@@ -65,8 +65,8 @@ There are six main types of contributions you can make to the website:
 #### 2.2. Adding New Announcements
 
 1. Navigate to [docs/announcements/entry_template.qmd](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/docs/announcements/entry_template.qmd).
-1. Copy the template file to the `docs/announcements/posts/` directory and place it in a new folder with a descriptive name including the date and some keywords of the announcements, e.g., `YYYY-MM-DD-keywords/`. We recommend naming the file inside the folder as `index.qmd`, but you can choose a different name if you prefer.
-1. Complete the template with the relevant announcement details.
+1. Copy the template file to the `docs/announcements/posts/` directory and place it in a new folder with a descriptive name including the date and some keywords in the announcements, e.g., `YYYY-MM-DD-keywords/`. We recommend naming the file inside the folder as `index.qmd`, but you can choose a different name of your preference.
+1. Complete the template with the relevant details for your announcement.
 1. Preview the website locally using the following command from the root directory of the repository:
     ```bash
     quarto preview --port 4040
@@ -76,10 +76,10 @@ There are six main types of contributions you can make to the website:
 
 #### 2.3. Adding New Martini 3 Tutorials
 
-1. Refer to the `index.qmd` file in any of the existing tutorials in `docs/tutorials/Martini3/` as a reference, e.g., [docs/tutorials/Martini3/LipidsI/index.qmd](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/docs/tutorials/Martini3/LipidsI/index.qmd).
-1. Create a new tutorial by following the structure and format used in the example.
+1. Refer to the `index.qmd` file in any of the existing tutorials in `docs/tutorials/Martini3/` as reference, e.g., [docs/tutorials/Martini3/LipidsI/index.qmd](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/docs/tutorials/Martini3/LipidsI/index.qmd).
+1. Create a new tutorial by following the structure and format used in the examples.
 1. Place the new tutorial in a dedicated directory under `docs/tutorials/Martini3/`. You can name the directory based on the tutorial topic and application. All the related files (images, data, etc.) should be placed in this directory.
-1. Open the file that keeps track of all the tutorials in [`docs/tutorials/Martini3/tutorials.qmd`](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/docs/tutorials/Martini3/tutorials.qmd) and add a new entry in the list for your tutorial following the same Markdown syntax as the other entries in the file.
+1. Open the file that keeps track of all the tutorials in [`docs/tutorials/Martini3/tutorials.qmd`](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/docs/tutorials/Martini3/tutorials.qmd) and add a new entry for your tutorial following the same Markdown syntax as the other entries in the list.
 1. Preview the website locally using the following command from the root directory of the repository:
     ```bash
     quarto preview --port 4040
@@ -101,12 +101,12 @@ There are six main types of contributions you can make to the website:
 #### 2.5. Adding New Parameter Files
 
 1. Add the description for the new parameters in the appropriate `.qmd` file in `docs/downloads/force-field-parameters/martini3/` attending to the molecule type that better fits your case.
-1. Keep your `.itp` parameters files at hand to share them with the Martini Developers Team during the Pull Request and reviewing process. If approved, the files will be included to be directly downloaded from the website.
+1. Keep your `.itp` parameter files at hand to share them with the Martini Developers Team during the reviewing of your pull request. If approved, the files will be included in the backend martini library to be directly available from the website.
 1. Preview the website locally using the following command from the root directory of the repository:
     ```bash
     quarto preview --port 4040
     ```
-1. Open your browser and navigate to `http://localhost:4040` to verify that the description of the parameters is showing correctly in the subsection at `Downloads/Force field parameters/Martini 3/`, corresponding to the specific molecule type you choose.
+1. Open your browser and navigate to `http://localhost:4040` to verify that the description of the parameters is showing correctly in the subsection at `Downloads/Force field parameters/Martini 3/` corresponding to the specific molecule type you choose.
 1. Once verified, commit your changes and submit a pull request to this repository to be reviewed by the Martini Developers Team.
 
 #### 2.6. General Website Enhancements
@@ -123,7 +123,7 @@ We also welcome contributions that improve the overall appearance or functionali
 1. Submit your enhancements via a pull request to this repository to be reviewed by the Martini Developers Team.
 
 ### 3. Submitting a Pull Request
-Once your changes are ready:
+Once your changes are ready you can follow these steps to submit a pull request:
 
 1. Commit Your Changes:
 ```bash
@@ -136,19 +136,20 @@ git push origin your-branch-name
 ```
 3. Submit a Pull Request:
 
-    i- Go to your repository on GitHub.
+    i- Go to your own copy of the repository on GitHub.
     
-    ii- Click the ***Compare & pull request*** button next to your recently pushed branch.
+    ii- Click the ***Contribute*** button right below the name of your recently pushed branch.
     
-    iii- Fill in the pull request template with details about your changes.
+    iii- Click on ***Open pull request*** and fill in the pull request template with details about your changes.
     
     iv- Submit the pull request.
 
 4. Reviewing and Merging
 
-Your pull request will be reviewed by other users in the Martini Developers Team. We may request changes or approve it directly. Once approved, your changes will be merged into the main branch, and the website will be automatically updated and deployed via a GitHub Action.
+Your pull request will be reviewed by other users in the Martini Developers Team. We may request/suggest additional changes or approve it directly. Once approved, your changes will be merged into the main branch, and the website will be automatically updated and deployed via a GitHub Action.
 
 5. Additional Resources
+
 For further guidance, please refer to the following:
 * [Quarto Documentation](https://quarto.org/docs/)
 * [GitHub Markdown Guide](https://guides.github.com/features/mastering-markdown/)
