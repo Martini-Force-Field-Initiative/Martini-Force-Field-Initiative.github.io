@@ -58,6 +58,7 @@ export class AnnouncementsStack extends cdk.Stack {
       handler: 'unsubscribe.handler',
       environment: {
         TABLE_NAME: table.tableName,
+        VERIFICATION_TABLE_NAME: verificationTable.tableName,
       },
     });
 
@@ -80,6 +81,7 @@ export class AnnouncementsStack extends cdk.Stack {
     bucket.grantRead(sendAnnouncementFunction);
     verificationTable.grantReadWriteData(subscribeFunction);
     verificationTable.grantReadWriteData(verifyEmailFunction);
+    verificationTable.grantReadWriteData(unsubscribeFunction);
 
     subscribeFunction.addToRolePolicy(new iam.PolicyStatement({
       actions: ['ses:SendEmail', 'ses:SendRawEmail'],

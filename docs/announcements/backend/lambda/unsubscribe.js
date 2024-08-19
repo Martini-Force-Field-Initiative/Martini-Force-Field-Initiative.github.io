@@ -10,11 +10,17 @@ exports.handler = async (event) => {
     Key: { email },
   };
 
+  const params_verify = {
+    TableName: process.env.VERIFICATION_TABLE_NAME,
+    Key: { email },
+  };
+
   try {
     const data = await dynamoDb.get(params).promise();
 
     if (data.Item && data.Item.token === token) {
       await dynamoDb.delete(params).promise();
+      await dynamoDb.delete(params_verify).promise();
       return {
         statusCode: 200,
         headers: {
