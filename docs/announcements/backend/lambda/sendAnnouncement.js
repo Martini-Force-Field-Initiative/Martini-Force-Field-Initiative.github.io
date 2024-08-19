@@ -38,7 +38,7 @@ exports.handler = async (event) => {
               ${description}
 
               <h3>Details<hr></h3>
-              For more details please visit our <a href="https://cgmartini.nl/docs/announcements/">Announcement Board</a>.
+              For more details please visit our <a href="https://martini-force-field-initiative.github.io/docs/announcements/">Announcement Board</a>.
                             
               <br><br>
 

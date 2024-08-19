@@ -55,7 +55,7 @@ exports.handler = async (event) => {
                 Body: {
                     Html: {
                         Data: `
-                        Please verify your email by clicking the following link: ${verificationUrl}. <br><br>
+                        Please verify your email by clicking the following link: <a href=${verificationUrl}>${verificationUrl}</a>. <br><br>
 
                         <em>Note: If you did not submit a subscription request to the Martini Force Field Initiative, please ignore this email.</em>
                         `,

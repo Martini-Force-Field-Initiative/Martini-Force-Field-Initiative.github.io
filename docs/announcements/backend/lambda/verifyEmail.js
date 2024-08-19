@@ -118,7 +118,6 @@ exports.handler = async (event) => {
                 <div class="container">
                     <h1>Email Verified!</h1>
                     <p>You have successfully subscribed to receive announcements from the Martini Force Field Initiative.</p>
-                    <a onclick="closeCurrentTab()" href="#" class="button">Close</a>
                 </div>
             </body>
             </html>
