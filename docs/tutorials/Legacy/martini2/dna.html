@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DNA – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="DNA – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="DNA – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DNA</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DNA</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>The material offered in this page is LEGACY material.</em></strong> This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look! If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../../docs/tutorials/index.html">here</a> to go back!</p>
+</blockquote>
+<hr>
+<p><strong>NOTE:</strong> You can download all the files required for this tutorial from <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/na-tutorials_20170815.tar">here</a>. Please note that you have to adjust some of the paths (mostly location of the force field files) below if you use this package.</p>
+<section id="setting-up-double-stranded-dna" class="level4">
+<h4 class="anchored" data-anchor-id="setting-up-double-stranded-dna"><strong>Setting up double-stranded DNA</strong></h4>
+<hr>
+<p>This is a brief tutorial on how to set up and try out DNA Martini simulations. The tutorial package includes the itp files for DNA as well as a modified martinize script to coarse grain a DNA molecule.</p>
+<p>Martini DNA can be used to model both single-stranded as well as double-stranded DNA and provides two separate elastic networks. This tutorial will show only an example of creating a dsDNA topology using the stiff elastic network but a dsDNA topology with soft network or a ssDNA topology without elastic network can be created using the same procedure. For dsDNA structures the stiff elastic network is a good starting point for seeing how your system behaves in a CG simulation. There are also options for creating elastic networks for more complicated DNA structure, martinize-dna options all-stiff and all-soft are meant to be starting points for creating topologies for such structures but they are beyond the scope of this tutorial. The DNA release package includes a README file that should have sufficient instructions for creating the other types of DNA topologies after you have finished this tutorial.</p>
+<ol type="1">
+<li>Unpack the tutorial files you downloaded (it expands to na-tutorials).</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-xvzf</span> na-tutorials_20170815.tar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Go to the folder <code>na-tutorials/dna-tutorial/martini-dna</code> and download the <a href="http://www.rcsb.org/pdb/download/downloadFile.do?fileFormat=pdb&amp;compression=NO&amp;structureId=1BNA">1BNA</a> PDB file. Martinize for DNA works best with cleaned up <code>.gro</code> files so you should first remove ions and water molecules from the <code>.pdb</code> file and convert it to a <code>.gro</code> file. NOTE, download from the PDB will give you 1bna.pdb, a copy named 1BNA.pdb is provided in the tutorial archive if you want to spare yourself the trouble to download it.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-v</span> HETATM 1bna.pdb <span class="op">&gt;</span> 1BNA-cleaned.pdb</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> 1BNA-cleaned.pdb <span class="at">-o</span> 1BNA-cleaned.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Next we can use <code>martinize-dna.py</code> (supplied for you in the current directory) to create a Martini DNA topology for 1BNA.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python martinize-dna.py <span class="at">-dnatype</span> ds-stiff <span class="at">-f</span> 1BNA-cleaned.gro <span class="at">-o</span> cg-dna.top <span class="at">-x</span> cg-1bna.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, you need to change the <code>.top</code> file to include the correct <code>.itp</code> files. This can be done with your favourite text editor but scriptable options are given below. Note: there are two sets of commands here, the first for Mac OSX, the second for Linux. In both cases, the backslashes (\) need to be typed as indicated.</p>
+<p>OSX</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> .bak <span class="st">'s/#include "martini.itp"/#include "martini_v2.1-dna.itp"\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">#include "martini_v2.0_ions.itp"/'</span> cg-dna.top </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and Linux</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp cg-dna.top cg-dna.top.bak </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> <span class="st">'s/#include "martini.itp"/#include "martini_v2.1-dna.itp"\n#include "martini_v2.0_ions.itp"/'</span> cg-dna.top </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>You can visualize the mapping of Martini DNA by opening both the atomistic and coarse-grained structures in VMD. (The visualization is clearer if you show the CG structure as small VDW spheres.)</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> 1BNA-cleaned.pdb cg-1bna.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Next you need to create a simulation box for DNA and solvate it as well as add counterions. (You will find a pre-equilibrated box of water <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/water.gro">here</a>.)</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> cg-1bna.pdb <span class="at">-d</span> 1.2 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> box.gro</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> box.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> bw.gro <span class="at">-radius</span> 0.22 <span class="at">-maxsol</span> 1250</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can replace water with ions in <code>.top</code> file without using genion at the same time as we add waters there. Note: the next line assumes that exactly 1250 water beads were added to the DNA by the <code>genbox</code> tool; the first 1100 added beads are designated as normal water beads, the next 128 beads are designated as anti-freeze water beads, and the final 22 beads are designated as sodium ions.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> printf <span class="st">"\nW         1100\nWF         128\nNA          22\n"</span> <span class="op">&gt;&gt;</span> cg-dna.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Use the <code>em.mdp</code> provided in the directory and run an energy minimization.</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> em.mdp <span class="at">-c</span> bw.gro <span class="at">-p</span> cg-dna.top <span class="at">-o</span> 01-em <span class="at">-maxwarn</span> 1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 01-em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Next, you can run a short equilibration using the <code>equil.mdp</code> file. Note, a smaller time step might be needed for initial equilibration. Note that sometimes you might need to run a series of short equilibrations, increasing the time step up to the value in the <code>equil.mdp</code> file and starting each one from the final structure of the previous one.</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> equil.mdp <span class="at">-c</span> 01-em.gro <span class="at">-p</span> cg-dna.top <span class="at">-o</span> 02-eq</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 02-eq <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li>Now you are ready to start your first DNA simulation. Use the <code>mdrun.mdp</code> file to produce a longer simulation, do the preprocessing and start the simulation. Note that with the elastic network the domain cell size needs to be kept fairly large (option -rdd 2.0).</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> mdrun.mdp <span class="at">-c</span> 02-eq.gro <span class="at">-p</span> cg-dna.top <span class="at">-o</span> 03-run</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 03-run <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="9" type="1">
+<li>You can visualize the movements of the DNA, ions and waters using VMD while your simulation is still running (you will need to open a new terminal). Note that bonds in Martini are longer than bonds normally shown in VMD. Please consult <a href="../../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">the VMD tutorial</a> to get better visualization.</li>
+</ol>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd 02-eq.gro 03-run.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="common-problems" class="level4">
+<h4 class="anchored" data-anchor-id="common-problems"><strong>Common problems</strong></h4>
+<hr>
+<p>Below are some some of the most common pitfalls when starting a Martini DNA simulation. We go through them here so that you know to avoid them when starting your own DNA simulations.</p>
+<ol type="1">
+<li>Not curating the input file for martinize-dna.py</li>
+</ol>
+<p>There are several things that can go wrong before martinize-dna.py is even run. Best course of action is to manually curate the input file, remove all heteroatoms and convert the file to a gro file. martinize-dna.py requires the residuenames to be ‘DA’,‘DC’, etc. in order to detect them correctly.</p>
+<p>You can try this yourself. Go to the folder common-problems/1 inside the package you downloaded. Try running martinize-dna.py with the given input file. Then try to fix the issue by modifying the residuenames using a text editor or a script (column editing in vi comes really handy here) and see that martinize-dna.py runs succesfully after this.</p>
+<ol start="2" type="1">
+<li>Placing the “#define RUBBER_BANDS” below the DNA itp file in the system topology file.</li>
+</ol>
+<p>The topology file is read from top to bottom and if the RUBBER_BANDS are not defined before the DNA itp file no elastic network will be applied to the DNA. This is the first place to look if the DNA structure is deforming right in the beginning of your simulation.</p>
+<p>Go to the folder common-problems/2 and run a short simulation with the provided files. Then open the cg.top file and fix it and run the same simulation again and see the difference.</p>
+<ol start="3" type="1">
+<li>Getting wrong number of chains from martinize-dna.py</li>
+</ol>
+<p>This often goes unseen unless you check the output of martinize-dna.py on your screen. Especially the ‘Found X chains:…’ part of the output. If a chain is split in two you can try to fix that by adjusting the cut-off inside the martinize-dna.py. Open the script and search forCUT-OFF_CHANGEand adjust the value from 3.0 to a suitably large value.</p>
+<p>Go to the folder common-problems/3 and open the gro file using VMD to see that the structure consist of 2 DNA strands. Next, try running martinize-dna.py (provided here in the same folder so you won’t modify the version other parts of the tutorial use) on the given input file and verify from output that you get 3 chains instead of 2. Open martinize-dna.py with a text editor and search for CUT-OFF_CHANGE and adjust the cut-off value from 3.0 to 4.0. Run martinize-dna.py again and verify that it detects the DNA as 2 strands.</p>
+<section id="input-from-sequence" class="level5">
+<h5 class="anchored" data-anchor-id="input-from-sequence"><strong>Input from sequence</strong></h5>
+<p>In case you want to create an all-atom DNA structure from canonical values, there are several softwares/webservers that can help with this. One of those is <a href="http://mmb.irbbarcelona.org/NAFlex/">NAFlex</a> which requires only the user to create an account to save his/her projects. NAFlex allows several ways to build your DNA structure.</p>
+<ol type="1">
+<li><p>After giving a name for your project, we will select the option <em>DNA/RNA Simulation from Sequence</em> (although we will not run any simulation here). Click the “Next” button.</p></li>
+<li><p>As an example you can build a relatively short oligonucleotide according to the right-handed B-DNA Arnott parameters with the following sequence (enter the string and click “Create Project”):</p>
+<p><em>ACAGCTAGCATGCATGCA</em></p></li>
+</ol>
+<p>3.- Click on the “Next” buttons until you see a window with a pdb file (compare the picture below). Clicking on the link to the pdb file will reveal a set of buttons. Download the file. No it is time to check the output structure after you have downloaded and unzippid the output file.</p>
+<ol start="4" type="1">
+<li>You can now use the downloaded .pdb file and build a Martini model from it as shown for 1BNA in the previous section. You can copy the necessary files from that directory.</li>
+</ol>
+<p><img src="results.png" class="img-fluid"></p>
+<p>NB1: You might need to make some changes in your pdb from NAFlex. For example, make sure the sugar atoms have a prime (’) and not as asterisk (*). Also, the names of ending residues must be changed to standard names (e.g.&nbsp;DA5 to DA).</p>
+<p>NB2: NAFlex has multiple applications but in this tutorial we will focus on building a structure from ab initio.</p>
+</section>
+<section id="dna-analysis-physical-parameters" class="level5">
+<h5 class="anchored" data-anchor-id="dna-analysis-physical-parameters"><strong>DNA analysis: physical parameters</strong></h5>
+<p>As for all-atomistic models, we can calculate the base pairs and base pair steps helical parameters for coarse-grained DNA models. <code>cgHeliParm.py</code> has been developed for the analysis of the DNA/RNA double stranded structures in molecular dynamics (MD) simulations. <a href="https://github.com/ifaust83/cgheliparm">Here</a> you can download the latest version of the cgHeliParm package. Like other atomistic softwares (e.g.&nbsp;3DNA, Curves+), it defines a geometric reference frame for each base/base pair to calculate several structural descriptors of DNA/RNA from the GROMACS CG Martini MD trajectory. As output the helical descriptors as a function of time are saved in individual files.</p>
+<p>For now, the current version of <code>cgHeliParm.py</code> allows to calculate the local structural parameters of double stranded DNA molecules (i.e.&nbsp;base pair and base pair step helical parameters). We are currently working on extending the calculation to other structural parameters (e.g.&nbsp;groove widths and depths). Please note that in this version <strong>only double-stranded, standard nucleic acids</strong> can be analysed. This excludes mispaired, modified, single-stranded DNA, triplexes and quadruplexes from its application.</p>
+<p>Before using <em>cgHeliParm.py</em> you need first to install python in your computer. If you don’t have it, go to the <a href="https://wiki.python.org/moin/BeginnersGuide/Download">Python wiki</a> and follow the instructions to install it in your working computer.</p>
+<p>The second thing you will have to do is to install the python package <a href="http://www.mdanalysis.org/pages/installation_quick_start">MDAnalysis</a> and <a href="https://github.com/mnmelo/MDreader">mdreader</a>.</p>
+<p>Once python and the MDAnalysis and mdreader packages are installed we can use <em>cgHeliParm.py</em>. First, we will have to create a ‘dry’ trajectory with only DNA. This can be done using the trjconv Gromacs tool and the corresponding NDX file. For this case, we will use the same trajectory from the previous DNA tutorial (1BNA). Go to the martini-dna tutorial and convert the trajectory twice (selecting the group for DNA when prompted, which should be number 1).</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx trjconv <span class="at">-s</span> 03-run.tpr <span class="at">-f</span> 03-run.xtc <span class="at">-o</span> ../DNA_analysis/cgHeliParm/dna.xtc <span class="at">-pbc</span> cluster</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx trjconv <span class="at">-s</span> 03-run.tpr <span class="at">-f</span> 03-run.xtc <span class="at">-o</span> ../DNA_analysis/cgHeliParm/dna.gro <span class="at">-dump</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, change to the cgHeliParm directory:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ../DNA_analysis/cgHeliParm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>in this directory, we can run the <code>cgHeliParm.py</code> script by running in the command line:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python cgHeliParm.py <span class="at">-f</span> dna.xtc <span class="at">-s</span> dna.gro <span class="at">-o</span> dna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This may take some time depending on the length of your trajectory and number of processors available. After the script has finished you will see that there are several files in your folder, corresponding to base pair and base pair steps helical parameters (file names are informative). Each file contains information for each bp or step along the simulation time. The first column refers to the first bp or step in the 5’3’ strand sense.</p>
+</section>
+<section id="persistence-length" class="level5">
+<h5 class="anchored" data-anchor-id="persistence-length"><strong>Persistence length</strong></h5>
+<p>We provide also a tool to calculate the persistence-length of a double-stranded DNA. This tool requires both a fairly long dsDNA strands as well as a long simulation so we provide an example trajectory to try this out. The tool uses two different ways of averaging the results but the numbers should be fairly close to each other.</p>
+<p>To calculate the persistence length go to the folderpersistence-lengthand run the following command:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python persistence-length-calculator.py <span class="at">-s</span> run.gro <span class="at">-f</span> run.xtc <span class="at">-n</span> run.ndx <span class="at">-oplot</span> test <span class="at">-b</span> 100000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="advanced-tutorial-protein-dna-complex" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-tutorial-protein-dna-complex"><strong>Advanced tutorial: protein-DNA complex</strong></h4>
+<p>DNA is recognized by proteins in many different ways. As a first approximation to protein-DNA complexes, we will use the <a href="https://en.wikipedia.org/wiki/Testis_determining_factor">SRY protein</a> (1j46, which is provided in the directory, but can also be downloaded <a href="http://www.rcsb.org/pdb/explore.do?structureId=1j46">here</a>), which is involved in sex determination, to generate our first protein-DNA complex simulation using the CG Martini model. Go to the directory <code>dna-tutorial/protein_DNA</code>.</p>
+<p>First things first. To create our CG model of a protein-DNA complex from a PDB file we will need to split both protein and DNA molecules to generate their CG models. This means that you will need to create as many PDB files as molecules your complex has. To put everything on the same page, we will call them protein_AA.pdb and dna_AA.pdb. (This has been done for you already, you may want to also try it yourself!) We will then proceed to create their CG models with the corresponding martinize script.</p>
+<p><img src="sry_DNAcomplex.png" class="img-fluid"></p>
+<ol type="1">
+<li>We will first build the CG DNA using the martinize-dna script but before that we will convert the .pdb file into a .gro file:</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> dna_AA.pdb <span class="at">-o</span> dna_aa.gro</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python martinize-dna.py <span class="at">-dnatype</span> ds-stiff <span class="at">-f</span> dna_aa.gro <span class="at">-o</span> dna.top <span class="at">-x</span> dna_CG.pdb </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And for the CG protein model we will use the original martinize script:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> protein_AA.pdb <span class="at">-o</span> protein_aa.gro</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python martinize.py <span class="at">-f</span> protein_aa.gro <span class="at">-o</span> protein.top <span class="at">-x</span> protein_CG.pdb <span class="at">-dssp</span> your-path-to/dssp <span class="at">-p</span> backbone <span class="at">-ff</span> elnedyn22</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>We will now merge the PDB files corresponding to the CG models (protein_CG.pdb and dna_CG.pdb) using the cat command for example.</li>
+</ol>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat dna_CG.pdb protein_CG.pdb <span class="op">&gt;</span> complex_CG.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>You can visualize the mapping of Martini DNA by opening both the atomistic and coarse-grained structures in VMD. The CG beads are best visualized as VDW spheres. Note that by concatenating the protein and DNA files, the combined CG coordinate file is interpreted by VMD as two frames. By stepping through them in the VMD main window, you can see the protein and the DNA sites.</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> 1j46.pdb complex_CG.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li><p>As in the double stranded DNA tutorial for 1BNA, we will create a .top file that includes the .itp files. We can copy the dna.top file and modify to include the correct .itp files. With the experience from previous tutorial, would you be able to write a .top file for the system yourself? Check by comparing your result to the provided file cg-complex.top.</p></li>
+<li><p>Next we will solvate the solute creating a box around it as well as adding counterions. We will use the same water.gro file that we used previously to create the 1BNA CG model. (Download water box from <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/water.gro">here</a>.) Note that by concatenating the protein and DNA files, the combined coordinate file is seen as two separate frames by GROMACS tools. Therefore, we need a preprocessing step.</p></li>
+</ol>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep ATOM complex_CG.pdb <span class="op">&gt;</span> complex_CG-cleaned.pdb</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> complex_CG-cleaned.pdb <span class="at">-d</span> 1.2 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> box.gro</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> box.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> bw.gro <span class="at">-radius</span> 0.22 <span class="at">-maxsol</span> 1250</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can replace water with ions in .top file without using genion at the same time as we add waters there.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> printf <span class="st">"\nW     1100\nWF     124\nNA      26\n"</span> <span class="op">&gt;&gt;</span> cg-complex.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Use the same em.mdp file provided with in the directory <code>dna-tutorial/martini-dna</code> and run an energy minimization.</li>
+</ol>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> em.mdp <span class="at">-c</span> bw.gro <span class="at">-p</span> cg-complex.top <span class="at">-o</span> 01-em <span class="at">-maxwarn</span> 1</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 01-em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Next, you can run a short equilibration using the equil.mdp file. (Note, a smaller time step might be needed for initial equilibration).</li>
+</ol>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> equil.mdp <span class="at">-c</span> 01-em.gro <span class="at">-p</span> cg-complex.top <span class="at">-o</span> 02-eq</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 02-eq <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="8" type="1">
+<li>Now you are ready to start your first protein-DNA simulation. Use the mdrun.mdp file to produce a longer simulation and start.</li>
+</ol>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> mdrun.mdp <span class="at">-c</span> 02-eq.gro <span class="at">-p</span> cg-complex.top <span class="at">-o</span> 03-run</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 03-run <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="9" type="1">
+<li>You can visualize the trajectory using VMD while your simulation is still running.</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd 02-eq.gro 03-run.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="dna-and-backward" class="level5">
+<h5 class="anchored" data-anchor-id="dna-and-backward"><strong>DNA and Backward</strong></h5>
+<p>DNA structures can be backmapped into atomistic resolution using Backward. Before starting this part of the tutorial you should first go and do the <a href="../../../../docs/tutorials/Legacy/martini2/others.html">Backward tutorial</a>. The DNA backmapping files are as of now not yet part of the downloadable <code>backward</code> package but files for CHARMM are in the tutorial package in the <code>backmapping</code> folder together with the <code>backward</code> scripts. Next, we will first coarse-grain a dsDNA structure and then backmap it back to atomistic resolution.</p>
+<ol type="1">
+<li>Got to the <code>na-tutorials/dna-tutorial/backmapping</code> directory and cleanup and convert the given DNA structure 1BNA.pdb to a gro file in a reasonable simulation box.</li>
+</ol>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> 1BNA.pdb <span class="at">-d</span> 1.4 <span class="at">-o</span> 1BNA.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Create a CG structure using martinize-dna.py.</li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python ../martini-dna/martinize-dna.py <span class="at">-f</span> 1BNA.gro <span class="at">-dnatype</span> ds-stiff <span class="at">-p</span> cg.top <span class="at">-x</span> cg-1BNA.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="1">
+<li>Solvate the CG structure.</li>
+</ol>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> cg-1BNA.pdb <span class="at">-cs</span> waterbox.gro <span class="at">-radius</span> 0.22 <span class="at">-o</span> cg-1bna-water.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Create an atomistic topology file for the system. Choose charmm27 and tip3p when prompted.</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx pdb2gmx <span class="at">-f</span> 1BNA.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Edit the file <code>topol.top</code> to point explicitly to the <code>tip3p.itp</code> file provided for you (it will not recognize it in the standard path unfortunately). Thus, replace the line <code>#include "charmm27/tip3p.itp"</code> near the end of the file by <code>#include "./tip3p.itp"</code>. Run the initram.sh script to perform the backmapping.</li>
+</ol>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./initram.sh <span class="at">-f</span> cg-1bna-water.gro <span class="at">-o</span> aa-charmm.gro <span class="at">-to</span> charmm36 <span class="at">-p</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>Compare the initial structure to the backmapped structure.</li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> 1BNA.gro aa-charmm.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="for-more-information" class="level5">
+<h5 class="anchored" data-anchor-id="for-more-information"><strong>For more information:</strong></h5>
+<ul>
+<li><a href="http://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00286">Uusitalo, Jaakko J., et al.&nbsp;Martini Coarse-Grained Force Field: Extension to DNA. J. Chem. Theory Comput. 2015. 11, 8, 3932-3945.</a></li>
+<li><a href="http://www.sciencedirect.com/science/article/pii/S0006349517306124?via%3Dihub">Uusitalo, Jaakko J., et al.&nbsp;Martini Coarse-Grained Force Field: Extension to RNA. Biophys. J. 2017. 113, 2, 246-256.</a></li>
+<li><a href="https://academic.oup.com/bioinformatics/article/doi/10.1093/bioinformatics/btx444/3964380/cgHeliParm-analysis-of-dsDNA-helical-parameters">Faustino, I., Marrink, S.J. cgHeliParm: analysis of dsDNA helical parameters for coarse-grained MARTINI molecular dynamics simulations. Bioinformatics 2017 btx444.</a></li>
+</ul>
+<hr>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

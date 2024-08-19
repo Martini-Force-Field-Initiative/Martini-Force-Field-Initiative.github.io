@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Free energy techniques – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Free energy techniques – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Free energy techniques – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Free energy techniques</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#free-sampling" id="toc-free-sampling" class="nav-link" data-scroll-target="#free-sampling">Free sampling</a></li>
+  <li><a href="#umbrella-sampling" id="toc-umbrella-sampling" class="nav-link" data-scroll-target="#umbrella-sampling">Umbrella sampling</a></li>
+  <li><a href="#thermodynamics-integration" id="toc-thermodynamics-integration" class="nav-link" data-scroll-target="#thermodynamics-integration">Thermodynamics integration</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Free energy techniques</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p>The aim of this set of practicals is to familiarize with free energy techniques using the Gromacs program suite and the coarse-grained (CG) force field Martini. You will learn how the necessary input files are structured, how to set up and run the simulations, and finally how to extract the required information from the simulations.</p>
+<p>In particular, we will calculate the partition coefficient of a CG bead in water and hexadecane using free sampling, umbrella sampling and thermodynamic integration. These methodologies have a number of practical applications, e.g.&nbsp;to study free energies of solvation/hydration, free energies of binding of a small molecule (e.g.&nbsp;a drug molecule) to a receptor (e.g.&nbsp;a protein), and the free energy cost of point mutations.</p>
+<p>All files needed for this part of the tutorial can be found in the FreeEnergyTechniques folder in <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/FreeEnergyTechniques.zip">FreeEnergyTechniques.zip</a>. Each part of this tutorial has its own directory which itself contains a folder called files_DoItYourself. There you can find the necessary files to follow the tutorial. For the second and the third part (umbrella sampling and thermodynamic integration) we also provide a worked version in the folder files_worked.</p>
+<p>Open a terminal (ctrl-a) and download the .zip file to your desktop (or some other convenient place):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Desktop</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/FreeEnergyTechniques.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Unpack the downloaded file:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> FreeEnergyTechniques.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="free-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="free-sampling">Free sampling</h3>
+<hr>
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>The material offered in this page is LEGACY material.</em></strong> This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look! If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../../docs/tutorials/index.html">here</a> to go back!</p>
+</blockquote>
+<hr>
+<p>The first method for determining the logarithm of the partition coefficient P of a molecule between two different solvents (e.g.&nbsp;hexadecane and water) makes use of an unbiased CG-MD simulation. The <span class="math inline">\(log(P_{water-hexadecane})\)</span> can be calculated by comparing the occupancy of your molecule of interest in the two phases. This yields the ratio of the time the molecule spends in each phase – the partition coefficient P – which can be used to calculate the free energy difference between the phases by making use of the statistical mechanics definition of Gibbs free energy <span class="math inline">\(\Delta G\)</span>.</p>
+<p><span class="math display">\[ \Delta G = -RTln(P) \]</span></p>
+<p><span class="math inline">\(\Delta G\)</span>: free energy<br>
+<span class="math inline">\(R\)</span>: gas constant<br>
+<span class="math inline">\(T\)</span>: absolute temperature<br>
+<span class="math inline">\(P\)</span>: partition coefficient = occupancy hexadecane/occupancy water</p>
+<p>All files needed for this part of the tutorial can be found in the 1_FreeSampling/files_DoItYourself/1.1-initial folder, in the .zip file you downloaded. Inside you will find the following files and folder:</p>
+<ul>
+<li><p>bead_template.itp: the topology file for the bead to be partitioned</p></li>
+<li><p>em.mdp: the input settings for energy minimization</p></li>
+<li><p>eq.mdp: the input settings for equilibration</p></li>
+<li><p>hexadecane_w.gro: the simulations box</p></li>
+<li><p>md.mdp: the input settings for the production run</p></li>
+<li><p>setting_up.sh: a script which does everything for you</p></li>
+<li><p>top/: a folder containing the forcefield descriptions</p></li>
+<li><p>martini_v2.0_solvents.itp: forcefield description of solvents</p></li>
+<li><p>martini_v2.2.itp: general forcefield description</p></li>
+<li><p>topol.top: the system topology file</p></li>
+</ul>
+<p>In this tutorial we will try to find the <span class="math inline">\(log(P_{water-hexadecane})\)</span> for acetone. Martini makes use of a 4-to-1 mapping of non-hydrogen atoms, therefore a single bead represents acetone in the Martini world. Thus, the CG model is rather simple as it does not contain any bonded interactions. Therefore we only need to select the right bead type to represent the non-bonded interactions. In Martini the bead types are grouped in four flavors: Q, P, N and C. These represent charged, polar, non-polar and aliphatic chemical groups respectively. The overall behavior of acetone corresponds to the non-polar regime (N) due to its two methyl groups and its polar carbonyl group. N-beads can act as either a hydrogen-bond donor, acceptor, donor and acceptor, or no hydrogen bond forming capabilities at all. Acetone acts as an acceptor; therefore Na does represent our molecule best.</p>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Acetone.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 1 |</strong> Acetone (2-propanone) represented by a Na bead in the Martini force field.</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<p>Copy the 1_FreeSampling folder inside FreeEnergyTechniques on your desktop in which you will do the actual work. This prevents altering the original files by accident.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> FreeEnergyTechniques/1_FreeSampling .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Enter the folder you just copied and take a look at its content with a simple text editor.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 1_FreeSampling/files_DoItYourself/1.1-intial</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gedit</span> bead_template.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A general explanation of the format of .itp files can be found in the <a href="http://manual.gromacs.org/online/files.html">GROMACS manual</a>. For now it is important to change the bead type of our single bead molecule (CG acetone) to the appropriate type. Do not forget to save after you have made your changes.</p>
+<p>The em/eq/md.mdp files contain the settings for GROMACS. Things like the integrator type and time step, number of steps, pressure coupling scheme, electrostatic scheme, etc. For a full description of the .mdp settings you can take a look at the <a href="http://manual.gromacs.org/online/mdp_opt.html">GROMACS manual</a>.</p>
+<p>The hexadecane_w.gro file contains the amount of beads, the coordinates of all the beads in your system and the dimensions (nm) of you periodicity. The dimensions can be found at the bottom of the file. The tail command can be used to only print the last few lines of a file.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> hexadecane_w.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We could try to count - by hand - all the water, hexadecane and acetone molecules but much easier would be to take a look at the topol.top file.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gedit</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first lines of the .top file start with a # and here the locations of the forcefield parameters are specified. Then the system name is given an last the system composition is described. It is important to remember that the order of molecules in the .gro and .top should be <u>exactly</u> the same.</p>
+<p>Before you close this file you should change the third line so it points towards your bead_template.itp. Do not forget to save your changes after you are done.</p>
+<p>Inside the “top/” folder you will find the general .itp files of the Martini forcefield and the description for several solvents, including hexadecane.</p>
+<p>To finalize our initial inspection of the system we will open it with vmd.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> hexadecane_w.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By opening graphics/representations… from the main menu in vmd we can make some custom selections to improve our visualization. Some useful selections for now are:</p>
+<pre class="text"><code>resname W
+
+resname HD
+
+resname B</code></pre>
+<p>You can have multiple selections at the same time by clicking the Create Rep button in the top left of the same menu. Each selection has its own Drawing Method which can be selected from the drop-down menu in the bottom left of the same menu. A simple but effective Drawing Method is VDW, which shows each point as a sphere. Take your time to play a bit around with the visualization if you would like to. You can save your visualization by clicking file/Save Visualization State… from the main menu in vmd. You can close vmd by typing quit in the terminal.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By now we should know exactly what our system is and how to run it. We only have to do it! First, we need to energy minimize our system. To keep everything tidy we will start with making a separate folder for the minimization, equilibration, production and analysis run. Then we enter the just created em folder.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> em eq md analysis</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we generate the em.tpr using gmx grompp and run it using gmx mdrun. The gmx points to the gmx toolbox containing many subroutines such as mdrun, which is the core md engine used by gromacs to perform the simulation. By only typing gmx, you can see all the other tools available. Many of them are for the analysis of md data. In most cases you can add the <code>-h</code> flag in any <code>gmx</code> command to get an overview of the available options for the requested subroutine (in the cases below this would be <code>grompp</code> and <code>mdrun</code> subsequently).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../em.mdp <span class="at">-c</span> ../hexadecane_w.gro <span class="at">-p</span> ../topol.top <span class="at">-o</span> em.tpr</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> em <span class="at">-v</span> <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After the simulation has finished successfully, we can enter the eq folder and perform some equilibration steps.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../eq</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../eq.mdp <span class="at">-c</span> ../em/em.gro <span class="at">-p</span> ../topol.top <span class="at">-o</span> eq.tpr</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> eq <span class="at">-v</span> <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And finally we do the same for the production run:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../md</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../md.mdp <span class="at">-c</span> ../eq/eq.gro <span class="at">-p</span> ../topol.top <span class="at">-o</span> md.tpr</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> md <span class="at">-v</span> <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The time it will take to finish the production run is stated in the last line during execution of gmx mdrun. This would be an excellent time to quickly grab a cup of coffee/thee/water and talk enthusiastically about molecular dynamics with your fellow students. A suitable topic could be ‘Why don’t we start with the production run right away?’. After this step you will start with the analysis to end up with a log(P) value which you can compare to the experimental value.</p>
+<p>Now that the simulation has finished, it is time to perform the analysis. Move into the analysis folder which you created before and perform a density analysis for the simulation in the z dimension. To do so we will use gmx density. Like before you can gain extra information about this gmx tool by typing gmx density -h.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../analysis</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> density <span class="at">-f</span> ../md/md.xtc <span class="at">-s</span> ../md/md.tpr <span class="at">-center</span> <span class="at">-symm</span> <span class="at">-ng</span> 3 <span class="at">-o</span> density.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will be prompted to select the group for centering, selecting either the group representing W or HD should do. Then we would like to obtain the density for the W, HD and B seperately. Therefore select each one once (by typing the according number) followed by pressing return. After you have specified three groups the analysis will be performed. This should be finished within a matter of seconds. After the analysis has finished you can open the density.xvg file with xmgrace – a graphing program.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> density.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Though all the information is there, it is easier to look at after normalization. To do so you need to click at Data/Transformations/Evaluate Expression… in the main menu. In the popped up menu select all three sets on the left and all three sets on the right by dragging with your mouse. Now all sets on the left and right should have a black background. Next type y = y/max(y) in the Formula field and click Accept at the bottom center in the menu. All lines are now between 0 and 1, however our y-scale is still way too bloated. To quickly fix this you need to click the AS (auto scale) button in the general menu on the left (the second button on the right). Now find the y-value for B line in both the bulk W and HD (the x and y value of the center of you mouse are depicted underneath the main menu bar in the top left). You can calculate the <span class="math inline">\(log(P_{hexadecane-water})\)</span> for acetone by dividing the HD-bulk population by the W-bulk population and then taking the logarithm of that fraction. Compare your value to the value published in the original paper [1,2]. By plugging in your acquired ratio for P in equation 1, you can obtain the free energy difference between the two states.</p>
+<section id="assignments" class="level5">
+<h5 class="anchored" data-anchor-id="assignments"><strong>Assignments</strong></h5>
+<ol type="1">
+<li><p>Think of some downsides for this technique.</p></li>
+<li><p>For what kind of systems would you expect this technique to function well?</p></li>
+<li><p>Continue with part 2, or help someone next to you and then continue with part 2.</p></li>
+</ol>
+</section>
+</section>
+<section id="umbrella-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="umbrella-sampling">Umbrella sampling</h3>
+<hr>
+<p>Frequently, unbiased MD simulations cannot be the appropriate technique to study systems involving rare events. Even in simple problems, as log(P) calculations, the sampling can be difficult. For example, solutes too hydrophobic could take a long time to visit the water phase. Increasing the solute concentration as a way to increase the frequency to happen these rare events has a limit: at some point you could induce solute aggregation or even changes in the solvent properties of the phases. If this is the case, special biased MD techniques can be used to improve the sampling. Here, we introduce the usage of one of the most traditional free energy methods, called Umbrella Sampling (US). In the US approach, the potential function – i.e.&nbsp;the interactions of your system – is modified in a way to equally sample favorable and unfavorable states along a reaction coordinate (RC). The RC is defined as the path between two well-defined states. We will apply the US approach to the same problem described in the previous part of the tutorial: hexadecane-water log(P) calculations of acetone (represented with a Na bead in the MARTINI coarse-grained force field). The main practical steps to obtain log(P) via US simulations are:</p>
+<ul>
+<li><p>Generate a series of initial configurations along the RC. In a water-hexadecane biphasic system, the most obvious RC is the position of your solute in the simulation box, from the bulk of one solvent to the bulk of the other one.</p></li>
+<li><p>Run US simulations on each configuration, restraining the solute in the center of the window via bias potentials. Often, harmonic potentials are used due to their simplicity.</p></li>
+<li><p>Use the weighted histogram analysis method (WHAM) to extract the potential of mean force (PMF) and calculate <span class="math inline">\(\Delta G_{HD-W}\)</span> and <span class="math inline">\(log(P_{HD-W})\)</span>.</p></li>
+</ul>
+<p>More details of the theory behind the US technique can be found in reference [<a href="../../../../docs/tutorials/Legacy/martini2/free_energy.html">3</a>]. Hereafter, we describe step by step how to perform the US simulation. Now, let us start the hands-on section.</p>
+<section id="generating-the-windows-along-the-rc" class="level5">
+<h5 class="anchored" data-anchor-id="generating-the-windows-along-the-rc"><strong>Generating the windows along the RC</strong></h5>
+<p>To perform US simulations, we must generate a series of configurations along the RC. These configurations will serve as the starting points for the US windows, which can be performed as parallel independent simulations. Figure 2 illustrates the principles: The top image illustrates the RC of the Na bead in the water-hexadecane biphasic mixture. We can start from water to hexadecane or vice versa, using the z-axis of the box as RC (x-axis in the image). The middle image corresponds to the independent simulations conducted within each sampling window along the RC, with the Na bead being restrained in that window by an umbrella biasing potential. The bottom images shows the ideal result as a histogram of configurations, with neighboring windows overlapping such that a continuous free energy function can later be derived from these simulations.</p>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="umbrella_sampling_protocol.jpg" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 2 |</strong> Schematic view of protocol used in umbrella sampling.</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<p>To generate the initial configurations for each window, we need to perform a sequence of pulling, energy minimization and equilibration simulations. This protocol has been established based on trial-and-error to obtain a reasonable distribution of configurations. In other systems, it may be necessary to save configurations more often or even to apply a different minimization/equilibration procedure. The idea is to capture enough equilibrated configurations along the RC to obtain a regular spacing of the US windows (in terms of the Na distance position in z-axis from hexadecane to water).</p>
+<p>Enter in the initial configuration folder and look at the files inside.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> FreeEnergyTechniques/2_UmbrellaSampling/files_DoItYourself/2.1.initial_configurations/</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will find a bash script (that will be commented on later), a .gro file and also some templates for the .mdp files. Theses files will be used to generate the initial conditions for each window of your RC. The start.gro file contains a CG model of hexadecane-water simulation box and 1 Na bead. Take a look in the system using vmd.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> start.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The .mdp files are basically sequential steps of pulling, minimization and equilibration simulations. They were designed to smoothly put the Na bead in a specific position of your box (the windows along your RC). The position of Na is defined in the pulling parameters of the .mdp files. You can take a look at them (all parameters staring with pull) in one of the .mdp files using gedit.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gedit</span> em.mdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can find what these parameters control in the <a href="http://manual.gromacs.org/online/mdp_opt.html">GROMACS manual</a>. However, save this task for later, when you have started the production simulations. Now, create the folder for the first window and copy the .mdp files to this folder:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 0.0/</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="pp">*</span>.mdp 0.0/        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(The * is a wildcard in bash, which is substituted for any amount of any character, therefore this copies all the .mdp files in one go. Pretty neat right?!)</p>
+<p>Enter the 0.0 folder and modify in each .mdp file the pull-coord1-init parameter:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 0.0/</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gedit</span> <span class="op">&lt;</span>file<span class="op">&gt;</span>.mdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Replace POS1 by 0.0 in each one of the .mdp files. Then generate the .tpr files and run the pulling, energy minimization and equilibration steps:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> pull.mdp <span class="at">-c</span> ../start.gro <span class="at">-p</span> ../../2.0.parameters/topol.top <span class="at">-o</span> pull.tpr</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> pull <span class="at">-v</span> <span class="op">&amp;&gt;</span> pullrun.log</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> em.mdp <span class="at">-c</span> pull.gro <span class="at">-p</span> ../../2.0.parameters/topol.top <span class="at">-o</span> em.tpr</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> em <span class="at">-v</span> <span class="op">&amp;&gt;</span> emrun.log</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> em2.mdp <span class="at">-c</span> em.gro <span class="at">-p</span> ../../2.0.parameters/topol.top <span class="at">-o</span> em2.tpr</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> em2 <span class="at">-v</span> <span class="op">&amp;&gt;</span> em2run.log</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> eq.mdp <span class="at">-c</span> em2.gro <span class="at">-p</span> ../../2.0.parameters/topol.top <span class="at">-o</span> eq.tpr</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> eq <span class="at">-v</span> <span class="at">-px</span> eq_x <span class="at">-pf</span> eq_f <span class="op">&amp;&gt;</span> eqrun.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Repeat the procedure for each other window, from 0.1 to 3.9, with spacing of 0.1 nanometer. As you already know how the whole procedure works, you can use a bash script to automatically generate all other 39 windows. First come back to the parent folder and then run the script.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./initial_configurations.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="running-the-production-simulations-for-each-window" class="level5">
+<h5 class="anchored" data-anchor-id="running-the-production-simulations-for-each-window"><strong>Running the production simulations for each window</strong></h5>
+<p>Enter in the production folder and look at the files inside:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2.2.production/</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, run the US simulations. As in the previous step, you should now generate folders for each window and perform longer production simulations. We separate this task with two scripts, to run two sets of simulations in parallel.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> ./umbrella1.sh <span class="kw">&amp;</span>        <span class="kw">(</span><span class="ex">The</span> <span class="kw">&amp;</span> <span class="ex">sign</span> is to cast the process to the background. nohup makes sure that even when you close the current terminal, the process remains active.<span class="kw">)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> ./umbrella2.sh <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This step should take a maximum of 30 minutes. In the mean time, take a look at the <a href="http://manual.gromacs.org/online/mdp_opt.html">GROMACS manual</a> to find the meaning of all pulling parameters used in the .mdp files. If you have questions, ask your neighbours, or talk with one of the supervisors (or both). You can also take a look at the recommended reference about US.</p>
+<p>In case some problems occur and you do not manage to finish the US simulations within approx. 1 hour, please use the files in the directory files_worked to perform the analysis. However, if your simulation is taking longer than the stated amount of time, it is always good to notify a supervisor of your problem.</p>
+</section>
+<section id="data-analysis" class="level5">
+<h5 class="anchored" data-anchor-id="data-analysis"><strong>Data analysis</strong></h5>
+<p>The most common analysis conducted for US simulations is the extraction of the PMF, which will yield the hexadecane-water partition ΔG for the Na partition. ΔG is simply the difference between the water and hexadecane values of the PMF curve (similar as performed in the previous tutorial). A common method for extracting PMF is the WHAM, included in Gromacs as the wham utility. Its input consists of two files, one lists the names of the production .tpr files of each window, and the other that lists the names of either the pullf.xvg or pullx.xvg files from each window. First, enter the data analysis folder and generate the files containing the list of production .tpr and pullx.xvg files:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2.3.analysis/</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-d</span> ../2.2.production/<span class="pp">*</span>/md.tpr <span class="op">&gt;</span> tpr-files.dat</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-d</span> ../2.2.production/<span class="pp">*</span>/md_x.xvg <span class="op">&gt;</span> pullx-files.dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, run the gromacs tool wham:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> wham <span class="at">-ix</span> pullx-files.dat <span class="at">-it</span> tpr-files.dat <span class="at">-bsres</span> <span class="at">-bins</span> 200 <span class="at">-temp</span> 300 <span class="at">-unit</span> kJ <span class="at">-b</span> 100 <span class="at">-nBootstrap</span> 100 <span class="at">-zprof0</span> 3.5 <span class="at">-min</span> 0 <span class="at">-max</span> 3.9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The WHAM utility will open each of the umbrella.tpr and pullx.xvg files sequentially and run the WHAM analysis on them. Take a look in the meaning of the other input parameters used to run gmx wham using its help option (gmx wham -h). For example, the -unit kJ option indicates that the output will be in [kJ/mol], but you can also get results in [kcal/mol] or [<span class="math inline">\(k_BT\)</span>]. After running gmx wham, you should end up with a profile.xvg file that looks similar to Figure 3A, except it does not show the error bars. You can open the result using xmgrace.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> profile.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you want to see the error bars (and this is recommended!) inspect the file bsResult.xvg. All individual profiles from the bootstrapping are in the file bsProfs.xvg. One of the other outputs of the wham command will be a file called histo.xvg, which contains the histograms of the configurations within the US windows. These histograms will determine whether or not there is sufficient overlap between adjacent windows. For the types of simulations conducted as part of this tutorial, you may obtain something like Figure 3B. The histograms have to show reasonable overlap between the sampled windows.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> histo.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pmf_small.jpg" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 3 |</strong> (A) PMF of the Na bead from bulk water (RC = 0 nm) to hexadecane (RC = 3.8 nm). (B) Histograms of the positions of a Na bead in each window.</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+</section>
+<section id="assignments-1" class="level5">
+<h5 class="anchored" data-anchor-id="assignments-1"><strong>Assignments</strong></h5>
+<ol type="1">
+<li><p>Calculate the partition coefficient of the Na bead and compare it with the values you calculated with the free sampling approach and with the experimental value in the literature.</p></li>
+<li><p>What are the advantages and disadvantages of umbrella sampling in relation to the free sampling method?</p></li>
+<li><p>How can you make sure that your simulations reached convergence?</p></li>
+<li><p>Continue with part 3, or help someone next to you before continuing with part 3.</p></li>
+</ol>
+</section>
+</section>
+<section id="thermodynamics-integration" class="level3">
+<h3 class="anchored" data-anchor-id="thermodynamics-integration">Thermodynamics integration</h3>
+<hr>
+<p>The calculation can be performed in several ways, but we will do it here by integrating the average derivative of the Hamiltonian (read: interaction potential) with respect to the coupling parameter in a piecewise fashion, i.e.&nbsp;calculate the average derivative with respect to the coupling parameter at a set of values of the coupling parameter and integrate it. Fortunately, Gromacs will take care of all these complicated calculations. An important issue to be addressed is the convergence of the final integrated number. The convergence depends on the error in the averages at the different λ points and on the smoothness of the curve, i.e.&nbsp;the number of individual λ points used in the integration. This will require a lot of simulations and therefore a number of results will be provided to you in case you ran out of time. However, first one needs to set up the systems at individual λ points. We will set up an individual λ point for solvation of a Na bead (NOTE: not a sodium ion, but an N-type bead with hydrogen-bond acceptor properties) in water, and then use a bash script to set up and run simulations pertaining to all λ points in parallel. You will also prepare a set-up for calculating solvation free energy of a Na bead in hexadecane following the same steps as the set up in water.</p>
+<section id="setting-up-the-solvated-system-of-a-na-bead-in-water" class="level5">
+<h5 class="anchored" data-anchor-id="setting-up-the-solvated-system-of-a-na-bead-in-water"><strong>Setting up the solvated system of a Na bead in water</strong></h5>
+<p>The initial files for this exercise are provided in the subdirectory 3_ThermodynamicIntegration/files_DoItYourself/SETUPINWATER.</p>
+<p>In order to perform a (classical mechanical molecular dynamics) simulation, the system and the simulation conditions need to be specified. Gromacs implements these specifications in three files: the topology file specifies the molecules in the system, the coordinate file specifies the starting coordinates (and velocities) of the atoms, and the run parameter file specifies the simulation control variables (number of steps, time step, output frequency, etc.). We will first quickly get the simulation running, then will focus on specific issues relating to free energy calculations.</p>
+</section>
+<section id="topology" class="level5">
+<h5 class="anchored" data-anchor-id="topology"><strong>Topology</strong></h5>
+<p>The topology file (standard extension .top, standard name topol.top) specifies the number and types of particles (used interchangeably with atoms in the remainder of this document) in the system. Note that the topology file may specify that there are multiple copies of the same molecule in the system; thus, the amount of information to be specified may be greatly reduced because details for each type of molecule need to be specified only once.</p>
+<p>For this exercise, the perturbation topology of Na bead is already given in the file topol.top.</p>
+<p>Open the file topol.top from the directory SETUPINWATER in an editor. You will notice that the topology file seems to contain very little information. The structure of the file is briefly described below.</p>
+<p>A. First the force field is specified. The force field used in this exercise is the martini force field. The master file is called martini.itp and it is read by the preprocessor because of the #include statement.</p>
+<p>B. and C. The second file included in the topology file is called martini_na.itp, which contains the definition of the Na molecule, including the description required for the alchemical transformation that enables calculation of the solvation free energy. The third file included in the topology file is called martini_solvents.itp, which contains the definition of the water and hexadecane molecules. The order of these two files is not important. If your system contains more types of molecules, for example ions, you can add include an .itp file for each of them.</p>
+<p>D. Each system needs a specification describing the system. This information is printed in some output files and may be useful for you to identify the system you are working on. In general, it is always wise to have a SEPARATE directory for EACH simulation system. You may easily get confused!</p>
+<p>E. All that remains to be done in the topology file topol.top is to specify the number of molecules in the system. You need one line for each type of molecule. The order in which you specify the molecules is important. The Na bead is elsewhere specified with a molecule name Na, and the name for the water and hexadecane molecule is W and HD, respectively. The program interprets the starting coordinates (see next section) as belonging to the molecules in the order you specify here. It does NOT check the names of the molecules! We do not know the number of water molecules yet, because we need to first solvate the Na molecule. We will make sure to have 1280.</p>
+</section>
+<section id="starting-coordinates-and-velocities" class="level5">
+<h5 class="anchored" data-anchor-id="starting-coordinates-and-velocities"><strong>Starting coordinates and velocities</strong></h5>
+<p>GROMACS takes a number of formats for input coordinates (and velocities). For this exercise, the simple “in-house” format is used. The standard file extension is .gro. The file Na.gro contains starting coordinates for a single Na bead. Note that the first line is a descriptive text, the second line contains the number of atoms in the system, and the last line contains the dimensions of the simulation unit cell.</p>
+<p>The Na molecule first needs to be solvated. The GROMACS tools insert-molecules and solvate can add coordinates of molecules to existing coordinates, taking care that individual atoms are not too close together. The tool insert-molecules takes a single molecule to be added, puts its center-of-mass randomly somewhere in the box defined in the existing molecule (dimensions of the box are specified on the last line of the .gro file) and randomly rotates the new molecule. It then checks for clashes with previously present molecules and only inserts the new molecule if no such clashes are present. One may repeatedly use this procedure to insert a number of solvent molecules. However, one may also add solvent molecules when a box of solvent is available, by using the tool solvate. For solvation in water, a box containing 2704 W beads is provided (solvent.gro). If this equilibrated box is provided with the option –cs, solvate does not rotate this box, but fills the space with periodic replicas and then checks the individual molecules for clashes so that it does not reject all molecules if only one of them clashes.</p>
+<p>Make sure you have the terminal running and are in the correct directory SETUPINWATER. Solvate the Na bead:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate –cp Na.gro –cs solvent.gro <span class="at">-o</span> solvated.gro <span class="at">-box</span> 5.5 5.5 5.5 <span class="at">-maxsol</span> 1280</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There should be no more than 1280 W beads added to the original box. If not, please try to solvate again in such a way that you end up with 1280 W beads (you can try a different seed for the random number). It is important that you use the same number of water molecules in these exercises (or the results obtained for TI calculations cannot be compared to previous sections)!</p>
+<p>The final ingredient for a simulation are the run parameters, with standard extension .mdp.</p>
+<p>In this exercise, we will need to perform two types of runs:</p>
+<p>A. energy minimization of the solvated system</p>
+<p>B. free energy calculation at single λ point</p>
+<p>The engine to run the simulation is mdrun. The program mdrun requires one (binary) input file containing all information required to run the simulation. The standard name for the run input file is topol.tpr, and it is generated using the GROMACS program gmx grompp, which takes the .top, .gro, and .mdp files discussed in the previous section.</p>
+<p>Run the preprocessor</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp –p topol.top –c solvated.gro –f min.mdp <span class="at">-o</span> min <span class="at">-maxwarn</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check that you have generated a file called min.tpr. If not, the step may have failed because of ERRORS or because of WARNINGS. The warnings can usually be ignored (maybe check with your assistant if you’re not sure), ERRORS need to be fixed. Try to figure out what was wrong and fix it. The file min.tpr. is readable by the GROMACS engine and contains all necessary information. You can run the engine using this min.tpr file by typing the command</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun –v <span class="at">-deffnm</span> min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If all is well, you should now have produced a good starting structure for calculation of derivative of the energy at the single λ point. By default it will be written in the file min.gro. Copy this file to a new directory (production directory, see next section) and rename it start.gro to set up the simulation generating the required data for the single λ point. To this directory, also copy all .itp files, the .top file, and the file run.mdp.</p>
+</section>
+<section id="setting-up-a-perturbation-simulation-at-a-particular-value-of-the-coupling-parameter" class="level5">
+<h5 class="anchored" data-anchor-id="setting-up-a-perturbation-simulation-at-a-particular-value-of-the-coupling-parameter"><strong>Setting up a perturbation simulation at a particular value of the coupling parameter</strong></h5>
+<p>Run parameters for a single λ point</p>
+<p>Create a directory for production run and go there:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> production</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> production</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Remember to copy the files you need to this directory! The file run.mdp contains the settings for a single λ point. Open the file run.mdp in an editor. Note the following settings :</p>
+<p>Control parameters for free energy calculation. This is the core of the present exercise.</p>
+<p>First of all, we specify free-energy = yes to ensure calculation of dH/dλ. The value of λ is given by init-lambda and should be different for each lambda point. In the exercise, check that the value of λ is 0.</p>
+<p>When switching on/off non-bonded interactions, atoms can be quite close to each other, much closer than in fully interacting systems. To avoid large forces or dH/dλ values, soft core potentials are used instead of the LJ potential. Soft core potentials have the property that their value is finite at distance 0. For the MARTINI force field, values of sc-alpha = 0.5 usually perform well.</p>
+<p>The parameter sc-power controls the rate at which the coupling varies with λ. With sc-power = 1 the change in interaction is linear in λ, sc-power = 2 specifies quadratic change.</p>
+</section>
+<section id="running-a-single-λ-point" class="level5">
+<h5 class="anchored" data-anchor-id="running-a-single-λ-point"><strong>Running a single λ point</strong></h5>
+<p>All is now in place to run a simulation. Therefore, now execute the following commands</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp –p topol.top –c start.gro –f run.mdp <span class="at">-o</span> run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check that you have generated a file called run.tpr. If not, the step may have failed because of ERRORS or because of WARNINGS. The warnings can usually be ignored (maybe check with your assistant if you’re not sure), ERRORS need to be fixed. Try to figure out what was wrong and fix it. The file run.tpr. is readable by the GROMACS engine and contains all necessary information. Run the engine using this run.tpr file by typing</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> run <span class="op">&gt;&amp;</span> run.job <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If all is well, you should now be producing data to give you an estimate of the dH/dλ at the λ point. The next task is to compute the change in free energy by integrating the entire dH/dλ curve as a function of λ. Check that sensible data are produced by looking at the file run.xvg.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> run.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If sensible data (i.e.&nbsp;numbers, not inf or nan) are being produced, proceed to have a close look at the details of this simulation. NOTE that it may take a while before the first data appear in run.xvg.</p>
+</section>
+<section id="running-all-λ-points" class="level5">
+<h5 class="anchored" data-anchor-id="running-all-λ-points"><strong>Running all λ points</strong></h5>
+<p>In order to quickly produce all of the input files needed for running simulations for each value of λ points, we have made a bash script available. Make a new directory called production_all</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> production_all</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> production_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and copy min.mdp, topol.top,.itp , run2.mdp,solvent.gro, TI.sh and Na.gro to this directory. Have a look at the script TI.sh . You may need to change some commands, in particular the loading of GROMACS, depending on your computer. If you are satisfied that the commands are correct, proceed to executing the script. To issue the bash script:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./TI.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The script will create directories with relevant values of init_lambda_state inserted to the run2.mdp file and will proceed to execute TI calculation for each state. This means that for each value of λ, minimization and production steps will be performed in separate directories. To analyze the data, GROMACS bar module will be used to conduct Bennett acceptance ratio (BAR) method and compute free energy of solvation. The bar module will collect all the .xvg files that were generated ( for each value of λ ) and produce three output files; bar.xvg, barint.xvg and histogram.xvg. The value of solvation free energy will be printed in a .dat file named final.dat.</p>
+</section>
+<section id="assignments-2" class="level5">
+<h5 class="anchored" data-anchor-id="assignments-2"><strong>Assignments:</strong></h5>
+<ol type="1">
+<li><p>How would you make sure about the convergence of the simulations? Maybe have a look at .xvg files produced at the final stage of the simulations.</p></li>
+<li><p>Can you make a statement about what is a reasonable simulation time for each λ point?</p></li>
+<li><p>What might be good strategies to get a small error in the solvation free energy? Think about the balance between increasing the number of λ points and the length of simulation at a single λ point. If you were to increase simulation of a single λ point, which λ would you pick?</p></li>
+</ol>
+</section>
+<section id="setting-up-the-solvated-system-of-a-na-bead-in-hexadecane" class="level5">
+<h5 class="anchored" data-anchor-id="setting-up-the-solvated-system-of-a-na-bead-in-hexadecane"><strong>Setting up the solvated system of a Na bead in hexadecane</strong></h5>
+<p>In Exercise 2, the solvation free energy of solvation of a Na bead in hexadecane is calculated using TI. The directory S3_ThermodynamicIntegration/files_DoItYourself/ETUPINHD contains the required files. Enter that directory.</p>
+<p>Follow the steps described for the set up in water. For HD solvent, you should change the number of solvent molecules using the following command:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> Na.gro <span class="at">-cs</span> solvent.gro <span class="at">-o</span> solvated.gro <span class="at">-box</span> 5.5 5.5 5.5 <span class="at">-maxsol</span> 320</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and then continue with the rest of the set up as stated above for solvation of Na bead in water.</p>
+<p>For each state, run a minimization and production simulation using TI.sh .</p>
+</section>
+<section id="assignments-3" class="level5">
+<h5 class="anchored" data-anchor-id="assignments-3"><strong>Assignments:</strong></h5>
+<ol type="1">
+<li><p>What is the solvation free energy change of the Na bead in water and hexadecane?</p></li>
+<li><p>Calculate the partition coefficient of Na bead and compare it with the values you calculated with other methods and with the experimental value in the literature? What is the source of difference?</p></li>
+<li><p>Which method is the most efficient one to calculate partition coefficient in the current system? What if you had a more complicated system?</p></li>
+<li><p>Can you find other application for TI method other than the ones specified in the tutorial?</p></li>
+</ol>
+</section>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[<a href="http://pubs.acs.org/doi/abs/10.1021/jp036508g">1</a>] Marrink, S. J., De Vries, A. H., and Mark, A. E. (2004) Coarse grained model for semiquantitative lipid simulations. J. Phys. Chem. B 108, 750–760.</p>
+<p>[<a href="http://pubs.acs.org/doi/abs/10.1021/jp071097f">2</a>] Marrink, S. J., Risselada, H. J., Yefimov, S., Tieleman, D. P., and De Vries, A. H. (2007) The MARTINI force field: coarse grained model for biomolecular simulations. J. Phys. Chem. B 111, 7812–7824.</p>
+<p>[<a href="http://dx.doi.org/10.1002/wcms.66">3</a>] Kästner, J. (2011) Umbrella sampling, WIREs: Comp. Mol. Sci. 1, 932–942.</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Dual resolution membrane simulation – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Dual resolution membrane simulation – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Martini3/Dual_Resolution_Membrane/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Dual resolution membrane simulation – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Martini3/Dual_Resolution_Membrane/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Dual resolution membrane simulation</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#vs-hybrid-alkane" id="toc-vs-hybrid-alkane" class="nav-link" data-scroll-target="#vs-hybrid-alkane">VS hybrid alkane</a></li>
+  <li><a href="#dual-resolution-membrane" id="toc-dual-resolution-membrane" class="nav-link" data-scroll-target="#dual-resolution-membrane">Dual resolution membrane</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Dual resolution membrane simulation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+In case of issues, please contact <a href="mailto:%20y.liu@rug.nl">y.liu@rug.nl</a>.
+<hr>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li><a href="#introduction"><code>Introduction</code></a></li>
+<li><a href="#vs-hybrid-alkane"><code>VS hybrid alkane</code></a>
+<ul>
+<li><a href="#build-the-hybrid-topology-file"><code>Build the hybrid topology file</code></a></li>
+<li><a href="#defining-the-interactions"><code>Defining the interactions</code></a></li>
+<li><a href="#build-coordinate-file"><code>Build coordinate file</code></a></li>
+<li><a href="#equilibrate-and-run-the-system"><code>Equilibrate and run the system</code></a></li>
+</ul></li>
+<li><a href="#dual-resolution-membrane"><code>Dual resolution membrane</code></a>
+<ul>
+<li><a href="#build-dual-resolution-aa-and-cg-membrane-system"><code>Build dual resolution AA and CG membrane system</code></a></li>
+<li><a href="#build-coordinate-file-1"><code>Build coordinate file</code></a></li>
+<li><a href="#building-the-topology-file"><code>Building the topology file</code></a></li>
+<li><a href="#equilibrate-the-hybrid-system"><code>Equilibrate the hybrid system</code></a></li>
+</ul></li>
+<li><a href="#conclusions"><code>Conclusions</code></a></li>
+<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
+<li><a href="#references"><code>References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p>All-atomistic (AA) and coarse-grain (CG) simulations have been successfully applied to investigate a broad range of biomolecular processes. However, the accessible time and length scales of AA simulation are limited and the specific molecular details of CG simulation are simplified. Here, we propose a VS-based hybrid scheme<sup>[1]</sup> that can concurrently couple AA and CG resolutions in a single membrane simulation, mitigating the shortcomings of either representation. We demonstrate this method by combining the Martini 2.x CG force field with the atomistic CHARMM36 force fields and apply the method to lipid membrane systems.</p>
+<p>In this tutorial, we shall start with combining CHARMM/Martini force fields for a simple alkane system, so you can appreciate the VS method, before jumping to a more complicated application like membranes. Before starting the journey in this tutorial, we highly recommend you to read another beautifully written tutorial about VS hybrid model combining OPLS/Martini force field (<a href="http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/tutorial-hybrid-model-using-virtual-sites-gmx5">http://cgmartini.nl/index.php/tutorials-general-introduction-gmx5/tutorial-hybrid-model-using-virtual-sites-gmx5</a>).</p>
+<p>The aim for this tutorial is to demonstrate how to combine Martini and CHARMM force fields using the virtual site (VS) scheme to simulate dual resolution membranes using capabilities of the <code>Gromacs</code> code. Setups and files can be found by downloading and unpacking (unzipping) the <code>.zip</code> file <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Dual_resolution_membrane/vs_membrane_tutorial.zip">here</a>. References to folders are made with respect to the parent folder that results after unpacking the <code>.zip</code> file.</p>
+</section>
+<section id="vs-hybrid-alkane" class="level3">
+<h3 class="anchored" data-anchor-id="vs-hybrid-alkane">VS hybrid alkane</h3>
+<hr>
+<p>In this section, you need to build a box of dodecane to familiarize yourself with the hybrid model. This approach requires a mapping of the particles in the AA model to the CG beads, defining VS located at the center of mass of the corresponding AA atoms.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 | Illustration of VS hybrid dodecane. The bond and ball structure represents the AA model and the green transparent balls represent the VS beads. In the VS hybrid model, extra interaction sites defined by the center of the groups of atoms are added. (In Figure 1, the locations of the sites are not shown, but they are at the center of the green transparent balls.) These interaction sites are defined as so-called VS within <code>Gromacs</code> and represent the CG model as a map of the AA model. By using this construction, the positions and dynamics of the AA and CG representations become closely linked.</figcaption>
+</figure>
+</div>
+<p>We start the VS hybrid system from the AA CHARMM model. The CHARMM topology and input parameter files were produced by <code>Ligand Reader &amp; Modeler</code> in <code>Charmm-gui</code> (<a href="https://www.charmm-gui.org/?doc=input/ligandrm">https://www.charmm-gui.org/?doc=input/ligandrm</a>). You can try this yourself (please refer to the <code>Charmm-gui</code> tutorials and examples; there is no description of the details in this tutorial), but if you want to focus on the VS hybrid building and simulation process, you can also find the files in the <code>charmm_gui</code> folder, which includes the CHARMM36 topology (<code>LIG.itp</code> and <code>topol.top</code>) and coordinate (<code>ligandrm.pdb</code> and <code>cgbuilder.gro</code>) files for a single dodecane molecule.</p>
+<section id="build-the-hybrid-topology-file" class="level4">
+<h4 class="anchored" data-anchor-id="build-the-hybrid-topology-file">Build the hybrid topology file</h4>
+<hr>
+<p>It is recommended to collect all the (modified) files for a VS hybrid run in a separate directory. The folder <code>dodecane_worked</code> contains the fully worked simulation. In the description below, we will use the name <code>VSHRun</code> as the name for the folder that has the simulation. You can then compare your results to those in <code>dodecane_worked</code>.</p>
+<p>Starting from the CHARMM dodecane topology file (<code>charmm_gui/LIG.itp</code>), you just need to add the VS information to the topology file. Copy this file to <code>VSHRun/LIG.itp</code> and modify it as explained in this section.</p>
+<p>In the Martini model, the dodecane is represented by three C1 beads shown in Fig. 1 as the green transparent balls. To add these sites as virtual sites, two changes must be made to the topology file. Virtual sites are particles that belong to the molecule. Thus, you only need to put the VS beads (vC1) definition in the <code>[ atoms ]</code> directive.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> atoms </span><span class="co">]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>; nr type resnr residu atom cgnr charge mass</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>1 CG331 1 LIG C1 1 -0.270 12.0110 ; qtot -0.270</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>2 CG321 1 LIG C2 2 -0.177 12.0110 ; qtot -0.447</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>3 CG321 1 LIG C3 3 -0.183 12.0110 ; qtot -0.630</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>……</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>36 HGA3 1 LIG H24 36 0.090 1.0080 ; qtot -0.180</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>37 HGA3 1 LIG H25 37 0.090 1.0080 ; qtot -0.090</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>38 HGA3 1 LIG H26 38 0.090 1.0080 ; qtot 0.000</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>; the following defines the VS atoms</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>39 vC1 1 VS VC1 38 0 0</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>40 vC1 1 VS VC2 38 0 0</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>41 vC1 1 VS VC3 38 0 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The positions of virtual sites are generated from the positions of the atoms. This is what AA to CG mapping is all about. The correspondence of the VS sites to the AA atoms is specified in the <code>[ virtual_sitesn ]</code> directory. The following contents define the correspondence between the AA atoms and VS beads are therefore also added to the <code>LIG.itp</code> file:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> virtual_sitesn </span><span class="co">]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>39 2 1 2 3 4</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>40 2 5 6 7 8</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>41 2 9 10 11 12</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can find the detailed information about the possible ways to define virtual sites in the <code>Gromacs</code> manual, but briefly, the first line in the <code>[ virtual_sitesn ]</code> directive shown above states that atom 39 is the center of mass (option 2 from virtual site options) of atoms 1, 2, 3, and 4 (which can be seen to be the first four C-atoms of the AA model). The mapping tells <code>Gromacs</code> how to calculate VS positions and forces on them from the atom positions and forces, and also how to calculate forces on the atoms from forces on the VS.</p>
+<p>These are all the changes that need to be made to the <code>LIG.itp</code> to construct a VS hybrid topology. There are no CG bonded potentials (bonds, angles, dihedrals between VS or AA and VS particles) needed for our hybrid scheme.</p>
+</section>
+<section id="defining-the-interactions" class="level4">
+<h4 class="anchored" data-anchor-id="defining-the-interactions">Defining the interactions</h4>
+<hr>
+<p>We already have the <code>.itp</code> file for single hybrid dodecane (<code>LIG.itp</code>), but the CHARMM36 force field files do not know the new atom types (vC1) for the virtual sites. These must be combined with the CHARMM36 atom definitions and interactions. Here, we have done this for you; a more extensive explanation of how to build these files yourself is included in the section on the VS hybrid bilayer simulation. The file <code>itp_file/ffnonbondH.itp</code> contains the definitions of the virtual atom types. This file must be included in the system topology file (<code>topol.top</code>, copy this one from the <code>charmm_gui</code> folder). If we know that the number of molecules in the simulation is going to be 128 dodecane, we can already define 128 dodecane for the whole system in the <code>.top</code> file. We have made a <code>ffnonbondH.itp</code> file for you, how to build it is introduced in the following sections. The two modifications of the file <code>topol.top</code> are shown below.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>#include "../itp_file/ffnonbondH.itp"</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> molecules </span><span class="co">]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>LIG 128</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the include statement for the <code>ffnonbondH.itp</code> file must be added BEFORE the include statement of the <code>charmm36.itp</code> file. The number of molecules is specified at the bottom of the <code>topol.top</code> file.</p>
+<p>Copy the <code>charmm36.itp</code> file from the <code>charmm_gui</code> directory to the working directory. In the <code>charmm36.itp</code> file, delete or comment out the lines referring <code>[ defaults ]</code> directive, because this is already defined in the <code>ffnonbondH.itp</code> file and a repetition results in a <code>Gromacs</code> error (in the <code>gmx grompp</code> step).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>;<span class="co">[</span><span class="ot"> defaults </span><span class="co">]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>; nbfunc comb-rule gen-pairs fudgeLJ fudgeQQ</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>;1 2 yes 1.0 1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="build-coordinate-file" class="level4">
+<h4 class="anchored" data-anchor-id="build-coordinate-file">Build coordinate file</h4>
+<hr>
+<p>Now we are ready to build a coordinate file of a system of dodecane molecules, in our case, we will make a system of 128 dodecane molecules. You can transform the <code>ligandrm.pdb</code> file, created by <code>Charmm-gui</code>, to a <code>CHARMM.gro</code> file using the following file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> ligandrm.pdb <span class="at">-o</span> CHARMM.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The CHARMM <code>.gro</code> file of a single dodecane look like this:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Header</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>38</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>1LIG C1 1 0.618 -0.437 -0.000</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>1LIG C2 2 0.565 -0.294 -0.000</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>1LIG C3 3 0.412 -0.289 -0.000</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>…...</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>1LIG H24 36 -0.429 0.491 -0.090</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>1LIG H25 37 -0.429 0.491 0.090</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>1LIG H26 38 -0.576 0.438 -0.000</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>0.00000 0.00000 0.00000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Copy this file to the working directory and give it the name <code>one_hybrid_lig.gro</code>. The three VS beads must be added to the end of the <code>.gro</code> file. The coordinates of the VS beads are the center of mass of their corresponding CHARMM atoms. The number of VS beads should be added to the total atoms numbers list in the second line of the <code>.gro</code> file. The final <code>.gro</code> file is rendered in <code>VMD</code> and shown in Fig. 1:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Header</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>41</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>1LIG C1 1 0.618 -0.437 -0.000</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>1LIG C2 2 0.565 -0.294 -0.000</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>1LIG C3 3 0.412 -0.289 -0.000</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>…...</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>1LIG H24 36 -0.429 0.491 -0.090</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>1LIG H25 37 -0.429 0.491 0.090</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>1LIG H26 38 -0.576 0.438 -0.000</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>1VS VC1 39 -0.335 0.292 -0.000</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>1VS VC2 40 0.076 0.000 0.000</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>1VS VC3 41 0.488 -0.292 -0.000</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>0.00000 0.00000 0.00000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make sure that you adhere to the formatting of the <code>.gro</code> file (a simple copy-paste of the lines with VS will not lead to a valid <code>.gro</code> file). With the coordinate file of a single hybrid dodecane, we can create a box containing 128 dodecane molecule on the command line:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> insert-molecules <span class="at">-ci</span> one_hybrid_lig.gro <span class="at">-box</span> 4 4 4 <span class="at">-nmol</span> 128 <span class="at">-o</span> dodecane_box.gro <span class="at">-try</span> 1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="equilibrate-and-run-the-system" class="level4">
+<h4 class="anchored" data-anchor-id="equilibrate-and-run-the-system">Equilibrate and run the system</h4>
+<hr>
+<p>We have built the coordinate and topology files for 128 dodecane, thus we are ready for the simulation. The following command lines do a minimization of the initial system, an equilibration, and a (short) run. You can find <code>.mdp</code> files for this particular system in the directory <code>dodecane_worked</code>. Note that the runs may run into LINCS warnings/errors. You may then try to increase the number of minimization steps and/or insert short runs with a smaller time step and increase the time step bit by bit. Here is a series of commands:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> dodecane_box.gro <span class="at">-o</span> mini_run.tpr <span class="at">-maxwarn</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> mini_run <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_eq_2.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> mini_run.gro <span class="at">-o</span> eq.tpr <span class="at">-maxwarn</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> eq <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_md.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> eq.gro <span class="at">-o</span> run.tpr <span class="at">-maxwarn</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> run <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In fact, you are fooled by me. The VS in this model will not interact with each other and this simulation is equivalent to just simulating dodecane using the CHARMM force field, with three extra particles for each molecule that do nothing except show where the CG mapped particles are. The reason for not letting the VS interact with each other is that interactions between all dodecane molecules are already considered in AA resolution. To avoid double-counting the interactions in CG (VS) resolution, the interactions between VS in the <code>ffnonbondH.itp</code> file are defined with Lennard-Jones (LJ) interaction parameters that are zero. However, you have learned how to build a VS-based Martini model. We will combine the hybrid components with AA and CG molecules in the dual resolution membrane model. In this set-up, part of the system is fully coarse-grained and another part of the system is described by hybrid molecules. The hybrid molecules interact with the fully CG molecules by CG interactions.</p>
+</section>
+</section>
+<section id="dual-resolution-membrane" class="level3">
+<h3 class="anchored" data-anchor-id="dual-resolution-membrane">Dual resolution membrane</h3>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig2.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2. Virtual site hybrid membrane setups. Lipids in the AA region carry virtual sites. Lipids in the CG region are represented only by CG beads. Water in the AA region is atomistic (in this case TIP3P), water in the CG region is coarse-grain (in this case standard Martini water). Water particles are not shown; in both AA and CG regions, the water is shown as an enveloping surface. For both resolutions, lipid tail, linker, and head parts are represented by cyan, green, and orange color, respectively.</figcaption>
+</figure>
+</div>
+<p>An intuitive way to build a dual resolution membrane system is a combination of AA membrane and CG water and put the resolution interface in the region around the lipid head of the membrane. However, it was shown that the VS hybrid AA/CG model fails to reproduce correct PMFs for the polar and charged AA solutes in CG solvent, yet properly reproduce the potentials of mean force (PMFs) between pairs of apolar amino acid side chain analogs. Although possible, the set-up with hybrid lipids and CG water results in severe artefacts (not published). Therefore, in this tutorial, the VS double-membrane systems are constructed as shown in Fig. 2, to keep the resolution interface at the apolar lipid tail region. More details can be found in . For the double membrane setup, any simulations requiring two membrane environments could benefit, <em>e.g.</em> to simulate the preliminary phase (stalk formation) of membrane fusion, or the effect of asymmetric ionic concentrations across the membrane, etc.</p>
+<p>The full worked set-up for the dual resolution simulation is contained in the folder <code>membrane_worked</code>. It is advised that you create an empty folder yourself and work through the steps. You can compare your results to the one in the folder <code>membrane_worked</code>.</p>
+<section id="build-dual-resolution-aa-and-cg-membrane-system" class="level4">
+<h4 class="anchored" data-anchor-id="build-dual-resolution-aa-and-cg-membrane-system">Build dual resolution AA and CG membrane system</h4>
+<hr>
+<p>Building a dual resolution membrane system can be done conveniently by using a number of tools developed for different purposes. In short, the procedure consists of four steps: (1) generating a coarse-grain membrane bilayer and water layer; (2) converting the CG lipids and water to AA VS hybrid lipids and AA water by backmapping; and (3) splitting the bilayer into leaflets, and shifting these to (4) combine original CG and backmapped parts to achieve a double membrane system, as shown in Fig. 2. We use the <code>insane</code> code to build the CG membrane system (1), from which the AA membrane (converted to hybrid lipids by adding VS as shown in the section on dodecane) and water are backmapped (2) using the <code>backward</code> software [9]. The original <code>backward</code> software can only backmap the CG membrane to the AA membrane. We tweak the library of the <code>backward</code> software to include the CG beads as VS in addition to the AA atoms, thus we build a hybrid membrane. You can find the modified library file here: <a href="backward/Mapping/dppc.charmm36.map">backward/Mapping/dppc.charmm36.map</a>. Note that <code>python 2</code> is needed for <code>backward</code> and <code>splitleafs</code> softwares. The script <code>splitleafs.py</code> is downloaded from <a href="https://github.com/jbarnoud/splitleafs">https://github.com/jbarnoud/splitleafs</a>. The script is used for generating an index file that identifies upper and lower leaflets of the bilayer, which can be used to subsequently split the bilayer into leaflets (3) and combine them after shifting to create the double membrane set-up (4).</p>
+<p>Create a new directory and run following command to build AA and CG membranes:</p>
+<p>Step (1) is done by typing on the command line:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ../insane/insane.py <span class="at">-o</span> membrane_raw.gro <span class="at">-p</span> top.top <span class="at">-x</span> 8 <span class="at">-y</span> 8 <span class="at">-z</span> 10 <span class="at">-sol</span> W <span class="at">-l</span> DPPC=100</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a CG bilayer of pure DPPC with 100 lipids per leaflet in an 8x8x10 nm box and adds water beads.</p>
+<p>Step (2) is done by typing on the command line:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2.7</span> ../backward/backward.py <span class="at">-f</span> membrane_raw.gro <span class="at">-o</span> hybrid.gro <span class="at">-from</span> martini <span class="at">-to</span> charmm36 <span class="at">-sol</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a backmapped AA hybrid version of the CG membrane and water. This means, you now have coordinates for the AA hybrid model that were created from the CG membrane. As it is, AA hybrid and CG molecules are on top of each other. To create the double membrane system with different resolutions in one simulation cell, we will have to take some of these coordinates and shift them in space. Before we do this, we will have a look at the topologies. If you are an experienced Martini user and know all about mapping schemes and bead types, you may want to take a DPPC lipid from CHARMM36 and convert it into a VS hybrid DPPC, in analogy to the dodecane example and then compare it to our solution.</p>
+<p>We start by copying some useful files that we prepared for you already.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../needed_file_charmm/<span class="pp">*</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We copied the <code>.mdp</code>, <code>.itp</code> and <code>.top</code> files to the current working directory. The <code>.mdp</code> files are used for equilibration and production of the systems. The <code>.itp</code> files define the topologies of the hybrid and CG DPPC lipids. The <code>dppc_CG.itp</code> file remains the same as standard <code>.itp</code> files downloaded from <a href="../../../../docs/downloads/example-applications/lipid-membranes.html#dppc-bilayer">here</a>. When building the hybrid <code>DPPC.itp</code> file, the philosophy is the same as when you built the dodecane <code>.itp</code> file, namely adding VS definitions and their mapping scheme to the AA <code>DPPC.itp</code> file. The hybrid lipid <code>DPPC.itp</code> file is built for you in the <code>needed_file_charmm</code> file directory.</p>
+<p>Below, we show the lines for the added virtual sites and how they are defined as the centers of mass in the <code>[ virtual_sitesn ]</code> directive section. Compare the names of the atom types for the virtual sites to the names of the bead types in the CG Martini file <code>dppc_CG.itp</code>. You will notice the same names with a ‘v’ in front of them. Another important point to note is that all charges of the VS are zero, in contrast to charges of the CG model. The NC3 and PO4 beads do have charges of +1 and -1, respectively in the Martini model, but for the hybrid DPPC molecule, the atomistic charges take care of the Coulomb interaction. You would be double-counting Coulomb interactions if the VS is also charged.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>131 vQ0 2 VDPPC VNC3 131 0.000 0.000 ; qtot 1</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>132 vQa 2 VDPPC VPO4 132 -0.000 0.000 ; qtot 0</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>133 vNa 2 VDPPC VGL1 133 0.000 0.000 ; qtot 0</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>134 vNa 2 VDPPC VGL2 134 0.000 0.000 ; qtot 0</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>135 vC1 2 VDPPC VC1A 135 0.000 0.000 ; qtot 0</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>136 vC1 2 VDPPC VC2A 136 0.000 0.000 ; qtot 0</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>137 vC1 2 VDPPC VC3A 137 0.000 0.000 ; qtot 0</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>138 vC1 2 VDPPC VC4A 138 0.000 0.000 ; qtot 0</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>139 vC1 2 VDPPC VC1B 139 0.000 0.000 ; qtot 0</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>140 vC1 2 VDPPC VC2B 140 0.000 0.000 ; qtot 0</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>141 vC1 2 VDPPC VC3B 141 0.000 0.000 ; qtot 0</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>142 vC1 2 VDPPC VC4B 142 0.000 0.000 ; qtot 0</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>…...</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> virtual_sitesn </span><span class="co">]</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>131 2 1 2 6 10 14</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>132 2 17 20 25 28</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>133 2 28 30 32</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>134 2 36 39 40 41 42</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>135 2 33 45 48</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>136 2 51 54 57 60</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>137 2 63 66 69 72</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>138 2 75 78 81 84</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>139 2 42 88 91</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>140 2 94 97 100 103</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>141 2 106 109 112 115</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>142 2 118 121 124 127</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="build-coordinate-file-1" class="level4">
+<h4 class="anchored" data-anchor-id="build-coordinate-file-1">Build coordinate file</h4>
+<hr>
+<p>The following commands are used to build the hybrid membrane setup as illustrated in Fig. 2. This setup is realized by shifting and combining the AA and CG membranes.</p>
+<p>Step (3): identify lipids in upper and lower leaflets and create an index file with the atom indices of the two leaflets for the CG model:</p>
+<p>The following four lines split the CG membrane (and CG water) using the index file and shift the upper CG leaflet along the z-axis.</p>
+<blockquote class="blockquote">
+<p>the input file is put after “–”, e.g.&nbsp;the position of the membrane_raw.gro</p>
+</blockquote>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2.7</span> ../splitleaflet/splitleafs.py <span class="at">--atom</span> DPPC:PO4 W:W <span class="at">-r</span> <span class="at">--</span> membrane_raw.gro <span class="op">&gt;</span> tail_leaflets.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"0"</span><span class="kw">|</span><span class="ex">gmx</span> editconf <span class="at">-f</span> membrane_raw.gro <span class="at">-n</span> tail_leaflets.ndx <span class="at">-o</span> lower_cg.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"1"</span><span class="kw">|</span><span class="ex">gmx</span> editconf <span class="at">-f</span> membrane_raw.gro <span class="at">-n</span> tail_leaflets.ndx <span class="at">-o</span> upper_cg.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> upper_cg.gro <span class="at">-o</span> upper_cg_moved.gro <span class="at">-translate</span> 0 0 10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The following four lines split the hybrid membrane (and AA water) using the index file and shift the lower hybrid leaflet along the z-axis.</p>
+<blockquote class="blockquote">
+<p>the input file is put after “–”, e.g.&nbsp;the position of the hybrid.gro</p>
+</blockquote>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2.7</span> ../splitleaflet/splitleafs.py <span class="at">--atom</span> DPPC:VPO4 SOL:OW <span class="at">-r</span> <span class="at">--</span> hybrid.gro <span class="op">&gt;</span> tail_leaflets.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"1"</span><span class="kw">|</span><span class="ex">gmx</span> editconf <span class="at">-f</span> hybrid.gro <span class="at">-n</span> tail_leaflets.ndx <span class="at">-o</span> upper_hb.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"0"</span><span class="kw">|</span><span class="ex">gmx</span> editconf <span class="at">-f</span> hybrid.gro <span class="at">-n</span> tail_leaflets.ndx <span class="at">-o</span> lower_hb.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> lower_hb.gro <span class="at">-o</span> lower_hb_moved.gro <span class="at">-translate</span> 0 0 10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The following five lines combine all the leaflets and water coordinates into one file. Turning all the <code>.gro</code> files into <code>.pdb</code> files and concatenating them together in <code>.pdb</code> format.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> lower_hb_moved.gro <span class="at">-o</span> lower_hb_moved.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> upper_hb.gro <span class="at">-o</span> upper_hb.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> upper_cg_moved.gro <span class="at">-o</span> upper_cg_moved.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> lower_cg.gro <span class="at">-o</span> lower_cg.pdb   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> upper_hb.pdb lower_hb_moved.pdb upper_cg_moved.pdb lower_cg.pdb <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-e</span> <span class="st">"^ATOM"</span> <span class="op">&gt;</span> whole.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At this point it may be useful to visually inspect your coordinates to check that you did not make typo’s and that the double layer set-up appears credible. You can do this by loading the file <code>whole.pdb</code> into <code>VMD</code> or <code>PYMOL</code>, or some other viewer.</p>
+<p>Finally, convert the <code>.pdb</code> file to a <code>.gro</code> file.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> whole.pdb <span class="at">-resnr</span> 1 <span class="at">-o</span> whole.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The following three lines give the size of the box to the <code>.gro</code> file. The box size in the z-direction is doubled from the <code>membrane_raw.gro</code> file.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'$d'</span> whole.gro <span class="op">&gt;</span> whole1.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> 1 membrane_raw.gro <span class="kw">|</span><span class="fu">awk</span> <span class="st">'{print $1" "$2" "$3*2}'</span> <span class="op">&gt;&gt;</span>whole1.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> whole1.gro whole.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="building-the-topology-file" class="level4">
+<h4 class="anchored" data-anchor-id="building-the-topology-file">Building the topology file</h4>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig3.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3 | The multiscale system encompasses both AA/CG molecule representations. Each subsystem (AA and CG, respectively) interacts within itself according to its own resolution. Molecules in the AA region interact at the CG level with the molecules in the CG region through virtual sites that represent the AA region. When employing full electrostatics (PME), long-range electrostatic interactions between AA and CG charges are included (green dashed line). The AA region is shown as bonds, the virtual sites representing the AA system as well as the CG region are shown as spheres. Lipid tail, linker, and head are represented by cyan, green and orange color, respectively.</figcaption>
+</figure>
+</div>
+<p>The interactions in the VS hybrid scheme used in this tutorial are schematically shown in Fig. 3 for lipid molecules. The main idea of this VS hybrid scheme is that, for LJ interactions, AA particles interact with AA particles according to the AA force field, and CG particles interact with CG particles according to the CG force field. AA particles do not interact directly with CG particles, but the interaction between molecules at AA resolution with molecules at CG resolution is achieved through VS. These VS carry interactions at CG level, i.e.&nbsp;the AA molecule ‘sees’ the embedding surroundings at the level of the CG model. Conversely, the CG molecules ‘see’ the AA molecules as CG molecules. To accomplish this interaction scheme, we have built a <code>ffnonbondH.itp</code> file for you in the <code>itp_file</code> folder, and which was already used in the dodecane set-up. The file <code>ffnonbondH.itp</code> contains the particle definitions for the AA, CG, and VS particles, and are constructed using the original AA force field (in this case CHARMM36), the original Martini force field (in this case Martini2), and selected interactions for the virtual particles (those starting with ‘v’), such that they interact only with the fully CG part of the system. The pair LJ interactions are defined in the<code>[ nonbond_params ]</code> directory, <em>e.g.</em></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> nonbond_params </span><span class="co">]</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>C1 vC1 1 0.4700 3.4999</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The interactions between VS particles should not be included, thus the VS nonbonded parameters are simply omitted in <code>[ nonbond_params ]</code>. For Coulomb interactions, we use PME, thus all the AA/CG atoms carrying changes can interact with each other. Note again that VS beads do not carry charges.</p>
+<p>The following lines look complicated, but just to automatically build the topology file. You can copy these lines to your terminal or build a topology file by hand on your own. You can do this by hand if you know from looking at the <code>insane</code> output how many water beads were generated. Backward should generate 4 SOL molecules for each W bead. The numbers need to end up at the bottom of the file <code>top.top</code> (see the end of this subsection).</p>
+<p>The following 8 lines count the number of AA and CG water and write the numbers to shell variables. The <code>splitleafs.py</code> software can output the number of water in each region and we just need to extract the numbers. It is advisable to put the next sequence of commands into a bash script (some outputs depend on the nature of the shell). By next sequence, we mean all commands up to and including the EOF.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2.7</span> ../splitleaflet/splitleafs.py <span class="at">--atom</span> SOL:OW <span class="at">-r</span> <span class="at">--</span> hybrid.gro 2 <span class="op">&gt;</span> sol_num_file.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2.7</span> ../splitleaflet/splitleafs.py <span class="at">--atom</span> W:W <span class="at">-r</span> <span class="at">--</span> membrane_raw.gro 2 <span class="op">&gt;</span> w_num_file.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sol_num_file.xvg<span class="kw">|</span><span class="fu">awk</span> <span class="st">'{print $1 $2/3}'</span><span class="op">&gt;</span>solvent_num_file.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> sol_num_file.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="va">upper_leaflet_w</span><span class="op">=</span><span class="va">$(</span><span class="fu">cat</span> w_num_file.xvg <span class="kw">|</span><span class="fu">grep</span> <span class="st">"upper_leaflet"</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span> <span class="st">':'</span> <span class="st">'{print $2}'</span><span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="va">lower_leaflet_w</span><span class="op">=</span><span class="va">$(</span><span class="fu">cat</span> w_num_file.xvg <span class="kw">|</span><span class="fu">grep</span> <span class="st">"lower_leaflet"</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span> <span class="st">':'</span> <span class="st">'{print $2}'</span><span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="va">upper_leaflet_sol</span><span class="op">=</span><span class="va">$(</span><span class="fu">cat</span> solvent_num_file.xvg <span class="kw">|</span><span class="fu">grep</span> <span class="st">"upper_leaflet"</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span> <span class="st">':'</span> <span class="st">'{print $2}'</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="va">lower_leaflet_sol</span><span class="op">=</span><span class="va">$(</span><span class="fu">cat</span> solvent_num_file.xvg <span class="kw">|</span><span class="fu">grep</span> <span class="st">"lower_leaflet"</span> <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span> <span class="st">':'</span> <span class="st">'{print $2}'</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The following line writes the number of DPPC lipids to variables.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="va">dppc_num</span><span class="op">=</span><span class="va">$(</span><span class="fu">cat</span> top.top <span class="kw">|</span><span class="fu">grep</span> <span class="at">-m</span> 1 <span class="st">"^DPPC "</span><span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $2}'</span><span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The following lines create the <code>.top</code> files using the molecule number variables defined above. They start by including the molecule definitions and following the numbers of molecules in the system.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="op">&lt;&lt; EOF</span> <span class="op">&gt;</span> top.top</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="st">#include "ffnonbondH.itp"</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="st">#include "DPPC.itp"</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="st">#include "TIP3.itp"</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="st">#include "dppc_CG.itp"</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="st">[ system ]</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="st">; name</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="st">INSANE! Membrane UpperLeaflet&gt;POPC=3.0 LowerLeaflet&gt;POPC=3.0</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="st">[ molecules ]</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="st">; name number</span></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="st">DPPC 100</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a><span class="st">TIP3 </span><span class="va">$upper_leaflet_sol</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a><span class="st">DPPC 100</span></span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a><span class="st">TIP3 </span><span class="va">$lower_leaflet_sol</span></span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a><span class="st">DPPCC 100</span></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a><span class="st">W </span><span class="va">$upper_leaflet_w</span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a><span class="st">DPPCC 100</span></span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a><span class="st">W </span><span class="va">$lower_leaflet_w</span></span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="equilibrate-the-hybrid-system" class="level4">
+<h4 class="anchored" data-anchor-id="equilibrate-the-hybrid-system">Equilibrate the hybrid system</h4>
+<hr>
+<p>The following two lines are to build an index file for equilibration and production. These different subgroups are needed for the temperature coupling in different thermostat groups(AA DPPC, CG DPPC, VS DPPC, AA water, and CG water). Note that position restraints are applied. Depending on the gromacs version, the <code>-r</code> option need not be supplied, because by default it would use the starting coordinates.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> nothing.mdp <span class="at">-c</span> whole.gro <span class="at">-o</span> index.tpr <span class="at">-p</span> top.top <span class="at">-maxwarn</span> 10 <span class="at">-r</span> whole.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="at">-e</span> <span class="st">"del 1-15\nr DPPC\nname 1 bilayer_hybrid_AA\nr VDPPC \nname 2 VS\nr DPPCC \nname 3 bilayer_pure_CG\nr W\nname 4 W\nr TIP3\nname 5 SOL\nr DPPCC W \nname 6 CG\nr DPPC TIP3\nname 7 AA\nq\n"</span> <span class="kw">|</span> <span class="ex">gmx</span> make_ndx <span class="at">-f</span> index.tpr <span class="at">-o</span> index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before proceeding, check that the index group <code>[ VS ]</code> starts with atom number 131. If it starts with 1, then you will get errors later on. The <code>echo</code> command above works properly in bash, but perhaps not in another shell. You can package it in a bash script to make it work properly.</p>
+<p>The next series of lines are designed to equilibrate the system, through energy minimization, smaller time steps, and using the softcore potential. Note that a softcore potential is only used in the <code>martini_eq_2.mdp</code> file, thus, the simulation is expected to be slow. The softcore potential is triggered through these <code>.mdp</code> lines:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>free-energy = yes</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>init-lambda = 1</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>sc-alpha = 4</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>sc-power = 2</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>sc-coul = yes</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>nstdhdl = 0</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>couple-moltype = system</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>couple-lambda0 = vdw-q</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>couple-lambda1 = none</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>couple-intramol = yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To run the equilibration, use the following commands:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> whole.gro <span class="at">-p</span> top.top <span class="at">-o</span> mini_run_1.tpr <span class="at">-maxwarn</span> 1 <span class="at">-n</span> index.ndx <span class="at">-r</span> whole.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>This energy minimization may crash, depending on your workstation and the way you compile the Gromacs. If so, please run the system with only one CPU. Namely adding -nt 1 to the command lines that are minimization runs below (i.e.&nbsp;use gmx mdrun -nt 1 etc…)</p>
+</blockquote>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> mini_run_1 <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the next step, a softcore potential is used and this step takes some time!</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_eq_2.mdp <span class="at">-c</span> mini_run_1.gro <span class="at">-p</span> top.top <span class="at">-o</span> mini_run_2.tpr <span class="at">-maxwarn</span> 3 <span class="at">-n</span> index.ndx <span class="at">-r</span> mini_run_1.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> mini_run_2 <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, we continue with minimization and equilibration without the softcore, and this should run faster (more steps per unit wall-time).</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> mini_run_2 <span class="at">-p</span> top.top <span class="at">-o</span> mini_run_2_1.tpr <span class="at">-maxwarn</span> 1 <span class="at">-n</span> index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> mini_run_2_1 <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_eq_3.mdp <span class="at">-c</span> mini_run_2_1.gro <span class="at">-p</span> top.top <span class="at">-o</span> mini_run_3.tpr <span class="at">-maxwarn</span> 3 <span class="at">-n</span> index.ndx <span class="at">-r</span> mini_run_2.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> mini_run_3 <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_eq_4.mdp <span class="at">-c</span> mini_run_3.gro <span class="at">-p</span> top.top <span class="at">-o</span> mini_run_4.tpr <span class="at">-maxwarn</span> 3 <span class="at">-n</span> index.ndx <span class="at">-r</span> mini_run_3.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> mini_run_4 <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="run-the-hybrid-system" class="level4">
+<h4 class="anchored" data-anchor-id="run-the-hybrid-system">Run the hybrid system</h4>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig4.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4 | Illustration of flat bottom potential. The flat bottom potential is applied only on AA water molecules. The distance between the resolution interface and the beginning of flat bottom potential is 0.5 nm. The color scheme is the same as that of Fig. 2.</figcaption>
+</figure>
+</div>
+<p>The flat bottom potential is used to restrain the AA water and stop them from crossing the membrane, as shown in Fig. 4. To accomplish this, we write a python code to project the coordinates of AA water on a xy plane, located at the center of the bulk AA water in the z-axis, and build the restrain <code>.gro</code> file (<code>test_FBP.gro</code>) for you. Thus, if AA water molecules diffuse too far from the water plane in the z-axis will be pushed back.</p>
+<blockquote class="blockquote">
+<p>The <code>flat_bottom_potential.py</code> file needs three variables: path to the directory, the input file and the output file:</p>
+</blockquote>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ../build_restrain_gro_file/flat_bottom_potential.py ./ mini_run_4.gro test_FBP.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_md.mdp <span class="at">-c</span> mini_run_4.gro <span class="at">-p</span> top.top <span class="at">-o</span> run.tpr <span class="at">-maxwarn</span> 3 <span class="at">-n</span> index.ndx <span class="at">-r</span> test_FBP.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> run <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Your system may still need some more equilibration - if the run crashes (for example after LINCS warnings start appearing), try a short run with smaller time step (e.g.&nbsp;0.5 fs instead of 2) and slowly increase the time step. Another thing worth trying is to use the v-rescale thermostat and berendsen barostat first, before using the standard Nose-Hoover thermostat and Parrinello-Rahman barostat.</p>
+</section>
+</section>
+<section id="conclusions" class="level3">
+<h3 class="anchored" data-anchor-id="conclusions">Conclusions</h3>
+<hr>
+<p>Congratulations! You have grasped how to combine Martini and CHARMM force fields using the virtual site (VS) approach to simulate dual resolution membranes. For now, this hybrid scheme only supports DPPC membranes and you are welcome to extend it to other membranes. The rule of thumb is that you can adjust the interactions between two resolutions while keeping the AA and CG potential unchanged. The aim is to reproduce the correct conformational or even dynamical properties, <em>e.g.</em> area per lipid, partial density, order parameter, diffusion constant, etc. against the AA and CG references.</p>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
+<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
+<li><p><code>insane.py</code> (downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>)</p></li>
+<li><p><code>backward</code> (downloadable <a href="../../../../docs/downloads/tools/resolution-transformation.html#backward">here</a>)</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] Wassenaar, T. A., Ingólfsson, H. I., Prieß, M., Marrink, S. J., &amp; Schäfer, L. V. (2013). Mixing MARTINI: Electrostatic Coupling in Hybrid Atomistic–Coarse-Grained Biomolecular Simulations. The Journal of Physical Chemistry B, 117(13), 3516–3530. https://doi.org/10.1021/jp311533p</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

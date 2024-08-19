@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>TS2CG: membranes with user-defined shapes and compositions – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="TS2CG: membranes with user-defined shapes and compositions – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Martini3/TS2CG/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="TS2CG: membranes with user-defined shapes and compositions – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Martini3/TS2CG/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TS2CG: membranes with user-defined shapes and compositions</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#tutorials" id="toc-tutorials" class="nav-link" data-scroll-target="#tutorials">Tutorials</a></li>
+  <li><a href="#general-information-on-how-to-run-the-outputs-from-ts2cg" id="toc-general-information-on-how-to-run-the-outputs-from-ts2cg" class="nav-link" data-scroll-target="#general-information-on-how-to-run-the-outputs-from-ts2cg">General information on how to run the outputs from <code>TS2CG</code></a></li>
+  <li><a href="#visualizing-.tsi-or-.q-files" id="toc-visualizing-.tsi-or-.q-files" class="nav-link" data-scroll-target="#visualizing-.tsi-or-.q-files">Visualizing <code>.tsi</code> or <code>.q</code> files</a></li>
+  <li><a href="#how-to-obtain-a-ts-file" id="toc-how-to-obtain-a-ts-file" class="nav-link" data-scroll-target="#how-to-obtain-a-ts-file">How to obtain a TS file</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TS2CG: membranes with user-defined shapes and compositions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.pezeshkian@rug.nl</a> or <a href="mailto:%20m.konig@rug.nl">m.konig@rug.nl</a>.
+<hr>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li><a href="#introduction"><code>Introduction</code></a>
+<ul>
+<li><a href="#download-and-install-ts2cg"><code>Download and install TS2CG</code></a></li>
+</ul></li>
+<li><a href="#tutorials"><code>Tutorials</code></a>
+<ul>
+<li><a href="#creating-a-simple-vesicle"><code>1: Creating a simple vesicle</code></a></li>
+<li><a href="#creating-lipid-mixture"><code>2: Creating lipid Mixture</code></a></li>
+<li><a href="#membrane-domains"><code>3: Membrane domains</code></a></li>
+<li><a href="#adding-proteins-to-a-membrane"><code>4: Adding proteins to a membrane</code></a></li>
+<li><a href="#proteins-with-a-specific-domain"><code>5: Proteins with a specific domain</code></a></li>
+<li><a href="#fixed-shapes"><code>6: Fixed shapes</code></a></li>
+</ul></li>
+<li><a href="#general-information-on-how-to-run-the-outputs-from-ts2cg"><code>General information on how to run the outputs from TS2CG</code></a>
+<ul>
+<li><a href="#tsi-file-format"><code>.tsi file Format</code></a></li>
+<li><a href="#visualizing-.tsi-or-.q-files"><code>Visualizing .tsi or .q files</code></a></li>
+</ul></li>
+<li><a href="#how-to-obtain-a-ts-file"><code>How to obtain a TS file</code></a></li>
+<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
+<li><a href="#references"><code>References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p><code>TS2CG</code> is used to build coarse-grained membrane models with user-defined shapes and compositions. Initially, it was developed for backmapping dynamically triangulated simulation structures into their corresponding molecular models. This gives us the possibility to incorporate experimentally obtained membrane shapes and compositions and generate CG membrane’s initial structure.</p>
+<p>In Fig. 1 the general workflow of <code>TS2CG</code> is exemplified for a vesicle containing a single protein (shown as a yellow bead). The initial triangulated surface is rescaled to the desired system size and the two monolayers are generated. In order to have enough points for the subsequent lipid placement, the number of vertices in both monolayers is increased using a pointillism operation, i.e.&nbsp;each triangle is divided into four new triangles thereby increasing the number of vertices by a factor of four. In the last steps, proteins and lipids are placed on the respective vertices. For more details on the method, please refer to the original paper<sup><a href="#references">[1]</a></sup>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 | Steps in backmapping a triangulated surface (TS) mesh using TS2CG. (Step 1) A TS structure of a vesicle containing one protein (yellow bead) is rescaled and two TS structures corresponding to the two monolayers that are generated. (Step 2) Using a Pointillism operation, the number of vertices is increased. (Step 3) The CG protein structure together with a membrane segment is placed at the appropriate TS position. (Step 4) Lipids are placed at the remaining positions and the configuration is ready for subsequent MD simulation.</figcaption>
+</figure>
+</div>
+<p>Currently, <code>TS2CG</code> version 1.1 can utilize two types of TS input file formats: Files with <code>.q</code> and <code>.tsi</code> extension. While both are quite similar, <code>.tsi</code> files are more generic and future developments will be based on this file format. For more details about the <code>.tsi</code> file format see the end of this file. In tutorials 1 to 5 we will use a <code>.tsi</code> file called <code>Sphere.tsi</code> to build a simple vesicle and subsequently add different membrane domains with and without protein insertions.</p>
+<p>Additionally, <code>TS2CG</code> can be used to create well-defined (analytical) shapes from scratch. In tutorial 6 we will demonstrate how to build a curved bilayer and maintain the curvature using a shape-preserving wall.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig2.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 2 | Example applications of <code>TS2CG</code>. Mitochodrion lipid membrane backmapped from EM map (upper panel left), protein induced membrane tubulation backmapped from DTS simulation (upper panel right), budded lipid bilayer including STxB proteins backmapped from DTS simulation (lower panel left) and curved lipid bilayer with two different lipid types created from scratch using PCG.</figcaption>
+</figure>
+</div>
+<section id="download-and-install-ts2cg" class="level4">
+<h4 class="anchored" data-anchor-id="download-and-install-ts2cg">Download and install TS2CG</h4>
+<hr>
+<p>Download the latest version of the <code>TS2CG</code> from:</p>
+<ul>
+<li><a href="https://github.com/marrink-lab/TS2CG1.1">https://github.com/marrink-lab/TS2CG1.1</a></li>
+</ul>
+<p>For compiling, <code>gcc</code> version 8.3.0 or above is needed.</p>
+<p>In the source code folder, execute the script <code>compile.sh</code> as:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./compile.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this folder, two binary files will be generated: PLM and PCG (and a SOL script for adding solvent to the systems). PLM performs pointillism (Step 1 and 2) and PCG performs Membrane builder (Step 3 and 4).</p>
+</section>
+</section>
+<section id="tutorials" class="level3">
+<h3 class="anchored" data-anchor-id="tutorials">Tutorials</h3>
+<hr>
+<p>From the downloaded <code>TS2CG</code> folder, you can find all the files needed for these tutorials in the tutorials folder. Please create a new folder for each tutorial and copy the files you from the files folder into this new folder.</p>
+<section id="creating-a-simple-vesicle" class="level4">
+<h4 class="anchored" data-anchor-id="creating-a-simple-vesicle">1: Creating a simple vesicle</h4>
+<hr>
+<p>In this tutorial we will use a simple TS file (sphere) to create a vesicle. We choose this shape because it is small and can be run on your local machines. However, the same scheme can be used for any other TS files.</p>
+<p>From the files folder select the <code>Sphere.tsi</code> file. Use a text editor to open this and familiarize yourself with the structure. See <code>.tsi</code> file format at the end of this document for more information about the file format. You can also use <code>pymol</code> or <code>paraview</code> to visualize the structure (see Visualizing <code>.tsi</code> or <code>.q</code> files).</p>
+<p>The first step in backmapping any TS file to a CG structure is to increase the number of vertices using a pointillism operation (done by PLM). In the same step we also generate the two monolayers.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the <code>pointvisualization_data</code> folder, you will find <code>gromacs</code> compatible structure files (<code>.gro</code>) for the upper and lower monolayer including a topology file (<code>.top</code>) each as well as <code>paraview</code> compatible <code>.vtu</code> files for both monolayers. You can have a look at the created points using <code>vmd</code> or <code>paraview</code>.</p>
+<p>The second step to create a vesicle is two place lipids on the generated points using PCG. For this you need to write a <code>.str</code> file defining the lipid composition of both monolayers. Using any text editor, create an <code>input.str</code> file and write the following text in it:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This implies that your system should contain only one lipid domain with POPC in both monolayers using an area per lipid (APL) for POPC of 0.64. To know more about the <code>.str</code> file format and other options see the <a href="https://github.com/marrink-lab/TS2CG1.1">User Manual</a>.</p>
+<p>The other thing we need is a lipid structure file (<code>.LIB</code>). This file simply defines the lipid connectivity for placing the lipid beads on the previously generated points. Making this file is easy but might be time consuming for many different lipids. (See the <a href="https://github.com/marrink-lab/TS2CG1.1">User Manual</a> for the exact file format). Luckily, we already have a file that contains all Martini3 lipids called <code>Martini3.LIB</code>, you can find it in the files folder.</p>
+<p>Using these two files now you can execute <code>PCG</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The outputs are <code>system.gro</code> and <code>system.top</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig3.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 3 | Snapshot of the simple POPC vesicle made with <code>vmd</code> (left) and the corresponding topology file (right).</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>POPC 6256</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>POPC 3876</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Creating vesicles like shown above is straightforward however running them is not so simple. Here we used the assumption that POPC has the same area per lipid in both leaflets which is unfortunately not true for small vesicles due to the highly curved nature of the leaflets. To account for the curvature effect we have to allow the vesicle to equilibrate both water content and number of lipids in each leaflet. The easiest way to do this is by creating water pores for equilibration and closing theses pores in a step-wise manner. You can find a script called <code>run_vesicle.sh</code> in the files folder, which will create a POPC vesicle with 4 nm pores along each dimension. The vesicle will also be filled with water, energy minimized and equilibrated, thereby gradually closing the water pores. Note: We use MDAnalysis to create a position restraints file which is need to keep the lipid tails out of the pores.</p>
+</section>
+<section id="creating-lipid-mixture" class="level4">
+<h4 class="anchored" data-anchor-id="creating-lipid-mixture">2: Creating lipid Mixture</h4>
+<hr>
+<p>Repeating the previous tutorial but with the <code>.str</code> file shown below, you will create a 50/50 mixture of POPC and DOPC in both monolayers.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>POPC      0.5     0.5     0.64</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>DOPC      0.5     0.5     0.67</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Executing PCG will generate two output files system.gro and <code>system.top</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig4.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 4 | Snapshot of the mixed POPC (blue) / DOPC (orange) vesicle made with vmd (left) and the corresponding topology file (right).</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> molecules </span><span class="co">]</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>POPC 3056</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>DOPC 3056</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer POPC 1893</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>DOPC 1893</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="membrane-domains" class="level4">
+<h4 class="anchored" data-anchor-id="membrane-domains">3: Membrane domains</h4>
+<hr>
+<p>To make a membrane containing two or more different lipid domains, we need to modify the <code>.tsi</code> file. These changes can be made manually or by using a script. Here we only try it manually.</p>
+<p>First use the command below to obtain a <code>.gro</code> file containing all the vertices:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time, we reduced the size of the <code>original .tsi</code> file (using <code>-rescalefactor 0.2 0.2 0.2</code>) and kept the initial number of vertices (using <code>-Mashno 0</code>). This allows for an easier selection of points when done manually. Now, open the file <code>Upper.gro</code> from the <code>pointvisualization_data</code> folder using <code>vmd</code>. You will see all the vertices of the triangulated surface. Find a few beads for which you want to create a new domain of lipids (e.g.&nbsp;select beads in <code>vmd</code> using <code>Mouse &gt; Label &gt; Atoms</code>). I selected vertices [113, 117, 124, 48, 112] for domain number 1 and [74, 82, 81, 45] for domain number 2 and the rest remains as domain 0.</p>
+<p>Next, open <code>Sphere.tsi</code> using a text editor and find the line of selected vertices. Add the domain ID to the end of the line (here: add a 1 for vertices with index 113, 117, 124, 48, 112 and a 2 for vertices with index 74, 82, 81, 45). Note: Lines that do not have any domain ID belong to domain 0 per default. After doing so, you need to modify the <code>input.str</code> file to define the lipid composition of each domain:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>End</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Domain      1</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>DOPC     1     1     0.64</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>End</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Domain       2</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>POPE     1     1     0.64</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then execute <code>PLM</code> and <code>PCG</code> using the commands below (as done in the previous tutorials). This will generate a vesicle with three lipid domains.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig5.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 5 | Snapshot of vertices from Upper.gro after defining three different domains made with <code>vmd</code> (left) and the corresponding topology file (right).</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>POPC 5833</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>POPC 3615</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>; domain 1</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>DOPC 262</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>; domain 1</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>DOPC 161</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>; domain 2</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>POPE 160</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>; domain 2</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>POPE 99</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="adding-proteins-to-a-membrane" class="level4">
+<h4 class="anchored" data-anchor-id="adding-proteins-to-a-membrane">4: Adding proteins to a membrane</h4>
+<hr>
+<p>In this tutorial we are going to add two types of proteins to a vesicle containing POPC lipids. These proteins are named <code>P1.gro</code> and <code>P2.gro</code>, which will be called protein1 and protein2 in the rest of this tutorial. First, we need to select vertices for the protein placmenent in the <code>.tsi</code> file. Afterwards, we match their corresponding names in the <code>.gro</code> file with the ones in the <code>.str</code> file. Therefore, we need to perform some tricks on the <code>.tsi</code> and <code>.str</code> file. These changes can be made manually or by using a script. Here we only try it manually.</p>
+<p>First, use the below command to obtain a <code>.gro</code> file of vertices positions of our vesicle:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then in the <code>pointvisualization_data</code> folder, open <code>Upper.gro</code> using <code>vmd</code>. You will see all the vertices of the triangulated surface. Find some vertices at which you would like to place the proteins. We selected vertices 22 and 5 to place two copies of protein1 and vertex 30 to place one copy of protein2. Using a text editor, open the <code>Sphere.tsi</code> file and go to the bottom of the file to the inclusion section. As we want to add 3 proteins, change the zero to 3 and then in the next line, add the protein information. For each protein, you need 3 integer numbers and 2 float numbers. The first number is the protein index that should start from 0. The second number is the protein type id, which is 1 for potein1 and 2 protein2 (it can be any number but the type id must match the one in <code>input.str</code>, see below). The third number is the index of the vertex that the protein will be placed on. The last two numbers are the orientation of the protein in the local coordinate frame of the vertex, these should be a unit two-dimensional vector. The inclusion section of <code>Sphere.tsi</code> file should look like this:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>0     1     22     0     1</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>1     1      5     0     1</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, open <code>P1.gro</code> and <code>P2.gro</code> from the files folder and change the first line to the name of the proteins (protein1 and protein2). These files should be included on top of your <code>input.str</code> file as:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>include P1.gro</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>include P2.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The last step is to define the proteins in the <code>input.str</code> file. In addition to including the protein <code>.gro</code> file names in the header, there should be some information about the protein placement:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Protein List</span><span class="co">]</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>protein1     1     0.01     0     0     -3.7</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>protein2     2     0.01     0     0     -2.4</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>End Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first and the last line are keywords indicating that we want to define proteins. The lines in between the first and the last depend on the number of unique proteins you want to include. Here we got two, therefore we only have two lines in between. The first entry is the protein name in the <code>.gro</code> file. The second entry indicates the protein type ID (this ID was used in the <code>.tsi</code> file in the inclusion section). The last entry indicates how much we should move the proteins in the normal direction of the membrane surface. The remaining three numbers are not being used in the current approach.</p>
+<p>Finally, you can execute <code>PLM</code> and <code>PCG</code> using the commands below (or as previous tutorials). The result should be a POPC membrane with three proteins.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 3 3 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig6.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 6 | Cross-section (left) and full vesicle (right) of system.gro after placment of three protein copies.</figcaption>
+</figure>
+</div>
+</section>
+<section id="proteins-with-a-specific-domain" class="level4">
+<h4 class="anchored" data-anchor-id="proteins-with-a-specific-domain">5: Proteins with a specific domain</h4>
+<hr>
+<p>In this tutorial we are going to combine Tutorials 3 and 4 to define a specific lipid domain for each protein copy. So let’s change the domain ID of vertices 22, 5, 30 that are supposed to be the location of the proteins in <code>Sphere.tsi</code> as demonstrated in Tutorial 3. We set 22 and 5 to domain 1 and 30 to domain 2. We also change the lipid section in <code>input.str</code> to:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>End</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>Domain      1</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>DOPC     1     1     0.64</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>End</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Domain       2</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>POPE     1     1     0.64</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now perform <code>PLM</code> and <code>PCG</code> again:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 6 6 6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig7.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 7 | Mixed POPC/DOPC/POPE with three proteins. Each protein copy has its own spectic lipid enviornment.</figcaption>
+</figure>
+</div>
+<p>You may not be happy about the lipid domain around the proteins. Since the resolution of the <code>.tsi</code> file is low, the shape of the lipid domain around the proteins gets strongly affected by the discretization. This can be improved with a little bit of effort.</p>
+<p>Use <code>Sphere.tsi</code> from the files folder and add the same inclusion section as before but without adding the lipid domains. The end of your <code>.tsi</code> file should look like this:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>0     1     22     0     1</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>1     1      5     0     1</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we are adding the lipid domains around each protein copy using a small script. But first we need to increase the number of the triangles and global size of the system without affecting the shape of the <code>.tsi</code> file:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 8 8 8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output <code>.tsi</code> file is called <code>extended.tsi</code>. Change the name of this file to <code>Sphere_2.tsi</code>.</p>
+<p>Next, compile <code>tsi_format.cpp</code>, which can be found in the files, for creating the lipid domains using <code>c++</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-o</span> domain tsi_change.cpp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and then execute following command to create lipid domains with diameter of 8 nm around each protein copy:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./domain</span> Sphere_2.tsi Sphere_domain.tsi 8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>Sphere_domain.tsi</code> file is the new <code>.tsi</code> file which contains the <code>Sphere_2.tsi</code> surface and protein information. The domain ids around each protein match the protein ids. Next, we are going to perform <code>PLM</code> and <code>PCG</code> using <code>Sphere_2.tsi</code>. This time we ask <code>PLM</code> to not to extend the surface and just create the two monolayer.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere_domain.tsi <span class="at">-bilayerThickness</span> 4 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should get an output as shown below figure.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig8.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 8 | Mixed POPC/DOPC/POPE with three proteins. The lipid domain around each protein is precisely defined by an 8 nm circle around each protein copy.</figcaption>
+</figure>
+</div>
+</section>
+<section id="fixed-shapes" class="level4">
+<h4 class="anchored" data-anchor-id="fixed-shapes">6: Fixed shapes</h4>
+<hr>
+<p>Without a need for a <code>.tsi</code> file, <code>PCG</code> also allows for creating membranes with certain fixed shapes such as flat bilayers, spheres, cylinders and other periodic shapes that can be written as a sum of fourier 1D modes. This is a new feature of <code>PCG</code> and therefore some limitations exist. There is also a wall option that allows you to keep the shape during both the equilibration and production run.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system <span class="at">-function</span> analytical_shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the <code>.str</code> file the shape information is defined as below for creating different shapes.</p>
+<p>Note: Not all the options need to be specified in the <code>.str</code> file. The shape type option is needed but you could use the default values for the rest.</p>
+<table style="border: none; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="7">
+<colgroup>
+<col width="297">
+<col width="297">
+</colgroup>
+<tbody>
+<tr valign="top">
+<td style="text-align: justify;">
+<p>
+<i><span style="text-decoration: underline;"><b>Cylinder</b></span></i>
+</p>
+<p>
+<span style="font-family: Courier New, serif;">[Shape Data]<br> ShapeType Cylinder<br> Box 40 40 40<br> Density 2<br> Thickness 4<br> Radius 12<br> End</span>
+</p>
+</td>
+<td style="text-align: justify;">
+<p>
+<i><span style="text-decoration: underline;"><b>1D Fourier Shape</b></span></i>
+</p>
+<p>
+<span style="font-family: Courier New, serif;">[Shape Data]<br> ShapeType 1D_PBC_Fourier<br> Box 20 10 20<br> WallRange 0 1 0 1<br> Density 3 1<br> Thickness 4<br> Mode 1.5 1 0<br> Mode 0.5 2 0<br> End</span>
+</p>
+</td>
+</tr>
+<tr valign="top">
+<td style="text-align: justify;">
+<p>
+<i><span style="text-decoration: underline;"><b>Sphere</b></span></i>
+</p>
+<p>
+<span style="font-family: Courier New, serif;">[Shape Data] <br>ShapeType Sphere<br> Box 40 40 40<br> Density 2<br> WallDensity 1 1<br>Thickness 4<br>DL 0.2<br>Radius 15<br> End</span>
+</p>
+</td>
+<td style="text-align: justify;">
+<p>
+<i><span style="text-decoration: underline;"><b>Flat</b></span></i>
+</p>
+<p>
+<span style="font-family: Courier New, serif;">[Shape Data] <br> ShapeType Flat<br> Box 40 40 40<br> Density 2 2<br> Thickness 4<br>WallRange 0 1 0 1<br> End</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 9 | Curved lipid bilayer created with the analytic shape function of PCG.</figcaption>
+</figure>
+</div>
+</center>
+<section id="creating-the-wall" class="level5">
+<h5 class="anchored" data-anchor-id="creating-the-wall">Creating the Wall</h5>
+<hr>
+<p>To generate the wall beads, you need to add the following flags to the <code>PCG</code> command line:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-Wall</span> <span class="at">-WallBName</span> WL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note, it is all on you how to make the wall bead to interact with the bilayer for keeping the shape. However, the best option is to create a repulsive LJ interaction between the wall beads and lipid tail beads while the wall beads are invisible to other beads in the system. Example <code>.mdp</code> can be found in <code>files/mdp_wall</code>.</p>
+</section>
+</section>
+</section>
+<section id="general-information-on-how-to-run-the-outputs-from-ts2cg" class="level3">
+<h3 class="anchored" data-anchor-id="general-information-on-how-to-run-the-outputs-from-ts2cg">General information on how to run the outputs from <code>TS2CG</code></h3>
+<hr>
+<ol type="1">
+<li>A short (100 steps) energy minimization with softcore potentials while restraining the lipid headgroups and protein backbones.</li>
+<li>Normal energy minimization without solvent.</li>
+<li>Short equilibration without solvent.</li>
+<li>Solvation (Note: Before solvation, always make sure the box size is what you need).</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./SOL</span> <span class="at">-in</span> input.gro <span class="at">-tem</span> water.gro <span class="at">-unsize</span> 3 <span class="at">-ion</span> 0 0 <span class="at">-o</span> solvated.gro <span class="at">-Rcutoff</span> 0.32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Energy minimization.</li>
+<li>Equilibration.</li>
+<li>Production run.</li>
+</ol>
+<section id="tsi-file-format" class="level4">
+<h4 class="anchored" data-anchor-id="tsi-file-format"><code>.tsi</code> file Format</h4>
+<hr>
+<p>The following shows a part of a <code>.tsi</code> file with all necessary keywords highlighted in bold. Every <code>.tsi</code> file starts with a line calling <strong>version 1.1</strong> of <code>TS2CG</code>. The next line defines the <strong>box</strong> size (x, y, and z) of the system in nm. The next three sections describe the TS mesh. Each section starts with a keyword (vertex, triangle and inclusion) and their corresponding number. Here, we have 130 vertices (the numbering starts from 0). Each <strong>vertex</strong> has an index and a position in x, y and z (in nm). Additionally, a vertex can have a domain id, e.g., vertices 1, 126 and 127 belong to domain 1. The default domain is 0. The 130 vertices are connected via 256 triangles. Again, every <strong>triangle</strong> has an index (starting from 0) and is defined by the vertices the triangle connects, i.e.&nbsp;triangle 0 connects vertices 11, 55 and 43. Furthermore, a <code>.tsi</code> file can have a (protein) <strong>inclusion</strong> section. Here, there are three inclusions from two different types. Again, each inclusion has an index. The index is followed by the inclusion type (here: type 1 for inclusions 0 and 1, type 2 for inclusion 2) and the corresponding vertex index. The last two (floating point) numbers describe a unit two dimensional vector (sum of both numbers must be one!) which defines the orientation of the inclusion with respect to the bilayer normal.</p>
+<blockquote class="blockquote">
+<p><strong>version 1.1</strong> <br> <strong>box</strong>   50.0000000000   50.0000000000   50.0000000000 <br> <strong>vertex</strong>   130 <br> 0   21.1606233083   25.4394806652   25.5960855271 <br> 1   27.0284995400   23.2012757654   21.6715285158   1 <br> 2   26.9921761232   25.5136587223   28.0195776981 <br> 3   23.3273229896   26.2315165676   28.0075875808   2 <br> 4   26.2722773116   26.3271061222   28.1420707299 <br> 5   22.0396876425   23.6080597437   26.8858740866   2 <br> . <br> . <br> . <br> 125   21.5556280860   25.5595098219   26.5363425272 <br> 126   23.2182025326   26.8060871266   21.5195141902   1 <br> 127   25.3199303865   24.3519379911   20.6752314764   1 <br> 128   28.0093200458   22.6356946990   23.4685318698 <br> 129   21.4000741257   26.5841316766   25.2761757772 <br> <strong>triangle</strong> 256 <br> 0   11   55   43 <br> 1   94   75   14 <br> 2   64   3   &nbsp; 91 <br> 3   59   52   40 <br> . <br> . <br> . <br> 253   33   109   44 <br> 254   53   69   &nbsp; 47 <br> 255   85   6   &nbsp; &nbsp; 74 <br> <strong>inclusion</strong>   3 <br> 0   1   22   0   1 <br> 1   1   &nbsp; 5   0   1 <br> 2   2   30   0   1 <br></p>
+</blockquote>
+</section>
+</section>
+<section id="visualizing-.tsi-or-.q-files" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-.tsi-or-.q-files">Visualizing <code>.tsi</code> or <code>.q</code> files</h3>
+<hr>
+<p>From the <code>files</code> folder in the tutorial folder copy a <code>.tsi</code> file in your working folder. These files can be visualized using <code>pymol</code>, <code>vmd</code> or <code>paraview</code>.</p>
+<section id="pymol" class="level5">
+<h5 class="anchored" data-anchor-id="pymol"><code>Pymol</code></h5>
+<p>You need <code>PyMOL2q.py</code> from the <code>TS2CG</code> folder then do the following steps:</p>
+<ol type="1">
+<li>Load <code>Pymol</code>.</li>
+<li>On <code>pymol</code> window, execute <code>“run PyMOL2q.py”</code></li>
+<li>Then execute <code>“loadq Your_TS_File.tsi”</code></li>
+</ol>
+</section>
+<section id="paraview-or-vmd-visualization-of-the-generated-points" class="level5">
+<h5 class="anchored" data-anchor-id="paraview-or-vmd-visualization-of-the-generated-points"><code>paraview</code> or <code>vmd</code> visualization of the generated points</h5>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Your_TS_File <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then in <code>pointvisualization_data</code> folder, you can find several files and it is the gro file which can be used for visualization.</p>
+</section>
+</section>
+<section id="how-to-obtain-a-ts-file" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-obtain-a-ts-file">How to obtain a TS file</h3>
+<hr>
+<p>TS files can be obtained from different sources. 1) Form DTS simulations or 2) by converting density points to mashes for example using <code>Blender</code>, <code>Geogram</code> and <code>GAMer</code>. When using <code>Blender</code> you can import any <code>.stl</code> file or other 3D file and use <code>blender_mesh2tsi.py</code> which can be found in the files folder.</p>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
+<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
+<li><p><code>TS2CG</code> (<a href="https://github.com/marrink-lab/TS2CG1.1">https://github.com/marrink-lab/TS2CG1.1</a>)</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] Pezeshkian, W., König, M., Wassenaar, T.A. et al.&nbsp;Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020) (https://doi.org/10.1038/s41467-020-16094-y)</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

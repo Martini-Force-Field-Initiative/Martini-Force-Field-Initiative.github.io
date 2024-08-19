@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Martini Force Field Initiative</title>
+<link>https://Martini-Force-Field-Initiative.github.io/docs/publications/</link>
+<atom:link href="https://Martini-Force-Field-Initiative.github.io/docs/publications/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<image>
+<url>https://Martini-Force-Field-Initiative.github.io/images/martini.gif</url>
+<title>Martini Force Field Initiative</title>
+<link>https://Martini-Force-Field-Initiative.github.io/docs/publications/</link>
+</image>
+<generator>quarto-1.5.56</generator>
+<lastBuildDate>Mon, 19 Aug 2024 17:50:45 GMT</lastBuildDate>
+<item>
+  <title>Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics</title>
+  <dc:creator>Gilberto P Pereira, Riccardo Alessandri, Moisés Domínguez, Rocío Araya-Osorio, Linus Grünewald, Luís Borges-Araújo, Sangwook Wu, Siewert J Marrink, Paulo Cesar Telles de Souza, and Raul Mera-Adasme</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Pereira2024_Bartender.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Pereira, G. P., Alessandri, R., Domínguez, M., Araya-Osorio, R., Grünewald, L., Borges-Araújo, L., … &amp; Mera-Adasme, R. (2024). Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Coarse-grained (CG) molecular dynamics (MD) simulations have grown in applicability over the years. The recently released version of the Martini CG force field (Martini 3) has been successfully applied to simulate many processes, including protein-ligand binding. However, the current ligand parameterization scheme is manual and requires an a priori reference all-atom (AA) simulation for benchmarking. For systems with suboptimal AA parameters, which are often unknown, this translates into a CG model which does not reproduce the true dynamical behavior of the underlying molecule. Here we present Bartender, a quantum mechanics (QM)/MD-based parameterization tool written in Go. Bartender harnesses the power of QM simulations and produces reasonable bonded terms for Martini 3 CG models of small molecules in an efficient and user-friendly manner. For small, ring-like molecules, Bartender generates models whose properties are indistinguishable from the human-made models. For more complex, drug-like ligands, it is able to fit functional forms beyond simple harmonic dihedrals, and thus better captures their dynamical behavior. Bartender has the power to both increase the efficiency and the accuracy of Martini 3-based high-throughput applications by producing stable and physically realistic CG models.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Methods</category>
+  <category>Parametrization</category>
+  <category>Multi-scale</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Pereira2024_Bartender.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Building complex membranes with Martini 3</title>
+  <dc:creator>Tugba Nur Ozturk, Melanie König, Timothy S Carpenter, Kasper B Pedersen, Tsjerk A Wassenaar, Helgi I Ingólfsson, and Siewert J Marrink</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Ozturk2024_ComplexMembranes.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Ozturk, T. N., König, M., Carpenter, T. S., Pedersen, K. B., Wassenaar, T. A., Ingólfsson, H. I., &amp; Marrink, S. J. (2024). Building complex membranes with Martini 3. Methods in Enzymology.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The Martini model is a popular force field for coarse-grained simulations. Membranes have always been at the center of its development, with the latest version, Martini 3, showing great promise in capturing more and more realistic behavior. In this chapter we provide a step-by-step tutorial on how to construct starting configurations, run initial simulations and perform dedicated analysis for membrane-based systems of increasing complexity, including leaflet asymmetry, curvature gradients and embedding of membrane proteins.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Book chapter</category>
+  <category>Protocol</category>
+  <category>Lipid membranes</category>
+  <category>Proteins</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Ozturk2024_ComplexMembranes.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Capturing chemical reactions inside biomolecular condensates with reactive Martini simulations</title>
+  <dc:creator>Christopher Brasnett, Armin Kiani, Selim Sami, Sijbren Otto &amp; Siewert J. Marrink</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Brasnett2024_ReactionCondensates.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Brasnett, C., Kiani, A., Sami, S. &amp; Marrink, S. J. (2024). Capturing chemical reactions inside biomolecular condensates with reactive Martini simulations. Commun Chem 7, 151.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Biomolecular condensates are phase separated systems that play an important role in the spatio-temporal organisation of cells. Their distinct physico-chemical nature offers a unique environment for chemical reactions to occur. The compartmentalisation of chemical reactions is also believed to be central to the development of early life. To demonstrate how molecular dynamics may be used to capture chemical reactions in condensates, here we perform reactive molecular dynamics simulations using the coarse-grained Martini forcefield. We focus on the formation of rings of benzene-1,3-dithiol inside a synthetic peptide-based condensate, and find that the ring size distribution shifts to larger macrocycles compared to when the reaction takes place in an aqueous environment. Moreover, reaction rates are noticeably increased when the peptides simultaneously undergo phase separation, hinting that condensates may act as chaperones in recruiting molecules to reaction hubs.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Biomolecular condensates</category>
+  <category>Small molecules</category>
+  <category>Reactive</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Brasnett2024_ReactionCondensates.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>GōMartini 3: From large conformational changes in proteins to environmental bias corrections</title>
+  <dc:creator>Paulo CT Souza, Luis P Borges Araujo, Chris Brasnett, Rodrigo A Moreira, Fabian Grunewald, Peter Park, Liguo Wang, Hafez Razmazma, Ana C Borges-Araujo, Luis F Cofas-Vargas, Luca Monticelli, Raul Mera-Adasme, Manuel N Melo, Sangwook Wu, Siewert J Marrink, Adolfo B Poma, and Sebastian Thallmair</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Souza2024_GoMartini.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Souza, P. C., Borges Araujo, L. P., Brasnett, C., Moreira, R. A., Grunewald, F., Park, P., … &amp; Thallmair, S. (2024). GōMartini 3: From large conformational changes in proteins to environmental bias corrections. BioRxiv, 2024-04.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Coarse-grained modeling has become an important tool to supplement experimental measurements, allowing access to spatio-temporal scales beyond all-atom based approaches. The GōMartini model combines structure- and physics-based coarse-grained approaches, balancing computational efficiency and accurate representation of protein dynamics with the capabilities of studying proteins in different biological environments. This paper introduces an enhanced GōMartini model, which combines a virtual-site implementation of Gō models with Martini 3. The implementation has been extensively tested by the community since the release of the new version of Martini. This work demonstrates the capabilities of the model in diverse case studies, ranging from protein-membrane binding to protein-ligand interactions and AFM force profile calculations. The model is also versatile, as it can address recent inaccuracies reported in the Martini protein model. Lastly, the paper discusses the advantages, limitations, and future perspectives of the Martini 3 protein model and its combination with Gō models.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Forcefield</category>
+  <category>Proteins</category>
+  <category>Methods</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Souza2024_GoMartini.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum</title>
+  <dc:creator>Edo Vreeker, Fabian Grunewald, Nieck van der Heide, Siewert-Jan Marrink, Katarzyna Tych, and Giovanni Maglia</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Vreeker2024_Nanopores.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Vreeker, E., Grunewald, F., van der Heide, N., Marrink, S. J., Tych, K., &amp; Maglia, G. (2024). Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum. bioRxiv, 2024-05.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Biological nanopores are powerful tools for detecting biomolecules at the single-molecule level, making them appealing as sensors for biological samples. However, the lipid membranes in which nanopores reside can be unstable in the presence of biological fluids. Here, membranes formed with the amphiphilic polymers PMOXA-PDMS-PMOXA and PBD-PEO are tested as potential alternatives for nanopore sensing. We demonstrate that polymer membranes can possess increased stability towards applied potentials and high concentrations of human serum, but that the stable insertion of a wide range of biological nanopores is most often compromised. Alternatively, hybrid polymer-lipid membranes comprising a 1:1 w/w mixture of PBD11PEO8 and DPhPC showed high electrical and biochemical stability while creating a suitable environment for all tested nanopores. Analytes such as proteins, DNA and sugars were efficiently sampled, indicating that in hybrid membranes nanopores showed native-like properties. Molecular dynamics simulations revealed that lipids form ∼12 nm domains interspersed by a polymer matrix. Nanopores partitioned into these lipid nanodomains and sequestered lipids possibly offering the same binding strength as in a native bilayer. This work shows that single-molecule analysis with nanopores in [PBD11PEO8 + DPhPC] membranes is feasible and present stable recordings in the presence of human serum. These results pave the way towards novel nanopore-based biosensors.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Polymers</category>
+  <category>Lipid membranes</category>
+  <category>Proteins</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Vreeker2024_Nanopores.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Modeling membranes in situ</title>
+  <dc:creator>Chelsea M. Brown, and Siewert J. Marrink</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Brown2024_MembranesInSitu.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Brown, C. M., &amp; Marrink, S. J. (2024). Modeling membranes in situ. Current Opinion in Structural Biology, 87, 102837.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Molecular dynamics simulations of cellular membranes have come a long way—from simple model lipid bilayers to multicomponent systems capturing the crowded and complex nature of real cell membranes. In this opinionated minireview, we discuss the current challenge to simulate the dynamics of membranes in their native environment, in situ, with the prospect of reaching the level of whole cells and cell organelles using an integrative modeling framework.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Review</category>
+  <category>Lipid membranes</category>
+  <category>Multi-scale</category>
+  <category>Proteins</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Brown2024_MembranesInSitu.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Oxygen partitioning into biomolecular condensates is governed by excluded volume</title>
+  <dc:creator>Ankush Garg, Christopher Brasnett, Siewert J Marrink, Klaus Koren, and Magnus Kjaergaard</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Garg2024_OxygenPartitioning.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Garg, A., Brasnett, C., Marrink, S. J., Koren, K., &amp; Kjaergaard, M. (2024). Oxygen partitioning into biomolecular condensates is governed by excluded volume. bioRxiv, 2024-05.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Biomolecular condensates form through the self-assembly of proteins and nucleic acids to create dynamic compartments in cells. By concentrating specific molecules, condensates establish distinct microenvironments that regulate biochemical reactions in time and space. Macromolecules and metabolites partition into condensates depending on their interactions with the macromolecular constituents, however, the partitioning of gases has not been explored. We investigated oxygen partitioning into condensates formed by intrinsically disordered repeat proteins with systematic sequence variations using phosphorescence lifetime imaging microscopy (PLIM). Unlike other hydrophobic metabolites, oxygen is partially excluded from the condensate with partitioning constants more strongly modulated by changes in protein length than hydrophobicity. For repeat proteins, the dense phase protein concentration drops with chain length resulting in a looser condensate with less excluded volume. We found that oxygen partitioning is anti-correlated with dense phase protein concentration, suggesting that oxygen concentration is mainly determined by the solvent accessible volume. This suggests that oxygen partitioning is determined by the physical organization of the condensates rather than the chemical properties of the scaffold. Molecular dynamics simulations suggest that oxygen does not form strong and specific interactions with the scaffold and is dynamic on the nanosecond timescale. Biomolecular condensates thus result in variation of oxygen concentrations on nanometer length-scales, which can tune the oxygen concentration available for biochemical reactions within the cell.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Coacervate</category>
+  <category>Proteins</category>
+  <category>Biomolecular condensates</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Garg2024_OxygenPartitioning.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Probing the stability and interdomain interactions in the ABC transporter OpuA, using single-molecule optical tweezers</title>
+  <dc:creator>Lyan van der Sleen, Jan Stevens, Siewert J Marrink, Bert Poolman, and Katarzyna Tych</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/van-der-Sleen2024_OpuA.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>van der Sleen, L., Stevens, J. A., Marrink, S. J., Poolman, B., &amp; Tych, K. (2024). Probing the stability and interdomain interactions in the ABC transporter OpuA using single-molecule optical tweezers. Cell reports, 43(4).</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Transmembrane transporter proteins are essential for maintaining cellular homeostasis and, as such, are key drug targets. Many transmembrane transporter proteins are known to undergo large structural rearrangements during their functional cycles. Despite the wealth of detailed structural and functional data available for these systems, our understanding of their dynamics and, consequently, how they function is generally limited. We introduce an innovative approach that enables us to directly measure the dynamics and stability of interdomain interactions of transmembrane proteins using optical tweezers. Focusing on the osmoregulatory ATP-binding cassette transporter OpuA from Lactococcus lactis, we examine the mechanical properties and potential interactions of its substrate-binding domains. Our measurements are performed in lipid nanodiscs, providing a native-mimicking environment for the transmembrane protein. The technique provides high spatial and temporal resolution and allows us to study the functionally relevant motions and interdomain interactions of individual transmembrane transporter proteins in real time in a lipid bilayer.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Proteins</category>
+  <category>Lipid membranes</category>
+  <category>Enhanced sampling</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/van-der-Sleen2024_OpuA.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Shocker-a molecular dynamics protocol and tool for accelerating and analyzing the effects of osmotic shocks</title>
+  <dc:creator>Marco PA van Tilburg, Siewert J Marrink, Melanie König, and Fabian Grünewald</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/van-Tilburg2024_Shocker.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>van Tilburg, M. P., Marrink, S. J., König, M., &amp; Grünewald, F. (2023). Shocker─ A Molecular Dynamics Protocol and Tool for Accelerating and Analyzing the Effects of Osmotic Shocks. Journal of Chemical Theory and Computation, 20(1), 212-223.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The process of osmosis, a fundamental phenomenon in life, drives water through a semipermeable membrane in response to a solute concentration gradient across this membrane. In vitro, osmotic shocks are often used to drive shape changes in lipid vesicles, for instance, to study fission events in the context of artificial cells. While experimental techniques provide a macroscopic picture of large-scale membrane remodeling processes, molecular dynamics (MD) simulations are a powerful tool to study membrane deformations at the molecular level. However, simulating an osmotic shock is a time-consuming process due to slow water diffusion across the membrane, making it practically impossible to examine its effects in classic MD simulations. In this article, we present Shocker, a Python-based MD tool for simulating the effects of an osmotic shock by selecting and relocating water particles across a membrane over the course of several pumping cycles. Although this method is primarily aimed at efficiently simulating volume changes in vesicles, it can also handle membrane tubes and double bilayer systems. Additionally, Shocker is force field-independent and compatible with both coarse-grained and all-atom systems. We demonstrate that our tool is applicable to simulate both hypertonic and hypotonic osmotic shocks for a range of vesicular and bilamellar setups, including complex multicomponent systems containing membrane proteins or crowded internal solutions.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Methods</category>
+  <category>Solvents</category>
+  <category>Vesicles</category>
+  <category>Lipid membranes</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/van-Tilburg2024_Shocker.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations</title>
+  <dc:creator>Juliana F Vilachã, Tsjerk A Wassenaar, and Siewert J Marrink</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Vilachã2024_ROS1.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Vilachã, J. F., Wassenaar, T. A., &amp; Marrink, S. J. (2024). Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations. Crystals, 14(2), 106.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Protein kinases function as pivotal regulators in biological events, governing essential cellular processes through the transfer of phosphate groups from ATP molecules to substrates. Dysregulation of kinase activity is frequently associated with cancer, ocasionally arising from chromosomal translocation events that relocate genes encoding kinases. Fusion proteins resulting from such events, particularly those involving the proto-oncogene tyrosine-protein kinase ROS (ROS1), manifest as constitutively active kinases, emphasizing their role in oncogenesis. Notably, the chromosomal reallocation of the ros1 gene leads to fusion of proteins with the ROS1 kinase domain, implicated in various cancer types. Despite their prevalence, targeted inhibition of these fusion proteins relies on repurposed kinase inhibitors. This review comprehensively surveys experimentally determined ROS1 structures, emphasizing the pivotal role of X-ray crystallography in providing high-quality insights. We delve into the intricate interactions between ROS1 and kinase inhibitors, shedding light on the structural basis for inhibition. Additionally, we explore point mutations identified in patients, employing molecular modeling to elucidate their structural impact on the ROS1 kinase domain. By integrating structural insights with in vitro and in silico data, this review advances our understanding of ROS1 kinase in cancer, offering potential avenues for targeted therapeutic strategies.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Review</category>
+  <category>Proteins</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Vilachã2024_ROS1.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>There and back again: bridging meso- and nano-scales to understand lipid vesicle patterning</title>
+  <dc:creator>Julie Cornet, Nelly Coulonges, Weria Pezeshkian, Maël Penissat-Mahaut, Siewert-Jan Marrink, Nicolas Destainville, Matthieu Chavent, and Manoel Manghi</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Cornet2024_MesoNanoVesicle.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Cornet, J., Coulonges, N., Pezeshkian, W., Penissat-Mahaut, M., Desgrez-Dautet, H., Marrink, S. J., … &amp; Manghi, M. (2024). There and back again: bridging meso-and nanoscales to understand lipid vesicle patterning. Soft Matter.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>We describe a complete methodology to bridge the scales between nanoscale molecular dynamics and (micrometer) mesoscale Monte Carlo simulations in lipid membranes and vesicles undergoing phase separation, in which curving molecular species are furthermore embedded. To go from the molecular to the mesoscale, we notably appeal to physical renormalization arguments enabling us to rigorously infer the mesoscale interaction parameters from its molecular counterpart. We also explain how to deal with the physical timescales at stake at the mesoscale. Simulating the as-obtained mesoscale system enables us to equilibrate the long wavelengths of the vesicles of interest, up to the vesicle size. Conversely, we then backmap from the meso- to the nano-scale, which enables us to equilibrate in turn the short wavelengths down to the molecular length-scales. By applying our approach to the specific situation of patterning a vesicle membrane, we show that macroscopic membranes can thus be equilibrated at all length-scales in achievable computational time offering an original strategy to address the fundamental challenge of timescale in simulations of large bio-membrane systems.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Multi-scale</category>
+  <category>Vesicles</category>
+  <category>Lipid membranes</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Cornet2024_MesoNanoVesicle.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Vesicle protrusion induced by antimicrobial peptides suggests common carpet mechanism for short antimicrobial peptides</title>
+  <dc:creator>Peter Park, Danilo Kiyoshi Matsubara, Domenico R Barzotto, Filipe S Lima, Hernan Chaimovich, Siewert Jan Marrink, and Iolanda M Cuccovia</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Park2024_VesicleAntimicrobialPeptides.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Park, P., Matsubara, D. K., Barzotto, D. R., Lima, F. S., Chaimovich, H., Marrink, S. J., &amp; Cuccovia, I. M. (2024). Vesicle protrusion induced by antimicrobial peptides suggests common carpet mechanism for short antimicrobial peptides. Scientific Reports, 14(1), 9701.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Short-cationic alpha-helical antimicrobial peptides (SCHAMPs) are promising candidates to combat the growing global threat of antimicrobial resistance. They are short-sequenced, selective against bacteria, and have rapid action by destroying membranes. A full understanding of their mechanism of action will provide key information to design more potent and selective SCHAMPs. Molecular Dynamics (MD) simulations are invaluable tools that provide detailed insights into the peptide-membrane interaction at the atomic- and meso-scale level. We use atomistic and coarse-grained MD to look into the exact steps that four promising SCHAMPs—BP100, Decoralin, Neurokinin-1, and Temporin L—take when they interact with membranes. Following experimental set-ups, we explored the effects of SCHAMPs on anionic membranes and vesicles at multiple peptide concentrations. Our results showed all four peptides shared similar binding steps, initially binding to the membrane through electrostatic interactions and then flipping on their axes, dehydrating, and inserting their hydrophobic moieties into the membrane core. At higher concentrations, fully alpha-helical peptides induced membrane budding and protrusions. Our results suggest the carpet mode of action is fit for the description of SCHAMPs lysis activity and discuss the importance of large hydrophobic residues in SCHAMPs design and activity.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Vesicles</category>
+  <category>Proteins</category>
+  <category>Lipid membranes</category>
+  <category>Multi-scale</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2024/Park2024_VesicleAntimicrobialPeptides.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>A Guide to Titratable Martini Simulations</title>
+  <dc:creator>Selim Sami, Fabian Grünewald, Paulo C. T. Souza and Siewert J. Marrink</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Sami2023_MultiScale.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Sami, S., Grünewald, F., Souza, P. C., &amp; Marrink, S. J. (2023). A Guide to Titratable Martini Simulations. A Practical Guide to Recent Advances in Multiscale Modeling and Simulation of Biomolecules, 4-1.</p>
+</blockquote>
+
+
+</section>
+
+ ]]></description>
+  <category>Book chapter</category>
+  <category>pH</category>
+  <category>Protocol</category>
+  <category>Methods</category>
+  <category>Forcefield</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Sami2023_MultiScale.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>A Practical Introduction to Martini 3 and its Application to Protein-Ligand Binding Simulations</title>
+  <dc:creator>Riccardo Alessandri, Sebastian Thallmair, Cristina Gil Herrero, Raúl Mera-Adasmem, Siewert J. Marrink and Paulo C. T. Souza</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Alessandri2023_ProteinLigand.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Alessandri, R., Thallmair, S., Herrero, C. G., Mera-Adasme, R., Marrink, S. J., &amp; Souza, P. C. (2023). A practical introduction to martini 3 and its application to protein-ligand binding simulations. In A Practical Guide to Recent Advances in Multiscale Modeling and Simulation of Biomolecules (pp.&nbsp;1-1). Melville, New York: AIP Publishing LLC.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Martini 3 is the new version of a widely used coarse-grained (CG) model that have been extensively parameterized to reproduce experimental and thermodynamic data. Based on a building-block approach, the new version shows a better coverage of the chemical space and more accurate predictions of interactions and molecular packing in general. Given these improvements, the Martini 3 model allows new applications such as studies involving protein–ligand interactions. In this chapter, a summary of the key elements of the new Martini version is presented, followed by an example of a practical application: a simulation of caffeine binding to the buried pocket of the adenosine A2A receptor, which is part of the GPCR family. Formulated as a hands-on tutorial, this chapter contains guidelines to build CG models of important systems, such as small drug-like molecules, transmembrane proteins, and lipid membranes. Finally, the last sections contain an outlook of possible future developments and notes describing useful information, limitations, and tips about Martini.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Book chapter</category>
+  <category>Protocol</category>
+  <category>Methods</category>
+  <category>Proteins</category>
+  <category>Small molecules</category>
+  <category>Lipid membranes</category>
+  <category>Drug design</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Alessandri2023_ProteinLigand.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Automatic Optimization of Lipid Models in the Martini Force Field Using SwarmCG</title>
+  <dc:creator>Charly Empereur-mot, Kasper B. Pedersen, Riccardo Capelli, Martina Crippa, Cristina Caruso, Mattia Perrone, Paulo C. T. Souza, Siewert J. Marrink and Giovanni M. Pavan</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Empereur-mot2023_SwarmCG.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Empereur-Mot, C., Pedersen, K. B., Capelli, R., Crippa, M., Caruso, C., Perrone, M., … &amp; Pavan, G. M. (2023). Automatic Optimization of Lipid Models in the Martini Force Field Using SwarmCG. Journal of chemical information and modeling, 63(12), 3827-3838.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>After two decades of continued development of the Martini coarse-grained force field (CG FF), further refinment of the already rather accurate Martini lipid models has become a demanding task that could benefit from integrative data-driven methods. Automatic approaches are increasingly used in the development of accurate molecular models, but they typically make use of specifically designed interaction potentials that transfer poorly to molecular systems or conditions different than those used for model calibration. As a proof of concept, here, we employ SwarmCG, an automatic multiobjective optimization approach facilitating the development of lipid force fields, to refine specifically the bonded interaction parameters in building blocks of lipid models within the framework of the general Martini CG FF. As targets of the optimization procedure, we employ both experimental observables (top-down references: area per lipid and bilayer thickness) and all-atom molecular dynamics simulations (bottom-up reference), which respectively inform on the supra-molecular structure of the lipid bilayer systems and on their submolecular dynamics. In our training sets, we simulate at different temperatures in the liquid and gel phases up to 11 homogeneous lamellar bilayers composed of phosphatidylcholine lipids spanning various tail lengths and degrees of (un)saturation. We explore different CG representations of the molecules and evaluate improvements a posteriori using additional simulation temperatures and a portion of the phase diagram of a DOPC/DPPC mixture. Successfully optimizing up to ∼80 model parameters within still limited computational budgets, we show that this protocol allows the obtainment of improved transferable Martini lipid models. In particular, the results of this study demonstrate how a fine-tuning of the representation and parameters of the models may improve their accuracy and how automatic approaches, such as SwarmCG, may be very useful to this end.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Multi-scale</category>
+  <category>Lipid membranes</category>
+  <category>Phopholipids</category>
+  <category>Parametrization</category>
+  <category>Methods</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Empereur-mot2023_SwarmCG.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>CRAFTing Delivery of Membrane Proteins into Protocells using Nanodiscs</title>
+  <dc:creator>Piotr Stępień, Sylwia Świątek, Manuel Yamil Yusef Robles, Joanna Markiewicz-Mizera, Dhanasekaran Balakrishnan, Satomi Inaba-Inoue, Alex H De Vries, Konstantinos Beis, Siewert J Marrink, and Jonathan G Heddle</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Stępień2023_CRAFTing.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Stępień, P., Świątek, S., Robles, M. Y. Y., Markiewicz-Mizera, J., Balakrishnan, D., Inaba-Inoue, S., … &amp; Heddle, J. G. (2023). CRAFTing Delivery of Membrane Proteins into Protocells using Nanodiscs. ACS Applied Materials &amp; Interfaces, 15(49), 56689-56701.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>For the successful generative engineering of functional artificial cells, a convenient and controllable means of delivering membrane proteins into membrane lipid bilayers is necessary. Here we report a delivery system that achieves this by employing membrane protein-carrying nanodiscs and the calcium-dependent fusion of phosphatidylserine lipid membranes. We show that lipid nanodiscs can fuse a transported lipid bilayer with the lipid bilayers of small unilamellar vesicles (SUVs) or giant unilamellar vesicles (GUVs) while avoiding recipient vesicles aggregation. This is triggered by a simple, transient increase in calcium concentration, which results in efficient and rapid fusion in a one-pot reaction. Furthermore, nanodiscs can be loaded with membrane proteins that can be delivered into target SUV or GUV membranes in a detergent-independent fashion while retaining their functionality. Nanodiscs have a proven ability to carry a wide range of membrane proteins, control their oligomeric state, and are highly adaptable. Given this, our approach may be the basis for the development of useful tools that will allow bespoke delivery of membrane proteins to protocells, equipping them with the cell-like ability to exchange material across outer/subcellular membranes.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Proteins</category>
+  <category>Lipid membranes</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Stępień2023_CRAFTing.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Curvature-induced lipid sorting beyond the critical packing parameter</title>
+  <dc:creator>Melanie Konig, Reinier de Vries, Fabian Grunewald, Siewert-Jan Marrink, and Weria Pezeshkian</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Konig2023_CurvatureLipidPacking.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Konig, M., de Vries, R., Grunewald, F., Marrink, S. J., &amp; Pezeshkian, W. (2023). Curvature-induced lipid sorting beyond the critical packing parameter. bioRxiv, 2023-12.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Over the last few decades, the spatial organization of biomembranes has received a lot of attention. With the fluid mosaic model, Singer and Nicolson proposed that biomembranes behave as two-dimensional fluids, allowing proteins and lipids to diffuse freely and thus react to external stimuli. Biological functionality and membrane organization are intricately linked to each other, however, how these organizations emerge is yet to be established. Here we use coarse-grained molecular dynamics simulations to explore the relationship between membrane shape and lateral organization at the nanoscale for a broad range of lipid mixtures. Our results illustrate that membrane curvature and lateral organization are intimately linked at the nanoscale and the relationship is much more complicated compared to the traditional views, in particular the lipid shape concept. Furthermore, we show that large membrane curvature can disrupt phase separation, line tension, and interleaflet coupling leading to non-intuitive lipid sorting. Our findings highlight how curvature-driven sorting can alter the phase behavior of lipid mixtures, which could be crucial for cellular functionality.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Lipid membranes</category>
+  <category>Phopholipids</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Konig2023_CurvatureLipidPacking.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Dynamics of chromosome organization in a minimal bacterial cell</title>
+  <dc:creator>Benjamin R. Gilbert, Zane R. Thornburg, Troy A. Brier, Jan A. Stevens, Fabian Grünewald, John E. Stone, Siewert J. Marrink and Zaida Luthey-Schulten</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Gilbert2023_Chromosome.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Gilbert, B. R., Thornburg, Z. R., Brier, T. A., Stevens, J. A., Grünewald, F., Stone, J. E., … &amp; Luthey-Schulten, Z. (2023). Dynamics of chromosome organization in a minimal bacterial cell. Frontiers in Cell and Developmental Biology, 11.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Computational models of cells cannot be considered complete unless they include the most fundamental process of life, the replication and inheritance of genetic material. By creating a computational framework to model systems of replicating bacterial chromosomes as polymers at 10 bp resolution with Brownian dynamics, we investigate changes in chromosome organization during replication and extend the applicability of an existing whole-cell model (WCM) for a genetically minimal bacterium, JCVI-syn3A, to the entire cell-cycle. To achieve cell-scale chromosome structures that are realistic, we model the chromosome as a self-avoiding homopolymer with bending and torsional stiffnesses that capture the essential mechanical properties of dsDNA in Syn3A. In addition, the conformations of the circular DNA must avoid overlapping with ribosomes identitied in cryo-electron tomograms. While Syn3A lacks the complex regulatory systems known to orchestrate chromosome segregation in other bacteria, its minimized genome retains essential loop-extruding structural maintenance of chromosomes (SMC) protein complexes (SMC-scpAB) and topoisomerases. Through implementing the effects of these proteins in our simulations of replicating chromosomes, we find that they alone are sufficient for simultaneous chromosome segregation across all generations within nested theta structures. This supports previous studies suggesting loop-extrusion serves as a near-universal mechanism for chromosome organization within bacterial and eukaryotic cells. Furthermore, we analyze ribosome diffusion under the influence of the chromosome and calculate in silico chromosome contact maps that capture inter-daughter interactions. Finally, we present a methodology to map the polymer model of the chromosome to a Martini coarse-grained representation to prepare molecular dynamics models of entire Syn3A cells, which serves as an ultimate means of validation for cell states predicted by the WCM.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>DNA</category>
+  <category>Multi-scale</category>
+  <category>Vesicles</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Gilbert2023_Chromosome.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Expulsion mechanism of the substrate-translocating subunit in ECF transporters</title>
+  <dc:creator>Chancievan Thangaratnarajah, Mark Nijland, Luís Borges-Araújo, Aike Jeucken, Jan Rheinberger, Siewert J. Marrink, Paulo C. T. Souza, Cristina Paulino &amp; Dirk J. Slotboom</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Thangaratnarajah2023_ECF.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Thangaratnarajah, C., Nijland, M., Borges-Araújo, L., Jeucken, A., Rheinberger, J., Marrink, S. J., … &amp; Slotboom, D. J. (2023). Expulsion mechanism of the substrate-translocating subunit in ECF transporters. Nature Communications, 14(1), 4484.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Energy-coupling factor (ECF)-type transporters mediate the uptake of micronutrients in many bacteria. They consist of a substrate-translocating subunit (S-component) and an ATP-hydrolysing motor (ECF module) Previous data indicate that the S-component topples within the membrane to alternately expose the binding site to either side of the membrane. In many ECF transporters, the substrate-free S-component can be expelled from the ECF module. Here we study this enigmatic expulsion step by cryogenic electron microscopy and reveal that ATP induces a concave-to-convex shape change of two long helices in the motor, thereby destroying the S-component’s docking site and allowing for its dissociation. We show that adaptation of the membrane morphology to the conformational state of the motor may favour expulsion of the substrate-free S-component when ATP is bound and docking of the substrate-loaded S-component after hydrolysis. Our work provides a picture of bilayer-assisted chemo-mechanical coupling in the transport cycle of ECF transporters.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Lipid membranes</category>
+  <category>Proteins</category>
+  <category>Phopholipids</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Thangaratnarajah2023_ECF.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+<item>
+  <title>Facilitating CG Simulations with MAD: The MArtini Database Server</title>
+  <dc:creator>Cécile Hilpert, Louis Beranger, Paulo C. T. Souza, Petteri A. Vainikka, Vincent Nieto, Siewert J. Marrink, Luca Monticelli and Guillaume Launay</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Hilpert2023_MADdatabase.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Hilpert, C., Beranger, L., Souza, P. C., Vainikka, P. A., Nieto, V., Marrink, S. J., … &amp; Launay, G. (2023). Facilitating CG simulations with MAD: The MArtini database server. Journal of chemical information and modeling, 63(3), 702-710.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The MArtini Database (MAD - https://mad.ibcp.fr) is a web server designed for the sharing of structures and topologies of molecules parametrized with the Martini coarse-grained (CG) force field. MAD can also convert atomistic structures into CG structures and prepare complex systems (including proteins, lipids, etc.) for molecular dynamics (MD) simulations at the CG level. It is dedicated to the generation of input files for Martini 3, the most recent version of this popular CG force field. Specifically, the MAD server currently includes tools to submit or retrieve CG models of a wide range of molecules (lipids, carbohydrates, nanoparticles, etc.), transform atomistic protein structures into CG structures and topologies, with fine control on the process and assemble biomolecules into large systems, and deliver all files necessary to start simulations in the GROMACS MD engine.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Parametrization</category>
+  <category>Small molecules</category>
+  <category>Phopholipids</category>
+  <category>Metabolites</category>
+  <category>Materials science</category>
+  <category>Cofactors</category>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/publications/entries/2023/Hilpert2023_MADdatabase.html</guid>
+  <pubDate>Mon, 19 Aug 2024 17:50:45 GMT</pubDate>
+</item>
+</channel>
+</rss>

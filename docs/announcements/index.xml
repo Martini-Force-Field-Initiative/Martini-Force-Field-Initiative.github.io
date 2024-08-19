@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Martini Force Field Initiative</title>
+<link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/</link>
+<atom:link href="https://Martini-Force-Field-Initiative.github.io/docs/announcements/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<image>
+<url>https://Martini-Force-Field-Initiative.github.io/images/martini.gif</url>
+<title>Martini Force Field Initiative</title>
+<link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/</link>
+</image>
+<generator>quarto-1.5.56</generator>
+<lastBuildDate>Thu, 23 May 2024 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Membrane buckling artefact</title>
+  <dc:creator>Daniel Ramirez</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-07-25-membrane-buckling-artifact/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>In MD simulations using the GROMACS package with default Martini parameters, the group of Hummer found large membranes to deform under the action of a semi-isotropically coupled barostat. As the primary cause, they identified overly short outer cutoffs and infrequent neighbor list updates that result in missed long-range attractive Lennard-Jones interactions. Small but systematic imbalances in the apparent pressure tensor then induce unphysical asymmetric box deformations that crumple the membrane. Guidelines are presented to avoid these artefacts, including estimates for appropriate values for the outer cutoff r_l and the number of time steps nstlist between neighbor list updates.</p>
+<p>Must-read for those who simulate membrane systems. For details, see the paper from <a href="https://chemrxiv.org/engage/chemrxiv/article-details/64b55faeb053dad33a692084">Kim et al.&nbsp;in chemRxiv</a>.</p>
+
+
+
+ ]]></description>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-07-25-membrane-buckling-artifact/</guid>
+  <pubDate>Thu, 23 May 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Martini in OpenMM</title>
+  <dc:creator>Daniel Ramirez</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-04-13-martini_openmm/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>The group of Tieleman has completed an implementation of Martini 2 and Martini 3 in the OpenMM molecular dynamics software package. OpenMM is a flexible molecular dynamics package widely used for methods development and is competitive in speed on GPUs with other commonly used packages. OpenMM has facilities to easily implement new force field terms, external forces and fields, and other non-standard features, which were used to implement all force field terms of Martini 2 and Martini 3. This allows OpenMM simulations, starting with GROMACS topology files that are processed by custom scripts, with all the added flexibility of OpenMM. For details, see the paper of <a href="https://doi.org/10.1016/j.bpj.2023.04.007">MacCallum et al., Biophys J., 2023</a>.</p>
+
+
+
+ ]]></description>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-04-13-martini_openmm/</guid>
+  <pubDate>Wed, 22 May 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>SARS-COV2 envelope</title>
+  <dc:creator>Daniel Ramirez</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-04-07-sars-cov2-env/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Finally our integrative model of SARS-Cov-2 is published, representing the most realistic model of this viral envelope to date, with interesting pattern formation of the M-dimers.</p>
+<p>For details, see <a href="https://authors.elsevier.com/c/1ghE13SNvc6nDG">Pezeshkian et al., Structure (2023)</a>.</p>
+
+
+
+ ]]></description>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-04-07-sars-cov2-env/</guid>
+  <pubDate>Tue, 21 May 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-04-07-sars-cov2-env/image.jpeg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Ubiquitination driving ER protein complexation</title>
+  <dc:creator>Daniel Ramirez</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-06-06-ubiquitination/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>The computational cell biology group of Ramachandra Bhaskara has used MARTINI models of Ubiquitinated RHD proteins to show volume exclusion and non-specific Ub-Ub interactions driving the formation of homomeric and heteromeric complexes on ER membranes boosting selective-ER phagy. The computation-based findings are supported by super-resolution imaging and in vitro membrane remodeling assays apart from cell biology experiments. Published in TWO (!) Nature papers:</p>
+<ul>
+<li><p>González, A., Covarrubias-Pinto, A., Bhaskara, R. M., Glogger, M., Kuncha, S. K., Xavier, A., Seemann, E., Misra, M., Hoffmann, M. E., Bräuning, B., Balakrishnan, A., Qualmann, B., Dötsch, V., Schulman, B. A., Kessels, M. M., Hübner, C. A., Heilemann, M., Hummer, G., &amp; Dikić, I. (2023). Ubiquitination regulates ER-phagy and remodelling of endoplasmic reticulum. Nature, 1-8. <a href="https://doi.org/10.1038/s41586-023-06089-2">https://doi.org/10.1038/s41586-023-06089-2</a></p></li>
+<li><p>Foronda, H., Fu, Y., Covarrubias-Pinto, A., Bocker, H. T., González, A., Seemann, E., Franzka, P., Bock, A., Bhaskara, R. M., Liebmann, L., Hoffmann, M. E., Katona, I., Koch, N., Weis, J., Kurth, I., Gleeson, J. G., Reggiori, F., Hummer, G., Kessels, M. M., Qualmann, B., . . . Hübner, C. A. (2023). Heteromeric clusters of ubiquitinated ER-shaping proteins drive ER-phagy. Nature, 1-9. <a href="https://doi.org/10.1038/s41586-023-06090-9">https://doi.org/10.1038/s41586-023-06090-9</a></p></li>
+</ul>
+
+
+
+ ]]></description>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-06-06-ubiquitination/</guid>
+  <pubDate>Tue, 21 May 2024 00:00:00 GMT</pubDate>
+  <media:content url="https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-06-06-ubiquitination/image.png" medium="image" type="image/png" height="99" width="144"/>
+</item>
+<item>
+  <title>Reactive Martini</title>
+  <dc:creator>Daniel Ramirez</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-06-17-reactive-martini/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>See the paper by Selim Sami, explaining a pragmatic way to capture chemical reactivity in Martini with the clever use of virtual sites: <a href="https://doi.org/10.1021/acs.jctc.2c01186">https://doi.org/10.1021/acs.jctc.2c01186</a>.</p>
+<p>All the required input files together with tutorials on its use are provided as SI.</p>
+
+
+
+ ]]></description>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-06-17-reactive-martini/</guid>
+  <pubDate>Tue, 21 May 2024 00:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Martini 3 LPS</title>
+  <dc:creator>Daniel Ramirez</dc:creator>
+  <link>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-09-15-martini3-LPS/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>See the paper from Vaiwala and Ayappa, <a href="https://doi.org/10.1021/acs.jctc.3c00471">https://doi.org/10.1021/acs.jctc.3c00471</a>. Parameters can be found in the SI of their paper.</p>
+
+
+
+ ]]></description>
+  <guid>https://Martini-Force-Field-Initiative.github.io/docs/announcements/posts/2023-09-15-martini3-LPS/</guid>
+  <pubDate>Tue, 21 May 2024 00:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

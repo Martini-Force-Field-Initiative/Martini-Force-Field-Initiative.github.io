@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lipid bilayers - Part I: Self-assembly – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Lipid bilayers - Part I: Self-assembly – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Martini3/LipidsI/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Lipid bilayers - Part I: Self-assembly – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Martini3/LipidsI/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lipid bilayers - Part I: Self-assembly</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#bilayer-self-assembly" id="toc-bilayer-self-assembly" class="nav-link" data-scroll-target="#bilayer-self-assembly">Bilayer self-assembly</a></li>
+  <li><a href="#bilayer-equilibrium-run-and-analysis" id="toc-bilayer-equilibrium-run-and-analysis" class="nav-link" data-scroll-target="#bilayer-equilibrium-run-and-analysis">Bilayer equilibrium run and analysis</a></li>
+  <li><a href="#changing-lipid-type" id="toc-changing-lipid-type" class="nav-link" data-scroll-target="#changing-lipid-type">Changing lipid type</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lipid bilayers - Part I: Self-assembly</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+In case of issues, please contact <a href="mailto:%20lpborgesaraujo@tecnico.ulisboa.pt">lpborgesaraujo@tecnico.ulisboa.pt</a> or <a href="mailto:%20m.n.melo@itqb.unl.pt">m.n.melo@itqb.unl.pt</a>.
+<hr>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li><a href="#introduction"><code>Introduction</code></a></li>
+<li><a href="#bilayer-self-assembly"><code>Bilayer self-assembly</code></a></li>
+<li><a href="#bilayer-equilibrium-run-and-analysis"><code>Bilayer equilibrium run and analysis</code></a>
+<ul>
+<li><a href="#area-per-lipid"><code>Area per lipid</code></a></li>
+<li><a href="#bilayer-thickness"><code>Bilayer thickness</code></a></li>
+<li><a href="#lateral-diffusion"><code>Lateral difussion</code></a></li>
+<li><a href="#order-parameters"><code>Order parameters</code></a></li>
+<li><a href="#advanced-additional-analyses"><code>Advanced: additional analysis</code></a></li>
+</ul></li>
+<li><a href="#changing-lipid-type"><code>Changing lipid type</code></a>
+<ul>
+<li><a href="#unsaturated-tails"><code>Unsaturated tails</code></a></li>
+<li><a href="#changing-the-headgroups"><code>Changing the headgoups</code></a></li>
+</ul></li>
+<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
+<li><a href="#references"><code>References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p>The Martini coarse-grained (CG) model was originally developed for lipids<sup><a href="#references">[1,2]</a></sup>. The underlying philosophy of Martini is to build an extendable CG model based on simple modular building blocks and to use only few parameters and standard interaction potentials to maximize applicability and transferability. Martini 3 greatly expanded the number of possible interactions, but retains this building-block approach<sup><a href="#references">[3]</a></sup>. Due to the modularity of Martini, a large set of different lipid types has been parameterized. Their parameters are available with the <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip">Martini 3 release archive</a>. In this tutorial, you will learn how to set up lipid-water system simulations with lipids from this collection, with a focus on bilayers. You will also study a number of standard bilayer properties.</p>
+<p>These tutorials assume a basic understanding of the Linux operating system and the <code>gromacs</code> molecular dynamics (MD) simulation package. An excellent <code>gromacs</code> tutorial is available at: <a href="http://www.mdtutorials.com/gmx/">http://www.mdtutorials.com/gmx/</a>.</p>
+<p>The aim of the tutorial is to create and study properties of CG Martini models of lipid bilayer membranes. First, we will attempt to spontaneously self-assemble a DPPC bilayer and check various properties that characterize lipid bilayers, such as the area per lipid, bilayer thickness, order parameters, and diffusion. Next, we will change the nature of the lipid head groups and tails, and study how that influences the properties. Finally, we will move on to creating more complex multicomponent bilayers.</p>
+<p>You can download all the files, including worked examples of this tutorial (GROMACS version 2021): <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/LipidsI/bilayer-lipidome-tutorial-GMX5_20170408.tar"><code>bilayer-lipidome-tutorial-GMX5_20170408.tar</code></a>, this is a rather large archive. A smaller set that expects you to do more yourself is recommended and is named: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/LipidsI/bilayer-lipidome-tutorial-GMX5_2017Aug04.tar"><code>bilayer-lipidome-tutorial-GMX5_2017Aug04.tar</code></a> Unpack one of the lipidome-tutorial.tar archives (NOTE: both expand to a directory called <code>bilayer-lipidome-tutorial</code>), and enter the <code>bilayer-lipidome-tutorial</code> directory:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> bilayer-lipidome-tutorial-GMX5_2017Aug04.tar</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bilayer-lipidome-tutorial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bilayer-self-assembly" class="level3">
+<h3 class="anchored" data-anchor-id="bilayer-self-assembly">Bilayer self-assembly</h3>
+<hr>
+<p>We will begin with self-assembling a dipalmitoyl-phosphatidylcholine (DPPC) bilayer from a random configuration of lipids and water in the simulation box. Enter the <code>spontaneous-assembly/initial_assembly</code> subdirectory. The first step is to create a simulation box containing a random configuration of 128 DPPC lipids. This can be done by starting from a file containing a single DPPC molecule, which you can get from the <a href="../../../../docs/downloads/force-field-parameters/martini2/lipidome.html#phosphatidylcholine-(pc)">Martini lipidome</a>, under the entry for DPPC. Download the <code>DPPC-em.gro</code> file (but not any <code>.itp</code> file from there, as those are specific for Martini 2):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC-em.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>Note</em></strong> The DPPC model corresponds to atomistic C16:0 dipalmitoyl (DPPC) - C18:0 distearoyl (DSPC) tails. This reflects that, in Martini, the 4-to-1 mapping in acyl tails limits the resolution and the same model represents in this case a C-16 tail (palmitoyl) and a C-18 tail (stearoyl, hence DSPC). Also note that you can download coordinate files for many Martini lipids from the website. For the time being these structures are mostly for Martini 2 lipids, but structurally the difference doesn’t matter in the cases, like DPPC, where the Martini 3 lipid has the same mapping and number of beads. Finally, for cases when you have a lipid topology but not its structure, see the <a href="../../../../docs/tutorials/Martini3/LipidsII/index.html">Lipid Bilayers II tutorial</a> on using the insane script, or look into the <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#molmaker.py-create-molecule-coordinates-from-their-.itps"><code>molmaker.py</code></a> script for generating structures directly from topologies.</p>
+</blockquote>
+<hr>
+<p>The gromacs tool <code>insert-molecules</code> can take the <code>DPPC-em.gro</code> this single-molecule conformation and attempt to place it in a simulation box multiple times at a random position and random orientation, each time checking that there are no overlaps between the consecutively placed molecules. For help on any <code>gromacs</code> tool, you can add the <code>-h</code> flag.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> spontaneous-assembly/initial_assembly</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> insert-molecules <span class="at">-ci</span> DPPC-em.gro <span class="at">-box</span> 7.5 7.5 7.5 <span class="at">-nmol</span> 128 <span class="at">-radius</span> 0.21 <span class="at">-try</span> 500 <span class="at">-o</span> 128_noW.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The value of the flag <code>-radius</code> (default van der Waals radii) has to be increased from its default atomistic length (0.105 nm) to a value reflecting the size of Martini CG beads. The output filename is arbitrary but we choose one ending in <code>_noW</code> to indicate ‘no Water’.</p>
+<p>Using the <code>gromacs</code> tool <code>solvate</code>, add 6 CG waters per lipid (note that this corresponds to 24 all-atom waters per lipid, 768 in total). <code>gmx solvate</code> needs to have the structure of an equilibrated water box to use as a template to fill the empty space in <code>128_noW.gro</code>. The website has one (<code>water.gro</code>) available for you to download <a href="../../../../docs/downloads/example-applications/solvent-systems.html">[here]</a>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/example_applications/solvent_systems/water.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can now run solvate:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> 128_noW.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> waterbox.gro <span class="at">-maxsol</span> 768 <span class="at">-radius</span> 0.21</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Also here, the value of the flag <code>-radius</code> is used to reflect the size of Martini CG beads. A new file, <code>waterbox.gro</code> is produced containing the 128 lipids and added water beads.</p>
+<p>Now you will perform an energy minimization of the solvated system, to get rid of high forces between beads that may have been placed quite close to each other. The settings file <code>minimization.mdp</code> is provided for you, but you will need the topology for water and for the DPPC lipid, and to organize them as a <code>.top</code> file. From the website’s <a href="../../../../docs/downloads/force-field-parameters/martini3/particle-definitions.html">Downloads -&gt; Force field parameters -&gt; Martini3 -&gt; Particle definitions</a> section you can get the zip file for the <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip">Martini 3 release</a>, which contains the relevant topologies:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> martini_v300.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the Martini 3 release is organized into several <code>.itp</code> files, each with the definitions for a class of molecules. For this tutorial you won’t need all of the Martini 3 <code>.itps</code>, only the one where water is defined (hint: it’s a ‘solvent’) and the one where DPPC is defined (hint: it’s a ‘phospholipid’). There is a third <code>.itp</code> you will need, and that is the one with all the Martini 3 particle definitions (hint: it’s <code>martini_v3.0.0.itp</code>). The needed <code>.itps</code> should be placed in the tutorial directory.</p>
+<p>To create the <code>.top</code> file (we’ll call it <code>dppc.top</code>) that describes the system topology to GROMACS, you can follow the template below. Semi-colons indicate comments, which are ignored, but hashtags aren’t: they’re preprocessing directives. Namely, it is the <code>#include</code> directive that allows us to bring into the <code>.top</code> the particle/molecule information in the <code>.itps</code>. Use your editor of choice (<code>gedit/vi/other</code>) to create a file <code>dppc.top</code>, copy the template into it and complete the <code>‘…’</code> fields (hint: to figure out how many waters to set, look at the output of <code>gmx solvate</code> to see how many W beads were added; the maximum number is 768, as specified with the <code>-maxsol</code> option).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0.itp" ; the particle definitions should be included first</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#include "..." ; include here the relevant .itps defining the molecules to use</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#include "..."</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> system <span class="bu">]</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">This</span> title is arbitrary <span class="er">(</span><span class="ex">but</span> something descriptive helps<span class="kw">)</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">DPPC</span> BILAYER SELF-ASSEMBLY</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">Molecule</span> types and their numbers are written in the order</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">they</span> appear in the structure file</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">DPPC</span> ...</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">W</span>    ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You are now ready to perform an energy minimization.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> waterbox.gro <span class="at">-p</span> dppc.top <span class="at">-o</span> dppc-min-solvent.tpr</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-s</span> dppc-min-solvent.tpr <span class="at">-v</span> <span class="at">-c</span> minimized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, you are ready to run the self-assembly MD simulation, by using the <code>martini_md.mdp</code> run settings file and the just-minimized <code>minimized.gro</code>. 30 ns, or 1.5 million simulation steps at 20 fs per step, should suffice.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> martini_md.mdp <span class="at">-c</span> minimized.gro <span class="at">-p</span> dppc.top <span class="at">-o</span> dppc-md.tpr</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-s</span> dppc-md.tpr <span class="at">-v</span> <span class="at">-x</span> dppc-md.xtc <span class="at">-c</span> dppc-md.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This might take approximately 10 minutes on a single CPU but by default <code>gmx mdrun</code> will use all available CPUs on your machine. The <code>-v</code> option shows an estimate of the time to completion, and it is interesting to observe how the generations of desktop computers have sped up this 30 ns simulation over the years. See <code>gmx mdrun</code>’s help (<code>-h</code>) for instructions on how to tune the numbers of parallel threads gmx mdrun uses. You may want to check the progress of the simulation to see whether the bilayer has already formed before the end of the simulation. You may do this most easily by starting the inbuilt <code>gromacs</code> viewer (you will need to open a new terminal and make sure you are in the directory where this simulation is running):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> view <span class="at">-f</span> dppc-md.xtc <span class="at">-s</span> dppc-md.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or, alternatively, use <code>VMD</code> or <code>pymol</code>. Both <code>VMD</code> and <code>pymol</code> suffer from the fact that Martini bonds are usually not drawn because they are much longer than standard bonds and the default visualization is not very informative. For visualization with <code>pymol</code> this is solved most easily by converting the trajectory to <code>.pdb</code> format, explicitly writing out all bonds (select <code>System</code> or <code>DPPC</code>, depending on whether you want to visualize the entire system or only the lipids). The disadvantage is that very large files are produced in this conversion!</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-s</span> dppc-md.tpr <span class="at">-f</span> dppc-md.xtc <span class="at">-o</span> dppc-md.pdb <span class="at">-pbc</span> whole <span class="at">-conect</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span> dppc-md.pdb </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For <code>VMD</code>, a plugin script <code>cg_bonds-v5.tcl</code> was written that takes the GROMACS topology file and adds the Martini bonds defined in the topology (this file is included in the directory for your convenience, but you would normally want to download it from the <a href="../../../../docs/downloads/tools/visualization.html">Tools -&gt; Visualization</a> section of the website, store it in a generally useful location and refer to it when needed). A useful preprocessing step for <code>VMD</code> visualization is to avoid molecules being split over the periodic boundary, because if they are, very long bonds will be drawn between them. A script <code>do_vmd.sh</code> has been prepared for you for visualization using <code>VMD</code>. You will probably need to make the script executable.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x do_vmd.sh</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./do_vmd.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The initial and final snapshots should look similar to <code>Fig. 1</code>, at least if the self-assembly resulted in a bilayer in the allotted time, which is not guaranteed. You may have noticed, however, that there is relatively little water, and some part of the initial solvated box is actually devoid of water. This helps to more or less guarantee a bilayer, but does make the simulation a little less realistic. You can test by solvating the lipids with more solvent. You can do this by changing the <code>-maxsol</code> flag on the <code>gmx solvate</code> command.</p>
+<p>In the meantime, have a close look at the DPPC section of the phospholipid <code>.itp</code> file. The available bead types and their interactions are defined in <code>martini_v3.0.0.itp</code> and described in the 2021 Martini 3 paper<sup><a href="#references">[3]</a></sup>. Understanding how these files work, will help you work with the Martini 3 model and define new molecules or refine existing models.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 | DPPC bilayer formation. A) 64 randomly localized DPPC lipid molecules with water. B) After a 30 ns long simulation the DPPC lipids have aggregated together and formed a bilayer.</figcaption>
+</figure>
+</div>
+<p>When the simulation has finished, check whether you got a bilayer. If yes, check if the formed membrane is normal to the z-axis (i.e., that the membrane is situated in the xy-plane). Have a look at the self-assembly process: can you recognize intermediate states, such as micelles, and do you see metastable structures such as a water pore (water spanning the membrane interior) and/or a lipid bridge (lipid tail(s) spanning the water layer)?</p>
+</section>
+<section id="bilayer-equilibrium-run-and-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="bilayer-equilibrium-run-and-analysis">Bilayer equilibrium run and analysis</h3>
+<hr>
+<p>If your bilayer was formed in a plane other than the xy-plane, rotate the system so that it will (with <code>gmx editconf</code>). In case you did not get a bilayer at all, you can continue the tutorial with the pre-formed one from <code>dspc-bilayer.gro</code>. (Example files of the tutorial assume that this file is used.) From this point on, we will refer to the bilayer as a DSPC bilayer. As remarked earlier, in Martini, the 4-to-1 mapping of acyl tails limits the resolution and the same model represents in this case a C-16 tail (palmitoyl) and a C-18 tail (stearoyl, hence DSPC). The reason for referring to the lipid as DSPC is that later on, we will compare the simulated properties to experiment and we will compare different lipids all with the same number of beads, changing either the head group from PC to PE or changing the tail from stearoyl (C-18, fully saturated) to oleoyl (C-18, single cis double bond at C-9).</p>
+<p>The spontaneous assembly simulation was done using isotropic pressure coupling. The bilayer may have formed but is probably under tension because of the isotropic pressure coupling. Therefore, we first need to run a simulation in which the area of the bilayer can reach a proper equilibrium value. This requires that we use independent pressure coupling in the plane and perpendicular to the plane. Set up a simulation for another 30 ns at zero surface tension (switch to semi-isotropic pressure coupling; if the pressure is the same in the plane and perpendicular to the plane, the bilayer will be at zero surface tension) at a higher temperature of 341 K. This is above the experimental gel to liquid-crystalline transition temperature of DSPC (you will find how to change pressure coupling and temperature in <a href="https://manual.gromacs.org/documentation/current/user-guide/mdp-options.html">the <code>gromacs</code> manual</a>).</p>
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>Good practices in membrane simulations.</em></strong> To properly sample in an isothermal-isobaric ensemble, you should at this point switch to the Parrinello-Rahman barostat (12 ps is a typical <code>tau-p</code> value to use with it). The Parrinello-Rahman barostat is less robust than the Berendsen one, and may diverge (crash) if the system is far from equilibrium. As such, is usually used only on production runs, whereas Berendsen is used in preparation ones.</p>
+</blockquote>
+<p>Because of potentially poor heat transfer across the membrane-water interface, it is recommended that the solvent and the membrane groups of particles each be coupled to their own thermostat, to prevent unequal heat accumulation. You can set that in your <code>.mdp</code> using the <code>tc-grps</code> option.</p>
+<p>Buildup in numerical precision error may cause the system to gain overall momentum. This is undesirable because such translation will be interpreted as temperature by the thermostat, and result in an excessively cooled system. Such center-of-mass motion (COMM) is corrected using <code>comm-mode = linear</code>. When membranes are involved, it is also possible (even in the absence of precision errors, or when controlling for COMM) that the membrane phase gains momentum relative to the water phase. In this case, the COMM should be corrected for each phase separately, using the <code>comm-grps</code> option. In some applications, it may be needed to further correct for the COMM of each leaflet separately.</p>
+<hr>
+<p>It is highly recommended that you make perform this simulation in a new directory, name it, for example <code>equilibration</code>. Copy the required files there, edit the <code>.mdp</code> file, and set the run going (the commands for this final step — involving <code>gmx grompp</code> and <code>gmx mdrun</code> — are not given explicitly).</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ../equilibration</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> dppc-md.gro <span class="er">(</span><span class="ex">or</span> dspc-bilayer.gro<span class="kw">)</span> <span class="ex">../equilibration/.</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> martini_md.mdp ../equilibration/.</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> martini<span class="pp">*</span>.itp ../equilibration/.</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> dppc.top ../equilibration/.</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../equilibration</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> <span class="pp">[</span><span class="ss">gedit/vi</span><span class="pp">]</span> martini_md.mdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then prepare a .tpr file (<code>gmx grompp etc</code>) and run the simulation (<code>gmx mdrun etc</code>; i.e.&nbsp;similar instructions as for the spontaneous assembly run explained above). If you do not want to wait for this simulation to finish, skip ahead and use a trajectory provided in the fully worked tutorial archive. <code>NOTE!!</code> The commands below assume your production run is producing files with the prefix <code>md</code>. This need not be the case, so replace these entries with the appropriate name(s) for your simulations.</p>
+<p>If you have difficulty in running the simulation you may want to use the 30 ns trajectory already present in the subdirectory <code>spontaneous-assembly/equilibration/</code> of the worked example.</p>
+<p>From the latter simulation, we can calculate properties such as:</p>
+<ul>
+<li><a href="#area-per-lipid">area per lipid</a></li>
+<li><a href="#bilayer-thickness">bilayer thickness</a></li>
+<li><a href="#order-parameters">P2 order parameters of the bonds</a></li>
+<li><a href="#lateral-diffusion">lateral diffusion of the lipids</a></li>
+</ul>
+<p>In general, for the analysis, you might want to discard the first few ns of your simulation as equilibration time. The area per lipid as a function of time should give you an indication of which part of the simulation you should definitely not include in the analysis.</p>
+<section id="area-per-lipid" class="level4">
+<h4 class="anchored" data-anchor-id="area-per-lipid">Area per lipid</h4>
+<hr>
+<p>To get the (projected) area per lipid, you can simply divide the area of your simulation box by half the number of lipids in your system. The box-sizes can be obtained by running the <code>gromacs</code> tool <code>gmx energy</code>(ask for Box-X and Box-Y, remember that <code>gmx 'tool' -h</code> brings up the help of any <code>gromacs</code> tool). To calculate the area per lipid as a function of time we’ll use a couple of python lines (though many alternative methods are possible). The <code>gromacs</code> tool <code>analyze</code> provides a convenient way to then calculate the average and error estimate in any series of measurements (use the option <code>-ee</code> for the error estimate, and make sure you feed <code>gmx analyze</code> a file with a <code>.xvg</code> extension). (Note that this calculation might not be strictly OK, because the self-assembled bilayer might be slightly asymmetric in terms of number of lipids per monolayer, i.e., the areas per lipid are different for the two monolayers. However, to a first approximation, we will ignore this here.)</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> energy <span class="at">-f</span> md.edr <span class="at">-o</span> box-xy.xvg</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> 11 <span class="ex">12</span> 0 [press Enter]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, the second line is meant to show that you need to type the number(s) of the property/ies you want. In our version this is 11 for Box-X and 12 for Box-Y. After typing <code>"Enter"</code> the output file is produced. You can visualize it in xmgrace:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> box-xy.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To obtain the area per lipid, you need to multiply the values of x and y at each timepoint, and divide by 64 (number of lipids per monolayer or leaflet). To do this start a <code>python3</code> session in your command line and run the following lines:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">import</span> numpy as np</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">xy</span> = np.loadtxt<span class="er">(</span><span class="st">'box-xy.xvg'</span><span class="ex">,</span> comments=<span class="er">(</span><span class="st">'#'</span><span class="ex">,</span><span class="st">'@'</span><span class="kw">))</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">areas</span> = xy<span class="pp">[</span><span class="ss">:,1</span><span class="pp">]</span> <span class="pp">*</span> xy<span class="pp">[</span><span class="ss">:,2</span><span class="pp">]</span> / 64</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">np.savetxt</span><span class="er">(</span><span class="st">'area.xvg'</span><span class="ex">,</span> np.column_stack<span class="er">(</span><span class="kw">(</span><span class="va">xy</span><span class="op">[</span>:,0<span class="op">]</span><span class="ex">,</span> areas<span class="kw">)))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will create file <code>area.xvg</code>, which you can visualize with <code>xmgrace</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> area.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, get the averages and error estimates using the gromacs tool <code>analyze</code>. You can discard what you deem to be the relaxation time by using the flag -b <code>[initial time to ignore]</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> area.xvg <span class="at">-ee</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> area.xvg <span class="at">-ee</span> <span class="at">-b</span> 15000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As an alternative and use <code>awk</code> to calculate the area per lipid. Then look at the statistics.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{if (substr($1,1,1) != "#" &amp;&amp; substr($1,1,1) != "@") print $1, $2*$3/64}'</span> <span class="op">&lt;</span> box-xy.xvg <span class="op">&gt;</span> area.xvg</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> area.xvg <span class="at">-ee</span> <span class="at">-b</span> 15000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bilayer-thickness" class="level4">
+<h4 class="anchored" data-anchor-id="bilayer-thickness">Bilayer thickness</h4>
+<hr>
+<p>To get the bilayer thickness, use <code>gmx density</code>. You can get the density for a number of different functional groups in the lipid (e.g., phosphate and ammonium headgroup beads, carbon tail beads, etc) by feeding an appropriate index-file to <code>gmx density</code> (make one with <code>gmx make_ndx</code>; you can select, e.g., the phosphate beads by typing a <code>P*</code>; type <code>q</code> to exit , this leaves you with an index file named <code>index.ndx</code>). You can obtain an estimate of the bilayer thickness from the distance between the headgroup peaks in the density profile.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> md.gro</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> a <span class="ex">P*</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> q</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> density <span class="at">-f</span> md.xtc <span class="at">-s</span> md.tpr <span class="at">-b</span> 15000 <span class="at">-n</span> index.ndx <span class="at">-o</span> p-density.xvg <span class="at">-xvg</span> no</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">&gt;</span> 4</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> p-density.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A more appropriate way to compare to experiment is to calculate the electron density profile. The <code>gmx density</code> tool also provides this option. However, you need to supply the program with a data-file containing the number of electrons associated with each bead (option <code>-ei electrons.dat</code>). The format is described in the <code>gromacs</code> manual and not part of this tutorial. Compare your results to those from small-angle neutron scattering experiments<sup><a href="#references">[4]</a></sup>:</p>
+<ul>
+<li>thickness = 4.98 ± 0.15 nm</li>
+<li>area per lipid = 0.65 ± 0.05 nm<sup>2</sup></li>
+</ul>
+</section>
+<section id="lateral-diffusion" class="level4">
+<h4 class="anchored" data-anchor-id="lateral-diffusion">Lateral diffusion</h4>
+<hr>
+<p>Before calculating the lateral diffusion, remove jumps over the box boundaries (<code>gmx trjconv -pbc nojump</code>). Then, calculate the lateral diffusion using <code>gmx msd</code>. Take care to remove the overall center of mass motion (<code>-rmcomm</code>), and to fit the line only to the linear regime of the mean-square-displacement curve (<code>-beginfit</code> and <code>-endfit</code> options of <code>gmx msd</code>). To get the lateral diffusion, choose the <code>-lateral z</code> option.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-s</span> md.tpr <span class="at">-pbc</span> nojump <span class="at">-o</span> nojump.xtc</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> msd <span class="at">-f</span> nojump.xtc <span class="at">-s</span> md.tpr <span class="at">-rmcomm</span> <span class="at">-lateral</span> z <span class="at">-b</span> 15000</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> msd.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In comparing the diffusion coefficient obtained from a Martini simulation to a measured one, one can expect a faster diffusion at the CG level due to the smoothened free energy landscape (note, however, that the use of a defined conversion factor is no longer recommended, as it can vary significantly depending on the molecule in question). Also note that the tool averages over all lipids to produce the MSD curve. It is probably much better to analyze the motion of each lipid individually and remove center-of-mass motion per leaflet. This requires some scripting on your part and is not included in this tutorial.</p>
+</section>
+<section id="order-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="order-parameters">Order parameters</h4>
+<hr>
+<p>Now, we will calculate the (second-rank) order parameter, which is defined as:</p>
+<p>P<sub>2</sub> = 1/2 (3 cos<sup>2</sup>&lt;θ&gt; − 1),</p>
+<p>where θ is the angle between the bond and the bilayer normal. P<sub>2</sub> = 1 means perfect alignment with the bilayer normal, P<sub>2</sub> = −0.5 anti-alignment, and P<sub>2</sub> = 0 random orientation.</p>
+<p>A script to calculate these order parameters can be downloaded in the <a href="../../../../docs/downloads/tools/other-tools.html">Downloads -&gt; Tools -&gt; Other tools</a> section of the website (scroll down to the section on <code>do_order</code>, and download the script <code>do-order-gmx5.py</code>. There is also a version located in the directory <code>scripts/</code>). Copy the <code>.xtc</code> and <code>.tpr</code> files to an analysis subdirectory (the script expects them to be named <code>traj.xtc</code> and <code>topol.tpr</code>, respectively). The script <code>do-order-gmx5.py</code> will calculate P2 for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> do-order-gmx5.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DPPC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Will, for example, read 15 to 30 ns from the trajectory <code>md.xtc</code>. The simulation has 128 DPPC lipids and the output is the P2, calculated relative to the Z-axis, and average over results from every 20th equally-spaced snapshot in the trajectory. Results are available as output and in the files <code>order.dat</code> and <code>S-profile.dat</code>; the latter is a profile that can be compared to published profiles, e.g.&nbsp;in Ref.<sup>[1]</sup> (remember, DSPC and DPPC share the same Martini representation!).</p>
+</section>
+<section id="advanced-additional-analyses" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-additional-analyses">Advanced: additional analyses</h4>
+<hr>
+<p>Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the <code>gromacs</code> package, see <a href="https://manual.gromacs.org/documentation/current/user-guide/index.html">the gromacs manual</a>. Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available <a href="../../../../docs/downloads/tools/other-tools.html">here</a>. Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python <a href="https://www.mdanalysis.org/">MDAnalysis package</a>.</p>
+</section>
+</section>
+<section id="changing-lipid-type" class="level3">
+<h3 class="anchored" data-anchor-id="changing-lipid-type">Changing lipid type</h3>
+<hr>
+<p>Lipids can be thought of as modular molecules. In this section, we investigate the effect of changes in the lipid tails and in the headgroups on the properties of lipid bilayers using the Martini model. We will <strong>i)</strong> introduce a double bond in the lipid tails, and <strong>ii)</strong> change the lipid headgroups from phosphatidylcholine (PC) to phosphatidylethanolamine (PE).</p>
+<section id="unsaturated-tails" class="level4">
+<h4 class="anchored" data-anchor-id="unsaturated-tails">Unsaturated tails</h4>
+<hr>
+<p>To introduce a double bond in the tail, we will replace the DSPC lipids by DOPC. Set up a directory for the DOPC system. Enter that directory. Compare the Martini 3 topologies of these two lipids in the phospholipids <code>.itp</code>. You will see that the number of beads for these lipids is the same, and in the same headgroup-glycerol-tails order. You can therefore set up a DOPC bilayer quite simply from your DSPC result. Copy over the <code>.top</code> and <code>.mdp</code> file from the equilibration DSPC run. Copy the final frame of the DSPC run to serve as the starting frame of the DOPC run. Replace DPPC by DOPC in your <code>.top</code> and <code>.mdp</code> files, and <code>gmx grompp</code> will do the rest for you (you can ignore the ”atom name does not match” warnings of <code>grompp</code>); you do this by adding the <code>-maxwarn</code> option to the <code>gmx grompp</code> command, e.g.&nbsp;<code>gmx grompp -maxwarn</code> 3 allows a maximum of 3 warnings and will still produce a <code>.tpr</code> file. Execute the simulation, or, if you are impatient, use the trajectory provided for you as <code>spontaneous-assembly/equilibration/dopc/dopc-ext.xtc</code>. NOTE: if you take this shortcut, and because the lipids DSPC and DOPC have exactly the same number of beads, you can use the <code>.tpr</code> file from DSPC to analyze the <code>dopc-ext.xtc</code> file.</p>
+</section>
+<section id="changing-the-headgroups" class="level4">
+<h4 class="anchored" data-anchor-id="changing-the-headgroups">Changing the headgroups</h4>
+<hr>
+<p>Similarly, starting again from the final snapshot of the DSPC simulation, you can easily change the head groups from PC to PE, yielding DPPE. Also for this system, run a 30 ns MD simulation, or, if you are impatient, use the trajectory provided for you as <code>spontaneous-assembly/equilibration/dspe/dspe-ext.xtc</code>. NOTE: as above, when taking this shortcut, and because the lipids DSPC and DPPE have exactly the same number of beads, you can use the <code>.tpr</code> file from DSPC to analyze the <code>dspe-ext.xtc file</code>. Compare the above properties (area per lipid, thickness, order parameter, diffusion) between the three bilayers (DSPC, DOPC, DSPE). Do the observed changes match your expectations? Why/why not? Discuss.</p>
+</section>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
+<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] Marrink, S. J., De Vries, A. H., and Mark, A. E. (2004) Coarse grained model for semiquantitative lipid simulations. J. Phys. Chem. B 108, 750–760. DOI:10.1021/jp036508g</p>
+<p>[2] Marrink, S. J., Risselada, H. J., Yefimov, S., Tieleman, D. P., and De Vries, A. H. (2007) The MARTINI force field: coarse grained model for biomolecular simulations. J. Phys. Chem. B 111, 7812–7824. DOI:10.1021/jp071097f</p>
+<p>[3] Souza, P. C. T., Alessandri, R., et al.&nbsp;(2021) Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat. Methods 18, 382–388. DOI: 10.1038/s41592-021-01098-3</p>
+<p>[4] Balgavy, P., Dubnicková, M., Kucerka, N., Kiselev, M. A., Yaradaikin, S. P., and Uhrikova, D. (2001) Bilayer thickness and lipid interface area in unilamellar extruded 1,2-diacylphosphatidylcholine liposomes: a small-angle neutron scattering study. Biochim. Biophys. Acta 1512, 40–52. DOI:10.1016/S0005-2736(01)00298-X</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

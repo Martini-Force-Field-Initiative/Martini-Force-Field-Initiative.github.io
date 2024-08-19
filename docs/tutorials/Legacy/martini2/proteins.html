@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Proteins – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Proteins – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Proteins – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Proteins</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#soluble-protein" id="toc-soluble-protein" class="nav-link active" data-scroll-target="#soluble-protein">Soluble protein</a></li>
+  <li><a href="#to-go-further-membrane-protein" id="toc-to-go-further-membrane-protein" class="nav-link" data-scroll-target="#to-go-further-membrane-protein">To go further: membrane protein</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Proteins</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>The material offered in this page is LEGACY material.</em></strong> This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look! If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../../docs/tutorials/index.html">here</a> to go back!</p>
+</blockquote>
+<hr>
+<section id="soluble-protein" class="level3">
+<h3 class="anchored" data-anchor-id="soluble-protein">Soluble protein</h3>
+<hr>
+<p>Keeping in line with the overall Martini philosophy, the coarse-grained protein model groups 4 heavy atoms together in one coarse-grain bead. Each residue has one backbone bead and zero to four side-chain beads depending on the residue type. The secondary structure of the protein influences both the selected bead types and bond/angle/dihedral parameters of each residue<sup><a href="#references">[1]</a></sup>. It is noteworthy that, even though the protein is free to change its tertiary arrangement, local secondary structure is predefined and thus imposed throughout a simulation. Conformational changes that involve changes in the secondary structure are therefore beyond the scope of Martini coarse-grained proteins.</p>
+<p>Setting up a coarse-grained protein simulation consists basically of three steps:</p>
+<ol type="1">
+<li><p>converting an atomistic protein structure into a coarse-grained model;</p></li>
+<li><p>generating a suitable Martini topology;</p></li>
+<li><p>solvate the protein in the wanted environment.</p></li>
+</ol>
+<p>Two first steps are done using the publicly available <code>martinize.py</code> script, of which the latest version can be downloaded <a href="https://github.com/cgmartini/martinize.py">from Github</a>. However, if you want to be sure you use the same version as the files provided as an example, download <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py">this version of martinize.py</a>. The last step can be done with the tools available in the gromacs package and/or with ad hoc scripts. In this part of the tutorial, some basic knowledge of <code>gromacs</code> commands is assumed and not all commands will be given explicitly. Please refer to the previous tutorials (basic tutorial on Martini lipids available <a href="../../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">here</a>) and/or the gromacs manual.</p>
+<p>The aim of the first module of this tutorial is to define the regular work flow and protocols to set up a coarse-grained simulation of ubiquitin in a water box using a standard Martini description. The second module is presenting the variation of the secondary structure which can occur for certain proteins, in our case the HIV-1 protease, and a slightly different approach (ElNeDyn) to avoid this issue. The last module is to set up a coarse-grained simulation of a KALP peptide in its membrane environment.</p>
+<section id="soluble-protein-the-martini-description" class="level5">
+<h5 class="anchored" data-anchor-id="soluble-protein-the-martini-description"><strong>Soluble protein: the Martini description</strong></h5>
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/ubiquitin.tar">Download an example of all the worked files of this module</a></p>
+<p>The downloaded file is called <code>ubiquitin.tgz</code> and contains a worked version (using gromacs 2016.3) of this module. You do not need this file to get going on this tutorial; you can use this worked version to check your own work. The file expands to the directory <code>ubiquitin/martini</code>. Create your own directory to work the tutorial yourself. Instructions are given for files you need to download, etc. You do not need any files to start with. Now go to your own directory.</p>
+<p>After getting the atomistic structure of ubiquitin (1UBQ), you’ll need to convert it into a coarse-grained structure and to prepare a Martini topology for it. Once this is done the coarse-grained structure can be minimized, solvated and simulated. The steps you need to take are roughly the following:</p>
+<ol type="1">
+<li>Download 1UBQ.pdb from the Protein Data Bank.</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> http://www.rcsb.org/pdb/files/1UBQ.pdb.gz</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> 1UBQ.pdb.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>The pdb-structure can be used directly as input for the martinize.py script (download available <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py">here</a>), to generate both a structure and a topology file. Have a look at the help function (i.e.&nbsp;run <code>python martinize.py -h</code>) for the available options. Hint, valid for any system simulated with Martini: during equilibration it might be useful to have (backbone) position restraints to relax the side chains and their interaction with the solvent; we are anticipating doing this by asking martinize.py to generate the list of atoms involved. The final command might look a bit like this:</li>
+</ol>
+<p>`` bash python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -dssp /path/to/dssp -p backbone -ff martini22</p>
+<pre><code>
+We are asking for version 2.2 of the force field. When using the `-dssp` option you'll need the dssp binary, which determines the secondary structure classification of the protein backbone from the structure. It can be downloaded from the [CMBI website](http://swift.cmbi.ru.nl/gv/dssp). If installed centrally, the path is usually `/usr/bin/dssp`. As an alternative, you may prepare a file (an example is [1UBQ.ssd](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/1UBQ.ssd)) with the required secondary structure yourself and feed it to the script:
+
+``` bash
+python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -ss &lt;YOUR FILE&gt; -p backbone -ff martini22</code></pre>
+<p>Note that the <code>martinize.py</code> script might not work with older versions of python! Also <code>python 3.x</code> might not work. We know it does work with versions: <code>2.6.x, 2.7.x</code> and does not work with <code>2.4.x</code>. If you have tested it with any version in between, we would like to hear from you.</p>
+<ol start="3" type="1">
+<li>If everything went well, the script generated three files: a coarse-grained structure (<code>.pdb</code>; cf.&nbsp;Fig. 1), a master topology file (<code>.top</code>), and a protein topology file (<code>.itp</code>). In order to run a simulation you need two more: <a href="../../../../docs/downloads/force-field-parameters/martini2/particle-definitions.html">the Martini topology file</a> (<code>martini_v2.x.itp</code>, if you specified version 2.2, you’ll want the corresponding file) and a run parameter file (<code>.mdp</code>). You can get <a href="../../../../docs/downloads/example-input-files/md-parameters.html">examples</a> from the Martini website or from the protein tutorial package. Don’t forget to adapt the settings where needed!</li>
+</ol>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="1ubq-cg_balls.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 1 |</strong> Different representations of ubiquitin. A) cartoon representation of the atomistic structure. B) Coarse-grained beads forming the backbone and C) licorice representation of the backbone of the martinized protein.</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<ol start="4" type="1">
+<li>Do a short (ca. 10-100 steps is enough!) minimization in vacuum. Before you can generate the input files with grompp, you will need to check that the topology file (<code>.top</code>) includes the correct martini parameter file (<code>.itp</code>). If this is not the case, change the include statement. Also, you may have to generate a box, specifing the dimensions of the system, for example using gmx editconf. You want to make sure, the box dimensions are large enough to avoid close contacts between periodic images of the protein, but also to be considerably larger than twice the cut-off distance used in simulations. Try allowing for a minimum distance of 1 nm from the protein to any box edge. Then, copy the example parameter file, and change the relevant settings to do a minimization run. Now you are ready to do the preprocessing and minimization run:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> 1UBQ-CG.pdb <span class="at">-d</span> 1.0 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> 1UBQ-CG.gro</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> single-ubq.top <span class="at">-f</span> minimization.mdp <span class="at">-c</span> 1UBQ-CG.gro <span class="at">-o</span> minimization-vac.tpr</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization-vac <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="5" type="1">
+<li>Solvate the system with <code>gmx solvate</code> (an equilibrated water box can be downloaded <a href="../../../../docs/downloads/index.html">here</a>; it is called <code>water.gro</code>). Make sure the box size is large enough (i.e.&nbsp;there is enough water around the molecule to avoid periodic boundaries artifacts) and remember to use a larger van der Waals distance when solvating to avoid clashes, e.g.:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> minimization-vac.gro <span class="at">-cs</span> water.gro <span class="at">-radius</span> 0.21 <span class="at">-o</span> solvated.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="1">
+<li>You need to update the topology to reflect the water added. Here, this is done by copying the topology for the single ubiquitin to system.top and editing that to add a line with the number of water beads. You will then do a short energy minimization and position-restrained (NPT) equilibration of the solvated system. Since the martinize.py script already generated position restraints (thanks to the <code>-p</code> flag), all you have to do is specify <code>define = -DPOSRES</code> in your parameter file (<code>.mdp</code>). At this point you must also add the appropriate number of water beads to your system topology (<code>.top</code>); the total number added by gmx solvate can be seen in the output of the command; alternatively try <code>grep -c W system-solvated.gro</code> (where W is the name of a water bead).</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> minimization.mdp <span class="at">-o</span> minimization.tpr</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> minimization.gro <span class="at">-f</span> equilibration.mdp <span class="at">-o</span> equilibration.tpr</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="1">
+<li>Start production run (without position restraints!); if your simulation crashes, some more equilibration steps might be needed. NOTE that you will get a warning about simultaneous use of Parrinello-Rahman barostat and newly generated velocties. This can be ignored by the -maxwarn 1 option. A sample trajectory is shown in Figure 2.</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> equilibration.gro <span class="at">-f</span> dynamic.mdp <span class="at">-o</span> dynamic.tpr <span class="at">-maxwarn</span> 1</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="1ubq-cg_traj.gif" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 2 |</strong> 20 ns simulation of coarse-grained ubiquitin (green beads) and solvent (coarse-grained water; blue beads).</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<ol start="8" type="1">
+<li>PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with <code>vmd</code>. (see <a href="../../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">tutorial</a>, use the script <a href="../../../../docs/downloads/tools/visualization.html">cg_bonds-v5.tcl</a> to show the ubiquitin with the bonds as defined in the topology) or pymol. It is often convenient to convert the trajectory so that translation and rotation of ubiquitin is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure beads that belong to the protein are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with gromacs tools.) Be aware that the .gro file given to VMD must contain the same (number of) atoms as the .xtc file. Therefore, if you choose to write only the protein to the .xtc file, also prepare a .gro file with only the protein (minimization-vac.gro will do).</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.xtc</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> equilibration.gro viz.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To view with <code>pymol</code>, the trajectory must also be converted to <code>.pdb</code> format. This gives the opportunity to add bond information, which helps in viewing the molecule. Be aware that this file may be very large: you may want to reduce the number of frames. You can also reduce the size by only writing out the protein coordinates (but you may want to visualize the solvent as well, so it is up to you).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.pdb <span class="at">-conect</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span> viz.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Standard analysis for proteins includes RMSD, RMSF, radius of gyration. Refer to tutorials for atomistic models, for example by <a href="http://md.chem.rug.nl/~mdcourse">Tsjerk Wassenaar</a> or <a href="http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/lysozyme/index.html">Justin Lemkul</a>. For the impatient, o if you just need a quick reminder: RMSD and RMSF can be calculated using <code>gromacs</code> tools <code>gmx rms</code> and <code>gmx rmsf</code>, respectively.</p>
+</section>
+<section id="soluble-protein-the-elastic-network-approach" class="level5">
+<h5 class="anchored" data-anchor-id="soluble-protein-the-elastic-network-approach"><strong>Soluble protein: the elastic network approach</strong></h5>
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/hiv-1_protease_gmxv5.tar">Download an example of all the worked files of this module, with gromacs version 5.0.7</a></p>
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/hiv-1_protease_gmx2016.tar">Download an example of all the worked files of this module with gromacs 2016.3</a></p>
+<p>The aim of this second module is to see how application of elastic networks can be combined with the Martini model to conserve secondary, tertiary and quartenary structures more faithfully without sacrificing realistic dynamics of a protein. We offer two alternative routes. Please be advised that this is an active field of research and that there is as of yet no “gold standard”. In fact, recently, Martini was combined with the Go model<sup><a href="../../../../docs/tutorials/Legacy/martini2/proteins.html">[3]</a></sup>. Earlier, the tool <a href="http://users-birc.au.dk/leat/domELNEDIN/">domElNeDin</a> was made available to remove elastic bonds between selected domains after the elastic network was built.</p>
+<p>The first option offered here is to generate a simple elastic network on the basis of a standard Martini topology. The second options is to use an <em>ElNeDyn</em> network. This second option constitutes quite some change to the Martini force field and thus is a different force field in itself. The advantage is that the behavior of the method has been well described<a href="../../../../docs/tutorials/Legacy/martini2/proteins.html">[2]</a>. Both approaches can be set up using the <code>martinize.py</code> script and will be shortly described below.</p>
+<p>We recommend to simulate a pure Martini coarse-grained protein (without elastic network) in a first step, and then see what changes are observed when using an elastic network on the same protein. Note that you’ll need to simulate the protein for tens to hundreds of nanoseconds to see major changes in the structure; sample simulations are provided in the archive.</p>
+<p>You should be aware of the following aspects:</p>
+<ul>
+<li><p>the structure deposited in the Protein Data Bank (1A8G) includes a ligand. This ligand is not known as a building block to martinize, and is totally ignored, i.e.&nbsp;it is NOT included in the topology, nor in the coarse-grained structure. If you want to study this or other ligand binding, you will need to build a Martini topology for the ligand yourself and map the atomistic coordinates to CG coordinates.</p></li>
+<li><p>the protein is charged (each monomer has charge +2). It is recommended to add at least neutralizing counter ions; on top of that, you can add ions to reflect some ionic strength of the solution. NOTE that you’ll need to get hold of a Martini topology file that specifies the <a href="../../../../docs/downloads/force-field-parameters/martini2/ions.html">ion topologies</a>.</p></li>
+<li><p>the protein is a dimer. By default, you will get a topology file with the two subunits being treated as individual molecules. This usually leads to some extra work in visualization and analysis when the subunits end up at different ends of the periodic cell. You can fix this afterwards by treating the trajectory so as to make sure the subunits are always near to each other. There are two ways to do this. The first one is to cluster the protein of the trajectory, using the gromacs tool <code>gmx trjconv</code> with the <code>-cluster</code> flag. The disadvantage is that the protein complex may show jumps over the periodic boundaries. The second way takes more step, but the jumping can be avoided. To do this, make a separate topology which merges the subunits into a single .itp file, which leads the dimer to be seen as a single molecule (add the flag <code>-merge A,B</code> to the martinize command). Prepare a .tpr file with that topology and use that for analysis, and for rewriting the trajectory with for example removing rotation and translation of the protein. NOTE that adding the flag <code>-merge A,B</code> to the martinize command with elastic network options introduces elastic bonds between subunits! This is something you probably do not want. Standard elastic network with Martini and standard ElNeDyn do not add elastic bonds between subunits!</p></li>
+</ul>
+</section>
+<section id="martini" class="level5">
+<h5 class="anchored" data-anchor-id="martini"><strong>Martini</strong></h5>
+<ol type="1">
+<li><p>Repeat steps 1 to 7 from the previous exercise with the HIV-1 protease (1A8G.pdb).</p></li>
+<li><p>Visualize the simulation, look especially at the binding pocket of the protein: does it stay closed, open up? What happens to the overall protein structure?</p></li>
+</ol>
+</section>
+<section id="martini-elastic-network" class="level5">
+<h5 class="anchored" data-anchor-id="martini-elastic-network"><strong>Martini + elastic network</strong></h5>
+<p>The first option to help preserve higher-order structure of proteins is to add to the standard Martini topology extra harmonic bonds between non-bonded beads based on a distance cut-off. Note that in standard Martini, long harmonic bonds are already used to impose the secondary structure of extended elements (sheets) of the protein. The <code>martinize.py</code> script will generate harmonic bonds between backbone beads if the options <code>-elastic</code> is set. It is possible to tune the elastic bonds (e.g.: make the force constant distance dependent, change upper and lower distance cut-off, etc.) in order to make the protein behave properly. The only way to find the proper parameters is to try different options and compare the behavior of your protein to an atomistic simulation or experimental data (NMR, etc.). Here we will use basic parameters in order to show the principle.</p>
+<ol type="1">
+<li>Use the <code>martinize.py</code> script to generate the coarse-grained structure and topology as above. For the elastic network, use the extra following flags:</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize.py <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span> <span class="at">-elastic</span> <span class="at">-ef</span> 500 <span class="at">-el</span> 0.5 <span class="at">-eu</span> 0.9 <span class="at">-ea</span> 0 <span class="at">-ep</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+This turns on the elastic network (<code>-elastic</code>), sets the elastic bond force constant to <span class="math inline">\(500 kJ mol^{-1} nm^{-2}\)</span> (<code>-ef 500</code>), the lower and upper elastic bond cut-off to 0.5 and 0.9 nm, respectively (<code>-el 0.5</code> and <code>-eu 0.9</code>), and makes the bond strengths independent of the bond length (elastic bond decay factor and decay power, <code>-ea 0</code> and <code>-ep 0</code>, respectively; these are default). The elastic network is defined in the <code>.itp</code> file by an <code>#ifdef</code> statement, and is switched on by default (<code>#define NO_RUBBER_BANDS</code> in the <code>.top</code> or <code>.itp</code> file switches it off). Note that martinize.py does not generate elastic bonds between i → i+1 and i → i+2 backbone bonds, as those are already connected by bonds and angles (cf.&nbsp;Fig. 3). Also, elastic bonds are only added between beads that belong to the same subunit.
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="1a8g-cg_rock.gif" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 3 |</strong> Elastic network (gray) applied on both monomers of the HIV-1 protease (yellow and orange, respectively)</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<ol start="2" type="1">
+<li>Proceed as before (steps 4 to 7) and start a production run. Keep in mind we are adding a supplementary level of constraints on the protein; some supplementary relaxation step might be required (equilibration with position restraints and smaller time step for instance). If you have a set-up for the protein without elastic bonds (including solvent and possibly ions), you may use a snapshot from that simulation as the starting point here.</li>
+</ol>
+</section>
+<section id="elnedyn" class="level5">
+<h5 class="anchored" data-anchor-id="elnedyn"><strong>ElNeDyn</strong></h5>
+<p>The second option to use elastic networks in combination with Martini puts more emphasis on remaining close to the overall structure as deposited in the PDB than standard Martini does. The main difference from the standard way (used in the previous exercise) is the use of a global elastic network between the backbone beads to conserve the conformation instead of relying on the angle/dihedral potentials and/or local elastic bonds to do the job. The position of the backbone beads is also slightly different: in standard Martini the center of mass of the peptide plane is used as the location of the backbone bead; but in the ElNeDyn implementation the positions of the Cα-atoms are used instead. The martinize.py script automatically sets these options and sets the correct parameters for the elastic network. As the elastic bond strength and the upper cut-off have to be tuned in an ElNeDyn network, these options can be set manually (<code>-ef</code> and <code>-eu</code> flags); note however these parameters have been extensively studied and were optimized to <span class="math inline">\(500 kJ mol^{-1} nm^{-2}\)</span> and <span class="math inline">\(0.9 nm\)</span>,<sup><a href="../../../../docs/tutorials/Legacy/martini2/proteins.html">[2]</a></sup>.</p>
+<ol type="1">
+<li>Use the martinize.py script to generate the coarse-grained structure and topology as above. The following flag will switch martinize.py to the ElNeDyn default representation:</li>
+</ol>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize.py <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span> <span class="at">-ff</span> elnedyn22</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Proceed as before and start a production run.</li>
+</ol>
+<p>Now you’ve got three simulations of the same protein with different type of elastic networks. If you do not want to wait, some pre-run trajectories can be found in the archive. One of them might fit your needs in terms of structural and dynamic behavior. If not, there are an almost infinite number of ways to further tweak the elastic network!</p>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rmsd.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 4 |</strong> RMSD of HIV-1 protease backbone with the three different approaches described previously (RMSD is usually considered “reasonable” if below 0.3 nm).</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<p>An easy way to compare the slightly different behaviors of the proteins in the previous three cases is to follow deviation/fluctuation of the backbone during simulation (and compare it to an all-atom simulation if possible). RMSD (Fig. 4) and RMSF can be calculated using <code>gromacs</code> tools (<code>gmx rms</code> and <code>gmx rmsf</code>). <code>vmd</code> provides also a set of friendly tools to compute these quantities, but needs some tricks to be adapted to coarse-grained systems (standard keywords are not understood by <code>vmd</code> on coarse-grained structures).</p>
+</section>
+</section>
+<section id="to-go-further-membrane-protein" class="level3">
+<h3 class="anchored" data-anchor-id="to-go-further-membrane-protein">To go further: membrane protein</h3>
+<hr>
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/kalp_gmxv5.tar">Download an example of all the worked files of this module</a></p>
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/kalp_gmx2016.tar">Download an example of all the worked files of this module using GROMACS version 2016.3</a></p>
+<p>In the last module of this protein tutorial, we will increase the complexity of our system by embedding the protein in a lipid bilayer (the tutorial on the lipidome, lipid self-assembly and bilayer analysis can be followed <a href="../../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">here</a>). We propose here to have a look at the tilt and the dimerization of KALP peptides embedded in DPPC membrane. The coarse-grained structure (<a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/kalp.gro">kalp.gro</a>) and topology (<a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/kalp.itp">kalp.itp</a>) of KALP can just be downloaded by clicking on the links; no need to repeat the steps to martinize the peptide. We start by solvating the protein directly with the membrane environment so that it ends up inserted. Different ways to perform this step possible; a non-exhaustive list, ordered by decreasing complexity, is presented below (note that this tutorial will focus only on the third case):</p>
+<ul>
+<li>A bilayer self-assembly dynamics, as presented in the <a href="../../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">first module of the lipid tutorial</a>, will result in the self-insertion of the KALP inside the bilayer (Fig. 5). This method is not followed in this tutorial but you will also find the respective files in the downloaded bundle.</li>
+</ul>
+<hr>
+<center>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="self-assemb.png" class="img-fluid figure-img"></p>
+<figcaption><strong>Figure 5 |</strong> A) Self-assembly (4 ns) of a DPPC (green) bilayer embedding a KALP peptide. B) Initial “soup” of lipid and solvent (water; blue) in which the KALP (red) is mixed. C) Final conformation of the simulation.</figcaption>
+</figure>
+</div>
+</center>
+<hr>
+<ul>
+<li><p>If a stable DPPC membrane with the wanted box dimensions is already available, <code>gmx solvate</code> will be able to insert the peptides in the bilayer (the peptides have to be pre-centered and positioned to ensure their presence inside the membrane).</p></li>
+<li><p>The use of the script <code>insane.py</code>, downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>, allows the setting up of bilayers of arbitrary composition around our protein.</p></li>
+</ul>
+<p>The latter method, being the easiest and the most straightforward, is recommended and is the method we present here.</p>
+<ol type="1">
+<li>The syntax of the <code>insane.py</code> scripts is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (As with other scripts, updates appear regularly. If you want to be sure you use the same version as used in the example files provided, download the file linked to in the command line below. Otherwise, get the latest from Github via the Tools pages on Downloads.) Let’s see a practical example:</li>
+</ol>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> insane.py <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> DPPC <span class="at">-u</span> DPPC <span class="at">-center</span> <span class="at">-sol</span> W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The previous command line will set up a complete system, containing a squared DPPC bilayer of 7 nm, insert the KALP peptide centered in this bilayer and solvate the whole thing in standard coarse-grained water. More on the <code>insane.py</code> tool can be found in separate tutorials, notably <a href="../../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">setting up a complex bilayer</a>.</p>
+<ol start="2" type="1">
+<li><p>Proceed as before and start a production run. To remind you, this involves (1) editing the system.top file to reflect the version of Martini you want to use (the <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/kalp.itp">KALP topology provided</a> is version 2.1) and providing include statements for the topology files; (2) <a href="../../../../docs/downloads/example-input-files/general-topology.html">downloading</a> or copying definitions of Martini version you want and the DPPC lipid topology file from <a href="../../../../docs/downloads/force-field-parameters/martini2/lipidome.html">the lipidome</a>; (3) using the correct names of the molecules involved; (4) downloading or copying set-up <code>.mdp</code> files for minimization, equilibration, and production runs and if necessary, editing them (bilayer simulations are best done using semi-isotropic pressure coupling and you may want to separately couple different groups to the thermostat(s)); (5) running the minimization and equilibration runs.</p></li>
+<li><p>Generate a new system in which membrane thickness is reduced (different the lipid type, DLPC for instance). Observe how the thickness is affecting the tilt of the transmembrane helix; compare it to the previous simulation.</p></li>
+<li><p>Double these previous boxes in one dimension (<code>gmx genconf</code>) and rerun the simulations. Observe the different dimerization conformations (parallel or anti-parallel tilts). Note that more than one simulation might be required to observe both cases! It may be worth your while to study this paper by Sengupta and Marrink<sup><a href="../../../../docs/tutorials/Legacy/martini2/proteins.html">[4]</a></sup> pointing out sampling issues in the study of helix association.</p></li>
+<li><p>Choose your favorite orientation and reverse-map the final conformation (tutorial on reverse-mapping available here). Simulate this system atomistically to refine and have a closer and detailed look at the interactions between KALPs.</p></li>
+</ol>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><code>gromacs</code> <a href="http://www.gromacs.org/">http://www.gromacs.org/</a></li>
+<li><code>martinize.py</code> (downloadable <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py">here</a>)</li>
+<li><code>insane.py</code> (downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>)</li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p><a href="http://pubs.acs.org/doi/abs/10.1021/ct700324x">[1]</a> L. Monticelli, S.K. Kandasamy, X. Periole, R.G. Larson, D.P. Tieleman, S.J. Marrink. The MARTINI coarse grained forcefield: extension to proteins. J. Chem. Theory Comput., 4:819-834, 2008.</p>
+<p><a href="http://pubs.acs.org/doi/abs/10.1021/ct9002114">[2]</a> X. Periole, M. Cavalli, S.J. Marrink, M.A.&nbsp;Ceruso. Combining an elastic network with a coarse-grained molecular force field: structure, dynamics, and intermolecular recognition. J. Chem. Theory Comput., 5:2531-2543, 2009.</p>
+<p><a href="http://pubs.acs.org/doi/abs/10.1021/acs.jctc.6b00986">[3]</a> A.B. Poma, M. Cieplak, P.E. Theodorakis Combining the Martini and structure-based coarse-grained approaches for the molecular dynamics of conformational transitions in proteins. J. Chem. Theory Comput., 13:1366-1374, 2017.</p>
+<p><a href="http://doi.org/10.1039/C0CP00101E">[4]</a> D. Sengupta and S.J. Marrink. Lipid mediated Interactions tune the association of Glycophorin A helix and its disruptive mutants in membranes. Phys. Chem. Chem. Phys., 12:12987-12996, 2010.</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

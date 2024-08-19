@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Parametrizing a new small molecule – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Parametrizing a new small molecule – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini3/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Parametrizing a new small molecule – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini3/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Parametrizing a new small molecule</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Parametrizing a new small molecule</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>The material offered in this page is LEGACY material.</em></strong> This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look! If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../../docs/tutorials/index.html">here</a> to go back!</p>
+</blockquote>
+<hr>
+<p>In case of issues, please contact <a href="mailto:alessandri@uchicago.edu">alessandri@uchicago.edu</a> This tutorial is available for download <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini3_beta/parametrizing_new_molecule/M3tutorials--parameterizing-a-new-small-molecule.pdf">here</a>. Required files and worked examples can be downloaded <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini3_beta/parametrizing_new_molecule/files-m3-newsm.zip">here</a>, and files for Bartender can be obtained <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini3_beta/parametrizing_new_molecule/files-m3-bartender.zip">here</a>.</p>
+<hr>
+<section id="table-of-contents" class="level4">
+<h4 class="anchored" data-anchor-id="table-of-contents">Table of contents</h4>
+<hr>
+<p><a href="#introduction">Introduction</a></p>
+<p><a href="#generate-atomistic-reference-data">1) Generate atomistic reference data</a></p>
+<p><a href="#atom-to-bead-mapping">2) Atom-to-bead mapping</a></p>
+<p><a href="#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation">3) Generate the CG mapped trajectory from the atomistic simulation</a></p>
+<p><a href="#create-the-initial-cg-itp-and-tpr-files">4) Create the initial CG itp and tpr files</a></p>
+<p><a href="#generate-target-cg-distributions-from-the-cg-mapped-trajectory">5) Generate target CG distributions from the CG mapped trajectory</a></p>
+<p><a href="#create-the-cg-simulation">6) Create the CG simulation</a></p>
+<p><a href="">7) Optimize CG bonded parameters</a></p>
+<p><a href="#comparison-to-experimental-results-further-refinements-and-final-considerations">8) Comparison to experimental results, further refinements, and final considerations</a></p>
+<p><a href="#using-bartender-to-obtain-bonded-parameters-for-a-small-molecule">9) Using Bartender to obtain bonded parameters for a small molecule</a></p>
+<p><a href="#references-and-notes">References and notes</a></p>
+</section>
+<section id="introduction" class="level4">
+<h4 class="anchored" data-anchor-id="introduction">Introduction</h4>
+<hr>
+<p>In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule. The aim is to have a pragmatic description of the Martini 3 coarse-graining (CGing) principles described in Refs. <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a> and <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>, which follow the main ideas outlined in the seminal Martini 2 work <a href="https://pubs.acs.org/doi/abs/10.1021/jp071097f">[3]</a>. Among other things, you may want to parametrize a small molecule with Martini 3 in order to perform protein-ligand binding simulations <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[4]</a> or perhaps test the solubility of a molecular dopant in different environments <a href="https://doi.org/10.1002/adma.201704630">[5]</a>.</p>
+<p>This tutorial is based on the analogous <a href="../../../../docs/tutorials/Legacy/martini2/parametrizing.html">Martini 2 tutorial</a> but takes into account some important aspects which changed in Martini 3. We will use as an example the molecule <em>1-ethylnaphthalene</em>, and make use of Gromacs versions 2019.x or later.</p>
+<p align="center">
+<img src="7-1.png" class="img-fluid">
+</p>
+</section>
+<section id="generate-atomistic-reference-data" class="level4">
+<h4 class="anchored" data-anchor-id="generate-atomistic-reference-data">1) Generate atomistic reference data</h4>
+<hr>
+<p>We will need atomistic reference data to extract bonded parameters for the CG model. Note that we will need all the hydrogen atoms to extract bond lengths further down this tutorial, so make sure that your atomistic structure contains all the hydrogens.</p>
+<p>Here, we will use the <a href="http://zarbi.chem.yale.edu/ligpargen/">LigParGen server</a> [6] as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the OPLS-AA force field, but of course feel free to use your favorite atomistic force field. Other web-based services such as the <a href="https://atb.uq.edu.au/">automated topology builder (ATB)</a> or <a href="https://www.charmm-gui.org/">CHARMM-GUI</a> can also be used to obtain reference topologies based on other AA force fields. Another important option is to look in the literature for atomistic studies of the molecule you want to parametrize: if you are lucky, somebody might have already published a validated atomistic force field for the molecule, which you can then use to create reference atomistic simulations.</p>
+<p>Start by feeding the SMILES string for <em>1-ethylnaphthalene</em> (namely, <code>CCc1cccc2ccccc21</code>) to the LigParGen server, and pick the “1.14*CM1A-LBCC (Neutral molecules)” charge model (nothing special about this choice of charge model). After submitting the molecule, the server will generate input parameters for several molecular dynamics (MD) packages. Download the structure file (PDB) as well as the OPLS-AA topology in the GROMACS format (TOP) and rename them <code>ENAP_LigParGen.pdb</code> and <code>ENAP_LigParGen.itp</code>, respectively. You can now unzip the zip archive provided:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> files-m3-newsm.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which contains a folder called ENAP-in-water that contains some template folders and useful scripts. We will assume that you will be carrying out the tutorial using this folder structure and scripts. Note that the archive contains also a folder called ENAP-worked where you will find a worked version of the tutorial (trajectories not included). This might be useful to use as reference to compare your files (<em>e.g.</em>, to compare the <code>ENAP_LigParGen.itp</code> you obtained with the one you find in <code>ENAP-worked/1_AA-reference</code>).</p>
+<p>We can now move to the first subfolder, <code>1_AA-reference</code>, and copy over the files you just obtained from the LigParGen server:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>     ENAP-in-water/1_AA-reference</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#[move here the obtained ENAP_LigParGen.pdb and ENAP_LigParGen.itp files]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Input files obtained from LigParGen may come with unknown residue names. Before launching the AA MD simulation, we will substitute the <code>UNK</code> residue name by ENAP. To do so, open the <code>ENAP_LigParGen.pdb</code> with your text editor of choice and replace the UNK entries on the 4th column of the <code>ATOM</code> records section. This column defines the residue name on a PDB file. Now open the <code>ENAP_LigParGen.itp</code> file and replace the <code>UNK</code> entries under the <code>[ moleculetype ]</code> directive and on the 4th column of the <code>[ atoms ]</code> directive. These define the residue name in a GROMACS topology file. (A lengthier discussion on GROMACS topology files will be given in section 4)). Alternatively, the following command - that relies on the Unix utility <code>sed -</code> will replace any <code>UNK</code> occurrence with ENAP (note the extra space after <code>UNK</code> which is important to keep the formatting of the <code>pdb</code> file!):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/UNK /ENAP/'</span> ENAP_LigParGen.pdb</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/UNK /ENAP/'</span> ENAP_LigParGen.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now launch the AA MD simulation:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> prepare_1mol_AA_system.sh  ENAP_LigParGen.pdb  spc216.gro  SOL  3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various mdp files to know more). Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time.</p>
+</section>
+<section id="atom-to-bead-mapping" class="level4">
+<h4 class="anchored" data-anchor-id="atom-to-bead-mapping">2) Atom-to-bead mapping</h4>
+<hr>
+<p>Mapping, <em>i.e.</em>, splitting the molecule in building blocks to be described by CG beads, is the heart of coarse-graining and relies on experience, chemical knowledge, and trial-and-error. Here are some guidelines you should follow when mapping a molecule to a Martini 3 model:</p>
+<ul>
+<li>only non-hydrogen atoms are considered to define the mapping;</li>
+<li>avoid dividing specific chemical groups (e.g., amide or carboxylate) between two beads;</li>
+<li>respect the symmetry of the molecule; it is moreover desirable to retain as much as possible the volume and shape of the underlying AA structure;</li>
+<li>default option for 4-to-1, 3-to-1 and 2-to-1 mappings are regular (R), small (S), and tiny (T) beads; they are the default option for linear fragments, e.g., the two 4-to-1 segments in octane;</li>
+<li>R-beads are the best option in terms of computational performance, with the bead size reasonably good to represent 4-to-1 linear molecules;</li>
+<li>T-beads are especially suited to represent the flatness of aromatic rings;</li>
+<li>S-beads usually better mimic the “bulkier” shape of aliphatic rings;</li>
+<li>the number of beads should be optimized such that the maximum mismatch in mapping is ±1 non-hydrogen atom per 10 non-hydrogen atoms of the atomistic structure;</li>
+<li>fully branched fragments should usually use beads of smaller size (the rational being that the central atom of a branched group is buried, that is, it is not exposed to the environment, reducing its influence on the interactions); for example, a neopentane group contains 5 non-hydrogen atoms but, as it is fully branched, you can safely model it as a regular bead.</li>
+</ul>
+<p>In this example, first of all it is important to realize that, within Martini 3, conjugated, atom-thick structures are best described by Tiny (T) beads. This ensures packing-related properties closely matching atomistic data <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a>-<a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>. In this case, the 10 carbon atoms of the naphthalene moiety are therefore mapped to 5 T-beads, as shown in the figure below:</p>
+<p align="center">
+<img src="7-2.png" class="img-fluid">
+</p>
+<p>Which leaves us with the ethyl group. A T-bead is again a good choice because the T-bead size is suited for describing 2 non-hydrogen atoms. Note that, the beads have also been numbered in the figure for further reference.</p>
+<p>A good idea to settle on a mapping is to draw your molecule a few times on a piece of paper, come up with several mappings, compare them, and choose the one that best fulfills the guidelines outlined above.</p>
+</section>
+<section id="generate-the-cg-mapped-trajectory-from-the-atomistic-simulation" class="level4">
+<h4 class="anchored" data-anchor-id="generate-the-cg-mapped-trajectory-from-the-atomistic-simulation">3) Generate the CG mapped trajectory from the atomistic simulation</h4>
+<hr>
+<p>Using the mapping you just created, you will now transform the simulation you did at 1) to CG resolution. One way to do this is by creating a Gromacs (AA-to-CG) index file where every index group stands for a bead and contains the mapped atom numbers.</p>
+<p>Instead of creating an index file by hand from scratch, an initial AA-to-CG index file can be obtained with the <a href="https://jbarnoud.github.io/cgbuilder/">CGbuilder tool</a> [7]. The intuitive GUI allows to map a molecule on the virtual environment almost as one does on paper. Just load the atomistic pdb/gro file of the molecule, click on the atoms you want to be part of the first bead, click again to remove them if you change your mind, create the next bead by clicking on the “new bead” button, and so on; finally, download the files once done. In fact, the tool allows also to obtain an initial CG configuration (a <code>.gro</code> file) for the beads and a CG-to-AA mapping file (a <code>.map</code> file) based on the chosen mapping. Doesn’t this sound better than traditional paper?! Current caveats of CGbuilder include the fact that atoms cannot contribute with a weight different from 1 to a certain bead, something which is sometimes needed when mapping atomistic structures to Martini. In such cases, the index and/or mapping files should be subsequently refined by hand.</p>
+<p>Before you get to it: an <strong>important change with respect to Martini 2.x</strong> is the fact that now <em>hydrogen atoms</em> are taken into account to determine the relative position of the beads when mapping an atomistic structure to CG resolution [[1]](https://doi.org/10.1038/s41592-021-01098-3-<a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a> - more on this later in this Section. This should be reflected in your AA-to-CG index file, that is, your index should also contain the hydrogens (in CGbuilder terms, click also on the hydrogens!). The general rule is to map a certain hydrogen atom to the bead which contains the non-hydrogen atom it is attached to.</p>
+<p>You can now try to map the <code>ENAP_LigParGen.pdb</code> via CGbuilder. Once done, download the files that CGbuilder creates - <code>ndx</code>, <code>map</code>, and <code>gro</code> - to the <code>2_atom-to-bead-mapping</code> folder:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2_atom-to-bead-mapping/</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#[download cgbuilder.ndx, cgbuilder.map, and cgbuilder.gro and move them to the current folder, i.e., '2_atom-to-bead-mapping']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and compare the files obtained to the ones provided in ENAP-worked/2_atom-to-bead-mapping where, besides the files we just explained, you can also find a screenshot (ENAP_cgbuilder.png) of the mapping as done with the CGbuilder tool. <strong>Note</strong> also that the files provided assume <strong>the beads to be ordered in the same way as shown in the Figure of Section 2)</strong>; it is hence recommended to use the same order to greatly facilitate comparisons.</p>
+<p>After having populated your own <code>ENAP-in-water/2_atom-to-bead-mapping</code> subfolder with - at least - the ndx file (let’s call it <code>ENAP_oplsaaTOcg_cgbuilder.ndx</code>), move to the folder 3_mapped and copy over the index (we just rename it to <code>mapping.ndx</code>), that is:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>  ../3_mapped</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span>  ../2_atom-to-bead-mapping/ENAP_oplsaaTOcg_cgbuilder.ndx  mapping.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, we took into account the hydrogens because <strong>center of geometry (COG)-based mapping of AA structures, done taking into account the hydrogen atoms, constitutes the standard procedure for obtaining bonded parameters in Martini 3</strong> <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a>-<a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>. Hence, we need to consider the hydrogens when mapping the AA structure to CG resolution. Because of a gmx traj unexpected behavior (a potential bug, see note [8]), if we want to stick to gmx traj (<a href="../../../../docs/tutorials/Legacy/martini2/parametrizing.html">like in the good old days</a>; alternatives include, e.g., using the <a href="https://www.mdanalysis.org/">MDAnalysis</a> Python library), we need a little hack before being able to run <code>gmx traj</code>. Namely, we need to first create an AA tpr file with the atoms of the atomistic structure all having the same mass. To do this, still from the <code>3_mapped</code> folder, create a new itp with the modified masses:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span>  ../1_AA-reference/ENAP_LigParGen.itp  ENAP_LigParGen_COG.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open <code>ENAP_LigParGen_COG.itp</code> with your text editor of choice and change the values on the 8th column under the <code>[ atoms ]</code> directive to an equal value (of, for example, <code>1.0</code>). This column defines the atom mass in a GROMACS topology file. Now prepare a new top file which includes it:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span>  ../1_AA-reference/system.top                      system_COG.top</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'s/ENAP_LigParGen.itp/ENAP_LigParGen_COG.itp/'</span> system_COG.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can now run the script:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 3_map_trajectory_COG.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which will:</p>
+<ol type="1">
+<li>first make sure that the AA trajectory is <em>whole</em>, i.e., your molecule of interest is not split by the periodic boundary conditions in one or more frames in the trajectory file (the <code>gmx trjconv -pbc whole</code> … command);</li>
+<li>subsequently create a <code>AA-COG.tpr</code>, which will be used for the COG mapping in the following step (the <code>gmx grompp -p</code> … command);</li>
+<li>finally, map the AA trajectory to CG resolution: the <code>gmx traj -f</code>… command contained in <code>3_map_trajectory_COG.sh</code> will do COG-mapping because it uses the <code>AA-COG.tpr</code>.</li>
+</ol>
+</section>
+<section id="create-the-initial-cg-itp-and-tpr-files" class="level4">
+<h4 class="anchored" data-anchor-id="create-the-initial-cg-itp-and-tpr-files">4) Create the initial CG itp and tpr files</h4>
+<hr>
+<p>GROMACS itp files are used to define components of a topology as a separate file. In this case we will create one to define the topology for our molecule of interest, that is, define the atoms (that, when talking about CG molecules, are usually called beads), atom types, and properties that make up the molecule, as well as the bonded parameters that define how the molecule is held together.</p>
+<p>The creation of the CG <code>itp</code> file has to be done by hand, although some copy-pasting from existing itp files might help in getting the format right. A thorough guide on the GROMACS specification for molecular topologies can be found in the <a href="https://manual.gromacs.org/documentation/current/reference-manual/topologies/topology-file-formats.html">GROMACS reference manual</a>, however, this tutorial will guide you through the basics.</p>
+<p>The first entry in the itp is the [ moleculetype ], one line containing the molecule name and the number of nonbonded interaction exclusions. For Martini topologies, the standard number of exclusions is 1, which means that nonbonded interactions between particles directly connected are excluded. For our example this would be:</p>
+<pre class="text"><code>[ moleculetype ]
+; molname    nrexcl
+  ENAP         1</code></pre>
+<p>The second entry in the <code>itp</code> file is <code>[ atoms ]</code>, where each of the particles that make up the molecule are defined. One line entry per particle is defined, containing the <em>beadnumber</em>, <em>beadtype</em>, <em>residuenumber</em>, <em>residuename</em>, <em>beadname</em>, <em>chargegroup</em>, <em>charge</em>, and <em>mass</em>. For each bead we can freely define a beadname. The residue number and residue name will be the same for all beads in small molecules, such as in this example.</p>
+<p>In Martini, we must also assign a bead type for each of the beads. This assignment follows the “Martini 3 Bible” (from Refs. <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a> and <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>), where initial bead types are assigned based on the underlying chemical building blocks. <strong>You can find the “Martini 3 Bible” in the form of a table <a href="https://github.com/ricalessandri/Martini3-small-molecules/blob/main/tutorials/building_block_table.pdf">at this link</a></strong>. In this example, bead number 1 represents the ethyl group substituent; according to the “Martini 3 Bible” ethyl groups are represented by TC3 beads. Check the table yourself to see which bead types to use to describe the remaining beads. For a lengthier discussion of bead choices, see the final section of this tutorial.</p>
+<p>Each bead will also have its own charge, which in this example will be 0 for all beads. Mass is usually not specified in Martini; in this way, default masses of 72, 54, and 36 a.m.u. are used for R-, S-, and T-beads, respectively. However, when defined the mass of the beads is typically the sum of the mass of the underlying atoms.</p>
+<p>For our example, the atom entry for our first bead would be:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> atoms <span class="bu">]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">nr</span> type resnr residue atom cgnr charge mass</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">1</span>  TC2   0    ENAP   C1    1    0     </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These first two entries in the <code>itp</code> file are mandatory and make up a basic itp. Finish building your initial CG itp entries and name the file <code>ENAP_initial.itp</code>. The <code>[ moleculetype ]</code> and <code>[ atoms ]</code> entries are typically followed by entries which define the bonded parameters: <code>[ bonds ]</code>, <code>[ constraints ]</code>, <code>[ angles ]</code>, and <code>[ dihedrals ]</code>. For now, you do not need to care about the bonded entries, have a look at the next section (5) for considerations about which bonded terms you will need and how to define them.</p>
+<p>Before going onto the next step, we need a CG <code>tpr</code> file to generate the distributions of the bonds, angles, and dihedrals from the mapped trajectory. To do this, move to the directory <code>4_initial-CG</code>, where you should place the <code>ENAP_initial.itp</code> and that also contains a <code>system_CG.top</code>, the <code>martini_v3.0.0.itp</code> and a <code>martini.mdp</code> and run the script:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>   ../4_initial-CG</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 4_create_CG_tpr.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The script will:</p>
+<ol type="1">
+<li>extract one frame from your trajectory (mapping it to CG resolution, of course);</li>
+<li>use the frame, along with the top and mdp files to create a CG.tpr file for your molecule.</li>
+</ol>
+</section>
+<section id="generate-target-cg-distributions-from-the-cg-mapped-trajectory" class="level4">
+<h4 class="anchored" data-anchor-id="generate-target-cg-distributions-from-the-cg-mapped-trajectory">5) Generate target CG distributions from the CG mapped trajectory</h4>
+<hr>
+<p>We need to obtain the parameters of the bonded interactions (bonds, constraints, angles, proper and improper dihedrals) which we want in our CG model from our mapped-to-CG atomistic simulations from step 3). However, which bonded terms do we need to have? Let’s go back to the drawing table and identify between which beads there should be bonded interactions.</p>
+<section id="on-the-choice-of-bonded-terms-for-the-cg-model" class="level5">
+<h5 class="anchored" data-anchor-id="on-the-choice-of-bonded-terms-for-the-cg-model">5.1) On the choice of bonded terms for the CG model</h5>
+<p>The bonds connecting the T-beads within the 1-ethyl-naphthalene moiety are most likely going to be very stiff, that is, their distributions are going to be very narrow. This calls for the use of constraints <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a>-<a href="https://pubs.acs.org/doi/abs/10.1021/jp071097f">[3]</a>. A “naive” way of putting the model together would be to constrain all the beads (see Figure A below):</p>
+<p align="center">
+<img src="7-3.png" class="img-fluid">
+</p>
+<p>such a model, however, is prone to numerical instabilities, because it is increasingly complicated for the constraint algorithm to satisfy a growing number of connected constraints. Another option is to build a “hinge” model <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a> (inspired by the work of Melo et al.&nbsp;<a href="http://dx.doi.org/10.1063/1.4937783%5D">[9]</a>) where the 4 external beads (beads 2, 3, 5, and 6 of the Figure) are connected by 5 constraints to form a “hinge” construction, while the central bead (bead number 4) is described as a virtual site, that is, a particle whose position is completely defined by its constructing particles (Figure B above). The <strong>use of virtual particles</strong> not only improves the numerical stability of the model but also improves performance <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>. As virtual sites are mass-less, the mass of the virtual site should be shared among the four constructing beads, so that beads 2, 3, 5, and 6 should have each a mass of 45 (= 36 + 36/4, where 36 is the mass of a T-bead).</p>
+<p>Bead 1 can then be connected by means of two bonds, namely 1-2 and 1-4. Two improper dihedrals (1-3-6-5 and 2-1-4-3) will be required in order to keep bead 1 on the right position onto the naphthalene ring. A final improper dihedral 2-3-6-5 will also be needed to keep the naphthalene ring flat. Exclusions between all beads should also be applied in this case, as the molecule is quite stiff and having intramolecular interactions in this case is not needed.</p>
+<p>Having decided on the bonded terms to use, they must now be defined in the itp file under the <code>[ bonds ]</code>, <code>[ constraints ]</code>, <code>[ angles ]</code>, <code>[ dihedrals ]</code>, and <code>[ virtual_sitesn ]</code> entries. In general, each bonded potential is defined by stating the atom number of the particles involved, the type of potential involved, and then the parameters involved in the potential, such as reference bond lengths/angle values or force constants. This definition is highly dependent on the type of potentials employed and, as such, users should always reference the <a href="https://manual.gromacs.org/documentation/current/reference-manual/topologies/topology-file-formats.html">GROMACS manual for specific details</a>. Here, we will use this example to cover the most common potentials used in defining Martini topologies.</p>
+<p>Bonds are defined under [ bonds ] by stating the atom number of the particles involved, the type of bond potential (in this case, type 1, a regular harmonic bond) followed by the reference bond length and force constant. Constraints are defined similarly to bonds, under the <code>[ constraints ]</code> section, with the exception that no force constant is needed. If we use bond 1-2 and constraint 2-3 as examples, your itp should look something like this:</p>
+<pre class="text"><code>[bonds]
+; i j funct length kb
+ 1 2 1 0.260 20000 
+...
+
+[constraints]
+; i j funct length
+ 2 3 1 0.260 
+...</code></pre>
+<p>Angles and dihedrals follow the same strategy, stating the atom number of the particles involved, the type of potential, and, in this case, the reference angle and force constant. While there are no angles defined in this example, we have 3 improper dihedral potentials in place (regular and improper dihedral potentials correspond to dihedral function types 1 and 2, respectively):</p>
+<pre class="text"><code>[ dihedrals ]
+; improper
+; i j k l funct ref.angle force_k
+ 1 3 6 5 2 0 10 
+...</code></pre>
+<p>Virtual sites are defined slightly differently. In this case, you define the atom number of the virtual site, followed by the type of virtual site, and the atom numbers of the constructing particles. In our case:</p>
+<pre class="text"><code>[ virtual_sitesn ]
+; site funct constructing atom indices
+ 4 1 2 3 5 6</code></pre>
+<p>Finally, to apply exclusions, we state the atom number of the target particle followed by the numbers of the atoms from which the target particle is to be excluded:</p>
+<pre class="text"><code>[ exclusions ]
+ 1 2 3 4 5 6</code></pre>
+<p>Using initial guesses for the reference bond lengths/angles and force constants you can now create a complete topology for the target molecule. These initial guesses will be improved upon in a further section by comparing the AA and CG bonded distributions and adjusting these values.</p>
+</section>
+<section id="index-files-and-generation-of-target-distributions" class="level5">
+<h5 class="anchored" data-anchor-id="index-files-and-generation-of-target-distributions">5.2) Index files and generation of target distributions</h5>
+<p>Once you have settled on the bonded terms, create index files for the bonds with a directive [bondX] for each bond, and which contains pairs of CG beads, for example:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[bond1]</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">1</span>  2</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[bond2]</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">1</span>  4</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and similarly for angles (with triples of CG beads) and dihedrals (with quartets). Write scripts that generate distributions for all bonds, angles, and dihedrals you are interested in. For 1-ethyl-naphthalene, there are seven bonds (5 constraints and 2 bonds) and three dihedrals, as discussed. A script is also provided, so that:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span>  ENAP-in-water/5_target-distr</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># [create bonds.ndx and dihedrals.ndx]</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 5_generate_target_distr.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will create the distributions. Inspect the folders bonds_mapped, and dihedrals_mapped for the results. You will find each bond distributions as <code>bonds_mapped/distr_bond_X.xvg</code> and a summary of the mean and standard deviations of the mapped bonds as <code>bonds_mapped/data_bonds.txt</code>.</p>
+<p>For each bond, the script uses the following command (in this example, the command is applied for the first bond, whose index is 0):</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> 0 <span class="kw">|</span> <span class="ex">gmx</span> distance <span class="at">-f</span> ../3_mapped/mapped.xtc <span class="at">-n</span> bonds.ndx <span class="at">-s</span> ../4_initial-CG/CG.tpr <span class="at">-oall</span> bonds_mapped/bond_0.xvg <span class="at">-xvg</span> none</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> bonds_mapped/bond_0.xvg <span class="at">-dist</span> bonds_mapped/distr_bond_0.xvg <span class="at">-xvg</span> none <span class="at">-bw</span> 0.001</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and similarly for the first dihedral:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> 0 <span class="kw">|</span> <span class="ex">gmx</span> angle <span class="at">-type</span> dihedral <span class="at">-f</span> ../3_mapped/mapped.xtc <span class="at">-n</span> dihedrals.ndx <span class="at">-ov</span> dihedrals_mapped/dih_0.xvg</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> dihedrals_mapped/dih_0.xvg <span class="at">-dist</span> dihedrals_mapped/distr_dih_0.xvg <span class="at">-xvg</span> none <span class="at">-bw</span> 1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="create-the-cg-simulation" class="level4">
+<h4 class="anchored" data-anchor-id="create-the-cg-simulation">6) Create the CG simulation</h4>
+<hr>
+<p>We can now finalize the first take on the CG model, <code>ENAP_take1.itp</code>, where we can use the info contained in the <code>data_bonds.txt</code> and <code>data_dihedrals.txt</code> files to come up with better guesses for the bonded parameters:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ENAP-in-water/6_CG-takeCURRENT</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../4_initial-CG/molecule.gro      .</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../4_initial-CG/ENAP_initial.itp  ENAP_take1.itp</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [adjust ENAP_take1.itp with input from the previous step]</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> prepare_CG_1mol_system.sh  molecule.gro  box_CG_W_eq.gro  W  1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the command will run an energy-minimization, followed by an NPT equilibration, and by an MD run of 50 ns (inspect the script and the various mdp files to know more) for the Martini system in water.</p>
+<p>Once the MD is run, you can use the index files generated for the mapped trajectory to generate the distributions of the CG trajectory:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../5_target-distr/bonds.ndx .</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../5_target-distr/dihedrals.ndx .</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 6_generate_CG_distr.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which will produce files as done by the <code>5_generate_target_distr.sh</code> in the previous step but now for the CG trajectory.</p>
+</section>
+<section id="optimize-cg-bonded-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="optimize-cg-bonded-parameters">7) Optimize CG bonded parameters</h4>
+<hr>
+<p>You can now plot the distributions against each other and compare. You can use the following scripts:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ENAP-in-water</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gnuplot</span> plot_bonds_tutorial_4x2.gnu </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gnuplot</span> plot_dihedrals_tutorial_4x1.gnu </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The plots produced should look like the following, for bonds:</p>
+<p align="center">
+<img src="7-4.png" class="img-fluid">
+</p>
+<p>and dihedrals (AA is in blue, Martini is in red):</p>
+<p align="center">
+<img src="7-5.png" class="img-fluid">
+</p>
+<p>The agreement is very good. Note that the bimodality of the distributions of the first two dihedrals cannot be captured by the CG model. However, the size of the CG distribution will seemingly capture the two AA configurations into the single CG configuration. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG <code>itp</code> and iterate till satisfactory agreement is achieved.</p>
+</section>
+<section id="comparison-to-experimental-results-further-refinements-and-final-considerations" class="level4">
+<h4 class="anchored" data-anchor-id="comparison-to-experimental-results-further-refinements-and-final-considerations">8) Comparison to experimental results, further refinements, and final considerations</h4>
+<hr>
+<section id="partitioning-free-energies" class="level5">
+<h5 class="anchored" data-anchor-id="partitioning-free-energies">8.1) Partitioning free energies</h5>
+<p>Partitioning free energies (see <a href="../../../../docs/tutorials/Legacy/martini2/free_energy.html">tutorial on how to compute them</a>) constitute particularly good reference experimental data.</p>
+<p>In the case of 1-ethyl-naphthalene, a model using 5 TC5 beads for the naphthalene ring, and a TC3 bead for the ethyl group, leads to the following (excellent!) agreement with available partitioning data (the experimental values are from Ref. <a href="https://pubs.acs.org/doi/abs/10.1021/ci400112k">[10]</a>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>logHD (kJ/mol)</th>
+<th>logP (kJ/mol)</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Exp.</strong></td>
+<td><strong>CG</strong></td>
+<td><strong>Err.</strong></td>
+<td><strong>Exp.</strong></td>
+<td><strong>CG</strong></td>
+<td><strong>Err.</strong></td>
+</tr>
+<tr class="even">
+<td>25.2</td>
+<td>25.8</td>
+<td>0.6</td>
+<td>25.2</td>
+<td>24.4</td>
+<td>-0.6</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="molecular-volume-and-shape" class="level5">
+<h5 class="anchored" data-anchor-id="molecular-volume-and-shape">8.2) Molecular volume and shape</h5>
+<p>The approach described so far is oriented to <strong>high-throughput</strong> applications where this procedure could be automated. However, COG-based mappings cannot necessarily always work perfectly. In case packing and/or densities seem off, it is advisable to look into how the molecular volume and shape of the CG model compare to the ones of the underlying AA structure.</p>
+<p>To this end, we can use the Gromacs tool gmx sasa to compute the solvent accessible surface area (SASA) and the Connolly surface of the AA and CG models. While AA force fields can use the default <code>vdwradii.dat</code> provided by Gromacs, for CG molecules, such file needs to be modified. For this, copy the <code>vdwradii.dat</code> file from the default location to the folder where we will execute the analysis:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ENAP-in-water/7_SASA</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /usr/local/gromacs-VERSION/share/gromacs/top/vdwradii.dat  vdwradii_CG.dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>vdwradii_CG.dat</code> file in the current folder should now be edited so as to contain the radius of the Martini 3 beads based on the <em>atomnames</em> (!) of your system. By the way, the radii for the Martini R-, S-, and T-beads are 0.264, 0.230, and 0.191 nm, respectively. Take a look at <code>ENAP-worked/7_SASA/vdwradii_CG.dat</code> in case of doubts.</p>
+<p>We also recommend using an updated <code>vdwradii.dat</code> for the atomistic reference calculations, instead of the Gromacs default. The file - that you can find among the provided files with the name <code>vdwradii_AA.dat</code> - uses more recent vdW radii from [<a href="https://doi.org/10.1021/jp953141+">Rowland and Taylor, J. Phys. Chem. 1996, 100, 7384-7391</a>].</p>
+<p>Now, run:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 7_compute_SASAs.sh  ENAP</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>that will compute the SASA and Connolly surfaces for both the CG and AA models. The SASA will be compute along the trajectory, with a command that in the case of the AA model looks like this:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> sasa <span class="at">-f</span> ../../3_mapped/AA-traj.whole.xtc <span class="at">-s</span> ../../3_mapped/AA-COG.tpr <span class="at">-ndots</span> 4800 <span class="at">-probe</span> 0.191  <span class="at">-o</span> SASA-AA.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the probe size is the size of a T-bead (the size of the probe does not matter but you must consistently use a certain size if you want to meaningfully compare the obtained SASA values), and the <code>-ndots</code> 4800 flag guarantees accurate SASA value. You will instead see that the command used to obtain the Connolly surface uses fewer points (<code>-ndots</code> 240) to ease the visualization with softwares such as <code>VMD</code>. Indeed, we can now overlap the Connolly surfaces (computed by the script on the energy-minimized AA structure and its mapped version) by using the following command:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-m</span>  AA/ENAP-AA-min.gro  AA/surf-AA.pdb  CG/surf-CG.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This should give you some of the views you find rendered below. Below you find also the plot of the distribution of the SASA along the trajectory - <code>distr-SASA-AA.xvg</code> and <code>distr-SASA-CG.xvg</code> (AA is in blue, Martini is in red):</p>
+<p align="center">
+<img src="7-6.png" class="img-fluid">
+</p>
+<p>The SASA distributions show a discrepancy of about 5% (the average CG SASA is about 5% smaller than the AA one - see <code>data_sasa_AA.xvg</code> and <code>distr-SASA-CG.xvg</code>), which is acceptable (<strong>NOTE:</strong> <em>These figures were generated with the open-beta parameters, which tended to systematically underestimate the SASA; this is improved in the published Martini 3 version, so you should get better agreement!</em>), but not ideal. Inspecting the Connolly surfaces (AA in gray, CG in blue) gives you a clearer picture: while the naphthalene moiety on average seems to be captured quite accurately by the CG model, the T-bead 1 does seem not to account for the whole molecular volume of the ethyl group. One way to improve this could be to lengthen bonds 1-2, and 1-4.</p>
+</section>
+<section id="final-considerations" class="level5">
+<h5 class="anchored" data-anchor-id="final-considerations">8.3) Final considerations</h5>
+<ul>
+<li><p>Mapping of some chemical groups, especially when done at higher resolutions (e.g., in aromatic rings), can vary based on the <strong>proximity</strong> of functional groups. The rule of thumb is that such perturbations may require a shift of ±1 in the degree of polarity of the bead in question.</p></li>
+<li><p>Take inspiration from already-developed models when trying to build a Martini 3 molecule for a new small molecule. Several examples can be found on the <a href="https://github.com/ricalessandri/Martini3-small-molecules/blob/main/models/martini_v3.0.0_small_molecules_v1.itp">Martini 3 small molecule GitHub repo</a>.</p></li>
+<li><p>Besides <strong>hydrogen bonding labels</strong> (“d” <em>donor</em>, and “a” for <em>acceptor</em>), <strong>electron polarizability labels</strong> are also made available in Martini 3: these mimic electron-rich (label “e”) or electron-poor (label “v”, for “vacancy”) regions of aromatic rings. Such labels have been tested to a less extended degree than d/a labels, but have shown great potentials in applications involving aedamers <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a>. In the case of <em>1-ethylnaphthalene</em>, the “e” label may be used to describe bead number 4 (at the center of the naphthalene moiety) and bead number 1 (because connected to an electron-donating group such as -CH2CH3).</p></li>
+<li><p>Depending on your application, you may want to include <strong>other validation targets</strong>, besides free energies of transfer. These can allow you to fine-tune and optimize bead type choices and bonded parameters. Below a non-exhaustive list of potential target properties:</p>
+<ul>
+<li>if molecular stacking or packing are of importance, one can use use dimerization free energy landscapes as reference <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>;</li>
+<li>miscibility of binary mixtures has been successfully employed in the parameterization of martini CG solvent models <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a> - either by qualitative assessing the mixing behavior or by computing the excess free energy of mixing <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a>-<a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">[2]</a>;</li>
+<li>other experimental data such as the density of pure liquids or phase transition temperatures <a href="https://doi.org/10.1039/D0GC01823F">[11]</a> can be also used;</li>
+<li>finally, more specific references are also used, such as the hydrogen-bonding strengths and specificity of interactions for nucleobases <a href="https://doi.org/10.1038/s41592-021-01098-3">[1]</a>, following the Martini 2 DNA work <a href="https://doi.org/10.1021/acs.jctc.5b00286">[12]</a>.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="using-bartender-to-obtain-bonded-parameters-for-a-small-molecule" class="level4">
+<h4 class="anchored" data-anchor-id="using-bartender-to-obtain-bonded-parameters-for-a-small-molecule">9) Using Bartender to obtain bonded parameters for a small molecule</h4>
+<hr>
+<p>Bartender is a program aimed at obtaining bonded parameters for Martini models while bypassing the atomistic force field development and simulation step. It does so by relying on (semi-empirical) quantum chemical calculations. Specifically, Bartender makes extensive use of the GFN family of methods from the Grimme group, implemented in their xtb program. If you use Bartender in your research we ask you to cite the relevant GFN papers [13].</p>
+<p>Hence, this step of the tutorial can replace steps 1), 3), and 5) above.</p>
+<section id="installing-bartender" class="level5">
+<h5 class="anchored" data-anchor-id="installing-bartender">9.1) Installing Bartender</h5>
+<p>To install Bartender, uncompress the provided tgz file into a directory and set the BTROOT environment variable to point to that directory. Optionally, you can add BTROOT to PATH.</p>
+<p>Let us go through this installation process. Say your home directory is <code>/home/alfred</code>, and you have the Bartender <code>tgz</code> file in that folder (you can find the tgz file among the downloaded files). Switch to that directory:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create a bartender directory and move the Bartender <code>tgz</code> file there:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> bartender</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> bartenderX.Y.Z.tgz bartender/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where X.Y.Z is the version number for your binary. Now enter the bartender directory and uncompress the binary:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bartender</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvzf bartenderX.Y.Z.tgz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Go back to the home directory and define the required environment variables. If you are using the Bash shell, that would be:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export BTROOT=/home/alfred/bartender"</span> <span class="op">&gt;&gt;</span> .bashrc</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"source </span><span class="va">$BTROOT</span><span class="st">/bartender_config.sh"</span> <span class="op">&gt;&gt;</span> .bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now use:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and Bartender is ready to use!</p>
+</section>
+<section id="preparing-bartender-input-files" class="level5">
+<h5 class="anchored" data-anchor-id="preparing-bartender-input-files">9.2) Preparing Bartender input files</h5>
+<p>In the following step you will need the bartender python script, and a few input fils. You can download the necessary input files <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini3_beta/parametrizing_new_molecule/files-m3-bartender.zip">here</a>!</p>
+<p>Bartender requires an input file and a geometry file.</p>
+<p>The input file tells Bartender two things: - the atom-to-bead mapping; - the bonded terms you want to obtain.</p>
+<p>The syntax of the Bartender input file is fairly simple, but we provide a script to automatically generate it from existing <code>itp</code> and <code>ndx</code> files. The <code>itp</code> needs to contain the bonded terms, although, of course, you can assign any nonsensical value you want to each of the required constants. The <code>ndx</code> file contains the atom-to-bead mapping. Issuing the command (note that script requires python3, of course!):</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ./write_bartender_inp.py <span class="at">--ndx</span> ENAP_oplsaaTOcg_cgbuilder.ndx <span class="at">--itp</span> ENAP_blank.itp <span class="at">--out</span> ENAP_bartender.inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will produce the required <code>ENAP_bartender.inp</code> input file. Notice that gmx2bar also asks for the number of atoms in the geometry file (24, in this case).</p>
+<p>For the geometry file, Bartender supports the <code>pdb</code>, <code>gro</code>, and <code>xyz</code> formats. Unfortunately, the LigParGen server generates non-standard pdb files which Bartender cannot read. The easiest way to proceed is to transform these non-standard <code>pdb</code> files into simpler <code>xyz</code> files. This conversion is easy to do with a text editor that supports column selection, but you can also issue the command:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'BEGIN{COORDS="";NATOMS=0};NF==8{ COORDS=COORDS substr($3,1,1)" "$6" "$7" "$8"\n";NATOMS++}END{print NATOMS"\n\n"COORDS }'</span> ENAP_LigParGen.pdb <span class="op">&gt;</span> ENAP.xyz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which calls the Unix utility <code>awk</code> and casts the non-standard pdb file onto an <code>xyx</code> file. We now have everything Bartender needs!</p>
+</section>
+<section id="running-bartender" class="level5">
+<h5 class="anchored" data-anchor-id="running-bartender">9.3) Running Bartender</h5>
+<p>Bartender has many optional flags, but it is designed so they are rarely needed. Here, we can just use the basic command: bartender geometry.pdb/.gro/.xyz bartender_input.inp, which, in our case, will be:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bartender</span>   ENAP.xyz ENAP_bartender.inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="analyzing-the-resulting-files" class="level5">
+<h5 class="anchored" data-anchor-id="analyzing-the-resulting-files">9.4) Analyzing the resulting files</h5>
+<p>After a short wait (3-10 minutes depending on your CPU(s)), Bartender has produced several files, among which:</p>
+<ul>
+<li>A <code>gmx_out.itp</code> file: This is the topology file we were after, with the bonded parameters.</li>
+<li>A series of png files: These files contain plots of the actual distributions for each term and each fit (red triangles) and the corresponding fitted function (blue lines).</li>
+</ul>
+<p>If we open the <code>gmx_out.itp</code> file, we will see that Bartender will have generated bonded parameters for all the bonds, constraints, and impropers terms we have in the topology. How do the parameters compare to the ones you obtained by optimizing them by hand while using the atomistic simulation as a reference?</p>
+</section>
+</section>
+<section id="references-and-notes" class="level4">
+<h4 class="anchored" data-anchor-id="references-and-notes">References and notes</h4>
+<hr>
+<p>[1] P.C.T. Souza, et al., <a href="https://doi.org/10.1038/s41592-021-01098-3">Nat. Methods 2021, DOI: 10.1038/s41592-021-01098-3</a>.</p>
+<p>[2] R. Alessandri, et al., <a href="https://doi.org/10.33774/chemrxiv-2021-1qmq9">Chemrxiv 2021, DOI: 10.33774/chemrxiv-2021-1qmq9</a>.</p>
+<p>[3] S.J. Marrink, et al., <a href="https://pubs.acs.org/doi/abs/10.1021/jp071097f">J. Phys. Chem. B. 2007, 111, 7812-7824</a>.</p>
+<p>[4] P.C.T. Souza, S. Thallmair, et al., <a href="https://doi.org/10.1038/s41467-020-17437-5">Nat. Commun. 2020, DOI: 10.1038/s41467-020-17437-5</a>.</p>
+<p>[5] J. Liu, et al., <a href="https://doi.org/10.1002/adma.201704630">Adv. Mater. 2018, DOI: 10.1002/adma.201704630</a>.</p>
+<p>[6] W.L. Jorgensen and J. Tirado-Rives, <a href="https://www.pnas.org/content/pnas/102/19/6665.full.pdf">PNAS 2005, 102, 6665</a>; L.S. Dodda, et al., <a href="https://pubs.acs.org/doi/abs/10.1021/acs.jpcb.7b00272">J. Phys. Chem. B, 2017, 121, 3864</a>; L.S. Dodda, et al., <a href="https://academic.oup.com/nar/article/45/W1/W331/3747780">Nucleic Acids Res. 2017, 45, W331</a>.</p>
+<p>[7] J. Barnoud, <a href="https://github.com/jbarnoud/cgbuilder">https://github.com/jbarnoud/cgbuilder</a>.</p>
+<p>[8] The Gromacs tool <code>gmx traj</code> won’t allow to choose more than one group unless one passes the flag <code>-com</code>. Neither <code>-nocom</code> or omitting the flag altogether (which should give <code>-nocom</code>) work.</p>
+<p>[9] M.N. Melo, H.I. Ingolfsson, S.J. Marrink, <a href="http://dx.doi.org/10.1063/1.4937783%5D">J. Chem. Phys. 2015, 143, 243152</a>.</p>
+<p>[10] S. Natesan, et al., <a href="https://pubs.acs.org/doi/abs/10.1021/ci400112k">J. Chem. Inf. Model. 2013, 53, 6, 1424-1435</a>.</p>
+<p>[11] L.I. Vazquez-Salazar, M. Selle, et al., <a href="https://doi.org/10.1039/D0GC01823F">Green Chem. 2020, DOI: 10.1039/D0GC01823F</a>.</p>
+<p>[12] J.J. Uusitalo, et al., <a href="https://doi.org/10.1021/acs.jctc.5b00286">J. Chem. Theory Comput. 2015, 11, 8, 3932-3945</a>.</p>
+<p>[13] [General reference] C. Bannwarth, et al., <a href="https://doi.org/10.1002/wcms.1493">WIRES Comput. Mol. Sci. 2021, DOI: 10.1002/wcms.1493</a>. [Solvation model] S. Ehlert, et al., <a href="https://doi.org/10.26434/chemrxiv.14555355.v1">Chemrxiv 2021, DOI: 10.26434/chemrxiv.14555355.v1</a>. [GFN2-xTB] C. Bannwarth, et al., <a href="https://doi.org/10.1021/acs.jctc.8b01176">J. Chem. Theory. Comput. 2019, 15, 1652-1671</a>. [GFNFF] S. Spicher and S. Grimme <a href="https://doi.org/10.1002/ange.202004239">Ang. Chem. Int. Ed. 2020, 59, 15665-15673</a>.</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

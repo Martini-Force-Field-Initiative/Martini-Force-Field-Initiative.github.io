@@ -1,0 +1,253 @@
+*{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.btn-21 {
+  cursor: pointer;
+  bottom: -40px;
+  font-weight: bold;
+  width: 120px;
+  height: 40px;
+  position: relative;
+  color: #2d5c80;
+  border-radius: 0px;
+  background: transparent;
+  overflow: hidden;
+  border: none;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.btn-21:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #2d5c80);
+  animation: btn-21-right 2s linear infinite;
+  transition: 0.5s ease-in-out;
+}
+
+.btn-21:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #2d5c80);
+  animation: btn-21-bottom 2s linear infinite;
+  animation-delay: 1s;
+  transform: translateY(-100%);
+}
+
+.btn-21 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+}
+
+.btn-21 span:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #2d5c80);
+  animation: btn-21-left 2s linear infinite;
+}
+
+.btn-21 span:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, #2d5c80);
+  animation: btn-21-top 2s linear infinite;
+  animation-delay: 1s;
+  transform: translateY(-100%);
+}
+
+.btn-21:hover {
+  color: #797a19;
+}
+
+.btn-21:hover:before {
+  background: linear-gradient(to right, transparent, #797a19);
+}
+
+.btn-21:hover:after {
+  background: linear-gradient(to bottom, transparent, #797a19);
+}
+
+.btn-21 span:hover:before {
+  background: linear-gradient(to top, transparent, #797a19);
+}
+
+.btn-21 span:hover:after {
+  background: linear-gradient(to left, transparent, #797a19);
+}
+
+.btn-21:active:before {
+  background: linear-gradient(to right, transparent, #797a19);
+}
+
+.btn-21:active:after {
+  background: linear-gradient(to bottom, transparent, #797a19);
+}
+
+.btn-21 span:active:before {
+  background: linear-gradient(to top, transparent, #797a19);
+}
+
+.btn-21 span:active:after {
+  background: linear-gradient(to left, transparent, #797a19);
+}
+
+.btn-21:active {
+  color: #797a19;
+}
+
+@keyframes btn-21-right {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+
+}
+
+@keyframes btn-21-top {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+
+}
+
+@keyframes btn-21-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+
+}
+
+@keyframes btn-21-bottom {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+
+}
+
+.btn-21:focus {
+  outline: none
+}
+
+
+.buttons {
+  margin: 0 auto;
+  display: inline-block;
+  text-align: center;
+}
+
+
+.image-slider-container {
+  position: relative;
+  width: 100%;      
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.image-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down; /* Ensures images cover the container without being cut */
+  position: absolute;
+  top: 20px;
+  left: 0;
+  opacity: 0;
+  transition: opacity 4s;
+  mask-image: radial-gradient(circle, white 20%, transparent 100%);
+}
+
+.image-slider img.active {
+  opacity: 1;
+}
+
+.dots {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dots .dot {
+  width: 10px;
+  height: 10px;
+  background-color: #f0f5f9;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 4s;
+}
+
+.dots .dot.active {
+  background-color: #ccc;
+}
+
+/* Hide images and dots if the width is less than 600px */
+@media (max-width: 1200px) {
+  .image-slider-container {
+    display: none;
+  }
+  .full-width {
+    flex: 0 0 100%;
+  }
+}
+
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(240, 240, 240, 0.85); /* Semi-transparent overlay */
+  z-index: -1; /* Make sure it is behind other content */
+}
+
+.learn-more {
+  scroll-behavior: smooth; /* <-- for smooth scroll */
+}

@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title> Lipidome – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../docs/downloads/force-field-parameters/martini2/nucleic_acids.html" rel="next">
+<link href="../../../../docs/downloads/force-field-parameters/martini2/aminoacids.html" rel="prev">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content=" Lipidome – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/downloads/force-field-parameters/martini2/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content=" Lipidome – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/downloads/force-field-parameters/martini2/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/downloads/index.html" aria-current="page"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">🫧 Force field parameters</li><li class="breadcrumb-item"><a href="../../../../docs/downloads/force-field-parameters/martini2/particle-definitions.html"><i class="fa-solid fa-dice-two"></i> Martini 2</a></li><li class="breadcrumb-item"><a href="../../../../docs/downloads/force-field-parameters/martini2/lipidome.html"><i class="fa-solid fa-cheese"></i> Lipidome</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">🫧 Force field parameters</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-dice-three"></i> Martini 3</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/particle-definitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-dice-d20"></i> Particle definitions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/aminoacids.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-spider"></i> Amino Acids</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/lipidome.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-cheese"></i> Lipidome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/nucleic_acids.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-dna"></i> Nucleic Acids</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/carbohydrates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-ice-cream"></i> Carbohydrates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/polymers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-brands fa-mixer"></i> Polymers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/solvents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-droplet"></i> Solvents</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini3/ions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-atom"></i> Ions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-dice-two"></i> Martini 2</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/particle-definitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-dice-d20"></i> Particle definitions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/aminoacids.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-spider"></i> Amino Acids</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/lipidome.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><i class="fa-solid fa-cheese"></i> Lipidome</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/nucleic_acids.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-dna"></i> Nucleic Acids</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/carbohydrates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-ice-cream"></i> Carbohydrates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/polymers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-brands fa-mixer"></i> Polymers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/solvents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-droplet"></i> Solvents</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/ions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-atom"></i> Ions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/others.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-section"></i> Others</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/force-field-parameters/martini2/dry-martini.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-wine-glass-empty"></i> Dry Martini</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">🗄 Example input files</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-input-files/general-topology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General topology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-input-files/md-parameters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MD parameters</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">🧑‍💻️ Example applications</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/solvent-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solvent systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/lipid-membranes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lipid membranes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/lipid-vesicles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lipid vesicles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/micelles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Micelles</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/multiscaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiscaling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/peptides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Peptides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/polymers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Polymers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/example-applications/other-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other systems</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">⚒️ Tools</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proteins and bilayers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/tools/resolution-transformation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resolution transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/tools/visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/downloads/tools/other-tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Other tools</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#phosphatidylcholine-pc" id="toc-phosphatidylcholine-pc" class="nav-link active" data-scroll-target="#phosphatidylcholine-pc">Phosphatidylcholine (PC)</a></li>
+  <li><a href="#phosphatidylethanolamine-pe" id="toc-phosphatidylethanolamine-pe" class="nav-link" data-scroll-target="#phosphatidylethanolamine-pe">Phosphatidylethanolamine (PE)</a></li>
+  <li><a href="#phosphatidylserine-ps" id="toc-phosphatidylserine-ps" class="nav-link" data-scroll-target="#phosphatidylserine-ps">Phosphatidylserine (PS)</a></li>
+  <li><a href="#phosphatidylglycerol-pg" id="toc-phosphatidylglycerol-pg" class="nav-link" data-scroll-target="#phosphatidylglycerol-pg">Phosphatidylglycerol (PG)</a></li>
+  <li><a href="#phosphatidic-acid-pa" id="toc-phosphatidic-acid-pa" class="nav-link" data-scroll-target="#phosphatidic-acid-pa">Phosphatidic acid (PA)</a></li>
+  <li><a href="#phosphatidylinositols" id="toc-phosphatidylinositols" class="nav-link" data-scroll-target="#phosphatidylinositols">Phosphatidylinositols</a></li>
+  <li><a href="#glycerols" id="toc-glycerols" class="nav-link" data-scroll-target="#glycerols">Glycerols</a></li>
+  <li><a href="#lysophosphatidylcholine-lpc" id="toc-lysophosphatidylcholine-lpc" class="nav-link" data-scroll-target="#lysophosphatidylcholine-lpc">Lysophosphatidylcholine (LPC)</a></li>
+  <li><a href="#sphingomyelin-sm" id="toc-sphingomyelin-sm" class="nav-link" data-scroll-target="#sphingomyelin-sm">Sphingomyelin (SM)</a></li>
+  <li><a href="#ceramide-cer" id="toc-ceramide-cer" class="nav-link" data-scroll-target="#ceramide-cer">Ceramide (CER)</a></li>
+  <li><a href="#glycosphingolipids" id="toc-glycosphingolipids" class="nav-link" data-scroll-target="#glycosphingolipids">Glycosphingolipids</a></li>
+  <li><a href="#glycoglycerolipids" id="toc-glycoglycerolipids" class="nav-link" data-scroll-target="#glycoglycerolipids">Glycoglycerolipids</a></li>
+  <li><a href="#sterols" id="toc-sterols" class="nav-link" data-scroll-target="#sterols">Sterols</a></li>
+  <li><a href="#surfactants" id="toc-surfactants" class="nav-link" data-scroll-target="#surfactants">Surfactants</a></li>
+  <li><a href="#fatty-acids-fa" id="toc-fatty-acids-fa" class="nav-link" data-scroll-target="#fatty-acids-fa">Fatty acids (FA)</a></li>
+  <li><a href="#others" id="toc-others" class="nav-link" data-scroll-target="#others">Others</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">🫧 Force field parameters</li><li class="breadcrumb-item"><a href="../../../../docs/downloads/force-field-parameters/martini2/particle-definitions.html"><i class="fa-solid fa-dice-two"></i> Martini 2</a></li><li class="breadcrumb-item"><a href="../../../../docs/downloads/force-field-parameters/martini2/lipidome.html"><i class="fa-solid fa-cheese"></i> Lipidome</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><i class="fa-solid fa-cheese"></i> Lipidome</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p>Martini 2 lipid parameters are listed below according to their major categories. For explanation of the lipid naming schema and the Martini 2 lipid parameterization philosophy please see the <a href="../../../../docs/downloads/force-field-parameters/martini2/martini_lipids_details.html">Martini 2 lipid details</a> page. For further background reading on the Martini 2 lipidome, see:</p>
+<ul>
+<li><strong>T.A. Wassenaar, H.I. Ingólfsson, R.A. Böckmann, D.P. Tieleman, S.J. Marrink</strong>. <em>Computational lipidomics with insane: a versatile tool for generating custom membranes for molecular simulations.</em> JCTC, 11:2144–2155, 2015. <a href="http://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00209">abstract</a></li>
+</ul>
+<p><strong>References to these works can be found in the headers of the corresponding <code>.itp</code> files.</strong></p>
+<style>
+        .rotated-image {
+            transform: rotate(90deg);
+        }
+    </style>
+<section id="phosphatidylcholine-pc" class="level3">
+<h3 class="anchored" data-anchor-id="phosphatidylcholine-pc">Phosphatidylcholine (PC)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C08:0-C10:0 PC (DTPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dtpc/DTPC-em.gro">DTPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dtpc/martini_v2.0_DTPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:0-C14:0 PC (DLPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dlpc/DLPC-em.gro">DLPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dlpc/martini_v2.0_DLPC_01.itp">[itp]</a></td>
+<td>CHARMM: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dlpc/DMPC.charmm36.map">[map]</a> <br> GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dlpc/DMPC.gromos.map">[map]</a></td>
+</tr>
+<tr class="odd">
+<td>di-C16:0-C18:0 PC (DPPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC-em.gro">DPPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/martini_v2.0_DPPC_01.itp">[itp]</a> <br> Alt optimal: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/martini_v2.0_DPPC_01-alt-opt.itp">[itp]</a> <br> Alt extensible: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/martini_v2.0_DPPC_01-alt-ext.itp">[itp]</a></td>
+<td>CHARMM: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC.charmm36.map">[map]</a> <br> GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC.gromos.map">[map]</a> <br> AMBER: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dppc/DPPC.amber.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>di-C20:0-C22:0 PC (DBPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dbpc/DBPC-em.gro">DBPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dbpc/martini_v2.0_DBPC_01.itp">[itp]</a></td>
+<td>GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dbpc/DBPC.gromos-alex.map">[map]</a></td>
+</tr>
+<tr class="odd">
+<td>di-C12:1-C14:1 PC (DYPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dypc/DYPC-em.gro">DYPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dypc/martini_v2.0_DYPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:1-C18:1 PC (DVPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dvpc/DVPC-em.gro">DVPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dvpc/martini_v2.0_DVPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:1-C18:1 PC (DOPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dopc/DOPC-em.gro">DOPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dopc/martini_v2.0_DOPC_02.itp">[itp]</a> <br> Alt optimal: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dopc/martini_v2.0_DOPC_02-alt-opt.itp">[itp]</a> <br> Alt extensible: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dopc/martini_v2.0_DOPC_02-alt-ext.itp">[itp]</a></td>
+<td>CHARMM: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dopc/DOPC.charmm36.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>di-C16:2-C18:2 PC (DIPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dipc/DIPC-em.gro">DIPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dipc/martini_v2.0_DIPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:3-C18:3 PC (DFPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dfpc/DFPC-em.gro">DFPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dfpc/martini_v2.0_DFPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:1-C22:1 PC (DGPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dgpc/DGPC-em.gro">DGPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dgpc/martini_v2.0_DGPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:4-C22:5 PC (DAPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dapc/DAPC-em.gro">DAPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dapc/martini_v2.0_DAPC_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C24:6-C26:6 PC (DRPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/drpc/DRPC-em.gro">DRPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/drpc/martini_v2.0_DRPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:1-C26:1 PC (DNPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dnpc/DNPC-em.gro">DNPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/dnpc/martini_v2.0_DNPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C12:0/16:0 PC (LPPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/lppc/LPPC-em.gro">LPPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/lppc/martini_v2.0_LPPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:1 PC (POPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/popc/POPC-em.gro">POPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/popc/martini_v2.0_POPC_02.itp">[itp]</a></td>
+<td>CHARMM: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/popc/POPC.charmm36.map">[map]</a> <br> GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/popc/POPC.gromos-alex.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>C16:0/20:1 PC (PGPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pgpc/PGPC-em.gro">PGPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pgpc/martini_v2.0_PGPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:2 PC (PEPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pepc/PEPC-em.gro">PEPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pepc/martini_v2.0_PEPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:2 PC (PIPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pipc/PIPC-em.gro">PIPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pipc/martini_v2.0_PIPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:4 PC (PAPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/papc/PAPC-em.gro">PAPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/papc/martini_v2.0_PAPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/22:6 PC (PUPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pupc/PUPC-em.gro">PUPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/pupc/martini_v2.0_PUPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/24:6 PC (PRPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/prpc/PRPC-em.gro">PRPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pc/prpc/martini_v2.0_PRPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phosphatidylethanolamine-pe" class="level3">
+<h3 class="anchored" data-anchor-id="phosphatidylethanolamine-pe">Phosphatidylethanolamine (PE)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C08:0-C10:0 PE (DTPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dtpe/DTPE-em.gro">DTPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dtpe/martini_v2.0_DTPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:0-C14:0 PE (DLPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dlpe/DLPE-em.gro">DLPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dlpe/martini_v2.0_DLPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:0-C18:0 PE (DPPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dppe/DPPE-em.gro">DPPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dppe/martini_v2.0_DPPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:0-C22:0 PE (DBPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dbpe/DBPE-em.gro">DBPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dbpe/martini_v2.0_DBPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:0-C26:0 PE (DXPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dxpe/DXPE-em.gro">DXPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dxpe/martini_v2.0_DXPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:1-C14:1 PE (DYPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dype/DYPE-em.gro">DYPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dype/martini_v2.0_DYPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:1-C18:1 PE (DVPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dvpe/DVPE-em.gro">DVPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dvpe/martini_v2.0_DVPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:1-C18:1 PE (DOPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dope/DOPE-em.gro">DOPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dope/martini_v2.0_DOPE_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:2-C18:2 PE (DIPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dipe/DIPE-em.gro">DIPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dipe/martini_v2.0_DIPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:3-C18:3 PE (DFPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dfpe/DFPE-em.gro">DFPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dfpe/martini_v2.0_DFPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:1-C22:1 PE (DGPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dgpe/DGPE-em.gro">DGPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dgpe/martini_v2.0_DGPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:4-C22:5 PE (DAPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dape/DAPE-em.gro">DAPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dape/martini_v2.0_DAPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:5-C22:6 PE (DUPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dupe/DUPE-em.gro">DUPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dupe/martini_v2.0_DUPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C24:6-C26:6 PE (DRPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/drpe/DRPE-em.gro">DRPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/drpe/martini_v2.0_DRPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:1-C26:1 PE (DNPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dnpe/DNPE-em.gro">DNPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/dnpe/martini_v2.0_DNPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C12:0/16:0 PE (LPPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/lppe/LPPE-em.gro">LPPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/lppe/martini_v2.0_LPPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:1 PE (POPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pope/POPE-em.gro">POPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pope/martini_v2.0_POPE_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/20:1 PE (PGPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pgpe/PGPE-em.gro">PGPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pgpe/martini_v2.0_PGPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:3 PE (PQPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pqpe/PQPE-em.gro">PQPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pqpe/martini_v2.0_PQPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:2 PE (PIPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pipe/PIPE-em.gro">PIPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pipe/martini_v2.0_PIPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:4 PE (PAPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pape/PAPE-em.gro">PAPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pape/martini_v2.0_PAPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/22:6 PE (PUPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pupe/PUPE-em.gro">PUPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/pupe/martini_v2.0_PUPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/24:6 PE (PRPE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/prpe/PRPE-em.gro">PRPE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pe/prpe/martini_v2.0_PRPE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phosphatidylserine-ps" class="level3">
+<h3 class="anchored" data-anchor-id="phosphatidylserine-ps">Phosphatidylserine (PS)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C08:0-C10:0 PS (DTPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dtps/DTPS-em.gro">DTPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dtps/martini_v2.0_DTPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:0-C14:0 PS (DLPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dlps/DLPS-em.gro">DLPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dlps/martini_v2.0_DLPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:0-C18:0 PS (DPPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dpps/DPPS-em.gro">DPPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dpps/martini_v2.0_DPPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:0-C22:0 PS (DBPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dbps/DBPS-em.gro">DBPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dbps/martini_v2.0_DBPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:0-C26:0 PS (DXPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dxps/DXPS-em.gro">DXPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dxps/martini_v2.0_DXPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:1-C14:1 PS (DYPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dyps/DYPS-em.gro">DYPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dyps/martini_v2.0_DYPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:1-C18:1 PS (DVPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dvps/DVPS-em.gro">DVPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dvps/martini_v2.0_DVPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:1-C18:1 PS (DOPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dops/DOPS-em.gro">DOPS-em.gro</a></td>
+<td><a href="">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:2-C18:2 PS (DIPS)</td>
+<td><a href="">DIPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dops/martini_v2.0_DOPS_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:3-C18:3 PS (DFPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dfps/DFPS-em.gro">DFPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dfps/martini_v2.0_DFPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:1-C22:1 PS (DGPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dgps/DGPS-em.gro">DGPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dgps/DGPS-em.gro">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:4-C22:5 PS (DAPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/daps/DAPS-em.gro">DAPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/daps/martini_v2.0_DAPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:5-C22:6 PS (DUPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dups/DUPS-em.gro">DUPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/dups/martini_v2.0_DUPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C24:6-C26:6 PS (DRPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/drps/DRPS-em.gro">DRPS-em.gro</a></td>
+<td><a href="">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:1-C26:1 PS (DNPS)</td>
+<td><a href="">DNPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/drps/martini_v2.0_DRPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C12:0/16:0 PS (LPPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/lpps/LPPS-em.gro">LPPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/lpps/martini_v2.0_LPPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:1 PS (POPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pops/POPS-em.gro">POPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pops/martini_v2.0_POPS_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/20:1 PS (PGPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pgps/PGPS-em.gro">PGPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pgps/martini_v2.0_PGPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:3 PS (PQPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pqps/PQPS-em.gro">PQPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pqps/martini_v2.0_PQPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:2 PS (PIPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pips/PIPS-em.gro">PIPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pips/martini_v2.0_PIPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:4 PS (PAPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/paps/PAPS-em.gro">PAPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/paps/martini_v2.0_PAPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/22:6 PS (PUPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pups/PUPS-em.gro">PUPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/pups/martini_v2.0_PUPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/24:6 PS (PRPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/prps/PRPS-em.gro">PRPS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/ps/prps/martini_v2.0_PRPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phosphatidylglycerol-pg" class="level3">
+<h3 class="anchored" data-anchor-id="phosphatidylglycerol-pg">Phosphatidylglycerol (PG)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C08:0-C10:0 PG (DTPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dtpg/DTPG-em.gro">DTPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dtpg/martini_v2.0_DTPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:0-C14:0 PG (DLPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dlpg/DLPG-em.gro">DLPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dlpg/martini_v2.0_DLPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:0-C18:0 PG (DPPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dppg/DPPG-em.gro">DPPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dppg/martini_v2.0_DPPG_01.itp">[itp]</a></td>
+<td>CHARMM: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dppg/DPPG.charmm36.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>di-C20:0-C22:0 PG (DBPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dbpg/DBPG-em.gro">DBPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dbpg/martini_v2.0_DBPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:0-C26:0 PG (DXPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dxpg/DXPG-em.gro">DXPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dxpg/martini_v2.0_DXPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:1-C14:1 PG (DYPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dypg/DYPG-em.gro">DYPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dypg/martini_v2.0_DYPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:1-C18:1 PG (DVPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dvpg/DVPG-em.gro">DVPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dvpg/martini_v2.0_DVPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:1-C18:1 PG (DOPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dopg/DOPG-em.gro">DOPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dopg/martini_v2.0_DOPG_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:2-C18:2 PG (DIPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dipg/DIPG-em.gro">DIPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dipg/martini_v2.0_DIPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:3-C18:3 PG (DFPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dfpg/DFPG-em.gro">DFPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dfpg/DFPG-em.gro">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:1-C22:1 PG (DGPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dgpg/DGPG-em.gro">DGPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dgpg/martini_v2.0_DGPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:4-C22:5 PG (DAPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dapg/DAPG-em.gro">DAPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dapg/martini_v2.0_DAPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:6-C26:6 PG (DRPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/drpg/DRPG-em.gro">DRPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/drpg/martini_v2.0_DRPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C24:1-C26:1 PG (DNPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dnpg/DNPG-em.gro">DNPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/dnpg/martini_v2.0_DNPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C12:0/16:0 PG (LPPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/lppg/LPPG-em.gro">LPPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/lppg/martini_v2.0_LPPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 PG (POPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/popg/POPG-em.gro">POPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/popg/martini_v2.0_POPG_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:1 PG (PGPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/pgpg/PGPG-em.gro">PGPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/pgpg/martini_v2.0_PGPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:2 PG (PIPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/pipg/PIPG-em.gro">PIPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/pipg/martini_v2.0_PIPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:4 PG (PAPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/papg/PAPG-em.gro">PAPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/papg/martini_v2.0_PAPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/24:6 PG (PRPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/prpg/PRPG-em.gro">PRPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/prpg/martini_v2.0_PRPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C18:1/16:0 PG (OPPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/oppg/OPPG.gro">OPPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/oppg/martini_v2.0_OPPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:1(3t)/16:0 PG (JPPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/jppg/JPPG.gro">JPPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/jppg/martini_v2.0_JPPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:1(3t)/18:3 PG (JFPG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/jfpg/JFPG.gro">JFPG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pg/jfpg/martini_v2.0_JFPG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phosphatidic-acid-pa" class="level3">
+<h3 class="anchored" data-anchor-id="phosphatidic-acid-pa">Phosphatidic acid (PA)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C08:0-C10:0 PA (DTPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dtpa/DTPA-em.gro">DTPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dtpa/martini_v2.0_DTPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:0-C14:0 PA (DLPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dlpa/DLPA-em.gro">DLPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dlpa/martini_v2.0_DLPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:0-C18:0 PA (DPPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dppa/DPPA-em.gro">DPPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dppa/martini_v2.0_DPPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:0-C22:0 PA (DBPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dbpa/DBPA-em.gro">DBPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dbpa/martini_v2.0_DBPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:0-C26:0 PA (DXPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dxpa/DXPA-em.gro">DXPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dxpa/martini_v2.0_DXPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C12:1-C14:1 PA (DYPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dypa/DYPA-em.gro">DYPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dypa/martini_v2.0_DYPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:1-C18:1 PA (DVPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dvpa/DVPA-em.gro">DVPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dvpa/martini_v2.0_DVPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:1-C18:1 PA (DOPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dopa/DOPA-em.gro">DOPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dopa/martini_v2.0_DOPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:2-C18:2 PA (DIPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dipa/DIPA-em.gro">DIPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dipa/martini_v2.0_DIPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:3-C18:3 PA (DFPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dfpa/DFPA-em.gro">DFPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dfpa/martini_v2.0_DFPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C20:1-C22:1 PA (DGPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dgpa/DGPA-em.gro">DGPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dgpa/martini_v2.0_DGPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C20:4-C22:5 PA (DAPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dgpa/martini_v2.0_DGPA_01.itp">DAPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dapa/martini_v2.0_DAPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C24:6-C26:6 PA (DRPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/drpa/DRPA-em.gro">DRPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/drpa/martini_v2.0_DRPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C24:1-C26:1 PA (DNPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dnpa/DNPA-em.gro">DNPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/dnpa/martini_v2.0_DNPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C12:0/16:0 PA (LPPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/lppa/LPPA-em.gro">LPPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/lppa/martini_v2.0_LPPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 PA (POPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/popa/POPA-em.gro">POPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/popa/martini_v2.0_POPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:1 PA (PGPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/pgpa/PGPA-em.gro">PGPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/pgpa/martini_v2.0_PGPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:2 PA (PIPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/pipa/PIPA-em.gro">PIPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/pipa/martini_v2.0_PIPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:4 PA (PAPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/papa/PAPA-em.gro">PAPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/papa/martini_v2.0_PAPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/22:6 PA (PUPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/pupa/PUPA-em.gro">PUPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/pupa/martini_v2.0_PUPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/24:6 PA (PRPA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/prpa/PRPA-em.gro">PRPA-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pa/prpa/martini_v2.0_PRPA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phosphatidylinositols" class="level3">
+<h3 class="anchored" data-anchor-id="phosphatidylinositols">Phosphatidylinositols</h3>
+<hr>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Phosphatidylinositol (PI)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C16:0-C18:0 PI (DPPI)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/dppi/DPPI-em.gro">DPPI-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/dppi/martini_v2.0_DPPI_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 (PVPI)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvpi/PVPI-em.gro">PVPI-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvpi/martini_v2.0_PVPI_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:1 PI (POPI)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/popi/POPI-em.gro">POPI-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/popi/martini_v2.0_POPI_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:2 PI (PIPI)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pipi/PIPI-em.gro">PIPI-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pipi/martini_v2.0_PIPI_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/20:4 PI (PAPI)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/papi/PAPI-em.gro">PAPI-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/papi/martini_v2.0_PAPI_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/22:6 PI (PUPI)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pupi/PUPI-em.gro">PUPI-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pupi/martini_v2.0_PUPI_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Phosphatidylinositol phosphate (PIP1)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C16:0-C18:0 PIP (DPP1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/dpp1/DPP1-em.gro">DPP1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/dpp1/martini_v2.0_DPP1_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 PIP (PVP1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvp1/PVP1-em.gro">PVP1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvp1/martini_v2.0_PVP1_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:1 PIP (POP1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pop1/POP1-em.gro">POP1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pop1/martini_v2.0_POP1_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Phosphatidylinositol bisphosphate (PIP2)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C16:0-C18:0 PIP2 (DPP2)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/dpp2/DPP2-em.gro">DPP2-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/dpp2/martini_v2.0_DPP2_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 PIP2 (PVP2)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvp2/PVP2-em.gro">PVP2-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvp2/martini_v2.0_PVP2_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:1 PIP2 (POP2)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pop2/POP2-em.gro">POP2-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pop2/martini_v2.0_POP2_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Phosphatidylinositol trisphosphate (PIP3)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C16:0/18:1 PIP3 (PVP3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvp3/PVP3-em.gro">PVP3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pvp3/martini_v2.0_PVP3_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 PIP3 (POP3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pop3/POP3-em.gro">POP3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/pi/pop3/martini_v2.0_POP3_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glycerols" class="level3">
+<h3 class="anchored" data-anchor-id="glycerols">Glycerols</h3>
+<hr>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Diacylglycerol (DAG)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C16:0/18:1 DAG (PVDG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/pvdg/PVDG-em.gro">PVDG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/pvdg/martini_v2.0_PVDG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/18:1 DAG (PODG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/podg/PODG-em.gro">PODG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/podg/martini_v2.0_PODG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/18:2 DAG (PIDG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/pidg/PIDG-em.gro">PIDG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/pidg/martini_v2.0_PIDG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0/20:4 DAG (PADG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/padg/PADG-em.gro">PADG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/padg/martini_v2.0_PADG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:0/22:6 DAG (PUDG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/pudg/PUDG-em.gro">PUDG-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/pudg/martini_v2.0_PUDG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Triacylglycerol (TAG)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Glyceryl-trioleate</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/glycerols/tog/martini_v2.0_TOG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lysophosphatidylcholine-lpc" class="level3">
+<h3 class="anchored" data-anchor-id="lysophosphatidylcholine-lpc">Lysophosphatidylcholine (LPC)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C04:0-C06:0 LPC (CPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/cpc/CPC-em.gro">CPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/cpc/martini_v2.0_CPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C08:0-C10:0 LPC (TPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/tpc/TPC-em.gro">TPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/tpc/martini_v2.0_TPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C12:0-C14:0 LPC (LPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/lpc/LPC-em.gro">LPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/lpc/martini_v2.0_LPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:0-C18:0 LPC (PPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/ppc/PPC-em.gro">PPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/ppc/martini_v2.0_PPC_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:1-C18:1 LPC (VPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/vpc/VPC-em.gro">VPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/vpc/martini_v2.0_VPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C16:1-C18:1 LPC (OPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/opc/OPC-em.gro">OPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/opc/martini_v2.0_OPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C16:2-C18:2 LPC (IPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/ipc/IPC-em.gro">IPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/ipc/martini_v2.0_IPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C20:4-C22:5 LPC (APC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/apc/APC-em.gro">APC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/apc/martini_v2.0_APC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C20:5-C22:6 LPC (UPC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/upc/UPC-em.gro">UPC-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/lpc/upc/martini_v2.0_UPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sphingomyelin-sm" class="level3">
+<h3 class="anchored" data-anchor-id="sphingomyelin-sm">Sphingomyelin (SM)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C(d18:1/18:0) SM (DPSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/dpsm/DPSM-em.gro">DPSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/dpsm/martini_v2.0_DPSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d20:1/20:0) SM (DBSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/dbsm/DBSM-em.gro">DBSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/dbsm/martini_v2.0_DBSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d24:1/24:0) SM (DXSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/dxsm/DXSM-em.gro">DXSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/dxsm/martini_v2.0_DXSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d18:1/18:1) SM (PVSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/pvsm/PVSM-em.gro">PVSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/pvsm/martini_v2.0_PVSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d18:1/18:1) SM (POSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/posm/POSM-em.gro">POSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/posm/martini_v2.0_POSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d18:1/22:1) SM (PGSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/pgsm/PGSM-em.gro">PGSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/pgsm/martini_v2.0_PGSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d18:1/24:1) SM (PNSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/pnsm/PNSM-em.gro">PNSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/pnsm/PNSM-em.gro">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d20:1/24:1) SM (BNSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/bnsm/BNSM-em.gro">BNSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/bnsm/BNSM-em.gro">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d24:1/24:1) SM (XNSM)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/xnsm/XNSM-em.gro">XNSM-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sm/xnsm/martini_v2.0_XNSM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ceramide-cer" class="level3">
+<h3 class="anchored" data-anchor-id="ceramide-cer">Ceramide (CER)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C(d18:1/18:0) CER (DPCE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/dpce/DPCE-em.gro">DPCE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/dpce/martini_v2.0_DPCE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d24:1/24:0) CER (DXCE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/dxce/DXCE-em.gro">DXCE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/dxce/martini_v2.0_DXCE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d18:1/24:1) CER (PNCE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/pnce/PNCE-em.gro">PNCE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/pnce/martini_v2.0_PNCE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d24:1/24:1) CER (XNCE)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/xnce/XNCE-em.gro">XNCE-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/cer/xnce/martini_v2.0_XNCE_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glycosphingolipids" class="level3">
+<h3 class="anchored" data-anchor-id="glycosphingolipids">Glycosphingolipids</h3>
+<hr>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Glucosylceramide (GS)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C(d16:1/16:0) GS (DPGS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpgs/DPGS-em.gro">DPGS-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpgs/martini_v2.0_DPGS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Monosialotetrahexosylganglioside (GM1)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C(d18:1/18:0) GM1 (DPG1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpg1/DPG1-em.gro">DPG1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpg1/martini_v2.0_DPG1_02.itp">[itp]</a></td>
+<td>GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpg1/DPG1.gromos.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>C(d20:1/20:0) GM1 (DBG1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dbg1/DBG1-em.gro">DBG1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dbg1/martini_v2.0_DBG1_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d24:1/24:0) GM1 (DXG1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dxg1/DXG1-em.gro">DXG1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dxg1/martini_v2.0_DXG1_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d18:1/24:1) GM1 (PNG1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/png1/PNG1-em.gro">PNG1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/png1/martini_v2.0_PNG1_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d24:1/24:1) GM1 (XNG1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/xng1/XNG1-em.gro">XNG1-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/xng1/martini_v2.0_XNG1_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Monosialodihexosylganglioside (GM3)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C(d18:1/18:0) GM3 (DPG3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpg3/DPG3-em.gro">DPG3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpg3/martini_v2.0_DPG3_02.itp">[itp]</a></td>
+<td>GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dpg3/DPG3.gromos.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>C(d20:1/20:0) GM3 (DBG3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dbg3/DBG3-em.gro">DBG3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dbg3/martini_v2.0_DBG3_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d24:1/24:0) GM3 (DXG3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dxg3/DXG3-em.gro">DXG3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/dxg3/martini_v2.0_DXG3_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C(d18:1/24:1) GM3 (PNG3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/png3/PNG3-em.gro">PNG3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/png3/martini_v2.0_PNG3_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C(d24:1/24:1) GM3 (XNG3)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/xng3/XNG3-em.gro">XNG3-em.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gs/xng3/martini_v2.0_XNG3_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="glycoglycerolipids" class="level3">
+<h3 class="anchored" data-anchor-id="glycoglycerolipids">Glycoglycerolipids</h3>
+<hr>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Monogalactosyl and/or monoglucosyl diacylglycerol (MGDG)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C16:0-C18:0 MGDG (DPMG)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dpmg/martini_v2.0_DPMG_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C18:1/16:0 MGDG (OPMG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/opmg/OPMG.gro">OPMG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/opmg/martini_v2.0_OPMG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C18:3 MGDG (DFMG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dfmg/DFMG.gro">DFMG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dfmg/martini_v2.0_DFMG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C18:3/16:0 MGDG (FPMG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/fpmg/FPMG.gro">FPMG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/fpmg/martini_v2.0_FPMG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Sulfoquinovosyl diacylglycerol (SQDG)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C16:0-C18:0 SQDG (DPSG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dpsg/DPSG.gro">DPSG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dpsg/martini_v2.0_DPSG_03.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C18:1/16:0 SQDG (OPSG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/opsg/OPSG.gro">OPSG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/opsg/martini_v2.0_OPSG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>C18:3/16:0 SQDG (FPSG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/fpsg/FPSG.gro">FPSG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/fpsg/martini_v2.0_FPSG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<center>
+<h4 class="anchored">
+<span style="color:gray; size=18">Digalactosyl diacylglycerol (DGDG)</span>
+</h4>
+</center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>di-C16:0-C18:0 DGDG (DPGG)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dpgg/martini_v2.0_DPGG_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C18:1/16:0 DGDG (OPGG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/opgg/OPGG.gro">OPGG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/opgg/martini_v2.0_OPGG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C18:3 DGDG (DFGG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dfgg/DFGG.gro">DFGG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/dfgg/martini_v2.0_DFGG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>C18:3/16:0 DGDG (FPGG)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/fpgg/FPGG.gro">FPGG.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/gl/fpgg/martini_v2.0_FPGG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sterols" class="level3">
+<h3 class="anchored" data-anchor-id="sterols">Sterols</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cholesterol (CHOL)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/chol/martini_v2.0_CHOL_02.itp">[itp]</a></td>
+<td>CHARMM: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/chol/CHOL.charmm36.map">[map]</a> <br> GROMOS: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/chol/CHOL.gromos.map">[map]</a> <br> AMBER: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/chol/CHOL.amber.map">[map]</a></td>
+</tr>
+<tr class="even">
+<td>cholate (CHOA)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/choa/martini_v2.0_CHOA_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>cholesteryl oleate (CHYO)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/chyo/martini_v2.0_CHYO_02.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>ergosterol (ERGO)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/ergo/martini_v2.0_ERGO_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>bacteriohopanetetrol (HBHT)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/hbht/martini_v2.0_HBHT_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>diploptene (HDPT)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/hdpt/martini_v2.0_HDPT_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>hopane (HHOP)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/hhop/martini_v2.0_HHOP_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>hopanoid polycyclic group (HOPR)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/sterols/hopr/martini_v2.0_HOPR_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="surfactants" class="level3">
+<h3 class="anchored" data-anchor-id="surfactants">Surfactants</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beta-octylglucoside (BOG)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/bog/martini_v2.0_BOG_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>alkyl-PEG (C12E2)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/c12e12/martini_v2.0_C12E2.gro">martini_v2.0_C12E2.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/c12e12/martini_v2.0_C12E2.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>alkyl-PEG (C12E4)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/c12e4/martini_v2.0_C12E4.gro">martini_v2.0_C12E4.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/c12e4/martini_v2.0_C12E4.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>alkyl-PEG (C12E6)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/c12e6/martini_v2.0_C12E6.gro">martini_v2.0_C12E6.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/c12e6/martini_v2.0_C12E6.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>dodecylmaltoside (DDM)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/ddm/martini_v2.0_DDM_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>dodecylphosphocholine (DPC)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/dpc/martini_v2.0_DPC_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>sodium dodecyl sulfate (SDS)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/surfactants/sds/martini_v2.0_SDS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fatty-acids-fa" class="level3">
+<h3 class="anchored" data-anchor-id="fatty-acids-fa">Fatty acids (FA)</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>lauric (C12:0) / myristic (C14:0) acid (LCA)</td>
+<td>Not available</td>
+<td>Charged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/lca/martini_v2.0_LCN_01.itp">[itp]</a> <br> Uncharged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/lca/martini_v2.0_LCA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>palmitic (C16:0) / stearic (C18:0) acid (PCA)</td>
+<td>Not available</td>
+<td>Charged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/pca/martini_v2.0_PCN_01.itp">[itp]</a> <br> Uncharged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/pca/martini_v2.0_PCA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>arachidic (C20:0) / behenic (C22:0) acid (BCA)</td>
+<td>Not available</td>
+<td>Charged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/bca/martini_v2.0_BCN_01.itp">[itp]</a> <br> Uncharged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/bca/martini_v2.0_BCA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lignoceroyl (C24:0) / hexacosanoic (C26:0) acid (XCA)</td>
+<td>Not available</td>
+<td>Charged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/xca/martini_v2.0_XCN_01.itp">[itp]</a> <br> Uncharged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/xca/martini_v2.0_XCA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>arachidonic (C20:4) / docosapentaenoic (C22:5) acid (ACA)</td>
+<td>Not available</td>
+<td>Charged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/aca/martini_v2.0_ACN_01.itp">[itp]</a> <br> Uncharged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/aca/martini_v2.0_ACA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>docosahexaenoic (C22:6) acid (DHA)</td>
+<td>Not available</td>
+<td>Charged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/dha/martini_v2.0_UCN_01.itp">[itp]</a> <br> Uncharged: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/fa/dha/martini_v2.0_UCA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="others" class="level3">
+<h3 class="anchored" data-anchor-id="others">Others</h3>
+<hr>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lipid</th>
+<th>Coordinates</th>
+<th>Topology</th>
+<th>Mapping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cyclic di-DPPC Bolalipid (BOLA)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/bola/martini_v2.0_BOLA_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>acyclic di-DPPC Bolalipid (BOLB)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/bolb/martini_v2.0_BOLB_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>cardiolipin (CL) 0- (CDL0)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cdl0/CDL0.gro">CDL0.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cdl0/martini_v2.0_CDL0_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>cardiolipin (CL) 1- (CDL1)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cdl1/CDL1.gro">CDL1.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cdl1/martini_v2.0_CDL1_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>cardiolipin (CL) 2- (CDL2)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cdl2/CDL2.gro">CDL2.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cdl2/martini_v2.0_CDL2_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lipopolysaccharide (LPS)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/lps/LPS_cg.gro">LPS_cg.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/lps/martini_v2.0_LPS_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>lipid A - Bacteroides fragilis (BFRA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/bfra/Bfragilis.gro">Bfragilis.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/bfra/Bfragilis_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lipid A - Bordetella pertussis (BPER)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/bper/Bpertussis.gro">Bpertussis.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/bper/Bpertussis_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>lipid A - Campylobacter jejuni (CJEJ)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cjej/Cjejuni.gro">Cjejuni.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/cjej/Cjejuni_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lipid A - Chlamydia trachomatis (CTRA)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/ctra/Ctrachomatis.gro">Ctrachomatis.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/ctra/Ctrachomatis_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>lipid A - Helicobacter pylori (HPYL)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/hpyl/Hpylori.gro">Hpylori.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/hpyl/Hpylori_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lipid A - Neisseria meningitidis (NMEN)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/nmen/Nmeningitidis.gro">Nmeningitidis.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/nmen/Nmeningitidis_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>lipid A - Porphyromonas gingivalis (PGIN)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/pgin/Pgingivalis.gro">Pgingivalis.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/pgin/Pgingivalis_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lipid A - Pseudomonas aeruginosa (PARU)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/paru/Paeruginosa_LPA.gro">Paeruginosa_LPA.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/paru/Paeruginosa_LPA_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>lipid A+core - Pseudomonas aeruginosa (PARC)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/parc/Paeruginosa_LPC.gro">Paeruginosa_LPC.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/parc/Paeruginosa_LPC_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>lipid A - Salmonella minnesota (SMIN)</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/smin/Sminnesota.gro">Sminnesota.gro</a></td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/smin/Sminnesota_v1.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:0-C18:0 TAP (DPTAP)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/dptap/martini_v2.0_DPTAP_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="even">
+<td>di-C16:1-C18:1 TAP (DOTAP)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/dotap/martini_v2.0_DOTAP_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+<tr class="odd">
+<td>di-C16:1-C18:1 TAP (DITAP)</td>
+<td>Not available</td>
+<td><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini2/lipidome/others/ditap/martini_v2.0_DITAP_01.itp">[itp]</a></td>
+<td>Not available</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../../docs/downloads/force-field-parameters/martini2/aminoacids.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-spider&quot;></i> Amino Acids">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><i class="fa-solid fa-spider"></i> Amino Acids</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../../docs/downloads/force-field-parameters/martini2/nucleic_acids.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-dna&quot;></i> Nucleic Acids">
+        <span class="nav-page-text"><i class="fa-solid fa-dna"></i> Nucleic Acids</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>

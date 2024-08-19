@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Hybrid model using virtual sites – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Hybrid model using virtual sites – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Hybrid model using virtual sites – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://Martini-Force-Field-Initiative.github.io/docs/tutorials/Legacy/martini2/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Hybrid model using virtual sites</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#aim" id="toc-aim" class="nav-link active" data-scroll-target="#aim">Aim</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#the-models" id="toc-the-models" class="nav-link" data-scroll-target="#the-models">1. The Models</a></li>
+  <li><a href="#the-combination-of-the-models" id="toc-the-combination-of-the-models" class="nav-link" data-scroll-target="#the-combination-of-the-models">2. The Combination of the Models</a></li>
+  <li><a href="#setting-up-and-running-the-hybrid-system" id="toc-setting-up-and-running-the-hybrid-system" class="nav-link" data-scroll-target="#setting-up-and-running-the-hybrid-system"><strong>3. Setting up and running the hybrid system</strong></a></li>
+  <li><a href="#fine-graining-a-hybrid-snapshot" id="toc-fine-graining-a-hybrid-snapshot" class="nav-link" data-scroll-target="#fine-graining-a-hybrid-snapshot">4. Fine-graining a hybrid snapshot</a></li>
+  <li><a href="#an-assembly-of-peptides-including-charged-side-chains-and-ions" id="toc-an-assembly-of-peptides-including-charged-side-chains-and-ions" class="nav-link" data-scroll-target="#an-assembly-of-peptides-including-charged-side-chains-and-ions">5. An assembly of peptides including charged side chains and ions</a></li>
+  <li><a href="#appendix-special-mapping-files" id="toc-appendix-special-mapping-files" class="nav-link" data-scroll-target="#appendix-special-mapping-files">Appendix: Special mapping files</a></li>
+  <li><a href="#appendix-setting-up-hybrid-electrostatics" id="toc-appendix-setting-up-hybrid-electrostatics" class="nav-link" data-scroll-target="#appendix-setting-up-hybrid-electrostatics">Appendix: Setting up hybrid electrostatics</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hybrid model using virtual sites</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<blockquote class="blockquote">
+<p><strong><em>The material offered in this page is LEGACY material.</em></strong> This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look! If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../../docs/tutorials/index.html">here</a> to go back!</p>
+</blockquote>
+<hr>
+<section id="aim" class="level3">
+<h3 class="anchored" data-anchor-id="aim">Aim</h3>
+<hr>
+<p>Demonstrate how to combine different Classical Mechanical level models within GROMACS and run a HYBRID simulation. In general, this will involve providing user-defined tabulated potentials to GROMACS. A second aim is to demonstrate a back-mapping procedure to build (partially) atomistic structures from (fully/partially) coarse-grained models.</p>
+</section>
+<section id="background" class="level3">
+<h3 class="anchored" data-anchor-id="background">Background</h3>
+<hr>
+<p>Many properties of molecular systems are local, i.e.&nbsp;primarily determined by the molecule and its nearest neighbors. Simulations of small systems therefore often already provide a reasonable to good representation of macroscopic systems. Nevertheless, small system simulations may contain artifacts due to the boundary conditions placed on them. Also, the minimal size of the simulated systems may still prevent sufficient sampling of phase space. The idea of HYBRID models is that a detailed description of relatively distant molecules is not required and that enhanced sampling of a region of interest may be achieved by embedding it in a surroundings that represents the environmental influences properly but at a computationally less demanding level. This approach has long been applied to the combination of quantum chemistry and molecular mechanics models (QM/MM), but is much less well developed for combining molecular models at different levels of resolution. It should be kept in mind that developments in this area are still ongoing and that there is as of yet no standard or best practice for this type of simulations.</p>
+<p>In this tutorial, we shall focus on the combination of an atomistic (AA, or fine-grained, FG) and a coarse-grained (CG) model. The coarse-grained model is one employing a particle — as opposed to a continuum — description of the surroundings. The standard machinery present in GROMACS allows a quite generic implementation of HYBRID particle-based models through using VIRTUAL sites for the particles at the coarser level in addition to the normal atoms at finer level, and possibly adding user-defined interactions between the particles in accordance with the appropriate expression for the total energy.</p>
+<p>The correspondence between the atoms and the virtual sites is called the MAPPING of the atomistic to the CG model. A CG model by itself may use such mapping schemes to parameterize (parts of) the force field. In a purely hierarchical scheme, such as force matching, atomistic simulations are used to calculate the forces on the mapped centers, which are then averaged over many snapshots to define the interactions between the CG particles. In an empirical approach, such as the Martini model, the bonded interactions between CG particles are often refined based on atomistic simulations; the distributions of bond lengths, bond angles and torsional degrees of freedom at the CG level are compared to those from the mapped atomistic simulations and bonded parameters are adapted to get an overall reasonable agreement. Tutorials involving fine-tuning can be found here and in the lipid and polymer tutorials. The non-bonded interactions in the Martini model are nevertheless generic and based on parameterization to experimental data.</p>
+<section id="hybrid-opls-aalmartini-model" class="level4">
+<h4 class="anchored" data-anchor-id="hybrid-opls-aalmartini-model"><strong>Hybrid OPLS-AA/L—Martini model</strong></h4>
+<p>The material presented in this tutorial leans on the work originating in the Molecular Dynamics Group at the University of Groningen, in particular that by Tsjerk Wassenaar. The two main publications primarily concern the combination of GROMOS united atom and Martini force fields. Here, we show that one can combine OPLS-AA/L and Martini in the same fashion.</p>
+<p>GROMACS implements a considerable number of standard interaction potentials, both bonded and non-bonded. It also enables the users to define their own interaction potentials. In addition, the code implements the generation and use of interaction centers (called VIRTUAL sites) whose positions depend in some geometrically well-defined way on the positions of two or more other particles. A hybrid model combines molecular models at different levels of resolution. The different models may use different types of interaction potentials, and may therefore not be compatible with the same non-bonded (and bonded) functional forms, necessitating a more complex set-up of hybrid model simulations than simulations at a single level of resolution. Here, a set-up will be demonstrated for a combination of the OPLS-AA/L peptide model with the Martini coarse-grained model. The peptide will interact internally at the atomistic resolution, while it interacts with solvent at the coarse-grained (CG) level. The solvent interacts with itself only at CG level. Sections 1-3 take you through setting up and running such a hybrid system for a single AA peptide in Martini water.</p>
+<p>In <a href="#fine-graining-a-hybrid-snapshot">Section 4</a> a tool is introduced to generate fully atomistic solvent configurations from the hybrid simulation that can serve as starting points for production runs at all-atom (AA) level. Such procedures are known as back-mapping techniques.</p>
+<p><a href="#an-assembly-of-peptides-including-charged-side-chains-and-ions">Section 5</a> uses the back-mapping tool to generate coordinates for a hybrid simulation from a fully coarse-grained snapshot. Here, a collection of peptides is back-mapped from the Martini model to the OPLS-AA/L model, while the water and coarse-grained ions are maintained at the Martini level.</p>
+<p>All files are provided in the tar-ball <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/hybrid-tutorial.tar">hybrid-tutorial.tgz</a>, which expands to the main directory <code>hybrid-tutorial/OPLS-MARTINI</code>. Paths will be given with respect to this directory. A directory with all the results is provided in the tar-ball <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/hybrid-tutorial-worked.tar">hybrid-tutorial-worked.tgz</a>, under <code>hybrid-tutorial/WORKED</code>.</p>
+</section>
+</section>
+<section id="the-models" class="level3">
+<h3 class="anchored" data-anchor-id="the-models">1. The Models</h3>
+<hr>
+<section id="a.-atomistic-model-opls-aal" class="level4">
+<h4 class="anchored" data-anchor-id="a.-atomistic-model-opls-aal"><strong>A. Atomistic model: OPLS-AA/L</strong></h4>
+<p>As atomistic model we will use the OPLS-AA/L force field.<sup>[1]</sup> Here, we will have a peptide interacting internally through this force field. The standard atomistic model can be built using the GROMACS tool pdb2gmx. Here, we will use a small tripeptide, TYR-VAL-TYR, with methylated terminal ends. A Protein Data Bank (PDB) file can be built very simply using e.g.&nbsp;the builder of pymol, or by finding an existing protein in the PDB with this sequence of residues and cutting those out. We wish to use neutral methylated end-groups, normally known in the PDB as ACE for the C-terminal end and NMA for the N-terminal end. To make this work with the standard library file for OPLS-AA/L in GROMACS, the residue name of the N-terminal end must be changed manually from NMA to NAC.</p>
+<p><strong>Hands-on</strong></p>
+<p>Go to the directory OPLSAA. The file YVY.pdb (Tyr-Val-Tyr), built using pymol, is available for you, and it incorporates the naming of the N-terminal end (NAC instead of NME, done by manual editing) to comply with the GROMACS implementation of the OPLS-AA/L force field. Build the atomistic topology file:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">pdb2gmx</span> <span class="at">-f</span> YVY.pdb <span class="at">-ter</span> <span class="at">-ignh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This command generates an <code>OPLS-AA</code> peptide topology, <code>topol.top</code>, after ENTERING the correct numbers (which may depend on the exact GROMACS version) for the options <code>OPLS-AA/L</code> force field, <code>TIP3P</code> for the water model, and None for both terminal ends. Check that the file <code>topol.top</code> produced makes sense.</p>
+</section>
+<section id="b.-coarse-grained-solvent-model-martini" class="level4">
+<h4 class="anchored" data-anchor-id="b.-coarse-grained-solvent-model-martini"><strong>B. Coarse-grained solvent model: Martini</strong></h4>
+<p>As a solvent, the Martini model for water and hydrated ions will be used.<sup>[2]</sup> This model will also deal with the interactions between the peptide and the solvent and hydrated ions (see Section 2 for further details). Standard Martini files can be downloaded (but that is not necessary here because they are provided for you) from the Martini website. They cannot be used as such, however, in the hybrid set-up, and modifications will need to be made. The standard file for the Martini model which serves as the basis for the modifications can be found in the directory <code>SOLVENT/martini_v2.2.itp</code>.</p>
+</section>
+</section>
+<section id="the-combination-of-the-models" class="level3">
+<h3 class="anchored" data-anchor-id="the-combination-of-the-models">2. The Combination of the Models</h3>
+<hr>
+<p>Models at different levels can be combined in a number of schemes. We describe the simplest approach, viz.&nbsp;we choose to administer all interactions as being at either AA or CG level. The particles making up the peptide will interact at both atomistic and coarse-grained levels. Within the peptide, the interactions should be treated according to the atomistic force field. The atoms of the peptide see the other atoms of the peptide as they would in a normal atomistic simulation. Interactions of the peptide with the solvent are to be CG interactions, i.e.&nbsp;treated entirely according to the Martini model. This clear-cut separation is possible for the system defined here because there are no Coulomb interactions between the AA and CG subsystems. Standard Martini water beads are single, neutral particles. (The proper treatment of electrostatic interactions across the two levels is by no means a finished area of research. Aspects are discussed in Section 5.)</p>
+<p>The present set-up achieves the separation between AA and CG interactions by adding VIRTUAL sites to the atomistic topology, and making sure that these sites have no interaction with the atoms, nor with each other, but only with the solvent. The atomistic topology generated for the peptide must be extended with the virtual sites to build a hybrid topology for the peptide.</p>
+<section id="a.-hybrid-topology-for-the-peptide" class="level4">
+<h4 class="anchored" data-anchor-id="a.-hybrid-topology-for-the-peptide"><strong>A. HYBRID TOPOLOGY FOR THE PEPTIDE</strong></h4>
+<p>The hybrid topology for the peptide makes use of VIRTUAL SITES. These are described in the GROMACS manual in Section 4.7. In the present implementation, the virtual sites are defined as the centers of mass of a number of atoms. The virtual sites themselves are also particles belonging to the molecule. Thus, two entries need to be ADDED to the atomistic topology. The first extension is either an extension of the <code>[ atoms ]</code> directive containing the atomistic particles or a second <code>[ atoms ]</code> directive placed somewhere below the first one. In both cases, the atom numbering must be consecutive to the atoms already defined. The second extension is a <code>[ virtual_sitesn ]</code> directive, which defines how the added virtual sites are related to the normal atoms of the molecule. The additional virtual sites and the mapping can be added by hand, but a script is also available to do this for you. The <code>conf.gro</code> file of the peptide generated by pdb2gmx can be used to generate a Martini topology using an adapted <code>martinize.py</code> script (available in <code>HYBRIDTOPOLOGY</code> — the original script is downloadable from the Martini web-site) after slight modification of the terminal methylated groups. The standard Martini model does not implement the neutral methylated terminal ends. To distinguish them properly in the <code>martinize.py</code> script, a name change of the methyl carbon is required.</p>
+<p><strong>Hands-on</strong></p>
+<p>Go to the directory <code>HYBRIDTOPOLOGY</code>. Copy the standard <code>pdb2gmx</code> output file <code>conf.gro</code> produced in Section 1 to <code>conf-martini.gro</code> and edit the CH3 of the ACE residue to be named CTJ and the CH3 of the NAC residue to be named <code>CTB</code>. This change is for the benefit of making the adapted <code>martinize-ter.py</code> script recognize these neutral methylated termini.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/conf.gro</span> ./conf-martini.gro</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> conf-martini.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Edit the conf-martini.gro to look like this:</p>
+<pre class="text"><code>Gallium Rubidium Oxygen Manganese Argon Carbon Silicon
+   70
+    1ACE    CTJ    1  -1.244   0.089  -0.561
+    1ACE   HH31    2  -1.272   0.187  -0.524
+    1ACE   HH32    3  -1.199   0.101  -0.659
+    1ACE   HH33    4  -1.333   0.029  -0.571
+    1ACE     C     5  -1.146   0.024  -0.467
+    1ACE     O     6  -1.176   0.001  -0.349
+...
+    5NAC     N    55  -0.107  -0.003   0.013
+    5NAC     H    56  -0.153   0.028   0.100
+    5NAC   CTB    57   0.034   0.012  -0.021
+    5NAC   HH31   58   0.062  -0.063  -0.094
+    5NAC   HH32   59   0.052   0.110  -0.062
+    5NAC   HH33   60   0.094  -0.001   0.068
+   1.42700   0.79900   0.81020</code></pre>
+<p>Now, execute the <code>martinize-ter.py</code> script (this is the adapted version):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">martinize-ter.py</span> <span class="at">-f</span> conf-martini.gro <span class="at">-ff</span> martini22 <span class="at">-multi</span> all <span class="at">-nt</span> <span class="at">-o</span> martini.top <span class="at">-x</span> hybrid.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This generates an extension to the molecule definition of the tri-peptide, defining 12 new atom entries that are defined as virtual sites. The flag <code>-ff</code> selects the Martini force field version, the flag <code>-multi all</code> produces a topology extension for hybrid AA-CG simulations (omitting this flag, you get a topology for pure Martini CG simulations), the flag <code>-nt</code> ensures neutral termini, and the <code>-x</code> flag produces a starting structure including the virtual sites. The topology extension is written to the standard file <code>Protein_A.itp</code>, which should look like the text shown below:</p>
+<pre class="text"><code>; MARTINI (martini22) Multiscale virtual sites topology section for "Protein_A"
+
+; Sequence:
+; JYVYB
+; Secondary Structure:
+; CCCCC
+[ atoms ]
+   71   vN0     1   ACE   vBB   71 0.0000 ; C
+   72   vP5     2   TYR   vBB   72 0.0000 ; C
+   73  vSC4     2   TYR  vSC1   73 0.0000 ; C
+   74  vSC4     2   TYR  vSC2   74 0.0000 ; C
+   75  vSP1     2   TYR  vSC3   75 0.0000 ; C
+   76   vP5     3   VAL   vBB   76 0.0000 ; C
+   77  vAC2     3   VAL  vSC1   77 0.0000 ; C
+   78   vP5     4   TYR   vBB   78 0.0000 ; C
+   79  vSC4     4   TYR  vSC1   79 0.0000 ; C
+   80  vSC4     4   TYR  vSC2   80 0.0000 ; C
+   81  vSP1     4   TYR  vSC3   81 0.0000 ; C
+   82   vN0     5   NAC   vBB   82 0.0000 ; C
+;
+; Coarse grained to atomistic mapping
+;
+#define mapping virtual_sitesn
+[ mapping ]
+   71     2    1    2    3    4    5    6
+   72     2    7    8    9   10   26   27
+   73     2   11   14   15   16
+   74     2   17   18   21   22
+   75     2   19   20   23   24   25
+   76     2   28   29   30   31   42   43
+   77     2   32   33   34   35   36   37   38   39   40   41
+   78     2   44   45   46   47   63   64
+   79     2   48   51   52   53
+   80     2   54   55   58   59
+   81     2   56   57   60   61   62
+   82     2   65   66   67   68   69   70</code></pre>
+<p>Each virtual site is defined as the center of mass of a number of atoms of the tri-peptide. The virtual sites are given first, under the <code>[ atoms ]</code> directive, and are numbered starting from 71; the all-atom model tri-peptide has 70 atoms. The atom types given to the virtual sites are those of the Martini model for proteins and peptides, with a prefix v (e.g., the standard back-bone bead for a coil residue in Martini is P5; therefore the bead-type for the back-bone beads 72, 76, and 78 are vP5). The mapping is defined in the directive <code>[ mapping ]</code>, which is made to be interpreted by grompp as a directive <code>[ virtual_sitesn ]</code>. The first number is the index number of the virtual site, the second number (2 for all sites) specifies the type of virtual site (center of mass), and the other numbers are the indices of the atoms that define the virtual site. You may cross-check the mapping with the atom definition given in the atomistic topology.</p>
+<p>To weave the two models together, copy the <code>topol.top</code> obtained from the atomistic model to <code>hybrid.top</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/topol.top</span> ./hybrid.top</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use an editor to add the Martini addition in <code>Protein_A.itp</code> at the appropriate place, which is just after the definition of the peptide ends. Excerpts of the file <code>hybrid.top</code> are shown below:</p>
+<pre class="text"><code>;     Command line:
+;     gmx pdb2gmx -f YVY.pdb -ter -ignh
+;     Force field was read from the standard GROMACS share directory.
+;
+; Include forcefield parameters
+#include "oplsaa.ff/forcefield.itp"
+[ moleculetype ]
+; Name           nrexcl
+Protein            3
+[ atoms ]
+;   nr       type resnr residue atom   cgnr     charge       mass typeB   chargeB     massB
+; residue 20 ACE rtp ACE q 0.0
+     1   opls_135   1   ACE    CH3    1      -0.18    12.011   ; qtot -0.18
+     2   opls_140   1   ACE   HH31    1       0.06     1.008   ; qtot -0.12
+...
+    69   opls_140   5   NAC   HH32   25       0.06     1.008   ; qtot -0.06
+    70   opls_140   5   NAC   HH33   25       0.06     1.008   ; qtot 0
+[ bonds ]
+...
+[ pairs ]
+...
+[ angles ]
+...
+   69   67   70     1
+[ dihedrals ]
+...
+...
+   63   67   65   66     1   improper_Z_N_X_Y
+; MARTINI (martini22) Multiscale virtual sites topology section for "Protein_A"
+; Sequence:
+; JVVVB
+; Secondary Structure:
+; CCCCC
+[ atoms ]
+   71   vN0     1   ACE   vBB   71 0.0000 ; C
+...
+   82   vN0     5   NAC   vBB   82 0.0000 ; C
+;
+; Coarse grained to atomistic mapping
+;
+#define mapping virtual_sitesn
+[ mapping ]
+   71     2     1   2    3    4    5    6
+...
+   82     2   65   66   67   68   69   70
+; Include Position restraint file
+...
+[ system ]
+; Name
+Protein
+[ molecules ]
+; Compound       #mols
+Protein             1</code></pre>
+</section>
+<section id="b.-hybrid-force-field-files" class="level4">
+<h4 class="anchored" data-anchor-id="b.-hybrid-force-field-files"><strong>B. HYBRID FORCE FIELD FILES</strong></h4>
+<p>We now have a topology for the hybrid peptide model. In general, further modifications are required before we can run a simulation.</p>
+<ol type="1">
+<li><p>First of all, the virtual sites are assigned atom-types that belong to the CG model that are not known in the atomistic force field. They must be added to the atom-type list. Of course, the atom-type definitions must not overlap between the two models. For the combination of OPLS-AA/L and Martini this is no problem, but in general, you may need to rename the atom-types of either force field, whichever is more convenient.</p></li>
+<li><p>Also, interactions must be defined between the sets of the two different force fields: either they must be set to zero, or defined explicitly if required. In GROMACS, standard files for interactions are provided for a number of force fields in libraries, provided in directories, see the GROMACS manual, Section 5.8. The OPLS-AA/L force field definitions can be found in the directory <code>YOUR-PATH-TO-GROMACS/share/gromacs/top/oplsaa.ff</code>. We will need to adapt the file <code>ffnonbonded.itp</code> in this directory. Since we may not have administrative privileges, we will copy the entire directory to a place that is under our control, effect the required changes there and make sure those files are used in our simulations.</p></li>
+</ol>
+<p><strong>Hands-on</strong> Go to the directory FORCEFIELDS, and copy the standard library directory (or use the one already copied for you there):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> YOUR-PATH-TO-GROMACS/share/gromacs/top/oplsaa.ff .</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cd <span class="ex">oplsaa.ff</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Valid atom-types for any force field are defined in the file <code>ffnonbonded.itp</code> under the directive <code>[ atomtypes ]</code>. In the GROMACS implementation of the OPLS-AA/L force field there is a long list of atom types. For each atom type, the Lennard-Jones sigma and epsilon values are given in the 7th and 8th column of each entry. An excerpt of the file <code>ffnonbonded.itp</code> is given below to illustrate the point.</p>
+<pre class="text"><code>[ atomtypes ]
+; full atom descriptions are available in ffoplsaa.atp
+; name bond_type   mass   charge   ptype     sigma     epsilon
+opls_001   C   6     12.01100     0.500   A   3.75000e-01 4.39320e-01 ; SIG
+opls_002   O   8     15.99940    -0.500   A   2.96000e-01 8.78640e-01 ; SIG
+...</code></pre>
+<p>The nonbonded interaction parameters can be calculated from the values entered using standard combination rules. GROMACS implements and geometric and arithmetic means, specified in GROMACS in the <code>[ defaults ]</code> directive, which can be found in the <code>forcefield.itp</code> file. In addition, the interaction parameters for pairs of types can be set explicitly, overriding the standard values. This is done in the <code>[ nonbond_params ]</code> directive in the file <code>ffnonbonded.itp</code>. Since OPLS-AA/L uses standard combination rules, the <code>[ nonbond_params ]</code> directive is missing from the file ffnonbonded.itp. You may skip the OPTIONAL part below if you like and continue at the end of the OPTIONAL part.</p>
+<blockquote class="blockquote">
+<p><strong>OPTIONAL (intermediate step)</strong></p>
+<p>Just adding the Martini types used for the virtual sites as valid OPLS-AA atom types (make sure you define them as type V, not A) with standard LJ parameters 0 and 0, allows you to do a simulation in vacuum with the virtual sites present, but not interacting with anything. You may attempt to add the virtual site types yourself by hand (you will need vN0, vP5, vSC4, vSP1, and vAC2), or copy the pre-prepared force field files in which this edit has been done for you.</p>
+<p><strong>Hands-on</strong></p>
+<p>Go to the VACUUM directory and either copy the given files:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> ../FORCEFIELDS/hyb-vac.ff oplsaa.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or copy the standard files and edit the file ffnonbonded.itp to include the atom types for the virtual sites as described in the text above:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> gromacs_path/share/gromacs/top/oplsaa.ff .</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, copy your hybrid starting structure and edited topology there, and you should be able to run a vacuum simulation using the provided set-up file sd.mdp (using straight cut-off Coulomb interactions instead of PME and without pressure correction):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../HYBRIDTOPOLOGY/hybrid.pdb .</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../HYBRIDTOPOLOGY/hybrid.top .</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> hybrid.top <span class="at">-c</span> hybrid.pdb <span class="at">-f</span> sd.mdp <span class="at">-maxwarn</span> 1</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-e</span> viz-sdrun.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When visualizing with vmd, using the .vmd file, you will see the virtual sites, the positions of the Martini beads as green spheres. Due to the standard settings of vmd drawing bonds on the basis of distances, bonds will be drawn between the virtual sites and nearby atoms.</p>
+<p>END OPTIONAL</p>
+</blockquote>
+<p>The MARTINI force field has interaction levels that do not follow from a multiplication rule; it therefore defines a full matrix of interactions. The interaction matrix between Martini beads must be added to the nonbonded definition file in the <code>[ nonbond_params ]</code> directive of the file <code>ffnonbonded.itp</code>. Interactions must be defined between the sets of the two different force fields: either they must be set to zero, or defined explicitly if required. This can be done by hand by appropriately mixing the two files and extending the table with pairs of interactions. Finally, in general one may not want all molecules of a particular kind to interact at a particular level, but only a limited sub-set. For example, we may want to study the active site of a protein atomistically, but embedded in a CG protein and CG water. The virtual sites representing the CG active site must not interact with each other (the atomistic interactions take care of that), but should interact with all surrounding molecules in the appropriate CG manner. One could generate a list of exclusions for the virtual sites while using their normal CG atom types. A more general approach is to double the type of interactions, here CG, where a distinction is made between the types that do not interact with each other, here with prepended v, e.g.&nbsp;vP5 for a P5-type particle, and the normal CG types. Now v-particles can interact with all CG particles in the normal CG manner, whereas they do not interact at all amongst themselves if the LJ parameters between all v-particles are set to zero. This approach is followed here, and you may try to edit an appropriate file yourself, or use a minimal nonbonded file defined for you in <code>FORCEFIELDS/hybrid.ff/ffnonbonded.itp</code>.</p>
+<p>You may skip the OPTIONAL part below if you like and use the pre-prepared force field files in which this edit has been done for you (<code>FORCEFIELDS/hybrid.ff/ffnonbonded.itp</code>) and continue at the end of the OPTIONAL part.</p>
+<blockquote class="blockquote">
+<p>OPTIONAL (defining the set of CG and virtual particle interactions)</p>
+<p><strong>Hands-on</strong></p>
+<p>Go to the FORCEFIELDS directory and make a copy of the OPLS/AA force field files:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> oplsaa.ff myhybrid.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Open the file <code>myhybrid.ff/ffnonbonded.itp</code> and add the Martini types used for the coarse-grained system and for the virtual sites as valid OPLS-AA atom types (make sure you define the ones for the virtual sites as type V, not A) with standard LJ parameters 0 and 0 (you will need P4, BP4, vN0, vP5, vSC4, vSP1, and vAC2). If you have gone through the previous OPTIONAL HANDS-ON, you will already have defined the virtual site atom types and you can use that again.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[gedit/vi]</span> myhybrid.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, while still in the editor, add a directive <code>[ nonbond_params ]</code> and specify explicitly the non-bonded interaction matrix for interactions that should be non-zero. If a pair is not specified in the <code>[ nonbond_params ]</code> directive, standard combination rules will be used; thus by defining a particle type with LJ parameters 0 and 0 this type will always have no LJ interaction with any other particle type if the pair interaction is not explicitly defined in the <code>[ nonbond_params ]</code> directive. An example of a <code>[ nonbond_params ]</code> directive entry is shown below.</p>
+<pre class="text"><code>[ nonbond_params ]
+; type1 type2  flag  sigma     epsilon
+P4   P4   1        0.47e-00 0.50e+01 ; supra atrractive Martini interaction</code></pre>
+<p>When you are done, you may compare your file <code>myhybrid.ff/ffnonbonded.itp</code> with the file <code>hybrid.ff/ffnonbonded.itp</code>.</p>
+<p>END OPTIONAL</p>
+</blockquote>
+<p>NOTE that the standard Martini force field file available from the Martini website (and provided in the SOLVENT directory) uses C6 and C12 parameters instead of sigma and epsilon, as appropriate for the OPLS-AA/L force field. Thus, the Martini parameters must now also be specified in terms of sigma and epsilon (which is the way they are defined in Martini papers).</p>
+</section>
+</section>
+<section id="setting-up-and-running-the-hybrid-system" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-and-running-the-hybrid-system"><strong>3. Setting up and running the hybrid system</strong></h3>
+<hr>
+<p>We will now work toward a hybrid simulation of a single atomistic tripeptide solvated in Martini water.</p>
+<section id="a.-surrounding-the-solute-with-solvent" class="level4">
+<h4 class="anchored" data-anchor-id="a.-surrounding-the-solute-with-solvent"><strong>A. Surrounding the solute with solvent</strong></h4>
+<p>First, a starting structure must be prepared in which the peptide is solvated. GROMACS has a standard tool to solvate systems, <code>gmx solvate</code>. One can either use an equilibrated solvent box to fill an existing system containing a solute, or insert individual molecules one by one. After one or more molecules are inserted, a check for close contacts is made and new molecules that are too close to existing molecules are removed.</p>
+<p><strong>Hands-on</strong></p>
+<p>Go to the <code>HYBRID</code> directory. Take the hybrid solute co-ordinates, center them in the box and define a box-size of 3.5x3.5x3.5 nm, and fill this with Martini water beads. A co-ordinate file containing 400 equilibrated Martini waters (water.gro) is available from the Martini web-site, and is also provided for you in the <code>SOLVENT</code> directory.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../SOLVENT/water.gro</span> .</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">editconf</span> <span class="at">-f</span> ../HYBRIDTOPOLOGY/hybrid.pdb <span class="at">-center</span> 1 1 1 <span class="at">-box</span> 3.5 3.5 3.5</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">solvate</span> <span class="at">-cp</span> out.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-radius</span> 0.2</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRIDTOPOLOGY/hybrid.top</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Edit the topology file (<code>hybrid.top</code>) to include the definition of the Martini water bead (define a <code>moleculetype</code> or use a <code>#include</code>; the file <code>SOLVENT/MartiniWater.itp</code> contains it) and specify the number of water beads just added to your system (right at the bottom in the <code>[ molecules ]</code> directive; the Martini water bead is called W). The number of water beads added should be clear from the output of the <code>gmx solvate</code> command.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, either copy the directory with pre-edited OPLS-AA/L force field files:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> ../FORCEFIELDS/hybrid.ff oplsaa.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or copy the directory with the standard OPLS-AA/L force field files and edit them to include the Martini-bead definitions (see the OPTIONAL hands-on section just prior to this section):</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> gromacs_path/share/gromacs/top/oplsaa.ff .</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>OPTIONAL (intermediate stage)</p>
+<p>The system thus defined will run; you can test this (in an energy minimization run) by running:</p>
+<p>```bash gmx grompp -p hybrid.top -c solvated.gro -f em.mdp -o em -maxwarn 1</p>
+<p>gmx mdrun -v -deffnm em</p>
+<p>vmd -e viz-em.vmd</p>
+<p>END OPTIONAL</p>
+</blockquote>
+</section>
+<section id="b.-generating-proper-tabulated-potentials" class="level4">
+<h4 class="anchored" data-anchor-id="b.-generating-proper-tabulated-potentials"><strong>B. Generating proper tabulated potentials</strong></h4>
+<p>Just by making all CG atom types known to the OPLS-AA/L force field and adding the LJ-parameters, the simulation will run, but it is not a proper hybrid simulation because the two force fields do not use the same cut-offs for the nonbonded interactions, nor — in the case of OPLS-AA/L and Martini — the same functional form for the Coulomb and LJ interactions. If you would run an MD simulation with the present set-up, the density of the system is incorrect because with standard LJ potentials you would not get the proper density of Martini water.</p>
+<p>The next ingredient is thus making sure that the interactions are treated properly according to the appropriate force fields. This may or may not be entirely possible within GROMACS. A powerful tool that enables multiscale simulations are the so-called “tables” that GROMACS implements. Internally, potentials and forces are tabulated within GROMACS and the forces are determined by an interpolation scheme between the tabulated values. This is hidden from the user, but users may define their own interaction tables, by which they can input any pairwise nonbonded interaction potential. The next section briefly takes you through the setting up of such tables. They are described in the GROMACS manual, Section 6.9 and a more extensive tutorial is available from the GROMACS website.</p>
+<p>Nonbonded interaction tables can be defined for the interactions between any number of groups. Here, we need the following set, which are provided for you in the <code>FORCEFIELDS</code> directory:</p>
+<ol type="i">
+<li>interaction tables between the atomistic particles, which will be called AA:</li>
+</ol>
+<ul>
+<li>the OPLS-AA/L force field with nonbonded cut-off of 1.0 nm, using a standard LJ potential contained in the file tables_AA_AA.xvg,</li>
+</ul>
+<ol start="2" type="i">
+<li>interaction tables between coarse-grained particles, which will be called CG:</li>
+</ol>
+<ul>
+<li>the MARTINI force field with nonbonded cut-off of 1.2 nm, using a modified LJ potential, contained in the file tables_CG_CG.xvg, and</li>
+</ul>
+<ol start="3" type="i">
+<li>interaction tables between the two types (AA and CG) of particles:</li>
+</ol>
+<ul>
+<li>for the example here, the potentials can be set to zero for all distances, but a file with these values must be present. We use the naming convention of GROMACS and let this interaction be the default, which means these interactions must be contained in the file table.xvg.</li>
+</ul>
+<p>Each tables file contains 7 columns, the first column contains the distances between the pair of particles (in nanometer), and the next six columns implement three generic functions in three pairs of potential and force. Within GROMACS, the magnitude of the interaction or force is determined by the interpolated value taken from the tables file, multiplied by the appropriate Coulomb or LJ prefactors for the pair at hand. The structure of the tables files is thus:</p>
+<pre class="text"><code>distance   f(r)       f’(r)     g(r)       g’(r)       h(r)         h’(r)</code></pre>
+<p>and with heavily truncated numbers could start like this:</p>
+<pre class="text"><code>0.0000E+00 0.0000E+00 0.0000E+00  0.0000E+00  0.0000E+00  0.0000E+00 0.0000E+00
+0.2000E-02 0.4999E+03 0.2499E+06 -0.1562E+17 -0.4687E+20 -0.2441E+33 0.1464E+37
+....</code></pre>
+<p>For the first interaction (modeled on the Coulomb interaction), the prefactor for the functions f(r) and f’(r) is calculated by multiplication of the two charges and dividing by the dielectric constant (epsilon_r in the mdp-file). For the second (g) and third (h) functions, (modeled on the LJ interaction), the prefactors are calculated from the standard combination rules for the C6 and C12 parameters, respectively (which may themselves be calculated from the input sigma and epsilon values), or taken directly from the <code>[ nonbonded_params ]</code> list in the <code>ffnonbonded.itp</code> file. The distance spacing of the table files can be chosen at will but needs to be uniform. The tables should extend to at least the longest cut-off used in the interactions between the different types of particles, here 1.2 nm, but it is useful to make them extend beyond this — by default, tables are extended 1 nm beyond the cut-off (<code>mdp</code> option <code>table-extension</code>).</p>
+<p>GROMACS provides a number of tables files for you, for example for the Lennard-Jones 6-9 potential, <code>table6-9.xvg</code>. They are provided in the <code>YOUR-PATH-TO-GROMACS/share/gromacs/top</code> directory, with an extension up to 3.0 nm. You will generally need to generate these files yourself, writing a script, a program, etc. Force-matching or related hierarchical coarse-grained force fields<sup>[3]</sup> generally use tabulated potentials derived from atomistic simulations. For the purpose of this tutorial, the tables files are provided for you in the <code>FORCEFIELDS</code> directory and you can simply copy them over. Technical information about the functional forms of the potentials used here is given in the appendix to a paper by Baron et al.<sup>[4]</sup>. NOTE that you also need a separate <code>tablep.xvg</code> file for 1-4 (pair) interactions.</p>
+<blockquote class="blockquote">
+<p>OPTIONAL Hands-on</p>
+<p>Go to the FORCEFIELDS directory. The tabulated potentials can be viewed using xmgrace, for example:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> table_CG_CG.xvg <span class="at">-p</span> xmgr.par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Return to the HYBRID directory.</p>
+<p>END OPTIONAL</p>
+</blockquote>
+<p>A basic mdp-file for energy minimization in the hybrid scheme using user-defined potentials is shown below (and provided for you as <code>min.mdp</code>):</p>
+<pre class="text"><code>; RUN CONTROL PARAMETERS
+integrator               = steep
+nsteps                   = 100
+; OUTPUT CONTROL OPTIONS
+; Output frequency for coords (x), velocities (v) and forces (f)
+nstxout                 = 1
+nstvout                 = 1
+nstenergy               = 1
+; Selection of energy groups
+energygrps              = AA CG
+; NEIGHBORSEARCHING PARAMETERS
+; Periodic boundary conditions: xyz, no, xy
+pbc                     = xyz
+; nblist cut-off      
+rlist                   = 1.0
+; OPTIONS FOR ELECTROSTATICS AND VDW
+; Method for doing electrostatics
+coulombtype             = user
+rcoulomb                = 1.2
+; Relative dielectric constant for the medium and the reaction field
+epsilon_r               = 1
+; Method for doing Van der Waals
+vdwtype                 = user
+rvdw                    = 1.2
+; Seperate tables between energy group pairs
+energygrp_table         = AA AA CG CG</code></pre>
+<p>Compared to standard settings, points to note in the hybrid set-up are:</p>
+<ol type="i">
+<li>definition of the energy groups AA and CG; these are required because their interactions are treated differently, as specified in the energygroup table (see (iii) below):</li>
+</ol>
+<pre class="text"><code>energygrps = AA CG</code></pre>
+<p>defines two energy groups, which must be present in the index file (run.ndx) supplied by the user (see below);</p>
+<ol start="2" type="i">
+<li>specification of user-defined potentials for both coulomb and vanderwaals interactions:</li>
+</ol>
+<pre class="text"><code>coulombtype = user
+
+vdwtype = user</code></pre>
+<p>tells grompp to look for table files;</p>
+<ol start="3" type="i">
+<li>designation of which user-defined table is used to handle which interaction:</li>
+</ol>
+<pre class="text"><code>energygrp_table = AA AA CG CG</code></pre>
+<p>tells grompp to look for table_AA_AA.xvg (first pair of arguments, AA AA) and <code>table_CG_CG.xvg</code> (second pair of arguments, CG CG) that define the interactions between the energy groups AA with AA and CG with CG, respectively. For all other interactions the data in the file <code>table.xvg</code> will be used.</p>
+<p>The separate treatment of interactions is taken care of by defining energy groups as explained above. The energy groups must be known to the program and you must provide an index file to that end, because the energy groups needed are not standard groups known to GROMACS. You can use the conformation with added water beads to build the index file. The sequence shown below does that for you (lines preceded by &gt; are commands within <code>make_ndx</code>; the numbering used in this sequence presumes that the standard groups that are defined number up to 13, where 13 are the W beads, and the group <code>Protein</code> is group number 1):</p>
+<p><strong>Hands-on</strong> (make sure you are in the HYBRID directory)</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">make_ndx</span> <span class="at">-f</span> solvated.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(the next series of commands is typed within make_ndx)</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> a <span class="ex">v*</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 13 <span class="kw">|</span> <span class="ex">14</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 1 <span class="kw">&amp;</span><span class="ot">! </span><span class="ex">14</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">15</span> CG</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">16</span> AA</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(quits make_ndx and puts you back on the Linux command line)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="ex">index.ndx</span> run.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The next sequence copies the tables files, does a minimization and short MD run in the OPLS-AA/L-Martini hybrid set-up.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../FORCEFIELDS/table*</span> .</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> min.mdp <span class="at">-n</span> run.ndx <span class="at">-maxwarn</span> 3</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-min.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>At room temperature, Martini water may freeze, which may cause problems. Water may be prevented from freezing by treating around 10% of the water beads as so-called “anti-freeze water”. You may do this quite simply by editing the topology file, <code>hybrid.top</code>. Add a line after the water beads, specifying WF nnn, where nnn is about 10% of the number of W beads. Reduce the number of W beads accordingly. You do not need to change the coordinates file. You must make sure the particle type BP4 is specified in the force field file <code>ffnonbonded.itp</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> confout.gro <span class="at">-f</span> md.mdp <span class="at">-n</span> run.ndx <span class="at">-maxwarn</span> 1</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">trjconv</span> <span class="at">-center</span> <span class="at">-pbc</span> mol <span class="at">-o</span> viz.xtc <span class="op">&lt;</span> convin</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-run.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hopefully by now, the system is stable enough to run for a longer period of time and you can start production. OPLS-AA/L uses PME by default, and a possible set-up is given in pme.mdp. In my own experience, using constraints leads to problems, and the time-step is fairly limited. Still, there is a substantial reduction in the number of solvent particles, and the overall efficiency in sampling the peptide degrees of freedom is higher than with, say, the TIP3P model as solvent. As a reminder, these types of simulations are at an early stage of development and it is still very much open to debate what methodology is the best one to yield optimal reliability and efficiency. Feel free to try different integrators, settings for temperature and pressure coupling and changes to the topology. Treating the H-atoms as virtual sites and/or make them heavy may enhance the numerical stability of the system.</p>
+<p>To my knowledge, the combination of OPLS-AA/L and Martini models has not been reported in the literature. Our group in Groningen has published on combining GROMOS united-atom models with Martini models.[5, 6] It is clear from that work, that the combination of different resolutions is not without artifacts, and especially the treatment of electrostatics needs careful attention. An attempt to incorporate this is discussed in <a href="#an-assembly-of-peptides-including-charged-side-chains-and-ions">Section 5</a>.</p>
+</section>
+</section>
+<section id="fine-graining-a-hybrid-snapshot" class="level3">
+<h3 class="anchored" data-anchor-id="fine-graining-a-hybrid-snapshot">4. Fine-graining a hybrid snapshot</h3>
+<hr>
+<p>Hybrid models promise the best of two worlds: efficient sampling of complex systems and high-level detail in the region of interest. It is nevertheless likely that in practice, some trade-off between accuracy and computational speed will be made causing artifacts near the boundary(ies) of the two (or more) levels. The boundary artifacts may reflect on the region of interest and a method to put in more detail based on the less detailed model can help to study such artifacts. Alternatively, such a method should provide a good starting structure for a simulation at the more detailed level. Approaches that sample long-term processes at coarse-grained level and investigate the details of the interesting intermediate structures after fine-graining have been described already in the literature.</p>
+<p>Here, we will take a snapshot from the hybrid simulation of an OPLS-AA/L peptide in Martini water discussed in the previous section and put in TIP3P waters based on the positions of the CG water beads. The method also allows (partial) fine-graining purely CG snapshots, which we will do for a system of 100 tripeptides in Martini water. Several back-mapping schemes have been published. The present method, developed by Tsjerk Wassenaar, is in my view a flexible and user-friendly one.[7]</p>
+<p>Back-mapping or reverse coarse-graining or fine-graining a (partially) coarse-grained structure requires a correspondence between the two models; specifically for AA and CG: which atoms make up which bead. Actually, an atom can in principle contribute to several beads. The hybrid set-up described in this tutorial defines virtual sites (the positions of the CG beads) as the centers of mass of a number of atoms. In this mapping scheme, each atom appears only once, but there is no technical reason why it could not appear in the definition of several virtual sites. A back-mapping protocol needs to know at least which atoms contribute to which bead. Existing schemes then use rigid building blocks anchored on the CG bead, or place the atoms randomly near the bead in an initial guess and the structure is relaxed based on the atomistic force field, usually by switching it on gradually. The method presented here allows for an intelligent, yet flexible initial placement of the atoms based on the positions of several beads, thereby automatically generating a very reasonable orientation of the groups of atoms with respect to each other. When back-mapping the hybrid model used in this tutorial we do not need this, because only water beads are fine-grained. When partially back-mapping only the peptides in the CG model to generate a hybrid model, we do. The more general procedure is described in a <a href="../../../../docs/tutorials/Legacy/martini2/others.html">separate tutorial</a> on the Martini website.</p>
+<section id="back-mapping-martini-water-to-tip3p-or-spc-water" class="level4">
+<h4 class="anchored" data-anchor-id="back-mapping-martini-water-to-tip3p-or-spc-water"><strong>Back-mapping Martini water to TIP3P (or SPC) water</strong></h4>
+<p>A Martini water bead models four atomistic water molecules. The <code>backward.py</code> script used here to fine-grain the hybrid snapshot generates four water molecules around a water bead. By default, any particle named W in the structure file is interpreted as a water bead and the script itself generates four 3-atom water molecules (which may then be used as SPC or TIP3P waters). For this exercise, a fully fine-grained starting structure can be prepared with a little editing.</p>
+<p><strong>Hands-on</strong> Go to the directory BACKMAPPING.</p>
+<ol type="i">
+<li>make two copies of a hybrid snapshot</li>
+</ol>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRID/confout.gro</span> W.gro</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRID/confout.gro</span> peptide.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="i">
+<li>remove all non-water (i.e.&nbsp;those that are not W or not WF) beads from the file W.gro, and edit the second line of the file to correctly state the number of atoms/beads in the file (number of waters added in section 3A minus 82). Make sure that if there is anti-freeze water, the bead is renamed from WF to W. You can do this within the editor, or after the edit as shown here. Alternatively, implement the backmapping of anti-freeze water in backward, where it is hard-coded.</li>
+</ol>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> W.gro</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/WF/W /g'</span> W.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="i">
+<li>apply the back-mapping script backward.py to the edited file</li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">backward.py</span> <span class="at">-f</span> W.gro <span class="at">-sol</span> <span class="at">-kick</span> 0.2 <span class="at">-o</span> fgW.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The flag -sol tells the script to convert W beads into (standard 3-particle water) solvent atoms (four molecules for one bead), and the flag -kick 0.2 applies random displacements to the initially placed atoms, reducing the strong orientational correlations of the initial placement.</p>
+<ol start="4" type="i">
+<li>remove the header (first two lines) and all virtual sites and <code>W</code> and <code>WF</code> beads and the last line from the file <code>peptide.gro</code>; this file now only contains the real atoms of the peptide</li>
+</ol>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> peptide.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="22" type="a">
+<li>insert the peptide atoms in the file containing the atomistic water, fgW.gro; you should add them near the top of the .gro file, just after the line stating the number of atoms in the file and before the solvent molecules. Also edit the number of atoms in the file (add 70, this is the number of atoms in the peptide).</li>
+</ol>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">fgW.gro</span> fg.gro</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> fg.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="i">
+<li>copy the atomistic topology file and edit it to add a <code>SOL</code> entry in the <code>[ molecules ]</code> directive. The number of <code>SOL</code> molecules is 4 times the number of <code>W</code> beads you had in the hybrid set-up.</li>
+</ol>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/topol.top</span> .</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="7" type="i">
+<li>minimize the back-mapped structure and run a short relaxation/equilibration</li>
+</ol>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> topol.top <span class="at">-c</span> fg.gro <span class="at">-f</span> min.mdp <span class="at">-o</span> min</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-deffnm</span> min</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> topol.top <span class="at">-c</span> min.gro <span class="at">-f</span> md.mdp <span class="at">-o</span> md <span class="at">-maxwarn</span> 1</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-deffnm</span> md</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">trjconv</span> <span class="at">-center</span> <span class="at">-pbc</span> mol <span class="at">-s</span> md.tpr <span class="at">-f</span> md.xtc <span class="at">-o</span> viz.xtc <span class="op">&lt;</span> convin</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-run.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now you are all set to run production at fully fine-grained level.</p>
+</section>
+</section>
+<section id="an-assembly-of-peptides-including-charged-side-chains-and-ions" class="level3">
+<h3 class="anchored" data-anchor-id="an-assembly-of-peptides-including-charged-side-chains-and-ions">5. An assembly of peptides including charged side chains and ions</h3>
+<hr>
+<p>In this part of the tutorial, we will address a more complex system in which electrostatic interaction between the FG and CG subsystems play a role. The aim of this part of the tutorial is to show how to set up hybrid systems. The best way of dealing with the interactions between CG and FG subsystems is by no means clear yet. In fact, the literature from our own group shows that proper treatment in the hybrid model is problematic. Therefore, this section should be regarded as an incentive for further research in this area.</p>
+<p>In the context of high throughput screening simulations, all possible tripeptides were tested for their self assembly behavior using the Martini coarse-grained force field. Experimental testing subsequently confirmed that the type of self-assembly behavior of the peptides was predicted satisfactorily by the simulations. It may be interesting to have more detailed insight in the self assembly pricess and in the organization of the assemblies; this may be achieved by using one or more snapshots from the CG model as a basis for running either all-atom or hybrid simulations. Here, we will run a hybrid simulation of an assembly of 100 TYR-GLU-TYR (YEY) peptides in water that is the result of spontaneous aggregation with the Martini model. The spontaneous aggregation set-up is treated in <a href="../../../../docs/tutorials/Legacy/martini2/high_throughput.html">the high throughput peptide screening tutorial</a>.</p>
+<p><strong>Hands-on</strong> Go to the directory <code>HYBRID-YEY-AGG</code>. This will be the parent directory for hybrid simulations of 100 TYR-GLU-TYR (one-letter code abbreviation YEY) peptides in Martini water. The starting structure is taken from another Martini tutorial and is the result from a spontaneous self-assembly run of these peptides at the Martini level. The hybrid set-up aims at bringing in atomistic details and relaxation at the atomistic level of the aggregate formed thus far. A number of steps done for the TYR-VAL-TYR peptide need to be repeated and/or modified here. You may go through them all explicitly or use the results of some steps without doing them yourself.</p>
+<section id="a.-preparing-the-hybrid-topology" class="level4">
+<h4 class="anchored" data-anchor-id="a.-preparing-the-hybrid-topology"><strong>A. Preparing the hybrid topology</strong></h4>
+<p>You may follow the same procedure here for the YEY-peptide as for the YVY peptide earlier in this tutorial, or just take the topology that is generated in that way for you.</p>
+<blockquote class="blockquote">
+<p>OPTIONAL Hands-on: preparing hybrid topology</p>
+<p>Go to the directory HYBRID-YEY-AGG/HYBRIDTOPOLOGY. Use a structure editor, e.g.&nbsp;pymol to generate a pdb structure of a protected Ace-YEY-NMA peptide. Save as a PDB-file under the name YEY.pdb, edit it to remove the line “TER TYR”, change the residue name NME to NAC (see Hands-on in Section 1A) and from it, generate an OPLS-AA/L model for the peptide:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> YEY.pdb</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pdb2gmx</span> <span class="at">-f</span> YEY.pdb <span class="at">-ter</span> <span class="at">-ignh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Edit the conf.gro file to comply with the naming of terminal methyl groups in the adapted martinize-ter.py script (see Section 2A), and use the script to generate the definitions of the virtual sites:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> conf.gro</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize-ter.py <span class="at">-f</span> conf.gro <span class="at">-ff</span> martini22 <span class="at">-multi</span> all <span class="at">-nt</span> <span class="at">-o</span> martini.top <span class="at">-x</span> hybrid.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Copy the AA topology and add the information for the virtual sites in Protein_A.itp to the AA topology.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> topol.top myhybrid.top</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> myhybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>END OPTIONAL</p>
+</blockquote>
+</section>
+<section id="b.-partial-back-mapping-of-the-fully-cg-snapshot" class="level4">
+<h4 class="anchored" data-anchor-id="b.-partial-back-mapping-of-the-fully-cg-snapshot"><strong>B. Partial back-mapping of the fully CG snapshot</strong></h4>
+<p>We need to generate atomistic coordinates from the CG coordinates for the peptides only. This may be done using the <code>backward.py</code> script. However, since we are using virtual sites, we need to also make sure there are virtual site coordinates present. This is achieved here by introducing special mapping files for the first and last residues. The procedure is described in more detail in <a href="#appendix-special-mapping-files">an appendix</a>, which you may want to refer to later on. Also, we will need to use the polarizable Martini water model. In the polarizable Martini model, water consists of three particles, two of which bear opposite charges which are free to move on a circle around the central uncharged bead.[8] The LJ interaction resides on the central bead and the charges within the water bead do not have an electrostatic interaction, but there is an angle potential between the fixed-length bonds from the central particle to each of the charges. The model mimics the orientational polarization of a cluster of four water molecules. Each water bead from the fully CG model (that used single-bead Martini water) needs to be converted to three beads making up the polarizable water model. The script <code>triple_w.py</code> does this for you (see also <a href="../../../../docs/tutorials/Legacy/martini2/others.html#polarizable-water">here</a>).</p>
+<p><strong>Hands-on</strong> Go to the directory <code>HYBRID-YEY-AGG/PARTIALBACKMAP</code>.</p>
+<ol type="i">
+<li>convert the W beads in the fully CG snapshot provided to polarizable Martini water (each bead generates three particles). The result is written to the file <code>TYR-GLU-TYR_eq_PW.gro</code>:</li>
+</ol>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">triple_w.py</span> TYR-GLU-TYR_eq.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="i">
+<li>edit the CG snapshot with polarizable water beads to change residue names 1TYR to 1TYN and 3TYR to 3TYC. You can do this conveniently using two sed commands:</li>
+</ol>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">TYR-GLU-TYR_eq_PW.gro</span> tobackmap.gro</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/1TYR/1TYN/g'</span> tobackmap.gro</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/3TYR/3TYC/g'</span> tobackmap.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="i">
+<li>apply the back-mapping script <code>backward.py</code> to the edited file</li>
+</ol>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">backward.py</span> <span class="at">-f</span> tobackmap.gro <span class="at">-from</span> martini <span class="at">-to</span> oplsaa <span class="at">-nt</span> <span class="at">-o</span> YEY-backmapped.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The file YEY-backmapped.gro should now contain atomistic coordinates for the 100 YEY peptides and coordinates for the Na-ions. The polarizable water beads present have not been backmapped to atomistic water and also they have not been kept or copied into the backmapped result. We must add them to the backmapped file to arrive at a system containing both the atomistic peptides and the coarse-grained water and ions. To this end, extract the polarizable water beads from the file <code>TYR-GLU-TYR_eq_PW.gro</code>.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> awk <span class="st">'{if (substr($2,1,1) == "W") print $0 }'</span> <span class="op">&lt;</span> TYR-GLU-TYR_eq_PW.gro <span class="op">&gt;</span> W.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="i">
+<li>edit the file YEY-backmapped.gro. Add the polarizable water beads below the Na-ions, and make sure the number of particles in the file is correctly stated on the second line of the file.</li>
+</ol>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> YEY-backmapped.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For comparison, the file <code>PartialBackmap.gro</code> is provided for you.</p>
+</section>
+<section id="c.-setting-up-the-hybrid-simulation" class="level4">
+<h4 class="anchored" data-anchor-id="c.-setting-up-the-hybrid-simulation"><strong>C. Setting up the hybrid simulation</strong></h4>
+<p>The treatment of the interactions is different from the example of the single peptide in water described in section 3B. In this case, electrostatic interactions between atomistic and coarse-grained system play a role. They are dealt with by using a different set of table-files. This is explained in more detail in <a href="#appendix-special-mapping-files">an appendix</a>, which you should consult once the simulation is up and running.</p>
+<p><strong>Hands-on</strong> Go to the directory <code>HYBRID</code>.</p>
+<ol type="i">
+<li>get the partially back-mapped CG structure</li>
+</ol>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../PARTIALBACKMAP/YEY-backmapped.gro</span> system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="i">
+<li>copy and edit the file <code>hybrid.top</code> (you can use your own if you prepared <code>myhybrid.top</code> in the OPTIONAL part earlier on) to reflect the number and order of molecules (100 Protein molecules, 100 NA+ beads and 2,936 polarizable water molecules (<code>PW</code>). Put in #include statements to the Martini polarizable water (<code>../../SOLVENT/PolMartiniWater.itp</code>) and ion topologies (<code>../../SOLVENT/MartiniSodium.itp</code>).</li>
+</ol>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRIDTOPOLOGY/hybrid.top</span> .</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="3" type="i">
+<li>make sure that all the CG and virtual site types and their interactions are defined properly in the force field files and that the user-defined potentials (tables) are present</li>
+</ol>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> ../../FORCEFIELDS/hybrid-charged.ff oplsaa.ff</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/table*</span> .</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/gro-table_AA_AA.xvg</span> table_AA_AA.xvg</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/gro-table_AA_CG.xvg</span> table_AA_CG.xvg</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/mar-table_CG_CG.xvg</span> table_CG_CG.xvg</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/mar-table_CG_VS.xvg</span> table_CG_VS.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="i">
+<li>minimize the hybrid system using an improper hybrid forcefield (have a look at the settings for the coulomb and vdw interactions). This will hopefully easily heal the sometimes rather haphazardly placed atoms; you may try to improve on this by writing a better mapping file, see the backmapping tutorial. (Note that the virtual sites are put on the centers of mass before anything else is done by GROMACS itself, therefore their placement in the starting structure is not important as long as they are in the file!) Here, we use the soft-core potentials via the free-energy code to deal with atoms that are placed very close to each other and cause problems when all interactions are immediately switched on. Using the free-energy code slows down the calculations considerably, but we usually need only a few thousand steps to get a decent structure.</li>
+</ol>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> system.gro <span class="at">-f</span> em-sc.mdp <span class="at">-o</span> em-sc.tpr <span class="at">-maxwarn</span> 2</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-deffnm</span> em-sc <span class="at">-v</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> em-sc.gro <span class="at">-f</span> sd-sc.mdp <span class="at">-o</span> sd-sc.tpr <span class="at">-maxwarn</span> 2</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-deffnm</span> sd-sc <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="22" type="a">
+<li>make the index file including the definitions of AA, CG, and virtual site (VS) subsystems for the chosen treatment of the interactions (see Appendix D). Here, we assume that the standard groups run up to and including number 14 (PW is the final group, and the ions are group 13)</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">make_ndx</span> <span class="at">-f</span> sd-sc.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(the next series of commands is typed within <code>make_ndx</code>)</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> a <span class="ex">v*</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">15</span> VS</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 1 <span class="kw">&amp;</span> <span class="ex">!15</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">16</span> AA</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 0 <span class="kw">&amp;</span> <span class="ex">!15</span> <span class="kw">&amp;</span> <span class="ex">!16</span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">17</span> CG</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(you have now quit the <code>make_ndx</code> tool and your index file is saved as <code>index.ndx</code>)</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="ex">index.ndx</span> run.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="6" type="i">
+<li>minimize again, now using the proper hybrid force field (have a look at the settings for the coulomb and vdw interactions and what table files are expected). If you are lucky, the following sequence will work. If not, you need to look at the details and try to find out what may cause problems. This may require quite a bit of grit, patience, and determination…</li>
+</ol>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> sd-sc.gro <span class="at">-f</span> min.mdp <span class="at">-maxwarn</span> 1</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> min.gro</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> min.gro <span class="at">-f</span> sd1.mdp <span class="at">-maxwarn</span> 1</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> sd1.gro</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> sd1.gro <span class="at">-f</span> sd2.mdp <span class="at">-maxwarn</span> 1</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> sd2.gro</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> sd2.gro <span class="at">-f</span> md1.mdp <span class="at">-maxwarn</span> 1</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> md1.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that it is inconvenient here to use the <code>-deffnm</code> option on mdrun because the <code>table</code> files should then have names corresponding to the name of the <code>-deffnm option</code>. If you want to keep the trajectories under specific names, move <code>traj.xtc</code> after each step to your name of choice.</p>
+</section>
+</section>
+<section id="appendix-special-mapping-files" class="level3">
+<h3 class="anchored" data-anchor-id="appendix-special-mapping-files">Appendix: Special mapping files</h3>
+<hr>
+<p>In sequential multiscaling, resolution transformations are made between different levels of description: an atomistic snapshot is coarse-grained to run a CG model for computational efficiency, and when an interesting event or structure occurs during the CG simulation, the atomstic details are put back in to set up a more expensive simulation studying the details. A powerful tool to toggle between resolutions is provided by the backward procedure, implemented in python script backward.py. The package provides a set of mapping files, defining the correspondence for amino acids and selected other molecules (lipids mostly) between the Martini model and common united atom (gromos) and all atom (charmm, amber) models.</p>
+<p>In the hybrid models described in this tutorial, peptides are described as partially interacting through atomistic force field interactions and partly through Martini-type interactions. This is achieved by adding virtual sites to the topology of the peptide. The virtual sites interact only with the coarse-grained environment. If we have a fully CG snapshot, we need to put in the atomistic details of the peptide molecule(s), INCLUDING the virtual sites. The standard mapping files do not provide this information. Here, we describe how to add the virtual sites in a simple manner. A second aspect in this tutorial is the fact that we use neutral (methylated) terminal residues ACE and NAC. There are no mapping files for these residues either. Both aspects can be dealt with simultaneously.</p>
+<p>In the chosen hybrid set-up, all virtual sites are added after all atoms of the peptide. If we make a mapping file for the terminal resdue (here a Tyrosine), we can simply define as many extra atoms as we need virtual sites, and add them at the end of the normal (standard) atoms. In the mapping assignment, we can assign them all to the back-bone bead. They will all be placed near this bead in the backmapped structure but this should be no problem at all. The virtual sites are put on the centers of mass by GROMACS itself before anything else is done, e.g.&nbsp;energy minimization or the first dynamics step. All that is required is then to copy the mapping file for an existing amino acid and give a unique residue name to the terminal residue. Here, we chose TYC (for Tyrosine, C-terminal). In this new mapping file, we can also easily add atoms to account for the neutral terminal we created, here the C=O(Me) group. In this case, the Martini model did not use an extra bead for the extra atoms, but assumes these part of the final backbone bead (BB). Thus, before the extra atoms for the virtual sites, modify and add atoms for the methylated terminus.</p>
+<p><strong>Hands-on</strong></p>
+<p>Go to the directory <code>HYBRID-YEY-AGG/PARTIALBACKMAP/Mapping</code>. Copy the standard file for a tyrosine residue from martini to CHARMM to a new file that is to implement the special C-terminus. If you do not wish to override the file provided, choose a different name. Note that CHARMM and OPLS/AA use the same names but not the same numbering (sequence) of the atoms in amino acid residues.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">tyr.charmm36.map</span> tyc.oplsaa.map</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> tyc.oplsaa.map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the editor, change the residue name from TYR to TYC. Change the entry in the <code>[ mapping]</code> directive to <code>oplsaa</code>. Change the order of the atoms according to the definition in the <code>HYBRID-YEY-AGG/HYBRIDTOPOLOGY/hybrid.top</code> file. At the end of the atom list, add extra atoms for the terminal methyl group (<code>CH3</code>, <code>HH31</code>, <code>HH32</code>, and <code>HH33</code>) first, then add atom definitions for all virtual sites of the entire peptide (think of suitable names yourself, or take them from the <code>hybrid.top</code> file). Assign all the new atoms and virtual sites to the BB bead in the mapping. You should have a total of 37 atoms for this residue.</p>
+<p>The first residue, in our case also a tyrosine, is also extended with a methylated terminal end. This means, we now have to place atoms at the start of the amino acid. This then requires a renumbering of the other atoms. Copy the tyrosine residue mapping file once more, make edits to change the name of the residue to TYN, change the force field name, and change the order of the atoms in the aromatic ring and add the required atoms at the beginning of the <code>[ atoms ]</code> directive (<code>CH3</code>, <code>HH31</code>, <code>HH32</code>, <code>HH33</code>, and <code>C1</code>). The remaining (original) atoms must now be renumbered and you should end up with 27 atoms.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">tyr.charmm36.map</span> tyn.oplsaa.map</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> tyn.oplsaa.map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally, you will need a copy of the glutamate residue mapping file. Copy the one from charmm and change the name of the force field. The charmm mapping file has the acid group protonated. Here we want a charged side group. Delete the H-atom on the acid group and renumber the remaining atoms.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">glu.charmm36.map</span> glu.oplsaa.map</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> glu.oplsaa.map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you have downloaded the backward package, you will also need to adapt the backward.py script. The downloaded version does not accept mapping to OPLS/AA, and it does not recognize the methylated termini. Compare the two scripts to see how these changes were implemented.</p>
+</section>
+<section id="appendix-setting-up-hybrid-electrostatics" class="level3">
+<h3 class="anchored" data-anchor-id="appendix-setting-up-hybrid-electrostatics">Appendix: Setting up hybrid electrostatics</h3>
+<hr>
+<p>The treatment of electrostatics in hybrid simulations is unlikely to be straightforward, especially if two force fields are combined that are not related to each other in a hierarchical scheme. The two types of force fields may not use the same functional form for the electrostatics. In atomistic models electrostatic potentials are usually based on unscreened Coulomb interactions, either cut off at some distance or treated by full Ewald-type electrostatics in which all charges interact with each other. The standard choice for OPLS-AA/L is Particle Mesh Ewald (PME), a numerical variant of Ewald electrostatics. Coarse-grained models may have no electrostatic term at all, but if they do, the electrostatic potential is usually of some screened form to account for the absence of orientational polarization by dipolar species. In the standard Martini model, the beads modeling water as a solvent do not bear any charge. Formal charges are given to the two beads making up the Zwitterionic lipid head groups, and to the bead(s) representing charged amino-acid side chains. In atomistic models the charge-charge interactions are screened by the explicit water reorientation which is absent in the CG model. Therefore, the Martini model uses a dielectric constant of 15 to reduce the interaction between the charged species. Also, the Martini model does not use Ewald-type electrostatics; instead the potential smoothly goes to zero at the cut-off distance. It should be noted that the standard Martini model for lipids does run stably under PME and that lipid bilayer properties are similar to those obtained with the standard screened and smoothed Coulomb potential. Thus, combining models may be possible if the electrostatics treatments of the two models can be brought to the same level in a practical sense, possibly with some adjustments of parameters. A published study of combining the GROMOS 53A6 force field with Martini[6] shows that it is not trivial to achieve a working model but at least a working starting model can be constructed.</p>
+<p>This tutorial contains a possible way in which to combine the OPLS-AA/L force field with the polarizable water Martini model and Martini ions using a mixed model for electrostatics. This appendix explains in more detail how it is set up. In the polarizable Martini model, water consists of three particles, two of which bear opposite charges which are free to move on a circle around the central uncharged bead.[8] The LJ interaction resides on the central bead and the charges within the water bead do not have an electrostatic interaction, but there is an angle potential between the fixed-length bonds from the central particle to each of the charges. The model mimics the orientational polarization of a cluster of four water molecules. The model uses the same form of the Coulomb potential (shifted. i.e.&nbsp;with a smoothed cut-off at 1.2 nm, and no electrostatic interaction beyond that point), but with a relative dielectric constant of 2.5 instead of 15. In contrast, the interaction between partial charges of the atomistic OPLS-AA/L model use a relative dielectric constant of 1 because screening is explicit by TIP3P water molecules. In addition PME electrostatics is used in the atomistic model.</p>
+<p>In the implementation used in this tutorial, PME electrostatics is not used (except in the model without charged peptides). Instead, the electrostatic interactions between the AA particles are treated with the Coulombic reaction field potential that is the standard in the GROMOS force fields. Here, we chose a cut-off of that potential of 1.2 nm (the same as for the Martini model; 1.4 nm is the standard cut-off for the GROMOS force fields), and a value of the dielectric constant of the surroundings, epsilon_rf in Gromacs settings files, of 78. There could be several possible other choices made for these settings. The point here is to show how you can set up these different choices. It is by no means claimed that the set-up given here is optimal! As far as I am aware, no satisfactory set-up has been published yet, so finding the proper way to treat this type of hybrid model is a nice challenge for everyone.</p>
+<p>All interactions are implemented using tabulated user-specified potentials. You will need to do your book-keeping carefully. The system is divided into three groups:</p>
+<ol type="1">
+<li><p>AA: atomistic particles, these are all atoms of the 100 peptide molecules that would also be there in a purely atomistic simulation</p></li>
+<li><p>VS: virtual sites, these are the virtual sites on the 100 peptide molecules that were added to take care of the interaction with the coarse-grained solvent and ions</p></li>
+<li><p>CG: the coarse-grained beads, the polarizable water beads and the ions</p></li>
+</ol>
+<p>You first need to make sure all possible atom, CG bead and virtual site particle types are known. The file <code>FORCEFIELDS/hybrid-charged.ff/ffnonbonded.itp</code> has the minimum set implemented for YEY in polarizable water with Na-ions only (D, POL, Qd, vQa, vN0, vP5, vSC4, vSP1, and vAC2).</p>
+<p>Compared to the simpler implementation of Section 3, we now distinguish between virtual sites and coarse-grained beads; they were a single group in the simpler implementation. Due to having three interaction groups we have more table files. Here is an overview of which interactions potentials act between the groups:</p>
+<ol type="1">
+<li><p>AA-AA: <code>table_AA_AA.xvg</code> when building and using the <code>topol.tpr</code>, <code>gro-table_AA_AA.xvg</code> in the <code>FORCEFIELDS</code> directory. The table contains the normal cut-off Lennard-Jones potentials that are used in the OPLS force field. The cut-off is 1.0 nm. The Coulomb potential is the GROMOS reaction field potential (due to Tironi et al), with epsilon_r=1 and epsilon_rf=78, and cut-off rc=1.2 nm. This potential smoothly goes to zero at 1.2 nm and approximately mimics electrostatic screening due to a homogenous surrounding dielectric medium. Note that this electrostatics treatment is different from standard OPLS, where lattice-sum electrostatics is used (usually PME).</p></li>
+<li><p>AA-CG: <code>table_AA_CG.xvg</code> when building and using the <code>topol.tpr</code>, <code>gro-table_AA_CG.xvg</code> in the <code>FORCEFIELDS</code> directory. The table contains the normal cut-off Lennard-Jones potentials that are used in the OPLS force field. The cut-off is 1.2 nm. It should be noted, however, that in practice, the vdw interaction between atoms and beads is repulsive only and very short-ranged. The purpose of the short-range repulsion is to prevent oppositely charged AA and CG particles attracting each other to infinitely short (zero) distance. This short-range repulsive potential is achieved by a special settings of the non-bonded interaction parameters epsilon and sigma in the <code>ffnonbonded.itp</code> file. It has negative sigma specified. In this manner, the C6 parameter is zero and there is a non-zero C12 parameter, see Gromacs manual section 5.3.2. An example of an entry in the <code>[ nonbond_params ]</code> directive is shown below.</p></li>
+</ol>
+<pre class="text"><code>[ nonbond_params ]
+; type1 type2  flag  sigma     epsilon
+opls_135   Qd   1     -1.00e-01 0.25e+05 ; C6 = 0, C12 = 10E-07</code></pre>
+<p>The Coulombic part of the potential is the GROMOS reaction field potential (due to Tironi et al), i.e.&nbsp;the same functional form as used for the AA-AA interactions, with epsilon_rf=78, and cut-off rc=1.2 nm, but with er=1.45 instead of 1. Wassenaar et al.[6] showed that this was a reasonable choice for a Martini-GROMOS hybrid model in the sense that charged pairs of amino acids show a PMF as a function of their distance that is similar to the all-atom PMF. It is one of the areas, however, in which progress needs to be made to get to a better model.</p>
+<ol start="3" type="1">
+<li><p>AA-VS: table.xvg when building and using the <code>topol.tpr</code>, <code>table.xvg</code> in the <code>FORCEFIELDS</code> directory. The standard because no this pair is not listed in the <code>energygrp_table</code> keyword in the settings (<code>.mdp</code>) file. All potentials here are zero everywhere. Computation efficiency is gained, however, if in the settings file the keyword <code>energygrp-excl</code> specifies this pair as excluded.</p></li>
+<li><p>CG-CG: <code>table_CG_CG.xvg</code> when building and using the <code>topol.tpr</code>, <code>mar-table_CG_CG.xvg</code> in the <code>FORCEFIELDS</code> directory. The table contains the shifted coulomb and shifted Lennard-Jones potentials of the Martini model with standard settings, i.e.&nbsp;cut-off 1.2 nm for both and a switching at 0.9 nm for the LJ potential, and epsilon_r=2.5 because we use the polarizable water model.</p></li>
+<li><p>CG-VS: table_CG-VS when building and using the <code>topol.tpr</code>, <code>gro-table_CG_VS.xvg</code> in the <code>FORCEFIELDS</code> directory. The table contains the shifted Lennard-Jones potentials of the Martini model with standard settings, i.e.&nbsp;cut-off 1.2 nm and a switching at 0.9 nm for the LJ potential. The Coulomb potential is everywhere zero because electrostatic interactions between AA and CG particles are calculated. Note that an alternative choice would be to treat the electrostatic interactions between peptides and surroundings at the CG level. In that case, the AA-CG electrostatic potential shoud be all zero (in other words, exclude all AA-CG interactions) and the CG-VS electrostatic potential should be the one for the Martini P version, as for CG-CG.</p></li>
+<li><p>VS-VS: <code>table.xvg</code> when building and using the <code>topol.tpr</code>, <code>table.xvg</code> in the <code>FORCEFIELDS</code> directory. The standard because no this pair is not listed in the <code>energygrp_table</code> keyword in the settings (<code>.mdp</code>) file. All potentials here are zero everywhere. Computation efficiency is gained, however, if in the settings file the keyword <code>energygrp-excl</code> specifies this pair as excluded.</p></li>
+</ol>
+<p>NOTE that the different dielectric constants (1 for AA-AA, 1.45 for AA-CG, 2.5 for CG-CG) are implemented in the tabulated potentials. Therefore, the value of the epsilon_r setting is 1. There is no other way to differentiate amongst the screening of the electrostatic interactions.</p>
+<p>The tabulated potentials must be prepared by you. In the <code>FORCEFIELDS</code> directory, you can find the FORTRAN programs used to prepare the tables files of this tutorial. You can compile them if you need to (use <code>gfortran</code>, but the binaries might work anyway), or modify them to implement other potentials. The input to the programs are also given. I trust that in future, multi-purpose, well-documented python tools will become available.</p>
+<p>The tabulated potentials can be viewed using xmgrace, for example, when you are in the <code>FORCEFIELDS</code> directory:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> xmgrace <span class="ex">-nxy</span> mar-table_CG_CG.xvg <span class="at">-p</span> xmgr.par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><code>gromacs</code> <a href="http://www.gromacs.org/">http://www.gromacs.org/</a></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] G.A. Kaminsky, R.A. Friesner, J. Tirado-Rives and W.L. Jorgensen, Evaluation and Reparametrization of the OPLS-AA Force Field for Proteins via Comparison with Accurate Quantum Chemical Calculations on Peptides, J. Phys. Chem. B 105, 6474-6487 (2001).</p>
+<p>[2] S.J. Marrink, H.J. Risselada, S. Yefimov, D.P. Tieleman and A.H. de Vries, The MARTINI force field: coarse grained model for biomolecular simulations, J. Phys. Chem. B 111, 7812-7824 (2007).</p>
+<p>[3] G.S. Ayton, W.G. Noid and G.A. Voth, Multiscale modeling of biomolecular systems: in serial and in parallel, Curr. Opin. Struct. Biol. 17, 192-198 (2007).</p>
+<p>[4] R. Baron, D. Trzesniak, A.H. de Vries, A. Elsener, S.J. Marrink and W.F. van Gunsteren, Comparison of thermodynamic properties of coarse-grained and atomic-level simulation models, ChemPhysChem 8, 452-461 (2007).</p>
+<p>[5] A.J. Rzepiela, M. Louhivuori, C. Peter and S.J. Marrink, Hybrid simulations: combining atomistic and coarse-grained force fields using virtual sites, Phys. Chem. Chem. Phys. 13, 10437-10448 (2011).</p>
+<p>[6] T.A. Wassenaar, H.I. Ingolfsson, M. Prieß, S.J. Marrink and L.V. Schafer, Mixing MARTINI: Electrostatic Coupling in Hybrid Atomistic−Coarse-Grained Biomolecular Simulations, J. Phys. Chem. B 117, 3516-3530 (2013).</p>
+<p>[7] T.A. Wassenaar, K. Pluhackova, R.A. Bockmann, S.J. Marrink and D.P. Tieleman, Going Backward: A Flexible Geometric Approach to Reverse Transformation from Coarse Grained to Atomistic Models, J. Chem. Theory Comput. 10, 676-690 (2014).</p>
+<p>[8] S.O. Yesylevskyy, L.V. Schafer, D. Sengupta and S.J. Marrink, Polarizable Water Model for the Coarse-Grained MARTINI Force Field, PLOS Comput. Biol. 6, e1000810 (2010).</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Martini-Force-Field-Initiative\.github\.io\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>
