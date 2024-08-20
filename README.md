@@ -6,6 +6,22 @@ Martini is a coarse-grained force field suited for molecular dynamics simulation
 
 We welcome contributions from the community and appreciate your efforts to improve and expand the Martini Force Field Initiative website! This guide provides a step-by-step walkthrough of how to contribute to this website, including setting up your environment, making your changes, and submitting pull requests for review.
 
+### Table of Contents
+1. [Setting Up Your Environment](#1-setting-up-your-environment)
+    1. [Install Quarto](#11-install-quarto)
+    1. [Fork the Repository](#12-fork-the-repository)
+    1. [Clone the Repository to your local workstation](#13-clone-the-repository-to-your-local-workstation)
+1. [Types of Contributions](#2-types-of-contributions)
+    1. [Adding New Publications](#21-adding-new-publications)
+    1. [Adding New Announcements](#22-adding-new-announcements)
+    1. [Adding New Martini 3 Tutorials](#23-adding-new-martini-3-tutorials)
+    1. [Adding Tools](#24-adding-tools)
+    1. [Adding New Parameter Files](#25-adding-new-parameter-files)
+    1. [General Website Enhancements](#26-general-website-enhancements)
+1. [Submitting a Pull Request](#3-submitting-a-pull-request)
+1. [Reviewing and Merging](#4-reviewing-and-merging)
+1. [Additional Resources](#5-additional-resources)
+
 ### 1. Setting Up Your Environment
 Before you begin contributing, you need to set up your local environment to work with [Quarto](https://quarto.org) and this repository.
 
@@ -144,11 +160,11 @@ git push origin your-branch-name
     
     iv- Submit the pull request.
 
-4. Reviewing and Merging
+### 4. Reviewing and Merging
 
 Your pull request will be reviewed by other users in the Martini Developers Team. We may request/suggest additional changes or approve it directly. Once approved, your changes will be merged into the main branch, and the website will be automatically updated and deployed via a GitHub Action.
 
-5. Additional Resources
+### 5. Additional Resources
 
 For further guidance, please refer to the following:
 * [Quarto Documentation](https://quarto.org/docs/)
