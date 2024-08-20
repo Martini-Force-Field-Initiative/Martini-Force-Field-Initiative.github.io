@@ -83,7 +83,8 @@ exports.handler = async (event) => {
         <body>
             <div class="container">
                 <h1>Sorry to see you go ;(</h1>
-                <p>You have successfully unsubscribed to receive announcements from the Martini Force Field Initiative. You are welcome to subscribe again any time.</p>
+                <p>You have successfully unsubscribed to receive announcements from the Martini Force Field Initiative.<br>
+                You are welcome to subscribe again at any time.</p>
             </div>
         </body>
         </html>
