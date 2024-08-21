@@ -74,14 +74,23 @@ search: false
             color: #343a40;
             font-weight: bold;
         }
+
+        .input-container {
+            display: flex;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <div class="banner" id="banner">
         <form onsubmit="NewSubscription(); return false;">
+            <div class="input-container" id="inputContainer">
+            <div>
             <label for="email" id="label" > Join the community to always get notified &#8594; </label>
             <input type="email" id="email" name="email" placeholder="Type your email here" required>
+            </div>
             <button type="submit">Subscribe</button>
+            </div>
         </form>
     </div>
     <script>
@@ -89,13 +98,23 @@ search: false
             const label = document.getElementById('label');
             const bannerWidth = document.getElementById('banner').offsetWidth;
             const labelWidth = label.offsetWidth;
+            const inputContainer = document.getElementById('inputContainer');
             
             if (bannerWidth <= 800 && bannerWidth > 400) { // Adjust this value as needed
                 label.textContent = 'Join the community \u2192 ';
+                inputContainer.style.flexDirection = 'column';
+                inputContainer.style.alignItems = 'center';
+                inputContainer.style.gap = '15px';
             } else if (bannerWidth <= 400) {
                 label.textContent = '';
+                inputContainer.style.flexDirection = 'column';
+                inputContainer.style.alignItems = 'center';
+                inputContainer.style.gap = '15px';
             } else {
                 label.textContent = 'Join the community to always get notified \u2192 ';
+                inputContainer.style.flexDirection = 'row';
+                inputContainer.style.alignItems = 'center';
+                inputContainer.style.gap = '10px'; // Default gap value for row layout
             }
         }
 
