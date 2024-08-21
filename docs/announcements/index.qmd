@@ -100,11 +100,16 @@ search: false
             const labelWidth = label.offsetWidth;
             const inputContainer = document.getElementById('inputContainer');
             
-            if (bannerWidth <= 800 && bannerWidth > 400) { // Adjust this value as needed
+            if (bannerWidth <= 600 && bannerWidth > 400) { // Adjust this value as needed
                 label.textContent = 'Join the community \u2192 ';
                 inputContainer.style.flexDirection = 'column';
                 inputContainer.style.alignItems = 'center';
                 inputContainer.style.gap = '15px';
+            } else if (bannerWidth > 600 && bannerWidth <= 800) { // Adjust this value as needed
+                label.textContent = 'Join the community \u2192 ';
+                inputContainer.style.flexDirection = 'row';
+                inputContainer.style.alignItems = 'center';
+                inputContainer.style.gap = '10px'; // Default gap value for row layout
             } else if (bannerWidth <= 400) {
                 label.textContent = '';
                 inputContainer.style.flexDirection = 'column';
