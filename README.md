@@ -1,6 +1,6 @@
 # Martini Force Field Initiative Website
 
-Martini is a coarse-grained force field suited for molecular dynamics simulations of biomolecular systems. The Martini Force Field Initiative website serves as a central hub for the Martini community, providing resources, publications, tutorials, and tools to facilitate the use and development of the Martini force field.
+Martini is a coarse-grained force field suited for molecular dynamics simulations of (bio)molecular systems. The Martini Force Field Initiative website serves as a central hub for the Martini community, providing resources, publications, tutorials, and tools to facilitate the use and development of the Martini force field.
 
 ## How to Contribute
 
