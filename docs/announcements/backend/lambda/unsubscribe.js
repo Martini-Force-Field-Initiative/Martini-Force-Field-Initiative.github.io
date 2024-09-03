@@ -1,5 +1,9 @@
-const AWS = require('aws-sdk');
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+// AWS SDK v3 specific requires
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { GetCommand, DeleteCommand } = require("@aws-sdk/lib-dynamodb");
+
+// Initialize AWS SDK v3 client
+const dynamoDb = new DynamoDBClient({});
 
 exports.handler = async (event) => {
   const email = event.queryStringParameters.email;
@@ -16,17 +20,20 @@ exports.handler = async (event) => {
   };
 
   try {
-    const data = await dynamoDb.get(params).promise();
+    // Check the email token
+    const data = await dynamoDb.send(new GetCommand(params));
 
     if (data.Item && data.Item.token === token) {
-      await dynamoDb.delete(params).promise();
-      await dynamoDb.delete(params_verify).promise();
+      // Delete from both tables
+      await dynamoDb.send(new DeleteCommand(params));
+      await dynamoDb.send(new DeleteCommand(params_verify));
+
       return {
         statusCode: 200,
         headers: {
           'Content-Type': 'text/html',
-      },
-      body: `
+        },
+        body: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -88,8 +95,8 @@ exports.handler = async (event) => {
             </div>
         </body>
         </html>
-    `,
-    };
+        `,
+      };
     } else {
       return {
         statusCode: 400,
@@ -97,9 +104,10 @@ exports.handler = async (event) => {
       };
     }
   } catch (error) {
+    console.error("Error:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: 'An error occurred' }),
+      body: JSON.stringify({ message: 'An error occurred', error: error.message }),
     };
   }
 };

@@ -27,7 +27,7 @@ export class ContactsStack extends Stack {
     const processContactFunction = new lambda.Function(this, 'ProcessContactLambda', {
           code: lambda.Code.fromAsset('lambda'),
           handler: 'lambda.processContact',
-          runtime: lambda.Runtime.NODEJS_18_X,
+          runtime: lambda.Runtime.NODEJS_20_X,
         });
 
         // attach the event source to the ContactProcessing lambda, so that Lambda can poll the queue and invoke the ContactProcessing Lambda
@@ -53,7 +53,7 @@ export class ContactsStack extends Stack {
     const createContactFunction = new lambda.Function(this, 'CreateContactLambda', {
           code: lambda.Code.fromAsset('lambda'),
           handler: 'lambda.createContact',
-          runtime: lambda.Runtime.NODEJS_18_X,
+          runtime: lambda.Runtime.NODEJS_20_X,
           memorySize: 256,
           timeout: Duration.seconds(10),
           environment: {
