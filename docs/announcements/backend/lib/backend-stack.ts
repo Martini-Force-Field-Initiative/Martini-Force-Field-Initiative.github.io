@@ -29,7 +29,7 @@ export class AnnouncementsStack extends cdk.Stack {
 
     // Create Lambda functions
     const subscribeFunction = new lambda.Function(this, 'SubscribeFunction', {
-      runtime: lambda.Runtime.NODEJS_16_X,
+      runtime: lambda.Runtime.NODEJS_18_X,
       code: lambda.Code.fromAsset('lambda'),
       handler: 'subscribe.handler',
       environment: {
@@ -42,7 +42,7 @@ export class AnnouncementsStack extends cdk.Stack {
 
     // Create a Lambda function for verifying email addresses
     const verifyEmailFunction = new lambda.Function(this, 'VerifyEmailFunction', {
-      runtime: lambda.Runtime.NODEJS_16_X,
+      runtime: lambda.Runtime.NODEJS_18_X,
       code: lambda.Code.fromAsset('lambda'),
       handler: 'verifyEmail.handler',
       environment: {
@@ -53,7 +53,7 @@ export class AnnouncementsStack extends cdk.Stack {
 
     // Create a Lambda function for unsubscribing
     const unsubscribeFunction = new lambda.Function(this, 'UnsubscribeFunction', {
-      runtime: lambda.Runtime.NODEJS_16_X,
+      runtime: lambda.Runtime.NODEJS_18_X,
       code: lambda.Code.fromAsset('lambda'),
       handler: 'unsubscribe.handler',
       environment: {
@@ -64,7 +64,7 @@ export class AnnouncementsStack extends cdk.Stack {
 
     // Create a Lambda function for sending announcement emails
     const sendAnnouncementFunction = new lambda.Function(this, 'SendAnnouncementFunction', {
-      runtime: lambda.Runtime.NODEJS_16_X,
+      runtime: lambda.Runtime.NODEJS_18_X,
       code: lambda.Code.fromAsset('lambda'),
       handler: 'sendAnnouncement.handler',
       environment: {
