@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Juliana F Vilachã, Tsjerk A Wassenaar, and Siewert J Marrink">
+<meta name="author" content="Ksenia Korshunova, Julius Kiuru, Juho Liekkinen, Giray Enkavi, Ilpo Vattulainen and Bart M. H. Bruininks">
 
-<title>Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations – Martini Force Field Initiative</title>
+<title>Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -97,11 +97,11 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations – Martini Force Field Initiative">
+<meta property="og:title" content="Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS – Martini Force Field Initiative">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations – Martini Force Field Initiative">
+<meta name="twitter:title" content="Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS – Martini Force Field Initiative">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
@@ -191,10 +191,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations</h1>
+<h1 class="title">Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Review</div>
+    <div class="quarto-category">Journal article</div>
+    <div class="quarto-category">Forcefield</div>
     <div class="quarto-category">Proteins</div>
+    <div class="quarto-category">Self-assembly</div>
   </div>
   </div>
 
@@ -205,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Juliana F Vilachã, Tsjerk A Wassenaar, and Siewert J Marrink </p>
+             <p>Ksenia Korshunova, Julius Kiuru, Juho Liekkinen, Giray Enkavi, Ilpo Vattulainen and Bart M. H. Bruininks </p>
           </div>
   </div>
     
@@ -215,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title-meta-heading">Doi</div>
     <div class="quarto-title-meta-contents">
       <p class="doi">
-        <a href="https://doi.org/https://doi.org/10.3390/cryst14020106">https://doi.org/10.3390/cryst14020106</a>
+        <a href="https://doi.org/https://doi.org/10.1021/acs.jctc.4c00677">https://doi.org/10.1021/acs.jctc.4c00677</a>
       </p>
     </div>
   </div>
@@ -236,12 +238,12 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
 <section id="citation-apa-7" class="level2">
 <h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
 <blockquote class="blockquote">
-<p>Vilachã, J. F., Wassenaar, T. A., &amp; Marrink, S. J. (2024). Structural Aspects of the ROS1 Kinase Domain and Oncogenic Mutations. Crystals, 14(2), 106.</p>
+<p>Korshunova, K., Kiuru, J., Liekkinen, J., Enkavi, G., Vattulainen, I., &amp; Bruininks, B. M. (2024). Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS. Journal of Chemical Theory and Computation.</p>
 </blockquote>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Protein kinases function as pivotal regulators in biological events, governing essential cellular processes through the transfer of phosphate groups from ATP molecules to substrates. Dysregulation of kinase activity is frequently associated with cancer, ocasionally arising from chromosomal translocation events that relocate genes encoding kinases. Fusion proteins resulting from such events, particularly those involving the proto-oncogene tyrosine-protein kinase ROS (ROS1), manifest as constitutively active kinases, emphasizing their role in oncogenesis. Notably, the chromosomal reallocation of the ros1 gene leads to fusion of proteins with the ROS1 kinase domain, implicated in various cancer types. Despite their prevalence, targeted inhibition of these fusion proteins relies on repurposed kinase inhibitors. This review comprehensively surveys experimentally determined ROS1 structures, emphasizing the pivotal role of X-ray crystallography in providing high-quality insights. We delve into the intricate interactions between ROS1 and kinase inhibitors, shedding light on the structural basis for inhibition. Additionally, we explore point mutations identified in patients, employing molecular modeling to elucidate their structural impact on the ROS1 kinase domain. By integrating structural insights with in vitro and in silico data, this review advances our understanding of ROS1 kinase in cancer, offering potential avenues for targeted therapeutic strategies.</p>
+<p>Martini 3 is a widely used coarse-grained simulation method for large-scale biomolecular simulations. It can be combined with a Go̅ model to realistically describe higher-order protein structures while allowing the folding and unfolding events. However, as of today, this method has largely been used only for individual monomers. In this article, we describe how the Go̅ model can be implemented within the framework of Martini 3 for a multimer system, taking into account both intramolecular and intermolecular interactions in an oligomeric protein system. We demonstrate the method by showing how it can be applied to both structural stability maintenance and assembly/disassembly of protein oligomers, using aquaporin tetramer, insulin dimer, and amyloid-β fibril as examples. We find that addition of intermolecular Go̅ potentials stabilizes the quaternary structure of proteins. The strength of the Go̅ potentials can be tuned so that the internal fluctuations of proteins match the behavior of atomistic simulation models, however, the results also show that the use of too strong intermolecular Go̅ potentials weakens the chemical specificity of oligomerization. The Martini-Go̅ model presented here enables the use of Go̅ potentials in oligomeric molecular systems in a computationally efficient and parallelizable manner, especially in the case of homopolymers, where the number of identical protein monomers is high. This paves the way for coarse-grained simulations of large protein complexes, such as viral protein capsids and prion fibrils, in complex biological environments.</p>
 
 
 </section>
