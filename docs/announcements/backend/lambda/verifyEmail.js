@@ -1,5 +1,9 @@
-const AWS = require('aws-sdk');
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+// AWS SDK v3 specific requires
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { GetCommand, UpdateCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
+
+// Initialize AWS SDK v3 client
+const dynamoDb = new DynamoDBClient({});
 
 const verificationTable = process.env.VERIFICATION_TABLE_NAME;
 const subscribeTable = process.env.TABLE_NAME;
@@ -15,19 +19,19 @@ exports.handler = async (event) => {
     if (!token || !email) {
         return {
             statusCode: 400,
-            body: JSON.stringify({ message: token }),
+            body: JSON.stringify({ message: 'Missing token or email' }),
         };
     }
 
     try {
         // Check the verification token
-        const params = {
+        const getParams = {
             TableName: verificationTable,
             Key: { email },
         };
-        const result = await dynamoDb.get(params).promise();
+        const getResult = await dynamoDb.send(new GetCommand(getParams));
 
-        if (!result.Item || result.Item.token !== token) {
+        if (!getResult.Item || getResult.Item.token !== token) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ message: 'Invalid token' }),
@@ -43,7 +47,7 @@ exports.handler = async (event) => {
                 ':verified': true,
             },
         };
-        await dynamoDb.update(updateParams).promise();
+        await dynamoDb.send(new UpdateCommand(updateParams));
 
         // Move the email to the subscribed table
         const subscribeParams = {
@@ -53,7 +57,7 @@ exports.handler = async (event) => {
                 token: token, 
             },
         };
-        await dynamoDb.put(subscribeParams).promise();
+        await dynamoDb.send(new PutCommand(subscribeParams));
 
         return {
             statusCode: 200,
@@ -127,7 +131,7 @@ exports.handler = async (event) => {
         console.error("Error:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: 'An error occurred', error }),
+            body: JSON.stringify({ message: 'An error occurred', error: error.message }),
         };
     }
 };

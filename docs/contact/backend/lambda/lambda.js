@@ -1,20 +1,28 @@
-const aws = require('aws-sdk');
-const { nanoid } = require('nanoid');
+// Import specific clients and commands from AWS SDK v3
+const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocumentClient, PutCommand } = require('@aws-sdk/lib-dynamodb');
+const { SQSClient, SendMessageCommand } = require('@aws-sdk/client-sqs');
+const crypto = require("crypto");
 
-const ses = new aws.SES({ region: 'ca-central-1' });
-const documentClient = new aws.DynamoDB.DocumentClient({ region: 'ca-central-1' });
-const sqs = new aws.SQS({ region: 'ca-central-1' });
+// Initialize clients
+const sesClient = new SESClient({ region: 'ca-central-1' });
+
+const dynamoDbClient = new DynamoDBClient({ region: 'ca-central-1' });
+// Wrap the DynamoDB client in the DynamoDBDocumentClient
+const documentClient = DynamoDBDocumentClient.from(dynamoDbClient);
+
+const sqsClient = new SQSClient({ region: 'ca-central-1' });
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
+// Lambda function to create contact
 exports.createContact = async (event) => {
-    // obtain env variables
-
     const CONTACT_TABLE_NAME = process.env.CONTACT_TABLE_NAME;
     const CONTACT_PROCESSING_QUEUE_URL = process.env.CONTACT_PROCESSING_QUEUE_URL;
     const { body } = event;
     const { contactName, contactEmail, contactInstitution, contactSubject, contactMessage } = JSON.parse(body);
-    const contactId = nanoid();
+    const contactId = crypto.randomBytes(16).toString('hex');
 
     const contact = {
         contactId,
@@ -29,18 +37,19 @@ exports.createContact = async (event) => {
         TableName: CONTACT_TABLE_NAME,
         Item: contact
     };
-    // persist contact in dynamoDb
 
-    await documentClient.put(putParams).promise();
+    // Persist contact in DynamoDB
+    await documentClient.send(new PutCommand(putParams));
 
     console.log(`Contact ${contactId} created`);
 
-    // add the persisted contact in the queue which will notify the administrator
-
-    const { MessageId } = await sqs.sendMessage({
+    // Add the persisted contact to the SQS queue
+    const sendMessageParams = {
         QueueUrl: CONTACT_PROCESSING_QUEUE_URL,
         MessageBody: JSON.stringify({ contact, admin: ADMIN_EMAIL })
-    }).promise()
+    };
+
+    const { MessageId } = await sqsClient.send(new SendMessageCommand(sendMessageParams));
 
     console.log(`Message ${MessageId} sent to queue`);
 
@@ -50,9 +59,10 @@ exports.createContact = async (event) => {
             contact,
             messageId: MessageId,
         })
-    }
+    };
 };
 
+// Lambda function to process contact
 exports.processContact = async (event) => {
     const SOURCE_EMAIL = 'noreply@cgmartini.nl';
     const recordPromises = event.Records.map(async (record) => {
@@ -89,7 +99,11 @@ Message: ${Message}
                 ToAddresses: [admin]
             }
         };
-        await ses.sendEmail(sesParams).promise();
+ 
+        // Send email using SES
+        await sesClient.send(new SendEmailCommand(sesParams));
     });
+ 
     await Promise.all(recordPromises);
+ 
 }

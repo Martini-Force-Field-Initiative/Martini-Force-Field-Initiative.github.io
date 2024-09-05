@@ -1,7 +1,12 @@
-const AWS = require('aws-sdk');
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
-const ses = new AWS.SES();
-const crypto = require('crypto');
+// AWS SDK v3 specific requires
+const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
+const { GetCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
+const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
+const crypto = require("crypto");
+
+// Initialize AWS SDK v3 clients
+const dynamoDb = new DynamoDBClient({});
+const ses = new SESClient({});
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const verificationTable = process.env.VERIFICATION_TABLE_NAME;
@@ -22,13 +27,13 @@ exports.handler = async (event) => {
 
     try {
         // Check if the email is already subscribed
-        const params = {
+        const getParams = {
             TableName: process.env.TABLE_NAME,
             Key: { email },
         };
-        const result = await dynamoDb.get(params).promise();
+        const getResult = await dynamoDb.send(new GetCommand(getParams));
 
-        if (result.Item) {
+        if (getResult.Item) {
             return {
                 statusCode: 200,
                 body: JSON.stringify({ message: 'Email already subscribed' }),
@@ -43,7 +48,7 @@ exports.handler = async (event) => {
             TableName: verificationTable,
             Item: { email, token, verified: false },
         };
-        await dynamoDb.put(verificationParams).promise();
+        await dynamoDb.send(new PutCommand(verificationParams));
 
         // Send a verification email
         const verificationUrl = `${baseUrl}/verifyEmail?token=${token}&email=${encodeURIComponent(email)}`;
@@ -55,7 +60,7 @@ exports.handler = async (event) => {
                 Body: {
                     Html: {
                         Data: `
-                        Please verify your email by clicking the following link: <a href=${verificationUrl}>${verificationUrl}</a>. <br><br>
+                        Please verify your email by clicking the following link: <a href="${verificationUrl}">${verificationUrl}</a>. <br><br>
 
                         <em>Note: If you did not submit a subscription request to the Martini Force Field Initiative, please ignore this email.</em>
                         `,
@@ -67,7 +72,7 @@ exports.handler = async (event) => {
             },
             Source: process.env.SOURCE_EMAIL,
         };
-        await ses.sendEmail(emailParams).promise();
+        await ses.send(new SendEmailCommand(emailParams));
 
         return {
             statusCode: 200,
@@ -77,7 +82,7 @@ exports.handler = async (event) => {
         console.error("Error:", error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ message: 'An error occurred', error }),
+            body: JSON.stringify({ message: 'An error occurred', error: error.message }),
         };
     }
 };
