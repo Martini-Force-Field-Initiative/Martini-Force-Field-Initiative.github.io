@@ -1,0 +1,33 @@
+---
+title: "Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Ksenia Korshunova, Julius Kiuru, Juho Liekkinen, Giray Enkavi, Ilpo Vattulainen and Bart M. H. Bruininks"         # Paper authors (required)
+year: "2024"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.4c00677"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jctc.4c00677?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Forcefield
+  - Proteins
+  - Self-assembly
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Korshunova, K., Kiuru, J., Liekkinen, J., Enkavi, G., Vattulainen, I., & Bruininks, B. M. (2024). Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS. Journal of Chemical Theory and Computation.
+
+## Abstract
+
+Martini 3 is a widely used coarse-grained simulation method for large-scale biomolecular simulations. It can be combined with a Go̅ model to realistically describe higher-order protein structures while allowing the folding and unfolding events. However, as of today, this method has largely been used only for individual monomers. In this article, we describe how the Go̅ model can be implemented within the framework of Martini 3 for a multimer system, taking into account both intramolecular and intermolecular interactions in an oligomeric protein system. We demonstrate the method by showing how it can be applied to both structural stability maintenance and assembly/disassembly of protein oligomers, using aquaporin tetramer, insulin dimer, and amyloid-β fibril as examples. We find that addition of intermolecular Go̅ potentials stabilizes the quaternary structure of proteins. The strength of the Go̅ potentials can be tuned so that the internal fluctuations of proteins match the behavior of atomistic simulation models, however, the results also show that the use of too strong intermolecular Go̅ potentials weakens the chemical specificity of oligomerization. The Martini-Go̅ model presented here enables the use of Go̅ potentials in oligomeric molecular systems in a computationally efficient and parallelizable manner, especially in the case of homopolymers, where the number of identical protein monomers is high. This paves the way for coarse-grained simulations of large protein complexes, such as viral protein capsids and prion fibrils, in complex biological environments.
