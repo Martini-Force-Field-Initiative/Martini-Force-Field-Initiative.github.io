@@ -52,20 +52,24 @@ wget http://www.rcsb.org/pdb/files/181L.pdb
 grep "^ATOM" 181L.pdb > 181L_clean.pdb
 ```
 
-The clean pdb structure can be used as input for `martinize2` (installation instructions available [here](https://github.com/marrink-lab/vermouth-martinize)), to generate both a coarse-grained structure and a Martini 3 topology file. Note that `martinize2` might not work with older versions of python! We know it does work with versions 3.X. Have a look at the help function (i.e. run `martinize2 -h`) for the available options. Hint, valid for any system simulated with Martini: during equilibration it might be useful to have (backbone) position restraints to relax the side chains and their interaction with the solvent; we are anticipating doing this by asking `martinize2` to generate the list of atoms involved. The final command might look a bit like this:
+The clean pdb structure can be used as input for `martinize2` (installation instructions available [here](https://github.com/marrink-lab/vermouth-martinize)), to generate both a coarse-grained structure and a Martini 3 topology file. Note that `martinize2` might not work with older versions of python! We know it does work with versions >3.9. Have a look at the help function (i.e. run `martinize2 -h`) for the available options. Hint, valid for any system simulated with Martini: during equilibration it might be useful to have (backbone) position restraints to relax the side chains and their interaction with the solvent; we are anticipating doing this by asking `martinize2` to generate the list of atoms involved. A simple input command to martinize2 might look a bit like this:
 
 ``` bash
-martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -ss
+martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001
 ```
 
-We are asking for version 3 of the Martini force field via the flag `-ff`. When using the `-dssp` option you'll need the `dssp` binary, which determines the secondary structure classification of the protein backbone from the structure. It can be downloaded from the [https://github.com/cmbi/dssp/releases](https://github.com/cmbi/dssp/releases). Note that `martinize2` only works with the `dssp` versions 3.1.4 or older, because the output changed in the latest `dssp` version 4. If installed centrally, the path is usually **/usr/bin/dssp**. As an alternative, you may provide the required secondary structure yourself and feed it to the script:
+We take the input file `-f`, and specify two output ones, a topology file `-o`, and a coordinate file of the input structure mapped to the martini resolution `-x`. The mapped structure will be to version 3 of the Martini force field via the flag `-ff`.
 
-``` bash
-martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -ss
-```
+To introduce some more structure-based knowledge, we should also specify a secondary structure. Martinize2 has a couple of options for this:
+
+`martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001 -dssp /path/to/dssp` will look for a dssp executable in the given path, and use the output from there if it finds it. When using the `-dssp` option you'll need the `dssp` binary, which determines the secondary structure classification of the protein backbone from the structure. It can be downloaded from the [https://github.com/cmbi/dssp/releases](https://github.com/cmbi/dssp/releases). Note that `martinize2` only works with the `dssp` versions 3.1.4 or older, because the output changed in the latest `dssp` version 4. If installed centrally, the path is usually **/usr/bin/dssp**.
+
+`martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001 -dssp` will try to use an installation of mdtraj in the python environment that martinize2 is installed in.
+
+`martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001 -ss etcetc` will use the etcetc dssp formatted string that the user provides to specify how the secondary structure is treated, which must contain the same number of characters as the residues you have in the protein.
+
+In the case of the T4 lysozyme, the string required for the `-ss` argument is the following:
 ``` markdown
-Output:
-
 CCHHHHHHHHHCCEEEEEECTTSCEEEETTEEEESSSCHHHHHHHHHHHHTSCCTTBCCHHHHHHHHHHHHHHHHHHHHHCTTTHHHHHHSCHHHHHHHHHHHHHHHHHHHHTCHHHHHHHHTTCHHHHHHHHHSSHHHHHSHHHHHHHHHHHHHSSSGGGC -p backbone -ff martini3001
 ```
 
