@@ -190,7 +190,7 @@ Here we will use basic parameters in order to show the principle.
 1. Use martinize2 to generate the coarse-grained structure and topology as above. For the elastic network, use the following extra flags:
 
 ``` bash
-martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -dssp /path/to/dssp -p backbone -ff martini3001 -elastic -ef 700.0 -el 0.5 -eu 0.9 -ea 0 -ep 0 -scfix -cys auto
+martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -dssp /path/to/dssp -p backbone -ff martini3001 -scfix -cys auto -elastic -ef 700.0 -el 0.5 -eu 0.9 -ea 0 -ep 0
 ```
 
 This turns on the elastic network (`-elastic`), sets the elastic bond force constant to 700 $kJ*mol^{-1}*nm^{-2}$ (`-ef 700`), the lower and upper elastic bond cut-off to 0.5 and 0.9 nm, respectively (`-el 0.5` and `-eu 0.9`), and makes the bond strengths independent of the bond length (elastic bond decay factor and decay power, `-ea 0` and `-ep 0`, respectively; these are default). Differently from the Martini 2 version, in Martini 3 the elastic network does not need to be defined as a `#ifdef` statement in the `.top` file. Note that `martinize2` does not generate elastic bonds between $i \rightarrow i+1$ and $i \rightarrow i+2$ backbone beads, as those are already connected by bonds and angles (Fig. 2B). Also, elastic bonds are only added between beads that belong to the same chain.
@@ -200,41 +200,25 @@ This turns on the elastic network (`-elastic`), sets the elastic bond force cons
 #### Martini + Gō-like model
 <hr>
 
-In the third submodule of the protein tutorial, you will learn to apply Gō-like models in combination with the Martini model to conserve the tertiary and quaternary structures more faithfully. Recently, a combination of Gō-like models with Martini was presented by **Poma et al. 2017** <sup>[[7]](#references)</sup> . Backbone beads are connected based on a contact map and a Lennard-Jones potential describes the interaction between the connected backbone beads. Here, we give an introduction how to set up a protein with Martini 3 and a modified version of the Gō-like models. In particular, it requires the usage of `martinize2` as well as the script `create_goVirt.py` which is capable of providing the Gō-like model. You can find more details about the new implementation in the [preprint by **Souza et al.**](https://www.biorxiv.org/content/10.1101/2024.04.15.589479v1).
+In the third submodule of the protein tutorial, you will learn to apply Gō-like models in combination with the Martini model to conserve the tertiary and quaternary structures more faithfully. Recently, a combination of Gō-like models with Martini was presented by **Poma et al. 2017** <sup>[[7]](#references)</sup>. Backbone beads are connected based on a contact map and a Lennard-Jones potential describes the interaction between the connected backbone beads. Here, we give an introduction how to set up a protein with Martini 3 and a modified version of the Gō-like models. You can find more details about the new implementation in the [preprint by **Souza et al.**](https://www.biorxiv.org/content/10.1101/2024.04.15.589479v1).
 
-In brief, the modified version encompasses the following changes compared to the original GōMartini model: First, the Gō-like bonds are applied to virtual sites which are located at the same position as the backbone bead in the Martini protein model. They are implemented as regular non-bonded interactions which allows to treat them with the non-bonded cutoff scheme. Second, the regular non-bonded interaction between two backbone beads which are connected by a Gō-like bond is excluded. Third, a lower and upper limit for the distance between two backbone beads connected with a Gō-like bond is set. 
+In brief, the modified version encompasses the following changes compared to the original GōMartini model: First, the Gō-like bonds are applied to virtual sites which are located at the same position as the backbone bead in the Martini protein model. They are implemented as regular non-bonded interactions which allows to treat them with the non-bonded cutoff scheme. Second, the regular non-bonded interaction between two backbone beads which are connected by a Gō-like bond is excluded. Third, a lower and upper limit for the distance between two backbone beads connected with a Gō-like bond is set.
 
-The general work flow is the following: the Gō-like bonds are included as non-bonded interactions in special beads – called Gō beads from hereon – which will be defined in the `martini_v3.0.0.itp`. For this, the `martini_v3.0.0.itp` has to contain two `#include` statements which are only considered if you define the variable `GO_VIRT` in your topology file. This procedure is similar to the `POSRES` variable in a typical Martini protein `.itp` file. Two generic file names are used in the `#include` statements (`BB-part-def_VirtGoSites.itp` and `go-table_VirtGoSites.itp`) which themselves include the specific itps for the actual protein. The coarse-grained (CG) protein structure generated by `martinize2` contains the additional Gō beads; the same holds for the `t4l.itp` (which will be the protein `.itp` file generated by `martinize2` in this case). The `t4l.itp` contains also the virtual site definition of the Gō beads and an `#include` statement for the exclusions between the (real) backbone beads which are connected by Gō-like bonds.
+The general work flow is the following: the Gō-like bonds are included as non-bonded interactions in special beads – called Gō beads from hereon – which will be defined in the `martini_v3.0.0.itp`. For this, the `martini_v3.0.0.itp` has to contain two `#include` statements which are only considered if you define the variable `GO_VIRT` in your topology file. This procedure is similar to the `POSRES` variable in a typical Martini protein `.itp` file. Two generic file names are used in the `#include` statements (`go_atomtypes.itp` and `go_nbparams.itp`) which themselves include the specific itps for the actual protein. The coarse-grained (CG) protein structure generated by `martinize2` contains the additional Gō beads; the same holds for the `t4l_only.itp` (which will be the protein `.itp` file generated by `martinize2` in this case). The `t4l_only.itp` contains also the virtual site definition of the Gō beads and an `#include` statement for the exclusions between the (real) backbone beads which are connected by Gō-like bonds.
 
 To generate the GōMartini model of T4 lysozyme, you will have to first generate a Martini 3 protein model using `martinize2` and secondly generate the Gō-like model with the additional script `create_goVirt.py`. The procedure is briefly described in the following:
 
-1. To set up a GōMartini model, the atomistic protein structure has to be martinized first using `martinize2`. The option `-govs-include` prepares a `t4l.itp` ready to include the Gō-like model. A second flag (`-govs-moltype`) specifies the molecule name; this name is used as prefix for the files containing the Gō-like model which will be generated by the separate script `create_goVirt.py`. If you specify the same molecule name for `create_goVirt.py`, and if the files containing the Gō-like model are in the same directory, you do not have to change anything in the generated `t4l.itp`! A command for T4 lysozyme could look like this:
+1. To set up a GōMartini model, the contact map of the atomistic structure must first be obtained from the web server [http://pomalab.ippt.pan.pl/GoContactMap/](http://pomalab.ippt.pan.pl/GoContactMap/) using the default settings. Please note that the requirements for the `.pdb` file uploaded to the web-server are quite strict. Thus please check carefully if your contact map is meaningful before using the contact map in the next step. In particular, the table listing the **“Residue residue contacts”** will be used.
+
+2. Once the contact map has been obtained, the topology files can be generated using martinize2 using the `-go` flag for the contact map.
 
 ``` bash
-martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -dssp  /path/to/dssp -p backbone -ff martini3001 -govs-include -govs-moltype t4l -scfix -cys auto
+martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -dssp  /path/to/dssp -p backbone -ff martini3001 -scfix -cys auto -go contact_map.out
 ```
 
-2. The CG pdb structure obtained from `martinize2` is required for the next step together with a contact map of the atomistic protein structure. The contact map has to be obtained from the web-server [http://info.ifpan.edu.pl/~rcsu/rcsu/index.html](http://info.ifpan.edu.pl/~rcsu/rcsu/index.html) using the default settings for the radii and the Fibonacci number. Please note that the requirements for the `.pdb` file uploaded to the web-server are quite strict. Thus please check carefully if your contact map is meaningful before using the contact map in the next step. In particular, the table listing the **“Residue residue contacts”** will be used.
+The above command will generate the necessary topology files for performing GōMartini simulations with this protein. As described in the in the [preprint by **Souza et al.**](https://www.biorxiv.org/content/10.1101/2024.04.15.589479v1), there are also additional options related to the Gō model for adapting non-bonded interactions dependent on secondary structure, which may be used to optimise the dynamics of your protein. These are described further both in the preprint and in the documentation for martinize2 itself.
 
-3. The script `create_goVirt.py` generates all additional files required for your GōMartini model. The script requires the CG structure of the protein in `.pdb` format (`-s`), the number of CG beads in the protein excluding the virtual Gō beads (`--Natoms`), the number of missing residues in the atomistic structure (`--missres`), as well as the contact map file (`-f`). The prefix of the generated files can be specified (`--moltype`) to e.g. distinguish different protein chains which are not connected by Gō-like bonds. Note that if the Gō-like model will be combined with a coarse-grained protein generated by `martinize2`, the same name must be specified as for the `--govs-moltype` flag of `martinize2`. In addition, the dissociation energy of the Lennard-Jones potentials (`--go_eps`) as well as the lower (`--cutoff_short`) and upper cutoff (`--cutoff_long`) for the distance between two connected backbone beads can be specified.
-
-``` bash
-./create_goVirt.py -s t4l_cg.pdb -f 181L_clean.map --moltype t4l --go_eps 12.0 --Natoms 381
-```
-
-The script generates four files with parameter details required for the GōMartini model. The file names do have a prefix to specify the respective protein or chain. The name ending as well as the information contained in the files is listed below:
-
-* `<moltype>_BB-part-def_VirtGoSites.itp`   $\rightarrow$  bead definitions for the virtual particles
-
-* `<moltype>_go-table_VirtGoSites.itp`   $\rightarrow$  interaction table of the Gō-like bonds
-
-* `<moltype>_exclusions_VirtGoSites.itp`  $\rightarrow$   exclusions
-
-* `<moltype>_go4view_harm.itp`  $\rightarrow$   representing the Gō-like bonds for visualization
-
-Please do not change the names of the files as they are included in various other `.itp` files in a way that requires the correct file names.
-
-4. Finally, we have to add the `#include` statements to the `martini_v3.0.0.itp` file. NOTE that you should do this ONLY ONCE. 
+3. As mentioned above, the topology for your protein, `t4l_only.itp` now includes extra virtual sites built directly on top of backbone beads, which are used in two further files. Firstly, `go-atomtypes.itp` contains an `[ atomtypes ]` directive defining the virtual sites. Secondly, `go-nbparams.itp` contains a `[ nonbond_params ]` directive defining the Gō bonds between the virtual sites. In order to perform a simulation making use of these extra non-bonded potentials, we have to add the `#include` statements to the `martini_v3.0.0.itp` file. NOTE that you should do this ONLY ONCE.
 
 ``` bash
 sed -i "s/\[ nonbond_params \]/\#ifdef GO_VIRT\n\#include \"BB-part-def_VirtGoSites.itp\"\n\#endif\n\n\[ nonbond_params \]/" martini_v3.0.0.itp
@@ -250,11 +234,11 @@ If you want to use the Martini 3 force field without any GōMartini model in the
 #define GO_VIRT
 ```
 
-in the  first line of your topology file! Please check if `martinize2` did take care of this in your master topology file (`-top`). Otherwise, the Gō beads and the Gō-like bonds will not be defined and you will receive an error message from `gmx grompp`.
+in the  first line of your topology file (I.E. t4l_only.top)! Please check if `martinize2` did take care of this in your master topology file (`-top`). Otherwise, the Gō beads and the Gō-like bonds will not be defined and you will receive an error message from `gmx grompp`.
 
-5. Proceed as in the first part of the tutorial (steps 4 to 7) and start a production run. Keep in mind, we are adding a supplementary level of constraints on the protein; a supplementary relaxation step might be required (equilibration with position restraints and smaller time step for instance). 
+4. Proceed as in the first part of the tutorial (steps 4 to 7) and start a production run. Keep in mind, we are adding a supplementary level of constraints on the protein; a supplementary relaxation step might be required (equilibration with position restraints and smaller time step for instance).
 
-![Figure 2 | Licorice representation of T4 lysozyme backbone in 3 different Martini 3 models: (A) no bias; (B) elastic network (harmonic bonds in red); (C) GōMartini model (pair interactions represented in cyan). It is worth noticing that elastic network not only is different because of the potential function used, but also because the contact map is very different.](fig2.png)
+![Figure 2 | Licorice representation of T4 lysozyme backbone in 3 different Martini 3 models: (A) no bias; (B) elastic network (harmonic bonds in red); (C) GōMartini model (pair interactions represented in cyan). It is worth noticing that elastic network not only is different because of the potential function used, but also because the contact map is very different. Illustrations of secondary structure networks can be achieved using the [MartiniGlass](https://github.com/Martini-Force-Field-Initiative/MartiniGlass) tool.](fig2.png)
 
 #### Comparison between models
 <hr>
@@ -276,6 +260,7 @@ An easy way to compare the slightly different behaviors of the proteins in the p
 
 - `create_goVirt.py` (downloadable [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsI/create_goVirt.py))
 
+- `MartiniGlass` ([https://github.com/Martini-Force-Field-Initiative/MartiniGlass](https://github.com/Martini-Force-Field-Initiative/MartiniGlass))
 ### References
 <hr>
 
