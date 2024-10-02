@@ -66,11 +66,11 @@ To introduce some more structure-based knowledge, we should also specify a secon
 
 `martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001 -dssp` will try to use an installation of mdtraj in the python environment that martinize2 is installed in.
 
-`martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001 -ss etcetc` will use the etcetc dssp formatted string that the user provides to specify how the secondary structure is treated, which must contain the same number of characters as the residues you have in the protein.
+`martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -p backbone -ff martini3001 -ss etcetc` will use the `etcetc` dssp formatted string (i.e. a string containing letters used by dssp to indicate different secondary structure elements) that the user provides to specify how the secondary structure is treated, which must contain the same number of characters as the residues you have in the protein.
 
 In the case of the T4 lysozyme, the string required for the `-ss` argument is the following:
-``` markdown
-CCHHHHHHHHHCCEEEEEECTTSCEEEETTEEEESSSCHHHHHHHHHHHHTSCCTTBCCHHHHHHHHHHHHHHHHHHHHHCTTTHHHHHHSCHHHHHHHHHHHHHHHHHHHHTCHHHHHHHHTTCHHHHHHHHHSSHHHHHSHHHHHHHHHHHHHSSSGGGC -p backbone -ff martini3001
+```bash
+CCHHHHHHHHHCCEEEEEECTTSCEEEETTEEEESSSCHHHHHHHHHHHHTSCCTTBCCHHHHHHHHHHHHHHHHHHHHHCTTTHHHHHHSCHHHHHHHHHHHHHHHHHHHHTCHHHHHHHHTTCHHHHHHHHHSSHHHHHSHHHHHHHHHHHHHSSSGGGC
 ```
 
 The meaning of the abbreviations is: **H**: α-helix, **B**: residue in isolated β-bridge, **E**: extended strand, participates in β ladder, **G**: 3-helix (3-10 helix), **I**: 5 helix (π-helix), **T**: hydrogen bonded turn, **S**: bend, **C**: loop or irregular. 
@@ -134,7 +134,7 @@ gmx grompp -p system.top -c equilibration.gro -f dynamic.mdp -o dynamic.tpr -max
 gmx mdrun -deffnm dynamic -v
 ```
 
-8. PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with `VMD` (use the script [`cg_bonds-v5.tcl`](../../../downloads/tools/visualization.qmd#rendering-cg-bonds--constraints-with-vmd) to show the bonds defined in the T4 lysozyme topology) or `pymol`. It is often convenient to convert the trajectory so that translation and rotation of the protein is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure that beads that belong to the same molecule, e.g. the protein, are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with `gromacs` tools.) Be aware that the `.gro` file given to `VMD` must contain the same (number of) atoms as the `.xtc` file. Therefore, if you choose to write only the protein to the `.xtc` file, also prepare a `.gro` file with only the protein (`minimization-vac.gro` will do).
+8. PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with `VMD` (use the script [`cg_bonds-v5.tcl`](../../../downloads/tools/visualization.qmd#rendering-cg-bonds--constraints-with-vmd) to show the bonds defined in the T4 lysozyme topology. More extensive instructions about viewing Martini simuations can be found in the package [MartiniGlass](https://github.com/Martini-Force-Field-Initiative/MartiniGlass)) or `pymol`. It is often convenient to convert the trajectory so that translation and rotation of the protein is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure that beads that belong to the same molecule, e.g. the protein, are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with `gromacs` tools.) Be aware that the `.gro` file given to `VMD` must contain the same (number of) atoms as the `.xtc` file. Therefore, if you choose to write only the protein to the `.xtc` file, also prepare a `.gro` file with only the protein (`minimization-vac.gro` will do).
 
 ``` bash
 gmx trjconv -f dynamic.xtc -s dynamic.tpr -fit rot+trans -o viz.xtc
@@ -240,6 +240,11 @@ in the  first line of your topology file (I.E. t4l_only.top)! Please check if `m
 
 ![Figure 2 | Licorice representation of T4 lysozyme backbone in 3 different Martini 3 models: (A) no bias; (B) elastic network (harmonic bonds in red); (C) GōMartini model (pair interactions represented in cyan). It is worth noticing that elastic network not only is different because of the potential function used, but also because the contact map is very different. Illustrations of secondary structure networks can be achieved using the [MartiniGlass](https://github.com/Martini-Force-Field-Initiative/MartiniGlass) tool.](fig2.png)
 
+#### Martini + OLIVES
+
+One final model available for Martini proteins is OLIVES, which similar to the Gō model uses non-bonded potentials between beads to retain secondary structure. OLIVES uses a different contact map approach to the standard Gō model described above, based on hydrogen bonding native contacts. Due to a number of features of the OLIVES program (such as multistate functionality), it is not integrated into Martinize2, and must be called via a dedicated routine. Further instructions for OLIVES can be found in the paper by  **Pedersen et al. 2017** <sup>[[11]](#references)</sup>, and in the examples folder of the [GitHub repository](https://github.com/Martini-Force-Field-Initiative/OLIVES).
+
+
 #### Comparison between models
 <hr>
 
@@ -285,6 +290,8 @@ An easy way to compare the slightly different behaviors of the proteins in the p
 [10] M. Bulacu, et al., Improved Angle Potentials for Coarse-Grained Molecular Dynamics Simulations. J. Chem. Theory Comput. 9, 3282–92 (2013).
 
 [11] S. J. Marrink, et al., Computational Modeling of Realistic Cell Membranes. Chem. Rev. 119, 6184–6226 (2019).
+
+[12] K. B. Pedersen, et al., OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field. J. Chem. Theory Comput. 20, 8049–8070 (2024)
 
 <hr>
 
