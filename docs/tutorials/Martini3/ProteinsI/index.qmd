@@ -240,6 +240,11 @@ in the  first line of your topology file (I.E. t4l_only.top)! Please check if `m
 
 ![Figure 2 | Licorice representation of T4 lysozyme backbone in 3 different Martini 3 models: (A) no bias; (B) elastic network (harmonic bonds in red); (C) GōMartini model (pair interactions represented in cyan). It is worth noticing that elastic network not only is different because of the potential function used, but also because the contact map is very different. Illustrations of secondary structure networks can be achieved using the [MartiniGlass](https://github.com/Martini-Force-Field-Initiative/MartiniGlass) tool.](fig2.png)
 
+#### Martini + OLIVES
+
+One final model available for Martini proteins is OLIVES, which similar to the Gō model uses non-bonded potentials between beads to retain secondary structure. OLIVES uses a different contact map approach to the standard Gō model described above, based on hydrogen bonding native contacts. Due to a number of features of the OLIVES program (such as multistate functionality), it is not integrated into Martinize2, and must be called via a dedicated routine. Further instructions for OLIVES can be found in the paper by  **Pedersen et al. 2017** <sup>[[11]](#references)</sup>, and in the examples folder of the [GitHub repository](https://github.com/Martini-Force-Field-Initiative/OLIVES).
+
+
 #### Comparison between models
 <hr>
 
@@ -285,6 +290,8 @@ An easy way to compare the slightly different behaviors of the proteins in the p
 [10] M. Bulacu, et al., Improved Angle Potentials for Coarse-Grained Molecular Dynamics Simulations. J. Chem. Theory Comput. 9, 3282–92 (2013).
 
 [11] S. J. Marrink, et al., Computational Modeling of Realistic Cell Membranes. Chem. Rev. 119, 6184–6226 (2019).
+
+[12] K. B. Pedersen, et al., OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field. J. Chem. Theory Comput. 20, 8049–8070 (2024)
 
 <hr>
 
