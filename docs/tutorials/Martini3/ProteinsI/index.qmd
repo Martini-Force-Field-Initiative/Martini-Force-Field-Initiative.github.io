@@ -218,14 +218,14 @@ martinize2 -f 181L_clean.pdb -o t4l_only.top -x t4l_cg.pdb -dssp  /path/to/dssp 
 
 The above command will generate the necessary topology files for performing GōMartini simulations with this protein. As described in the in the [preprint by **Souza et al.**](https://www.biorxiv.org/content/10.1101/2024.04.15.589479v1), there are also additional options related to the Gō model for adapting non-bonded interactions dependent on secondary structure, which may be used to optimise the dynamics of your protein. These are described further both in the preprint and in the documentation for martinize2 itself.
 
-3. As mentioned above, the topology for your protein, `t4l_only.itp` now includes extra virtual sites built directly on top of backbone beads, which are used in two further files. Firstly, `go-atomtypes.itp` contains an `[ atomtypes ]` directive defining the virtual sites. Secondly, `go-nbparams.itp` contains a `[ nonbond_params ]` directive defining the Gō bonds between the virtual sites. In order to perform a simulation making use of these extra non-bonded potentials, we have to add the `#include` statements to the `martini_v3.0.0.itp` file. NOTE that you should do this ONLY ONCE.
+3. As mentioned above, the topology for your protein, `t4l_only.itp` now includes extra virtual sites built directly on top of backbone beads, which are used in two further files. Firstly, `go_atomtypes.itp` contains an `[ atomtypes ]` directive defining the virtual sites. Secondly, `go_nbparams.itp` contains a `[ nonbond_params ]` directive defining the Gō bonds between the virtual sites. In order to perform a simulation making use of these extra non-bonded potentials, we have to add the `#include` statements to the `martini_v3.0.0.itp` file. NOTE that you should do this ONLY ONCE.
 
 ``` bash
-sed -i "s/\[ nonbond_params \]/\#ifdef GO_VIRT\n\#include \"BB-part-def_VirtGoSites.itp\"\n\#endif\n\n\[ nonbond_params \]/" martini_v3.0.0.itp
+sed -i "s/\[ nonbond_params \]/\#ifdef GO_VIRT\n\#include \"go_atomtypes.itp\"\n\#endif\n\n\[ nonbond_params \]/" martini_v3.0.0.itp
 ```
 
 ``` bash
-echo -e "\n#ifdef GO_VIRT \n#include \"go-table_VirtGoSites.itp\"\n#endif" >> martini_v3.0.0.itp
+echo -e "\n#ifdef GO_VIRT \n#include \"go_nbparams.itp\"\n#endif" >> martini_v3.0.0.itp
 ```
 
 If you want to use the Martini 3 force field without any GōMartini model in the future, you just do not define the variable `GO_VIRT` in your topology file and the `#include` statements will be skipped. But for this part of the tutorial it is important to have the line:
