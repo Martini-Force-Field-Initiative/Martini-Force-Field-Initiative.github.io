@@ -1,0 +1,33 @@
+---
+title: "Benchmarking coarse-grained simulation methods for investigation of transport tunnels in enzymes"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Nishita Mandal, Jan A. Stevens, Adolfo B. Poma, Bartlomiej Surpeta, Carlos Sequeiros-Borja, Aravind Selvaram Thirunavukarasu, Siewert-Jan Marrink, and Jan Brezovsky."         # Paper authors (required)
+year: "2024"           # Publication year (required)
+publication: "bioRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1101/2024.09.16.613244"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Proteins
+  - Multi-scale
+  - Drug design
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Mandal, N., Stevens, J. A., Poma, A. B., Surpeta, B., Sequeiros-Borja, C., Thirunavukarasu, A. S., ... & Brezovsky, J. (2024). Benchmarking coarse-grained simulation methods for investigation of transport tunnels in enzymes. bioRxiv, 2024-09.
+
+## Abstract
+
+Enzymes are pivotal to numerous biological processes, often featuring buried active sites linked to the surrounding solvent through intricate and dynamic tunnels. These tunnels are vital for facilitating substrate access, enabling product release, and regulating solvent exchange, which collectively influence enzymatic function and efficiency. Consequently, knowledge of tunnels is key for a holistic understanding of the effect of mutations as well as predicting drug residence times. Unfortunately, most transport tunnels are transient, i.e., equipped by molecular gates, rendering their opening a rare event that is often notoriously hard to study with conventional molecular dynamics simulations. To overcome the sampling limitation of such simulations, this study investigated the efficacy of three different coarse-grained (CG) molecular dynamics simulation methods for inferring enzyme tunnel structure and dynamics. Here, we covered the Martini and SIRAH models with different restraint protocols providing stability to CG proteins while to some extent biasing the sampling towards a reference structure. By contrasting CG results with all-atom simulations, we benchmarked the ability of CG methods to replicate ensemble characteristics of complex tunnel networks in haloalkane dehalogenase LinB and two of its mutants with engineered tunnel networks. The assessed tunnel parameters are essential for prioritizing functionally relevant tunnels and delineating the effect of mutations on transport tunnels. Our findings reveal that while CG methods significantly enhance the efficiency of tunnel analyses, some of them, like Martini with Elastic network restraints, were limited in recapitulating all-atom tunnel dynamics due to the structural bias applied. In contrast, the Martini Gō model even captured the intricate details of mutation perturbing tunnel dynamics. All studied CG methods performed well in capturing the geometry of tunnel ensembles in line with all-atom simulations. Additionally, the wider applicability of CG methods was verified by analyzing tunnel networks of nine enzymes from different combinations of structural and functional classes, demonstrating their potential to uncover new tunnel phenomena and validate their utility in broader biological and functional contexts. This comprehensive evaluation underscores the strengths and constraints of CG simulations in capturing enzyme tunnels and benefiting from their computational speed for studying huge datasets of enzymes. These insights are valuable for enzyme engineering, drug design, and understanding enzyme function while benefitting from the efficiency of coarse-grained models.
