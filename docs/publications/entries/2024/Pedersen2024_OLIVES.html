@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Kasper B Pedersen, Luís Borges-Araújo, Amanda D Stange, Paulo CT Souza, Siewert-Jan Marrink, and Birgit Schiøtt">
 
-<title>Martini Announcements – Martini Force Field Initiative</title>
+<title>OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,28 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/favicon.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,41 +71,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-date','listing-title','listing-author','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #EDF3F9;
-      }
-</style>
-<script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
           "<i>Shaken, not stirred.</i> - James Bond",
@@ -131,56 +95,27 @@ ul.task-list li input[type="checkbox"] {
     });
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
-<link rel="alternate" type="application/rss+xml" title="Martini Force Field Initiative" href="index.xml" data-external="1"><meta property="og:title" content="Martini Announcements – Martini Force Field Initiative">
-<meta property="og:description" content="Latest news related to the Martini Force Field Initiative">
-<meta property="og:image" content="https://cgmartini.nl/docs/announcements/images/martini.gif">
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Martini Announcements – Martini Force Field Initiative">
-<meta name="twitter:description" content="Latest news related to the Martini Force Field Initiative">
-<meta name="twitter:image" content="https://cgmartini.nl/docs/announcements/images/martini.gif">
+<meta name="twitter:title" content="OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -190,29 +125,29 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/downloads/index.html"> 
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/publications/index.html"> 
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../docs/announcements/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/contact/contact.html"> 
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -231,7 +166,7 @@ window.Quarto = {
  <span class="dropdown-text">Report an Issue</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
 </i> 
  <span class="dropdown-text">FAQs</span></a>
   </li>  
@@ -247,330 +182,73 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Martini Announcements</h1>
-            <p class="subtitle lead">Latest news related to the Martini Force Field Initiative</p>
-                      </div>
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Journal article</div>
+    <div class="quarto-category">Methods</div>
+    <div class="quarto-category">Forcefield</div>
+    <div class="quarto-category">Proteins</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kasper B Pedersen, Luís Borges-Araújo, Amanda D Stange, Paulo CT Souza, Siewert-Jan Marrink, and Birgit Schiøtt </p>
+          </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
-
-      
     
-      
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/https://doi.org/10.1021/acs.jctc.4c00553">https://doi.org/10.1021/acs.jctc.4c00553</a>
+      </p>
     </div>
-    
+  </div>
+  </div>
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
+</header>
 
 
+<!-- 
+The info below is just an example. 
 
-<!-- Begin Signup Form -->
+Both fields are required and they have to be replaced with the respective info for each paper. 
 
-    <style>
-        .banner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #70afcd;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            margin-top: -25px;
-        }
-        .banner label {
-            margin-right: 10px;
-            font-weight: bold;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .banner input[type="email"] {
-            padding: 6px;
-            border: none;
-            border-radius: 10px;
-            width: 250px;
-            margin-right: 10px;
-            font-size: 16px;
-            text-align: center;
-            justify-content: center;
-        }
-        .banner button {
-            padding: 6px 20px;
-            border: none;
-            border-radius: 10px;
-            background-color: #fff;
-            color: #476a7c;
-            font-size: 16px;
-            cursor: pointer;
-            z-index: 1;
-            transition: background-color 0.3s, color 0.3s;
-            font-weight: bold;
-        }
-        .banner button:hover {
-            background-color: #EDF3F9;
-            color: #343a40;
-            font-weight: bold;
-        }
-
-        .input-container {
-            display: flex;
-            width: 100%;
-        }
-    </style>
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Pedersen, K. B., Borges-Araújo, L., Stange, A. D., Souza, P. C., Marrink, S. J., &amp; Schiøtt, B. (2024). OLIVES: A Go-like model for stabilizing protein structure via hydrogen bonding native contacts in the Martini 3 coarse-grained force field. Journal of Chemical Theory and Computation, 20(18), 8049-8070.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Coarse-grained molecular dynamics simulations enable the modeling of increasingly complex systems at millisecond timescales. The transferable coarse-grained force field Martini 3 has shown great promise in modeling a wide range of biochemical processes, yet folded proteins in Martini 3 are not stable without the application of external bias potentials like elastic networks or Go-like models. We herein develop an algorithm, called OLIVES, which identifies native contacts with hydrogen bond capabilities in coarse-grained proteins and use it to implement a novel Go-like model for Martini 3. We show that the protein structure instability originates, in part, from the lack of hydrogen bond energy in the coarse-grained force field representation. By using realistic hydrogen bond energies obtained from literature ab initio calculations, it is demonstrated that protein stability can be recovered by the reintroduction of a coarse-grained hydrogen bond network and that OLIVES removes the need for secondary structure restraints. OLIVES is validated against known protein complexes, and at the same time addresses the open question of whether there is a need for protein quaternary structure bias in Martini 3 simulations. It is shown that OLIVES can reduce the number of bias terms, hereby speeding up Martini 3 simulations of proteins by up to ≈ 30 % on GPU architecture compared to the established GoMARTINI Go-like model.</p>
 
 
-    <div class="banner" id="banner">
-        <form onsubmit="NewSubscription(); return false;">
-            <div class="input-container" id="inputContainer">
-            <div>
-            <label for="email" id="label"> Join the community to always get notified → </label>
-            <input type="email" id="email" name="email" placeholder="Type your email here" required="">
-            </div>
-            <button type="submit">Subscribe</button>
-            </div>
-        </form>
-    </div>
-    <script>
-        function updateLabelText() {
-            const label = document.getElementById('label');
-            const bannerWidth = document.getElementById('banner').offsetWidth;
-            const labelWidth = label.offsetWidth;
-            const inputContainer = document.getElementById('inputContainer');
-            
-            if (bannerWidth <= 600 && bannerWidth > 400) { // Adjust this value as needed
-                label.textContent = 'Join the community \u2192 ';
-                inputContainer.style.flexDirection = 'column';
-                inputContainer.style.alignItems = 'center';
-                inputContainer.style.gap = '15px';
-            } else if (bannerWidth > 600 && bannerWidth <= 800) { // Adjust this value as needed
-                label.textContent = 'Join the community \u2192 ';
-                inputContainer.style.flexDirection = 'row';
-                inputContainer.style.alignItems = 'center';
-                inputContainer.style.gap = '10px'; // Default gap value for row layout
-            } else if (bannerWidth <= 400) {
-                label.textContent = '';
-                inputContainer.style.flexDirection = 'column';
-                inputContainer.style.alignItems = 'center';
-                inputContainer.style.gap = '15px';
-            } else {
-                label.textContent = 'Join the community to always get notified \u2192 ';
-                inputContainer.style.flexDirection = 'row';
-                inputContainer.style.alignItems = 'center';
-                inputContainer.style.gap = '10px'; // Default gap value for row layout
-            }
-        }
+</section>
 
-        window.addEventListener('resize', updateLabelText);
-        window.addEventListener('load', updateLabelText);
-
-        function NewSubscription() {
-            const apiEndpoint = 'https://q8hgi2weih.execute-api.ca-central-1.amazonaws.com/prod/subscribe';
-            const newEmail = document.getElementById("email").value;
-            const newRequest = { "email": newEmail };
-
-            fetch(apiEndpoint, {
-                method: 'POST',
-                body: JSON.stringify(newRequest),
-            });
-            document.getElementById('email').value = '';
-            document.getElementById('email').placeholder = 'Welcome to our community!';
-            alert("Please check your inbox for a verification email!");
-        }
-    </script>
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1731283200000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="142">
-<a href="../../docs/announcements/posts/2024-11-11-groningen-positions/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top"><img src="../../images/cell1.jpg" style="height: 100px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-PhD/Post doc positions
-</h5>
-<div class="card-text listing-description">
-<p>“Various PhD/post-doc positions available to work on synthetic cells, including purely computational projects in our group!”</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Chelsea Brown (on bahlf of Siewert-Jan Marrink)
-</div>
-<div class="listing-date">
-Nov 11, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1716422400000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="115">
-<a href="../../docs/announcements/posts/2023-07-25-membrane-buckling-artifact/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top"><img src="../../images/cell1.jpg" style="height: 100px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Membrane buckling artefact
-</h5>
-<div class="card-text listing-description">
-<p>Membrane deformations under the action of a semi-isotropically coupled barostat.</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Daniel Ramirez
-</div>
-<div class="listing-date">
-May 23, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1716336000000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="112">
-<a href="../../docs/announcements/posts/2023-04-13-martini_openmm/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top"><img src="../../images/cell1.jpg" style="height: 100px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Martini in OpenMM
-</h5>
-<div class="card-text listing-description">
-<p>Implementation of Martini 2 and Martini 3 in OpenMM.</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Daniel Ramirez
-</div>
-<div class="listing-date">
-May 22, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1716249600000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
-<a href="../../docs/announcements/posts/2023-04-07-sars-cov2-env/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top">
-<img loading="lazy" src="../../docs/announcements/posts/2023-04-07-sars-cov2-env/image.jpeg" class="thumbnail-image card-img" style="height: 100px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-SARS-COV2 envelope
-</h5>
-<div class="card-text listing-description">
-<p>Integrative model of SARS-Cov-2.</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Daniel Ramirez
-</div>
-<div class="listing-date">
-May 21, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-listing-date-sort="1716249600000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="184">
-<a href="../../docs/announcements/posts/2023-06-06-ubiquitination/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top">
-<img loading="lazy" src="../../docs/announcements/posts/2023-06-06-ubiquitination/image.png" class="thumbnail-image card-img" style="height: 100px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Ubiquitination driving ER protein complexation
-</h5>
-<div class="card-text listing-description">
-<p>MARTINI models of Ubiquitinated RHD proteins.</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Daniel Ramirez
-</div>
-<div class="listing-date">
-May 21, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-listing-date-sort="1716249600000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
-<a href="../../docs/announcements/posts/2023-06-17-reactive-martini/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top"><img src="../../images/cell1.jpg" style="height: 100px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Reactive Martini
-</h5>
-<div class="card-text listing-description">
-<p>Chemical reactions with Martini ?? Indeed !!</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Daniel Ramirez
-</div>
-<div class="listing-date">
-May 21, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-listing-date-sort="1716249600000" data-listing-file-modified-sort="1731510254027" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
-<a href="../../docs/announcements/posts/2023-09-15-martini3-LPS/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top"><img src="../../images/cell1.jpg" style="height: 100px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Martini 3 LPS
-</h5>
-<div class="card-text listing-description">
-<p>New models for lipopolysaccharides are now available for Martini 3!</p>
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Daniel Ramirez
-</div>
-<div class="listing-date">
-May 21, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1008,7 +686,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../docs/faq/index.html">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
 <p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
 </a>
   </li>  
@@ -1055,4 +733,4 @@ Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3
 
 
 
-</body><!--End signup form--></html>
+</body></html>

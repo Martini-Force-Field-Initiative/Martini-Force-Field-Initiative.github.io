@@ -15,7 +15,7 @@
 <link>https://cgmartini.nl/docs/publications/</link>
 </image>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Thu, 05 Sep 2024 20:28:13 GMT</lastBuildDate>
+<lastBuildDate>Wed, 13 Nov 2024 15:05:05 GMT</lastBuildDate>
 <item>
   <title>Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics</title>
   <dc:creator>Gilberto P Pereira, Riccardo Alessandri, Moisés Domínguez, Rocío Araya-Osorio, Linus Grünewald, Luís Borges-Araújo, Sangwook Wu, Siewert J Marrink, Paulo Cesar Telles de Souza, and Raul Mera-Adasme</dc:creator>
@@ -51,7 +51,44 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Parametrization</category>
   <category>Multi-scale</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Pereira2024_Bartender.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
+</item>
+<item>
+  <title>Benchmarking coarse-grained simulation methods for investigation of transport tunnels in enzymes</title>
+  <dc:creator>Nishita Mandal, Jan A. Stevens, Adolfo B. Poma, Bartlomiej Surpeta, Carlos Sequeiros-Borja, Aravind Selvaram Thirunavukarasu, Siewert-Jan Marrink, and Jan Brezovsky.</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2024/Mandal2024_TunnelEnzyme.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Mandal, N., Stevens, J. A., Poma, A. B., Surpeta, B., Sequeiros-Borja, C., Thirunavukarasu, A. S., … &amp; Brezovsky, J. (2024). Benchmarking coarse-grained simulation methods for investigation of transport tunnels in enzymes. bioRxiv, 2024-09.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Enzymes are pivotal to numerous biological processes, often featuring buried active sites linked to the surrounding solvent through intricate and dynamic tunnels. These tunnels are vital for facilitating substrate access, enabling product release, and regulating solvent exchange, which collectively influence enzymatic function and efficiency. Consequently, knowledge of tunnels is key for a holistic understanding of the effect of mutations as well as predicting drug residence times. Unfortunately, most transport tunnels are transient, i.e., equipped by molecular gates, rendering their opening a rare event that is often notoriously hard to study with conventional molecular dynamics simulations. To overcome the sampling limitation of such simulations, this study investigated the efficacy of three different coarse-grained (CG) molecular dynamics simulation methods for inferring enzyme tunnel structure and dynamics. Here, we covered the Martini and SIRAH models with different restraint protocols providing stability to CG proteins while to some extent biasing the sampling towards a reference structure. By contrasting CG results with all-atom simulations, we benchmarked the ability of CG methods to replicate ensemble characteristics of complex tunnel networks in haloalkane dehalogenase LinB and two of its mutants with engineered tunnel networks. The assessed tunnel parameters are essential for prioritizing functionally relevant tunnels and delineating the effect of mutations on transport tunnels. Our findings reveal that while CG methods significantly enhance the efficiency of tunnel analyses, some of them, like Martini with Elastic network restraints, were limited in recapitulating all-atom tunnel dynamics due to the structural bias applied. In contrast, the Martini Gō model even captured the intricate details of mutation perturbing tunnel dynamics. All studied CG methods performed well in capturing the geometry of tunnel ensembles in line with all-atom simulations. Additionally, the wider applicability of CG methods was verified by analyzing tunnel networks of nine enzymes from different combinations of structural and functional classes, demonstrating their potential to uncover new tunnel phenomena and validate their utility in broader biological and functional contexts. This comprehensive evaluation underscores the strengths and constraints of CG simulations in capturing enzyme tunnels and benefiting from their computational speed for studying huge datasets of enzymes. These insights are valuable for enzyme engineering, drug design, and understanding enzyme function while benefitting from the efficiency of coarse-grained models.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Proteins</category>
+  <category>Multi-scale</category>
+  <category>Drug design</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2024/Mandal2024_TunnelEnzyme.html</guid>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Building complex membranes with Martini 3</title>
@@ -88,7 +125,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Proteins</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Ozturk2024_ComplexMembranes.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Capturing chemical reactions inside biomolecular condensates with reactive Martini simulations</title>
@@ -125,7 +162,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Small molecules</category>
   <category>Reactive</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Brasnett2024_ReactionCondensates.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>GōMartini 3: From large conformational changes in proteins to environmental bias corrections</title>
@@ -162,7 +199,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Proteins</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Souza2024_GoMartini.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum</title>
@@ -199,7 +236,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Proteins</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Vreeker2024_Nanopores.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Martini 3 Coarse-Grained Model for the Cofactors Involved in Photosynthesis</title>
@@ -236,7 +273,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Metabolites</category>
   <category>Cofactors</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Chiariello2024_CofactorsPhotosynthesis.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS</title>
@@ -273,7 +310,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Proteins</category>
   <category>Self-assembly</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Korshunova2024_OliGomers.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Modeling membranes in situ</title>
@@ -310,7 +347,44 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Multi-scale</category>
   <category>Proteins</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Brown2024_MembranesInSitu.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
+</item>
+<item>
+  <title>OLIVES: A Go-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field</title>
+  <dc:creator>Kasper B Pedersen, Luís Borges-Araújo, Amanda D Stange, Paulo CT Souza, Siewert-Jan Marrink, and Birgit Schiøtt</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2024/Pedersen2024_OLIVES.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Pedersen, K. B., Borges-Araújo, L., Stange, A. D., Souza, P. C., Marrink, S. J., &amp; Schiøtt, B. (2024). OLIVES: A Go-like model for stabilizing protein structure via hydrogen bonding native contacts in the Martini 3 coarse-grained force field. Journal of Chemical Theory and Computation, 20(18), 8049-8070.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Coarse-grained molecular dynamics simulations enable the modeling of increasingly complex systems at millisecond timescales. The transferable coarse-grained force field Martini 3 has shown great promise in modeling a wide range of biochemical processes, yet folded proteins in Martini 3 are not stable without the application of external bias potentials like elastic networks or Go-like models. We herein develop an algorithm, called OLIVES, which identifies native contacts with hydrogen bond capabilities in coarse-grained proteins and use it to implement a novel Go-like model for Martini 3. We show that the protein structure instability originates, in part, from the lack of hydrogen bond energy in the coarse-grained force field representation. By using realistic hydrogen bond energies obtained from literature ab initio calculations, it is demonstrated that protein stability can be recovered by the reintroduction of a coarse-grained hydrogen bond network and that OLIVES removes the need for secondary structure restraints. OLIVES is validated against known protein complexes, and at the same time addresses the open question of whether there is a need for protein quaternary structure bias in Martini 3 simulations. It is shown that OLIVES can reduce the number of bias terms, hereby speeding up Martini 3 simulations of proteins by up to ≈ 30 % on GPU architecture compared to the established GoMARTINI Go-like model.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Methods</category>
+  <category>Forcefield</category>
+  <category>Proteins</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2024/Pedersen2024_OLIVES.html</guid>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Oxygen partitioning into biomolecular condensates is governed by excluded volume</title>
@@ -347,7 +421,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Proteins</category>
   <category>Biomolecular condensates</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Garg2024_OxygenPartitioning.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Probing the stability and interdomain interactions in the ABC transporter OpuA, using single-molecule optical tweezers</title>
@@ -384,7 +458,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Enhanced sampling</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/van-der-Sleen2024_OpuA.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Shocker-a molecular dynamics protocol and tool for accelerating and analyzing the effects of osmotic shocks</title>
@@ -422,7 +496,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Vesicles</category>
   <category>Lipid membranes</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/van-Tilburg2024_Shocker.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>There and back again: bridging meso- and nano-scales to understand lipid vesicle patterning</title>
@@ -459,7 +533,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Vesicles</category>
   <category>Lipid membranes</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Cornet2024_MesoNanoVesicle.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Vesicle protrusion induced by antimicrobial peptides suggests common carpet mechanism for short antimicrobial peptides</title>
@@ -497,7 +571,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Multi-scale</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2024/Park2024_VesicleAntimicrobialPeptides.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>A Guide to Titratable Martini Simulations</title>
@@ -531,7 +605,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Methods</category>
   <category>Forcefield</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2023/Sami2023_MultiScale.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>A Practical Introduction to Martini 3 and its Application to Protein-Ligand Binding Simulations</title>
@@ -571,7 +645,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Drug design</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2023/Alessandri2023_ProteinLigand.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Automatic Optimization of Lipid Models in the Martini Force Field Using SwarmCG</title>
@@ -610,7 +684,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Parametrization</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2023/Empereur-mot2023_SwarmCG.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>CRAFTing Delivery of Membrane Proteins into Protocells using Nanodiscs</title>
@@ -646,7 +720,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Proteins</category>
   <category>Lipid membranes</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2023/Stępień2023_CRAFTing.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 <item>
   <title>Curvature-induced lipid sorting beyond the critical packing parameter</title>
@@ -682,81 +756,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Phopholipids</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2023/Konig2023_CurvatureLipidPacking.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
-</item>
-<item>
-  <title>Dynamics of chromosome organization in a minimal bacterial cell</title>
-  <dc:creator>Benjamin R. Gilbert, Zane R. Thornburg, Troy A. Brier, Jan A. Stevens, Fabian Grünewald, John E. Stone, Siewert J. Marrink and Zaida Luthey-Schulten</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2023/Gilbert2023_Chromosome.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Gilbert, B. R., Thornburg, Z. R., Brier, T. A., Stevens, J. A., Grünewald, F., Stone, J. E., … &amp; Luthey-Schulten, Z. (2023). Dynamics of chromosome organization in a minimal bacterial cell. Frontiers in Cell and Developmental Biology, 11.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Computational models of cells cannot be considered complete unless they include the most fundamental process of life, the replication and inheritance of genetic material. By creating a computational framework to model systems of replicating bacterial chromosomes as polymers at 10 bp resolution with Brownian dynamics, we investigate changes in chromosome organization during replication and extend the applicability of an existing whole-cell model (WCM) for a genetically minimal bacterium, JCVI-syn3A, to the entire cell-cycle. To achieve cell-scale chromosome structures that are realistic, we model the chromosome as a self-avoiding homopolymer with bending and torsional stiffnesses that capture the essential mechanical properties of dsDNA in Syn3A. In addition, the conformations of the circular DNA must avoid overlapping with ribosomes identitied in cryo-electron tomograms. While Syn3A lacks the complex regulatory systems known to orchestrate chromosome segregation in other bacteria, its minimized genome retains essential loop-extruding structural maintenance of chromosomes (SMC) protein complexes (SMC-scpAB) and topoisomerases. Through implementing the effects of these proteins in our simulations of replicating chromosomes, we find that they alone are sufficient for simultaneous chromosome segregation across all generations within nested theta structures. This supports previous studies suggesting loop-extrusion serves as a near-universal mechanism for chromosome organization within bacterial and eukaryotic cells. Furthermore, we analyze ribosome diffusion under the influence of the chromosome and calculate in silico chromosome contact maps that capture inter-daughter interactions. Finally, we present a methodology to map the polymer model of the chromosome to a Martini coarse-grained representation to prepare molecular dynamics models of entire Syn3A cells, which serves as an ultimate means of validation for cell states predicted by the WCM.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>DNA</category>
-  <category>Multi-scale</category>
-  <category>Vesicles</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2023/Gilbert2023_Chromosome.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
-</item>
-<item>
-  <title>Expulsion mechanism of the substrate-translocating subunit in ECF transporters</title>
-  <dc:creator>Chancievan Thangaratnarajah, Mark Nijland, Luís Borges-Araújo, Aike Jeucken, Jan Rheinberger, Siewert J. Marrink, Paulo C. T. Souza, Cristina Paulino &amp; Dirk J. Slotboom</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2023/Thangaratnarajah2023_ECF.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Thangaratnarajah, C., Nijland, M., Borges-Araújo, L., Jeucken, A., Rheinberger, J., Marrink, S. J., … &amp; Slotboom, D. J. (2023). Expulsion mechanism of the substrate-translocating subunit in ECF transporters. Nature Communications, 14(1), 4484.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Energy-coupling factor (ECF)-type transporters mediate the uptake of micronutrients in many bacteria. They consist of a substrate-translocating subunit (S-component) and an ATP-hydrolysing motor (ECF module) Previous data indicate that the S-component topples within the membrane to alternately expose the binding site to either side of the membrane. In many ECF transporters, the substrate-free S-component can be expelled from the ECF module. Here we study this enigmatic expulsion step by cryogenic electron microscopy and reveal that ATP induces a concave-to-convex shape change of two long helices in the motor, thereby destroying the S-component’s docking site and allowing for its dissociation. We show that adaptation of the membrane morphology to the conformational state of the motor may favour expulsion of the substrate-free S-component when ATP is bound and docking of the substrate-loaded S-component after hydrolysis. Our work provides a picture of bilayer-assisted chemo-mechanical coupling in the transport cycle of ECF transporters.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Lipid membranes</category>
-  <category>Proteins</category>
-  <category>Phopholipids</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2023/Thangaratnarajah2023_ECF.html</guid>
-  <pubDate>Thu, 05 Sep 2024 20:28:13 GMT</pubDate>
+  <pubDate>Wed, 13 Nov 2024 15:05:05 GMT</pubDate>
 </item>
 </channel>
 </rss>
