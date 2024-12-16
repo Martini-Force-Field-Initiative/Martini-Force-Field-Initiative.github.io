@@ -31,7 +31,7 @@ Setting up a coarse-grained protein simulation consists basically of three steps
 
 The first two steps are done using the publicly available program [`martinize2`](https://github.com/marrink-lab/vermouth-martinize). The last step can be done with the tools available in the `GROMACS` package and/or with ad hoc scripts. In this part of the tutorial, basic knowledge of `GROMACS` commands is assumed and not all commands will be given explicitly. Please refer to the previous tutorials and/or the [`GROMACS` manual](https://manual.gromacs.org/2024.2/index.html).
 
-The aim of the first module of this tutorial is to define the regular workflow and protocols to set up a coarse-grained simulation of the soluble globular protein T4-lysozyme. Three strategies are presented and compared: i- no bias; ii- elastic networks; and iii- GōMartini. In a [second module](../ProteinsII/index.qmd) of this Proteins tutorial we will cover how to insert a transmembrane peptide (KALP) in a lipid bilayer using a standard Martini 3 description. 
+The aim of the first module of this tutorial is to define the regular workflow and protocols to set up a coarse-grained simulation of the soluble globular protein T4-lysozyme. Three strategies are presented and compared: i- no bias; ii- elastic networks; and iii- GōMartini. In a [second module](../../../Martini3/ProteinsII/index.qmd) of this Proteins tutorial we will cover how to insert a transmembrane peptide (KALP) in a lipid bilayer using a standard Martini 3 description.
 
 **The files required for this tutorial (including worked files) can be downloaded from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsI/M3_proteins_tutorial_part1.zip).**
 
@@ -96,7 +96,7 @@ gmx grompp -p t4l_only.top -f minimization.mdp -c t4l_cg.gro -o minimization-vac
 gmx mdrun -deffnm minimization-vac -v
 ```
 
-5. Solvate the system with `gmx solvate` (an equilibrated water box can be downloaded [here](../../../downloads/example-applications/solvent-systems.qmd#pure-water-solvent); it is called `water.gro`. You can also find the file in the template folder. Make sure the box size is large enough (i.e. there is enough water around the molecule to avoid periodic boundary artifacts) and remember to use a larger van der Waals distance when solvating to avoid clashes, e.g.:
+5. Solvate the system with `gmx solvate` (an equilibrated water box can be downloaded [here](../../../../downloads/example-applications/solvent-systems.qmd#pure-water-solvent); it is called `water.gro`. You can also find the file in the template folder. Make sure the box size is large enough (i.e. there is enough water around the molecule to avoid periodic boundary artifacts) and remember to use a larger van der Waals distance when solvating to avoid clashes, e.g.:
 
 ``` bash
 gmx solvate -cp minimization-vac.gro -cs water.gro -radius 0.21 -o solvated.gro
@@ -132,7 +132,7 @@ gmx grompp -p system.top -c equilibration.gro -f dynamic.mdp -o dynamic.tpr -max
 gmx mdrun -deffnm dynamic -v
 ```
 
-8. PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with `VMD` (use the script [`cg_bonds-v5.tcl`](../../../downloads/tools/visualization.qmd#rendering-cg-bonds--constraints-with-vmd) to show the bonds defined in the T4 lysozyme topology) or `pymol`. It is often convenient to convert the trajectory so that translation and rotation of the protein is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure that beads that belong to the same molecule, e.g. the protein, are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with `gromacs` tools.) Be aware that the `.gro` file given to `VMD` must contain the same (number of) atoms as the `.xtc` file. Therefore, if you choose to write only the protein to the `.xtc` file, also prepare a `.gro` file with only the protein (`minimization-vac.gro` will do).
+8. PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with `VMD` (use the script [`cg_bonds-v5.tcl`](../../../../downloads/tools/visualization.qmd#rendering-cg-bonds--constraints-with-vmd) to show the bonds defined in the T4 lysozyme topology) or `pymol`. It is often convenient to convert the trajectory so that translation and rotation of the protein is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure that beads that belong to the same molecule, e.g. the protein, are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with `gromacs` tools.) Be aware that the `.gro` file given to `VMD` must contain the same (number of) atoms as the `.xtc` file. Therefore, if you choose to write only the protein to the `.xtc` file, also prepare a `.gro` file with only the protein (`minimization-vac.gro` will do).
 
 ``` bash
 gmx trjconv -f dynamic.xtc -s dynamic.tpr -fit rot+trans -o viz.xtc
