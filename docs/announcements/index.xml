@@ -15,7 +15,27 @@
 <link>https://cgmartini.nl/docs/announcements/</link>
 </image>
 <generator>quarto-1.6.39</generator>
-<lastBuildDate>Mon, 11 Nov 2024 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 11 Jul 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Changes to Martinze2 options</title>
+  <dc:creator>Chris Brasnett</dc:creator>
+  <link>https://cgmartini.nl/docs/announcements/posts/2024-11-19-martinize-0-12-0/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>As of Martinize2 version 0.12.0, the defaults of the <code>-scfix</code> and <code>-cys</code> flags have been changed.</p>
+<p><code>-scfix</code> is now assumed by default, so it is no longer necessary to specify it. If you do, a warning will be raised. If you purposefully intend to generate protein models without side chain fixes, the <code>-noscfix</code> flag can be used.</p>
+<p>Additionally, the default argument of <code>-cys</code> is changed to <code>auto</code> to search for disulfide bridges in your topology by default, so no longer needs to be explicitly specified unless you want to turn off the behaviour (<code>-cys none</code>) or specify the search distance for disulfide bridges manually (e.g.&nbsp;<code>-cys 5</code> will enforce disulfide bridges between cysteines within 5 nm of each other).</p>
+
+
+
+ ]]></description>
+  <guid>https://cgmartini.nl/docs/announcements/posts/2024-11-19-martinize-0-12-0/</guid>
+  <pubDate>Fri, 11 Jul 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>PhD/Post doc positions</title>
   <dc:creator>Chelsea Brown (on behalf of Siewert-Jan Marrink)</dc:creator>

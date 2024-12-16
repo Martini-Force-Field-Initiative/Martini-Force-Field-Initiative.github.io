@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>tutorial2_lipidomics_mag2 – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-9d46cccec050d7371876ea4febac0074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/collabtuts/images/martini.gif">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/collabtuts/images/martini.gif">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/contact.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#coarse-grain-md-tutorial" id="toc-coarse-grain-md-tutorial" class="nav-link active" data-scroll-target="#coarse-grain-md-tutorial">Coarse-grain MD tutorial</a>
+  <ul class="collapse">
+  <li><a href="#lipidomics-study-mag2-in-a-popc-and-popc-popg-31-membrane" id="toc-lipidomics-study-mag2-in-a-popc-and-popc-popg-31-membrane" class="nav-link" data-scroll-target="#lipidomics-study-mag2-in-a-popc-and-popc-popg-31-membrane">Lipidomics study: Mag2 in a POPC and POPC-POPG 3:1 membrane</a>
+  <ul class="collapse">
+  <li><a href="#tutorial-notes" id="toc-tutorial-notes" class="nav-link" data-scroll-target="#tutorial-notes"><em>Tutorial notes</em></a></li>
+  </ul></li>
+  <li><a href="#step-0---downloading-and-installing-of-the-tutorial-software-and-materials." id="toc-step-0---downloading-and-installing-of-the-tutorial-software-and-materials." class="nav-link" data-scroll-target="#step-0---downloading-and-installing-of-the-tutorial-software-and-materials.">Step 0 - Downloading and installing of the tutorial software and materials.</a></li>
+  <li><a href="#step-1---introduction" id="toc-step-1---introduction" class="nav-link" data-scroll-target="#step-1---introduction">Step 1 - Introduction</a></li>
+  <li><a href="#step-2---system-preparation" id="toc-step-2---system-preparation" class="nav-link" data-scroll-target="#step-2---system-preparation">Step 2 - System preparation</a>
+  <ul class="collapse">
+  <li><a href="#coarse-graining-with-martinize2" id="toc-coarse-graining-with-martinize2" class="nav-link" data-scroll-target="#coarse-graining-with-martinize2">Coarse-graining with <code>martinize2</code></a></li>
+  <li><a href="#popc-membrane" id="toc-popc-membrane" class="nav-link" data-scroll-target="#popc-membrane">POPC membrane</a></li>
+  <li><a href="#popc-popg-31-membrane" id="toc-popc-popg-31-membrane" class="nav-link" data-scroll-target="#popc-popg-31-membrane">POPC-POPG 3:1 membrane</a></li>
+  </ul></li>
+  <li><a href="#step-3---simulation" id="toc-step-3---simulation" class="nav-link" data-scroll-target="#step-3---simulation">Step 3 - Simulation</a>
+  <ul class="collapse">
+  <li><a href="#popc-membrane-1" id="toc-popc-membrane-1" class="nav-link" data-scroll-target="#popc-membrane-1">POPC membrane</a></li>
+  <li><a href="#popc-popg-31-membrane-1" id="toc-popc-popg-31-membrane-1" class="nav-link" data-scroll-target="#popc-popg-31-membrane-1">POPC-POPG 3:1 membrane</a></li>
+  </ul></li>
+  <li><a href="#step-4---analysis" id="toc-step-4---analysis" class="nav-link" data-scroll-target="#step-4---analysis">Step 4 - Analysis</a>
+  <ul class="collapse">
+  <li><a href="#popc-membrane-2" id="toc-popc-membrane-2" class="nav-link" data-scroll-target="#popc-membrane-2">POPC membrane</a></li>
+  <li><a href="#popc-popg-31-membrane-2" id="toc-popc-popg-31-membrane-2" class="nav-link" data-scroll-target="#popc-popg-31-membrane-2">POPC-POPG 3:1 membrane</a></li>
+  <li><a href="#visualize-the-last-frame" id="toc-visualize-the-last-frame" class="nav-link" data-scroll-target="#visualize-the-last-frame">Visualize the last frame</a></li>
+  <li><a href="#print-the-contacts" id="toc-print-the-contacts" class="nav-link" data-scroll-target="#print-the-contacts">Print the contacts</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>Tutorials designed by Martin Calvelo (martin.calvelo@gmail.com) and Manuel N. Melo (m.n.melo@itqb.unl.pt). Check out their <a href="https://github.com/martincalvelo/MARTINI-CG-TUTORIALS/tree/main">repository</a>.</p>
+<p>These tutorials were designed to run in Collab. Alternatively you can follow along in your own system.</p>
+<p><a href="https://colab.research.google.com/github/martincalvelo/MARTINI-CG-TUTORIALS/blob/main/2-Lipidomics_with_Magainin_II/Tutorial2_Lipidomics_Mag2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<section id="coarse-grain-md-tutorial" class="level1">
+<h1>Coarse-grain MD tutorial</h1>
+<section id="lipidomics-study-mag2-in-a-popc-and-popc-popg-31-membrane" class="level2">
+<h2 class="anchored" data-anchor-id="lipidomics-study-mag2-in-a-popc-and-popc-popg-31-membrane">Lipidomics study: Mag2 in a POPC and POPC-POPG 3:1 membrane</h2>
+<hr>
+<section id="tutorial-notes" class="level3">
+<h3 class="anchored" data-anchor-id="tutorial-notes"><em>Tutorial notes</em></h3>
+<ul>
+<li><p>In this tutorial you’ll find two directories. Directory <code>worked</code> has all the intermediate steps and results, whereas directory <code>minimal</code> has only the essential files to get you going, and you’ll have to do most of the work yourself. Feel free to follow the tutorial using either approach, or even a mix of the two.</p></li>
+<li><p>This tutorial should be run in a T4 GPU Colab runtime (you can check and change this in the upper right ‘Connect’ menu). Click on “Change runtime type” and select Python 3 (default) and T4 GPU.</p></li>
+<li><p>Alternatively, you can download it and run it in your own system. You will need to have <code>gromacs</code> installed, as well as the Python libraries <code>vermouth</code>, <code>mdanalysis</code>, and <code>nglview</code>.</p></li>
+<li><p>Much of the tutorial involves running shell commands. In Colab, this is achieved by prepending an exclamation mark to the command (<code>!some shell_command</code>). You can see this exemplified below in the installation. Note that if you need to change directories, the exclamation mark method won’t work; you need to use a percent sign, and run the command in its own cell (<code>%cd target_dir</code>).</p></li>
+<li><p>To run any of the following cells of code, you can type <strong>Shift + Enter</strong> to excute the code in a cell.</p></li>
+</ul>
+</section>
+</section>
+<section id="step-0---downloading-and-installing-of-the-tutorial-software-and-materials." class="level2">
+<h2 class="anchored" data-anchor-id="step-0---downloading-and-installing-of-the-tutorial-software-and-materials.">Step 0 - Downloading and installing of the tutorial software and materials.</h2>
+<p><em>The text output of these steps was minimized so as not to overcrowd the notebook. Feel free to take out the <code>-q</code> flags or add the <code>-v</code> flag to <code>tar</code> if you want full output or for debugging purposes.</em></p>
+<hr>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We install `gromacs` and `dssp` binaries, pre-built for the colab runtime. Moreover, we install some Python packages, and import the ones we'll need:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. The `vermouth` (provides the `martinize2` script) and `insane` packages from the Martini team</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. The `MDAnalysis` package</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. The `nglview` molecular viewer (requires enabling custom notebook widgets, which we also do below)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> os.getenv(<span class="st">"COLAB_RELEASE_TAG"</span>):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">!</span>wget https:<span class="op">//</span>www.itqb.unl.pt<span class="op">/</span>labs<span class="op">/</span>multiscale<span class="op">-</span>modeling<span class="op">/</span>downloads<span class="op">/</span>gromacs<span class="op">-</span><span class="fl">2023.3</span><span class="op">-</span>gcolab_build.tar.gz <span class="op">-</span>q <span class="op">-</span>O <span class="op">-</span> <span class="op">|</span> tar <span class="op">--</span>absolute<span class="op">-</span>names <span class="op">-</span>xzf <span class="op">-</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">!</span>pip install <span class="op">-</span>q vermouth mdanalysis</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">!</span>pip install <span class="op">-</span>q ipywidgets<span class="op">==</span><span class="fl">7.7.2</span> nglview</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Needed for nglview to work in colab</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="im">from</span> google.colab <span class="im">import</span> output</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  output.enable_custom_widget_manager()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nglview <span class="im">as</span> nv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> MDAnalysis <span class="im">as</span> mda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, we download and unpack the tutorial’s material.</p>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>zenodo.org<span class="op">/</span>records<span class="op">/</span><span class="dv">13890148</span><span class="op">/</span>files<span class="op">/</span><span class="dv">2</span><span class="op">-</span>Tutorial_Lipidomics.<span class="bu">zip</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>unzip <span class="dv">2</span><span class="op">-</span>Tutorial_Lipidomics.<span class="bu">zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will start in subdirectory <code>minimal</code>, but feel free to change to <code>worked</code>.</p>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>initial_path<span class="op">=!</span>pwd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>path<span class="op">=</span>initial_path[<span class="dv">0</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-1---introduction" class="level2">
+<h2 class="anchored" data-anchor-id="step-1---introduction">Step 1 - Introduction</h2>
+<p>Antimicrobial peptides (AMPs) play a vital role in the innate immune system of all living organisms.<span class="math inline">\(^{1,2}\)</span> These peptides can identify and disrupt lipid patterns in bacterial membranes without harming healthy cells.<span class="math inline">\(^{3}\)</span> Notably, AMPs often possess shared properties: they typically consist of 10–40 residues, adopt an α-helix secondary structure when they interact with membranes, maintain a positive net charge, and contain a significant number of non-polar residues. These features, along with their pronounced transversal hydrophobic moment in their folded state, facilitate interactions with lipid bilayers. Thus, the use of these molecules as therapeutic agents is an obvious lesson from Nature that can be exploited to design new antibiotics, anticancer or antiaging drugs.<span class="math inline">\(^{4}\)</span></p>
+<p>In this tutorial, we will investigate the potential antimicrobial properties of Magainin-II (Mag2), one of the most well-known natural AMPs.<span class="math inline">\(^{5}\)</span> We will simulate it in the presence of two different membrane models: one representing a healthy membrane (POPC), and the other a bacterial bilayer (POPC-POPG 3:1). We’ll place several AMPs in the aqueous phase of our systems and run simulations, analysing potential spontaneous peptide-bilayer interactions.</p>
+<ol type="1">
+<li><p>Lancet Infect Dis. 9, e216; doi: 10.1016/S1473-3099(20)30327-3 (2020)</p></li>
+<li><p>Front. Microbiol. 11; doi: 10.3389/fmicb.2020.582779 (2020)</p></li>
+<li><p>Colloids Surf. B Biointerfaces 196, 111349; doi: 10.1016/j.colsurfb.2020.111349 (2020)</p></li>
+<li><p>Front. Immunol. 15, doi: 10.3389/fimmu.2024.1320779 (2024)</p></li>
+<li><p>BBA. 1327, 119; doi: 10.1016/S0005-2736(97)00051-5 (1997)</p></li>
+</ol>
+</section>
+<section id="step-2---system-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="step-2---system-preparation">Step 2 - System preparation</h2>
+<p>In your directories you’ll find Mag2.pdb file, containing a α-helix structure of the Magainin II peptide.</p>
+<p>Before coarse graining anything we visualize our starting protein structure using nglview. Other viewers, such as pymol or VMD are also great, if you run this workflow outside Colab.</p>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> nv.NGLWidget()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>at <span class="op">=</span> view.add_component(nv.FileStructure(<span class="st">'Mag2.pdb'</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>view</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="coarse-graining-with-martinize2" class="level3">
+<h3 class="anchored" data-anchor-id="coarse-graining-with-martinize2">Coarse-graining with <code>martinize2</code></h3>
+<p>For CG MD simulation of a protein one needs the CG coordinates and the CG topology. Both can be obtained with the <code>martinize2</code> tool (despite its name, it works with Martini 3).</p>
+<hr>
+<p>You’ll need to: * specify <code>Mag2.pdb</code> as the input structure; * specify an output CG structure (let’s call it <code>Mag2_cg.pdb</code>); * specify an output <code>.top</code> topology master file (let’s call it <code>topol.top</code>); * specify the target forcefield. Martini 3 has code <code>martini3001</code>; * ask for an elastic network to be set, restraining secondary/tertiary structure; * ask for fixing some issues with the excess of flexible side-chain behaviour; * we don’t need DSSP in this case, since we will assume directly that the peptide will adopt an alpha-helix structure. You can provide directly the secondary structure with the flag <code>-ss HHHHHHHHHHHHHHHHHHHHHHH</code>;</p>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!martinize2 -f ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>martinize2 <span class="op">-</span>f Mag2.pdb <span class="op">\</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>x Mag2_cg.pdb <span class="op">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>o topol.top <span class="op">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>ff martini3001 <span class="op">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>elastic <span class="op">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>scfix <span class="op">\</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>ss <span class="st">'HHHHHHHHHHHHHHHHHHHHHHH'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Have a look at the produced files with and editor or a molecular structure visualizer. Observe the atomic structure and the CG beads overlaid (in white and yellow spheres).</p>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>view.remove_component(at)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>aa <span class="op">=</span> nv.FileStructure(<span class="st">'Mag2.pdb'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> nv.FileStructure(<span class="st">'Mag2_cg.pdb'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>view.add_component(aa, default<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>view.add_component(cg, default<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>view.clear_representations(component<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>view.clear_representations(component<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>view.add_licorice(selection<span class="op">=</span><span class="st">'Protein'</span>, component<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>view.add_ball_and_stick(aspectRatio<span class="op">=</span><span class="fl">7.5</span>, opacity<span class="op">=</span><span class="fl">0.45</span>, component<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>view.center()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>view</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="popc-membrane" class="level3">
+<h3 class="anchored" data-anchor-id="popc-membrane">POPC membrane</h3>
+<p>Let’s continue with the tutorial. The steps are the same for both membranes. Let’s start with the <code>POPC</code> one:</p>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span>POPC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="insert-mag2-peptides" class="level4">
+<h4 class="anchored" data-anchor-id="insert-mag2-peptides">Insert Mag2 peptides</h4>
+<p>The first step will be to insert some Mag2 peptides into our system (let’s add 10, but feel free to choose a different number if you prefer). For this, we’ll use the gmx insert-molecules command from GROMACS. Execute it with the flag -h for having more info.</p>
+<div id="cell-24" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx insert<span class="op">-</span>molecules <span class="op">-</span>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We have a POPC membrane in water box already equilibrated in a file called <code>POPC.gro</code>. Let’s place the peptides in the aqueous phase. In this way, we’ll see if they spontaneously interact with the membrane. We can do this by instructing <code>gmx insert-molecules</code> to remove water molecules (<code>W</code>) to make room for our peptide (use the option <code>-replace</code>). Take into account that the CG coordinates of Mag2 are in the previous directory, so we need to write <strong>../</strong> before the file name (<code>../Mag2_cg.pdb</code>). Let’s call the output <code>system.gro</code>. Try yourself!</p>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx insert-molecules -f ... -ci .../... -nmol ... -o system.gro -replace W -try 100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-27" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx insert<span class="op">-</span>molecules <span class="op">-</span>f POPC.gro <span class="op">\</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>ci ..<span class="op">/</span>Mag2_cg.pdb <span class="op">\</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>nmol <span class="dv">10</span> <span class="op">\</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>o system.gro <span class="op">\</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>replace W <span class="op">\</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span><span class="cf">try</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Open the output <code>system.gro</code> with a molecular visualizator. Here, you can see the peptides in the solvent, with the POPC lipids in grey. Note that, for clarity, water and ions were not displayed.</p>
+<div id="cell-29" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>view_membrane_prot <span class="op">=</span> nv.NGLWidget()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_component(nv.FileStructure(<span class="st">'system.gro'</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_representation(<span class="st">'tube'</span>, selection<span class="op">=</span><span class="st">'protein'</span>, radius<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_representation(<span class="st">'surface'</span>, selection<span class="op">=</span><span class="st">'POPC'</span>, color<span class="op">=</span><span class="st">'grey'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>view_membrane_prot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="update-topology-1" class="level4">
+<h4 class="anchored" data-anchor-id="update-topology-1">Update topology (1)</h4>
+<p>The file <code>initial_top.top</code> is a good start, but we need to complete it. Specifically, we need to add the number of W, CL, NA, and peptides in the system. The first step is to create a copy of the file <code>initial_top.top</code> (let’s call this new file <code>top.top</code>).</p>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp initial_top.top top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can automatically update the number of W, CL, NA, and peptides molecules by using the python script <code>update_topology.py</code>. It will count the number of those molecules in a input file (<code>system.gro</code>) and add it directly to a topology file (<code>top.top</code>). Run the script like this:</p>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 ..<span class="op">/</span>update_topology.py system.gro top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Add also a line with the number of peptides inserted:</p>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"molecule_0  10"</span> <span class="op">&gt;&gt;</span> top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="neutralize-the-system" class="level4">
+<h4 class="anchored" data-anchor-id="neutralize-the-system">Neutralize the system</h4>
+<p>MD simulations must be executed with a total net charge of 0. Since Mag2 has a charge of +2, adding the peptides has resulted in an imbalance in the system’s charge. We need to fix this. We can do this using the GROMACS tool <code>gmx genion</code>. To start, we need to create a <em>.tpr</em> file. Generate it by running the following command:</p>
+<div id="cell-37" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>em.mdp <span class="op">-</span>c system.gro <span class="op">-</span>p top.top <span class="op">-</span>o ions.tpr <span class="op">-</span>maxwarn <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s run the <code>gmx genion</code> command. We’ll achieve a neutral charge with the <code>-neutral</code> flag and will need to specify which molecules it will replace to add extra ions to balance the charge (water, in this case).</p>
+<div id="cell-39" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"W"</span> <span class="op">|</span> gmx genion <span class="op">-</span>s ions.tpr <span class="op">-</span>neutral <span class="op">-</span>o system_neutralized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This command will generate a file with the coordinates of the neutralized system called <code>system_neutralized.gro</code>.</p>
+</section>
+<section id="update-topology-2" class="level4">
+<h4 class="anchored" data-anchor-id="update-topology-2">Update topology (2)</h4>
+<p>Since we’ve changed the number of water molecules and ions when neutralizing the system, we need to update the topology again. Let’s start again from the <code>initial_top.top</code> file:</p>
+<div id="cell-42" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp initial_top.top top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And let’s run the <code>update_topology.py</code> script again, but this time using <code>system_neutralized.gro</code> as the input file.</p>
+<div id="cell-44" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 ..<span class="op">/</span>update_topology.py system_neutralized.gro top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remember to add also a line with the number of peptides:</p>
+<div id="cell-46" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"molecule_0  10"</span> <span class="op">&gt;&gt;</span> top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Take a look to the <code>top.top</code> file:</p>
+<div id="cell-48" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-and-index-file" class="level4">
+<h4 class="anchored" data-anchor-id="create-and-index-file">Create and index file</h4>
+<p>Let’s create an index file defining the beads that are part of the protein and membrane and those that are part of the solvent. Run first the <code>gmx make_ndx</code> command of GROMACS using as input the <code>system_neutralized.gro</code> file:</p>
+<div id="cell-50" class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'q'</span> <span class="op">|</span> gmx make_ndx <span class="op">-</span>f system_neutralized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>create_index.py</code> script, we’ll create 3 groups: * Bilayer: beads of the membrane. * Bilayer_Protein: beads of the membrane and the AMPs. We’ll use this for analysis. * Solvent: Water and ions.</p>
+<p>Run the script:</p>
+<div id="cell-52" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 ..<span class="op">/</span>create_index.py system_neutralized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="popc-popg-31-membrane" class="level3">
+<h3 class="anchored" data-anchor-id="popc-popg-31-membrane">POPC-POPG 3:1 membrane</h3>
+<p>As we said, in this tutorial we are going to simulate two membranes. Now that you have seen how to prepare the system for one of them, try preparing the other one yourself!</p>
+<div id="cell-54" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="insert-mag2-peptides-1" class="level4">
+<h4 class="anchored" data-anchor-id="insert-mag2-peptides-1">Insert Mag2 peptides</h4>
+<p>Take into account that now our membrane file is called <code>POPC-POPG_31.gro</code>.</p>
+<div id="cell-56" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete it</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx insert<span class="op">-</span>molecules</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-57" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx insert<span class="op">-</span>molecules <span class="op">-</span>f POPC<span class="op">-</span>POPG_31.gro <span class="op">\</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>ci ..<span class="op">/</span>Mag2_cg.pdb <span class="op">\</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>nmol <span class="dv">10</span> <span class="op">\</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>o system.gro <span class="op">\</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span>replace W <span class="op">\</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                      <span class="op">-</span><span class="cf">try</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="update-topology-1-1" class="level4">
+<h4 class="anchored" data-anchor-id="update-topology-1-1">Update topology (1)</h4>
+<div id="cell-59" class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp initial_top.top top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-60" class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 ..<span class="op">/</span>update_topology.py system.gro top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-61" class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"molecule_0  10"</span> <span class="op">&gt;&gt;</span> top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="neutralize-the-system-1" class="level4">
+<h4 class="anchored" data-anchor-id="neutralize-the-system-1">Neutralize the system</h4>
+<div id="cell-63" class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Complete it</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>em.mdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-64" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>em.mdp <span class="op">-</span>c system.gro <span class="op">-</span>p top.top <span class="op">-</span>o ions.tpr <span class="op">-</span>maxwarn <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-65" class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># echo ... | !gmx genion</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-66" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>echo <span class="st">"W"</span> <span class="op">|</span> gmx genion <span class="op">-</span>s ions.tpr <span class="op">-</span>neutral <span class="op">-</span>o system_neutralized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="update-topology-2-1" class="level4">
+<h4 class="anchored" data-anchor-id="update-topology-2-1">Update topology (2)</h4>
+<div id="cell-68" class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp initial_top.top top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-69" class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 ..<span class="op">/</span>update_topology.py system_neutralized.gro top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-70" class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">"molecule_0  10"</span> <span class="op">&gt;&gt;</span> top.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-index-file" class="level4">
+<h4 class="anchored" data-anchor-id="create-index-file">Create index file</h4>
+<div id="cell-72" class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'q'</span> <span class="op">|</span> gmx make_ndx <span class="op">-</span>f system_neutralized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-73" class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 ..<span class="op">/</span>create_index.py system_neutralized.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="step-3---simulation" class="level2">
+<h2 class="anchored" data-anchor-id="step-3---simulation">Step 3 - Simulation</h2>
+<p>You can now run the simulations. In CG it is enough to perform a short energy minimization and a single pressure/temperature equilibration step before production. In GROMACS, we need to use the command <code>gmx grompp</code> to create a processed binary file (with the extension <code>.tpr</code>) for running minimization/MD calculations. The instructions for the calculation are in <code>.mdp</code> files. Again, let’s start with the POPC membrane:</p>
+<section id="popc-membrane-1" class="level3">
+<h3 class="anchored" data-anchor-id="popc-membrane-1">POPC membrane</h3>
+<div id="cell-76" class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span>POPC<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="energy-minimization" class="level4">
+<h4 class="anchored" data-anchor-id="energy-minimization">Energy minimization</h4>
+<p>Let’s create the tpr file (<code>em.tpr</code>) to perform the energy minimization. You will need a <em>mdp</em> file, available in the previous directory (<code>../em.mdp</code>). Open it with a text editor to check it.</p>
+<hr>
+<p>Use the <code>grompp</code> tool of GROMACS. You can run <code>gmx grompp</code> with the flag <code>-h</code> for listing all the possible options.</p>
+<div id="cell-79" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-80" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>em.mdp <span class="op">-</span>c system_neutralized.gro <span class="op">-</span>p top.top <span class="op">-</span>n index.ndx <span class="op">-</span>o em.tpr <span class="op">-</span>maxwarn <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run now the minimization with:</p>
+<div id="cell-82" class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>deffnm em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="equilibration" class="level4">
+<h4 class="anchored" data-anchor-id="equilibration">Equilibration</h4>
+<p>We will now equilibrate the system using the file <code>../eq.mdp</code>. You can donwload it and check it with a text editor. Note that we wiil use a semiisotropic pressure coupling (isotropic in the x and y direction, but different in the z direction), something typical when we work with membranes.</p>
+<hr>
+<p>Let’s create the <em>tpr</em> file (<code>eq.tpr</code>), and remember to include the <code>index.ndx</code> file:</p>
+<div id="cell-85" class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp -f ../eq.mdp ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-86" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>eq.mdp <span class="op">-</span>c em.gro <span class="op">-</span>p top.top <span class="op">-</span>n index.ndx <span class="op">-</span>o eq.tpr <span class="op">-</span>maxwarn <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run now the equilibration:</p>
+<div id="cell-88" class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>v <span class="op">-</span>deffnm eq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="production" class="level4">
+<h4 class="anchored" data-anchor-id="production">Production</h4>
+<p>Finally, we can create the <code>.tpr</code> and run the production using the <code>md.mdp</code> file.</p>
+<div id="cell-91" class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-92" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>md.mdp <span class="op">-</span>p top.top <span class="op">-</span>c eq.gro <span class="op">-</span>n index.ndx <span class="op">-</span>o md.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since this step is quite computationally expensive, we’ll take the trajectory file (md.xtc) from the worked directory (also, some additional files to avoid incompatibilities).</p>
+<div id="cell-94" class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">/</span>md.xtc .</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">/</span>index.ndx .</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">/</span>md.gro .</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">/</span>md.tpr .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="popc-popg-31-membrane-1" class="level3">
+<h3 class="anchored" data-anchor-id="popc-popg-31-membrane-1">POPC-POPG 3:1 membrane</h3>
+<p>Now, try to do it yourself with the other membrane!</p>
+<div id="cell-96" class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="energy-minimization-1" class="level4">
+<h4 class="anchored" data-anchor-id="energy-minimization-1">Energy minimization</h4>
+<div id="cell-98" class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the em.tpr file</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-99" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>em.mdp <span class="op">-</span>c system_neutralized.gro <span class="op">-</span>p top.top <span class="op">-</span>n index.ndx <span class="op">-</span>o em.tpr <span class="op">-</span>maxwarn <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-100" class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the minimization</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-101" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>deffnm em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="equilibration-1" class="level4">
+<h4 class="anchored" data-anchor-id="equilibration-1">Equilibration</h4>
+<div id="cell-103" class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create the eq.tpr file</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-104" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>eq.mdp <span class="op">-</span>c em.gro <span class="op">-</span>p top.top <span class="op">-</span>n index.ndx <span class="op">-</span>o eq.tpr <span class="op">-</span>maxwarn <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-105" class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Run the equilibration</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-106" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>v <span class="op">-</span>deffnm eq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="production-1" class="level4">
+<h4 class="anchored" data-anchor-id="production-1">Production</h4>
+<div id="cell-108" class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create the md.tpr file</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-109" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f ..<span class="op">/</span>md.mdp <span class="op">-</span>p top.top <span class="op">-</span>c eq.gro <span class="op">-</span>n index.ndx <span class="op">-</span>o md.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Don’t run the production, let’s copy the files from the worked directory:</p>
+<div id="cell-111" class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span>md.xtc .</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span>index.ndx .</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span>md.gro .</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp {path}<span class="op">/</span>worked<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span>md.tpr .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="step-4---analysis" class="level2">
+<h2 class="anchored" data-anchor-id="step-4---analysis">Step 4 - Analysis</h2>
+<p>We’re going to make some adjustments to the trajectory and perform some analyses. After that, we will visualize the results.</p>
+<section id="popc-membrane-2" class="level3">
+<h3 class="anchored" data-anchor-id="popc-membrane-2">POPC membrane</h3>
+<p>Let’s start this section analysing the POPC membrane trajectory:</p>
+<div id="cell-114" class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span>POPC<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="trajectory-processing" class="level4">
+<h4 class="anchored" data-anchor-id="trajectory-processing">Trajectory processing</h4>
+<p>Let’s remove the water and ions and make all molecules whole:</p>
+<div id="cell-116" class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer_Protein'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md.xtc <span class="op">-</span>s md.tpr <span class="op">-</span>pbc whole <span class="op">-</span>o md_pbc.xtc <span class="op">-</span>n index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s do the same, but using only the last frame of the simulation:</p>
+<div id="cell-118" class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer_Protein'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md.gro <span class="op">-</span>s md.tpr <span class="op">-</span>pbc whole <span class="op">-</span>o md_pbc.gro <span class="op">-</span>n index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s convert the production tpr file into another with fewer atoms compatibl with our centered trajectory (since we now ignore the solvent).</p>
+<div id="cell-120" class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer_Protein'</span> <span class="op">|</span> gmx convert<span class="op">-</span>tpr <span class="op">-</span>s md.tpr <span class="op">-</span>n index.ndx <span class="op">-</span>o md_pbc.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lipid-contacts-counting" class="level4">
+<h4 class="anchored" data-anchor-id="lipid-contacts-counting">Lipid contacts counting</h4>
+<p>To count contacts we first get a list of closest distances between any lipid and any AMP over time, using <code>gmx mindist</code>. Display first the help options with the <code>-h</code> flag.</p>
+<div id="cell-123" class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mindist <span class="op">-</span>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Try now to calculate the contacts using <code>gmx mindist</code>. You will need to choose the options <code>Protein</code> and <code>non-Protein</code> (since there are not water or ions). Moreover, use the flag <code>-group</code> (check in the info what it does). Name the output <code>contacts_amp-bilayer.xvg</code> using the flag <code>-o</code>.</p>
+<div id="cell-125" class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="co">#echo 'Protein' 'non-Protein' | gmx mindist ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-126" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>echo <span class="st">'Protein'</span> <span class="st">'non-Protein'</span> <span class="op">|</span> gmx mindist <span class="op">-</span>s md_pbc.tpr <span class="op">-</span>f md_pbc.xtc <span class="op">-</span>on contacts_amp<span class="op">-</span>bilayer.xvg <span class="op">-</span>group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="popc-popg-31-membrane-2" class="level3">
+<h3 class="anchored" data-anchor-id="popc-popg-31-membrane-2">POPC-POPG 3:1 membrane</h3>
+<p>Now, let’s do it with the other membrane.</p>
+<div id="cell-128" class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span>POPC<span class="op">-</span>POPG_31<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="trajectory-processing-1" class="level5">
+<h5 class="anchored" data-anchor-id="trajectory-processing-1">Trajectory processing</h5>
+<p>Let’s remove the waters and ions and make molecules whole. We will also do the same for just one frame and create a new <code>.tpr</code> file compatible with the treated trajectory.</p>
+<div id="cell-131" class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer_Protein'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md.xtc <span class="op">-</span>s md.tpr <span class="op">-</span>pbc whole <span class="op">-</span>o md_pbc.xtc <span class="op">-</span>n index.ndx</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer_Protein'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md.gro <span class="op">-</span>s md.tpr <span class="op">-</span>pbc whole <span class="op">-</span>o md_pbc.gro <span class="op">-</span>n index.ndx</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer_Protein'</span> <span class="op">|</span> gmx convert<span class="op">-</span>tpr <span class="op">-</span>s md.tpr <span class="op">-</span>n index.ndx <span class="op">-</span>o md_pbc.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="lipid-conctacts-counting" class="level5">
+<h5 class="anchored" data-anchor-id="lipid-conctacts-counting">Lipid conctacts counting</h5>
+<p>And now let’s calculate the number of contacts. Do you think you’d be able to do it yourself? Give it a try!</p>
+<div id="cell-134" class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="co">#echo 'Protein' 'non-Protein' | gmx mindist ...  -o contacts_amp-bilayer.xvg</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-135" class="cell" data-cellview="form">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>echo <span class="st">'Protein'</span> <span class="st">'non-Protein'</span> <span class="op">|</span> gmx mindist <span class="op">-</span>s md_pbc.tpr <span class="op">-</span>f md_pbc.xtc <span class="op">-</span>on contacts_amp<span class="op">-</span>bilayer.xvg <span class="op">-</span>group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="visualize-the-last-frame" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-the-last-frame">Visualize the last frame</h3>
+<p>Let’s start by visualizing the last structure of the simulations. Go to the main directory.</p>
+<div id="cell-138" class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd {path}<span class="op">/</span>minimal<span class="op">/</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>First, the one with POPC:</p>
+<div id="cell-140" class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>view_membrane_PC <span class="op">=</span> nv.NGLWidget()</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>view_membrane_PC.add_component(nv.FileStructure(<span class="st">'POPC/md_pbc.gro'</span>))</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>view_membrane_PC.add_representation(<span class="st">'tube'</span>, selection<span class="op">=</span><span class="st">'protein'</span>, radius<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>view_membrane_PC.add_representation(<span class="st">'surface'</span>, selection<span class="op">=</span><span class="st">'POPC'</span>, color<span class="op">=</span><span class="st">'grey'</span>)</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>view_membrane_PC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Compare it with the POPC-POPG 3:1 membrane.</p>
+<div id="cell-142" class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>view_membrane_PCPG <span class="op">=</span> nv.NGLWidget()</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>view_membrane_PCPG.add_component(nv.FileStructure(<span class="st">'POPC-POPG_31/md_pbc.gro'</span>))</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>view_membrane_PCPG.add_representation(<span class="st">'tube'</span>, selection<span class="op">=</span><span class="st">'protein'</span>, radius<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>view_membrane_PCPG.add_representation(<span class="st">'surface'</span>, selection<span class="op">=</span><span class="st">'POPC'</span>, color<span class="op">=</span><span class="st">'grey'</span>)</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>view_membrane_PCPG.add_representation(<span class="st">'surface'</span>, selection<span class="op">=</span><span class="st">'POPG'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>view_membrane_PCPG</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Apparently, Mag2 interacts more with the bacterial membrane. However, we are only observing one frame of the trajectory, which might not be representative. Let’s visualize the results of the contacts during the entire trajectory to gain more information.</p>
+</section>
+<section id="print-the-contacts" class="level3">
+<h3 class="anchored" data-anchor-id="print-the-contacts">Print the contacts</h3>
+<p>After calculating the contacts between the AMPs and the lipids in former sections, we will plot them for visualization. In the main directory we have a Python script called <code>contacts_vs_time.py</code>, which will plot the contacts betwen AMPs and lipids per membrane. Run it.</p>
+<div id="cell-145" class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-146" class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 contacts_vs_time.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This script will generate an output in PDF format (<code>contacts_amp-bilayer.pdf</code>) that you can download. To visualize it in this Colab, run the following cell:</p>
+<div id="cell-148" class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>POPC <span class="op">=</span> np.loadtxt(<span class="st">'POPC/contacts_amp-bilayer.xvg'</span>, comments<span class="op">=</span>(<span class="st">'@'</span>, <span class="st">'#'</span>))</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>POPCPG <span class="op">=</span> np.loadtxt(<span class="st">'POPC-POPG_31/contacts_amp-bilayer.xvg'</span>, comments<span class="op">=</span>(<span class="st">'@'</span>, <span class="st">'#'</span>))</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>contacts_POPC <span class="op">=</span> POPC[:,<span class="dv">1</span>:]</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>contacts_POPCPG <span class="op">=</span> POPCPG[:,<span class="dv">1</span>:]</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> <span class="bu">len</span>(contacts_POPC)</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(contacts_POPC) <span class="op">+</span> <span class="dv">1</span>), contacts_POPC, label<span class="op">=</span><span class="st">'POPC'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb80-10"><a href="#cb80-10" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(contacts_POPCPG) <span class="op">+</span> <span class="dv">1</span>), contacts_POPCPG, label<span class="op">=</span><span class="st">'POPC-POPG 3:1'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb80-11"><a href="#cb80-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Contacs AMP - Bilayer'</span>)</span>
+<span id="cb80-12"><a href="#cb80-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb80-13"><a href="#cb80-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (ns)'</span>)</span>
+<span id="cb80-14"><a href="#cb80-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'# contacts'</span>)</span>
+<span id="cb80-15"><a href="#cb80-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you can see, the number of contacts is higher in the bacterial membrane model. Do you think Mag2 has antimicrobial potential?</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>Congratulations! You’ve reached the end of this tutorial! Visit https://cgmartini.nl and continue exploring Martini and Coarse-Grained MD!</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cgmartini\.nl");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+
+
+</body></html>
