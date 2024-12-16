@@ -1,0 +1,19 @@
+---
+title: Changes to Martinze2 options
+description: |
+    Changes to Martinize2 input options affecting scfix
+sideber: false
+toc: false
+author: Chris Brasnett
+date: "19/11/2024"
+---
+
+As of Martinize2 version 0.12.0, the defaults of the `-scfix` and `-cys` flags have been changed.
+
+`-scfix` is now assumed by default, so it is no longer necessary to specify it. If you do, a warning will be raised.
+If you purposefully intend to generate protein models without side chain fixes, the `-noscfix` flag can be used.
+
+Additionally, the default argument of `-cys` is changed to `auto` to search for disulfide bridges in your topology
+by default, so no longer needs to be explicitly specified unless you want to turn off the behaviour (`-cys none`) or
+specify the search distance for disulfide bridges manually (e.g. `-cys 5` will enforce disulfide bridges between
+cysteines within 5 nm of each other).
