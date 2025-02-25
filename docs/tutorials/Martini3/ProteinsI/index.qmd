@@ -5,11 +5,11 @@ format: html
 
 <hr>
 
+Directly adapted from XXXX.
+
+Authored by Thilo Duve, Liguo Wang, Luís Borges-Araújo, Siewert J. Marrink, Paulo C. T. Souza, Sebastian Thallmair.
+
 In case of issues, please contact [thallmair\@fias.uni-frankfurt.de](mailto:%20thallmair@fias.uni-frankfurt.de), [luis.borges\@ens-lyon.fr](mailto:%20luis.borges@ens-lyon.fr) or [paulo.telles_de_souza\@ens-lyon.fr](mailto:%20paulo.telles_de_souza@ens-lyon.fr).
-
-Directly adapted from the following book chapter: ADD REF HERE.
-
-CITE US DOI THINGIMAJIG.
 
 <hr>
 
@@ -17,15 +17,20 @@ CITE US DOI THINGIMAJIG.
 
 -   [`Introduction`](#introduction)
 -   [`Tutorial Sections`](#Tutorials)
-    -   I.I:
-    -   I.II:
-    -   I.III:
-    -   I.IV:
+    -   [`Tutorial I.I: Setup of Martini 3 Protein Structure Models`](Tut1.qmd)
+
+    -   [`Tutorial I.II: Metrics to Compare Protein Structure Models`](Tut2.qmd)
+
+    -   [`Tutorial I.III: Simulations of IDRs in Martini 3`](Tut3.qmd)
+
+    -   [`Tutorial I.IV: Additional notes, limitations & conclusion`](Tut4.qmd)
 -   [`References`](#references)
 
 ### Introduction {#introduction}
 
 <hr>
+
+<!--- Commented to keep intro shorter. Users should already know this bit from earlier tutorials + lectures. --->
 
 <!--- A detailed biophysical characterization of proteins including their structural dynamics is crucial for a broad variety of research fields ranging from molecular biology and drug development to enzyme design and environmentally friendly chemistry. In recent years, modelling techniques became more and more routine tools, offering a complementary approach to experimental techniques for studying protein biophysics. Atomistic and coarse-grained (CG) molecular dynamics (MD) simulations are among the key techniques applied in the field [1, 2]. In this chapter, we will provide a hands-on introduction to the protein models available in the fully re-parametrized general-purpose Martini 3 CG force field [3]. We assume that the reader has hands-on experience with the program package GROMACS [4], for which excellent tutorials are available[5]. --->
 
@@ -37,27 +42,27 @@ Here, we will focus on the setup, fine-tuning options, and evaluation of the sec
 
 In their simplest form, each of these three structure bias models relies on an atomistic reference, structure which can be obtained from experiments or prediction software. The EN model uses harmonic potentials between the BB beads within a cutoff distance to maintain the protein structure. In contrast, both the GōMartini and OLIVES models employ Lennard-Jones potentials in a Gō-type manner, allowing for contact dissociation. In the GōMartini model, the potentials are defined from a contact map based on native contacts, evaluated through overlap and restricted contacts of structural units \[18, 19\], combined with a distance cutoff. The OLIVES model, on the other hand, defines its bias by evaluating the hydrogen bonding interactions between BB as well as side chain (SC) beads \[17\]. For small structured systems, such as single α-helices, the waiver of a structural bias model can be an option as well.
 
-The tutorial is structured as follows:
-
--   Tutorial I.I provides details on how to set up a Martini 3 protein model, taking a protein kinase as our workhorse, and using either EN, GōMartini, or OLIVES, together with secondary structure-specific bonded terms and side-chain corrections.
-
--   The evaluation of the performance of the model in comparison to atomistic reference simulations is discussed in Section Tutorial I.II.
-
--   Tutorial I.III gives an example for the addition of an IDR to the structured domain of the kinase.
-
--   Additional notes and limitations are discussed in Section 5, before we conclude in Section 6.
-
-    <!--- Related Martini-based tutorial chapters are available for constructing PEGylated proteins [20], embedding membrane proteins [21], and for protein-ligand binding [7].  --->
-
 ## Tutorial Sections {#Tutorials}
 
--   [Tutorial I.I: Setup of Martini 3 Protein Structure Models](Tut1.qmd)
+The tutorial is structured as follows:
 
--   [Tutorial I.II: Metrics to Compare Protein Structure Models](Tut2.qmd)
+-   [**`Tutorial I.I: Setup of Martini 3 Protein Structure Models`**](Tut1.qmd)
 
--   [Tutorial I.III: Simulations of IDRs in Martini 3](Tut3.qmd)
+    -   Tutorial I.I provides details on how to set up a Martini 3 protein model, taking a protein kinase as our workhorse, and using either EN, GōMartini, or OLIVES, together with secondary structure-specific bonded terms and side-chain corrections.
 
--   Tutorial I.IV: Additional notes, limitations & conclusion.
+-   [**`Tutorial I.II: Metrics to Compare Protein Structure Models`**](Tut2.qmd)
+
+    -   The evaluation of the performance of the model in comparison to atomistic reference simulations is discussed in Section Tutorial I.II.
+
+-   [**`Tutorial I.III: Simulations of IDRs in Martini 3`**](Tut3.qmd)
+
+    -   Tutorial I.III gives an example for the addition of an IDR to the structured domain of the kinase.
+
+-   [**`Tutorial I.IV: Additional notes, limitations & conclusion`**](Tut4.qmd)
+
+    -   Additional notes and limitations are discussed in Section 5, before we conclude in Section 6.
+
+<!--- Related Martini-based tutorial chapters are available for constructing PEGylated proteins [20], embedding membrane proteins [21], and for protein-ligand binding [7].  --->
 
 ### References {#references}
 
