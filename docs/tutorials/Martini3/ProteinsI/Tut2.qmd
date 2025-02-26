@@ -107,4 +107,5 @@ As we saw with the RMSD in Figure 7, the CG model without a structural bias show
 
 Notably, in all models the distance pairs including the missing loop in the crystal structure (residues 171-173) show large deviations from the atomistic reference for all models. This is in line with the deviations of the RMSF in this region that was observed for all models (see Section I.II.1.2). Interestingly, all models generally displayed deviations between residues 175 and 200, although the EN and GōMartini reproduce the flexibility of this region well. A comparison between the OLIVES and OLIVES + DSSP models reveals that OLIVES + DSSP produces better agreement at distance pairs along the diagonal, corresponding to short-range interactions. This indicates a better representation of the secondary structure of CK1δ. In terms of overall distance accuracy, the GōMartini model outperforms the others, displaying the best overall fit. The highest deviations in distances are within loop regions.
 
+<hr>
 The following section ([I.III](Tut3.qmd)) will discuss how to best set up IDRs in Martini 3 proteins.

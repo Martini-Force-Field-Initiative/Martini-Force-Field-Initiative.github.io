@@ -153,4 +153,5 @@ gmx grompp -p system.top -c equilibration.gro -f dynamic.mdp -o dynamic.tpr -max
 
 Note that when using the OLIVES model, the flags `-noddcheck -rdd 2.0` need to be specified in gmx mdrun to avoid domain decomposition errors during the simulation\[12\]. To judge the proficiency of each model to replicate the properties of a given protein, we recommend at least three replicas of 250 ns, following the recommended 1:4 ratio for comparisons between atomistic and CG Martini simulations, due to the smoothed energy landscape of CG simulations \[34\]. 250 ns of CG simulations correspond to approximately 1 μs of effective simulation time. 
 
+<hr>
 The following section ([I.II](Tut2.qmd)) will discuss different metrics that can be used to judge which protein structure model is the best suited for a specific use case.

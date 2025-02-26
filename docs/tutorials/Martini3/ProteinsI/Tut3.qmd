@@ -118,4 +118,7 @@ insane -f CK1d_cg.pdb -o CG.gro -p system.top -pbc cubic -box 35,35,35 -salt 0.1
 
 When simulating a protein with an IDR, it is especially important to use an appropriately sized box, to prevent the extended IDR from interacting with its mirror image. We therefore use an edge length of 35 nm here. The simulation of the system follows the protocol outlined in [Section I.I.4](Tut1.qmd).
 
-The conformational ensemble sampled during the simulations is shown in Figure 10. 
+The conformational ensemble sampled during the simulations is shown in Figure 10.
+
+<hr>
+The following and final section ([I.IV](Tut4.qmd)) will provide some additional information and discuss some limitations of the Martini 3 protein model, as well as provide a quick summary and outlook of this tutorial.
