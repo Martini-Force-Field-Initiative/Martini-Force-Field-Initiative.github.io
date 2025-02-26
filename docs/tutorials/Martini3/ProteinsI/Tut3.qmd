@@ -1,9 +1,11 @@
 ---
-title: "Martini 3 protein models - a practical introduction to different structure bias models and their comparison"
+title: "Tutorial I.III - Simulations of IDRs in Martini 3"
 format: html
 ---
 
 <hr>
+
+This tutorial is part of [**`"Martini 3 protein models - a practical introduction to different structure bias models and their comparison"`**](index.qmd)**`.`**
 
 In case of issues, please contact [thallmair\@fias.uni-frankfurt.de](mailto:%20thallmair@fias.uni-frankfurt.de), [luis.borges\@ens-lyon.fr](mailto:%20luis.borges@ens-lyon.fr) or [paulo.telles_de_souza\@ens-lyon.fr](mailto:%20paulo.telles_de_souza@ens-lyon.fr).
 
@@ -13,56 +15,107 @@ CITE US DOI THINGIMAJIG.
 
 <hr>
 
-### Summary
-
-4	Tutorial III – Simulations of IDRs in Martini 3
 This section focusses on introducing the IDR of CK1δ to the system. Previous works have shown, that simulations of IDRs using the default Martini 3.0.0 force field result in too compact IDR conformations and an underestimation of the radius of gyration [10, 13, 36, 37]. Therefore, the force field should be modified to account for the specific properties of IDRs. Here, we present two options: modifying the BB-water interaction strength and the dedicated force field Martini3-IDP.
-4.1	Adding a Water Bias
+
+## I.III.1 Adding a Water Bias
+
 One way to improve the performance of Martini 3 when simulating IDRs is to modify the strength of the protein-water interactions for the IDR only. This technique utilizes the BB virtual sites, which are also used in the GōMartini model to implement the structural bias, to modify the LJ potential depth between the BB and water beads. Since these virtual sites overlap with the BB bead, the non-bonded interactions between BB and water beads can be effectively adjusted by introducing an additional potential between the virtual site and water beads [13]. 
-In this approach to set up the multi-domain protein model, we use the full length CK1δ atomistic structure as Martinize2 input. As the IDR structure is typically not present in experimental structures, AlphaFold or SWISS-MODEL can be used to generate the full length atomistic protein structure (CK1d_IDR.pdb)[23, 24]. In Martinize2, the water bias can be added via the -water-bias flag. The residues of the IDR are defined via -id-regions 293:415, and the strength of the water-bias is set to a value of 0.5 kJ/mol here by -water-bias-eps idr:0.5 [13]. Additionally, we need to manually specify the secondary structure of our protein with the flag -ss using the string returned by DSSP in Section 2.3.1. To avoid creating unwanted secondary structures in the IDR of the protein, which are sometimes wrongfully present in the atomistic reference structure, replace all characters of the IDR with ‘C’ for coil. The water bias can be combined with the GōMartini model for the structured region, although any of the protein structure models discussed previously are also compatible. Here we add an EN for the structured region with -eunit 1:292.
+
+In this approach to set up the multi-domain protein model, we use the full length CK1δ atomistic structure as Martinize2 input. As the IDR structure is typically not present in experimental structures, AlphaFold or SWISS-MODEL can be used to generate the full length atomistic protein structure (`CK1d_IDR.pdb`)[23, 24]. In Martinize2, the water bias can be added via the `-water-bias` flag. The residues of the IDR are defined via `-id-regions 293:415`, and the strength of the water-bias is set to a value of 0.5 kJ/mol here by `-water-bias-eps idr:0.5` [13]. Additionally, we need to manually specify the secondary structure of our protein with the flag `-ss` using the string returned by DSSP in [Section I.I.3.1](Tut1.qmd). To avoid creating unwanted secondary structures in the IDR of the protein, which are sometimes wrongfully present in the atomistic reference structure, replace all characters of the IDR with `‘C’` for coil. The water bias can be combined with the GōMartini model for the structured region, although any of the protein structure models discussed previously are also compatible. Here we add an EN for the structured region with `-eunit 1:292`.
+
+```bash
 martinize2 -f CK1d_IDR.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3001 
 -p backbone -ss CCCEETTTEEEEEEEEEETTEEEEEEEETTTTEEEEEEEEETTSSSCCHHHHHHHHHHHTTCTTCCE
 EEEEEETTEEEEEEECCCCBHHHHHHHTTTCCCHHHHHHHHHHHHHHHHHHHHTTEECSCCCGGGEEECCGGGTTCEEECCGGGCEECBCTTTCCBCCCCCSCCCCSCTTTCCHHHHTTCCCCHHHHHHHHHHHHHHHHHSSCTTSSCCCSSHHHHHHHHHHHHHTSCHHHHTTTSCHHHHHHHHHHHHCCTTCCCCHHHHHHHHHHHHHHTTCCCSCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC -elastic -el 0 -eu 0.85 -eunit 1:292 -water-bias -water-bias-eps idr:0.5 -id-regions 293:415  
+```
+
 In addition to the CG protein structure and topology, Martinize2 returns two files: virtual_sites_atomtypes.itp, and virtual_sites_nonbond_params.itp, which need to be added to the Martini 3 topology file, as described in Section 2.3.3. 
-4.2	Martini3-IDP
-Another way to improve the performance of IDRs in Martini 3 is offered by the recently developed Martini 3 disordered protein force field (Martini3-IDP)[38], which is well integrated into the current Martini 3 framework. All force field files and Python scripts in this tutorial Section are available at https://github.com/Martini-Force-Field-Initiative/Martini3-IDP-parameters. 
+
+## I.III.2 Martini3-IDP
+
+Another way to improve the performance of IDRs in Martini 3 is offered by the recently developed Martini 3 disordered protein force field (Martini3-IDP)[38], which is well integrated into the current Martini 3 framework. All force field files and Python scripts in this tutorial Section are available on [GitHub](https://github.com/Martini-Force-Field-Initiative/Martini3-IDP-parameters). 
+
 Currently, two methods to generate the Martini3-IDP model are available.
-4.2.1	Setup Using Martinize2 and Polyply
+
+#### I.III.2.1 Setup Using Martinize2 and Polyply
+	
 In this approach, the Martini model of a folded domain and the IDR are first generated separately with Martinize2 and Polyply. In a second step, both models are merged.
-As in Section 2.3.2, the Martini model of the CK1δ protein folded domain with EN bias is generated by Martinize2 as following. The EN bias is used in this tutorial Section as example, but GōMartini and OLIVES could also be transferred easily referring to the tutorial in Section 2.3.    
+
+As in Section 2.3.2, the Martini model of the CK1δ protein folded domain with EN bias is generated by Martinize2 as following. The EN bias is used in this tutorial Section as example, but GōMartini and OLIVES could also be transferred easily referring to the tutorial in [Section I.I.3](Tut1.qmd).   
+
+```bash
 martinize2 -f CK1d.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3001 -p backbone -dssp -elastic -el 0 -eu 0.85
-Polyply is used to generate the topology and coordinates files of the IDR and can be obtained from GitHub (https://github.com/marrink-lab/polyply_1.0)[39]. polyply gen_params is used to generate the topology with protein sequence fasta input by -seqf (or protein sequence string by -seq). The -f Martini3-IDP_Polyply.ff flag provides the force field. polyply gen_coords is used to generate random IDR coordinates file by a random walk. As input, only the IDR topology is required (-p flag). The flag -box defines the edge length of the simulation box, -o defines the output file name containing the coordinates.
+```
+
+Polyply is used to generate the topology and coordinates files of the IDR and can be obtained from [GitHub](https://github.com/marrink-lab/polyply_1.0)[39]. `polyply gen_params` is used to generate the topology with protein sequence fasta input by `-seqf` (or protein sequence string by `-seq`). The `-f Martini3-IDP_Polyply.ff` flag provides the force field. `polyply gen_coords` is used to generate random IDR coordinates file by a random walk. As input, only the IDR topology is required (`-p` flag). The flag `-box` defines the edge length of the simulation box, `-o` defines the output file name containing the coordinates.
+
+```bash
 polyply gen_params -name IDR -f Martini3-IDP_Polyply.ff -seqf IDR.fasta -o IDR.itp
 polyply gen_coords -p topol.top -name IDR -box 30 30 30 -o IDR.gro
-Note that the topology provided with the -p flag is not the .itp file of the IDR, but the GROMACS .top file including all necessary force field files involved in IDR.itp, similar to this:
+```
+
+Note that the topology provided with the `-p` flag is not the `.itp` file of the IDR, but the GROMACS `.top` file including all necessary force field files involved in IDR.itp, similar to this:
+
+```bash
 #include "./martini_v3.0.0.itp"
 #include "./martini_v3.0.0_solvents_v1.itp"
 #include "./martini_v3.0.0_ions_v1.itp"
 #include "IDR.itp"
 [ molecules ]
 IDR    1
-Finally, a Python script topology_merging_general.py is used to merge all domains’ .itp files and define the parameters of the crosslinking region. You must change the .itp file name and molecule type to “mol0 mol1 …” according to their order in the protein. And because sometimes dihedral parameters in Martini topology are defined in two individual [ dihedrals ] derivatives, for consistency, we need to merge [ dihedrals ] derivatives in the .itp files with two [ dihedrals ] derivatives by definition in topology_merging_general.py.
-Then based on the domain number in the protein, we need to adjust some definitions by order in topology_merging_general.py (For example, two domains here in CK1δ protein “mol0-mol1” are merged).
+```
+
+Finally, a Python script `topology_merging_general.py` is used to merge all domains’ `.itp` files and define the parameters of the crosslinking region. You must change the `.itp` file name and molecule type to `“mol0 mol1 …”` according to their order in the protein. And because sometimes dihedral parameters in Martini topology are defined in two individual `[ dihedrals ]` derivatives, for consistency, we need to merge `[ dihedrals ]` derivatives in the `.itp` files with two `[ dihedrals ]` derivatives by definition in `topology_merging_general.py`.
+
+Then based on the domain number in the protein, we need to adjust some definitions by order in `topology_merging_general.py` (For example, two domains here in CK1δ protein `“mol0-mol1”` are merged).
+
+```bash
 mol0_BB, mol0_SC, mol1_BB, mol1_SC = entry_edit(mols, 'mol0', 'mol1')
 interaction_adding(ff, molname, mol0_BB, mol0_SC, mol1_BB, mol1_SC)
-Because the protein CK1δ contains only one folded domain and one IDR, ‘mol0-mol1’ is specified with the -i flag. The default name of the output .itp file is mol.itp. 
+```
+
+Because the protein CK1δ contains only one folded domain and one IDR, `‘mol0-mol1’` is specified with the `-i` flag. The default name of the output `.itp` file is `mol.itp`.
+
+```bash
 python3 topology_merging_general.py -i mol0-mol1
-Note that the terminal bead type in each domain fragment (i.e. the crosslinked residues in the final multi-domain protein) must be checked and adjusted manually to the default Martini 3 backbone bead for that particular residue in the output mol.itp (see Figure 1).   
+```
+
+Note that the terminal bead type in each domain fragment (i.e. the crosslinked residues in the final multi-domain protein) must be checked and adjusted manually to the default Martini 3 backbone bead for that particular residue in the output `mol.itp` (see Figure 1).   
+
+```bash
 714 P2   292 MET BB  714  0.0
  ⁝
 716 P2   293 LEU BB  716  0.0  
+```
+
 To obtain the coordinate file of the complete multi-domain protein, insert separate domains structures into one box, then after a short simulation, the broken domain fragments should be connected due to the bonded linking between fragments in mol.itp.
-4.2.2	Setup Using Martinize2 only
-A Martinize2 format Martini3-IDP force field file is also provided, which deals with the differences between the standard Martini 3 protein model and Martini3-IDP model. For example, -scfix is applied in the Martini 3 protein model to define the sidechain orientation relying on atomistic reference structure, whereas general bonded parameters are used to define sidechain orientation in Martini3-IDP independent on the atomistic reference structure.
-Similar to Section 4.1, the EN bias is generated only for the folded domain using the -eunit flag. To define the IDR easily, a new secondary structure ‘D’ is provided in the -ss flag. Note that ‘D’ is not a pre-set secondary structure, so ‘D’ secondary structure should be manually added to ‘vermouth/dssp/dssp.py’ ss_cg list.
+
+#### I.III.2.1 Setup Using Martinize2 only
+
+A Martinize2 format Martini3-IDP force field file is also provided, which deals with the differences between the standard Martini 3 protein model and Martini3-IDP model. For example, `-scfix` is applied in the Martini 3 protein model to define the sidechain orientation relying on atomistic reference structure, whereas general bonded parameters are used to define sidechain orientation in Martini3-IDP independent on the atomistic reference structure.
+
+Similar to Section 4.1, the EN bias is generated only for the folded domain using the `-eunit flag`. To define the IDR easily, a new secondary structure `‘D’` is provided in the `-ss` flag. Note that `‘D’` is not a pre-set secondary structure, so `‘D’` secondary structure should be manually added to `‘vermouth/dssp/dssp.py’` `ss_cg` list.
+
+```bash
 martinize2 -f CK1d_IDR.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3001-IDP 
 -p backbone -ss CCCEETTTEEEEEEEEECSSSEEEEEEETTTTEEEEEEEEETTCSSCCHHHHHHHHHHHTTSTTCC
 CEEEEEEETTEEEEEEECCCCBHHHHHHHTTTCCCHHHHHHHHHHHHHHHHHHHHTTEECCCCCGGGEEECCGGGTTCEEECCCTTCEECBCTTTCCBCCCCBSTTCCSCTTTCCHHHHTTBCCCHHHHHHHHHHHHHHHHHSSCTTSSCCCSSGGGHHHHHHHHHHHSCHHHHTTTSCHHHHHHHHHHHHSCSSCCCCHHHHHHHHHHHHHHTTCCCSCCCGGGCDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD -elastic -ef 700.0 -el 0 -eu 0.85 
 -eunit 1:292
+```
+
 In the near future, the Martini3-IDP model will be fully implemented in Martinize2, simplifying the generation of multi-domain protein models with Martini 3.
-4.3	Simulation of the Multi-Domain CK1δ Model
-As described in Section 2.4, the system can be solvated using insane with the following command.
+
+## I.III.2 Simulation of the Multi-Domain CK1δ Model
+
+![Figure 10: Simulation of CK1δ including the IDR using the modified water bias (A) and the Martini3-IDP model (B). Displayed are 100 frames of a 5 μs simulation, with the structured region shown in gray and the IDR in pink.](Fig10.png)
+
+As described in [Section I.I.4](Tut1.qmd), the system can be solvated using insane with the following command.
+
+```bash
 insane -f CK1d_cg.pdb -o CG.gro -p system.top -pbc cubic -box 35,35,35 -salt 0.15 
 -sol W -d 0 
-When simulating a protein with an IDR, it is especially important to use an appropriately sized box, to prevent the extended IDR from interacting with its mirror image. We therefore use an edge length of 35 nm here. The simulation of the system follows the protocol outlined in Section 2.4.
+```
+
+When simulating a protein with an IDR, it is especially important to use an appropriately sized box, to prevent the extended IDR from interacting with its mirror image. We therefore use an edge length of 35 nm here. The simulation of the system follows the protocol outlined in [Section I.I.4](Tut1.qmd).
+
 The conformational ensemble sampled during the simulations is shown in Figure 10. 
