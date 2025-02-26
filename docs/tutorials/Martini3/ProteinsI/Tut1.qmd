@@ -103,7 +103,11 @@ python3 OLIVES_v2.1.1b_M3.0.0.py -c "CK1d_cg.pdb" -i "molecule_0.itp"
 
 The OLIVES script modifies the provided protein topology files. For CK1δ, the OLIVES model adds 374 potentials to the protein topology. In contrast to the EN and GōMartini models, optimization of the OLIVES model is currently not as well-explored. Nevertheless, there are options available to tune the cutoff for the generation of the secondary and tertiary network via the flags `–ss_cutoff` and `–ts_cutoff` and to scale the strength of the secondary and tertiary structure bonds using the flags `–ss_scaling` and `–ts_scaling`, respectively. Figure 3 shows the bond networks created for CK1δ by each structure bias model. 
 
+![Figure 3:  Structure bias models for CK1δ.  Atomistic structure in cartoon representation and the bond networks created by EN (blue, 1004 bonds), GōMartini (orange, 609 potentials), and OLIVES (red, 374 potentials) are shown. Note that while the additional bonds in the EN and GōMartini model exclusively connect the backbone beads, also side chain beads are connected in the OLIVES model.](Fig3.png)
+
 ## I.I.4 Coarse-Grained Martini 3 Simulations 
+
+![Figure 4: Setup of the simulation box, containing CK1δ (silver), Na+ ions (red) and Cl- ions (blue) solvated in water (blue transparent surface).](Fig4.png)
 
 With the coordinates and topology of the protein, we can prepare a starting system for a simulation by placing the protein in a simulation box. For this task, we will use the Python script [insane](https://github.com/Tsjerk/Insane)\[32\]. Alternatively, one can use `gmx solvate` or [COBY](https://github.com/MikkelDA/COBY)\[33\]. We specify the box type (`-pbc cubic`) and size (`-box 10,10,10`) and solvate the protein in water (`-sol W`), adding 0.15 M of NaCl (`-salt 0.15`), while automatically adding the appropriate amount of counter ions to neutralize the system. Note that when using older versions of Martinize2 in combination with the GōMartini model, the charge of the protein needs to be specified using the `-charge 11` flag. As the virtual sites for the GōMartini model were added at the end of the file, the insane script counts each residue twice and therefore doubles the charge. 
 
