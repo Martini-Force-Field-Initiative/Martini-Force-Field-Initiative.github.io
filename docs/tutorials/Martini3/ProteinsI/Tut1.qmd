@@ -41,7 +41,7 @@ As a last step in the preparation of our atomistic structure, we check the proto
 
 ## I.I.2 Atomistic Reference Simulation
 
-We recommend running atomistic reference simulations to validate the CG Martini 3 protein model (see Section 3). For example, you can use the [CHARMM-GUI Solution Builder](https://charmm-gui.org/?doc=input/solution)\[27, 28\] to build the system and generate topologies using the final PDB file generated in Section I.I.1. Solvate the system using 0.15M of NaCl and neutralize it by adding the appropriate number of counter-ions. Here, we recommend conducting at least two replicas of 1 μs each.
+We recommend running atomistic reference simulations to validate the CG Martini 3 protein model (see [Section I.II](Tut2.qmd)). For example, you can use the [CHARMM-GUI Solution Builder](https://charmm-gui.org/?doc=input/solution)\[27, 28\] to build the system and generate topologies using the final PDB file generated in Section I.I.1. Solvate the system using 0.15M of NaCl and neutralize it by adding the appropriate number of counter-ions. Here, we recommend conducting at least two replicas of 1 μs each.
 
 ## I.I.3 Generating the Martini 3 Protein Model
 
@@ -65,7 +65,7 @@ To generate the EN model, the flag `-elastic` needs to be provided, in addition 
 martinize2 -f CK1d.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3001 -p backbone -dssp -elastic -el 0 -eu 0.85 
 ```
 
-Again, three files are created by Martinize2. The EN model added 1004 bonds to the protein topology. To optimize the EN model, the upper cutoff (`-eu`) can be modified. Additionally, the force constant of the harmonic potentials can be changed using the flag `-ef` (see Section 3.1.1). However, we recommend not to use force constants below the default value of 700.0 kJ/(mol nm2), as it was shown that lower values cause increased stickiness of proteins \[13, 31\].
+Again, three files are created by Martinize2. The EN model added 1004 bonds to the protein topology. To optimize the EN model, the upper cutoff (`-eu`) can be modified. Additionally, the force constant of the harmonic potentials can be changed using the flag `-ef` (see [Section I.II.1.1](Tut2.qmd)). However, we recommend not to use force constants below the default value of 700.0 kJ/(mol nm2), as it was shown that lower values cause increased stickiness of proteins \[13, 31\].
 
 #### I.I.3.3 GōMartini
 
