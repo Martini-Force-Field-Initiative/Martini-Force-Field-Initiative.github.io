@@ -36,7 +36,7 @@ In case of issues, please contact [duve\@fias.uni-frankfurt.de](mailto:%20duve@f
 
 <!--- Martini 3 combines top-down and bottom-up coarse-graining with a general mapping of 4-to-1 non-hydrogen atoms to one regular (R) bead [3]. Small (S, 3-to-1 mapping) and tiny (T, 2-to-1 mapping) are also available. The non-bonded interactions are parametrized based on experimental thermodynamic data, while the bonded interactions are parametrized using atomistic[6–8] or quantum mechanical reference simulations [7, 9]. We refer the reader for more details to some recent reviews [10, 11]. --->
 
-The Martini 3 protein model comprises two layers, which are strictly separated from each other: The first layer contains the mapping and chosen chemical bead types as well as the bonded terms; the second layer is the structure bias model. While the first layer corresponds to the standard definition of any molecule in the Martini universe, the second layer is more specific for proteins: To maintain the secondary, tertiary and quaternary structure of proteins, the directionality of interactions, in particular hydrogen bonds, are crucial. Due to the spherical potentials used in Martini 3 and many other CG force fields, this directionality is lost. Therefore, a structure bias model is required to stabilize protein structures. The strict separation between the two layers in Martini 3 enables independent development on both layers and is in contrast to the Martini 2 model\[12\], where mappings, bead types, and bonded terms were specific to each of the protein models. The first layer of the current Martini 3 protein model is mostly inherited from the Martini 2 model with moderate updates concerning the new mapping guidelines, bead types, and sizes. The Martini 3 mappings and bead types of the proteinogenic amino acids are depicted in Figure 1. A key difference to the previous model is that the bead type of the backbone (BB) bead does not depend on the secondary structure anymore but is represented by a P2 bead. Exceptions are  the special cases glycine (SP1), alanine (SP2), valine (SP2), proline (SP2a), and terminal beads (Q5 for charged and P6 for neutral termini) \[13\].
+The Martini 3 protein model comprises two layers, which are strictly separated from each other: The first layer contains the mapping and chosen chemical bead types as well as the bonded terms; the second layer is the structure bias model. While the first layer corresponds to the standard definition of any molecule in the Martini universe, the second layer is more specific for proteins: To maintain the secondary, tertiary and quaternary structure of proteins, the directionality of interactions, in particular hydrogen bonds, are crucial. Due to the spherical potentials used in Martini 3 and many other CG force fields, this directionality is lost. Therefore, a structure bias model is required to stabilize protein structures. The strict separation between the two layers in Martini 3 enables independent development on both layers and is in contrast to the Martini 2 model\[12\], where mappings, bead types, and bonded terms were specific to each of the protein models. The first layer of the current Martini 3 protein model is mostly inherited from the Martini 2 model with moderate updates concerning the new mapping guidelines, bead types, and sizes. The Martini 3 mappings and bead types of the proteinogenic amino acids are depicted in Figure 1. A key difference to the previous model is that the bead type of the backbone (BB) bead does not depend on the secondary structure anymore but is represented by a P2 bead. Exceptions are the special cases glycine (SP1), alanine (SP2), valine (SP2), proline (SP2a), and terminal beads (Q5 for charged and P6 for neutral termini) \[13\].
 
 ![Figure 1: Mapping and chemical bead types of amino acids in the Martini 3 protein model. The main classes of chemical bead types are indicated by color: P (polar, in red), N (intermediately polar, in blue), C (nonpolar, in gray), and Q (charged, in lime). Different bead sizes are indicated by the radius of the bead, with regular (no symbol), small (S), and tiny (T) beads.](Fig1.png)
 
@@ -44,9 +44,9 @@ Here, we will focus on the setup, fine-tuning options, and evaluation of the sec
 
 ![Figure 2: Schematic visualization of the two-layered Martini 3 protein model.](Fig2.png)
 
-In their simplest form, each of these three structure bias models relies on an atomistic reference, structure which can be obtained from experiments or prediction software. The EN model uses harmonic potentials between the BB beads within a cutoff distance to maintain the protein structure. In contrast, both the GōMartini and OLIVES models employ Lennard-Jones potentials in a Gō-type manner, allowing for contact dissociation. In the GōMartini model, the potentials are defined from a contact map based on native contacts, evaluated through overlap and restricted contacts of structural units \[18, 19\], combined with a distance cutoff. The OLIVES model, on the other hand, defines its bias by evaluating the hydrogen bonding interactions between BB as well as side chain (SC) beads \[17\]. For small structured systems, such as single α-helices, the waiver of a structural bias model can be an option as well.
+In their simplest form, each of these three structure bias models relies on an atomistic reference structure which can be obtained from experiments or prediction software. The EN model uses harmonic potentials between the BB beads within a cutoff distance to maintain the protein structure. In contrast, both the GōMartini and OLIVES models employ Lennard-Jones potentials in a Gō-type manner, allowing for contact dissociation. In the GōMartini model, the potentials are defined from a contact map based on native contacts, evaluated through overlap and restricted contacts of structural units \[18, 19\], combined with a distance cutoff. The OLIVES model, on the other hand, defines its bias by evaluating the hydrogen bonding interactions between BB as well as side chain (SC) beads \[17\]. For small structured systems, such as single α-helices, the waiver of a structural bias model can be an option as well.
 
-The first section, **[Section I.I](Tut1.qmd)**, will show you how to build your first Martini 3 protein model.
+<!--- The first section, Section I.I, will show you how to build your first Martini 3 protein model. --->
 
 ## Tutorial Sections {#Tutorials}
 
@@ -66,22 +66,23 @@ The tutorial is structured as follows:
 
 -   [**`Tutorial I.IV: Additional notes, limitations & conclusion`**](Tut4.qmd)
 
-    -   Additional notes and limitations are discussed in Section 5, before we conclude in Section 6.
+    -   Additional notes and limitations are discussed in Tutorial I.IV.1, before we conclude in Tutorial I.IV.2.
 
 <!--- Related Martini-based tutorial chapters are available for constructing PEGylated proteins [20], embedding membrane proteins [21], and for protein-ligand binding [7].  --->
 
 <hr>
+
 ### References {#references}
 
-1. 	Borges-Araújo L, Patmanidis I, Singh AP, et al (2023) Pragmatic Coarse-Graining of Proteins: Models and Applications. J Chem Theory Comput 19:7112–7135. https://doi.org/10.1021/acs.jctc.3c00733
-2. 	Samuel Russell PP, Alaeen S, Pogorelov TV (2023) In-Cell Dynamics: The Next Focus of All-Atom Simulations. J Phys Chem B 127:9863–9872. https://doi.org/10.1021/acs.jpcb.3c05166
-3. 	Souza PCT, Alessandri R, Barnoud J, et al (2021) Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18:382–388. https://doi.org/10.1038/s41592-021-01098-3
-4. 	Abraham MJ, Murtola T, Schulz R, et al (2015) GROMACS: High performance molecular simulations through multi-level parallelism from laptops to supercomputers. SoftwareX 1–2:19–25. https://doi.org/10.1016/j.softx.2015.06.001
-5. 	Lemkul JA (2024) Introductory Tutorials for Simulating Protein Dynamics with GROMACS. J Phys Chem B 128:9418–9435. https://doi.org/10.1021/acs.jpcb.4c04901
-6. 	Alessandri R, Barnoud J, Gertsen AS, et al (2022) Martini 3 Coarse-Grained Force Field: Small Molecules. Adv Theory Simul 5:2100391. https://doi.org/10.1002/adts.202100391
-7. 	Alessandri R, Thallmair S, Herrero CG, et al (2023) A Practical Introduction to Martini 3 and its Application to Protein-Ligand Binding Simulations. https://doi.org/10.1063/9780735425279_001
-8. 	Gil Herrero C, Thallmair S (2024) G-Protein-Coupled Receptor Surface Creates a Favorable Pathway for Membrane Permeation of Drug Molecules. J Phys Chem Lett 15:12643–12651. https://doi.org/10.1021/acs.jpclett.4c02875
-9. 	Pereira GP, Alessandri R, Domínguez M, et al (2024) Bartender: Martini 3 Bonded Terms via Quantum Mechanics-Based Molecular Dynamics. J Chem Theory Comput 20:5763–5773. https://doi.org/10.1021/acs.jctc.4c00275
+1.  Borges-Araújo L, Patmanidis I, Singh AP, et al (2023) Pragmatic Coarse-Graining of Proteins: Models and Applications. J Chem Theory Comput 19:7112–7135. https://doi.org/10.1021/acs.jctc.3c00733
+2.  Samuel Russell PP, Alaeen S, Pogorelov TV (2023) In-Cell Dynamics: The Next Focus of All-Atom Simulations. J Phys Chem B 127:9863–9872. https://doi.org/10.1021/acs.jpcb.3c05166
+3.  Souza PCT, Alessandri R, Barnoud J, et al (2021) Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18:382–388. https://doi.org/10.1038/s41592-021-01098-3
+4.  Abraham MJ, Murtola T, Schulz R, et al (2015) GROMACS: High performance molecular simulations through multi-level parallelism from laptops to supercomputers. SoftwareX 1–2:19–25. https://doi.org/10.1016/j.softx.2015.06.001
+5.  Lemkul JA (2024) Introductory Tutorials for Simulating Protein Dynamics with GROMACS. J Phys Chem B 128:9418–9435. https://doi.org/10.1021/acs.jpcb.4c04901
+6.  Alessandri R, Barnoud J, Gertsen AS, et al (2022) Martini 3 Coarse-Grained Force Field: Small Molecules. Adv Theory Simul 5:2100391. https://doi.org/10.1002/adts.202100391
+7.  Alessandri R, Thallmair S, Herrero CG, et al (2023) A Practical Introduction to Martini 3 and its Application to Protein-Ligand Binding Simulations. https://doi.org/10.1063/9780735425279_001
+8.  Gil Herrero C, Thallmair S (2024) G-Protein-Coupled Receptor Surface Creates a Favorable Pathway for Membrane Permeation of Drug Molecules. J Phys Chem Lett 15:12643–12651. https://doi.org/10.1021/acs.jpclett.4c02875
+9.  Pereira GP, Alessandri R, Domínguez M, et al (2024) Bartender: Martini 3 Bonded Terms via Quantum Mechanics-Based Molecular Dynamics. J Chem Theory Comput 20:5763–5773. https://doi.org/10.1021/acs.jctc.4c00275
 10. Borges-Araújo L, Pereira GP, Valério M, Souza PCT (2024) Assessing the Martini 3 protein model: A review of its path and potential. Biochim Biophys Acta BBA - Proteins Proteomics 1872:141014. https://doi.org/10.1016/j.bbapap.2024.141014
 11. Marrink SJ, Monticelli L, Melo MN, et al (2023) Two decades of Martini: Better beads, broader scope. WIREs Comput Mol Sci 13:e1620. https://doi.org/10.1002/wcms.1620
 12. Monticelli L, Kandasamy SK, Periole X, et al (2008) The MARTINI Coarse-Grained Force Field: Extension to Proteins. J Chem Theory Comput 4:819–834. https://doi.org/10.1021/ct700324x
@@ -136,4 +137,3 @@ The tutorial is structured as follows:
 61. Stevens JA, Grünewald F, Van Tilburg PAM, et al (2023) Molecular dynamics simulation of an entire cell. Front Chem 11:1106495. https://doi.org/10.3389/fchem.2023.1106495
 62. Pezeshkian W, Grünewald F, Narykov O, et al (2023) Molecular architecture and dynamics of SARS-CoV-2 envelope by integrative modeling. Structure 31:492-503.e7. https://doi.org/10.1016/j.str.2023.02.006
 63. Quemener E, Corvellec M (2013) SIDUS—the solution for extreme deduplication of an operating system. Linux J 2013:3
-
