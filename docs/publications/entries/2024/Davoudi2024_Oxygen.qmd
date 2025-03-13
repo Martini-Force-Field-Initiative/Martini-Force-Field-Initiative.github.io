@@ -1,0 +1,35 @@
+---
+title: "Validation of a Coarse-Grained Martini 3 Model for Molecular Oxygen"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Samaneh Davoudi, Petteri A Vainikka, Siewert J Marrink, and An Ghysels"         # Paper authors (required)
+year: "2024"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.4c01348"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Small molecules
+  - Multi-scale
+  - Lipid membranes
+  - Proteins
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Davoudi, S., Vainikka, P. A., Marrink, S. J., & Ghysels, A. (2024). Validation of a Coarse-Grained Martini 3 Model for Molecular Oxygen. Journal of Chemical Theory and Computation, 21(1), 428-439.
+
+## Abstract
+
+Molecular oxygen (O2) is essential for life, and continuous effort has been made to understand its pathways in cellular respiration with all-atom (AA) molecular dynamics (MD) simulations of, e.g., membrane permeation or binding to proteins. To reach larger length scales with models, such as curved membranes in mitochondria or caveolae, coarse-grained (CG) simulations could be used at much lower computational cost than AA simulations. Yet a CG model for O2 is lacking. In this work, a CG model for O2 is therefore carefully selected from the Martini 3 force field based on criteria including size, zero charge, nonpolarity, solubility in nonpolar organic solvents, and partitioning in a phospholipid membrane. This chosen CG model for O2 (TC3 bead) is then further evaluated through the calculation of its diffusion constant in water and hexadecane, its permeability rate across pure phospholipid- and cholesterol-containing membranes, and its binding to the T4 lysozyme L99A protein. Our CG model shows semiquantitative agreement between CG diffusivity and permeation rates with the corresponding AA values and available experimental data. Additionally, it captures the binding to hydrophobic cavities of the protein, aligning well with the AA simulation of the same system. Thus, the results show that our O2 model approximates the behavior observed in the AA simulations. The CG O2 model is compatible with the widely used multifunctional Martini 3 force field for biological simulations, which will allow for the simulation of large biomolecular systems involved in O2’s transport in the body.
