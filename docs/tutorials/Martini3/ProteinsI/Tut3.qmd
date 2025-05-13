@@ -91,6 +91,8 @@ To obtain the coordinate file of the complete multi-domain protein, insert separ
 
 A Martinize2 format Martini3-IDP force field file is also provided, which deals with the differences between the standard Martini 3 protein model and Martini3-IDP model. For example, `-scfix` is applied in the Martini 3 protein model to define the sidechain orientation relying on atomistic reference structure, whereas general bonded parameters are used to define sidechain orientation in Martini3-IDP independent on the atomistic reference structure.
 
+A [Martinize2 format Martini3-IDP force field file](https://github.com/Martini-Force-Field-Initiative/Martini3-IDP-parameters/tree/main/force%20filed/Martinize2) is provided, which deals with the construction discrepancy between standard Martini3 protein and Martini3-IDP. To integrate Martini3-IDP into Martinize2, copy the provided `/force_fields` and `/mappings` directories to `/vermouth/data/force_fields/` and `/vermouth/data/mappings/`, respectively, and rename them as `Martini3-IDP`.
+
 Similar to Section 4.1, the EN bias is generated only for the folded domain using the `-eunit flag`. To define the IDR easily, a new secondary structure `‘D’` is provided in the `-ss` flag. Note that `‘D’` is not a pre-set secondary structure, so `‘D’` secondary structure should be manually added to `‘vermouth/dssp/dssp.py’` `ss_cg` list.
 
 ``` bash
