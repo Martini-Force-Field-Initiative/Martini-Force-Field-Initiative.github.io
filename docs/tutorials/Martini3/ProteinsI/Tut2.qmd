@@ -54,7 +54,7 @@ To conclude, in this case both the EN and GōMartini models demonstrate strong p
 
 ## I.II.2 Root Mean Square Deviation (RMSD)
 
-The Root Mean Square Deviation (RMSD) is a measure used to quantify structural similarity, typically between a frame of a simulation and a reference structure, such as a crystal structure. To calculate the RMSD along a trajectory, at each frame, the structure is aligned to the reference structure. Then, the RMSD is calculated according to the following equation, where r_i (t) is the coordinates of a particle i at frame t, $r_i^{ref}$the coordinates of particle i in the reference structure, and N the total number of particles.
+The Root Mean Square Deviation (RMSD) is a measure used to quantify structural similarity, typically between a frame of a simulation and a reference structure, such as a crystal structure. To calculate the RMSD along a trajectory, at each frame, the structure is aligned to the reference structure. Then, the RMSD is calculated according to the following equation, $r_i(t)$ are the coordinates of particle $i$ at frame $t$, and $r_i^{\mathrm{ref}}$ the coordinates of particle i in the reference structure, and N the total number of particles.
 
 $$
 RMSD(t) = \sqrt{\frac{1}{N} \sum_{i=1}^{N} \left( r_i(t) - r_i^{ref} \right)^2}
