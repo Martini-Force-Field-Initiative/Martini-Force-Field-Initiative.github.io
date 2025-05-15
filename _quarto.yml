@@ -57,7 +57,7 @@ website:
         href: docs/announcements/index.qmd
 
       - text: "{{< fa regular address-book >}} Contact"
-        href: docs/contact/contact.qmd
+        href: docs/contact/index.qmd
 
       - text: "{{< fa solid circle-info >}} Help"
         menu:
@@ -164,6 +164,9 @@ website:
 
     - id: contact
       title: "Contact"
+      contents:
+        - text: "{{< fa solid address-book >}} Contact"
+          href: docs/contact/contact.qmd
 
 format:
   html:
