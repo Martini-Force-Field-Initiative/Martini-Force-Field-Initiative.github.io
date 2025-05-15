@@ -228,6 +228,18 @@ iframe.reveal-demo {
   column-gap: 10px;
 }
 
+.btn-primary {
+  background-color: #447099;
+}
+
+.btn-primary:hover {
+  background-color: #557694;
+}
+
+.btn-secondary:hover {
+  background-color: #2b2d2f;
+}
+
 .btn-action-primary {
   color: white;
   background-color: #447099 !important;
@@ -374,6 +386,17 @@ iframe.reveal-demo {
 
 .default .page-columns {
   margin-bottom: 0%;
+}
+
+a.page.page-link {
+  color: #39729E;
+  border: 1px solid #2b2d2f;
+  border-radius: 5px;
+}
+
+.pagination {
+  --bs-pagination-active-bg: #39729E;
+  --bs-pagination-active-border-color: #39729E;
 }
 
 .mc_embed_signup {
