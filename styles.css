@@ -406,3 +406,50 @@ a.page.page-link {
 .navbar-nav {
   white-space: nowrap;   
 }
+
+.lecture-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+  margin-top: -0.4rem;
+}
+
+.lecture-item {
+  display: grid;
+  grid-template-columns: 3.5fr 2fr 2fr auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lecture-item em {
+  color: #666;
+  font-style: normal;
+}
+
+.lecture-buttons {
+  display: flex;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.btn-rounded {
+  border-radius: 10px;
+}
+
+.callout-note, .callout-warning {
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.callout-note {
+  background: #e7f5ff;
+  border-left: 4px solid #339af0;
+}
+
+.callout-warning {
+  background: #fff3bf;
+  border-left: 4px solid #fcc419;
+  margin-right: 6rem;
+}
