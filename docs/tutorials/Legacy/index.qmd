@@ -1,131 +1,103 @@
 ---
 title: Legacy Material
-format: html
+subtitle: Lectures and tutorials from older versions of the Martini force field
+page-layout: full
+title-block-banner: "#EDF3F9"
 ---
 
-***
-> **_Note: The material offered in this page is LEGACY material._** This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren't cool things to be learned here! Have a look!
+<style>
+.move-up {
+  margin-top: -2rem;
+}
+</style>
+
+::: {.move-up}
+::: {.callout-note}
+## Legacy Material Notice
+The material offered in this page is **LEGACY material**. This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren't cool things to be learned here! Have a look!
+
 If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click [here](../index.qmd) to go back!
+:::
+:::
 
-***
-### Martini 3 Legacy Tutorials
+## Tutorials
 
-> **_These hands-on tutorials, are deprecated versions of the Martini 3 tutorials._**
+### Martini 3 Legacy Tutorials {.unnumbered}
+
+::: {.callout-warning}
+These hands-on tutorials are deprecated versions of the Martini 3 tutorials.
 
 - [1: Proteins - Part I](martini3/ProteinsI/index.qmd)
+:::
 
-<hr>
+### Martini 3 Open Beta Legacy Tutorials {.unnumbered}
 
-### Martini 3 Open Beta Legacy Tutorials
-
-> **_These hands-on tutorials, are based on the Martini 3 open-beta version ([v.3.0.b.3.2](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3_beta/martini_3.0.b.3.2.tar))._**
+::: {.callout-warning}
+These hands-on tutorials are based on the Martini 3 open-beta version ([v.3.0.b.3.2](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3_beta/martini_3.0.b.3.2.tar)).
 
 - [1: Small molecule binding](martini3/small_molecule_binding.qmd)
-
 - [2: Parameterizing a new small molecule](martini3/parameterizing_small_molecule.qmd)
+:::
 
-<hr>
+### Martini 2 Legacy Tutorials {.unnumbered}
 
-### Martini 2 Legacy Tutorials
-
-> **_These hands-on tutorials, are based on the Martini 2 family of force fields._**
+::: {.callout-warning}
+These hands-on tutorials are based on the Martini 2 family of force fields.
 
 - [1: Lipids with the lipidome](martini2/lipids_and_lipidome.qmd)
-
 - [2: Polymers](martini2/polymers.qmd)
-
 - [3: Hybrid model using virtual sites](martini2/hybrid_models.qmd)
-
 - [4: Parameterizing a new small molecule](martini2/parametrizing.qmd)
-
 - [5: High throughput peptide self assembly](martini2/high_throughput.qmd)
-
 - [6: Proteins](martini2/proteins.qmd)
-
 - [7: RNA](martini2/rna.qmd)
-
 - [8: DNA](martini2/dna.qmd)
-
 - [9: Visualizing Martini with VMD](martini2/visualizing_martini.qmd)
-
 - [10: Others](martini2/others.qmd)
-
 - [11: Free energy techniques](martini2/free_energy.qmd)
-
 - [12: Metadynamics](martini2/metadynamics.qmd)
-
 - [13: Physiorption of alkenes on graphite](martini2/physisorption.qmd)
+:::
 
-<hr>
+## Past Workshops
 
-### MARTINI WORKSHOP 2017 
-> **Groningen, The Netherlands**
-<hr>
+### MARTINI WORKSHOP 2017 {.unnumbered}
+**Groningen, The Netherlands**
 
 #### Monday, August 21
-
-- Introduction to the Martini model, Siewert Jan Marrink [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-01.pdf)
-
-- Lipid biophysics with the Martini model, Helgi Ingólfsson [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-02.pdf)
-
- 
+- **Introduction to the Martini model** - Siewert Jan Marrink [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-01.pdf)
+- **Lipid biophysics with the Martini model** - Helgi Ingólfsson [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-02.pdf)
 
 #### Tuesday, August 22
-
-- Martini model for proteins, Alex de Vries [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-03.pdf)
-
-- Peptide aggregation, Pim Frederix [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-04.pdf)
-
-- Photosystem II, Floris van Eerden [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-05.pdf)
-
- 
+- **Martini model for proteins** - Alex de Vries [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-03.pdf)
+- **Peptide aggregation** - Pim Frederix [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-04.pdf)
+- **Photosystem II** - Floris van Eerden [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-05.pdf)
 
 #### Wednesday, August 23
-
-- TOOLS: martinize, martinate, insane, backward, daft, Tsjerk Wassenaar [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-06.pdf)
-
-- Advanced parameterization of Martini, Manuel Nuno Melo [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-08.pdf)
-
-- Multiscaling with Martini, Manuel Nuno Melo [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-09.pdf)
-
- 
+- **TOOLS: martinize, martinate, insane, backward, daft** - Tsjerk Wassenaar [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-06.pdf)
+- **Advanced parameterization of Martini** - Manuel Nuno Melo [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-08.pdf)
+- **Multiscaling with Martini** - Manuel Nuno Melo [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-09.pdf)
 
 #### Thursday, August 24
+- **The Martini model for DNA and RNA** - Ignacio Faustino Plo [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-10.pdf)
+- **Blends for organic photovoltaics** - Riccardo Alessandri [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-11.pdf)
+- **The future of Martini** - Paulo Telles de Souza [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-12.pdf)
 
-- The Martini model for DNA and RNA, Ignacio Faustino Plo [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-10.pdf)
+### MARTINI WORKSHOP 2015 {.unnumbered}
+**Groningen, The Netherlands**
 
-- Blends for organic photovoltaics, Riccardo Alessandri [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-11.pdf)
-
-- The future of Martini, Paulo Telles de Souza [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-12.pdf)
-
-
-</br>
-
-### MARTINI WORKSHOP 2015 
-> **Groningen, The Netherlands**
-<hr>
- 
 #### Monday, August 24
-
-- Introduction to coarse-graining, Alex de Vries [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-01.pdf)
-
-- Introduction to the Martini model, Siewert Jan Marrink [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-02.pdf)
+- **Introduction to coarse-graining** - Alex de Vries [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-01.pdf)
+- **Introduction to the Martini model** - Siewert Jan Marrink [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-02.pdf)
 
 #### Tuesday, August 25
-
-- Lipid biophysics with the Martini model, Helgi Ingólfsson [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-03.pdf)
-
-- Martini model for proteins, Alex de Vries [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-04.pdf)
+- **Lipid biophysics with the Martini model** - Helgi Ingólfsson [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-03.pdf)
+- **Martini model for proteins** - Alex de Vries [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-04.pdf)
 
 #### Wednesday, August 26
-
-- TOOLS: martinize, martinate, insane, backward, daft, Tsjerk Wassenaar [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-05.pdf)
-
-- Martini model for saccharides (includes also other polymers and dna), Siewert Jan Marrink [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-06.pdf)
+- **TOOLS: martinize, martinate, insane, backward, daft** - Tsjerk Wassenaar [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-05.pdf)
+- **Martini model for saccharides** (includes also other polymers and dna) - Siewert Jan Marrink [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-06.pdf)
 
 #### Thursday, August 27
-
-- Advanced parameterization of Martini, Manuel Nuno Melo [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-07.pdf)
-
-- Multiscaling with Martini, Manuel Nuno Melo [slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-08.pdf)
-<hr>
+- **Advanced parameterization of Martini** - Manuel Nuno Melo [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-07.pdf)
+- **Multiscaling with Martini** - Manuel Nuno Melo [[slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-08.pdf)
