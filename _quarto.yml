@@ -154,7 +154,7 @@ website:
       title: "Publications"
       contents: 
         - text: "<img src='/images/martini_glass.jpeg' style='height: 100%; width: 100%; object-fit: contain' />"
-        - text: "{{< fa solid paperclip >}} Curated list of the most relevant papers describing the Martini FF Initiative." 
+        - text: "<i class='fa-solid fa-paperclip'></i> Curated list of the most relevant papers describing the Martini FF Initiative." 
           href: https://scholar.google.com/citations?hl=en&user=N71qbKgAAAAJ&view_op=list_works&sortby=pubdate
           
         
@@ -165,8 +165,15 @@ website:
     - id: contact
       title: "Contact"
       contents:
-        - text: "{{< fa solid address-book >}} Contact"
+        - text: "<i class='fa fa-users-gear'></i> <b>Developers Team</b>"
           href: docs/contact/index.qmd
+        - text: "<i class='fa fa-spider'></i> <b>Protein Task Force</b>"
+          href: docs/contact/protein-task-force.qmd
+        - text: "<i class='fa fa-cheese'></i> <b>Lipid Task Force</b>"
+          href: docs/contact/lipid-task-force.qmd
+        - text: "<i class='fa fa-paper-plane'></i> <b>Message Us</b>"
+          href: docs/contact/contact-form.qmd
+          
 
 format:
   html:

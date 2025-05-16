@@ -1,0 +1,70 @@
+---
+title: "Message Us"
+subtitle: "We are looking forward to hearing from you!"
+title-block-banner: "#EDF3F9"
+page-layout: full
+---
+
+```{=html}
+<style>
+:root {
+  --primary-color: #447099;
+  --primary-light: #557694;
+  --gradient-start: #447099;
+  --gradient-end: #2c4a66;
+  --text-primary: #2c3e50;
+  --text-secondary: #666;
+  --background-light: #f8fafc;
+  --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+</style>
+
+<script>
+function submitForm() {
+
+  const apiEndpoint = 'https://2tdsxpkuh8.execute-api.ca-central-1.amazonaws.com/prod/contacts/new';
+
+  const contactName = document.getElementById("name").value;
+  const contactEmail = document.getElementById("email").value;
+  const contactInstitution = document.getElementById("institution").value;
+  const contactSubject = document.getElementById("subject").value;
+  const contactMessage = document.getElementById("message").value;
+
+  const constantData = {
+    "contactName": contactName,
+    "contactEmail": contactEmail,
+    "contactInstitution": contactInstitution,
+    "contactSubject": contactSubject,
+    "contactMessage": contactMessage
+  };
+
+  //Your post request using FETCH
+  fetch(apiEndpoint, {
+    method: 'POST',
+    body: JSON.stringify(constantData),
+  });
+  alert("Thank you for reaching out to us. We have received your contact form and will get back to you shortly!");
+
+  // Clear the form
+  document.getElementById("name").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("institution").value = "";
+  document.getElementById("subject").value = "";
+  document.getElementById("message").value = "";
+}
+</script>
+```
+
+::: form-container
+<form onsubmit="submitForm(); return false;">
+
+<label class="form-label" for="name">Your Name:</label><br> <input class="form-input" type="text" id="name" name="name" required><br> <label class="form-label" for="email">Email Address:</label><br> <input class="form-input" type="email" id="email" name="email" required><br> <label class="form-label" for="institution">Current Institution:</label><br> <input class="form-input" type="text" id="institution" name="institution" required><br> <label class="form-label" for="subject">Subject:</label><br> <input class="form-input" type="text" id="subject" name="subject" required><br> <label class="form-label" for="message">Message:</label>
+
+<textarea class="form-input" id="message" name="message" rows="4" required></textarea>
+
+<br>
+
+<center><input class="form-submit" type="submit" value="Submit"></center>
+
+</form>
+:::
