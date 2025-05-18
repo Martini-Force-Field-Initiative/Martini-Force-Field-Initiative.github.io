@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - docs/announcements/posts/_metadata.yml
 
 website:
   title: "Martini Force Field Initiative"
@@ -31,14 +33,13 @@ website:
    
 
   navbar:
-    background: "#fdfffc"
+    background: "transparent"
     logo: images/martini.gif
-    logo-alt: "martini logo."
+    logo-alt: "martini logo"
     title: false
-    pinned: false
+    pinned: true
     collapse-below: lg
     left:
-
       - text: "Home"
         icon: house-fill
         href: index.qmd
@@ -47,28 +48,30 @@ website:
         icon: mortarboard-fill 
         href: docs/tutorials/index.qmd
 
-      - text: "{{< fa solid meteor >}} Downloads"
+      - text: "Downloads"
+        icon: download
         href: docs/downloads/index.qmd
 
-      - text: "{{< fa solid newspaper >}} Publications"
+      - text: "Publications"
+        icon: newspaper
         href: docs/publications/index.qmd
 
-      - text: "{{< fa solid bullhorn >}} Announcements"
+      - text: "{{< fa bullhorn >}} Announcements"
         href: docs/announcements/index.qmd
 
       - text: "{{< fa regular address-book >}} Contact"
         href: docs/contact/index.qmd
 
-      - text: "{{< fa solid circle-info >}} Help"
+      - text: "{{< fa circle-info >}} Help"
         menu:
           - text: "Discussion Board"
-            icon: "chat-right-text"
+            icon: chat-right-text
             href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions"
           - text: "Report an Issue"
-            icon: "bug"
+            icon: bug
             href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" 
           - text: "FAQs"
-            icon: "question-circle"
+            icon: question-circle
             href: docs/faq/index.qmd
     
     tools:
