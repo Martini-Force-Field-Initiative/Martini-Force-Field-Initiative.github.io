@@ -62,13 +62,13 @@ resources:
     /* Hero Section */
     .hero {
       position: relative;
-      height: 100vh;
+      height: calc(100vh - 96px); /* Subtract navbar + banner height */
+      min-height: calc(100vh - 96px);
       background: var(--gradient-1);
       overflow: hidden;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      padding-top: 56px; /* Adjusted for Quarto navbar height */
     }
 
     .hero::before {
@@ -83,9 +83,15 @@ resources:
       animation: zoom 20s infinite alternate;
     }
 
-    @keyframes zoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.1); }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+      z-index: 1;
     }
 
     .hero-content {
@@ -98,12 +104,16 @@ resources:
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.1);
       box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: float 6s ease-in-out infinite;
+      margin-top: 3.8rem;
     }
 
+
     .hero-title {
-      font-size: 4.5rem;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 800;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       line-height: 1.2;
       background: linear-gradient(to right, #fff, #e0e0e0);
       -webkit-background-clip: text;
@@ -113,31 +123,50 @@ resources:
 
     @keyframes titleFloat {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(to right, transparent, var(--white), transparent);
+      border-radius: 2px;
     }
 
     .hero-subtitle {
-      font-size: 1.5rem;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
       margin-bottom: 2rem;
       opacity: 0.9;
+      line-height: 1.4;
+      font-weight: 300;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .hero-buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn {
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.8rem;
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       border: none;
       position: relative;
       overflow: hidden;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      min-width: 160px;
     }
 
     .btn::before {
@@ -159,17 +188,99 @@ resources:
     .btn-primary {
       background: var(--white);
       color: var(--primary-color);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
     .btn-secondary {
       background: transparent;
       border: 2px solid var(--white);
       color: var(--white);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--white);
+      font-size: 0.9rem;
+      opacity: 0.8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeInOut 2s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .hero-scroll-indicator::after {
+      content: '↓';
+      font-size: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-height: 700px) {
+      .hero {
+        height: calc(100vh - 96px);
+        min-height: calc(100vh - 96px);
+        padding: 76px 1rem 0 1rem;
+      }
+
+      .hero-content {
+        transform: translateY(-20px);
+        padding: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 0.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-buttons {
+        gap: 0.8rem;
+      }
+
+      .btn {
+        padding: 0.6rem 1.5rem;
+      }
+
+      .hero-scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: calc(100vh - 96px);
+        min-height: calc(100vh - 96px);
+        padding: 76px 1rem 0 1rem;
+      }
     }
 
     /* Latest Updates Section */
@@ -184,6 +295,7 @@ resources:
       box-shadow: var(--shadow-lg);
       max-width: 300px;
       backdrop-filter: blur(10px);
+      z-index: 2;
     }
 
     .updates-title {
@@ -191,11 +303,24 @@ resources:
       font-size: 1.2rem;
       margin-bottom: 1rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .updates-title::before {
+      content: '📢';
+      font-size: 1.2rem;
     }
 
     .update-item {
-      padding: 0.5rem 0;
+      padding: 0.8rem 0;
       border-bottom: 1px solid rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .update-item:hover {
+      transform: translateX(5px);
     }
 
     .update-item:last-child {
@@ -205,11 +330,21 @@ resources:
     .update-date {
       font-size: 0.8rem;
       color: var(--secondary-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .update-date::before {
+      content: '📅';
+      font-size: 0.9rem;
     }
 
     .update-text {
       font-size: 0.9rem;
       color: var(--text-color);
+      line-height: 1.4;
     }
 
     /* News Section */
@@ -232,26 +367,32 @@ resources:
       z-index: 0;
     }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
+    .news-container {
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
+      z-index: 1;
     }
 
-    .section-title {
+    .news-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .news-title {
       font-size: 2.5rem;
       color: var(--primary-color);
-      margin-bottom: 1rem;
       position: relative;
       display: inline-block;
     }
 
-    .section-title::after {
+    .news-title::after {
       content: '';
       position: absolute;
       bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
       width: 50px;
       height: 3px;
       background: var(--secondary-color);
@@ -260,12 +401,8 @@ resources:
 
     .news-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(12, 1fr);
       gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
     }
 
     .news-card {
@@ -275,6 +412,25 @@ resources:
       transition: all 0.3s ease;
       box-shadow: var(--shadow-md);
       position: relative;
+      grid-column: span 4;
+    }
+
+    .news-card.featured {
+      grid-column: span 8;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+    }
+
+    .news-card.featured .news-image {
+      height: 100%;
+    }
+
+    .news-card.featured .news-content {
+      padding: 2rem;
+    }
+
+    .news-card.featured .news-title {
+      font-size: 1.5rem;
     }
 
     .news-card::before {
@@ -317,17 +473,27 @@ resources:
       color: var(--secondary-color);
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .news-date::before {
+      content: '📅';
+      font-size: 1rem;
     }
 
     .news-title {
       font-size: 1.25rem;
       color: var(--primary-color);
       margin-bottom: 1rem;
+      line-height: 1.4;
     }
 
     .news-excerpt {
       color: var(--text-color);
       margin-bottom: 1rem;
+      line-height: 1.6;
     }
 
     .read-more {
@@ -337,6 +503,7 @@ resources:
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      transition: all 0.3s ease;
     }
 
     .read-more::after {
@@ -344,8 +511,61 @@ resources:
       transition: transform 0.3s ease;
     }
 
+    .read-more:hover {
+      color: var(--primary-color);
+    }
+
     .read-more:hover::after {
       transform: translateX(5px);
+    }
+
+    .news-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .news-tag {
+      background: rgba(74, 144, 226, 0.1);
+      color: var(--secondary-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .news-tag:hover {
+      background: var(--secondary-color);
+      color: var(--white);
+    }
+
+    @media (max-width: 1200px) {
+      .news-card {
+        grid-column: span 6;
+      }
+      .news-card.featured {
+        grid-column: span 12;
+      }
+      .updates-section {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin: 2rem auto;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .news-card {
+        grid-column: span 12;
+      }
+      .news-card.featured {
+        grid-template-columns: 1fr;
+      }
+      .news-card.featured .news-image {
+        height: 200px;
+      }
     }
 
     /* Features Section */
@@ -382,7 +602,7 @@ resources:
       right: 0;
       bottom: 0;
       background: var(--gradient-2);
-      opacity: 0;
+        opacity: 0;
       transition: opacity 0.3s ease;
       z-index: 0;
     }
@@ -430,7 +650,7 @@ resources:
       overflow: hidden;
       border-radius: 15px;
       box-shadow: var(--shadow-lg);
-    }
+      }
 
     .showcase-slide {
       display: none;
@@ -438,7 +658,7 @@ resources:
       height: 500px;
       object-fit: cover;
       transition: opacity 0.5s ease;
-    }
+      }
 
     .showcase-slide.active {
       display: block;
@@ -465,7 +685,7 @@ resources:
     .showcase-dot.active {
       opacity: 1;
       transform: scale(1.2);
-    }
+      }
 
     /* Animations */
     @keyframes fadeIn {
@@ -494,23 +714,200 @@ resources:
       .section-title {
         font-size: 2rem;
       }
+    }
 
-      .updates-section {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-        margin: 2rem auto;
-        max-width: 100%;
+    /* Workshop Banner */
+    .workshop-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, rgba(45, 92, 128, 0.95), rgba(74, 144, 226, 0.95));
+      color: var(--white);
+      padding: 0.75rem 0.5rem;
+      z-index: 998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      animation: slideDown 0.5s ease-out forwards;
+      height: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      margin: 0;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .workshop-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      max-width: 1200px;
+      width: 100%;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 2rem;
+      height: 100%;
+    }
+
+    .workshop-icon {
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.15);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin: 0;
+    }
+
+    .workshop-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 0;
+    }
+
+    .workshop-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .workshop-date {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      opacity: 0.9;
+      font-weight: 400;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      margin: 0;
+      line-height: 1;
+    }
+
+    .workshop-date::before {
+      content: '📅';
+      font-size: 0.9rem;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+
+    .workshop-button {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      padding: 0.3rem 0.9rem;
+      border-radius: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 0;
+      line-height: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .workshop-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .workshop-button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .workshop-button:hover::before {
+      transform: translateX(100%);
+    }
+
+    .workshop-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .workshop-banner {
+        padding: 0.5rem 1rem;
+        height: auto;
+      }
+
+      .workshop-banner-content {
+        flex-direction: row;
+        gap: 0.8rem;
+        text-align: center;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .workshop-info {
+        flex-direction: row;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .workshop-title {
+        font-size: 0.9rem;
+      }
+
+      .workshop-date {
+        font-size: 0.8rem;
+      }
+
+      .workshop-button {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
 
-<!-- News Ticker -->
-<div class="news-ticker">
-  <div class="ticker-content">
-    🎉 Martini 3.0 Released! | 📚 New Documentation Available | 🔬 Workshop Registration Open | 💡 Latest Research Papers Published
+<!-- Workshop Banner -->
+<div class="workshop-banner">
+  <div class="workshop-banner-content">
+    <div class="workshop-icon">🎓</div>
+    <div class="workshop-info">
+      <div class="workshop-title">Virtual Workshop: Mastering Martini 3.0</div>
+      <div class="workshop-date">April 15-17, 2024</div>
+    </div>
+    <a href="#" class="workshop-button">Register Now</a>
   </div>
 </div>
 
@@ -525,59 +922,75 @@ resources:
     </div>
   </div>
 
-  <!-- Latest Updates Sidebar -->
-  <div class="updates-section">
-    <h3 class="updates-title">Latest Updates</h3>
-    <div class="update-item">
-      <div class="update-date">March 15, 2024</div>
-      <div class="update-text">Martini 3.0 Release</div>
-    </div>
-    <div class="update-item">
-      <div class="update-date">March 10, 2024</div>
-      <div class="update-text">Workshop Registration</div>
-    </div>
-    <div class="update-item">
-      <div class="update-date">March 5, 2024</div>
-      <div class="update-text">New Documentation</div>
-    </div>
+  <div class="hero-scroll-indicator">
+    Scroll to explore
   </div>
 </section>
 
 <!-- News Section -->
 <section class="news-section" id="news">
-  <div class="section-header">
-    <h2 class="section-title">Latest News & Updates</h2>
-  </div>
-  <div class="news-grid">
-    <article class="news-card animate-in">
-      <img src="images/cell2.png" alt="Martini 3.0 Release" class="news-image">
-      <div class="news-content">
-        <div class="news-date">March 15, 2024</div>
-        <h3 class="news-title">Martini 3.0: A New Era in Coarse-Grained Simulations</h3>
-        <p class="news-excerpt">Introducing our most advanced force field yet, featuring improved accuracy and expanded parameter sets for enhanced molecular simulations.</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </article>
+  <div class="news-container">
+    <div class="news-header">
+      <h2 class="news-title">Latest News & Updates</h2>
+    </div>
+    <div class="news-grid">
+      <article class="news-card featured animate-in">
+        <img src="images/cell2.png" alt="Martini 3.0 Release" class="news-image">
+        <div class="news-content">
+          <div class="news-date">March 15, 2024</div>
+          <h3 class="news-title">Martini 3.0: A New Era in Coarse-Grained Simulations</h3>
+          <p class="news-excerpt">Introducing our most advanced force field yet, featuring improved accuracy and expanded parameter sets for enhanced molecular simulations. This major release brings significant improvements to performance and usability.</p>
+          <div class="news-tags">
+            <span class="news-tag">Release</span>
+            <span class="news-tag">Major Update</span>
+            <span class="news-tag">Performance</span>
+          </div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </article>
 
-    <article class="news-card animate-in">
-      <img src="images/Genome.png" alt="Workshop Announcement" class="news-image">
-      <div class="news-content">
-        <div class="news-date">March 10, 2024</div>
-        <h3 class="news-title">Virtual Workshop: Mastering Martini 3.0</h3>
-        <p class="news-excerpt">Join our comprehensive workshop series to learn the latest techniques and best practices in coarse-grained molecular dynamics.</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </article>
+      <article class="news-card animate-in">
+        <img src="images/Genome.png" alt="Workshop Announcement" class="news-image">
+        <div class="news-content">
+          <div class="news-date">March 10, 2024</div>
+          <h3 class="news-title">Virtual Workshop: Mastering Martini 3.0</h3>
+          <p class="news-excerpt">Join our comprehensive workshop series to learn the latest techniques and best practices in coarse-grained molecular dynamics.</p>
+          <div class="news-tags">
+            <span class="news-tag">Workshop</span>
+            <span class="news-tag">Training</span>
+          </div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </article>
 
-    <article class="news-card animate-in">
-      <img src="images/ribosomes.png" alt="Documentation Update" class="news-image">
-      <div class="news-content">
-        <div class="news-date">March 5, 2024</div>
-        <h3 class="news-title">New Documentation & Tutorials Available</h3>
-        <p class="news-excerpt">Access our comprehensive documentation, including step-by-step tutorials and example workflows for common simulation scenarios.</p>
-        <a href="#" class="read-more">Read More</a>
-      </div>
-    </article>
+      <article class="news-card animate-in">
+        <img src="images/ribosomes.png" alt="Documentation Update" class="news-image">
+        <div class="news-content">
+          <div class="news-date">March 5, 2024</div>
+          <h3 class="news-title">New Documentation & Tutorials Available</h3>
+          <p class="news-excerpt">Access our comprehensive documentation, including step-by-step tutorials and example workflows for common simulation scenarios.</p>
+          <div class="news-tags">
+            <span class="news-tag">Documentation</span>
+            <span class="news-tag">Tutorials</span>
+          </div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </article>
+
+      <article class="news-card animate-in">
+        <img src="images/peptide.png" alt="Research Update" class="news-image">
+        <div class="news-content">
+          <div class="news-date">March 1, 2024</div>
+          <h3 class="news-title">New Research Paper Published</h3>
+          <p class="news-excerpt">Our latest research on peptide-membrane interactions using Martini 3.0 has been published in Nature Methods.</p>
+          <div class="news-tags">
+            <span class="news-tag">Research</span>
+            <span class="news-tag">Publication</span>
+          </div>
+          <a href="#" class="read-more">Read More</a>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
