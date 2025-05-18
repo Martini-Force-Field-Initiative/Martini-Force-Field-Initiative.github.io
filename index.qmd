@@ -21,118 +21,631 @@ resources:
 ```{=HTML}
 <head>
   <style>
-    .container {
-      width: 46vmin;
-      height: 46vmin;
-      perspective: 56vmin;
+    :root {
+      --primary-color: #2d5c80;
+      --secondary-color: #4a90e2;
+      --accent-color: #e74c3c;
+      --text-color: #2c3e50;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #2d5c80, #4a90e2);
+      --gradient-2: linear-gradient(135deg, #4a90e2, #2d5c80);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Floating News Ticker */
+    .news-ticker {
+      position: fixed;
+      top: 56px; /* Adjusted for Quarto navbar height */
+      left: 0;
+      right: 0;
+      background: var(--gradient-1);
+      color: var(--white);
+      padding: 0.5rem;
+      z-index: 1000;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 30s linear infinite;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Hero Section */
+    .hero {
       position: relative;
+      height: 100vh;
+      background: var(--gradient-1);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 56px; /* Adjusted for Quarto navbar height */
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/home.jpeg') center/cover;
+      opacity: 0.1;
+      animation: zoom 20s infinite alternate;
+    }
+
+    @keyframes zoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    .hero-content {
+      text-align: center;
+      color: var(--white);
+      z-index: 2;
+      padding: 2rem;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-title {
+      font-size: 4.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      background: linear-gradient(to right, #fff, #e0e0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .btn:hover::before {
+      transform: translateX(100%);
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--primary-color);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Latest Updates Section */
+    .updates-section {
+      position: absolute;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow-lg);
+      max-width: 300px;
+      backdrop-filter: blur(10px);
+    }
+
+    .updates-title {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .update-item {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .update-item:last-child {
+      border-bottom: none;
+    }
+
+    .update-date {
+      font-size: 0.8rem;
+      color: var(--secondary-color);
+    }
+
+    .update-text {
+      font-size: 0.9rem;
+      color: var(--text-color);
+    }
+
+    /* News Section */
+    .news-section {
+      padding: 5rem 2rem;
+      background: var(--light-bg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .news-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('images/cell1.jpg') center/cover;
+      opacity: 0.05;
+      z-index: 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+      border-radius: 3px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .news-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .news-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .news-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .news-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .news-card:hover .news-image {
+      transform: scale(1.05);
+    }
+
+    .news-content {
+      padding: 1.5rem;
+    }
+
+    .news-date {
+      color: var(--secondary-color);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .news-title {
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .news-excerpt {
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .read-more {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .read-more::after {
+      content: '→';
+      transition: transform 0.3s ease;
+    }
+
+    .read-more:hover::after {
+      transform: translateX(5px);
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 5rem 2rem;
+      background: var(--white);
+      position: relative;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+      background: var(--white);
+      border-radius: 15px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+
+    .feature-card:hover::before {
+      opacity: 0.05;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card p {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Showcase Section */
+    .showcase-section {
+      padding: 5rem 2rem;
+      background: var(--light-bg);
+      position: relative;
+    }
+
+    .showcase-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .showcase-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .showcase-slide {
+      display: none;
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+
+    .showcase-slide.active {
+      display: block;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .showcase-nav {
       display: flex;
       justify-content: center;
-      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .doodle {
-      width: 35%;
-      height: 35%;
-      background: radial-gradient(
-        blue 10%, transparent 25%
-      ) 0 0 / 2% 2% no-repeat;
+    .showcase-dot {
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      position: absolute;
-      transform-style: preserve-3d;
-      animation: scale-up 25s linear infinite;
+      background: var(--secondary-color);
+      opacity: 0.5;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    @keyframes scale-up {
-      0% {
-        opacity: 0;
-        transform: translate3d(0, 0, 0) rotate(0);
+    .showcase-dot.active {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
       }
-      10% { 
-        opacity: 0.5; 
+
+      .hero-subtitle {
+        font-size: 1.2rem;
       }
-      95% {
-        transform: translate3d(0, 0, 50vmin) rotate(360deg);
+
+      .hero-buttons {
+        flex-direction: column;
       }
-      100% {
-        opacity: 0;
-        transform: translate3d(0, 0, 1vmin);
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .updates-section {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        margin: 2rem auto;
+        max-width: 100%;
       }
     }
   </style>
 </head>
 
-<!--  It doesn't work with class. We need to put style  -->
-<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.jpeg'); background-size: cover;">
-
-<div class="background-overlay"></div>
-
-<div class="container">
-  <div class="doodle"></div>
-</div>
-
-<h1 style="font-size: 2.6em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force Field Initiative </h1>
-<h5 style="font-size: 1.6em; color: #2d5c80; text-align: center;"> A general purpose force field for coarse-grained molecular dynamics </h5>
-
-<div class="buttons">
-<button href="#" class="btn-21" onclick="scrollToElement('.learn-more'); return false;"> <span> Learn more </span> </button>
-</div>
-
-</div>
-
-<!-- Second div with an ID for anchoring -->
-<div style="display: flex; width: 100%; min-height: 100vh; background: #ffffff; padding: 15px;">
-
-  <!-- Left side with text -->
-  <div class="full-width" style="flex: 1; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center; padding: 20px;">
-    <h2 class="learn-more" style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
-    <p style="font-size: 1.1em; color: #2d5c80;">
-      Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of (bio)molecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.
-    </p>
-    <p style="font-size: 1.1em; color: #2d5c80;">
-      The model uses a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. In order to keep the model simple, only four main types of interaction sites are defined: polar, non-polar, apolar, and charged. Each particle type has a number of subtypes, which allow for an accurate representation of the chemical nature of the underlying atomistic representation.
-    </p>
-    <p style="font-size: 1.1em; color: #2d5c80;">
-      Currently topologies are available for many lipids and surfactant molecules, including cholesterol, and for all amino acids and nucleotides as well as for a variety of sugars, polymers, and nanoparticles. Tools are furthermore available to build topologies for arbitrary peptides, proteins, polynucleotides, to add elastic networks, and to move between coarse-grained and atomistic representations.
-    </p>
+<!-- News Ticker -->
+<div class="news-ticker">
+  <div class="ticker-content">
+    🎉 Martini 3.0 Released! | 📚 New Documentation Available | 🔬 Workshop Registration Open | 💡 Latest Research Papers Published
   </div>
+</div>
 
-  <!-- Right side with images -->
-  <div class="image-slider-container" style="flex: 1; padding: 20px;">
-    <div class="image-slider">
-
-      <!-- Images -->
-      <img src="images/cell2.png" alt="Showcase 1" class="slide active">
-      <img src="images/Genome.png" alt="Showcase 2" class="slide">
-      <img src="images/ribosomes.png" alt="Showcase 3" class="slide">
-      <img src="images/peptide.png" alt="Showcase 4" class="slide"  style="object-fit: contain">
-      <img src="images/membrane.png" alt="Showcase 5" class="slide" style="object-fit: cover">
-      <img src="images/protein.gif" alt="Showcase 6" class="slide"  style="object-fit: contain">
-      <!-- Add more images as needed -->
-
-    </div>
-
-    <!-- Navigation dots -->
-    <div class="dots">
-      <div class="dot active" onclick="currentSlide(0)"></div>
-      <div class="dot" onclick="currentSlide(1)"></div>
-      <div class="dot" onclick="currentSlide(2)"></div>
-      <div class="dot" onclick="currentSlide(3)"></div>
-      <div class="dot" onclick="currentSlide(4)"></div>
-      <div class="dot" onclick="currentSlide(5)"></div>
-      <!-- Add more dots as needed -->
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content animate-in">
+    <h1 class="hero-title">Martini Force Field Initiative</h1>
+    <p class="hero-subtitle">Advancing Molecular Dynamics Through Coarse-Grained Simulations</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="scrollToElement('.news-section')">Latest Updates</button>
+      <button class="btn btn-secondary" onclick="scrollToElement('.features-section')">Learn More</button>
     </div>
   </div>
 
-</div>
+  <!-- Latest Updates Sidebar -->
+  <div class="updates-section">
+    <h3 class="updates-title">Latest Updates</h3>
+    <div class="update-item">
+      <div class="update-date">March 15, 2024</div>
+      <div class="update-text">Martini 3.0 Release</div>
+    </div>
+    <div class="update-item">
+      <div class="update-date">March 10, 2024</div>
+      <div class="update-text">Workshop Registration</div>
+    </div>
+    <div class="update-item">
+      <div class="update-date">March 5, 2024</div>
+      <div class="update-text">New Documentation</div>
+    </div>
+  </div>
+</section>
 
+<!-- News Section -->
+<section class="news-section" id="news">
+  <div class="section-header">
+    <h2 class="section-title">Latest News & Updates</h2>
+  </div>
+  <div class="news-grid">
+    <article class="news-card animate-in">
+      <img src="images/cell2.png" alt="Martini 3.0 Release" class="news-image">
+      <div class="news-content">
+        <div class="news-date">March 15, 2024</div>
+        <h3 class="news-title">Martini 3.0: A New Era in Coarse-Grained Simulations</h3>
+        <p class="news-excerpt">Introducing our most advanced force field yet, featuring improved accuracy and expanded parameter sets for enhanced molecular simulations.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </article>
 
-<!-- JavaScript for automatic slideshow -->
-<script src="https://cdn.jsdelivr.net/gh/LieutenantPeacock/SmoothScroll@1.2.0/src/smoothscroll.min.js" integrity="sha384-UdJHYJK9eDBy7vML0TvJGlCpvrJhCuOPGTc7tHbA+jHEgCgjWpPbmMvmd/2bzdXU" crossorigin="anonymous"></script>
+    <article class="news-card animate-in">
+      <img src="images/Genome.png" alt="Workshop Announcement" class="news-image">
+      <div class="news-content">
+        <div class="news-date">March 10, 2024</div>
+        <h3 class="news-title">Virtual Workshop: Mastering Martini 3.0</h3>
+        <p class="news-excerpt">Join our comprehensive workshop series to learn the latest techniques and best practices in coarse-grained molecular dynamics.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </article>
+
+    <article class="news-card animate-in">
+      <img src="images/ribosomes.png" alt="Documentation Update" class="news-image">
+      <div class="news-content">
+        <div class="news-date">March 5, 2024</div>
+        <h3 class="news-title">New Documentation & Tutorials Available</h3>
+        <p class="news-excerpt">Access our comprehensive documentation, including step-by-step tutorials and example workflows for common simulation scenarios.</p>
+        <a href="#" class="read-more">Read More</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section" id="features">
+  <div class="section-header">
+    <h2 class="section-title">Key Features</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card animate-in">
+      <div class="feature-icon">⚡</div>
+      <h3 class="feature-title">High Performance</h3>
+      <p>Optimized for efficient molecular dynamics simulations with reduced computational cost</p>
+    </div>
+    <div class="feature-card animate-in">
+      <div class="feature-icon">🔬</div>
+      <h3 class="feature-title">Accurate Results</h3>
+      <p>Validated against experimental data and all-atom simulations</p>
+    </div>
+    <div class="feature-card animate-in">
+      <div class="feature-icon">🔄</div>
+      <h3 class="feature-title">Easy Integration</h3>
+      <p>Compatible with major molecular dynamics software packages</p>
+    </div>
+    <div class="feature-card animate-in">
+      <div class="feature-icon">📚</div>
+      <h3 class="feature-title">Comprehensive</h3>
+      <p>Support for a wide range of biomolecular systems and materials</p>
+    </div>
+  </div>
+</section>
+
+<!-- Showcase Section -->
+<section class="showcase-section" id="showcase">
+  <div class="section-header">
+    <h2 class="section-title">Featured Simulations</h2>
+  </div>
+  <div class="showcase-container">
+    <div class="showcase-slider">
+      <img src="images/cell2.png" alt="Cell Simulation" class="showcase-slide active">
+      <img src="images/Genome.png" alt="Genome Analysis" class="showcase-slide">
+      <img src="images/ribosomes.png" alt="Ribosome Structure" class="showcase-slide">
+      <img src="images/peptide.png" alt="Peptide Dynamics" class="showcase-slide">
+      <img src="images/membrane.png" alt="Membrane Simulation" class="showcase-slide">
+      <img src="images/protein.gif" alt="Protein Folding" class="showcase-slide">
+    </div>
+    <div class="showcase-nav">
+      <div class="showcase-dot active" onclick="currentSlide(0)"></div>
+      <div class="showcase-dot" onclick="currentSlide(1)"></div>
+      <div class="showcase-dot" onclick="currentSlide(2)"></div>
+      <div class="showcase-dot" onclick="currentSlide(3)"></div>
+      <div class="showcase-dot" onclick="currentSlide(4)"></div>
+      <div class="showcase-dot" onclick="currentSlide(5)"></div>
+    </div>
+  </div>
+</section>
+
 <script>
+  // Smooth Scroll
+  function scrollToElement(selector) {
+    const element = document.querySelector(selector);
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Showcase Slider
   let currentSlideIndex = 0;
-  const slides = document.querySelectorAll('.image-slider .slide');
-  const dots = document.querySelectorAll('.dots .dot');
+  const slides = document.querySelectorAll('.showcase-slide');
+  const dots = document.querySelectorAll('.showcase-dot');
   const totalSlides = slides.length;
 
   function showSlide(index) {
@@ -154,34 +667,28 @@ resources:
     showSlide(index);
   }
 
+  // Auto-advance slides
   setInterval(showNextSlide, 5000);
 
-  // Initially show the first slide
-  showSlide(0);
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
 
-  // Function to scroll to the second div
-  function scrollToElement(selector) {
-    const targetElement = document.querySelector(selector);
-    smoothScroll({toElement: targetElement, duration: 1000});
-  }
-</script>
+  document.querySelectorAll('.animate-in').forEach((el) => observer.observe(el));
 
-<script>
-  const container = document.querySelector('.container');
-
-  for (let i = 0; i < 12; i++) {
-    const doodle = document.createElement('div');
-    doodle.className = 'doodle';
-    doodle.style.animationDelay = `${i * -5.8}s`;
-    
-    // Randomize background color and size
-    const colors = ['pink', 'green', 'yellow'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const size = 0.9 * 2.1 + 1.8;
-    doodle.style.background = `radial-gradient(${color} 10%, transparent 25%)`;
-    doodle.style.backgroundSize = `${size}% ${size}%`;
-
-    container.appendChild(doodle);
-  }
+  // News Ticker Animation
+  const ticker = document.querySelector('.ticker-content');
+  ticker.addEventListener('animationend', () => {
+    ticker.style.animation = 'none';
+    ticker.offsetHeight; // Trigger reflow
+    ticker.style.animation = 'ticker 30s linear infinite';
+  });
 </script>
 ```
