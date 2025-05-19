@@ -14,22 +14,47 @@ function createNewsCard(announcement, isFeatured = false) {
     const card = document.createElement('article');
     card.className = `news-card ${isFeatured ? 'featured' : ''} animate-in`;
 
-    // Create image element
+    // Create image container and image
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'news-image-container';
+    
     const img = document.createElement('img');
-    img.src = announcement.image || 'images/default-news.png';
+    img.src = announcement.image || 'images/default-news.jpg';
     img.alt = announcement.title;
     img.className = 'news-image';
-    card.appendChild(img);
+    imageContainer.appendChild(img);
+
+    // Add featured badge if it's the featured card
+    if (isFeatured) {
+        const badge = document.createElement('div');
+        badge.className = 'news-badge';
+        badge.textContent = 'Featured';
+        imageContainer.appendChild(badge);
+    }
+
+    card.appendChild(imageContainer);
 
     // Create content container
     const content = document.createElement('div');
     content.className = 'news-content';
 
-    // Add date
-    const date = document.createElement('div');
+    // Add meta information
+    const meta = document.createElement('div');
+    meta.className = 'news-meta';
+    
+    const date = document.createElement('span');
     date.className = 'news-date';
     date.textContent = formatDate(announcement.date);
-    content.appendChild(date);
+    meta.appendChild(date);
+
+    if (announcement.category) {
+        const category = document.createElement('span');
+        category.className = 'news-category';
+        category.textContent = announcement.category;
+        meta.appendChild(category);
+    }
+
+    content.appendChild(meta);
 
     // Add title
     const title = document.createElement('h3');
@@ -43,20 +68,36 @@ function createNewsCard(announcement, isFeatured = false) {
     excerpt.textContent = announcement.description;
     content.appendChild(excerpt);
 
-    // Add author
-    const author = document.createElement('div');
-    author.className = 'news-author';
-    author.innerHTML = `<i class="fa fa-user"></i> ${announcement.author}`;
-    content.appendChild(author);
+    // Add footer with author and read more link
+    const footer = document.createElement('div');
+    footer.className = 'news-footer';
 
-    // Add read more link
+    if (announcement.author) {
+        const authorDiv = document.createElement('div');
+        authorDiv.className = 'news-author';
+        
+        const authorAvatar = document.createElement('img');
+        authorAvatar.src = announcement.authorAvatar || 'images/default-avatar.jpg';
+        authorAvatar.alt = announcement.author;
+        authorAvatar.className = 'author-avatar';
+        
+        const authorName = document.createElement('span');
+        authorName.textContent = announcement.author;
+        
+        authorDiv.appendChild(authorAvatar);
+        authorDiv.appendChild(authorName);
+        footer.appendChild(authorDiv);
+    }
+
     const readMore = document.createElement('a');
     readMore.href = announcement.url || '#';
-    readMore.className = 'read-more';
-    readMore.textContent = 'Read More';
-    content.appendChild(readMore);
+    readMore.className = 'news-link';
+    readMore.textContent = 'Read More →';
+    footer.appendChild(readMore);
 
+    content.appendChild(footer);
     card.appendChild(content);
+
     return card;
 }
 
@@ -87,9 +128,15 @@ async function loadAnnouncements() {
         // Clear existing content
         newsGrid.innerHTML = '';
 
-        // Add the three most recent announcements
-        announcements.slice(0, 3).forEach((announcement, index) => {
-            const card = createNewsCard(announcement, index === 0);
+        // Add the featured announcement first
+        if (announcements.length > 0) {
+            const featuredCard = createNewsCard(announcements[0], true);
+            newsGrid.appendChild(featuredCard);
+        }
+
+        // Add the next 2 most recent announcements
+        announcements.slice(1, 3).forEach(announcement => {
+            const card = createNewsCard(announcement);
             newsGrid.appendChild(card);
         });
 
@@ -145,6 +192,8 @@ function parseYAML(yamlText) {
                 currentAnnouncement.description = line.split(':')[1].trim().replace(/"/g, '');
             } else if (line.includes('image:')) {
                 currentAnnouncement.image = line.split(':')[1].trim().replace(/"/g, '');
+            } else if (line.includes('category:')) {
+                currentAnnouncement.category = line.split(':')[1].trim().replace(/"/g, '');
             } else if (line.includes('tags:')) {
                 const tags = line.split(':')[1].trim().replace(/[\[\]]/g, '').split(',').map(tag => tag.trim());
                 currentAnnouncement.tags = tags;
@@ -152,6 +201,8 @@ function parseYAML(yamlText) {
                 currentAnnouncement.url = line.split(':')[1].trim().replace(/"/g, '');
             } else if (line.includes('author:')) {
                 currentAnnouncement.author = line.split(':')[1].trim().replace(/"/g, '');
+            } else if (line.includes('authorAvatar:')) {
+                currentAnnouncement.authorAvatar = line.split(':')[1].trim().replace(/"/g, '');
             }
         }
     }
