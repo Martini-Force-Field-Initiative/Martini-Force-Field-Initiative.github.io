@@ -54,6 +54,12 @@ resources:
       white-space: nowrap;
     }
 
+    @media (max-width: 991.98px) and (min-width: 768px) {
+      .workshop-banner-content {
+        margin-top: 0.5rem;
+      }
+    }
+
     .ticker-content {
       display: inline-block;
       animation: ticker 30s linear infinite;
@@ -1209,6 +1215,7 @@ resources:
       }
 
       .workshop-banner-content {
+        padding-top: 0.5rem;
         flex-direction: row;
         gap: 0.8rem;
         text-align: center;
