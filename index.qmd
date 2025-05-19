@@ -14,6 +14,7 @@ resources:
   - images/martini.gif
   - images/home.jpeg
   - images/cell1.jpg
+  - images/Genome.png
   - images/author-avatar.jpg
   - apple-touch-icon.png
   - CNAME
@@ -367,11 +368,16 @@ resources:
       left: 0;
       right: 0;
       bottom: 0;
-      background: 
-        linear-gradient(120deg, rgba(45, 92, 128, 0.03) 0%, rgba(74, 144, 226, 0.03) 100%),
-        radial-gradient(circle at 20% 30%, rgba(45, 92, 128, 0.05) 0%, transparent 70%),
-        radial-gradient(circle at 80% 70%, rgba(74, 144, 226, 0.05) 0%, transparent 70%);
+      background-image: url('images/Genome.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.05;
       pointer-events: none;
+      filter: blur(1px) brightness(1.1);
+      z-index: 0;
+      transform: scale(1.1);
+      transition: transform 0.5s ease;
       z-index: 0;
     }
 
@@ -429,13 +435,19 @@ resources:
       border-radius: 20px;
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08),
+                  0 1px 2px rgba(0, 0, 0, 0.05);
       border: 1px solid rgba(74, 144, 226, 0.12);
       display: flex;
       flex-direction: column;
       position: relative;
-      height: clamp(420px, calc(75vh - 4.5rem), 600px);
+      height: clamp(420px, calc(75vh - 6.5rem), 600px);
       backdrop-filter: blur(10px);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.98) 100%
+      );
     }
 
     .news-card::before {
@@ -455,8 +467,9 @@ resources:
     }
 
     .news-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12),
+                  0 4px 8px rgba(0, 0, 0, 0.06);
       border-color: rgba(74, 144, 226, 0.25);
     }
 
@@ -468,6 +481,7 @@ resources:
       position: relative;
       overflow: hidden;
       height: 220px;
+      border-bottom: 1px solid rgba(74, 144, 226, 0.1);
     }
 
     .news-image-container::after {
@@ -488,17 +502,19 @@ resources:
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(0.95);
     }
 
     .news-card:hover .news-image {
       transform: scale(1.08);
+      filter: brightness(1.05);
     }
 
     .news-badge {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: var(--gradient-1);
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
       padding: 0.4rem 1rem;
       border-radius: 30px;
@@ -509,6 +525,7 @@ resources:
       z-index: 2;
       letter-spacing: 0.5px;
       backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .news-content {
@@ -536,6 +553,10 @@ resources:
       display: flex;
       align-items: center;
       gap: 0.4rem;
+      background: rgba(74, 144, 226, 0.1);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
     }
 
     .news-date::before {
@@ -553,6 +574,7 @@ resources:
       align-items: center;
       gap: 0.4rem;
       transition: all 0.3s ease;
+      border: 1px solid rgba(74, 144, 226, 0.1);
     }
 
     .news-category::before {
@@ -560,8 +582,10 @@ resources:
       font-size: 1rem;
     }
 
-    .news-card:hover .news-category {
+    .news-card:hover .news-category,
+    .news-card:hover .news-date {
       background: rgba(74, 144, 226, 0.15);
+      transform: translateY(-1px);
     }
 
     .news-title {
@@ -572,6 +596,7 @@ resources:
       font-weight: 600;
       position: relative;
       padding-bottom: 0.75rem;
+      transition: all 0.3s ease;
     }
 
     .news-title::after {
@@ -586,12 +611,12 @@ resources:
       transition: width 0.3s ease;
     }
 
-    .news-card:hover .news-title::after {
-      width: 60px;
+    .news-card:hover .news-title {
+      color: var(--secondary-color);
     }
 
-    .news-card.featured .news-title {
-      font-size: 1.5rem;
+    .news-card:hover .news-title::after {
+      width: 60px;
     }
 
     .news-excerpt {
@@ -626,14 +651,19 @@ resources:
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      font-size: 1.2rem;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+      border: 2px solid white;
     }
 
     .news-card:hover .author-avatar {
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(5deg);
     }
 
     .news-link {
@@ -648,6 +678,7 @@ resources:
       display: flex;
       align-items: center;
       gap: 0.4rem;
+      border: 1px solid rgba(74, 144, 226, 0.1);
     }
 
     .news-link::after {
@@ -658,10 +689,117 @@ resources:
     .news-link:hover {
       color: var(--primary-color);
       background: rgba(74, 144, 226, 0.15);
+      transform: translateX(4px);
     }
 
     .news-link:hover::after {
       transform: translateX(4px);
+    }
+
+    /* View All Announcements Button */
+    .view-all-container {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -0.5rem;
+      padding: 0rem;
+      position: relative;
+    }
+
+    .view-all-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--primary-color);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(74, 144, 226, 0.12);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      letter-spacing: 0.3px;
+    }
+
+    .view-all-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, 
+        transparent,
+        rgba(74, 144, 226, 0.08),
+        transparent
+      );
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+
+    .view-all-button:hover {
+      transform: translateY(-1px) translateX(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: rgba(74, 144, 226, 0.2);
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.98),
+        rgba(255, 255, 255, 0.95)
+      );
+    }
+
+    .view-all-button:hover::before {
+      transform: translateX(100%);
+    }
+
+    .view-all-button .arrow {
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      color: var(--secondary-color);
+      opacity: 0.8;
+      margin-left: 0.2rem;
+    }
+
+    .view-all-button:hover .arrow {
+      transform: translateX(3px);
+      opacity: 1;
+    }
+
+    .view-all-button span:first-child {
+      position: relative;
+      z-index: 1;
+    }
+
+    .view-all-button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .view-all-button:hover::after {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .view-all-container {
+        justify-content: center;
+        margin-top: 0.3rem;
+      }
+      
+      .view-all-button {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+      }
     }
 
     @media (max-width: 1200px) {
@@ -1132,7 +1270,7 @@ resources:
 <!-- News Section -->
 <section class="news-section" id="news">
   <div class="news-container">
-    <div class="section-header">
+    <div class="section-header" style="margin-top: 1rem;">
       <h2 class="section-title">Latest News & Updates</h2>
     </div>
     <div class="news-grid">

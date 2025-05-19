@@ -76,15 +76,9 @@ function createNewsCard(announcement, isFeatured = false) {
         const authorDiv = document.createElement('div');
         authorDiv.className = 'news-author';
         
-        const authorAvatar = document.createElement('img');
-        authorAvatar.src = announcement.authorAvatar || 'images/author-avatar.jpg';
-        authorAvatar.alt = announcement.author;
-        authorAvatar.className = 'author-avatar';
-        
         const authorName = document.createElement('span');
-        authorName.textContent = announcement.author;
+        authorName.innerHTML = `<strong>Author:</strong> ${announcement.author}`;
         
-        authorDiv.appendChild(authorAvatar);
         authorDiv.appendChild(authorName);
         footer.appendChild(authorDiv);
     }
@@ -139,6 +133,17 @@ async function loadAnnouncements() {
             const card = createNewsCard(announcement);
             newsGrid.appendChild(card);
         });
+
+        // Add "View All Announcements" button
+        const viewAllButton = document.createElement('div');
+        viewAllButton.className = 'view-all-container';
+        viewAllButton.innerHTML = `
+            <a href="/docs/announcements/" class="view-all-button">
+                <span>View All Announcements</span>
+                <span class="arrow">→</span>
+            </a>
+        `;
+        newsGrid.appendChild(viewAllButton);
 
         // Initialize animations
         const observer = new IntersectionObserver((entries) => {
