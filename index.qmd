@@ -15,7 +15,12 @@ resources:
   - images/home.jpeg
   - images/cell1.jpg
   - images/Genome.png
-  - images/author-avatar.jpg
+  - images/cell2.png
+  - images/ribosomes.png
+  - images/peptide.png
+  - images/membrane.png
+  - images/martini_glass.jpeg
+  - images/protein.gif
   - apple-touch-icon.png
   - CNAME
 ---
@@ -1036,59 +1041,115 @@ resources:
 
     /* Showcase Section */
     .showcase-section {
-      padding: 2.5rem;
-      background: var(--white);
+      padding: 2rem;
       position: relative;
       overflow: hidden;
     }
 
     .showcase-section::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--gradient-1);
-      opacity: 0.02;
-      z-index: 1;
+      background-image: url('images/Genome.png');
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.05;
+      pointer-events: none;
+      filter: blur(1px) brightness(1.1);
+      z-index: 0;
+      transform: scale(1.1);
+      transition: transform 0.5s ease;
     }
 
     .showcase-container {
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
-      z-index: 2;
+      background: transparent;
+      z-index: 1;
     }
 
     .showcase-slider {
       position: relative;
       overflow: hidden;
+      background: transparent;
+      margin: 0 auto;
+      height: 480px;
       border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-      border: 1px solid rgba(74, 144, 226, 0.08);
+      border: none;
+      backdrop-filter: blur(10px);
     }
 
     .showcase-slide {
-      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 350px;
-      object-fit: cover;
-      transition: opacity 0.5s ease;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 1rem;
+      padding: 0.5rem;
+      background: transparent;
     }
 
     .showcase-slide.active {
-      display: block;
-      animation: fadeIn 0.5s ease forwards;
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
+    }
+
+    .showcase-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(74, 144, 226, 0.12);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .showcase-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      border-color: rgba(74, 144, 226, 0.25);
+    }
+
+    .showcase-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .showcase-item:hover .showcase-image {
+      transform: scale(1.05);
     }
 
     .showcase-nav {
-      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      position: relative;
+      z-index: 1;
     }
 
     .showcase-dot {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: var(--secondary-color);
       opacity: 0.3;
@@ -1108,60 +1169,39 @@ resources:
       border-color: var(--primary-color);
     }
 
-    @media (max-width: 1200px) {
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .showcase-slide {
-        height: 300px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .news-section,
       .showcase-section {
-        padding: 2rem 1.5rem;
+        padding: 1rem;
       }
 
-      .news-title,
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      .showcase-slide {
-        height: 250px;
-      }
-
-      .news-card,
-      .news-card.featured {
-        flex: 0 0 auto;
+      .showcase-container {
         max-width: 100%;
       }
-      .news-card .news-image {
-        height: 160px;
+
+      .showcase-slider {
+        height: 600px;
       }
-      .news-card.featured .news-image {
-        height: 200px;
+
+      .showcase-slide {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 0.75rem;
+        padding: 0.25rem;
+      }
+
+      .showcase-nav {
+        gap: 0.6rem;
+        margin-top: 0.8rem;
       }
     }
 
     @media (max-width: 480px) {
-      .news-section,
       .showcase-section {
-        padding: 1.5rem 1rem;
+        padding: 0.75rem;
       }
-
-      .showcase-slide {
-        height: 200px;
-      }
-
-      .news-card {
-        min-height: 260px;
-      }
-
-      .news-image {
-        height: 120px;
+      
+      .showcase-slider {
+        height: 500px;
       }
     }
 
@@ -1447,20 +1487,16 @@ resources:
   </div>
   <div class="showcase-container">
     <div class="showcase-slider">
-      <img src="images/cell2.png" alt="Cell Simulation" class="showcase-slide active">
-      <img src="images/Genome.png" alt="Genome Analysis" class="showcase-slide">
-      <img src="images/ribosomes.png" alt="Ribosome Structure" class="showcase-slide">
-      <img src="images/peptide.png" alt="Peptide Dynamics" class="showcase-slide">
-      <img src="images/membrane.png" alt="Membrane Simulation" class="showcase-slide">
-      <img src="images/protein.gif" alt="Protein Folding" class="showcase-slide">
+      <div class="showcase-slide active">
+        <!-- Images will be loaded dynamically -->
+      </div>
+      <div class="showcase-slide">
+        <!-- Images will be loaded dynamically -->
+      </div>
     </div>
     <div class="showcase-nav">
       <div class="showcase-dot active" onclick="currentSlide(0)"></div>
       <div class="showcase-dot" onclick="currentSlide(1)"></div>
-      <div class="showcase-dot" onclick="currentSlide(2)"></div>
-      <div class="showcase-dot" onclick="currentSlide(3)"></div>
-      <div class="showcase-dot" onclick="currentSlide(4)"></div>
-      <div class="showcase-dot" onclick="currentSlide(5)"></div>
     </div>
   </div>
 </section>
@@ -1474,7 +1510,113 @@ resources:
     element.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Showcase Slider
+  // Image loading and showcase functionality
+  const validImageExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
+  const excludedImages = ['favicon.png', 'martini.gif', 'home.jpeg'];
+
+  async function getShowcaseImages() {
+    // Hardcoded list of showcase images
+    let showcaseImages = [
+      'cell2.png',
+      'Genome.png',
+      'ribosomes.png',
+      'peptide.png',
+      'membrane.png',
+      'protein.gif',
+      'martini_glass.jpeg'
+    ].filter(img => !excludedImages.includes(img));
+
+    // Shuffle the showcase images array
+    for (let i = showcaseImages.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [showcaseImages[i], showcaseImages[j]] = [showcaseImages[j], showcaseImages[i]];
+    }
+
+    // Calculate number of slides needed
+    const imagesPerSlide = 6;
+    const totalImages = showcaseImages.length;
+    const numSlides = Math.ceil(totalImages / imagesPerSlide);
+    const slides = [];
+    
+    for (let i = 0; i < numSlides; i++) {
+      // Create an array of positions (0-5)
+      const positions = Array.from({length: imagesPerSlide}, (_, i) => i);
+      
+      // Shuffle the positions
+      for (let j = positions.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * (j + 1));
+        [positions[j], positions[k]] = [positions[k], positions[j]];
+      }
+
+      // Create slide with randomized positions
+      const slideImages = new Array(imagesPerSlide);
+      for (let j = 0; j < imagesPerSlide; j++) {
+        const imageIndex = (i * imagesPerSlide + j) % totalImages;
+        const imageName = showcaseImages[imageIndex];
+        const altText = imageName.split('.')[0].replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        slideImages[positions[j]] = {
+          src: `images/${imageName}`,
+          alt: altText
+        };
+      }
+      slides.push(slideImages);
+    }
+    
+    return slides;
+  }
+
+  function createShowcaseItem(image) {
+    const item = document.createElement('div');
+    item.className = 'showcase-item';
+    
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.className = 'showcase-image';
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'showcase-overlay';
+    
+    item.appendChild(img);
+    item.appendChild(overlay);
+    
+    return item;
+  }
+
+  async function loadShowcaseImages() {
+    const slides = document.querySelectorAll('.showcase-slide');
+    const showcaseImages = await getShowcaseImages();
+    
+    slides.forEach((slide, slideIndex) => {
+      const images = showcaseImages[slideIndex];
+      images.forEach(image => {
+        const item = createShowcaseItem(image);
+        slide.appendChild(item);
+      });
+    });
+  }
+
+  // Update the showcase navigation dots based on number of slides
+  async function updateShowcaseNav() {
+    const slides = await getShowcaseImages();
+    const navContainer = document.querySelector('.showcase-nav');
+    navContainer.innerHTML = ''; // Clear existing dots
+    
+    for (let i = 0; i < slides.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = `showcase-dot ${i === 0 ? 'active' : ''}`;
+      dot.onclick = () => currentSlide(i);
+      navContainer.appendChild(dot);
+    }
+  }
+
+  // Load images when the DOM is ready
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadShowcaseImages();
+    await updateShowcaseNav();
+  });
+
+  // Showcase Slider functionality
   let currentSlideIndex = 0;
   const slides = document.querySelectorAll('.showcase-slide');
   const dots = document.querySelectorAll('.showcase-dot');
@@ -1482,7 +1624,13 @@ resources:
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
+      if (i === index) {
+        slide.classList.add('active');
+        slide.style.visibility = 'visible';
+      } else {
+        slide.classList.remove('active');
+        slide.style.visibility = 'hidden';
+      }
     });
     dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === index);
@@ -1499,8 +1647,11 @@ resources:
     showSlide(index);
   }
 
-  // Auto-advance slides
+  // Auto-advance slides every 5 seconds
   setInterval(showNextSlide, 5000);
+
+  // Initialize first slide
+  showSlide(0);
 
   // Intersection Observer for animations
   const observer = new IntersectionObserver((entries) => {
