@@ -28,7 +28,7 @@ function createNewsCard(announcement, isFeatured = false) {
     if (isFeatured) {
         const badge = document.createElement('div');
         badge.className = 'news-badge';
-        badge.textContent = 'Featured';
+        badge.textContent = 'Latest';
         imageContainer.appendChild(badge);
     }
 
@@ -77,7 +77,7 @@ function createNewsCard(announcement, isFeatured = false) {
         authorDiv.className = 'news-author';
         
         const authorAvatar = document.createElement('img');
-        authorAvatar.src = announcement.authorAvatar || 'images/default-avatar.jpg';
+        authorAvatar.src = announcement.authorAvatar || 'images/author-avatar.jpg';
         authorAvatar.alt = announcement.author;
         authorAvatar.className = 'author-avatar';
         

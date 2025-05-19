@@ -14,6 +14,7 @@ resources:
   - images/martini.gif
   - images/home.jpeg
   - images/cell1.jpg
+  - images/author-avatar.jpg
   - apple-touch-icon.png
   - CNAME
 ---
@@ -33,6 +34,9 @@ resources:
       --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
       --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
     }
 
     /* Floating News Ticker */
@@ -389,6 +393,9 @@ resources:
       font-size: 2.2rem;
       color: var(--primary-color);
       margin-bottom: 0;
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 4rem,
       font-weight: 700;
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
@@ -409,15 +416,6 @@ resources:
       border-radius: 3px;
     }
 
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-color);
-      opacity: 0.8;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
     .news-grid {
       display: grid;
       grid-template-columns: 1.5fr 1fr 1fr;
@@ -436,7 +434,7 @@ resources:
       display: flex;
       flex-direction: column;
       position: relative;
-      height: 420px;
+      height: clamp(420px, calc(75vh - 4.5rem), 600px);
       backdrop-filter: blur(10px);
     }
 
@@ -705,24 +703,6 @@ resources:
 
       .news-card.featured .news-title {
         font-size: 1.3rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .news-section {
-        padding: 2rem 1rem;
-      }
-
-      .news-content {
-        padding: 1rem;
-      }
-
-      .news-title {
-        font-size: 1rem;
-      }
-
-      .news-card.featured .news-title {
-        font-size: 1.1rem;
       }
     }
 
