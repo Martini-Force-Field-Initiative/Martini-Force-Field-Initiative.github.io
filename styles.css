@@ -1499,7 +1499,7 @@ textarea.form-input {
 
 /* News Section */
 .news-section {
-  padding: 2.5rem 2rem;
+  padding: 1.6rem 1.5rem;
   background: var(--light-bg);
   position: relative;
   overflow: hidden;
@@ -1546,7 +1546,7 @@ textarea.form-input {
   margin-bottom: 0;
   margin-top: 0;
   padding-top: 0;
-  padding-bottom: 4rem,
+  padding-bottom: 2rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
@@ -1569,7 +1569,7 @@ textarea.form-input {
 
 .news-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
   position: relative;
   z-index: 2;
@@ -1734,7 +1734,7 @@ textarea.form-input {
 }
 
 .news-title {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: var(--primary-color);
   line-height: 1.4;
   margin: 0;
@@ -1742,6 +1742,9 @@ textarea.form-input {
   position: relative;
   padding-bottom: 0.75rem;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .news-title::after {
@@ -1824,6 +1827,10 @@ textarea.form-input {
   align-items: center;
   gap: 0.4rem;
   border: 1px solid rgba(74, 144, 226, 0.1);
+  white-space: nowrap;
+  min-width: 120px;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .news-link::after {
@@ -1949,7 +1956,7 @@ textarea.form-input {
 
 @media (max-width: 1200px) {
   .news-grid {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   
   .news-card {
@@ -1974,10 +1981,6 @@ textarea.form-input {
   .news-card {
     height: auto;
     min-height: 380px;
-  }
-
-  .news-card.featured {
-    grid-column: auto;
   }
 
   .section-title {
@@ -2029,7 +2032,8 @@ textarea.form-input {
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  margin-top: 1rem;
+  margin-top: 2.2rem;
+  margin-bottom: 1.2rem;
 }
 
 .about-content {
@@ -2040,7 +2044,7 @@ textarea.form-input {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 2.5rem;
+  padding: 2rem;
   box-shadow: var(--shadow-lg);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -2050,9 +2054,10 @@ textarea.form-input {
 }
 
 .about-title {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
   background: linear-gradient(to right, #fff, #e0e0e0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -2060,8 +2065,8 @@ textarea.form-input {
 }
 
 .about-description {
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: 1.1rem;
+  line-height: 1.2;
   opacity: 0.9;
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   margin-bottom: 1rem;
@@ -2520,4 +2525,20 @@ textarea.form-input {
     padding: 0.3rem 0.8rem;
     font-size: 0.8rem;
   }
+}
+
+.news-badge-inline {
+  display: inline-block;
+  margin-left: 2.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+  opacity: 0.95;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }

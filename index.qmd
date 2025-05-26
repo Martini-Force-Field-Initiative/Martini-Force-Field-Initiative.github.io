@@ -95,11 +95,13 @@ resources:
       <div class="about-text">
         <h2 class="about-title">About the Martini Force Field Initiative</h2>
         <div class="about-description">
-          <p>Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of (bio)molecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.</p>
+          <p>Martini is a generic coarse-grained force field suited for molecular dynamics simulations of a broad variety of  (bio)molecular systems. The force field has been parameterized in a systematic way, combining top-down and bottom-up strategies: non-bonded interactions are mostly based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas bonded interactions are typically derived from reference all-atom simulations.</p>
 
-          <p>The model uses a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. In order to keep the model simple, only four main types of interaction sites are defined: polar, non-polar, apolar, and charged. Each particle type has a number of subtypes, which allow for an accurate representation of the chemical nature of the underlying atomistic representation.</p>
+          <p>The model is based on a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. Some chemical groups, such as present in ring-like compounds, are defined with higher resolution. In order to keep the model simple, only five main types of interaction sites are defined: polar, non-polar, apolar, charged, and halogen. Each particle type has a number of subtypes, which allows for an accurate representation of the chemical nature of the underlying atomistic representation.</p>
 
-          <p>Currently topologies are available for many lipids and surfactant molecules, including cholesterol, and for all amino acids and nucleotides as well as for a variety of sugars, polymers, and nanoparticles. Tools are furthermore available to build topologies for arbitrary peptides, proteins, polynucleotides, to add elastic networks, and to move between coarse-grained and atomistic representations.</p>
+          <p>Currently, topologies are available for almost all biomolecules, including a large lipidome database, both structured and disordered proteins, nucleotides, saccharides, as well as a variety of metabolites and drug-like molecules. In addition, a collection of polymer and nanoparticle models is available for material science applications.</p>
+
+          <p>Within the Martini Force Field Initiative, a dedicated team of developers aims to further optimize these models, and to extend the diverse set of auxiliary tools available to facilitate system building, analysis, and multi-scale strategies.</p>
         </div>
       </div>
       <div class="about-papers">

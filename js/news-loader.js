@@ -24,14 +24,6 @@ function createNewsCard(announcement, isFeatured = false) {
     img.className = 'news-image';
     imageContainer.appendChild(img);
 
-    // Add featured badge if it's the featured card
-    if (isFeatured) {
-        const badge = document.createElement('div');
-        badge.className = 'news-badge';
-        badge.textContent = 'Latest';
-        imageContainer.appendChild(badge);
-    }
-
     card.appendChild(imageContainer);
 
     // Create content container
@@ -46,6 +38,14 @@ function createNewsCard(announcement, isFeatured = false) {
     date.className = 'news-date';
     date.textContent = formatDate(announcement.date);
     meta.appendChild(date);
+
+    // Add featured badge if it's the featured card
+    if (isFeatured) {
+        const badge = document.createElement('span');
+        badge.className = 'news-badge-inline';
+        badge.textContent = 'Latest';
+        meta.appendChild(badge);
+    }
 
     if (announcement.category) {
         const category = document.createElement('span');
@@ -128,8 +128,8 @@ async function loadAnnouncements() {
             newsGrid.appendChild(featuredCard);
         }
 
-        // Add the next 2 most recent announcements
-        announcements.slice(1, 3).forEach(announcement => {
+        // Add the next 3 most recent announcements
+        announcements.slice(1, 4).forEach(announcement => {
             const card = createNewsCard(announcement);
             newsGrid.appendChild(card);
         });
