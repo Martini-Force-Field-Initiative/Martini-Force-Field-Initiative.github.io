@@ -43,7 +43,7 @@ def get_image_path(image_value, post_dir):
 
 def main():
     # Path to the posts directory
-    posts_dir = Path("docs/announcements/posts")
+    posts_dir = Path("../docs/announcements/posts")
     
     # List to store all announcements
     announcements = []
@@ -71,7 +71,7 @@ def main():
     announcements.sort(key=lambda x: datetime.strptime(x["date"], "%m/%d/%Y"), reverse=True)
     
     # Take only the three latest announcements
-    latest_announcements = announcements[:3]
+    latest_announcements = announcements[:4]
     
     # Create the metadata structure
     metadata = {

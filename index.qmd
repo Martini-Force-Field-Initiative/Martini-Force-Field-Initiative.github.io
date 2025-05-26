@@ -29,14 +29,14 @@ resources:
 <head>
   <style>
     :root {
-      --primary-color: #2d5c80;
-      --secondary-color: #4a90e2;
-      --accent-color: #e74c3c;
-      --text-color: #2c3e50;
+      --primary-color: #4B2E4C; /* Muted, deep eggplant */
+      --secondary-color: #A89CB0; /* Muted lavender/gray accent */
+      --accent-color: #7A5C85; /* Muted eggplant accent */
+      --text-color: #232129; /* Neutral, dark gray for high contrast */
       --light-bg: #f8f9fa;
-      --white: #ffffff;
-      --gradient-1: linear-gradient(135deg, #2d5c80, #4a90e2);
-      --gradient-2: linear-gradient(135deg, #4a90e2, #2d5c80);
+      --white: #fff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
       --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
       --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
       --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
@@ -56,7 +56,7 @@ resources:
       <div class="workshop-date">August 11-15, 2025</div>
       <div class="workshop-location">📍 University of Groningen, The Netherlands</div>
     </div>
-    <a href="#" class="workshop-button">Register Now</a>
+    <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/AnnouncementMWS2025.pdf" class="workshop-button">Register Now</a>
   </div>
 </div>
 
