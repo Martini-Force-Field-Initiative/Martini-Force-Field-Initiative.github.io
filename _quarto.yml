@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - docs/announcements/posts/_metadata.yml
 
 website:
   title: "Martini Force Field Initiative"
@@ -27,18 +29,17 @@ website:
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         aria-label: Martini GitHub
-    right: <div class="footer-right">Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon"> </div>
+    right: <div class="footer-right">© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon"> </div>
    
 
   navbar:
-    background: "#fdfffc"
+    background: "transparent"
     logo: images/martini.gif
-    logo-alt: "martini logo."
+    logo-alt: "martini logo"
     title: false
-    pinned: false
+    pinned: true
     collapse-below: lg
     left:
-
       - text: "Home"
         icon: house-fill
         href: index.qmd
@@ -47,28 +48,30 @@ website:
         icon: mortarboard-fill 
         href: docs/tutorials/index.qmd
 
-      - text: "{{< fa solid meteor >}} Downloads"
+      - text: "Downloads"
+        icon: download
         href: docs/downloads/index.qmd
 
-      - text: "{{< fa solid newspaper >}} Publications"
+      - text: "Publications"
+        icon: newspaper
         href: docs/publications/index.qmd
 
-      - text: "{{< fa solid bullhorn >}} Announcements"
+      - text: "{{< fa bullhorn >}} Announcements"
         href: docs/announcements/index.qmd
 
       - text: "{{< fa regular address-book >}} Contact"
-        href: docs/contact/contact.qmd
+        href: docs/contact/index.qmd
 
-      - text: "{{< fa solid circle-info >}} Help"
+      - text: "{{< fa circle-info >}} Help"
         menu:
           - text: "Discussion Board"
-            icon: "chat-right-text"
+            icon: chat-right-text
             href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions"
           - text: "Report an Issue"
-            icon: "bug"
+            icon: bug
             href: "https://github.com/orgs/Martini-Force-Field-Initiative/discussions" 
           - text: "FAQs"
-            icon: "question-circle"
+            icon: question-circle
             href: docs/faq/index.qmd
     
     tools:
@@ -154,7 +157,7 @@ website:
       title: "Publications"
       contents: 
         - text: "<img src='/images/martini_glass.jpeg' style='height: 100%; width: 100%; object-fit: contain' />"
-        - text: "{{< fa solid paperclip >}} Curated list of the most relevant papers describing the Martini FF Initiative." 
+        - text: "<i class='fa-solid fa-paperclip'></i> Curated list of the most relevant papers describing the Martini FF Initiative." 
           href: https://scholar.google.com/citations?hl=en&user=N71qbKgAAAAJ&view_op=list_works&sortby=pubdate
           
         
@@ -164,6 +167,16 @@ website:
 
     - id: contact
       title: "Contact"
+      contents:
+        - text: "<i class='fa fa-users-gear'></i> <b>Developers Team</b>"
+          href: docs/contact/index.qmd
+        # - text: "<i class='fa fa-spider'></i> <b>Protein Task Force</b>"
+        #   href: docs/contact/protein-task-force.qmd
+        # - text: "<i class='fa fa-cheese'></i> <b>Lipid Task Force</b>"
+        #   href: docs/contact/lipid-task-force.qmd
+        - text: "<i class='fa fa-paper-plane'></i> <b>Message Us</b>"
+          href: docs/contact/contact-form.qmd
+          
 
 format:
   html:

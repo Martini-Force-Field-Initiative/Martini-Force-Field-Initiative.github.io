@@ -1,44 +1,246 @@
 ---
-title: Lectures
-format: html
+title: Martini Lectures
+subtitle: "Collection of lectures covering various aspects of the Martini force field and its applications"
+page-layout: full
+title-block-banner: "#FDF7F4"
 ---
 
-<hr>
+```{=HTML}
+<head>
+  <style>
+    :root {
+      --primary-color: #4B2E4C;
+      --secondary-color: #A89CB0;
+      --accent-color: #e74c3c;
+      --text-color: #2c3e50;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
+    }
+    .btn-rounded-primary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+    .btn-rounded-secondary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
 
-- `Introduction to Martini 3` - *by Paulo C. T. Souza* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/PCTS-Martini3.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Introduction_to_Martini3.pdf)
+    @media (max-width: 754px) {
+        /* Make the buttons smaller on mobile */
+        .btn-rounded-primary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        .btn-rounded-secondary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            /* decrease the width of the buttons */            text-align: center;
+        }
 
-- `Novel applications of Martini 3` - *by Siewert-Jan Marrink* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/SJ-martini_applications.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/SJ-martini3-applications.pdf)
+        .lecture-item {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+```
 
-- `Martini ecosystem of tools` - *by Tsjerk Wassenaar* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-08-Martini-Tools.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-Tools.pdf)
+::: lecture-grid
 
-- `The MArtini Database (MAD) and web server` - *by Luca Monticelli* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Martini_workshop_2021_MAD.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MAD_server.pdf)
+::: lecture-item
+**&#x2022;  Introduction to Martini 3**
 
-- `The Martini Lipids` - *by Manuel N. Melo* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/MN_Melo_Martini_lipids.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MN_Melo_Martini_lipids.pdf)
+**Author:** *Paulo C. T. Souza*
 
-- `Martini 3 Small Molecules` - *by Riccardo Alessandri* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-09-02_MartiniWorkshop2021_Small_molecules.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/2021-09-02_MartiniWorkshop2021_Small_molecules-vFINAL.pdf)
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/PCTS-Martini3.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Introduction_to_Martini3.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
-- `Bartender` - *by Raul Mera A.* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Bartender_Raul.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Bartender_RMera.pdf)
+::: lecture-item
+**&#x2022;  Novel applications of Martini 3** 
 
-- `Protein models in Martini 3` - *by Sebastian Thallmair* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/GoModels_Sebastian.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/M3workshop-01.pdf)
+**Author:** *Siewert-Jan Marrink*
 
-- `Protein-small molecule binding with Martini 3` - *by Paulo C. T. Souza* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Protein_Small_molecule_Binding.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Protein_Small_molecule_Binding.pdf)
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/SJ-martini_applications.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/SJ-martini3-applications.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
-- `Polymer modeling with Martini 3` - *by Fabian Grünewald* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Polyply_Fabian.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/PolyplyWorkshop2021.pdf)
+::: lecture-item
+**&#x2022;  Martini ecosystem of tools** 
+    
+**Author:** *Tsjerk Wassenaar*
 
-- `Titratable Martini` - *by Fabian Grünewald* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TitratableMartini.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/TitratableMartiniWorkshop2021.pdf)
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-08-Martini-Tools.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-Tools.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
-- `TS2CG` - *by Weria Pezeshkian* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TS2CG_Weria.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/weria_TS2CG.pdf)
+::: lecture-item
+**&#x2022;  The Martini Database (MAD) and web server** 
+    
+**Author:** *Luca Monticelli*
 
-- `Machine Learning-driven Multiscale Modeling` - *by Helgi I. Ingólfsson* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/helgi_MuMMI.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini+workshop+-+MuMMI+-+Ingolfsson.pdf)
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Martini_workshop_2021_MAD.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MAD_server.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
-- `Lipid-protein interactions` - *by Peter Tieleman* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/peter.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-tieleman.pdf)
+::: lecture-item
+**&#x2022;  The Martini Lipids** 
+    
+**Author:** *Manuel N. Melo*
 
-- `ProLint` - *by Besian I. Sejdiu* - [[Watch]](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/besian.mp4) [[Slides]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Sejdiu_MartiniWorkshop.pptx.pdf)
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/MN_Melo_Martini_lipids.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MN_Melo_Martini_lipids.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
-<hr>
-> **Note**: If you are experiencing difficulties playing the videos, please try updating your browser.
+::: lecture-item
+**&#x2022;  Martini 3 Small Molecules** 
+    
+**Author:** *Riccardo Alessandri*
 
-<hr>
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-09-02_MartiniWorkshop2021_Small_molecules.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/2021-09-02_MartiniWorkshop2021_Small_molecules-vFINAL.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
+::: lecture-item
+**&#x2022;  Bartender** 
+    
+**Author:** *Raul Mera A.*
 
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Bartender_Raul.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Bartender_RMera.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
 
+::: lecture-item
+**&#x2022;  Protein models in Martini 3** 
+    
+**Author:** *Sebastian Thallmair*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/GoModels_Sebastian.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/M3workshop-01.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Protein-small molecule binding with Martini 3** 
+    
+**Author:** *Paulo C. T. Souza*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Protein_Small_molecule_Binding.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Protein_Small_molecule_Binding.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Polymer modeling with Martini 3** 
+    
+**Author:** *Fabian Grünewald*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Polyply_Fabian.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/PolyplyWorkshop2021.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Titratable Martini** 
+    
+**Author:** *Fabian Grünewald*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TitratableMartini.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/TitratableMartiniWorkshop2021.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  TS2CG** 
+    
+**Author:** *Weria Pezeshkian*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TS2CG_Weria.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/weria_TS2CG.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Machine Learning-driven Multiscale Modeling** 
+    
+**Author:** *Helgi I. Ingólfsson*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/helgi_MuMMI.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini+workshop+-+MuMMI+-+Ingolfsson.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Lipid-protein interactions** 
+    
+**Author:** *Peter Tieleman*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/peter.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-tieleman.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  ProLint** 
+    
+**Author:** *Besian I. Sejdiu*
+
+::: lecture-buttons
+[Watch](https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/besian.mp4){.btn .btn-primary .btn-rounded-primary}
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Sejdiu_MartiniWorkshop.pptx.pdf){.btn .btn-secondary .btn-rounded-secondary}
+:::
+:::
+:::
+
+::: callout-warning
+## Video Playback Note
+
+If you experience any issues playing the videos, please try: - Updating your web browser to the latest version - Using a modern browser like Chrome, Firefox, or Safari - Clearing your browser cache
+:::

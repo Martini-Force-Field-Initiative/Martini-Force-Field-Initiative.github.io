@@ -1,38 +1,210 @@
 ---
-title: Tutorials
-format: html
+title: Hands-on Tutorials
+subtitle: "Step by step tutorials to get you started with Martini"
+page-layout: full
+title-block-banner: "#FDF7F4"
 ---
 
-<hr>
+```{=HTML}
+<head>
+  <style>
+    :root {
+      --primary-color: #4B2E4C; /* Muted, deep eggplant */
+      --secondary-color: #A89CB0; /* Muted lavender/gray accent */
+      --accent-color: #7A5C85; /* Muted eggplant accent */
+      --text-color: #232129; /* Neutral, dark gray for high contrast */
+      --light-bg: #f8f9fa;
+      --white: #fff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
+    }
+    .btn-rounded-primary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+    .btn-rounded-secondary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
 
-1. [`Lipid bilayers - Part I: Self-assembly`](LipidsI/index.qmd)
+    @media (max-width: 754px) {
+        /* Make the buttons smaller on mobile */
+        .btn-rounded-primary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        .btn-rounded-secondary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            /* decrease the width of the buttons */            text-align: center;
+        }
 
-2. [`Lipid bilayers - Part II: Complex mixtures using Insane`](LipidsII/index.qmd)
+        .lecture-item {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+```
 
-3. [`Proteins - Part I: Basics and Martinize 2`](ProteinsI/index.qmd)
+::: tutorial-grid
 
-4. [`Proteins - Part II: TM proteins and Protein complexes`](ProteinsII/index.qmd)
+::: tutorial-item
+**&#x2022;  Lipid bilayers - Part I: Self-assembly**
 
-    4.1. [`Ceramide — VDAC1 binding in a membrane (Collab tutorial)`](collabtuts/Tutorial1_Ceramide_VDAC1binding.ipynb)
+**Description:** *Basic tutorial on lipid bilayer self-assembly*
 
-    4.2. [`Lipidomics study: Mag2 in a POPC and POPC-POPG 3:1 membrane (Collab tutorial)`](collabtuts/Tutorial2_Lipidomics_Mag2.ipynb)
+::: tutorial-buttons
+[Start Tutorial](LipidsI/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
 
-5. [`Parametrization of a new small molecule`](Small_Molecule_Parametrization/index.qmd)
+::: tutorial-item
+**&#x2022;  Lipid bilayers - Part II: Complex lipid mixtures**
 
-6. [`Protein-small molecule binding`](Protein_Ligand_Binding/index.qmd)
+**Description:** *Learn how to create complex lipid mixtures using Insane*
 
-7. [`Reverse coarse-graining with Backward`](Backward/index.qmd)
+::: tutorial-buttons
+[Start Tutorial](LipidsII/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
 
-8. [`Polyply: generating input parameters and coordinates`](Polyply/index.qmd)
+::: tutorial-item
+**&#x2022;  Proteins - Part I: Basics and Martinize 2**
 
-9. [`TS2CG: membranes with user-defined shapes and compositions`](TS2CG/index.qmd)
+**Description:** *Introduction to protein modeling with Martini*
 
-10. [`Running Martini simulation with ddcMD`](ddcMD/index.qmd)
+::: tutorial-buttons
+[Start Tutorial](ProteinsI/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
 
-11. [`Titratable Martini for constant pH simulations`](Titratable_Martini/index.qmd)
+::: tutorial-item
+**&#x2022;  Proteins - Part II: TM proteins and Protein complexes**
 
-12. [`prolintpy: Automatic analysis of lipid-protein interactions`](ProLint/index.qmd)
+**Description:** *Advanced protein modeling applications*
 
-13. [`Dual resolution membrane simulation`](Dual_Resolution_Membrane/index.qmd)
+::: tutorial-buttons
+[Start Tutorial](ProteinsII/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
 
-<hr>
+::: tutorial-item
+**&#x2022;  Parametrization of a new small molecule**
+
+**Description:** *Learn how to parametrize new molecules for Martini*
+
+::: tutorial-buttons
+[Start Tutorial](Small_Molecule_Parametrization/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  Protein-small molecule binding**
+
+**Description:** *Study protein-ligand interactions*
+
+::: tutorial-buttons
+[Start Tutorial](Protein_Ligand_Binding/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  Reverse coarse-graining with Backward**
+
+**Description:** *Convert Martini structures to atomistic resolution*
+
+::: tutorial-buttons
+[Start Tutorial](Backward/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  Polyply: generating input parameters and coordinates**
+
+**Description:** *Create complex molecular systems for Martini*
+
+::: tutorial-buttons
+[Start Tutorial](Polyply/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  TS2CG: membranes with user-defined shapes and compositions**
+    
+**Description:** *Create custom membrane shapes*
+
+::: tutorial-buttons
+[Start Tutorial](TS2CG/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+::: 
+
+::: tutorial-item
+**&#x2022;  Running Martini simulation with ddcMD**
+    
+**Description:** *Learn how to use ddcMD for Martini simulations*
+
+::: tutorial-buttons
+[Start Tutorial](ddcMD/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  Titratable Martini for constant pH simulations**
+
+**Description:** *Perform pH-dependent simulations with Martini*
+
+::: tutorial-buttons
+[Start Tutorial](Titratable_Martini/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  Prolintpy: Automatic analysis of lipid-protein interactions**
+
+**Description:** *Advanced analysis of lipid-protein interactions from Martini simulations*
+
+::: tutorial-buttons
+[Start Tutorial](ProLint/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: tutorial-item
+**&#x2022;  Dual resolution membrane simulation**
+
+**Description:** *Combine different resolution models for membrane simulations*
+
+::: tutorial-buttons
+[Start Tutorial](Dual_Resolution_Membrane/index.qmd){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+:::
+
+::: callout-note
+## Contribute to this collection
+To contribute with new tutorials, please get in touch with the Martini team through the [Contacts Page](../../contact/index.qmd) or review the [Contribution Guidelines](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/README.md) to this web portal.
+:::
