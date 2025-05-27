@@ -1,0 +1,33 @@
+---
+title: "A systematic approach to parameterization of disaccharides for the Martini 3 coarse-grained force-field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Astrid F Brandner, Iain PS Smith, Siewert J Marrink, Paulo CT Souza, and Syma Khalid"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "Journal of Chemical Information and Modeling"    # Journal or similar (required)
+preprint: "https://doi.org/10.26434/chemrxiv-2025-68mnk"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jcim.4c01874"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/10.1021/acs.jcim.4c01874?goto=supporting-info"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Glycans
+  - Parametrization
+  - Small molecules
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Brandner, A. F., Smith, I. P., Marrink, S. J., Souza, P. C., & Khalid, S. (2025). Systematic Approach to Parametrization of Disaccharides for the Martini 3 Coarse-Grained Force Field. Journal of chemical information and modeling.
+
+## Abstract
+
+Sugars are ubiquitous in biology; they occur in all kingdoms of life. Despite their prevalence, they have often been somewhat neglected in studies of structure–dynamics–function relationships of macromolecules to which they are attached, with the exception of nucleic acids. This is largely due to the inherent difficulties of not only studying the conformational dynamics of sugars using experimental methods but indeed also resolving their static structures. Molecular dynamics (MD) simulations offer a route to the prediction of conformational ensembles and the time-dependent behavior of sugars and glycosylated macromolecules. However, at the all-atom level of detail, MD simulations are often too computationally demanding to allow a systematic investigation of molecular interactions in systems of interest. To overcome this, large scale simulations of complex biological systems have profited from advances in coarse-grained (CG) simulations. Perhaps the most widely used CG force field for biomolecular simulations is Martini. Here, we present a parameter set for glucose- and mannose-based disaccharides for Martini 3. The generation of the CG parameters from atomistic trajectories is automated as fully as possible, and where not possible, we provide details of the protocol used for manual intervention.
