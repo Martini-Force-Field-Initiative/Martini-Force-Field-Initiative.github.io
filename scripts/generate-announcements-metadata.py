@@ -75,7 +75,7 @@ def main():
     
     # Create the metadata structure
     metadata = {
-        "title-block-banner": "#EDF3F9",
+        "title-block-banner": "#FDF7F4",
         "title-block-banner-color": "body",
         "search": False,
         "announcements": latest_announcements
