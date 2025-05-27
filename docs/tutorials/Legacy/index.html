@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
@@ -41,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-82b93fa6e9d4bbeb9323a7e931f05c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ccc03462e8293e7b9ad885a82c4b4108.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +70,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FDF7F4;
+      }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -99,9 +104,11 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="../../../styles.css">
 <meta property="og:title" content="Legacy Material – Martini Force Field Initiative">
+<meta property="og:description" content="Lectures and tutorials from older versions of the Martini force field">
 <meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Legacy/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
 <meta name="twitter:title" content="Legacy Material – Martini Force Field Initiative">
+<meta name="twitter:description" content="Lectures and tutorials from older versions of the Martini force field">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Legacy/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -109,12 +116,12 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -134,26 +141,28 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/downloads/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+    <a class="nav-link" href="../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/publications/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+    <a class="nav-link" href="../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/contact/contact.html"> 
+    <a class="nav-link" href="../../../docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
         <li>
     <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
 </i> 
@@ -191,7 +200,24 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Legacy Material</h1>
+            <p class="subtitle lead">Lectures and tutorials from older versions of the Martini force field</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-body">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -230,159 +256,191 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#martini-3-legacy-tutorials" id="toc-martini-3-legacy-tutorials" class="nav-link active" data-scroll-target="#martini-3-legacy-tutorials">Martini 3 Legacy Tutorials</a></li>
+  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials">Tutorials</a>
+  <ul class="collapse">
+  <li><a href="#martini-3-legacy-tutorials" id="toc-martini-3-legacy-tutorials" class="nav-link" data-scroll-target="#martini-3-legacy-tutorials">Martini 3 Legacy Tutorials</a></li>
   <li><a href="#martini-3-open-beta-legacy-tutorials" id="toc-martini-3-open-beta-legacy-tutorials" class="nav-link" data-scroll-target="#martini-3-open-beta-legacy-tutorials">Martini 3 Open Beta Legacy Tutorials</a></li>
   <li><a href="#martini-2-legacy-tutorials" id="toc-martini-2-legacy-tutorials" class="nav-link" data-scroll-target="#martini-2-legacy-tutorials">Martini 2 Legacy Tutorials</a></li>
+  </ul></li>
+  <li><a href="#past-workshops" id="toc-past-workshops" class="nav-link" data-scroll-target="#past-workshops">Past Workshops</a>
+  <ul class="collapse">
   <li><a href="#martini-workshop-2017" id="toc-martini-workshop-2017" class="nav-link" data-scroll-target="#martini-workshop-2017">MARTINI WORKSHOP 2017</a></li>
   <li><a href="#martini-workshop-2015" id="toc-martini-workshop-2015" class="nav-link" data-scroll-target="#martini-workshop-2015">MARTINI WORKSHOP 2015</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Legacy Material</h1>
+
+
+
+
+<style>
+.move-up {
+  margin-top: -2rem;
+}
+</style>
+<div class="move-up">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<hr>
-<blockquote class="blockquote">
-<p><strong><em>Note: The material offered in this page is LEGACY material.</em></strong> This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look! If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../docs/tutorials/index.html">here</a> to go back!</p>
-</blockquote>
-<hr>
-<section id="martini-3-legacy-tutorials" class="level3">
-<h3 class="anchored" data-anchor-id="martini-3-legacy-tutorials">Martini 3 Legacy Tutorials</h3>
-<blockquote class="blockquote">
-<p><strong><em>These hands-on tutorials, are deprecated versions of the Martini 3 tutorials.</em></strong></p>
-</blockquote>
+<div class="callout-title-container flex-fill">
+Legacy Material Notice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The material offered in this page is <strong>LEGACY material</strong>. This means that it either pertains to older iterations of the Martini force field and/or that it is no longer actively supported. However, this does not mean that there aren’t cool things to be learned here! Have a look!</p>
+<p>If you are looking for the current iterations of the Martini force field lectures or hands-on tutorials, click <a href="../../../docs/tutorials/index.html">here</a> to go back!</p>
+</div>
+</div>
+</div>
+<section id="tutorials" class="level2">
+<h2 class="anchored" data-anchor-id="tutorials">Tutorials</h2>
+<section id="martini-3-legacy-tutorials" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="martini-3-legacy-tutorials">Martini 3 Legacy Tutorials</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These hands-on tutorials are deprecated versions of the Martini 3 tutorials.</p>
 <ul>
 <li><a href="../../../docs/tutorials/Legacy/martini3/ProteinsI/index.html">1: Proteins - Part I</a></li>
 </ul>
-<hr>
+</div>
+</div>
 </section>
-<section id="martini-3-open-beta-legacy-tutorials" class="level3">
-<h3 class="anchored" data-anchor-id="martini-3-open-beta-legacy-tutorials">Martini 3 Open Beta Legacy Tutorials</h3>
-<blockquote class="blockquote">
-<p><strong><em>These hands-on tutorials, are based on the Martini 3 open-beta version (<a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3_beta/martini_3.0.b.3.2.tar">v.3.0.b.3.2</a>).</em></strong></p>
-</blockquote>
+<section id="martini-3-open-beta-legacy-tutorials" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="martini-3-open-beta-legacy-tutorials">Martini 3 Open Beta Legacy Tutorials</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These hands-on tutorials are based on the Martini 3 open-beta version (<a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3_beta/martini_3.0.b.3.2.tar">v.3.0.b.3.2</a>).</p>
 <ul>
-<li><p><a href="../../../docs/tutorials/Legacy/martini3/small_molecule_binding.html">1: Small molecule binding</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini3/parameterizing_small_molecule.html">2: Parameterizing a new small molecule</a></p></li>
+<li><a href="../../../docs/tutorials/Legacy/martini3/small_molecule_binding.html">1: Small molecule binding</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini3/parameterizing_small_molecule.html">2: Parameterizing a new small molecule</a></li>
 </ul>
-<hr>
+</div>
+</div>
 </section>
-<section id="martini-2-legacy-tutorials" class="level3">
-<h3 class="anchored" data-anchor-id="martini-2-legacy-tutorials">Martini 2 Legacy Tutorials</h3>
-<blockquote class="blockquote">
-<p><strong><em>These hands-on tutorials, are based on the Martini 2 family of force fields.</em></strong></p>
-</blockquote>
+<section id="martini-2-legacy-tutorials" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="martini-2-legacy-tutorials">Martini 2 Legacy Tutorials</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These hands-on tutorials are based on the Martini 2 family of force fields.</p>
 <ul>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">1: Lipids with the lipidome</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/polymers.html">2: Polymers</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/hybrid_models.html">3: Hybrid model using virtual sites</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/parametrizing.html">4: Parameterizing a new small molecule</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/high_throughput.html">5: High throughput peptide self assembly</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/proteins.html">6: Proteins</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/rna.html">7: RNA</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/dna.html">8: DNA</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">9: Visualizing Martini with VMD</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/others.html">10: Others</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/free_energy.html">11: Free energy techniques</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/metadynamics.html">12: Metadynamics</a></p></li>
-<li><p><a href="../../../docs/tutorials/Legacy/martini2/physisorption.html">13: Physiorption of alkenes on graphite</a></p></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">1: Lipids with the lipidome</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/polymers.html">2: Polymers</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/hybrid_models.html">3: Hybrid model using virtual sites</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/parametrizing.html">4: Parameterizing a new small molecule</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/high_throughput.html">5: High throughput peptide self assembly</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/proteins.html">6: Proteins</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/rna.html">7: RNA</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/dna.html">8: DNA</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">9: Visualizing Martini with VMD</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/others.html">10: Others</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/free_energy.html">11: Free energy techniques</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/metadynamics.html">12: Metadynamics</a></li>
+<li><a href="../../../docs/tutorials/Legacy/martini2/physisorption.html">13: Physiorption of alkenes on graphite</a></li>
 </ul>
-<hr>
+</div>
+</div>
 </section>
-<section id="martini-workshop-2017" class="level3">
-<h3 class="anchored" data-anchor-id="martini-workshop-2017">MARTINI WORKSHOP 2017</h3>
-<blockquote class="blockquote">
-<strong>Groningen, The Netherlands</strong>
-<hr>
-</blockquote>
+</section>
+<section id="past-workshops" class="level2">
+<h2 class="anchored" data-anchor-id="past-workshops">Past Workshops</h2>
+<section id="martini-workshop-2017" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="martini-workshop-2017">MARTINI WORKSHOP 2017</h3>
+<p><strong>Groningen, The Netherlands</strong></p>
 <section id="monday-august-21" class="level4">
 <h4 class="anchored" data-anchor-id="monday-august-21">Monday, August 21</h4>
 <ul>
-<li><p>Introduction to the Martini model, Siewert Jan Marrink <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-01.pdf">slides</a></p></li>
-<li><p>Lipid biophysics with the Martini model, Helgi Ingólfsson <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-02.pdf">slides</a></p></li>
+<li><strong>Introduction to the Martini model</strong> - Siewert Jan Marrink <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-01.pdf">[slides]</a></li>
+<li><strong>Lipid biophysics with the Martini model</strong> - Helgi Ingólfsson <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-02.pdf">[slides]</a></li>
 </ul>
 </section>
 <section id="tuesday-august-22" class="level4">
 <h4 class="anchored" data-anchor-id="tuesday-august-22">Tuesday, August 22</h4>
 <ul>
-<li><p>Martini model for proteins, Alex de Vries <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-03.pdf">slides</a></p></li>
-<li><p>Peptide aggregation, Pim Frederix <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-04.pdf">slides</a></p></li>
-<li><p>Photosystem II, Floris van Eerden <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-05.pdf">slides</a></p></li>
+<li><strong>Martini model for proteins</strong> - Alex de Vries <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-03.pdf">[slides]</a></li>
+<li><strong>Peptide aggregation</strong> - Pim Frederix <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-04.pdf">[slides]</a></li>
+<li><strong>Photosystem II</strong> - Floris van Eerden <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-05.pdf">[slides]</a></li>
 </ul>
 </section>
 <section id="wednesday-august-23" class="level4">
 <h4 class="anchored" data-anchor-id="wednesday-august-23">Wednesday, August 23</h4>
 <ul>
-<li><p>TOOLS: martinize, martinate, insane, backward, daft, Tsjerk Wassenaar <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-06.pdf">slides</a></p></li>
-<li><p>Advanced parameterization of Martini, Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-08.pdf">slides</a></p></li>
-<li><p>Multiscaling with Martini, Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-09.pdf">slides</a></p></li>
+<li><strong>TOOLS: martinize, martinate, insane, backward, daft</strong> - Tsjerk Wassenaar <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-06.pdf">[slides]</a></li>
+<li><strong>Advanced parameterization of Martini</strong> - Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-08.pdf">[slides]</a></li>
+<li><strong>Multiscaling with Martini</strong> - Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-09.pdf">[slides]</a></li>
 </ul>
 </section>
 <section id="thursday-august-24" class="level4">
 <h4 class="anchored" data-anchor-id="thursday-august-24">Thursday, August 24</h4>
 <ul>
-<li><p>The Martini model for DNA and RNA, Ignacio Faustino Plo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-10.pdf">slides</a></p></li>
-<li><p>Blends for organic photovoltaics, Riccardo Alessandri <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-11.pdf">slides</a></p></li>
-<li><p>The future of Martini, Paulo Telles de Souza <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-12.pdf">slides</a></p></li>
+<li><strong>The Martini model for DNA and RNA</strong> - Ignacio Faustino Plo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-10.pdf">[slides]</a></li>
+<li><strong>Blends for organic photovoltaics</strong> - Riccardo Alessandri <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-11.pdf">[slides]</a></li>
+<li><strong>The future of Martini</strong> - Paulo Telles de Souza <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2017/lecture-12.pdf">[slides]</a></li>
 </ul>
-<p><br></p>
 </section>
 </section>
-<section id="martini-workshop-2015" class="level3">
-<h3 class="anchored" data-anchor-id="martini-workshop-2015">MARTINI WORKSHOP 2015</h3>
-<blockquote class="blockquote">
-<strong>Groningen, The Netherlands</strong>
-<hr>
-</blockquote>
+<section id="martini-workshop-2015" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="martini-workshop-2015">MARTINI WORKSHOP 2015</h3>
+<p><strong>Groningen, The Netherlands</strong></p>
 <section id="monday-august-24" class="level4">
 <h4 class="anchored" data-anchor-id="monday-august-24">Monday, August 24</h4>
 <ul>
-<li><p>Introduction to coarse-graining, Alex de Vries <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-01.pdf">slides</a></p></li>
-<li><p>Introduction to the Martini model, Siewert Jan Marrink <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-02.pdf">slides</a></p></li>
+<li><strong>Introduction to coarse-graining</strong> - Alex de Vries <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-01.pdf">[slides]</a></li>
+<li><strong>Introduction to the Martini model</strong> - Siewert Jan Marrink <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-02.pdf">[slides]</a></li>
 </ul>
 </section>
 <section id="tuesday-august-25" class="level4">
 <h4 class="anchored" data-anchor-id="tuesday-august-25">Tuesday, August 25</h4>
 <ul>
-<li><p>Lipid biophysics with the Martini model, Helgi Ingólfsson <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-03.pdf">slides</a></p></li>
-<li><p>Martini model for proteins, Alex de Vries <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-04.pdf">slides</a></p></li>
+<li><strong>Lipid biophysics with the Martini model</strong> - Helgi Ingólfsson <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-03.pdf">[slides]</a></li>
+<li><strong>Martini model for proteins</strong> - Alex de Vries <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-04.pdf">[slides]</a></li>
 </ul>
 </section>
 <section id="wednesday-august-26" class="level4">
 <h4 class="anchored" data-anchor-id="wednesday-august-26">Wednesday, August 26</h4>
 <ul>
-<li><p>TOOLS: martinize, martinate, insane, backward, daft, Tsjerk Wassenaar <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-05.pdf">slides</a></p></li>
-<li><p>Martini model for saccharides (includes also other polymers and dna), Siewert Jan Marrink <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-06.pdf">slides</a></p></li>
+<li><strong>TOOLS: martinize, martinate, insane, backward, daft</strong> - Tsjerk Wassenaar <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-05.pdf">[slides]</a></li>
+<li><strong>Martini model for saccharides</strong> (includes also other polymers and dna) - Siewert Jan Marrink <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-06.pdf">[slides]</a></li>
 </ul>
 </section>
 <section id="thursday-august-27" class="level4">
 <h4 class="anchored" data-anchor-id="thursday-august-27">Thursday, August 27</h4>
 <ul>
-<li><p>Advanced parameterization of Martini, Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-07.pdf">slides</a></p></li>
-<li><p>Multiscaling with Martini, Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-08.pdf">slides</a></p>
-<hr></li>
+<li><strong>Advanced parameterization of Martini</strong> - Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-07.pdf">[slides]</a></li>
+<li><strong>Multiscaling with Martini</strong> - Manuel Nuno Melo <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/past_workshops/2015/lecture-08.pdf">[slides]</a></li>
 </ul>
 
 
+</section>
 </section>
 </section>
 
@@ -786,7 +844,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="../../../docs/tutorials/Martini3/tutorials.html" class="pagination-link" aria-label="🛠️ Hands-on Tutorials">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🛠️ Hands-on Tutorials</span>
@@ -826,7 +884,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="nav-footer-right">
 <div class="footer-right">
-Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
 </div>
 </div>
   </div>

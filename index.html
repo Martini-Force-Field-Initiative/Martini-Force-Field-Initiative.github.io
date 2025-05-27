@@ -25,7 +25,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -41,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-82b93fa6e9d4bbeb9323a7e931f05c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ccc03462e8293e7b9ad885a82c4b4108.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -117,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/martini.gif" alt="martini logo." class="navbar-logo">
+    <img src="./images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -137,26 +136,28 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/downloads/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+    <a class="nav-link" href="./docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/publications/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+    <a class="nav-link" href="./docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/contact/contact.html"> 
+    <a class="nav-link" href="./docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
         <li>
     <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
 </i> 
@@ -194,127 +195,285 @@ ul.task-list li input[type="checkbox"] {
 
 
   <style>
-    .container {
-      width: 46vmin;
-      height: 46vmin;
-      perspective: 56vmin;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .doodle {
-      width: 35%;
-      height: 35%;
-      background: radial-gradient(
-        blue 10%, transparent 25%
-      ) 0 0 / 2% 2% no-repeat;
-      border-radius: 50%;
-      position: absolute;
-      transform-style: preserve-3d;
-      animation: scale-up 25s linear infinite;
-    }
-
-    @keyframes scale-up {
-      0% {
-        opacity: 0;
-        transform: translate3d(0, 0, 0) rotate(0);
-      }
-      10% { 
-        opacity: 0.5; 
-      }
-      95% {
-        transform: translate3d(0, 0, 50vmin) rotate(360deg);
-      }
-      100% {
-        opacity: 0;
-        transform: translate3d(0, 0, 1vmin);
-      }
+    :root {
+      --primary-color: #4B2E4C; /* Muted, deep eggplant */
+      --secondary-color: #A89CB0; /* Muted lavender/gray accent */
+      --accent-color: #7A5C85; /* Muted eggplant accent */
+      --text-color: #232129; /* Neutral, dark gray for high contrast */
+      --light-bg: #f8f9fa;
+      --white: #fff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
     }
   </style>
 
 
-<!--  It doesn't work with class. We need to put style  -->
-<div style="flex-direction: column; width: 100%; height: 120vh; margin-top: -185px; background-size: cover; background-position: center; background-repeat: no-repeat; overflow: hidden; overflow: clip; contain: content; display: flex; align-items: center; justify-content: center; background: #f0f5f9; background-image: url('images/home.jpeg'); background-size: cover;">
-
-<div class="background-overlay"></div>
-
-<div class="container">
-  <div class="doodle"></div>
-</div>
-
-<h1 style="font-size: 2.6em; color: #2d5c80; text-align: center;"> Welcome to the Martini Force Field Initiative </h1>
-<h5 style="font-size: 1.6em; color: #2d5c80; text-align: center;"> A general purpose force field for coarse-grained molecular dynamics </h5>
-
-<div class="buttons">
-<button href="#" class="btn-21" onclick="scrollToElement('.learn-more'); return false;"> <span> Learn more </span> </button>
-</div>
-
-</div>
-
-<!-- Second div with an ID for anchoring -->
-<div style="display: flex; width: 100%; min-height: 100vh; background: #ffffff; padding: 15px;">
-
-  <!-- Left side with text -->
-  <div class="full-width" style="flex: 1; display: flex; flex-direction: column; flex-wrap: wrap; justify-content: center; padding: 20px;">
-    <h2 class="learn-more" style="font-size: 2em; color: #2d5c80;">About the Martini Force Field Initiative</h2>
-    <p style="font-size: 1.1em; color: #2d5c80;">
-      Martini is a coarse-grained (CG) force field suited for molecular dynamics simulations of (bio)molecular systems. The force field has been parametrized in a systematic way, combining top-down and bottum-up strategies: i- non-bonded interactions are based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas ii- bonded interactions are derived from reference all-atom simulations.
-    </p>
-    <p style="font-size: 1.1em; color: #2d5c80;">
-      The model uses a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. In order to keep the model simple, only four main types of interaction sites are defined: polar, non-polar, apolar, and charged. Each particle type has a number of subtypes, which allow for an accurate representation of the chemical nature of the underlying atomistic representation.
-    </p>
-    <p style="font-size: 1.1em; color: #2d5c80;">
-      Currently topologies are available for many lipids and surfactant molecules, including cholesterol, and for all amino acids and nucleotides as well as for a variety of sugars, polymers, and nanoparticles. Tools are furthermore available to build topologies for arbitrary peptides, proteins, polynucleotides, to add elastic networks, and to move between coarse-grained and atomistic representations.
-    </p>
-  </div>
-
-  <!-- Right side with images -->
-  <div class="image-slider-container" style="flex: 1; padding: 20px;">
-    <div class="image-slider">
-
-      <!-- Images -->
-      <img src="images/cell2.png" alt="Showcase 1" class="slide active">
-      <img src="images/Genome.png" alt="Showcase 2" class="slide">
-      <img src="images/ribosomes.png" alt="Showcase 3" class="slide">
-      <img src="images/peptide.png" alt="Showcase 4" class="slide" style="object-fit: contain">
-      <img src="images/membrane.png" alt="Showcase 5" class="slide" style="object-fit: cover">
-      <img src="images/protein.gif" alt="Showcase 6" class="slide" style="object-fit: contain">
-      <!-- Add more images as needed -->
-
+<!-- Workshop Banner -->
+<div class="workshop-banner">
+  <div class="workshop-banner-content">
+    <div class="workshop-icon">🎓</div>
+    <div class="workshop-info">
+      <div class="workshop-title">Upcoming Workshop: Mastering the Martini Force Field!</div>
+      <div class="workshop-date">August 11-15, 2025</div>
+      <div class="workshop-location">📍 University of Groningen, The Netherlands</div>
     </div>
+    <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/AnnouncementMWS2025.pdf" class="workshop-button">Register Now</a>
+  </div>
+</div>
 
-    <!-- Navigation dots -->
-    <div class="dots">
-      <div class="dot active" onclick="currentSlide(0)"></div>
-      <div class="dot" onclick="currentSlide(1)"></div>
-      <div class="dot" onclick="currentSlide(2)"></div>
-      <div class="dot" onclick="currentSlide(3)"></div>
-      <div class="dot" onclick="currentSlide(4)"></div>
-      <div class="dot" onclick="currentSlide(5)"></div>
-      <!-- Add more dots as needed -->
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content animate-in">
+    <h1 class="hero-title">Martini Force Field Initiative</h1>
+    <p class="hero-subtitle">Advancing Coarse-Grained Biomolecular Simulations</p>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" onclick="scrollToElement('.news-section')">Latest Updates</button>
+      <button class="btn btn-secondary" onclick="scrollToElement('.about-section')">Learn More</button>
     </div>
   </div>
 
-</div>
+  <div class="hero-scroll-indicator">
+    Scroll to explore
+  </div>
+</section>
 
+<!-- News Section -->
+<section class="news-section" id="news">
+  <div class="news-container">
+    <div class="section-header" style="margin-top: 1rem;">
+      <h2 class="section-title">Latest News &amp; Updates</h2>
+    </div>
+    <div class="news-grid">
+      <!-- News cards will be dynamically loaded here -->
+    </div>
+  </div>
+</section>
 
-<!-- JavaScript for automatic slideshow -->
-<script src="https://cdn.jsdelivr.net/gh/LieutenantPeacock/SmoothScroll@1.2.0/src/smoothscroll.min.js" integrity="sha384-UdJHYJK9eDBy7vML0TvJGlCpvrJhCuOPGTc7tHbA+jHEgCgjWpPbmMvmd/2bzdXU" crossorigin="anonymous"></script>
+<!-- About Section -->
+<section class="about-section" id="about">
+  <div class="about-container">
+    <div class="about-content">
+      <div class="about-text">
+        <h2 class="about-title">About the Martini Force Field Initiative</h2>
+        <div class="about-description">
+          <p>Martini is a generic coarse-grained force field suited for molecular dynamics simulations of a broad variety of  (bio)molecular systems. The force field has been parameterized in a systematic way, combining top-down and bottom-up strategies: non-bonded interactions are mostly based on the reproduction of experimental partitioning free energies between polar and apolar phases of a large number of chemical compounds, whereas bonded interactions are typically derived from reference all-atom simulations.</p>
+
+          <p>The model is based on a four-to-one mapping scheme, i.e. on average four heavy atoms and associated hydrogens are represented by a single interaction center. Some chemical groups, such as present in ring-like compounds, are defined with higher resolution. In order to keep the model simple, only five main types of interaction sites are defined: polar, non-polar, apolar, charged, and halogen. Each particle type has a number of subtypes, which allows for an accurate representation of the chemical nature of the underlying atomistic representation.</p>
+
+          <p>Currently, topologies are available for almost all biomolecules, including a large lipidome database, both structured and disordered proteins, nucleotides, saccharides, as well as a variety of metabolites and drug-like molecules. In addition, a collection of polymer and nanoparticle models is available for material science applications.</p>
+
+          <p>Within the Martini Force Field Initiative, a dedicated team of developers aims to further optimize these models, and to extend the diverse set of auxiliary tools available to facilitate system building, analysis, and multi-scale strategies.</p>
+        </div>
+      </div>
+      <div class="about-papers">
+        <h3 class="papers-title">Key Publications</h3>
+        <div class="papers-list">
+          <a href="https://wires.onlinelibrary.wiley.com/doi/10.1002/wcms.1620" class="paper-item">
+            <span class="paper-year">2022</span>
+            <div class="paper-content">
+              <h4>Two decades of Martini: Better beads, broader scope</h4>
+              <p>WIREs Computational Molecular Science</p>
+            </div>
+          </a>
+          <a href="https://www.nature.com/articles/s41592-021-01098-3" class="paper-item">
+            <span class="paper-year">2021</span>
+            <div class="paper-content">
+              <h4>Martini 3: A General Purpose Force Field for Coarse-Grained Molecular Dynamics</h4>
+              <p>Nature Methods</p>
+            </div>
+          </a>
+          <a href="#" class="paper-item">
+            <span class="paper-year">2016</span>
+            <div class="paper-content">
+              <h4>MARTINI straight: Boosting performance using a shorter cutoff and GPUs</h4>
+              <p>Computer Physics Communications</p>
+            </div>
+          </a>
+          <a href="https://pubs.acs.org/doi/10.1021/jp071097f" class="paper-item">
+            <span class="paper-year">2007</span>
+            <div class="paper-content">
+              <h4>The Martini Force Field: Coarse Grained Model for Biomolecular Simulations</h4>
+              <p>Journal of Physical Chemistry B</p>
+            </div>
+          </a>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Showcase Section -->
+<section class="showcase-section" id="showcase">
+  <div class="section-header">
+    <h2 class="section-title">Martini Gallery</h2>
+  </div>
+  <div class="showcase-container">
+    <div class="showcase-slider">
+      <div class="showcase-slide active">
+        <!-- Images will be loaded dynamically -->
+      </div>
+      <div class="showcase-slide">
+        <!-- Images will be loaded dynamically -->
+      </div>
+    </div>
+    <div class="showcase-nav">
+      <div class="showcase-dot active" onclick="currentSlide(0)"></div>
+      <div class="showcase-dot" onclick="currentSlide(1)"></div>
+    </div>
+  </div>
+</section>
+
+<script src="js/news-loader.js"></script>
+
 <script>
+  // Smooth Scroll with offset
+  function scrollToElement(selector) {
+    const element = document.querySelector(selector);
+    const offset = 55; // Adjust this value based on your navbar height
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+
+  // Image loading and showcase functionality
+  const validImageExtensions = ['.png', '.jpg', '.jpeg', '.gif'];
+  const excludedImages = ['favicon.png', 'martini.gif', 'home.jpeg'];
+
+  async function getShowcaseImages() {
+    // Hardcoded list of showcase images
+    let showcaseImages = [
+      'cell2.png',
+      'Genome.png',
+      'ribosomes.png',
+      'peptide.png',
+      'membrane.png',
+      'protein.gif',
+      'martini_glass.jpeg'
+    ].filter(img => !excludedImages.includes(img));
+
+    // Shuffle the showcase images array
+    for (let i = showcaseImages.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [showcaseImages[i], showcaseImages[j]] = [showcaseImages[j], showcaseImages[i]];
+    }
+
+    // Calculate number of slides needed
+    const imagesPerSlide = 6;
+    const totalImages = showcaseImages.length;
+    const numSlides = Math.ceil(totalImages / imagesPerSlide);
+    const slides = [];
+    
+    for (let i = 0; i < numSlides; i++) {
+      // Create an array of positions (0-5)
+      const positions = Array.from({length: imagesPerSlide}, (_, i) => i);
+      
+      // Shuffle the positions
+      for (let j = positions.length - 1; j > 0; j--) {
+        const k = Math.floor(Math.random() * (j + 1));
+        [positions[j], positions[k]] = [positions[k], positions[j]];
+      }
+
+      // Create slide with randomized positions
+      const slideImages = new Array(imagesPerSlide);
+      for (let j = 0; j < imagesPerSlide; j++) {
+        const imageIndex = (i * imagesPerSlide + j) % totalImages;
+        const imageName = showcaseImages[imageIndex];
+        const altText = imageName.split('.')[0].replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        slideImages[positions[j]] = {
+          src: `images/${imageName}`,
+          alt: altText
+        };
+      }
+      slides.push(slideImages);
+    }
+    
+    return slides;
+  }
+
+  function createShowcaseItem(image) {
+    const item = document.createElement('div');
+    item.className = 'showcase-item';
+    
+    const img = document.createElement('img');
+    img.src = image.src;
+    img.alt = image.alt;
+    img.className = 'showcase-image';
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'showcase-overlay';
+    
+    item.appendChild(img);
+    item.appendChild(overlay);
+    
+    return item;
+  }
+
+  async function loadShowcaseImages() {
+    const slides = document.querySelectorAll('.showcase-slide');
+    const showcaseImages = await getShowcaseImages();
+    
+    slides.forEach((slide, slideIndex) => {
+      const images = showcaseImages[slideIndex];
+      images.forEach(image => {
+        const item = createShowcaseItem(image);
+        slide.appendChild(item);
+      });
+    });
+  }
+
+  // Update the showcase navigation dots based on number of slides
+  async function updateShowcaseNav() {
+    const slides = await getShowcaseImages();
+    const navContainer = document.querySelector('.showcase-nav');
+    navContainer.innerHTML = ''; // Clear existing dots
+    
+    for (let i = 0; i < slides.length; i++) {
+      const dot = document.createElement('div');
+      dot.className = `showcase-dot ${i === 0 ? 'active' : ''}`;
+      dot.onclick = () => currentSlide(i);
+      navContainer.appendChild(dot);
+    }
+  }
+
+  // Showcase Slider functionality
   let currentSlideIndex = 0;
-  const slides = document.querySelectorAll('.image-slider .slide');
-  const dots = document.querySelectorAll('.dots .dot');
-  const totalSlides = slides.length;
+  let slides = document.querySelectorAll('.showcase-slide');
+  let dots = document.querySelectorAll('.showcase-dot');
+  let totalSlides = slides.length;
 
   function showSlide(index) {
+    // Update slides
     slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
+      if (i === index) {
+        slide.classList.add('active');
+        slide.style.visibility = 'visible';
+      } else {
+        slide.classList.remove('active');
+        slide.style.visibility = 'hidden';
+      }
     });
+
+    // Update dots
     dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
+      if (i === index) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
     });
+
     currentSlideIndex = index;
   }
 
@@ -327,35 +486,50 @@ ul.task-list li input[type="checkbox"] {
     showSlide(index);
   }
 
-  setInterval(showNextSlide, 5000);
+  // Auto-advance slides every 5 seconds
+  let slideInterval = setInterval(showNextSlide, 5000);
 
-  // Initially show the first slide
+  // Initialize first slide
   showSlide(0);
 
-  // Function to scroll to the second div
-  function scrollToElement(selector) {
-    const targetElement = document.querySelector(selector);
-    smoothScroll({toElement: targetElement, duration: 1000});
-  }
-</script>
-
-<script>
-  const container = document.querySelector('.container');
-
-  for (let i = 0; i < 12; i++) {
-    const doodle = document.createElement('div');
-    doodle.className = 'doodle';
-    doodle.style.animationDelay = `${i * -5.8}s`;
+  // Update slides and dots when images are loaded
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadShowcaseImages();
+    await updateShowcaseNav();
     
-    // Randomize background color and size
-    const colors = ['pink', 'green', 'yellow'];
-    const color = colors[Math.floor(Math.random() * colors.length)];
-    const size = 0.9 * 2.1 + 1.8;
-    doodle.style.background = `radial-gradient(${color} 10%, transparent 25%)`;
-    doodle.style.backgroundSize = `${size}% ${size}%`;
+    // Re-initialize slider variables after images are loaded
+    slides = document.querySelectorAll('.showcase-slide');
+    dots = document.querySelectorAll('.showcase-dot');
+    totalSlides = slides.length;
+    
+    // Reset interval
+    clearInterval(slideInterval);
+    slideInterval = setInterval(showNextSlide, 5000);
+    
+    // Show first slide
+    showSlide(0);
+  });
 
-    container.appendChild(doodle);
-  }
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('.animate-in').forEach((el) => observer.observe(el));
+
+  // News Ticker Animation
+  const ticker = document.querySelector('.ticker-content');
+  ticker.addEventListener('animationend', () => {
+    ticker.style.animation = 'none';
+    ticker.offsetHeight; // Trigger reflow
+    ticker.style.animation = 'ticker 30s linear infinite';
+  });
 </script>
 
 
@@ -791,7 +965,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="nav-footer-right">
 <div class="footer-right">
-Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
 </div>
 </div>
   </div>

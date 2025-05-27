@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Martini force field tutorials – Martini Force Field Initiative</title>
+<title>Tutorials – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
@@ -41,10 +40,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-82b93fa6e9d4bbeb9323a7e931f05c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ccc03462e8293e7b9ad885a82c4b4108.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +70,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FDF7F4;
+      }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -98,12 +103,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<meta property="og:title" content="Martini force field tutorials – Martini Force Field Initiative">
-<meta property="og:description" content="">
+<meta property="og:title" content="Tutorials – Martini Force Field Initiative">
+<meta property="og:description" content="Martini lectures, hands-on tutorials, and legacy materials">
 <meta property="og:image" content="https://cgmartini.nl/docs/tutorials/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Martini force field tutorials – Martini Force Field Initiative">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="Tutorials – Martini Force Field Initiative">
+<meta name="twitter:description" content="Martini lectures, hands-on tutorials, and legacy materials">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -111,12 +116,12 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    <img src="../../images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -136,26 +141,28 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/downloads/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+    <a class="nav-link" href="../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/publications/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+    <a class="nav-link" href="../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/contact/contact.html"> 
+    <a class="nav-link" href="../../docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
         <li>
     <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
 </i> 
@@ -193,7 +200,24 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-right">
+      <h1 class="title">Tutorials</h1>
+            <p class="subtitle lead">Martini lectures, hands-on tutorials, and legacy materials</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-right">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -231,33 +255,30 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Martini force field tutorials</h1>
-</div>
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta column-page-right">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p>The material offered here aims to help you familiarize yourself with some of the basic and more advanced aspects of performing Martini 3 coarse-grained simulations. The material follows a historical track, starting with the MARTINI model for lipids. It goes on to describe how to set up simulations with proteins (and peptides), and then continues with more advanced topics, like backmapping (i.e.&nbsp;fine graining from a coarse-grained structure), parameterization of new molecules, and more.</p>
 <p><a href="../../docs/tutorials/Martini3/lectures.html">Lectures</a> by several Martini developers describing some of the most important model features and tools are available, alongside a set of <a href="../../docs/tutorials/Martini3/tutorials.html">hands-on tutorials</a> showing users how to set up a variety of Martini systems.</p>
 <p>For the tutorials, familiarity with GROMACS is assumed; for an explanation of how to work with GROMACS and the specification of force field and run parameters we refer to the <a href="https://www.gromacs.org">GROMACS user manual</a>. There is also an excellent collection of GROMACS tutorials available <a href="http://www.mdtutorials.com/gmx/">here</a>. The material can be covered in as much time as you like, and the speed at which you go through this material depends on the computational facilities available, your GROMACS skills, and the time you take to consider what you’re doing. The set-up is modular, however, and depending on you particular interest, you may change the order of the exercises. You could either leave long runs overnight to return to them the next day, or use ”pre-prepared” intermediate and result files that will be provided.</p>
 <p>Finally, a set of <a href="../../docs/tutorials/Legacy/index.html">legacy tutorials</a> pertaining to older iterations of Martini is also available.</p>
-<p><em>This material was originally written for the 2008 MARTINI winterschool in Helsinki, and has since been updated for numerous other workshops by several Martini developers (in no particular order): Lars Schäfer, Andrzej Rzepiela, Martti Louhivuori, Clement Arnarez, Alex de Vries, Djurre de Jong, Helgi Ingólfsson, Manuel Nuno Melo and Jaakko Uusitalo, Pim Frederix, Ignacio Faustino Paulo C. T. Souza, Siewert-Jan Marrink, Tsjerk Wassenaar, Luca Monticelli, Riccardo Alessandri, Raul Mera A., Sebastian Thallmair, Fabian Grünewald, Weria Pezeshkian, Peter Tieleman, Besian I. Sejdiu, Luís Borges-Araújo, Melanie König, Selim Sami, Liu Y., Daniel P. Ramirez-Echemendia, Chris Brasnett, Martin Calvelo.</em></p>
-<p><em>Last updated: October 2024</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note from the Martini Developers Team
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This material was originally written for the 2008 MARTINI winterschool in Helsinki, and has since been updated for numerous other workshops by several Martini developers (in no particular order): Lars Schäfer, Andrzej Rzepiela, Martti Louhivuori, Clement Arnarez, Alex de Vries, Djurre de Jong, Helgi Ingólfsson, Manuel Nuno Melo and Jaakko Uusitalo, Pim Frederix, Ignacio Faustino Paulo C. T. Souza, Siewert-Jan Marrink, Tsjerk Wassenaar, Luca Monticelli, Riccardo Alessandri, Raul Mera A., Sebastian Thallmair, Fabian Grünewald, Weria Pezeshkian, Peter Tieleman, Besian I. Sejdiu, Luís Borges-Araújo, Melanie König, Selim Sami, Liu Y., Daniel P. Ramirez-Echemendia, Chris Brasnett, Martin Calvelo.</p>
+<p>Last updated: October 2024</p>
+</div>
+</div>
 
 
 
@@ -701,7 +722,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="nav-footer-right">
 <div class="footer-right">
-Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
 </div>
 </div>
   </div>

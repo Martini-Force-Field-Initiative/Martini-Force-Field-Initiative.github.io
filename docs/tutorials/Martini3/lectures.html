@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lectures – Martini Force Field Initiative</title>
+<title>Martini Lectures – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
@@ -42,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-82b93fa6e9d4bbeb9323a7e931f05c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ccc03462e8293e7b9ad885a82c4b4108.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,6 +71,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FDF7F4;
+      }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -99,10 +104,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Lectures – Martini Force Field Initiative">
+<meta property="og:title" content="Martini Lectures – Martini Force Field Initiative">
+<meta property="og:description" content="Collection of lectures covering various aspects of the Martini force field and its applications">
 <meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Lectures – Martini Force Field Initiative">
+<meta name="twitter:title" content="Martini Lectures – Martini Force Field Initiative">
+<meta name="twitter:description" content="Collection of lectures covering various aspects of the Martini force field and its applications">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -110,12 +117,12 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -135,26 +142,28 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/downloads/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+    <a class="nav-link" href="../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/publications/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+    <a class="nav-link" href="../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/contact/contact.html"> 
+    <a class="nav-link" href="../../../docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
         <li>
     <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
 </i> 
@@ -192,7 +201,24 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-right">
+      <h1 class="title">Martini Lectures</h1>
+            <p class="subtitle lead">Collection of lectures covering various aspects of the Martini force field and its applications</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-right">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -230,50 +256,195 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Lectures</h1>
+
+
+
+
+
+  <style>
+    :root {
+      --primary-color: #4B2E4C;
+      --secondary-color: #A89CB0;
+      --accent-color: #e74c3c;
+      --text-color: #2c3e50;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
+    }
+    .btn-rounded-primary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+    .btn-rounded-secondary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+    @media (max-width: 754px) {
+        /* Make the buttons smaller on mobile */
+        .btn-rounded-primary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        .btn-rounded-secondary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            /* decrease the width of the buttons */            text-align: center;
+        }
+
+        .lecture-item {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+
+<div class="lecture-grid">
+<div class="lecture-item">
+<p><strong>• Introduction to Martini 3</strong></p>
+<p><strong>Author:</strong> <em>Paulo C. T. Souza</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/PCTS-Martini3.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Introduction_to_Martini3.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<hr>
-<ul>
-<li><p><code>Introduction to Martini 3</code> - <em>by Paulo C. T. Souza</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/PCTS-Martini3.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Introduction_to_Martini3.pdf">[Slides]</a></p></li>
-<li><p><code>Novel applications of Martini 3</code> - <em>by Siewert-Jan Marrink</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/SJ-martini_applications.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/SJ-martini3-applications.pdf">[Slides]</a></p></li>
-<li><p><code>Martini ecosystem of tools</code> - <em>by Tsjerk Wassenaar</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-08-Martini-Tools.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-Tools.pdf">[Slides]</a></p></li>
-<li><p><code>The MArtini Database (MAD) and web server</code> - <em>by Luca Monticelli</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Martini_workshop_2021_MAD.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MAD_server.pdf">[Slides]</a></p></li>
-<li><p><code>The Martini Lipids</code> - <em>by Manuel N. Melo</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/MN_Melo_Martini_lipids.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MN_Melo_Martini_lipids.pdf">[Slides]</a></p></li>
-<li><p><code>Martini 3 Small Molecules</code> - <em>by Riccardo Alessandri</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-09-02_MartiniWorkshop2021_Small_molecules.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/2021-09-02_MartiniWorkshop2021_Small_molecules-vFINAL.pdf">[Slides]</a></p></li>
-<li><p><code>Bartender</code> - <em>by Raul Mera A.</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Bartender_Raul.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Bartender_RMera.pdf">[Slides]</a></p></li>
-<li><p><code>Protein models in Martini 3</code> - <em>by Sebastian Thallmair</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/GoModels_Sebastian.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/M3workshop-01.pdf">[Slides]</a></p></li>
-<li><p><code>Protein-small molecule binding with Martini 3</code> - <em>by Paulo C. T. Souza</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Protein_Small_molecule_Binding.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Protein_Small_molecule_Binding.pdf">[Slides]</a></p></li>
-<li><p><code>Polymer modeling with Martini 3</code> - <em>by Fabian Grünewald</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Polyply_Fabian.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/PolyplyWorkshop2021.pdf">[Slides]</a></p></li>
-<li><p><code>Titratable Martini</code> - <em>by Fabian Grünewald</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TitratableMartini.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/TitratableMartiniWorkshop2021.pdf">[Slides]</a></p></li>
-<li><p><code>TS2CG</code> - <em>by Weria Pezeshkian</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TS2CG_Weria.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/weria_TS2CG.pdf">[Slides]</a></p></li>
-<li><p><code>Machine Learning-driven Multiscale Modeling</code> - <em>by Helgi I. Ingólfsson</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/helgi_MuMMI.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini+workshop+-+MuMMI+-+Ingolfsson.pdf">[Slides]</a></p></li>
-<li><p><code>Lipid-protein interactions</code> - <em>by Peter Tieleman</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/peter.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-tieleman.pdf">[Slides]</a></p></li>
-<li><p><code>ProLint</code> - <em>by Besian I. Sejdiu</em> - <a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/besian.mp4">[Watch]</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Sejdiu_MartiniWorkshop.pptx.pdf">[Slides]</a></p></li>
-</ul>
-<hr>
-<blockquote class="blockquote">
-<p><strong>Note</strong>: If you are experiencing difficulties playing the videos, please try updating your browser.</p>
-</blockquote>
-<hr>
+</div>
+<div class="lecture-item">
+<p><strong>• Novel applications of Martini 3</strong></p>
+<p><strong>Author:</strong> <em>Siewert-Jan Marrink</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/SJ-martini_applications.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/SJ-martini3-applications.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Martini ecosystem of tools</strong></p>
+<p><strong>Author:</strong> <em>Tsjerk Wassenaar</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-08-Martini-Tools.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-Tools.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• The Martini Database (MAD) and web server</strong></p>
+<p><strong>Author:</strong> <em>Luca Monticelli</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Martini_workshop_2021_MAD.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MAD_server.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• The Martini Lipids</strong></p>
+<p><strong>Author:</strong> <em>Manuel N. Melo</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/MN_Melo_Martini_lipids.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/MN_Melo_Martini_lipids.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Martini 3 Small Molecules</strong></p>
+<p><strong>Author:</strong> <em>Riccardo Alessandri</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/2021-09-02_MartiniWorkshop2021_Small_molecules.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/2021-09-02_MartiniWorkshop2021_Small_molecules-vFINAL.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Bartender</strong></p>
+<p><strong>Author:</strong> <em>Raul Mera A.</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Bartender_Raul.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Bartender_RMera.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Protein models in Martini 3</strong></p>
+<p><strong>Author:</strong> <em>Sebastian Thallmair</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/GoModels_Sebastian.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/M3workshop-01.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Protein-small molecule binding with Martini 3</strong></p>
+<p><strong>Author:</strong> <em>Paulo C. T. Souza</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Protein_Small_molecule_Binding.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Protein_Small_molecule_Binding.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Polymer modeling with Martini 3</strong></p>
+<p><strong>Author:</strong> <em>Fabian Grünewald</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/Polyply_Fabian.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/PolyplyWorkshop2021.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Titratable Martini</strong></p>
+<p><strong>Author:</strong> <em>Fabian Grünewald</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TitratableMartini.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/TitratableMartiniWorkshop2021.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• TS2CG</strong></p>
+<p><strong>Author:</strong> <em>Weria Pezeshkian</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/TS2CG_Weria.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/weria_TS2CG.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Machine Learning-driven Multiscale Modeling</strong></p>
+<p><strong>Author:</strong> <em>Helgi I. Ingólfsson</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/helgi_MuMMI.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini+workshop+-+MuMMI+-+Ingolfsson.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Lipid-protein interactions</strong></p>
+<p><strong>Author:</strong> <em>Peter Tieleman</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/peter.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Martini-tieleman.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• ProLint</strong></p>
+<p><strong>Author:</strong> <em>Besian I. Sejdiu</em></p>
+<div class="lecture-buttons">
+<p><a href="https://d3ebrx6qufncts.cloudfront.net/0_Tutorials/Lectures/videos/besian.mp4" class="btn btn-primary btn-rounded-primary">Watch</a> <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/Lectures/pdfs/Sejdiu_MartiniWorkshop.pptx.pdf" class="btn btn-secondary btn-rounded-secondary">Slides</a></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Video Playback Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you experience any issues playing the videos, please try: - Updating your web browser to the latest version - Using a modern browser like Chrome, Firefox, or Safari - Clearing your browser cache</p>
+</div>
+</div>
 
 
 
@@ -677,7 +848,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../../../docs/tutorials/index.html" class="pagination-link" aria-label="<b>Summary</b><hr>">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><b>Summary</b></span>
@@ -720,7 +891,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="nav-footer-right">
 <div class="footer-right">
-Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
 </div>
 </div>
   </div>

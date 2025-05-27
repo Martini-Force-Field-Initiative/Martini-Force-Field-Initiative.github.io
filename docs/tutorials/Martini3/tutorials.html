@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorials – Martini Force Field Initiative</title>
+<title>Hands-on Tutorials – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
@@ -42,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-82b93fa6e9d4bbeb9323a7e931f05c03.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ccc03462e8293e7b9ad885a82c4b4108.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,6 +71,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FDF7F4;
+      }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -99,10 +104,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Tutorials – Martini Force Field Initiative">
+<meta property="og:title" content="Hands-on Tutorials – Martini Force Field Initiative">
+<meta property="og:description" content="Step by step tutorials to get you started with Martini">
 <meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Tutorials – Martini Force Field Initiative">
+<meta name="twitter:title" content="Hands-on Tutorials – Martini Force Field Initiative">
+<meta name="twitter:description" content="Step by step tutorials to get you started with Martini">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -110,12 +117,12 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/martini.gif" alt="martini logo." class="navbar-logo">
+    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -135,26 +142,28 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/downloads/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-meteor" aria-label="meteor"></i> Downloads</span></a>
+    <a class="nav-link" href="../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/publications/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-newspaper" aria-label="newspaper"></i> Publications</span></a>
+    <a class="nav-link" href="../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/contact/contact.html"> 
+    <a class="nav-link" href="../../../docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-solid-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-solid-circle-info--help">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
         <li>
     <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
 </i> 
@@ -192,7 +201,24 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-right">
+      <h1 class="title">Hands-on Tutorials</h1>
+            <p class="subtitle lead">Step by step tutorials to get you started with Martini</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-right">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -230,46 +256,181 @@ ul.task-list li input[type="checkbox"] {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Tutorials</h1>
+
+
+
+
+
+  <style>
+    :root {
+      --primary-color: #4B2E4C; /* Muted, deep eggplant */
+      --secondary-color: #A89CB0; /* Muted lavender/gray accent */
+      --accent-color: #7A5C85; /* Muted eggplant accent */
+      --text-color: #232129; /* Neutral, dark gray for high contrast */
+      --light-bg: #f8f9fa;
+      --white: #fff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
+    }
+    .btn-rounded-primary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+    .btn-rounded-secondary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+    @media (max-width: 754px) {
+        /* Make the buttons smaller on mobile */
+        .btn-rounded-primary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        .btn-rounded-secondary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            /* decrease the width of the buttons */            text-align: center;
+        }
+
+        .lecture-item {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+
+<div class="tutorial-grid">
+<div class="tutorial-item">
+<p><strong>• Lipid bilayers - Part I: Self-assembly</strong></p>
+<p><strong>Description:</strong> <em>Basic tutorial on lipid bilayer self-assembly</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/LipidsI/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<hr>
-<ol type="1">
-<li><p><a href="../../../docs/tutorials/Martini3/LipidsI/index.html"><code>Lipid bilayers - Part I: Self-assembly</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/LipidsII/index.html"><code>Lipid bilayers - Part II: Complex mixtures using Insane</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/ProteinsI/index.html"><code>Proteins - Part I: Basics and Martinize 2</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/ProteinsII/index.html"><code>Proteins - Part II: TM proteins and Protein complexes</code></a></p>
-<p>4.1. <a href="../../../docs/tutorials/Martini3/collabtuts/Tutorial1_Ceramide_VDAC1binding.html"><code>Ceramide — VDAC1 binding in a membrane (Collab tutorial)</code></a></p>
-<p>4.2. <a href="../../../docs/tutorials/Martini3/collabtuts/Tutorial2_Lipidomics_Mag2.html"><code>Lipidomics study: Mag2 in a POPC and POPC-POPG 3:1 membrane (Collab tutorial)</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html"><code>Parametrization of a new small molecule</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/Protein_Ligand_Binding/index.html"><code>Protein-small molecule binding</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/Backward/index.html"><code>Reverse coarse-graining with Backward</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/Polyply/index.html"><code>Polyply: generating input parameters and coordinates</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/TS2CG/index.html"><code>TS2CG: membranes with user-defined shapes and compositions</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/ddcMD/index.html"><code>Running Martini simulation with ddcMD</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/Titratable_Martini/index.html"><code>Titratable Martini for constant pH simulations</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/ProLint/index.html"><code>prolintpy: Automatic analysis of lipid-protein interactions</code></a></p></li>
-<li><p><a href="../../../docs/tutorials/Martini3/Dual_Resolution_Membrane/index.html"><code>Dual resolution membrane simulation</code></a></p></li>
-</ol>
-<hr>
+</div>
+<div class="tutorial-item">
+<p><strong>• Lipid bilayers - Part II: Complex lipid mixtures</strong></p>
+<p><strong>Description:</strong> <em>Learn how to create complex lipid mixtures using Insane</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/LipidsII/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Proteins - Part I: Basics and Martinize 2</strong></p>
+<p><strong>Description:</strong> <em>Introduction to protein modeling with Martini</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/ProteinsI/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Proteins - Part II: TM proteins and Protein complexes</strong></p>
+<p><strong>Description:</strong> <em>Advanced protein modeling applications</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/ProteinsII/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Parametrization of a new small molecule</strong></p>
+<p><strong>Description:</strong> <em>Learn how to parametrize new molecules for Martini</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Protein-small molecule binding</strong></p>
+<p><strong>Description:</strong> <em>Study protein-ligand interactions</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/Protein_Ligand_Binding/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Reverse coarse-graining with Backward</strong></p>
+<p><strong>Description:</strong> <em>Convert Martini structures to atomistic resolution</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/Backward/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Polyply: generating input parameters and coordinates</strong></p>
+<p><strong>Description:</strong> <em>Create complex molecular systems for Martini</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/Polyply/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• TS2CG: membranes with user-defined shapes and compositions</strong></p>
+<p><strong>Description:</strong> <em>Create custom membrane shapes</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/TS2CG/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Running Martini simulation with ddcMD</strong></p>
+<p><strong>Description:</strong> <em>Learn how to use ddcMD for Martini simulations</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/ddcMD/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Titratable Martini for constant pH simulations</strong></p>
+<p><strong>Description:</strong> <em>Perform pH-dependent simulations with Martini</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/Titratable_Martini/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Prolintpy: Automatic analysis of lipid-protein interactions</strong></p>
+<p><strong>Description:</strong> <em>Advanced analysis of lipid-protein interactions from Martini simulations</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/ProLint/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+<div class="tutorial-item">
+<p><strong>• Dual resolution membrane simulation</strong></p>
+<p><strong>Description:</strong> <em>Combine different resolution models for membrane simulations</em></p>
+<div class="tutorial-buttons">
+<p><a href="../../../docs/tutorials/Martini3/Dual_Resolution_Membrane/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Contribute to this collection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To contribute with new tutorials, please get in touch with the Martini team through the <a href="../../../docs/contact/index.html">Contacts Page</a> or review the <a href="https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/README.md">Contribution Guidelines</a> to this web portal.</p>
+</div>
+</div>
 
 
 
@@ -673,7 +834,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../../../docs/tutorials/Martini3/lectures.html" class="pagination-link" aria-label="🎓 Martini Lectures">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🎓 Martini Lectures</span>
@@ -716,7 +877,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
     <div class="nav-footer-right">
 <div class="footer-right">
-Maintained by the Martini Developers Team <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
 </div>
 </div>
   </div>
