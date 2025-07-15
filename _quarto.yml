@@ -3,6 +3,7 @@ project:
   output-dir: _site
   resources:
     - docs/announcements/posts/_metadata.yml
+    - js/sidebar-close.js
 
 website:
   title: "Martini Force Field Initiative"
@@ -188,6 +189,8 @@ format:
     css: styles.css
     include-after-body: 
       - file: random-quotes.html 
+      - text: |
+          <script src="/js/sidebar-close.js"></script> 
     grid:
       sidebar-width: 250px
       body-width: 900px
