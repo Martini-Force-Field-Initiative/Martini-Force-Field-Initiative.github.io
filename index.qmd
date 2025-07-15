@@ -337,6 +337,141 @@ resources:
 <script src="js/news-loader.js"></script>
 
 <script>
+  // Easter Egg Functions
+  function createFloatingMartini() {
+    // Create the easter egg container
+    const easterEgg = document.createElement('div');
+    easterEgg.id = 'martini-easter-egg';
+    
+    easterEgg.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: 400px;
+      height: 200px;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3);
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    `;
+
+    // Create the martini image
+    const martiniImg = document.createElement('img');
+    martiniImg.src = 'images/martini.gif';
+    martiniImg.alt = 'Cheers! 🍸';
+    martiniImg.style.cssText = `
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)) brightness(1.2) contrast(1.2);
+      border-radius: 20px;
+    `;
+
+    // Create a text element
+    const textElement = document.createElement('div');
+    textElement.innerHTML = '<h2 style="color: white; margin: 0; font-size: 2rem; text-shadow: 0 4px 8px rgba(0,0,0,0.6); font-family: sans-serif;">🍸 Cheers! 🍸</h2><p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-family: sans-serif;">You found the rare Martini easter egg!</p>';
+
+    // Add error handling for image loading
+    martiniImg.onerror = function() {
+      // Show large emoji if image fails to load
+      martiniImg.style.display = 'none';
+      const emojiDiv = document.createElement('div');
+      emojiDiv.style.cssText = 'font-size: 120px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));';
+      emojiDiv.textContent = '🍸';
+      easterEgg.insertBefore(emojiDiv, textElement);
+    };
+    
+    easterEgg.appendChild(martiniImg);
+    easterEgg.appendChild(textElement);
+    document.body.appendChild(easterEgg);
+    
+    // Animate in
+    setTimeout(() => {
+      easterEgg.style.opacity = '1';
+      easterEgg.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 100);
+    
+    // Start floating animation
+    startFloatingAnimation(easterEgg);
+    
+    // Auto-remove after 15 seconds
+    setTimeout(() => {
+      if (document.body.contains(easterEgg)) {
+        easterEgg.style.opacity = '0';
+        easterEgg.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        setTimeout(() => {
+          if (document.body.contains(easterEgg)) {
+            easterEgg.remove();
+          }
+        }, 1000);
+      }
+    }, 15000);
+  }
+
+  function startFloatingAnimation(element) {
+    if (!element || !document.body.contains(element)) {
+      return;
+    }
+    
+    let floatDirection = 1;
+    let currentY = 0;
+    let animationId;
+    
+    const floatAnimation = () => {
+      if (!document.body.contains(element)) {
+        cancelAnimationFrame(animationId);
+        return;
+      }
+      
+      currentY += floatDirection * 0.3;
+      if (currentY > 8 || currentY < -8) {
+        floatDirection *= -1;
+      }
+      
+      try {
+        element.style.transform = `translate(-50%, -50%) translateY(${currentY}px) scale(${1 + Math.sin(Date.now() * 0.002) * 0.02})`;
+        animationId = requestAnimationFrame(floatAnimation);
+      } catch (error) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+    
+    animationId = requestAnimationFrame(floatAnimation);
+  }
+
+  function initEasterEgg() {
+    if (document.getElementById('martini-easter-egg')) {
+      return;
+    }
+    
+    const randomChance = Math.floor(Math.random() * 1000);
+    
+    // 0.1% chance (1 in 1000)
+    if (randomChance < 800) {
+      createFloatingMartini();
+    }
+  }
+
+  // Global test functions (for development/testing)
+  window.testEasterEgg = function() {
+    // Remove existing one first
+    const existing = document.getElementById('martini-easter-egg');
+    if (existing) {
+      existing.remove();
+    }
+    createFloatingMartini();
+  };
+
   // Smooth Scroll with offset
   function scrollToElement(selector) {
     const element = document.querySelector(selector);
@@ -528,10 +663,19 @@ resources:
 
   // News Ticker Animation
   const ticker = document.querySelector('.ticker-content');
-  ticker.addEventListener('animationend', () => {
-    ticker.style.animation = 'none';
-    ticker.offsetHeight; // Trigger reflow
-    ticker.style.animation = 'ticker 30s linear infinite';
+  if (ticker) {
+    ticker.addEventListener('animationend', () => {
+      ticker.style.animation = 'none';
+      ticker.offsetHeight; // Trigger reflow
+      ticker.style.animation = 'ticker 30s linear infinite';
+    });
+  }
+
+  // Initialize easter egg on page load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      initEasterEgg();
+    }, 1000);
   });
 </script>
 ```
