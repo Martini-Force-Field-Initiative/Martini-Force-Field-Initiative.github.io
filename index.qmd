@@ -44,21 +44,191 @@ resources:
       --card-min-height: 420px;
       --card-max-height: 800px;
     }
+
+    /* Base hero section override - removed banner so adjust height calculation */
+    .hero {
+      height: calc(100vh - 56px) !important;
+      min-height: calc(100vh - 56px) !important;
+    }
+
+    /* Enhanced Height-Based Media Queries for Display Size Optimization */
+    
+    /* Very small height devices (landscape phones, small tablets in landscape) */
+    @media (max-height: 500px) {
+      .hero {
+        height: calc(100vh - 56px) !important;
+        min-height: 350px !important;
+        padding: 0.5rem !important;
+      }
+      
+      .hero-content {
+        padding: 1rem !important;
+        margin-top: 1rem !important;
+        backdrop-filter: blur(5px) !important;
+      }
+      
+      .hero-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      .hero-subtitle {
+        font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      .hero-buttons {
+        gap: 0.5rem !important;
+      }
+      
+      .btn {
+        padding: 0.5rem 1.2rem !important;
+        font-size: 0.9rem !important;
+      }
+      
+      .hero-scroll-indicator {
+        display: none !important;
+      }
+      
+      .news-section, .about-section, .showcase-section {
+        padding: 1rem 0.5rem !important;
+      }
+      
+      .section-title {
+        font-size: clamp(1.4rem, 3.5vw, 1.8rem) !important;
+        padding-bottom: 1rem !important;
+      }
+      
+      .about-content {
+        padding: 1rem !important;
+        gap: 1.5rem !important;
+      }
+      
+      .showcase-slider {
+        height: 300px !important;
+      }
+    }
+
+    /* Small height devices (small laptops, tablets in portrait) */
+    @media (min-height: 501px) and (max-height: 700px) {
+      .hero {
+        height: calc(100vh - 56px);
+        min-height: 450px;
+      }
+      
+      .hero-content {
+        margin-top: 2rem;
+        padding: 1.5rem;
+      }
+      
+      .about-section {
+        padding: 1.5rem !important;
+      }
+      
+      .about-content {
+        padding: 1.5rem !important;
+      }
+      
+      .showcase-section {
+        padding: 1rem !important;
+      }
+      
+      .showcase-slider {
+        height: clamp(400px, 45vh, 550px) !important;
+      }
+      
+      .news-section {
+        padding: 1.5rem !important;
+      }
+    }
+
+    /* Medium height devices (standard laptops, large tablets) */
+    @media (min-height: 701px) and (max-height: 1000px) {
+      .hero {
+        height: calc(100vh - 56px);
+        min-height: 550px;
+      }
+      
+      .hero-content {
+        margin-top: 3rem;
+        padding: 2rem;
+      }
+      
+      .news-section {
+        padding: 2rem 1.5rem;
+      }
+      
+      .about-section {
+        padding: 3rem 2rem;
+      }
+      
+      .about-content {
+        padding: 2rem;
+      }
+      
+      .showcase-section {
+        padding: 2rem;
+      }
+      
+      .showcase-slider {
+        height: clamp(500px, 50vh, 650px);
+      }
+    }
+
+    /* Large height devices (large monitors, high-resolution displays) */
+    @media (min-height: 1001px) {
+      .hero {
+        height: calc(100vh - 56px);
+        min-height: 700px;
+      }
+      
+      .hero-content {
+        margin-top: 4rem;
+        padding: 3rem;
+      }
+      
+      .hero-title {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        margin-bottom: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+        margin-bottom: 2.5rem;
+      }
+      
+      .news-section {
+        padding: 4rem 2rem;
+      }
+      
+      .about-section {
+        padding: 5rem 2rem;
+      }
+      
+      .about-content {
+        padding: 3rem;
+        gap: 4rem;
+      }
+      
+      .showcase-section {
+        padding: 4rem 2rem;
+      }
+      
+      .showcase-slider {
+        height: clamp(600px, 55vh, 800px);
+      }
+      
+      .section-title {
+        font-size: clamp(2.5rem, 3vw, 3rem);
+      }
+      
+      .about-title {
+        font-size: clamp(2.2rem, 2.5vw, 2.8rem);
+      }
+    }
+
   </style>
 </head>
-
-<!-- Workshop Banner -->
-<div class="workshop-banner">
-  <div class="workshop-banner-content">
-    <div class="workshop-icon">🎓</div>
-    <div class="workshop-info">
-      <div class="workshop-title">Upcoming Workshop: Mastering the Martini Force Field!</div>
-      <div class="workshop-date">August 11-15, 2025</div>
-      <div class="workshop-location">📍 University of Groningen, The Netherlands</div>
-    </div>
-    <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/AnnouncementMWS2025.pdf" class="workshop-button">Register Now</a>
-  </div>
-</div>
 
 <!-- Hero Section -->
 <section class="hero">
