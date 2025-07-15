@@ -1017,7 +1017,7 @@ textarea.form-input {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 1220px) {
   .navbar {
     padding: 0.4rem 1.5rem;
   }
@@ -1029,6 +1029,14 @@ textarea.form-input {
   .nav-link {
     padding: 0.5rem 0.8rem !important;
     font-size: 0.85rem;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1160px) {
+  .nav-link {
+    padding: 0.35rem 0.3rem !important;
+    font-size: 0.83rem;
   }
 }
 
