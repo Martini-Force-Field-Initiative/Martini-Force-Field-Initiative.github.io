@@ -1214,6 +1214,64 @@ textarea.form-input {
   width: 24px;
 }
 
+/* Quarto Secondary Navigation and Toggle Button */
+.quarto-secondary-nav {
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 0.4rem 0;
+}
+
+.quarto-btn-toggle.btn {
+  /* Reset all inherited button styles */
+  all: unset;
+  
+  /* Apply only our specific styles */
+  background: none !important;
+  border: none !important;
+  color: var(--navbar-text) !important;
+  padding: 0.5rem !important;
+  cursor: pointer;
+  display: inline-block;
+  
+  /* Remove any inherited effects */
+  box-shadow: none !important;
+  text-decoration: none !important;
+  border-radius: 6px !important;
+  transition: none !important;
+  transform: none !important;
+  padding-left: 1.5em !important;
+  padding-right: 1.5em !important;
+
+
+}
+
+.quarto-btn-toggle.btn:hover {
+  background: var(--navbar-hover) !important;
+}
+
+.quarto-btn-toggle.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.quarto-btn-toggle.btn:active {
+  background: var(--navbar-hover) !important;
+  transform: none !important;
+}
+
+.quarto-btn-toggle.btn i {
+  font-size: 1rem;
+}
+
+/* Breadcrumbs in secondary nav */
+.quarto-page-breadcrumbs .breadcrumb {
+  margin: 0;
+  background: transparent;
+  padding-left: 0.3em;
+  margin-left: 0.3em;
+}
+
+
 /* Floating News Ticker */
 .news-ticker {
   position: fixed;
