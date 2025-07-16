@@ -21,6 +21,7 @@ resources:
   - images/membrane.png
   - images/martini_glass.jpeg
   - images/protein.gif
+  - images/welcome_elf.gif
   - apple-touch-icon.png
   - CNAME
 ---
@@ -348,45 +349,62 @@ resources:
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.8);
-      width: 400px;
-      height: 200px;
+      width: min(90vw, 1200px);
+      height: auto;
       z-index: 9999;
       pointer-events: none;
       opacity: 0;
       transition: opacity 1s ease-in-out, transform 1s ease-in-out;
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,255,255,0.3);
-      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255,255,255,0.2);
+      background: transparent;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 20px;
+      gap: clamp(15px, 2vw, 30px);
+      padding: clamp(20px, 3vw, 40px);
     `;
+
+    // Add dark overlay background
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9998;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    `;
+    
+    document.body.appendChild(overlay);
 
     // Create the martini image
     const martiniImg = document.createElement('img');
-    martiniImg.src = 'images/martini.gif';
+    martiniImg.src = 'images/welcome_elf.gif';
     martiniImg.alt = 'Cheers! 🍸';
     martiniImg.style.cssText = `
-      width: 120px;
-      height: 120px;
+      width: min(80vw, 1000px);
+      height: auto;
+      max-height: 60vh;
       object-fit: contain;
       filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)) brightness(1.2) contrast(1.2);
-      border-radius: 20px;
+      border-radius: clamp(10px, 1.5vw, 20px);
     `;
 
     // Create a text element
     const textElement = document.createElement('div');
-    textElement.innerHTML = '<h2 style="color: white; margin: 0; font-size: 2rem; text-shadow: 0 4px 8px rgba(0,0,0,0.6); font-family: sans-serif;">🍸 Cheers! 🍸</h2><p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0; font-size: 1.1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-family: sans-serif;">You found the rare Martini easter egg!</p>';
+    textElement.style.cssText = 'text-align: center;';
+    textElement.innerHTML = '<h2 style="color: white; margin: 0; font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 0 4px 8px rgba(0,0,0,0.6); font-family: sans-serif;">🍸 Cheers! 🍸</h2><p style="color: rgba(255,255,255,0.9); margin: 12px 0 0 0; font-size: clamp(1rem, 2.5vw, 1.3rem); text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-family: sans-serif;">You found the rare Martini elf!</p>';
 
     // Add error handling for image loading
     martiniImg.onerror = function() {
       // Show large emoji if image fails to load
       martiniImg.style.display = 'none';
       const emojiDiv = document.createElement('div');
-      emojiDiv.style.cssText = 'font-size: 120px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));';
+      emojiDiv.style.cssText = 'font-size: clamp(120px, 15vw, 180px); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));';
       emojiDiv.textContent = '🍸';
       easterEgg.insertBefore(emojiDiv, textElement);
     };
@@ -397,6 +415,7 @@ resources:
     
     // Animate in
     setTimeout(() => {
+      overlay.style.opacity = '1';
       easterEgg.style.opacity = '1';
       easterEgg.style.transform = 'translate(-50%, -50%) scale(1)';
     }, 100);
@@ -407,13 +426,15 @@ resources:
     // Auto-remove after 15 seconds
     setTimeout(() => {
       if (document.body.contains(easterEgg)) {
+        overlay.style.opacity = '0';
         easterEgg.style.opacity = '0';
         easterEgg.style.transform = 'translate(-50%, -50%) scale(0.8)';
         setTimeout(() => {
           if (document.body.contains(easterEgg)) {
             easterEgg.remove();
+            overlay.remove();
           }
-        }, 1000);
+        }, 200);
       }
     }, 15000);
   }
