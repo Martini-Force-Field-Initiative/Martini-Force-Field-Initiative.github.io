@@ -372,7 +372,7 @@ In case of issues, please contact <a href="mailto:%20paulo.telles-de-souza@ibcp.
 <p><strong>2A.</strong> Solvate the protein:</p>
 <p>Since we now have both the coordinates and topology of the Martini 3 protein, we can put the protein in a simulation cell, and add water and ions. We will use for this task <code>insane</code><sup><a href="#references">[8]</a></sup>, which is usually used to build systems containing lipid bilayers, but it can also be used for proteins in water solution.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2</span> insane.py <span class="at">-f</span> t4l_cg.pdb <span class="at">-o</span> CG.gro <span class="at">-p</span> CG.top <span class="at">-pbc</span> cubic <span class="at">-box</span> 10,10,10 <span class="at">-salt</span> 0.15 <span class="at">-sol</span> W <span class="at">-d</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can look for more details about the <code>insane.py</code> script <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>. The output file (<code>CG.gro</code>) contains NA+, CL-, and W residues while <code>CG.top</code> is a prototype of the master topology file. You can remove the charge signs of NA and CL in the <code>CG.top</code> file. You should also replace “Protein” by molecule_0. You may get a list of molecules which is similar to:</p>
+<p>You can look for more details about the <code>insane.py</code> script <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>. The output file (<code>CG.gro</code>) contains NA+, CL-, and W residues while <code>CG.top</code> is a prototype of the master topology file. You can remove the charge signs of NA and CL in the <code>CG.top</code> file. You should also replace “Protein” by molecule_0. You may get a list of molecules which is similar to:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> molecules </span><span class="co">]</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>; name number</span>
@@ -484,7 +484,7 @@ In case of issues, please contact <a href="mailto:%20paulo.telles-de-souza@ibcp.
 <li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
 <li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
 <li><p><code>martinize2</code> (<a href="https://github.com/marrink-lab/vermouth-martinize">https://github.com/marrink-lab/vermouth-martinize</a>)</p></li>
-<li><p><code>insane</code> (downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>)</p></li>
+<li><p><code>insane</code> (downloadable <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>)</p></li>
 </ul>
 </section>
 <section id="references" class="level3">
@@ -964,6 +964,7 @@ In case of issues, please contact <a href="mailto:%20paulo.telles-de-souza@ibcp.
       }
     });
 </script>
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

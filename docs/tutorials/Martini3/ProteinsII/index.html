@@ -408,7 +408,7 @@ In case of issues, please contact <a href="mailto:%20paulo.telles-de-souza@ibcp.
 <hr>
 <p>This second method, being the easiest and the most straightforward, is the recommended one to build such systems. Here is the procedure:</p>
 <ol type="1">
-<li>The syntax of the <code>insane.py</code> <sup><a href="#references">[9]</a></sup> script is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (Get the latest from the <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">Downloads</a> page.) Let’s see a practical example:</li>
+<li>The syntax of the <code>insane.py</code> <sup><a href="#references">[9]</a></sup> script is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (Get the latest from the <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">Downloads</a> page.) Let’s see a practical example:</li>
 </ol>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2</span> insane.py <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> POPC <span class="at">-u</span> POPC <span class="at">-center</span> <span class="at">-sol</span> W <span class="at">-salt</span> 0.01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The previous command line will set up a complete system, containing a squared POPC bilayer of <span class="math inline">\(7×7 nm^2\)</span>, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. More on the <code>insane.py</code> tool can be found in separate tutorials, notably setting up a complex bilayer (<a href="../../../../docs/tutorials/Martini3/LipidsII/index.html">lipid tutorial part II</a>).</p>
@@ -491,7 +491,7 @@ In case of issues, please contact <a href="mailto:%20paulo.telles-de-souza@ibcp.
 <li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
 <li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
 <li><p><code>martinize2</code> (<a href="https://github.com/marrink-lab/vermouth-martinize">https://github.com/marrink-lab/vermouth-martinize</a>)</p></li>
-<li><p><code>insane</code> (downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>)</p></li>
+<li><p><code>insane</code> (downloadable <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>)</p></li>
 </ul>
 </section>
 <section id="references" class="level3">
@@ -978,6 +978,7 @@ In case of issues, please contact <a href="mailto:%20paulo.telles-de-souza@ibcp.
       }
     });
 </script>
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

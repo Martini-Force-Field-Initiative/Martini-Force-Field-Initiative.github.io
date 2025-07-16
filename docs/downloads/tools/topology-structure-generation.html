@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Visualization – Martini Force Field Initiative</title>
+<title> Topology/Structure Generation – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +29,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../docs/downloads/tools/other-tools.html" rel="next">
-<link href="../../../docs/downloads/tools/resolution-transformation.html" rel="prev">
+<link href="../../../docs/downloads/tools/multiscaling.html" rel="next">
+<link href="../../../docs/downloads/example-applications/other-systems.html" rel="prev">
 <link href="../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -133,11 +98,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Visualization – Martini Force Field Initiative">
+<meta property="og:title" content=" Topology/Structure Generation – Martini Force Field Initiative">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://cgmartini.nl/docs/downloads/tools/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Visualization – Martini Force Field Initiative">
+<meta name="twitter:title" content=" Topology/Structure Generation – Martini Force Field Initiative">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/downloads/tools/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/proteins-and-bilayers.html">⚒️ Tools</a></li><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/visualization.html">Visualization</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">⚒️ Tools</li><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/topology-structure-generation.html"><i class="fas fa-wrench"></i> Actively Maintained</a></li><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/topology-structure-generation.html"><i class="fas fa-project-diagram"></i> Topology/Structure Generation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -479,28 +444,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fas fa-wrench"></i> Actively Maintained</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/downloads/tools/proteins-and-bilayers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Proteins and bilayers</span></a>
+  <a href="../../../docs/downloads/tools/topology-structure-generation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><i class="fas fa-project-diagram"></i> Topology/Structure Generation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/downloads/tools/resolution-transformation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Resolution transformation</span></a>
+  <a href="../../../docs/downloads/tools/multiscaling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fas fa-layer-group"></i> Multiscaling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/downloads/tools/visualization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Visualization</span></a>
+  <a href="../../../docs/downloads/tools/analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fas fa-chart-pie"></i> Analysis</span></a>
   </div>
 </li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/downloads/tools/other-tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Other tools</span></a>
+  <a href="../../../docs/downloads/tools/legacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fas fa-history"></i> Legacy Tools</span></a>
   </div>
 </li>
       </ul>
@@ -515,17 +491,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#rendering-cg-bonds-constraints-with-vmd" id="toc-rendering-cg-bonds-constraints-with-vmd" class="nav-link active" data-scroll-target="#rendering-cg-bonds-constraints-with-vmd">Rendering CG bonds &amp; constraints with VMD</a></li>
-  <li><a href="#rendering-cg-helices-sheets-with-vmd" id="toc-rendering-cg-helices-sheets-with-vmd" class="nav-link" data-scroll-target="#rendering-cg-helices-sheets-with-vmd">Rendering CG helices &amp; sheets with VMD</a></li>
+  <li><a href="#martinize2vermouth" id="toc-martinize2vermouth" class="nav-link active" data-scroll-target="#martinize2vermouth">Martinize2/Vermouth</a></li>
+  <li><a href="#polyply" id="toc-polyply" class="nav-link" data-scroll-target="#polyply">Polyply</a></li>
+  <li><a href="#insane" id="toc-insane" class="nav-link" data-scroll-target="#insane">Insane</a></li>
+  <li><a href="#coby" id="toc-coby" class="nav-link" data-scroll-target="#coby">COBY</a></li>
+  <li><a href="#go-martini" id="toc-go-martini" class="nav-link" data-scroll-target="#go-martini">Go-Martini</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/proteins-and-bilayers.html">⚒️ Tools</a></li><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/visualization.html">Visualization</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">⚒️ Tools</li><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/topology-structure-generation.html"><i class="fas fa-wrench"></i> Actively Maintained</a></li><li class="breadcrumb-item"><a href="../../../docs/downloads/tools/topology-structure-generation.html"><i class="fas fa-project-diagram"></i> Topology/Structure Generation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Visualization</h1>
+<h1 class="title"><i class="fas fa-project-diagram"></i> Topology/Structure Generation</h1>
 </div>
 
 
@@ -542,396 +521,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<hr>
-<section id="rendering-cg-bonds-constraints-with-vmd" class="level3">
-<h3 class="anchored" data-anchor-id="rendering-cg-bonds-constraints-with-vmd">Rendering CG bonds &amp; constraints with VMD</h3>
-<hr>
-<p>We modified and re-wrote (check this <a href="http://www.gromacs.org/Developer_Zone/Programming_Guide/VMD">page</a>) a small <code>Tcl</code> script to read and draw Martini bonds and constraints in VMD. The bonds of the elastic networks can be drawn as well. In some cases, the script needs to read the gromacs .tpr file. For this reason, there is a latest version for use with gromacs 5 (and later) .tpr files.</p>
-<p>The script for use with gromacs 5 can be found here: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds-v5.tcl">cg_bonds-v5.tcl</a>.</p>
-<p>The script can be found here: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds.tcl">cg_bonds.tcl</a> (previous version: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds.tcl.old">cg_bonds.tcl.old</a>).</p>
-<section id="usage" class="level4">
-<h4 class="anchored" data-anchor-id="usage"><span style="color:blue"> <strong>Usage</strong> </span></h4>
-<p>The script is invoked from the <code>VMD</code> command line - after sourcing it (<code>source /path/to/cg_bonds.tcl</code>, or <code>/path/to/cg_bonds-v5.tcl</code>, simply type <code>cg_bonds</code> (options and default values listed below). You can summon an “how to” at any moment by calling the <code>cg_bonds_usage</code> command.</p>
-<p>This script uses the <code>gmxdump</code> executable compiled with <code>gromacs</code>. By default, it looks for it in the <code>/usr/bin</code> directory; you can specify another path with a specific option (see below). The script can now parse <code>.top</code> and <code>.itp</code> files, via the <code>-top</code> option.</p>
+<section id="martinize2vermouth" class="level3 software-card">
+<h3 class="anchored" data-anchor-id="martinize2vermouth">Martinize2/Vermouth</h3>
+<p><code>Martinize2</code> is a rewrite of <a href="../../../docs/downloads/tools/legacy.html#martinize">Martinize</a>. It is aimed at producing coarse-grained structures and topologies from an atomistic structure. <code>Martinize2</code> is primarily developed for the Martini coarse-grained force field and the <code>Gromacs</code> simulation engine.</p>
+<p><code>Vermouth</code> (for VERsatile, MOdular, and Universal Tranformation Helper) is the python library that powers <code>Martinize2</code>. It allows to describe and apply transformation on molecular structures and topologies using graph algorithms.</p>
+<p>For more details and to download the latest version, visit the <a href="https://github.com/marrink-lab/vermouth-martinize">[GitHub repository]</a>.</p>
 </section>
-<section id="cg_bonds" class="level4">
-<h4 class="anchored" data-anchor-id="cg_bonds"><span style="color:blue"> <strong>cg_bonds</strong> </span></h4>
-<p>Options and default values (slightly different from the previous version!):</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 37%">
-<col style="width: 46%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>-molid</td>
-<td>“<code>top</code>”</td>
-<td><code>VMD</code>-defined ID of the molecule to process</td>
-</tr>
-<tr class="even">
-<td>-gmx</td>
-<td><code>/usr/bin/gmxdump</code></td>
-<td>absolute path to <code>gmxdump</code> executable (for version 5, this should point to the gmx executable, default <code>/usr/bin/gmx</code>)</td>
-</tr>
-<tr class="odd">
-<td>-tpr</td>
-<td><code>topol.tpr</code></td>
-<td>absolute path to the simulation file (<code>.tpr</code>)</td>
-</tr>
-<tr class="even">
-<td>-top</td>
-<td><code>topol.top</code></td>
-<td>absolute path to the system topology files (<code>.top</code> linking to <code>.itp</code>)</td>
-</tr>
-<tr class="odd">
-<td>-topoltype</td>
-<td>“<code>martini</code>”</td>
-<td>protein topology type: “<code>martini</code>”, “<code>elastic</code>” or “<code>elnedyn</code>”</td>
-</tr>
-<tr class="even">
-<td>-net</td>
-<td>“<code>martini</code>”</td>
-<td>network to draw: “<code>martini</code>”, “<code>elastic</code>” or “<code>both</code>”</td>
-</tr>
-<tr class="odd">
-<td>-bndrcnstr</td>
-<td>“<code>both</code>”</td>
-<td>draw bonds AND/OR constraints “<code>bonds</code>”, “<code>constraints</code>” or “<code>both</code>”</td>
-</tr>
-<tr class="even">
-<td>-cutoff</td>
-<td>7.0</td>
-<td>cutoff for bonds (angstroms)</td>
-</tr>
-<tr class="odd">
-<td>-color</td>
-<td>“<code>red</code>”</td>
-<td>color (color name or <code>VMD</code>-defined ID) of elastic bonds</td>
-</tr>
-<tr class="even">
-<td>-mat</td>
-<td>“<code>Opaque</code>”</td>
-<td>material for elnedyn bonds</td>
-</tr>
-<tr class="odd">
-<td>-rad</td>
-<td>0.2</td>
-<td>radius of elastic bonds</td>
-</tr>
-<tr class="even">
-<td>-res</td>
-<td>6</td>
-<td>resolution of elastic bonds</td>
-</tr>
-</tbody>
-</table>
-<p>In most of the cases, if a “classical” cut-off is used for the elastic network (0.9nm), more than 12 bonds per atom are defined and <code>VMD</code> refuses to draw them. BUT this script replaces bonds by cylinders, and is able to draw the entire elastic network. Note that you have to modify the default cutoff value to see all the links defined by the elastic network.</p>
-<p>Then you can remove Martini bonds with the <code>cg_delete_martini_bonds</code>; and the cylinders with the <code>cg_delete_elastic_bonds</code>. The only option for the previous three commands is the VMD-defined ID of the molecule to process (via <code>-molid</code>, default is “<code>top</code>”).</p>
+<section id="polyply" class="level3 software-card">
+<h3 class="anchored" data-anchor-id="polyply">Polyply</h3>
+<p><code>Polyply</code> is a python suite designed to facilitate the generation of input files and system coordinates for simulating (bio)macromolecules such as synthetic polymers or polysaccharides. Input files can be generated either from user specified building blocks or by using the polymers available in the library. The library currently includes polymer definitions for the GROMOS (2016H66 &amp; 54A6), OPLS, Parmbsc1, and Martini (2 &amp; 3) force-fields. Coordinates are generated by a multiscale random-walk protocol that is able to generate condensed phase systems at target density, as well as more heterogeneous systems such as aqueous two phase systems. In addition, <code>polyply</code> allows to tailor initial chain conformations by providing a build file.</p>
+<p>For more details and to download the latest version, visit the <a href="https://github.com/marrink-lab/polyply_1.0">[GitHub repository]</a>.</p>
 </section>
-<section id="known-issues" class="level4">
-<h4 class="anchored" data-anchor-id="known-issues"><span style="color:blue"> <strong>Known issues</strong> </span></h4>
-<ul>
-<li><strike>Using tpr files from version 5 and higher is not possible. <span style="color:red"><strong>Script for use with version 5 and higher is now available!</strong></span>. </strike></li>
-<li><strike>The <code>cg_bonds_infos</code> command is useless (and going to be removed in next versions probably).</strike> <span style="color:red"><strong>Removed!</strong></span></li>
-<li>Bonds drawn for the elastic network don’t follow the dynamic of the protein; the 12-bonds-limitation of VMD obliges to draw them using cylinders, not regular bonds. <strong>Please drop a mail if you have a solution to fix that…</strong></li>
-<li><strike>We need a compiled version of <code>gromacs</code> around and the <code>gmxdump</code> executable to extract bonds/constraints (which takes time); wait for the next version! It will certainly read <code>.top</code> and <code>.itp</code> files.</strike> <span style="color:red"><strong>Added!</strong></span> The previous method (<code>gmxdump</code>) is still working; and watch out, flags have slightly changed.</li>
-<li><strike>The table given in output (and the script in general) is not totally reliable in some cases; hand written topologies for examples…</strike><span style="color:red"><strong>Removed.</strong></span></li>
-<li>Version of VMD should be superior to <code>1.8.5</code> (excluded) to run this script properly. The current version of <code>VMD</code> is <code>1.9</code> (august 2011).</li>
-<li><strike>Not really an issue but: <code>cg_bonds</code> draws ALL bonds/constraints of the system; what if we want to</strike><a href="#rendering-cg-helices--sheets-with-vmd">Render the secondary structure</a><strike>and draw them only for some residues?</strike><span style="color:red"><strong>Well… Use the good representation.</strong></span></li>
-<li><code>Tcl</code> needs an empty line at the end of the files it reads (<code>.top</code> and <code>.itp</code>)!</li>
-<li>On the same level, <code>Tcl</code> seems to understand differently the simple and double quotes… Please check that before shouting.</li>
-<li><strike>Script doesn’t extract (yet!) harmonic bonds of “regular” elastic networks built with the <code>martinize.py</code> script for instance (elastic bonds defined as type 6; this comment is not valid for ElNeDyn, which defines elastic bonds as type 1).</strike><span style="color:red"><strong>Fixed!</strong></span></li>
-</ul>
+<section id="insane" class="level3 software-card">
+<h3 class="anchored" data-anchor-id="insane">Insane</h3>
+<p><code>Insane</code> (INSert membrANE) is a versatile tool to build coarse-grained simulation systems containing solutes, lipid bilayers, and/or solvents. It handles a broad range of different lipid types, is very flexible with respect to box types and can insert a (CG) protein structure in the bilayer if one is given. It can write PDB or gromacs files.</p>
+<p>For more details and to download the latest version, visit the <a href="https://github.com/Tsjerk/Insane">[GitHub repository]</a>.</p>
 </section>
-<section id="example" class="level4">
-<h4 class="anchored" data-anchor-id="example"><span style="color:blue"> <strong>Example</strong> </span></h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">user@machine</span> $ vmd protein.gro</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> source /home/user/scripts/cg_bonds.tcl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_bonds <span class="at">-top</span> system.top <span class="at">-topoltype</span> <span class="st">"elastic"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_bonds <span class="at">-gmx</span> /home/user/bin/gmx-4.5.4/bin/gmxdump <span class="at">-tpr</span> dyn.tpr <span class="at">-net</span> <span class="st">"elastic"</span> <span class="at">-cutoff</span> 12.0 <span class="at">-color</span> <span class="st">"orange"</span> <span class="at">-mat</span> <span class="st">"AOChalky"</span> <span class="at">-res</span> 12 <span class="at">-rad</span> 0.1 <span class="at">-topoltype</span> <span class="st">"elastic"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_delete_elastic_bonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The few lines above will:</p>
-<ol type="1">
-<li>load the protein.gro structure,</li>
-<li>source the cg_bonds.tcl script,</li>
-<li>draw the martini bonds (using the .top file specified in the command line) extracted from a .top containingelastic network bonds,</li>
-<li>draw the elastic network with the options (cutoff, color, material, resolution and radius) specified by extracting the bonds from the .tpr file,</li>
-<li>delete the elastic network bonds previously drawn.</li>
-</ol>
-<p>All these line will be applied to the molecule with the <code>VMD</code>-defined ID 0 (or “<code>top</code>”).</p>
-<p>For feedback or problems contact <a href="mailto:%20c.arnarez@rug.nl">c.arnarez@rug.nl</a> or post to the platform.</p>
+<section id="coby" class="level3 software-card">
+<h3 class="anchored" data-anchor-id="coby">COBY</h3>
+<p><code>COBY</code> is a Python-based software tool for building flat membranes at a coarse-grained resolution. It supports asymmetric membranes, phase-separated systems, multiple bilayers, protein insertion, solvation, and flooding with one or multiple solute molecules of choice.</p>
+<p>For more details and to download the latest version, visit the <a href="https://github.com/MikkelDA/COBY">[GitHub repository]</a>.</p>
 </section>
+<section id="go-martini" class="level3 software-card">
+<h3 class="anchored" data-anchor-id="go-martini">Go-Martini</h3>
+<p>For ongoing development of <code>Go-Martini</code>, see the <a href="http://pomalab.ippt.pan.pl/web/index.html">[webpage of Adolfo Poma]</a>.</p>
 </section>
-<section id="rendering-cg-helices-sheets-with-vmd" class="level3">
-<h3 class="anchored" data-anchor-id="rendering-cg-helices-sheets-with-vmd">Rendering CG helices &amp; sheets with VMD</h3>
-<hr>
-<p>We gathered and extended the set of small <code>Tcl</code> scripts available in our group to draw protein secondary structure in VMD-like fashion.</p>
-<p>The script can be found here: <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_secondary_structure.tcl">cg_secondary_structure.tcl</a></p>
-<section id="usage-1" class="level4">
-<h4 class="anchored" data-anchor-id="usage-1"><span style="color:blue"> <strong>Usage</strong> </span></h4>
-<p>After sourcing the script in <code>VMD</code> (<code>source /path/to/cg_secondary_structure.tcl</code>), two routines are available from the command line: <code>cg_helix</code> and <code>cg_sheet</code>. The options and default values are listed below. You can summon an “how to” at any moment by calling the <code>cg_secondary_structure_usage</code> command.</p>
-<p>This script needs the <code>La</code> package, a linear algebra package written by Hume Integration Software, used here to compute principal axes of helices/sheets; the package is freely available at <a href="http://www.hume.com/la/">http://www.hume.com/la/</a>. After downloading it, extract and source the <code>la.tcl</code> file in <code>VMD</code>.</p>
-<p>You can give an output of <code>do_dssp</code> as an input for this script; it will be parsed and this script will try to draw each helix/sheet. If you use this option (<code>-ssdump</code>), you can leave the first list empty (see examples).</p>
-<section id="cg_helix" class="level5">
-<h5 class="anchored" data-anchor-id="cg_helix"><span style="color:blue"> cg_helix </span></h5>
-<p><strong>Usage:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_helix {{start1 end1} {start2 end2} ...} <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Where <code>start</code> and <code>end</code> are respectively the first and last residues composing an helix; you can provide more than one helix, as shown in the command line. The “{” and “}” characters are mandatory for <code>Tcl</code> to understand it as a list!</p>
-<p><strong>Options and default values:</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 37%">
-<col style="width: 46%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>-molid</td>
-<td>“<code>top</code>”</td>
-<td>VMD-defined ID of the molecule to process</td>
-</tr>
-<tr class="even">
-<td>-ssdump</td>
-<td>“<code>ssdump.dat</code>”</td>
-<td>read topology from a <code>do_dssp</code>-formated file</td>
-</tr>
-<tr class="odd">
-<td>-bbbname</td>
-<td>“<code>B.*</code>”</td>
-<td>backbone bead name</td>
-</tr>
-<tr class="even">
-<td>-hlxmethod</td>
-<td>“<code>idealhelix</code>”</td>
-<td>method to draw sheets “<code>idealhelix</code>”, “<code>realhelix</code>” or “<code>cylinder</code>”</td>
-</tr>
-<tr class="odd">
-<td>-hlxcolor</td>
-<td>“<code>red</code>”</td>
-<td>color of helices</td>
-</tr>
-<tr class="even">
-<td>-hlxmat</td>
-<td>“<code>Opaque</code>”</td>
-<td>material</td>
-</tr>
-<tr class="odd">
-<td>-hlxres</td>
-<td>12</td>
-<td>resolution</td>
-</tr>
-<tr class="even">
-<td>-hlxrad</td>
-<td>2.0</td>
-<td>radius of cylinders</td>
-</tr>
-<tr class="odd">
-<td>-hlxsides</td>
-<td>“<code>round</code>”</td>
-<td>arrow sides “<code>round</code>” or “<code>sharp</code>”</td>
-</tr>
-<tr class="even">
-<td>-hlxfilled</td>
-<td>“<code>yes</code>”</td>
-<td>cylinders filled or not “<code>yes</code>” or “<code>no</code>”</td>
-</tr>
-<tr class="odd">
-<td>-hlxstep</td>
-<td>1.0</td>
-<td>angle step size</td>
-</tr>
-<tr class="even">
-<td>-hlxthick</td>
-<td>0.2</td>
-<td>thickness of helix</td>
-</tr>
-<tr class="odd">
-<td>-hlxwidth</td>
-<td>2.0</td>
-<td>width of helix</td>
-</tr>
-<tr class="even">
-<td>-hlxdirect</td>
-<td>“<code>no</code>”</td>
-<td>draw the director vector of the helix (or not)</td>
-</tr>
-<tr class="odd">
-<td>-hlxdirrad</td>
-<td>0.1</td>
-<td>radius of the cylinder (director)</td>
-</tr>
-<tr class="even">
-<td>-hlxdirclen</td>
-<td>0.3</td>
-<td>length of the cone (showing direction of the director)</td>
-</tr>
-<tr class="odd">
-<td>-hlxdircrad</td>
-<td>0.2</td>
-<td>cone radius</td>
-</tr>
-<tr class="even">
-<td>-hlxsecbprop</td>
-<td>0.5</td>
-<td>proportion of the preceding/following bond used as length for starting/ending flat cones</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_helix {{5 48} {120 146}} <span class="at">-hlxmethod</span> <span class="st">"cylinder"</span> <span class="at">-hlxcolor</span> <span class="st">"lime"</span> <span class="at">-hlxrad</span> 2.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cg_helix-1" class="level5">
-<h5 class="anchored" data-anchor-id="cg_helix-1"><span style="color:blue"> cg_helix </span></h5>
-<p><strong>Usage:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_sheet {{start1 end1} {start2 end2} ...} <span class="pp">[</span><span class="ss">OPTIONS</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Where <code>start</code> and <code>end</code> are respectively the first and last residues composing a sheet; you can provide more than one sheet, as shown in the command line. The “{” and “}” characters are mandatory for <code>Tcl</code> to understand it as a list!</p>
-<p><strong>Options and default values:</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 37%">
-<col style="width: 46%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>-molid</td>
-<td>“<code>top</code>”</td>
-<td><code>VMD</code>-defined ID of the molecule to process</td>
-</tr>
-<tr class="even">
-<td>-ssdump</td>
-<td>“<code>ssdump.dat</code>”</td>
-<td>read topology from a <code>do_dssp</code>-formated file</td>
-</tr>
-<tr class="odd">
-<td>-bbbname</td>
-<td>“<code>B.*</code>”</td>
-<td>backbone bead name</td>
-</tr>
-<tr class="even">
-<td>-shtmethod</td>
-<td>“<code>flatarrow</code>”</td>
-<td>method to draw sheets “<code>cylindarrow</code>”, “<code>flatarrow</code>”, “<code>bendedarrow</code>” or “<code>triangle</code>”</td>
-</tr>
-<tr class="odd">
-<td>-shtcolor</td>
-<td>“<code>green</code>”</td>
-<td>color of sheets</td>
-</tr>
-<tr class="even">
-<td>-shtmat</td>
-<td>“<code>Opaque</code>”</td>
-<td>material</td>
-</tr>
-<tr class="odd">
-<td>-shtres</td>
-<td>12</td>
-<td>resolution</td>
-</tr>
-<tr class="even">
-<td>-shtsides</td>
-<td>“<code>round</code>”</td>
-<td>sheet sides “<code>round</code>” or “<code>sharp</code>”</td>
-</tr>
-<tr class="odd">
-<td>-shtrad</td>
-<td>0.4</td>
-<td>radius of cylinders</td>
-</tr>
-<tr class="even">
-<td>-shtconrad</td>
-<td>0.8</td>
-<td>radius of arrow cones</td>
-</tr>
-<tr class="odd">
-<td>-shtlencone</td>
-<td>1.5</td>
-<td>length of arrow cones</td>
-</tr>
-<tr class="even">
-<td>-shtfilled</td>
-<td>“<code>yes</code>”</td>
-<td>cylinder filled or not “<code>yes</code>” or “<code>no</code>”</td>
-</tr>
-<tr class="odd">
-<td>-shtarrwidth</td>
-<td>2.0</td>
-<td>width of arrows</td>
-</tr>
-<tr class="even">
-<td>-shtheadsize</td>
-<td>4.0</td>
-<td>size of the arrow heads</td>
-</tr>
-<tr class="odd">
-<td>-shtarrthick</td>
-<td>1.0</td>
-<td>thickness of arrows</td>
-</tr>
-<tr class="even">
-<td>-shtstep</td>
-<td>0.1</td>
-<td>distance step size</td>
-</tr>
-<tr class="odd">
-<td>-shtthick</td>
-<td>0.2</td>
-<td>thickness of sheet</td>
-</tr>
-<tr class="even">
-<td>-shtwidth</td>
-<td>2.0</td>
-<td>width of sheet</td>
-</tr>
-<tr class="odd">
-<td>-shtdirect</td>
-<td>“<code>no</code>”</td>
-<td>draw the director vector of the sheet (or not)</td>
-</tr>
-<tr class="even">
-<td>-shtdirrad</td>
-<td>0.1</td>
-<td>radius of the cylinder (director)</td>
-</tr>
-<tr class="odd">
-<td>-shtdirclen</td>
-<td>0.3</td>
-<td>length of the cone (showing direction of the director)</td>
-</tr>
-<tr class="even">
-<td>-shtdircrad</td>
-<td>0.2</td>
-<td>cone radius</td>
-</tr>
-<tr class="odd">
-<td>-shtsecbprop</td>
-<td>0.5</td>
-<td>proportion of the preceding/following bond used as length for starting/ending flat cones</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_sheet {} <span class="at">-shtfilled</span> <span class="st">"no"</span> <span class="at">-ssdump</span> protein.dat <span class="at">-shtarrowthick</span> 0.4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section id="known-issues-1" class="level4">
-<h4 class="anchored" data-anchor-id="known-issues-1"><span style="color:blue"> <strong>Known issues</strong> </span></h4>
-<p>There is still a bunch of small graphical issues (thanks to drop a mail to the contact at the bottom of this page whenever you find something… unexpected); sheets are particularly ugly. It’s not the priority right now, it will be fixed when we will have time… keep checking this page and your version of the script updated! We are writing this tool for personal purpose, and we didn’t retroactively test all the graphical options and the result when mixing them together. Thanks to do that for us!</p>
-<ul>
-<li>Drawings do not follow the protein dyamic along a trajectory; you need to redraw everything at each step (no ways to change this behavior so far).</li>
-<li>The “<code>bendedarrow</code>” (sheet style), which would be the closest to <code>VMD</code> atomistic drawings, doesn’t work so well so far. Still working on it!</li>
-<li>If an helix is too bended, <code>VMD</code> will not be able to draw it using the “<code>idealhelix</code>” or “<code>realhelix</code>” method (the script will output an error message with the termini of the helix).</li>
-<li><strike>Not able to draw helices smaller than 3 residues (!).</strike><span style="color:red"> <strong>Fixed.</strong> </span> Avoided.</li>
-<li><code>Tcl</code> needs an empty line at the end of the files it reads!</li>
-<li>On the same level, <code>Tcl</code> seems to understand differently simple and double quotes… Please check that before shouting.</li>
-</ul>
-<p>For feedback or problems contact <a href="mailto:%20c.arnarez@rug.nl">c.arnarez@rug.nl</a> or post to the platform.</p>
-<hr>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1335,13 +951,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../docs/downloads/tools/resolution-transformation.html" class="pagination-link" aria-label="Resolution transformation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Resolution transformation</span>
+      <a href="../../../docs/downloads/example-applications/other-systems.html" class="pagination-link" aria-label="Other systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Other systems</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../docs/downloads/tools/other-tools.html" class="pagination-link" aria-label="Other tools">
-        <span class="nav-page-text">Other tools</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../docs/downloads/tools/multiscaling.html" class="pagination-link" aria-label="<i class=&quot;fas fa-layer-group&quot;></i> Multiscaling">
+        <span class="nav-page-text"><i class="fas fa-layer-group"></i> Multiscaling</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1405,6 +1021,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     });
 </script>
+<script src="../../../js/sidebar-close.js"></script> 
 
 
 

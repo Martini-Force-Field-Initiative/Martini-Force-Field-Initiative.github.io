@@ -413,7 +413,7 @@ python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -ss &lt;YOUR FI
 </center>
 <hr>
 <ol start="8" type="1">
-<li>PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with <code>vmd</code>. (see <a href="../../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">tutorial</a>, use the script <a href="../../../../docs/downloads/tools/visualization.html">cg_bonds-v5.tcl</a> to show the ubiquitin with the bonds as defined in the topology) or pymol. It is often convenient to convert the trajectory so that translation and rotation of ubiquitin is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure beads that belong to the protein are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with gromacs tools.) Be aware that the .gro file given to VMD must contain the same (number of) atoms as the .xtc file. Therefore, if you choose to write only the protein to the .xtc file, also prepare a .gro file with only the protein (minimization-vac.gro will do).</li>
+<li>PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with <code>vmd</code>. (see <a href="../../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">tutorial</a>, use the script <a href="../../../../docs/downloads/tools/analysis.html">cg_bonds-v5.tcl</a> to show the ubiquitin with the bonds as defined in the topology) or pymol. It is often convenient to convert the trajectory so that translation and rotation of ubiquitin is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure beads that belong to the protein are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with gromacs tools.) Be aware that the .gro file given to VMD must contain the same (number of) atoms as the .xtc file. Therefore, if you choose to write only the protein to the .xtc file, also prepare a .gro file with only the protein (minimization-vac.gro will do).</li>
 </ol>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.xtc</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> equilibration.gro viz.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -510,7 +510,7 @@ This turns on the elastic network (<code>-elastic</code>), sets the elastic bond
 <hr>
 <ul>
 <li><p>If a stable DPPC membrane with the wanted box dimensions is already available, <code>gmx solvate</code> will be able to insert the peptides in the bilayer (the peptides have to be pre-centered and positioned to ensure their presence inside the membrane).</p></li>
-<li><p>The use of the script <code>insane.py</code>, downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>, allows the setting up of bilayers of arbitrary composition around our protein.</p></li>
+<li><p>The use of the script <code>insane.py</code>, downloadable <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>, allows the setting up of bilayers of arbitrary composition around our protein.</p></li>
 </ul>
 <p>The latter method, being the easiest and the most straightforward, is recommended and is the method we present here.</p>
 <ol type="1">
@@ -531,7 +531,7 @@ This turns on the elastic network (<code>-elastic</code>), sets the elastic bond
 <ul>
 <li><code>gromacs</code> <a href="http://www.gromacs.org/">http://www.gromacs.org/</a></li>
 <li><code>martinize.py</code> (downloadable <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py">here</a>)</li>
-<li><code>insane.py</code> (downloadable <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>)</li>
+<li><code>insane.py</code> (downloadable <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>)</li>
 </ul>
 </section>
 <section id="references" class="level3">
@@ -1006,6 +1006,7 @@ This turns on the elastic network (<code>-elastic</code>), sets the elastic bond
       }
     });
 </script>
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

@@ -455,7 +455,7 @@ window.Quarto = {
 <ul>
 <li>Use stronger angle potentials that prevent beads from becoming collinear (the type 1 angle might be an option here);</li>
 <li>Use a smaller simulation timestep than the typical 20fs, to give those angle potentials a chance to act on the molecules;</li>
-<li>Try out the new restricted bending angle potentials (a<a href="../../../../docs/downloads/tools/other-tools.html">ngle type number 10</a>) that we just implemented in version 5.0 of <code>GROMACS</code>! They avoid collinear bonds without requiring any lowering of the timestep or changes to the dihedral potentials.</li>
+<li>Try out the new restricted bending angle potentials (a<a href="../../../../docs/downloads/tools/legacy.html">ngle type number 10</a>) that we just implemented in version 5.0 of <code>GROMACS</code>! They avoid collinear bonds without requiring any lowering of the timestep or changes to the dihedral potentials.</li>
 </ul>
 <p>With that out of the way, we’re ready to test-drive our brand-new CG molecule (no more directives should be needed in the <code>.itp</code> file).</p>
 <p>Create a .top file that <code>#includes</code> the <code>martini_v2.2.itp</code> file (this is where bead interactions are defined) as well as the PEG <code>.itp</code> you just created (you can use the atomistic <code>topol.top</code> as a template). Specify how many molecules you have in the system, and you’re done.</p>
@@ -550,7 +550,7 @@ window.Quarto = {
 <hr>
 <p>After the successful parameterization and simulation of your new molecule you may want to convert it back to fine detail (for instance, to proceed with a fine-grain simulation after equilibrating the system with CG). This process is called backmapping.</p>
 <p>Due to the reduction of degrees of freedom involved in coarse-graining, the reverse process is not uniquely defined: there will be multiple atomistic configurations that can correspond to a CG grain structure. However, knowledge of the atomistic topology allows us to input more data into the process: an initial atomistic configuration is prepared where atoms are randomly placed in the vicinity of the respective CG bead. The system is then allowed to energy-minimize and equilibrate subject to some restraints. The bonded information contained in the topology leads this process into providing a consistent fine-grain configuration compatible with the starting CG one. Before continuing you can read more about the procedure <a href="http://pubs.acs.org/doi/abs/10.1021/ct400617g">here</a> and <a href="../../../../docs/tutorials/Legacy/martini2/others.html">here</a>.</p>
-<p>To reverse-map your coarse-grain PEG system you’ll need the <code>backward</code> tool, available <a href="../../../../docs/downloads/tools/resolution-transformation.html">here</a>. Unpack it into a new folder. Now copy over to the same folder a CG <code>.gro</code> file (for example from your take0 directory or the one you made by mapping the atomistic structure) together with the fine-grain <code>.top</code> and the<code>PEG9.itp</code> referenced in the <code>.top</code> file; you can find the latter in the subdirectory AA in the PEG_parametrization material. This is enough information to recreate a GROMOS 54a7–compatible structure.</p>
+<p>To reverse-map your coarse-grain PEG system you’ll need the <code>backward</code> tool, available <a href="../../../../docs/downloads/tools/multiscaling.html">here</a>. Unpack it into a new folder. Now copy over to the same folder a CG <code>.gro</code> file (for example from your take0 directory or the one you made by mapping the atomistic structure) together with the fine-grain <code>.top</code> and the<code>PEG9.itp</code> referenced in the <code>.top</code> file; you can find the latter in the subdirectory AA in the PEG_parametrization material. This is enough information to recreate a GROMOS 54a7–compatible structure.</p>
 <p>We must now teach our PEG mapping to the backmapping procedure. This is done by creating a <code>.map</code> file. The format is described <a href="../../../../docs/tutorials/Legacy/martini2/others.html">here</a>, but you may start by copying a preexisting file from the <code>Mapping</code> directory (you can also find a ready example in the root of the tutorial directory you downloaded).</p>
 <p>In the .map file you’ll want to name your <code>[ molecule ]</code> as the name you used for each CG PEG residue. If you named your residues differently (say, to distinguish terminal ones) it is best to edit your CG <code>.gro</code> file and set them all to the same name.</p>
 <p>Under the <code>[ martini ]</code> directive you’ll enter the name of the bead(s) that compose each residue. In our case each residue is composed by a single bead. Again, these beads should all have the same name in the <code>.gro</code> file; edit it if needed.</p>
@@ -1035,6 +1035,7 @@ window.Quarto = {
       }
     });
 </script>
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

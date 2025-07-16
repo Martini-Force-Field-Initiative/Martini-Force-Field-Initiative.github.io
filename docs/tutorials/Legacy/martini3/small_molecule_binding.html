@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 <p>Since we now have both the coordinates and topology of the Martini 3 protein, we can put the protein in a simulation cell, and add water and ions.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/python2.7</span> insane.py <span class="at">-f</span> CG.pdb <span class="at">-o</span> CG.gro <span class="at">-pbc</span> cubic <span class="at">-box</span> 10,10,10 <span class="at">-salt</span> 0.15 <span class="at">-charge</span> auto <span class="at">-sol</span> W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can look for more details about the insane.py script <a href="../../../../docs/downloads/tools/proteins-and-bilayers.html#insane">here</a>. The output file (<code>CG.gro</code>) contains <code>NA+</code>, <code>CL-</code>, and <code>W</code> residues. Check how many and add specify it in the <code>CG.top</code> file.</p>
+<p>You can look for more details about the insane.py script <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>. The output file (<code>CG.gro</code>) contains <code>NA+</code>, <code>CL-</code>, and <code>W</code> residues. Check how many and add specify it in the <code>CG.top</code> file.</p>
 <pre class="text"><code>[ molecules ] 
 ; name         number
 Protein_A         1
@@ -866,6 +866,7 @@ BENZ            1</code></pre>
       }
     });
 </script>
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

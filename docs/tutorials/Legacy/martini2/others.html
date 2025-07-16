@@ -347,7 +347,7 @@ window.Quarto = {
 <section id="the-method" class="level3">
 <h3 class="anchored" data-anchor-id="the-method">The method</h3>
 <hr>
-<p>The <em>backward</em> program is available <a href="../../../../docs/downloads/tools/resolution-transformation.html">here</a> (download the zip-file for the version of Mapping files you need and possibly download another version of the initram.sh script), and consists of three scripts and a number of CG to fine-grained mapping definition files. The scripts are <code>backward.py</code>, <code>initram.sh</code> and in the Mapping directory <code>__init__.py</code> and a number of <code>.map</code> files. The .map files describe the CG to fine-grained mapping and a file needs to be provided for each molecule (or its building blocks) in your system. The <code>__init__.py</code> script interprets the <code>.map</code> files. The <code>backward.py</code> script performs the actual backmapping and <code>initram.sh</code> is a bash wrapper that runs a series of minimizations and molecular dynamics steps, using the fine-grained force field to push the initial backmapped structure to one that satisfies the fine-grained force field.</p>
+<p>The <em>backward</em> program is available <a href="../../../../docs/downloads/tools/multiscaling.html">here</a> (download the zip-file for the version of Mapping files you need and possibly download another version of the initram.sh script), and consists of three scripts and a number of CG to fine-grained mapping definition files. The scripts are <code>backward.py</code>, <code>initram.sh</code> and in the Mapping directory <code>__init__.py</code> and a number of <code>.map</code> files. The .map files describe the CG to fine-grained mapping and a file needs to be provided for each molecule (or its building blocks) in your system. The <code>__init__.py</code> script interprets the <code>.map</code> files. The <code>backward.py</code> script performs the actual backmapping and <code>initram.sh</code> is a bash wrapper that runs a series of minimizations and molecular dynamics steps, using the fine-grained force field to push the initial backmapped structure to one that satisfies the fine-grained force field.</p>
 </section>
 <section id="mapping" class="level3">
 <h3 class="anchored" data-anchor-id="mapping">Mapping</h3>
@@ -953,6 +953,7 @@ oplsaa
       }
     });
 </script>
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

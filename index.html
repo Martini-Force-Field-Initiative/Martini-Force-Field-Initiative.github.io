@@ -211,21 +211,191 @@ ul.task-list li input[type="checkbox"] {
       --card-min-height: 420px;
       --card-max-height: 800px;
     }
+
+    /* Base hero section override - removed banner so adjust height calculation */
+    .hero {
+      height: calc(100vh - 56px) !important;
+      min-height: calc(100vh - 56px) !important;
+    }
+
+    /* Enhanced Height-Based Media Queries for Display Size Optimization */
+    
+    /* Very small height devices (landscape phones, small tablets in landscape) */
+    @media (max-height: 500px) {
+      .hero {
+        height: calc(100vh - 56px) !important;
+        min-height: 350px !important;
+        padding: 0.5rem !important;
+      }
+      
+      .hero-content {
+        padding: 1rem !important;
+        margin-top: 1rem !important;
+        backdrop-filter: blur(5px) !important;
+      }
+      
+      .hero-title {
+        font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+        margin-bottom: 0.8rem !important;
+      }
+      
+      .hero-subtitle {
+        font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+        margin-bottom: 1rem !important;
+      }
+      
+      .hero-buttons {
+        gap: 0.5rem !important;
+      }
+      
+      .btn {
+        padding: 0.5rem 1.2rem !important;
+        font-size: 0.9rem !important;
+      }
+      
+      .hero-scroll-indicator {
+        display: none !important;
+      }
+      
+      .news-section, .about-section, .showcase-section {
+        padding: 1rem 0.5rem !important;
+      }
+      
+      .section-title {
+        font-size: clamp(1.4rem, 3.5vw, 1.8rem) !important;
+        padding-bottom: 1rem !important;
+      }
+      
+      .about-content {
+        padding: 1rem !important;
+        gap: 1.5rem !important;
+      }
+      
+      .showcase-slider {
+        height: 300px !important;
+      }
+    }
+
+    /* Small height devices (small laptops, tablets in portrait) */
+    @media (min-height: 501px) and (max-height: 700px) {
+      .hero {
+        height: calc(100vh - 56px);
+        min-height: 450px;
+      }
+      
+      .hero-content {
+        margin-top: 2rem;
+        padding: 1.5rem;
+      }
+      
+      .about-section {
+        padding: 1.5rem !important;
+      }
+      
+      .about-content {
+        padding: 1.5rem !important;
+      }
+      
+      .showcase-section {
+        padding: 1rem !important;
+      }
+      
+      .showcase-slider {
+        height: clamp(400px, 45vh, 550px) !important;
+      }
+      
+      .news-section {
+        padding: 1.5rem !important;
+      }
+    }
+
+    /* Medium height devices (standard laptops, large tablets) */
+    @media (min-height: 701px) and (max-height: 1000px) {
+      .hero {
+        height: calc(100vh - 56px);
+        min-height: 550px;
+      }
+      
+      .hero-content {
+        margin-top: 3rem;
+        padding: 2rem;
+      }
+      
+      .news-section {
+        padding: 2rem 1.5rem;
+      }
+      
+      .about-section {
+        padding: 3rem 2rem;
+      }
+      
+      .about-content {
+        padding: 2rem;
+      }
+      
+      .showcase-section {
+        padding: 2rem;
+      }
+      
+      .showcase-slider {
+        height: clamp(500px, 50vh, 650px);
+      }
+    }
+
+    /* Large height devices (large monitors, high-resolution displays) */
+    @media (min-height: 1001px) {
+      .hero {
+        height: calc(100vh - 56px);
+        min-height: 700px;
+      }
+      
+      .hero-content {
+        margin-top: 4rem;
+        padding: 3rem;
+      }
+      
+      .hero-title {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        margin-bottom: 2.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+        margin-bottom: 2.5rem;
+      }
+      
+      .news-section {
+        padding: 4rem 2rem;
+      }
+      
+      .about-section {
+        padding: 5rem 2rem;
+      }
+      
+      .about-content {
+        padding: 3rem;
+        gap: 4rem;
+      }
+      
+      .showcase-section {
+        padding: 4rem 2rem;
+      }
+      
+      .showcase-slider {
+        height: clamp(600px, 55vh, 800px);
+      }
+      
+      .section-title {
+        font-size: clamp(2.5rem, 3vw, 3rem);
+      }
+      
+      .about-title {
+        font-size: clamp(2.2rem, 2.5vw, 2.8rem);
+      }
+    }
+
   </style>
 
-
-<!-- Workshop Banner -->
-<div class="workshop-banner">
-  <div class="workshop-banner-content">
-    <div class="workshop-icon">🎓</div>
-    <div class="workshop-info">
-      <div class="workshop-title">Upcoming Workshop: Mastering the Martini Force Field!</div>
-      <div class="workshop-date">August 11-15, 2025</div>
-      <div class="workshop-location">📍 University of Groningen, The Netherlands</div>
-    </div>
-    <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/AnnouncementMWS2025.pdf" class="workshop-button">Register Now</a>
-  </div>
-</div>
 
 <!-- Hero Section -->
 <section class="hero">
@@ -334,6 +504,161 @@ ul.task-list li input[type="checkbox"] {
 <script src="js/news-loader.js"></script>
 
 <script>
+  // Easter Egg Functions
+  function createFloatingMartini() {
+    // Create the easter egg container
+    const easterEgg = document.createElement('div');
+    easterEgg.id = 'martini-easter-egg';
+    
+    easterEgg.style.cssText = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      width: min(90vw, 1200px);
+      height: auto;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+      border-radius: 20px;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(15px, 2vw, 30px);
+      padding: clamp(20px, 3vw, 40px);
+    `;
+
+    // Add dark overlay background
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9998;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    `;
+    
+    document.body.appendChild(overlay);
+
+    // Create the martini image
+    const martiniImg = document.createElement('img');
+    martiniImg.src = 'images/welcome_elf.gif';
+    martiniImg.alt = 'Cheers! 🍸';
+    martiniImg.style.cssText = `
+      width: min(80vw, 1000px);
+      height: auto;
+      max-height: 60vh;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5)) brightness(1.2) contrast(1.2);
+      border-radius: clamp(10px, 1.5vw, 20px);
+    `;
+
+    // Create a text element
+    const textElement = document.createElement('div');
+    textElement.style.cssText = 'text-align: center;';
+    textElement.innerHTML = '<h2 style="color: white; margin: 0; font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 0 4px 8px rgba(0,0,0,0.6); font-family: sans-serif;">🍸 Cheers! 🍸</h2><p style="color: rgba(255,255,255,0.9); margin: 12px 0 0 0; font-size: clamp(1rem, 2.5vw, 1.3rem); text-shadow: 0 2px 4px rgba(0,0,0,0.5); font-family: sans-serif;">You found the rare Martini elf!</p>';
+
+    // Add error handling for image loading
+    martiniImg.onerror = function() {
+      // Show large emoji if image fails to load
+      martiniImg.style.display = 'none';
+      const emojiDiv = document.createElement('div');
+      emojiDiv.style.cssText = 'font-size: clamp(120px, 15vw, 180px); filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));';
+      emojiDiv.textContent = '🍸';
+      easterEgg.insertBefore(emojiDiv, textElement);
+    };
+    
+    easterEgg.appendChild(martiniImg);
+    easterEgg.appendChild(textElement);
+    document.body.appendChild(easterEgg);
+    
+    // Animate in
+    setTimeout(() => {
+      overlay.style.opacity = '1';
+      easterEgg.style.opacity = '1';
+      easterEgg.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 100);
+    
+    // Start floating animation
+    startFloatingAnimation(easterEgg);
+    
+    // Auto-remove after 15 seconds
+    setTimeout(() => {
+      if (document.body.contains(easterEgg)) {
+        overlay.style.opacity = '0';
+        easterEgg.style.opacity = '0';
+        easterEgg.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        setTimeout(() => {
+          if (document.body.contains(easterEgg)) {
+            easterEgg.remove();
+            overlay.remove();
+          }
+        }, 200);
+      }
+    }, 15000);
+  }
+
+  function startFloatingAnimation(element) {
+    if (!element || !document.body.contains(element)) {
+      return;
+    }
+    
+    let floatDirection = 1;
+    let currentY = 0;
+    let animationId;
+    
+    const floatAnimation = () => {
+      if (!document.body.contains(element)) {
+        cancelAnimationFrame(animationId);
+        return;
+      }
+      
+      currentY += floatDirection * 0.3;
+      if (currentY > 8 || currentY < -8) {
+        floatDirection *= -1;
+      }
+      
+      try {
+        element.style.transform = `translate(-50%, -50%) translateY(${currentY}px) scale(${1 + Math.sin(Date.now() * 0.002) * 0.02})`;
+        animationId = requestAnimationFrame(floatAnimation);
+      } catch (error) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+    
+    animationId = requestAnimationFrame(floatAnimation);
+  }
+
+  function initEasterEgg() {
+    if (document.getElementById('martini-easter-egg')) {
+      return;
+    }
+    
+    const randomChance = Math.floor(Math.random() * 300);
+    
+    // 0.1% chance (1 in 300)
+    if (randomChance === 0) {
+      createFloatingMartini();
+    }
+  }
+
+  // Global test functions (for development/testing)
+  window.testEasterEgg = function() {
+    // Remove existing one first
+    const existing = document.getElementById('martini-easter-egg');
+    if (existing) {
+      existing.remove();
+    }
+    createFloatingMartini();
+  };
+
   // Smooth Scroll with offset
   function scrollToElement(selector) {
     const element = document.querySelector(selector);
@@ -525,10 +850,19 @@ ul.task-list li input[type="checkbox"] {
 
   // News Ticker Animation
   const ticker = document.querySelector('.ticker-content');
-  ticker.addEventListener('animationend', () => {
-    ticker.style.animation = 'none';
-    ticker.offsetHeight; // Trigger reflow
-    ticker.style.animation = 'ticker 30s linear infinite';
+  if (ticker) {
+    ticker.addEventListener('animationend', () => {
+      ticker.style.animation = 'none';
+      ticker.offsetHeight; // Trigger reflow
+      ticker.style.animation = 'ticker 30s linear infinite';
+    });
+  }
+
+  // Initialize easter egg on page load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      initEasterEgg();
+    }, 1000);
   });
 </script>
 
@@ -994,6 +1328,7 @@ ul.task-list li input[type="checkbox"] {
       }
     });
 </script>
+<script src="./js/sidebar-close.js"></script> 
 
 
 
