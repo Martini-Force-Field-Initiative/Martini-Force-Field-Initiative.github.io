@@ -28,7 +28,7 @@ More extensive discussion and examples, including tutorial material can be found
 ### The `backward` method
 <hr>
 
-The `backward` program is available [here](../../../downloads/tools/resolution-transformation.qmd#backward), and consists of three scripts and a number of CG to fine-grained mapping definition files. The scripts are `backward.py`, `initram.sh` and the Mapping directory `__init__.py` and a number of `.map` files. The `.map` files describe the CG to fine-grained mapping and a file needs to be provided for each molecule (or it’s building blocks) in your system. The` __init__.py` script interprets the `.map` files. The `backward.py` script performs the actual backmapping and `initram.sh` is a bash wrapper that runs a series of minimizations and molecular dynamics steps, using the fine-grained force field to push the initial backmapped structure to one that satisfies the fine-grained force field.
+The `backward` program is available [here](../../../downloads/tools/multiscaling.qmd#backward), and consists of three scripts and a number of CG to fine-grained mapping definition files. The scripts are `backward.py`, `initram.sh` and the Mapping directory `__init__.py` and a number of `.map` files. The `.map` files describe the CG to fine-grained mapping and a file needs to be provided for each molecule (or it’s building blocks) in your system. The` __init__.py` script interprets the `.map` files. The `backward.py` script performs the actual backmapping and `initram.sh` is a bash wrapper that runs a series of minimizations and molecular dynamics steps, using the fine-grained force field to push the initial backmapped structure to one that satisfies the fine-grained force field.
 
 ### Mapping files
 <hr>
@@ -127,7 +127,7 @@ Backmapping from Martini 3 configurations follows the same procedure described a
 
 - `GROMACS` ([http://www.gromacs.org/](http://www.gromacs.org/))
 
-- `backward` (downloadable [here](../../../downloads/tools/resolution-transformation.qmd#backward))
+- `backward` (downloadable [here](../../../downloads/tools/multiscaling.qmd#backward))
 
 ### References
 <hr>

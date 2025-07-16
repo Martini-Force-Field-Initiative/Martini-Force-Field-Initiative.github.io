@@ -16,7 +16,7 @@ Martini dynamics are faster than all-atom dynamics due to the smoother coarse-gr
 However, the speed-up factor can vary in different systems or processes. For protein systems, extensive testing of the actual speed-up due to coarse-grained dynamics has not been performed, though simulations of rhodopsin have shown protein translational and rotational diffusion to be in good agreement with experimental data. Charged molecules have shown much larger speed-up factors.  In general, the time scale of Martini simulations should be interpreted with caution.
 
 ## How to reintroduce atomistic detail into Martini?
-Several resolution conversion tools are available to go from CG to AA. [Backward](../downloads/tools/resolution-transformation.qmd#backward), [cg2at](https://github.com/owenvickery/cg2at), [ezAlign](https://www.mdpi.com/1420-3049/29/15/3557), among others. Check these out as well as some of our [tutorials](../tutorials/Martini3/tutorials.qmd).
+Several resolution conversion tools are available to go from CG to AA. [Backward](../downloads/tools/multiscaling.qmd#backward), [cg2at](https://github.com/owenvickery/cg2at), [ezAlign](https://www.mdpi.com/1420-3049/29/15/3557), among others. Check these out as well as some of our [tutorials](../tutorials/Martini3/tutorials.qmd).
 
 ## Is Martini supported by other sofware packages apart from Gromacs?
 Yes, it is implemented also in NAMD, GROMOS, and current efforts are porting it to CHARMM. A reduced version of Martini is also available through the Material Studio commercial software. Note that, for each of these software packages, the Martini implementation might differ - to an unknown extent - with that of the GROMACS implementation, so you should be careful when using Martini 'abroad'.
