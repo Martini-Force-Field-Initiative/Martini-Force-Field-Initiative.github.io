@@ -6,11 +6,15 @@ format: html
 ::: software-card
 ### martinize
 
+::: callout
+This version of `Martinize` is no longer maintained. For the latest version, see [[Martinize2]](./topology-structure-generation.qmd#martinize2).
+:::
+
 Martinize is a python script to generate Martini protein topology and structure files based on an atomistic structure file. It replaces the old [seq2itp](#seq2itp), [atom2cg](#atom2cg) and [ElNeDyn](#elnedyn) scripts. The produced topology and structure files are in a format suitable for Gromacs.
 
-The current version (2.x) has been used rather extensively, however it might still contain errors or bugs. Any feedback is more than welcome! The script is "concatenated": all the different classes, modules and forcefields are in one file. If you want to make changes yourself or add a forcefield we have a modular version available. If you would like to use this, send us an e-mail.
+The current version has been used rather extensively, however it might still contain errors or bugs. Any feedback is more than welcome! The script is "concatenated": all the different classes, modules and forcefields are in one file. If you want to make changes yourself or add a forcefield we have a modular version available. If you would like to use this, send us an e-mail.
 
-You can now also download the latest martinize from [GitHub](https://github.com/cgmartini/martinize.py). The major updates are always added also here below:
+The major updates are available below:
 
 -   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_6.py) and python 3 version [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_6_py3.py) (version 2.6, May 12 2016)
     -   The option for the elastic bond lower cutoff (-el) is now correctly recognized.
@@ -53,8 +57,12 @@ You can now also download the latest martinize from [GitHub](https://github.com/
 -   [martinize-1.0.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_1_0.py) (version 1.0)
 :::
 
-::: Insane
-The most up to date version can be found [here](./topology-structure-generation.qmd#insane).
+::: software-card
+### Insane
+
+::: callout
+This version of `Insane` is no longer maintained. For the latest version, see [[Insane]](./topology-structure-generation.qmd#insane).
+:::
 
 An older version, still all in one file [insane.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/insane.py)
 
@@ -65,33 +73,28 @@ Read much more about *insane* from the *insane* paper: [DOI: 10.1021/acs.jctc.5b
 2024 – several updates have been made to *insane*, including python3 and Martini3 lipid support, see <https://github.com/Tsjerk/Insane>, and updated Martini 3 membrane tutorials [DOI 10.1016/bs.mie.2024.03.010](https://doi.org/10.1016/bs.mie.2024.03.010).
 :::
 
-<hr>
-
+::: software-card
 ### Simulated evaporation and scattering
 
-<hr>
-
-[Here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/morphology_suppfile.zip) an archive containing the necessary files to run a P3HT:PCBM evaporation (solvent is chlorobenzene) and to produce simulated scattering curves as described in:
+[[Here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/morphology_suppfile.zip) is an archive containing the necessary files to run a P3HT:PCBM evaporation (solvent is chlorobenzene) and to produce simulated scattering curves as described in:
 
 -   **R. Alessandri, J. J. Uusitalo, A. H. de Vries, R. W. A. Havenith, and S. J. Marrink.** *Bulk Heterojunction Morphologies with Atomistic Resolution from Coarse-Grain Solvent Evaporation Simulations.* JACS, 2017, 139, 3697-3705. [open access](http://pubs.acs.org/doi/abs/10.1021/jacs.6b11717)
 
 Please check the README files in the respective folders for an explanation on how to submit an evaporation and how to produce the scattering curves from the morphologies.
 
-[Here](https://figshare.com/articles/P3HT_and_PCBM_atomistic_force_fields/5051593) you can find atomistic force fields.
+[[Here]](https://figshare.com/articles/P3HT_and_PCBM_atomistic_force_fields/5051593) you can find atomistic force fields.
 
-For another example, [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/evaporation.zip) an archive containing the necessary files to run a PTEG-1:N-DMBI evaporations (the solvent is now chloroform) as described in:
+For another example, [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/evaporation.zip) an archive containing the necessary files to run a PTEG-1:N-DMBI evaporations (the solvent is now chloroform) as described in:
 
 -   **L. Qiu, J. Liu, R. Alessandri, X. Qiu, M. Koopmans, R.W.A. Havenith, S.J. Marrink, R.C. Chiechi, L.J.A. Koster, J.C. Hummelen.** *Enhancing doping efficiency by improving host-dopant miscibility for fullerene-based n-type thermoelectrics.* Journal of Material Chemistry A, 5:21234-2124, 2017. [online](http://pubs.rsc.org/en/content/articlelanding/2017/ta/c7ta06609k#!divAbstract)
 
 Please check the README file. Atomistic force fields are available from both the [Supporting Information](http://dx.doi.org/10.1039/C7TA06609K) and on [figshare](https://figshare.com/articles/PTEG-1_PP_and_N-DMBI_atomistic_force_fields/5458144).
 
 For further questions, please contact Riccardo Alessandri: [r.alessandri\@rug.nl](mailto:%20r.alessandri@rug.nl)
+:::
 
-<hr>
-
+::: software-card
 ### Improved angle potentials
-
-<hr>
 
 The restricted bending potential is now available in standard GROMACS. It is angle type number 10, see also the manual. This makes the special code referred to below unnecessary. The description of the potential is still valid.
 
@@ -102,12 +105,10 @@ Please consult the [readme-file](https://cgmartini-library.s3.ca-central-1.amazo
 -   **M. Bulacu, N. Goga, W. Zhao, G. Rossi, L. Monticelli, X. Periole, D.P. Tieleman, S.J. Marrink.** *Improved angle potentials for coarse-grained molecular dynamics simulations.* JCTC, in press, 2013. DOI:10.1021/ct400219n. [abstract](http://pubs.acs.org/doi/abs/10.1021/ct400219n)
 
 For further questions, please contace Monica Bulacu: [m.i.bulacu\@gmail.com](mailto:%20m.i.bulacu@gmail.com)
+:::
 
-<hr>
-
+::: software-card
 ### do-order
-
-<hr>
 
 A python script that calculates the order parameter for Martini lipids using version 5 and higher; after 5, gromacs continues with version 2016. Please note that this script has not been tested on many different simulations and might need manual editing.
 
@@ -116,25 +117,21 @@ A python script that calculates the order parameter for Martini lipids using ver
 A python script that calculates the order parameter for Martini lipids. Please note that this script has not been tested on many different simulations and might need manual editing.
 
 -   [do-order-multi.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/do-order-multi.py)
+:::
 
-<hr>
-
+::: software-card
 ### Martini lipid .itp generator
-
-<hr>
 
 A python script to help creates customized Martini lipid topologies based on the Martini 2.0 building blocks and rules. Warning, it is very easy to create unrealistic topologies so only use if you know what you are doing and with careful testing.
 
 -   [lipid-martini-itp-v05.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/lipid-martini-itp-v05.py)
 -   [lipid-martini-itp-v06.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/lipid-martini-itp-v06.py)
+:::
 
-<hr>
-
+::: software-card
 ### Cross sectional area calculation
 
-<hr>
-
-#### [ **Usage** ]{style="color:blue"}
+#### [**Usage**]{style="color:blue"}
 
 We propose here [a gromacs tool](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/cross-sectional-area.tar) that can be used to calculate the cross sectional area of membrane protein (or similar inclusion) in membrane. Schematically illustrated in the next figure:
 
@@ -165,7 +162,7 @@ The line above calculates the average lateral pressure profile outside the prote
 
 For more information contact Samuli Ollila ([oollila\@cc.hut.fi](mailto:%20oollila@cc.hut.fi)).
 
-#### [ **Remark** ]{style="color:blue"}
+#### [**Remark**]{style="color:blue"}
 
 The code **DOES NOT** remove rotation or translation and the protein should be whole inside the box in all frames. This can be done by the following way (to be adapted to each system of course):
 
@@ -175,12 +172,10 @@ trjconv -fit transxy
 trjconv -pbc mol
 trjconv -fit rotxy+transxy
 ```
+:::
 
-<hr>
-
+::: software-card
 ### Morphological Image Analysis
-
-<hr>
 
 **Morphological Image Analysis Tool**
 
@@ -197,12 +192,10 @@ The required c programs can be downloaded here: [MIA-source](https://cgmartini-l
 A description how to use the package: [MIA.pdf](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/mia.pdf)
 
 For questions please contact Marc Fuhrmans ([m.fuhrmans\@gmail.com](mailto:%20m.fuhrmans@gmail.com))
+:::
 
-<hr>
-
+::: software-card
 ### 3D pressure field
-
-<hr>
 
 A customised version of Gromacs for the calculation of local pressure fields is available [here](http://www.lacan.upc.edu/LocalStressFromMD). It is not meant for actual simulation, but rather for post-simulation trajectory analysis using the -rerun option of mdrun. Currently, it is not parallelised so you have to run it on only one CPU.
 
@@ -215,20 +208,17 @@ Here are some useful tools for the analysis of the resulting local pressure fiel
 -   [pressure-tools.tar.gz](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/pressure-tools.tar)
 
 If you have further question, you can contact either Samuli Ollila ([oollila\@cc.hut.fi](mailto:%20oollila@cc.hut.fi)) or Martti Louhivuori.
+:::
 
-<hr>
-
+::: software-card
 ### Mean-field boundaries
-
-<hr>
 
 Implicit, mean-field force approximation (MFFA) boundary potentials offer a computationally efficient method to simulate e.g. large vesicular systems in spherical liquid droplets. For further information about the method see
 
 -   Risselada et al. (2008) Application of mean field boundary potentials in simulations of lipid vesicles. J Phys Chem B 112:7438-7447
 
 In order to use the method you need [Gromacs/MFFA](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/mffa-4.0.5.tar), which is a custom version of Gromacs that supports MFFA potentials. Simple [instructions](mffa_instructions.html) and an [example](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/other_tools/mffa-example.tar) system also available.
-
-<hr>
+:::
 
 ::: software-card
 ### ElNeDyn {#elnedyn}
@@ -288,19 +278,16 @@ The tool, developed by Lisbeth Kjølbye in the group of Birgit Schiøtt, can be 
 A paper describing the tool and showing examples of its validation is published in JCIM: <https://pubs.acs.org/doi/10.1021/acs.jcim.1c00157>
 :::
 
+::: software-card
 ### Convert Martini water to polarizable water
-
-<hr>
 
 -   [triple-w.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.pyhttps://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.py)
 
 Script to convert the water in CG Martini system to polarizable water. For an example how to use this script, click [here](../../tutorials/Legacy/martini2/others.qmd#polarizable-water).
+:::
 
-<hr>
-
+::: software-card
 ### Resolution transformation
-
-<hr>
 
 Custom version of Gromacs to reintroduce atomistic details to CG structures [gmx_rev.tar.gz](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/gmx_rev.tar).
 
@@ -308,18 +295,186 @@ If you use the code, please cite:
 
 -   [Rzepiela et al. Reconstruction of atomistic details from coarse grained structures J. Comp. Chem, 31-1333-1343, 2010.](http://www3.interscience.wiley.com/journal/123244279/abstract)
 
-We recommend you use Backward instead of this tool. For details about this tool please contact Andrzej Rzepiela ([Andrzej.Rzepiela\@physik.uni-freiburg.de](mailto:%20Andrzej.Rzepiela@physik.uni-freiburg.de))
+We recommend you use [Backward](./multiscaling.qmd#backward) instead of this tool. For details about this tool please contact Andrzej Rzepiela ([Andrzej.Rzepiela\@physik.uni-freiburg.de](mailto:%20Andrzej.Rzepiela@physik.uni-freiburg.de))
 
 You may also try an automized resolution transformation provided by Angel Pineiro, see <http://smmb.usc.es/sugarpie/sugarpie.php>.
+:::
 
-<hr>
-
+::: software-card
 ### atom2cg {#atom2cg}
-
-<hr>
 
 A simple awk script that converts an atomistic PDB file to a coarse grained PDB file.
 
 -   [atom2cg_v2.1.awk](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/atom2cg_v2.1.awk)
+:::
 
-<hr>
+::: software-card
+### PCALipids Tool
+
+Principal components analysis is a standard approach to study conformational changes in biological molecules, in particular when the free energy lanscape has only one global minima. PCAlipids is a Python-based software that performs complete quantitative analysis of conformations and dynamics of lipids or other small molecules. The information about the approach can be found in the following papers:
+
+-   [Principal Component Analysis of Lipid Molecule Conformational Changes in Molecular Dynamics Simulations, Buslaev et al., JCTC 2016](https://github.com/membrane-systems/PCAlipids/blob/master/doi.org/10.1021/acs.jctc.5b01106)
+-   [Effects of Coarse Graining and Saturation of Hydrocarbon Chains on Structure and Dynamics of Simulated Lipid Molecules, Buslaev & Gushchin, Sci. Rep. 2017](https://github.com/membrane-systems/PCAlipids/blob/master/doi.org/10.1038/s41598-017-11761-5)
+
+PCALipids can be downloaded here: <https://github.com/membrane-systems/PCAlipids>
+
+A brief tutorial: <https://github.com/membrane-systems/PCAlipids/blob/master/tutorial/tutorial.md>
+
+![](PCALipids.jpeg)
+
+For questions please contact Khalid Mustafin ([khalid.mustafin\@phystech.edu](mailto:%20khalid.mustafin@phystech.edu)), Pavel Buslaev ([pbuslaev\@phystech.edu](mailto:%20pbuslaev@phystech.edu)) or Ivan Gushchin ([ivan.gushchin\@phystech.edu](mailto:%20ivan.gushchin@phystech.edu)).
+:::
+
+::: software-card
+### Leaflet identification and analysis
+
+Wlison et al. introduce a collection of membrane analysis tools suitable for Martini, built upon the MDAnalysis package. The first and most fundamental is a method for identifying leaflets in a membrane based on spectral clustering ([LeafletFinder](https://lipyds.readthedocs.io/en/latest/leafletfinder.html)). Once leaflets are identified, there are several leaflet-based analysis classes: the [LipidEnrichment](https://lipyds.readthedocs.io/en/latest/dei.html#lipyds.analysis.dei.LipidEnrichment) class for calculating the depletion-enrichment index of lipid groups, [LipidFlipFlop](https://lipyds.readthedocs.io/en/latest/flipflop.html#lipyds.analysis.flipflop.LipidFlipFlop) class for calculating flip-flop, and the [AreaPerLipid](https://lipyds.readthedocs.io/en/latest/apl.html#lipyds.analysis.apl.AreaPerLipid) class for lateral area per lipid. For more information please visit [https://github.com/OMaraLab](https://github.com/OMaraLab/)/SLC6_lipid_fingerprints.
+
+See also the associated paper: <https://www.sciencedirect.com/science/article/pii/S2667160321000090>
+:::
+
+::: software-card
+### Rendering CG helices & sheets with VMD
+
+We gathered and extended the set of small `Tcl` scripts available in our group to draw protein secondary structure in VMD-like fashion.
+
+The script can be found here: [cg_secondary_structure.tcl](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_secondary_structure.tcl)
+
+#### [**Usage**]{style="color:blue"}
+
+After sourcing the script in `VMD` (`source /path/to/cg_secondary_structure.tcl`), two routines are available from the command line: `cg_helix` and `cg_sheet`. The options and default values are listed below. You can summon an "how to" at any moment by calling the `cg_secondary_structure_usage` command.
+
+This script needs the `La` package, a linear algebra package written by Hume Integration Software, used here to compute principal axes of helices/sheets; the package is freely available at <http://www.hume.com/la/>. After downloading it, extract and source the `la.tcl` file in `VMD`.
+
+You can give an output of `do_dssp` as an input for this script; it will be parsed and this script will try to draw each helix/sheet. If you use this option (`-ssdump`), you can leave the first list empty (see examples).
+
+##### [cg_helix]{style="color:blue"}
+
+**Usage:**
+
+``` bash
+vmd > cg_helix {{start1 end1} {start2 end2} ...} [OPTIONS]
+```
+
+Where `start` and `end` are respectively the first and last residues composing an helix; you can provide more than one helix, as shown in the command line. The "{" and "}" characters are mandatory for `Tcl` to understand it as a list!
+
+**Options and default values:**
+
+|  |  |  |
+|------------------|------------------------|------------------------------|
+| -molid | "`top`" | VMD-defined ID of the molecule to process |
+| -ssdump | "`ssdump.dat`" | read topology from a `do_dssp`-formated file |
+| -bbbname | "`B.*`" | backbone bead name |
+| -hlxmethod | "`idealhelix`" | method to draw sheets "`idealhelix`", "`realhelix`" or "`cylinder`" |
+| -hlxcolor | "`red`" | color of helices |
+| -hlxmat | "`Opaque`" | material |
+| -hlxres | 12 | resolution |
+| -hlxrad | 2.0 | radius of cylinders |
+| -hlxsides | "`round`" | arrow sides "`round`" or "`sharp`" |
+| -hlxfilled | "`yes`" | cylinders filled or not "`yes`" or "`no`" |
+| -hlxstep | 1.0 | angle step size |
+| -hlxthick | 0.2 | thickness of helix |
+| -hlxwidth | 2.0 | width of helix |
+| -hlxdirect | "`no`" | draw the director vector of the helix (or not) |
+| -hlxdirrad | 0.1 | radius of the cylinder (director) |
+| -hlxdirclen | 0.3 | length of the cone (showing direction of the director) |
+| -hlxdircrad | 0.2 | cone radius |
+| -hlxsecbprop | 0.5 | proportion of the preceding/following bond used as length for starting/ending flat cones |
+
+**Example:**
+
+``` bash
+vmd > cg_helix {{5 48} {120 146}} -hlxmethod "cylinder" -hlxcolor "lime" -hlxrad 2.5
+```
+
+##### [cg_helix]{style="color:blue"}
+
+**Usage:**
+
+``` bash
+vmd > cg_sheet {{start1 end1} {start2 end2} ...} [OPTIONS]
+```
+
+Where `start` and `end` are respectively the first and last residues composing a sheet; you can provide more than one sheet, as shown in the command line. The "{" and "}" characters are mandatory for `Tcl` to understand it as a list!
+
+**Options and default values:**
+
+|  |  |  |
+|------------------|------------------------|------------------------------|
+| -molid | "`top`" | `VMD`-defined ID of the molecule to process |
+| -ssdump | "`ssdump.dat`" | read topology from a `do_dssp`-formated file |
+| -bbbname | "`B.*`" | backbone bead name |
+| -shtmethod | "`flatarrow`" | method to draw sheets "`cylindarrow`", "`flatarrow`", "`bendedarrow`" or "`triangle`" |
+| -shtcolor | "`green`" | color of sheets |
+| -shtmat | "`Opaque`" | material |
+| -shtres | 12 | resolution |
+| -shtsides | "`round`" | sheet sides "`round`" or "`sharp`" |
+| -shtrad | 0.4 | radius of cylinders |
+| -shtconrad | 0.8 | radius of arrow cones |
+| -shtlencone | 1.5 | length of arrow cones |
+| -shtfilled | "`yes`" | cylinder filled or not "`yes`" or "`no`" |
+| -shtarrwidth | 2.0 | width of arrows |
+| -shtheadsize | 4.0 | size of the arrow heads |
+| -shtarrthick | 1.0 | thickness of arrows |
+| -shtstep | 0.1 | distance step size |
+| -shtthick | 0.2 | thickness of sheet |
+| -shtwidth | 2.0 | width of sheet |
+| -shtdirect | "`no`" | draw the director vector of the sheet (or not) |
+| -shtdirrad | 0.1 | radius of the cylinder (director) |
+| -shtdirclen | 0.3 | length of the cone (showing direction of the director) |
+| -shtdircrad | 0.2 | cone radius |
+| -shtsecbprop | 0.5 | proportion of the preceding/following bond used as length for starting/ending flat cones |
+
+**Example:**
+
+``` bash
+vmd > cg_sheet {} -shtfilled "no" -ssdump protein.dat -shtarrowthick 0.4
+```
+
+#### [**Known issues**]{style="color:blue"}
+
+There is still a bunch of small graphical issues (thanks to drop a mail to the contact at the bottom of this page whenever you find something... unexpected); sheets are particularly ugly. It's not the priority right now, it will be fixed when we will have time... keep checking this page and your version of the script updated! We are writing this tool for personal purpose, and we didn't retroactively test all the graphical options and the result when mixing them together. Thanks to do that for us!
+
+-   Drawings do not follow the protein dyamic along a trajectory; you need to redraw everything at each step (no ways to change this behavior so far).
+-   The "`bendedarrow`" (sheet style), which would be the closest to `VMD` atomistic drawings, doesn't work so well so far. Still working on it!
+-   If an helix is too bended, `VMD` will not be able to draw it using the "`idealhelix`" or "`realhelix`" method (the script will output an error message with the termini of the helix).
+-   <strike>Not able to draw helices smaller than 3 residues (!).</strike>[**Fixed.**]{style="color:red"} Avoided.
+-   `Tcl` needs an empty line at the end of the files it reads!
+-   On the same level, `Tcl` seems to understand differently simple and double quotes... Please check that before shouting.
+
+For feedback or problems contact [c.arnarez\@rug.nl](mailto:%20c.arnarez@rug.nl) or post to the platform.
+:::
+
+::: software-card
+### DAFT - Docking Assay For Transmembrane Components
+
+-   [daft.tar](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/daft.tar)
+
+DAFT is a method for investigating protein-protein and protein-lipid interactions by running many association simulations. These allow identifying the binding hotspots and alternative binding sites.
+
+DAFT is a bundle of programs and supporting files, and comprises martinize, martinate, insane, and several MARTINI interaction table generating Python scripts, toghether with the standard lipid, ion and solvent topologies. The user interface is formed by the bash script daft.sh (see daft.sh -h for more information).
+
+More background on this DAFT approach can be read in the DAFT paper: [DOI: 10.1021/ct5010092](http://pubs.acs.org/doi/abs/10.1021/ct5010092)
+:::
+
+::: software-card
+### Flux calculator
+
+-   [fluxer.py](https://github.com/mnmelo/fluxer)
+
+This tool calculates fluxes across either a whole bilayer or through a defined channel. The trajectory must have been treated with -pbc nojump and, if analyzing the flux through a channel, care must be taken to ensure the channel is kept whole in the trajectory (use -pbc cluster).
+
+Please cite [J. Am. Chem. Soc., 2017, 139 (7), pp 2664–2671](https://pubs.acs.org/doi/abs/10.1021/jacs.6b11091) whenever using results generated by fluxer.py.
+
+Check the script's project page for more information on usage and to submit bugs.
+:::
+
+::: software-card
+### Analyze lipid fingerprints
+
+The following script, based on work of Corradi et al. \[1\], is provided for all your lipid fingerprint analysis needs. Special thanks to Amanda Buyan and Helgi Ingólfsson!
+
+Download the script [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/lipid-PM-counter-fix-v3.0.py). Please note that Python 2.7 (or equivalent) is required. For help on how to use it, simply type "python lipid-PM-counter-fix-v3.0.py -h"
+
+\[1\] **V. Corradi, E. Mendez-Villuendas, H.I. Ingólfsson, R.X. Gu, I. Siuda, M.N. Melo, A. Moussatova, L.J. DeGagné, B.I. Sejdiu, G. Singh, T.A. Wassenaar, K. Delgado Magnero, S.J. Marrink, D.P. Tieleman**. Lipid–Protein Interactions Are Unique Fingerprints for Membrane Proteins. ACS Central Science 4:709–717, 2018
+:::
