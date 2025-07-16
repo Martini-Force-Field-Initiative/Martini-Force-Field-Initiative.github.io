@@ -168,7 +168,7 @@ This mapping involves bond angles that can reach $180^{\circ}$. Applying dihedra
 
 - Use stronger angle potentials that prevent beads from becoming collinear (the type 1 angle might be an option here);
 - Use a smaller simulation timestep than the typical 20fs, to give those angle potentials a chance to act on the molecules;
-- Try out the new restricted bending angle potentials (a[ngle type number 10](../../../downloads/tools/other-tools.qmd)) that we just implemented in version 5.0 of `GROMACS`! They avoid collinear bonds without requiring any lowering of the timestep or changes to the dihedral potentials.
+- Try out the new restricted bending angle potentials (a[ngle type number 10](../../../downloads/tools/legacy.qmd)) that we just implemented in version 5.0 of `GROMACS`! They avoid collinear bonds without requiring any lowering of the timestep or changes to the dihedral potentials.
 
 With that out of the way, we're ready to test-drive our brand-new CG molecule (no more directives should be needed in the `.itp` file).
 

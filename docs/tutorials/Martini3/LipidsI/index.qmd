@@ -277,7 +277,7 @@ P<sub>2</sub> = 1/2 (3 cos<sup>2</sup><θ> − 1),
 
 where θ is the angle between the bond and the bilayer normal. P<sub>2</sub> = 1 means perfect alignment with the bilayer normal, P<sub>2</sub> = −0.5 anti-alignment, and P<sub>2</sub> = 0 random orientation.
 
-A script to calculate these order parameters can be downloaded in the [Downloads -> Tools -> Other tools](../../../downloads/tools/other-tools.qmd) section of the website (scroll down to the section on `do_order`, and download the script `do-order-gmx5.py`. There is also a version located in the directory `scripts/`). Copy the `.xtc` and `.tpr` files to an analysis subdirectory (the script expects them to be named `traj.xtc` and `topol.tpr`, respectively). The script `do-order-gmx5.py` will calculate P2 for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:
+A script to calculate these order parameters can be downloaded in the [Downloads -> Tools -> Other tools](../../../downloads/tools/legacy.qmd) section of the website (scroll down to the section on `do_order`, and download the script `do-order-gmx5.py`. There is also a version located in the directory `scripts/`). Copy the `.xtc` and `.tpr` files to an analysis subdirectory (the script expects them to be named `traj.xtc` and `topol.tpr`, respectively). The script `do-order-gmx5.py` will calculate P2 for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:
 
 ``` bash
 python do-order-gmx5.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DPPC
@@ -288,7 +288,7 @@ Will, for example, read 15 to 30 ns from the trajectory `md.xtc`. The simulation
 #### Advanced: additional analyses
 <hr>
 
-Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the `gromacs` package, see [the gromacs manual](https://manual.gromacs.org/documentation/current/user-guide/index.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](../../../downloads/tools/other-tools.qmd). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python [MDAnalysis package](https://www.mdanalysis.org/).
+Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the `gromacs` package, see [the gromacs manual](https://manual.gromacs.org/documentation/current/user-guide/index.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](../../../downloads/tools/legacy.qmd). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python [MDAnalysis package](https://www.mdanalysis.org/).
 
 ### Changing lipid type
 <hr>
