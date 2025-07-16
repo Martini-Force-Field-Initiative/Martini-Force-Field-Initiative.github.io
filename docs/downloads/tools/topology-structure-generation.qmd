@@ -3,149 +3,44 @@ title: <i class="fas fa-project-diagram"></i>  Topology/Structure Generation
 format: html
 ---
 
-<hr>
+::: software-card
+### Martinize2/Vermouth
 
-### martinize
-<hr>
+`Martinize2` is a rewrite of [Martinize](./legacy.qmd#martinize). It is aimed at producing coarse-grained structures and topologies from an atomistic structure. `Martinize2` is primarily developed for the Martini coarse-grained force field and the `Gromacs` simulation engine. 
 
-Martinize is a python script to generate Martini protein topology and structure files based on an atomistic structure file. It replaces the old [seq2itp](#seq2itp), [atom2cg](#atom2cg) and [ElNeDyn](#elnedyn) scripts. The produced topology and structure files are in a format suitable for Gromacs.
+`Vermouth` (for VERsatile, MOdular, and Universal Tranformation Helper) is the python library that powers `Martinize2`. It allows to describe and apply transformation on molecular structures and topologies using graph algorithms.
 
-The current version (2.x) has been used rather extensively, however it might still contain errors or bugs. Any feedback is more than welcome! The script is "concatenated": all the different classes, modules and forcefields are in one file. If you want to make changes yourself or add a forcefield we have a modular version available. If you would like to use this, send us an e-mail.
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/marrink-lab/vermouth-martinize).
 
-You can now also download the latest martinize from [GitHub](https://github.com/cgmartini/martinize.py). The major updates are always added also here below:
+:::
 
--   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_6.py) and python 3 version [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_6_py3.py) (version 2.6, May 12 2016)
-    -   The option for the elastic bond lower cutoff (-el) is now correctly recognized.
-    -   Cys bonds in gro-files and pdb-files without chain identifier are now correctly identified.
-    -   Many, many code clean-ups and restructuring.
--   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_5.py) (version 2.5, August 11 2015)
-    -   Removed warnings about beta status of Martini 2.2.
-    -   Bug fix: Fixed cases where Cys-Cys constraints were not recognized as such.
--   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_4.py) (version 2.4, August 18 2013)
-    -   Inverted "define NO_RUBBER_BANDS" behavior.
-    -   Changed protein backbone constraints to bonds.
-    -   Changed HIS BB-SC constraint to bonds.
-    -   Bug fix: Cys-bond length and force constant.
-    -   Bug fix: Position restraints are correctly written out when multiple chains are merged.
--   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_3.py) (version 2.3, February 13 2013)
-    -   Bug fix: Correctly call dssp.
-    -   Bug fix: Correct error message when atoms are missing.
-    -   Bug fix: Correctly merge topologies of multiple change in case of Martini 2.2P.
--   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_2.py) (version 2.2, November 27 2012)
-    -   Added charged His to all forcefields and options to choose the His-charge state.
-    -   Bug fix: correctly handle .gro files.
-    -   Bug fix: Correctly handle .pdb files containing hydrogens.
-    -   Bug fix: bead types correctly set in helix starting at first residue.
-    -   Fixed small inconsistencies in elnedyn forcefields.
-    -   Cleaned up and added help text and warning messages.
--   [martinize.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_2_0.py) (version 2.0, July 25 2012)
-    -   Major clean-up and restructuring of the code.
-    -   Changed forcefield selection. Forcefield now available: Martini 2.1, Martini 2.1P, Martini 2.2, Martini 2.2P, Elnedyn, Elnedyn 2.2 and Elnedyn 2.2P.
-    -   Added function to handle new polar and charged residues in Martini 2.2P.
-    -   Several small bug fixes.
--   [martinize-1.2.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_1_2.py) (version 1.2, May 22th 2012)
-    -   Fixed bug with counter in multi chain topologies.
-    -   Corrected wrong collagen parameters.
-    -   Fixed bug involving BBBB dihedrals in extended regions.
-    -   Fixed bug when giving secondary structure as string.
-    -   A test set is now available.
--   [martinize-1.1.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_1_1.py) (version 1.1)
-    -   Fixed bug in pdb read-in.
-    -   Clean up of code.
--   [martinize-1.0.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martinize_v_1_0.py) (version 1.0)
+::: software-card
+### Polyply
 
-<hr>
+`Polyply` is a python suite designed to facilitate the generation of input files and system coordinates for simulating (bio)macromolecules such as synthetic polymers or polysaccharides. Input files can be generated either from user specified building blocks or by using the polymers available in the library. The library currently includes polymer definitions for the GROMOS (2016H66 & 54A6), OPLS, Parmbsc1, and Martini (2 & 3) force-fields. Coordinates are generated by a multiscale random-walk protocol that is able to generate condensed phase systems at target density, as well as more heterogeneous systems such as aqueous two phase systems. In addition, `polyply` allows to tailor initial chain conformations by providing a build file.
 
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/marrink-lab/polyply_1.0).
+:::
+
+::: software-card
 ### Insane
 
-<hr>
+`Insane` (INSert membrANE) is a versatile tool to build coarse-grained simulation systems containing solutes, lipid bilayers, and/or solvents. It handles a broad range of different lipid types, is very flexible with respect to box types and can insert a (CG) protein structure in the bilayer if one is given. It can write PDB or gromacs files.
 
-The most up to date version of *insane* <https://github.com/Tsjerk/Insane>
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/Tsjerk/Insane).
+:::
 
-An older version, still all in one file [insane.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/insane.py)
+::: software-card
+### COBY
 
-Insane (INSert membrANE) is a python tool to setup Martini bilayer systems. It handles a broad range of different lipid types, is very flexible with respect to box types and can insert a (CG) protein structure in the bilayer if one is given. Help text and options are obtained by typing: insane.py -h
+`COBY` is a Python-based software tool for building flat membranes at a coarse-grained resolution. It supports asymmetric membranes, phase-separated systems, multiple bilayers, protein insertion, solvation, and flooding with one or multiple solute molecules of choice.
 
-Read much more about *insane* from the *insane* paper: [DOI: 10.1021/acs.jctc.5b00209](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.5b00209)
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/MikkelDA/COBY).
+:::
 
-2015.06.25 – *insane* was updated adding a few features, fixing a few bug and the lipid templates now use the new lipid-naming schema, the old templates are still available with a .o after the name e.g. “DHPC.o”.
-
-2024 – several updates have been made to *insane*, including python3 and Martini3 lipid support, see <https://github.com/Tsjerk/Insane>, and updated Martini 3 membrane tutorials [DOI 10.1016/bs.mie.2024.03.010](https://doi.org/10.1016/bs.mie.2024.03.010).
-
-<hr>
-
+::: software-card
 ### Go-Martini
 
-<hr>
-
-For ongoing development of Go-Martini, see the webpage of Adolfo Poma: <http://pomalab.ippt.pan.pl/web/index.html>
-
-<hr>
-
-### ElNeDyn {#elnedyn}
-
-<hr>
-
-**ElNeDyn** stands for **El**astic **Ne**twork in **Dyn**amics. In this approach an elastic network (EN; a set of springs or harmonic bonds between interacting sites) is used as a structural scaffold to describe and control the overall shape of a molecule. The EN is then combined with a coarse-grained molecular force field to describe the intra- and inter-molecular interactions.
-
-![](ElNeDyn.jpeg)
-
-The current version of *ElNeDyn* focusses on modeling proteins and has been developed in conjunction with the Martini CG force field (2.0, 2.1) but can in principle be mixed with any CG model for any type of molecule. The Martini FF presents the great advantage to include a large body of biomolecules and solvents making simulations of biomolecular systems actually possible.
-
-The rationale for the use of EN is to control the conformation of the protein while keeping its internal dynamics. This has been possible by parametrizing the EN against atomistic model simulations. By tuning the force constant of the springs and the extend of the network, backbone deformations, fluctuations and large amplitude domain motions observed in atomistic simulations of proteins have been matched. For more detail refer to X. Periole et al. 2009 JCTC 5:2531-43.
-
-One notable detail is that the description of the bonded terms defined in original Martini for proteins has been slightly modified to accommodate for the placement of the backbone bead on the Calpha instead on the center-of-mass of the backbone atoms. The non-bonded terms were used as in the original force field.
-
-In the following you'll find a tar.gz file containing the scripts and programs (listed below) that will allow you to build the topology of protein from a pdb file.
-
-**Download:** [ElNeDyn-2.1.tar.gz](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/ElNeDyn-2.1.tar)
-
-Files and short description: - AA.dat : contains the definition of the amino acids. - cg-2.1.dat : contains the definition of the bonded terms. - cg-2.1.dat.comments : description of the content of cg-2.1.dat. - pdb2CGpdb-2.1.f : fortran code reading a pdb file of a protein and giving a CG version of it. - topol-CG-2.1.f : fortran code reading the CG coordinates and building the ElNeDyn topology. - HowTo-ElNeDyn.pdf : a step-by-step description of the procedure to get from the pdb file to an MD run. - a set of mdp files to minimize, relax and simulate your ElNeDyn model.
-
-For more information contact Xavier Periole ([x.periole\@rug.nl](mailto:%20x.periole@rug.nl)).
-
-The development of *ElNeDyn* is done in close collaboration with Prof. [M. A. Ceruso](http://www.sci.ccny.cuny.edu/~mceruso/) at the CCNY-CUNY in New York City, USA.
-
-<hr>
-
-### seq2itp {#seq2itp}
-
-<hr>
-
-A perl script to build your own peptide/protein topology (.itp). Use the -h option to see what it can do. As input it requires the amino acid sequence (.seq) and the secondary structure information (.ssd).
-
--   [seq2itp.pl](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/seq2itp.pl) (version 1.1.5)
--   [martini_v2.1_example.seq](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martini_v2.1_example.seq)
--   [martini_v2.1_example.ssd](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/martini_v2.1_example.ssd)
-
-
-<hr>
-
-### molmaker.py: Create molecule coordinates from their .itps
-
-<hr>
-
--   [molmaker.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/molmaker.py)
-
-This tool creates a .gro from an .itp file. It works by randomly scattering coordinates along a linear stretch and then performing an evil minimization as VdW and charges are faded in (using the free energy code). As you already guess, it's totally useless for proteins unless you want a linear segment (in which case it works pretty well!).
-
-Additionally, molmaker.py will likely not preserve your chiral centers unless you protect them in your topology using some sort of dihedral potential/restraint. Alternatively you might want to hand-correct each center using other tools and then energy-minimizing.
-
-Check the -h flag for more details. Please report bugs in the [GitHub project](https://github.com/mnmelo/molmaker).
-
-<hr>
-
-### Nanodisc builder
-
-<hr>
-
-Nanodisc technology is increasingly being applied for structural and biophysical studies of membrane proteins. Here you can find a general protocol for constructing nanodiscs for molecular dynamics simulations. The protocol is written in python and based on geometric equations, making it fast and easy to modify, enabling automation and customization of nanodiscs in silico. The tool allows one to efficiently construct any membrane scaffold protein (MSP) variant given only an input sequence.
-
-![](nanodisc.gif)
-
-The tool, developed by Lisbeth Kjølbye in the group of Birgit Schiøtt, can be found here: <https://github.com/LHRK/Nanodisc-Builder>
-
-A paper describing the tool and showing examples of its validation is published in JCIM: <https://pubs.acs.org/doi/10.1021/acs.jcim.1c00157>
-
-<hr>
+For ongoing development of `Go-Martini`, see the [[webpage of Adolfo Poma]](http://pomalab.ippt.pan.pl/web/index.html).
+:::
 

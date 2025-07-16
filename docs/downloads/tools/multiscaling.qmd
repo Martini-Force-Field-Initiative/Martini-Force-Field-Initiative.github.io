@@ -3,25 +3,20 @@ title: <i class="fas fa-layer-group"></i> Multiscaling
 format: html
 ---
 
-<hr>
+::: software-card
+### TS2CG: Triangulated Surfaces to Coarse-Grained
 
-### TS2CG: Triangulated Surfaces to Coarse Grain
+`TS2CG` converts triangulated surfaces (TS) to coarse-grained membrane models for molecular simulation. It also works as a backmapping algorithm from dynamically triangulated surfaces simulations to CG molecular dynamics simulations or to take electron microscopy tomography data and build structures for molecular dynamics simulations.
 
-<hr>
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/weria-pezeshkian/TS2CG-v2.0).
+:::
 
-TS2CG is an algorithm to backmap a triangulated surface to a corresponding coarse-grained model.
-
-The software can be downloaded from this [link](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/TS2CG-master.zip), or by visiting <https://github.com/marrink-lab/TS2CG>.
-
-<hr>
-
+::: software-card
 ### Backward
 
-<hr>
+Backward is a tool to convert a coarse-grained system to united-atom or all-atom resolution. The mapping is done using a library of mapping definitions, which encode the geometric reconstruction. The tool consists of three scripts and a number of CG to fine-grained mapping definition files. 
 
-Backward is a tool to convert a coarse-grained system to united-atom or all-atom resolution. The mapping is done using a library of mapping definitions, which encode the geometric reconstruction.
-
-In most cases, the backmapping is performed using the wrapper initram.sh, which calls backward.py and subsequently relaxes the resulting structure through energy minimization and molecular dynamics based relaxation.
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/Tsjerk/Backward/tree/master).
 
 When using this method, please cite:
 
@@ -29,46 +24,10 @@ When using this method, please cite:
 
 More extensive information and a tutorial can be found [\[here\]](../../tutorials/Martini3/Backward/index.qmd).
 
-[The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded here.](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward.zip)
+- The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward.zip).
 
-[The initram.sh script for version 5 can be downloaded here.](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/initram-v5.sh)
+- The initram.sh script for version 5 can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/initram-v5.sh).
 
-[The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded here.](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip)
+- The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip).
+:::
 
-<hr>
-
-### Convert Martini water to polarizable water
-
-<hr>
-
--   [triple-w.py](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.pyhttps://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/triple-w.py)
-
-Script to convert the water in CG Martini system to polarizable water. For an example how to use this script, click [here](../../tutorials/Legacy/martini2/others.qmd#polarizable-water).
-
-<hr>
-
-### Resolution transformation
-
-<hr>
-
-Custom version of Gromacs to reintroduce atomistic details to CG structures [gmx_rev.tar.gz](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/gmx_rev.tar).
-
-If you use the code, please cite:
-
--   [Rzepiela et al. Reconstruction of atomistic details from coarse grained structures J. Comp. Chem, 31-1333-1343, 2010.](http://www3.interscience.wiley.com/journal/123244279/abstract)
-
-We recommend you use Backward instead of this tool. For details about this tool please contact Andrzej Rzepiela ([Andrzej.Rzepiela\@physik.uni-freiburg.de](mailto:%20Andrzej.Rzepiela@physik.uni-freiburg.de))
-
-You may also try an automized resolution transformation provided by Angel Pineiro, see <http://smmb.usc.es/sugarpie/sugarpie.php>.
-
-<hr>
-
-### atom2cg {#atom2cg}
-
-<hr>
-
-A simple awk script that converts an atomistic PDB file to a coarse grained PDB file.
-
--   [atom2cg_v2.1.awk](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/proteins_and_bilayers/atom2cg_v2.1.awk)
-
-<hr>

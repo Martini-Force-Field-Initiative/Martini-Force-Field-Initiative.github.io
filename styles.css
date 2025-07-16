@@ -2646,3 +2646,64 @@ padding-left: 0.3em;
 margin-left: 0.3em;
 padding-bottom: 1.2em;
 }
+
+/* Software Tool Card - Reusable for all tools */
+.software-card {
+  background: linear-gradient(135deg, rgba(75, 46, 76, 0.02) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 1px solid rgba(75, 46, 76, 0.1);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 8px rgba(75, 46, 76, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.software-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(75, 46, 76, 0.15);
+  background: white;
+  border-left-color: var(--gradient-end);
+}
+
+.software-card h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(168, 156, 176, 0.3);
+  font-size: 1.4rem;
+}
+
+.software-card h3::before {
+  content: "⚙ ";
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Enhanced link styling within software tools */
+.software-card a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.software-card a:hover {
+  border-bottom-color: var(--primary-color);
+  color: var(--gradient-end);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .software-card {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .software-card h3 {
+    font-size: 1.2rem;
+  }
+}
