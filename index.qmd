@@ -475,9 +475,9 @@ resources:
       return;
     }
     
-    const randomChance = Math.floor(Math.random() * 500);
+    const randomChance = Math.floor(Math.random() * 300);
     
-    // 0.1% chance (1 in 500)
+    // 0.1% chance (1 in 300)
     if (randomChance === 0) {
       createFloatingMartini();
     }

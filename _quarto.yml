@@ -149,10 +149,13 @@ website:
             - docs/downloads/example-applications/other-systems.qmd
         - section: "⚒️ Tools"
           contents:
-            - docs/downloads/tools/proteins-and-bilayers.qmd
-            - docs/downloads/tools/resolution-transformation.qmd
-            - docs/downloads/tools/visualization.qmd
-            - docs/downloads/tools/other-tools.qmd
+            - section: <i class="fas fa-wrench"></i> Actively Maintained
+              contents:
+                - docs/downloads/tools/topology-structure-generation.qmd
+                - docs/downloads/tools/multiscaling.qmd
+                - docs/downloads/tools/analysis.qmd
+            - text: <i class="fas fa-history"></i> Legacy Tools
+              href: docs/downloads/tools/legacy.qmd
 
     - id: publications
       title: "Publications"
