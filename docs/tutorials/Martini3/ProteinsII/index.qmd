@@ -118,7 +118,7 @@ gmx mdrun -deffnm dynamic -v
 
 This second method, being the easiest and the most straightforward, is the recommended one to build such systems. Here is the procedure:
 
-1. The syntax of the `insane.py` <sup>[[9]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/proteins-and-bilayers.qmd#insane) page.) Let's see a practical example:
+1. The syntax of the `insane.py` <sup>[[9]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page.) Let's see a practical example:
 
 ``` bash
 python2 insane.py -f kalp.gro -o system.gro -p system.top -pbc square -box 7,7,9 -l POPC -u POPC -center -sol W -salt 0.01
@@ -227,7 +227,7 @@ Based on the results of Figure 3, try now figure out which approach is the best 
 
 - `martinize2` ([https://github.com/marrink-lab/vermouth-martinize](https://github.com/marrink-lab/vermouth-martinize))
 
-- `insane` (downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane))
+- `insane` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
 
 ### References
 <hr>

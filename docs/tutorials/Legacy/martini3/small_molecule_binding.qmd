@@ -65,7 +65,7 @@ Since we now have both the coordinates and topology of the Martini 3 protein, we
 /usr/bin/python2.7 insane.py -f CG.pdb -o CG.gro -pbc cubic -box 10,10,10 -salt 0.15 -charge auto -sol W
 ```
 
-You can look for more details about the insane.py script [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane). The output file (`CG.gro`) contains `NA+`, `CL-`, and `W` residues. Check how many and add specify it in the `CG.top` file.
+You can look for more details about the insane.py script [here](../../../downloads/tools/topology-structure-generation.qmd#insane). The output file (`CG.gro`) contains `NA+`, `CL-`, and `W` residues. Check how many and add specify it in the `CG.top` file.
 
 ``` text
 [ molecules ] 

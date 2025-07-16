@@ -196,18 +196,23 @@ We have built the coordinate and topology files for 128 dodecane, thus we are re
 ``` bash
 gmx grompp -f minimization.mdp -p topol.top -c dodecane_box.gro -o mini_run.tpr -maxwarn 4
 ```
+
 ``` bash
 gmx mdrun -deffnm mini_run -v
 ```
+
 ``` bash
 gmx grompp -f martini_eq_2.mdp -p topol.top -c mini_run.gro -o eq.tpr -maxwarn 4
 ```
+
 ``` bash
 gmx mdrun -deffnm eq -v
 ```
+
 ``` bash
 gmx grompp -f martini_md.mdp -p topol.top -c eq.gro -o run.tpr -maxwarn 4
 ```
+
 ``` bash
 gmx mdrun -deffnm run -v
 ```
@@ -324,12 +329,15 @@ The following four lines split the CG membrane (and CG water) using the index fi
 ``` bash
 python2.7 ../splitleaflet/splitleafs.py --atom DPPC:PO4 W:W -r -- membrane_raw.gro > tail_leaflets.ndx
 ```
+
 ``` bash
 echo "0"|gmx editconf -f membrane_raw.gro -n tail_leaflets.ndx -o lower_cg.gro
 ```
+
 ``` bash
 echo "1"|gmx editconf -f membrane_raw.gro -n tail_leaflets.ndx -o upper_cg.gro
 ```
+
 ``` bash
 gmx editconf -f upper_cg.gro -o upper_cg_moved.gro -translate 0 0 10
 ```
@@ -341,12 +349,15 @@ The following four lines split the hybrid membrane (and AA water) using the inde
 ``` bash
 python2.7 ../splitleaflet/splitleafs.py --atom DPPC:VPO4 SOL:OW -r -- hybrid.gro > tail_leaflets.ndx
 ```
+
 ``` bash
 echo "1"|gmx editconf -f hybrid.gro -n tail_leaflets.ndx -o upper_hb.gro
 ```
+
 ``` bash
 echo "0"|gmx editconf -f hybrid.gro -n tail_leaflets.ndx -o lower_hb.gro
 ```
+
 ``` bash
 gmx editconf -f lower_hb.gro -o lower_hb_moved.gro -translate 0 0 10
 ```
@@ -356,15 +367,19 @@ The following five lines combine all the leaflets and water coordinates into one
 ``` bash 
 gmx editconf -f lower_hb_moved.gro -o lower_hb_moved.pdb
 ```
+
 ``` bash
 gmx editconf -f upper_hb.gro -o upper_hb.pdb
 ```
+
 ``` bash
 gmx editconf -f upper_cg_moved.gro -o upper_cg_moved.pdb
 ```
+
 ``` bash
 gmx editconf -f lower_cg.gro -o lower_cg.pdb   
 ```
+
 ``` bash
 cat upper_hb.pdb lower_hb_moved.pdb upper_cg_moved.pdb lower_cg.pdb | grep -e "^ATOM" > whole.pdb
 ```
@@ -382,9 +397,11 @@ The following three lines give the size of the box to the `.gro` file. The box s
 ``` bash
 sed '$d' whole.gro > whole1.gro
 ```
+
 ``` bash
 tail -n 1 membrane_raw.gro |awk '{print $1" "$2" "$3*2}' >>whole1.gro
 ```
+
 ``` bash
 cp whole1.gro whole.gro
 ```
@@ -411,24 +428,31 @@ The following 8 lines count the number of AA and CG water and write the numbers 
 ``` bash
 python2.7 ../splitleaflet/splitleafs.py --atom SOL:OW -r -- hybrid.gro 2 > sol_num_file.xvg
 ```
+
 ``` bash
 python2.7 ../splitleaflet/splitleafs.py --atom W:W -r -- membrane_raw.gro 2 > w_num_file.xvg
 ```
+
 ``` bash
 cat sol_num_file.xvg|awk '{print $1 $2/3}'>solvent_num_file.xvg
 ```
+
 ``` bash
 rm sol_num_file.xvg
 ```
+
 ``` bash
 upper_leaflet_w=$(cat w_num_file.xvg |grep "upper_leaflet" | awk -F ':' '{print $2}'| awk '{print $1}')
 ```
+
 ``` bash
 lower_leaflet_w=$(cat w_num_file.xvg |grep "lower_leaflet" | awk -F ':' '{print $2}'| awk '{print $1}')
 ```
+
 ``` bash
 upper_leaflet_sol=$(cat solvent_num_file.xvg |grep "upper_leaflet" | awk -F ':' '{print $2}')
 ```
+
 ``` bash
 lower_leaflet_sol=$(cat solvent_num_file.xvg |grep "lower_leaflet" | awk -F ':' '{print $2}')
 ```
@@ -489,6 +513,7 @@ The following two lines are to build an index file for equilibration and product
 ``` bash
 gmx grompp -f nothing.mdp -c whole.gro -o index.tpr -p top.top -maxwarn 10 -r whole.gro
 ```
+
 ``` bash
 echo -e "del 1-15\nr DPPC\nname 1 bilayer_hybrid_AA\nr VDPPC \nname 2 VS\nr DPPCC \nname 3 bilayer_pure_CG\nr W\nname 4 W\nr TIP3\nname 5 SOL\nr DPPCC W \nname 6 CG\nr DPPC TIP3\nname 7 AA\nq\n" | gmx make_ndx -f index.tpr -o index.ndx
 ```
@@ -520,6 +545,7 @@ couple-intramol = yes
 ```
 
 To run the equilibration, use the following commands:
+
 ``` bash
 gmx grompp -f minimization.mdp -c whole.gro -p top.top -o mini_run_1.tpr -maxwarn 1 -n index.ndx -r whole.gro
 ```
@@ -545,23 +571,29 @@ Next, we continue with minimization and equilibration without the softcore, and 
 ``` bash
 gmx grompp -f minimization.mdp -c mini_run_2 -p top.top -o mini_run_2_1.tpr -maxwarn 1 -n index.ndx
 ```
+
 ``` bash
 gmx mdrun -deffnm mini_run_2_1 -v
 ```
+
 ``` bash
 gmx grompp -f martini_eq_3.mdp -c mini_run_2_1.gro -p top.top -o mini_run_3.tpr -maxwarn 3 -n index.ndx -r mini_run_2.gro
 ```
+
 ``` bash
 gmx mdrun -deffnm mini_run_3 -v
 ```
+
 ``` bash
 gmx grompp -f martini_eq_4.mdp -c mini_run_3.gro -p top.top -o mini_run_4.tpr -maxwarn 3 -n index.ndx -r mini_run_3.gro
 ```
+
 ``` bash
 gmx mdrun -deffnm mini_run_4 -v
 ```
 
 #### Run the hybrid system
+
 <hr>
 
 ![Figure 4 | Illustration of flat bottom potential. The flat bottom potential is applied only on AA water molecules. The distance between the resolution interface and the beginning of flat bottom potential is 0.5 nm. The color scheme is the same as that of Fig. 2.](fig4.png)
@@ -573,9 +605,11 @@ The flat bottom potential is used to restrain the AA water and stop them from cr
 ``` bash
 python3 ../build_restrain_gro_file/flat_bottom_potential.py ./ mini_run_4.gro test_FBP.gro
 ```
+
 ``` bash
 gmx grompp -f martini_md.mdp -c mini_run_4.gro -p top.top -o run.tpr -maxwarn 3 -n index.ndx -r test_FBP.gro
 ```
+
 ``` bash
 gmx mdrun -deffnm run -v
 ```
@@ -594,9 +628,9 @@ Congratulations! You have grasped how to combine Martini and CHARMM force fields
 
 - `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
 
- - `insane.py` (downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane))
+ - `insane.py` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
 
- - `backward` (downloadable [here](../../../downloads/tools/resolution-transformation.qmd#backward))
+ - `backward` (downloadable [here](../../../downloads/tools/multiscaling.qmd#backward))
 
 ### References
 <hr>

@@ -48,7 +48,7 @@ wget https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_para
 ```
 
 ***
-> **_Note_** The DPPC model corresponds to atomistic C16:0 dipalmitoyl (DPPC) - C18:0 distearoyl (DSPC) tails. This reflects that, in Martini, the 4-to-1 mapping in acyl tails limits the resolution and the same model represents in this case a C-16 tail (palmitoyl) and a C-18 tail (stearoyl, hence DSPC). Also note that you can download coordinate files for many Martini lipids from the website. For the time being these structures are mostly for Martini 2 lipids, but structurally the difference doesn’t matter in the cases, like DPPC, where the Martini 3 lipid has the same mapping and number of beads. Finally, for cases when you have a lipid topology but not its structure, see the [Lipid Bilayers II tutorial](../LipidsII/index.qmd) on using the insane script, or look into the [`molmaker.py`](../../../downloads/tools/proteins-and-bilayers.qmd#molmaker.py-create-molecule-coordinates-from-their-.itps) script for generating structures directly from topologies.
+> **_Note_** The DPPC model corresponds to atomistic C16:0 dipalmitoyl (DPPC) - C18:0 distearoyl (DSPC) tails. This reflects that, in Martini, the 4-to-1 mapping in acyl tails limits the resolution and the same model represents in this case a C-16 tail (palmitoyl) and a C-18 tail (stearoyl, hence DSPC). Also note that you can download coordinate files for many Martini lipids from the website. For the time being these structures are mostly for Martini 2 lipids, but structurally the difference doesn’t matter in the cases, like DPPC, where the Martini 3 lipid has the same mapping and number of beads. Finally, for cases when you have a lipid topology but not its structure, see the [Lipid Bilayers II tutorial](../LipidsII/index.qmd) on using the insane script, or look into the [`molmaker.py`](../../../downloads/tools/legacy.qmd#molmaker.py-create-molecule-coordinates-from-their-.itps) script for generating structures directly from topologies.
 
 ***
 
@@ -130,7 +130,7 @@ gmx trjconv -s dppc-md.tpr -f dppc-md.xtc -o dppc-md.pdb -pbc whole -conect
 pymol dppc-md.pdb 
 ```
 
-For `VMD`, a plugin script `cg_bonds-v5.tcl` was written that takes the GROMACS topology file and adds the Martini bonds defined in the topology (this file is included in the directory for your convenience, but you would normally want to download it from the [Tools -> Visualization](../../../downloads/tools/visualization.qmd) section of the website, store it in a generally useful location and refer to it when needed). A useful preprocessing step for `VMD` visualization is to avoid molecules being split over the periodic boundary, because if they are, very long bonds will be drawn between them. A script `do_vmd.sh` has been prepared for you for visualization using `VMD`. You will probably need to make the script executable.
+For `VMD`, a plugin script `cg_bonds-v5.tcl` was written that takes the GROMACS topology file and adds the Martini bonds defined in the topology (this file is included in the directory for your convenience, but you would normally want to download it from the [Tools -> Visualization](../../../downloads/tools/analysis.qmd) section of the website, store it in a generally useful location and refer to it when needed). A useful preprocessing step for `VMD` visualization is to avoid molecules being split over the periodic boundary, because if they are, very long bonds will be drawn between them. A script `do_vmd.sh` has been prepared for you for visualization using `VMD`. You will probably need to make the script executable.
 
 ``` bash
 chmod +x do_vmd.sh
@@ -277,7 +277,7 @@ P<sub>2</sub> = 1/2 (3 cos<sup>2</sup><θ> − 1),
 
 where θ is the angle between the bond and the bilayer normal. P<sub>2</sub> = 1 means perfect alignment with the bilayer normal, P<sub>2</sub> = −0.5 anti-alignment, and P<sub>2</sub> = 0 random orientation.
 
-A script to calculate these order parameters can be downloaded in the [Downloads -> Tools -> Other tools](../../../downloads/tools/other-tools.qmd) section of the website (scroll down to the section on `do_order`, and download the script `do-order-gmx5.py`. There is also a version located in the directory `scripts/`). Copy the `.xtc` and `.tpr` files to an analysis subdirectory (the script expects them to be named `traj.xtc` and `topol.tpr`, respectively). The script `do-order-gmx5.py` will calculate P2 for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:
+A script to calculate these order parameters can be downloaded in the [Downloads -> Tools -> Other tools](../../../downloads/tools/legacy.qmd) section of the website (scroll down to the section on `do_order`, and download the script `do-order-gmx5.py`. There is also a version located in the directory `scripts/`). Copy the `.xtc` and `.tpr` files to an analysis subdirectory (the script expects them to be named `traj.xtc` and `topol.tpr`, respectively). The script `do-order-gmx5.py` will calculate P2 for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:
 
 ``` bash
 python do-order-gmx5.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DPPC
@@ -288,7 +288,7 @@ Will, for example, read 15 to 30 ns from the trajectory `md.xtc`. The simulation
 #### Advanced: additional analyses
 <hr>
 
-Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the `gromacs` package, see [the gromacs manual](https://manual.gromacs.org/documentation/current/user-guide/index.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](../../../downloads/tools/other-tools.qmd). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python [MDAnalysis package](https://www.mdanalysis.org/).
+Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the `gromacs` package, see [the gromacs manual](https://manual.gromacs.org/documentation/current/user-guide/index.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](../../../downloads/tools/legacy.qmd). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python [MDAnalysis package](https://www.mdanalysis.org/).
 
 ### Changing lipid type
 <hr>

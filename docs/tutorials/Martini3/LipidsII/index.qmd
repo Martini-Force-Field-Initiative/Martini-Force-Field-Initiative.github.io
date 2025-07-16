@@ -21,7 +21,7 @@ In case of issues, please contact [lpborgesaraujo@tecnico.ulisboa.pt](mailto: lp
 <hr>
 
 When setting up large and/or complex bilayers it can be more convenient, or necessary, to
-start with a bilayer close to equilibrium rather than trying to get the bilayer to self-assemble. This can be done by concatenating (e.g. using `gmx genconf`) and/or altering previously formed bilayers, but an easier approach is to use a bilayer formation program such as `insane.py`<sup>[[1]](#references)</sup> (available in the directory `scripts/` or downloadable in the [Downloads -> Tools -> Proteins and bilayers](../../../downloads/tools/proteins-and-bilayers.qmd) section of the website, under the `insane` topic. You can also check its [GitHub repo](https://github.com/Tsjerk/Insane) for the most up-to-date version, and instructions on installing with `pip`).
+start with a bilayer close to equilibrium rather than trying to get the bilayer to self-assemble. This can be done by concatenating (e.g. using `gmx genconf`) and/or altering previously formed bilayers, but an easier approach is to use a bilayer formation program such as `insane.py`<sup>[[1]](#references)</sup> (available in the directory `scripts/` or downloadable in the [Downloads -> Tools -> Proteins and bilayers](../../../downloads/tools/topology-structure-generation.qmd) section of the website, under the `insane` topic. You can also check its [GitHub repo](https://github.com/Tsjerk/Insane) for the most up-to-date version, and instructions on installing with `pip`).
 
 > **_Note:_** This tutorial assumes you are familiar with running Martini 3 simulations with
 GROMACS, and with the organization of the particle and molecule topologies bundled with
@@ -262,7 +262,7 @@ You now have a topology for a custom lipid, implemented in a way to be flexibly 
 <hr>
 
  - `GROMACS` ([http://www.gromacs.org/](http://www.gromacs.org/))
- - `insane.py` (downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane))
+ - `insane.py` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
  - `MDAnalysis` ([https://www.mdanalysis.org](http://www.mdanalysis.org/))
 
 ### References

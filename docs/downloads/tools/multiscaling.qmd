@@ -1,0 +1,33 @@
+---
+title: <i class="fas fa-layer-group"></i> Multiscaling 
+format: html
+---
+
+::: software-card
+### TS2CG: Triangulated Surfaces to Coarse-Grained
+
+`TS2CG` converts triangulated surfaces (TS) to coarse-grained membrane models for molecular simulation. It also works as a backmapping algorithm from dynamically triangulated surfaces simulations to CG molecular dynamics simulations or to take electron microscopy tomography data and build structures for molecular dynamics simulations.
+
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/weria-pezeshkian/TS2CG-v2.0).
+:::
+
+::: software-card
+### Backward
+
+Backward is a tool to convert a coarse-grained system to united-atom or all-atom resolution. The mapping is done using a library of mapping definitions, which encode the geometric reconstruction. The tool consists of three scripts and a number of CG to fine-grained mapping definition files. 
+
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/Tsjerk/Backward/tree/master).
+
+When using this method, please cite:
+
+**Going Backward: A Flexible Geometric Approach to Reverse Transformation from Coarse Grained to Atomistic Models** *Tsjerk A. Wassenaar, Kristyna Pluhackova, Rainer A. Böckmann, Siewert J. Marrink, and D. Peter Tieleman* J. Chem. Theory Comput., 10:676-690, 2014. [DOI: 10.1021/ct400617g](http://pubs.acs.org/doi/abs/10.1021/ct400617g)
+
+More extensive information and a tutorial can be found [\[here\]](../../tutorials/Martini3/Backward/index.qmd).
+
+- The scripts and mapping definitions for gromacs versions 4 and 5-bead oleoyl lipid chains are combined into a single zip file, which can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward.zip).
+
+- The initram.sh script for version 5 can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/initram-v5.sh).
+
+- The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip).
+:::
+

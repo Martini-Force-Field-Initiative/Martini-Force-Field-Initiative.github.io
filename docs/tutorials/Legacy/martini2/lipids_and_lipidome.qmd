@@ -203,7 +203,7 @@ $$ P_2 = 1/2 (3 cos^2 \langle \sigma \rangle − 1) $$
 
 where $\sigma$ is the angle between the bond and the bilayer normal. $P_2 = 1$ means perfect alignment with the bilayer normal, $P_2 = −0.5$ anti-alignment, and $P_2 = 0$ random orientation.
 
-A script to calculated these order parameters can be downloaded [here](../../../downloads/tools/other-tools.qmd#do-order) (scroll down to the section on `do_order`, and download the script `do-order-gmx5.py`. there is also a version located in the directory `scripts/`). Copy the `.xtc` and `.tpr` files to a analysis subdirectory (the script expects them to be named `traj.xtc` and `topol.tpr`, respectively; you may want to use the 30 ns simulations already present in the subdirectory `spontaneous-assembly/equilibration/`). The script `do-order-gmx5.py` will calculate $P_2$ for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:
+A script to calculated these order parameters can be downloaded [here](../../../downloads/tools/legacy.qmd#do-order) (scroll down to the section on `do_order`, and download the script `do-order-gmx5.py`. there is also a version located in the directory `scripts/`). Copy the `.xtc` and `.tpr` files to a analysis subdirectory (the script expects them to be named `traj.xtc` and `topol.tpr`, respectively; you may want to use the 30 ns simulations already present in the subdirectory `spontaneous-assembly/equilibration/`). The script `do-order-gmx5.py` will calculate $P_2$ for you. As it explains when you invoke it, it needs a number of arguments. You may need to or want to change some of the arguments. The command:
 
 ``` bash
 $ python do-order-gmx5.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DPPC
@@ -213,7 +213,7 @@ will for example read 15 to 30 ns from the trajectory `md.xtc`. The simulation h
 
 #### **Advanced: additional analysis**
 
-Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the `gromacs` package, see the `gromacs` manual: [manual.gromacs.org/current/online.html](http://manual.gromacs.org/current/online.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](../../../downloads/tools/other-tools.qmd#morphological-image-analysis). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python MDAnalysis package: [installation instructions](http://www.mdanalysis.org/pages/installation_quick_start).
+Different scientific questions require different methods of analysis and no set of tools can span them all. There are various tools available in the `gromacs` package, see the `gromacs` manual: [manual.gromacs.org/current/online.html](http://manual.gromacs.org/current/online.html). Most simulation groups, therefore, develop sets of customized scripts and programs many of which they make freely available, such as the Morphological Image Analysis and the 3D pressure field tools available [here](../../../downloads/tools/legacy.qmd#morphological-image-analysis). Additionally a number of packages are available to for assistance with analysis and the development of customized tools, such as the python MDAnalysis package: [installation instructions](http://www.mdanalysis.org/pages/installation_quick_start).
 
 ### Changing lipid type
 <hr>
@@ -233,7 +233,7 @@ Compare the above properties (area per lipid, thickness, order parameter, diffus
 ### Complex bilayer mixtures
 <hr>
 
-When setting up larger and more complex bilayers it can be more convenient, or necessary, to start with a bilayer close to equilibrium rather then trying to get the bilayer to self-assemble. This can be done by concatenating (e.g. using `gmx editconf`) and/or altering previously formed bilayers or by using a bilayer formation program such as `insane.py`, available in the directory `scripts/` or downloadable [here](../../../downloads/tools/other-tools.qmd) (scroll down to the section on Insane). INSANE (INSert membrANE) is a CG building tool that generates membranes by distributing lipids over a grid. Lipid structures are derived from simple template definitions that can either be added to the program or provided on-the-fly from combinations of headgroup, linker and lipid tails specified on the command-line. The program uses two grids, one for the inner and one for the outer leaflet, and distributes the lipids randomly over the grid cells with numbers according to the relative quantities specified. This allows for building asymmetric bilayers with specific lipid compositions. The program also allows for adding solvent and ions, using a similar grid protocol it distributes them over a 3D grid. Additional information about the functionality of INSANE can be found by running `insane.py -h`.
+When setting up larger and more complex bilayers it can be more convenient, or necessary, to start with a bilayer close to equilibrium rather then trying to get the bilayer to self-assemble. This can be done by concatenating (e.g. using `gmx editconf`) and/or altering previously formed bilayers or by using a bilayer formation program such as `insane.py`, available in the directory `scripts/` or downloadable [here](../../../downloads/tools/topology-structure-generation.qmd) (scroll down to the section on Insane). INSANE (INSert membrANE) is a CG building tool that generates membranes by distributing lipids over a grid. Lipid structures are derived from simple template definitions that can either be added to the program or provided on-the-fly from combinations of headgroup, linker and lipid tails specified on the command-line. The program uses two grids, one for the inner and one for the outer leaflet, and distributes the lipids randomly over the grid cells with numbers according to the relative quantities specified. This allows for building asymmetric bilayers with specific lipid compositions. The program also allows for adding solvent and ions, using a similar grid protocol it distributes them over a 3D grid. Additional information about the functionality of INSANE can be found by running `insane.py -h`.
 
 In the directory `complex-bilayers/` we will create a fully hydrated 4:3:3 mole ratio bilayer of DPPC:DIPC:CHOL with physiological ion concentration using insane.py, this is a similar mixture as was used in Risselada and Marrink[<sup>[4]</sup>](#references-and-notes) to show raft formation. The lipid DIPC is representative for tails containing two cis-unsaturated bonds and of length 16-18 carbons. Start by running INSANE (downloaded or copied from the `scripts/` directory):
 
@@ -252,7 +252,7 @@ Then, energy minimize the structure and gently equilibrate the system. Note, as 
 ### Advanced: refine lipid parameters
 <hr>
 
-This section uses the backward.py tool for fine-grained-to-coarse-grained (FG-to-CG) transformation, which is treated in more detail [elsewhere](../../../downloads/tools/resolution-transformation.qmd). A related, but different strategy not using the backward.py tool is used in the [tutorial on polymers](polymers.qmd#extraction-of-properties-and-bonded-distributions-(atomistic)), advantageous there because the PEG molecule is simpler to map from FG to CG representation than lipids. 
+This section uses the backward.py tool for fine-grained-to-coarse-grained (FG-to-CG) transformation, which is treated in more detail [elsewhere](../../../downloads/tools/multiscaling.qmd). A related, but different strategy not using the backward.py tool is used in the [tutorial on polymers](polymers.qmd#extraction-of-properties-and-bonded-distributions-(atomistic)), advantageous there because the PEG molecule is simpler to map from FG to CG representation than lipids. 
 
 In this part, we will outline how atomistic simulations can be used to obtain improved Martini parameters for selected degrees of freedom. You may then take this strategy to whatever lengths you deem fit. Remember, Martini in general does not aim to be specific for one particular molecule, but recognizes that the four-to-one mapping results in Martini molecules being representative of several closely related molecules. However, you may want to develop a specific model or compare how well Martini covers closely related molecules.
 
@@ -266,7 +266,7 @@ The task can be divided into the following five steps:
 1. Calculate the selected angle distibutions, and compare to the reference.
 1. Revise coarse-grained parameters, repeat steps 3 and 4 until you are satisfied with the result.
 
-For the transformation from FG to CG, we will use the tool `backward.py`, which is described in more detail [elsewhere](../../../downloads/tools/resolution-transformation.qmd). You do not need to download this tool; it is provided in the `refine/` directory. Note that this and other python scripts are under continued development and updated versions are published. If you want to compare your work to the files provided, use the version provided. You are nevertheless encouraged to use the latest version.
+For the transformation from FG to CG, we will use the tool `backward.py`, which is described in more detail [elsewhere](../../../downloads/tools/multiscaling.qmd). You do not need to download this tool; it is provided in the `refine/` directory. Note that this and other python scripts are under continued development and updated versions are published. If you want to compare your work to the files provided, use the version provided. You are nevertheless encouraged to use the latest version.
 
 The `refine/Mapping` directory contains a file `dipc.gromos.map` that defines the mapping from the FG to the CG model. Have a look at it. You will see how each (united) atom of the FG lipid contributes to a CG bead. The order of the CG beads in the CG model is provided under the `[ martini ]` directive. Beads will appear in the output file in this order. It is important that this order corresponds to your proposed Martini model. Check the correspondence by inspecting the file `refine/take0/martini_v2.0_DIPC.itp`. This contains the proposed Martini model. If you wish to alter the mapping scheme, you can do so by assigning the atoms differently to the beads. In general, we aim to adapt the mapping such that we get predominantly unimodal distributions for bonds and angles; however, we also want to stay within the Martini scheme of 4-to-1 mapping and mapping to recognizable chemical groups. As long as you can rationalize your choices, Martini is quite flexible.
 
@@ -331,9 +331,9 @@ $ python compare.py ANGLES/cga_0-distr.xvg ../ANGLES/cga_0-distr.xvg
 
 - `gromacs` ([http://www.gromacs.org/](http://www.gromacs.org/))
 
-- `insane.py` (downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane))
+- `insane.py` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
 
-- `backward.py` (downloadable [here](../../../downloads/tools/resolution-transformation.qmd))
+- `backward.py` (downloadable [here](../../../downloads/tools/multiscaling.qmd))
 
 - `MDAnalysis` package ([MDAnalysis](http://www.mdanalysis.org/pages/installation_quick_start))
 

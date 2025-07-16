@@ -34,8 +34,29 @@ function createNewsCard(announcement, isFeatured = false) {
     const meta = document.createElement('div');
     meta.className = 'news-meta';
     
+    // Ensure proper flexbox layout for featured cards
+    if (isFeatured) {
+        meta.style.display = 'flex';
+        meta.style.alignItems = 'center';
+        meta.style.justifyContent = 'space-between';
+        meta.style.flexWrap = 'nowrap';
+        meta.style.gap = '0.5rem';
+        meta.style.width = '100%';
+    }
+    
     const date = document.createElement('span');
     date.className = 'news-date';
+    // Give more space to date in featured cards while maintaining card width
+    if (isFeatured) {
+        date.style.flexGrow = '0';
+        date.style.flexShrink = '1';
+        date.style.marginRight = '0.5rem';
+        date.style.minWidth = '0';
+        date.style.whiteSpace = 'nowrap';
+        date.style.overflow = 'hidden';
+        date.style.textOverflow = 'ellipsis';
+        date.style.maxWidth = '60%';
+    }
     date.textContent = formatDate(announcement.date);
     meta.appendChild(date);
 
@@ -43,6 +64,8 @@ function createNewsCard(announcement, isFeatured = false) {
     if (isFeatured) {
         const badge = document.createElement('span');
         badge.className = 'news-badge-inline';
+        badge.style.flexShrink = '0';
+        badge.style.marginLeft = 'auto';
         badge.textContent = 'Latest';
         meta.appendChild(badge);
     }

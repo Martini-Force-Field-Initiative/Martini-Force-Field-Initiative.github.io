@@ -1017,7 +1017,7 @@ textarea.form-input {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 1220px) {
   .navbar {
     padding: 0.4rem 1.5rem;
   }
@@ -1029,6 +1029,14 @@ textarea.form-input {
   .nav-link {
     padding: 0.5rem 0.8rem !important;
     font-size: 0.85rem;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1160px) {
+  .nav-link {
+    padding: 0.35rem 0.3rem !important;
+    font-size: 0.83rem;
   }
 }
 
@@ -1205,6 +1213,64 @@ textarea.form-input {
   transform: rotate(-45deg);
   width: 24px;
 }
+
+/* Quarto Secondary Navigation and Toggle Button */
+.quarto-secondary-nav {
+  background: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+  padding: 0.4rem 0;
+}
+
+.quarto-btn-toggle.btn {
+  /* Reset all inherited button styles */
+  all: unset;
+  
+  /* Apply only our specific styles */
+  background: none !important;
+  border: none !important;
+  color: var(--navbar-text) !important;
+  padding: 0.5rem !important;
+  cursor: pointer;
+  display: inline-block;
+  
+  /* Remove any inherited effects */
+  box-shadow: none !important;
+  text-decoration: none !important;
+  border-radius: 6px !important;
+  transition: none !important;
+  transform: none !important;
+  padding-left: 1.5em !important;
+  padding-right: 1.5em !important;
+
+
+}
+
+.quarto-btn-toggle.btn:hover {
+  background: var(--navbar-hover) !important;
+}
+
+.quarto-btn-toggle.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.quarto-btn-toggle.btn:active {
+  background: var(--navbar-hover) !important;
+  transform: none !important;
+}
+
+.quarto-btn-toggle.btn i {
+  font-size: 1rem;
+}
+
+/* Breadcrumbs in secondary nav */
+.quarto-page-breadcrumbs .breadcrumb {
+  margin: 0;
+  background: transparent;
+  padding-left: 0.3em;
+  margin-left: 0.3em;
+}
+
 
 /* Floating News Ticker */
 .news-ticker {
@@ -2571,4 +2637,73 @@ textarea.form-input {
   letter-spacing: 0.5px;
   vertical-align: middle;
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quarto-page-breadcrumbs .breadcrumb {
+margin: 0;
+background: transparent;
+padding-left: 0.3em;
+margin-left: 0.3em;
+padding-bottom: 1.2em;
+}
+
+/* Software Tool Card - Reusable for all tools */
+.software-card {
+  background: linear-gradient(135deg, rgba(75, 46, 76, 0.02) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 1px solid rgba(75, 46, 76, 0.1);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 8px rgba(75, 46, 76, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.software-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(75, 46, 76, 0.15);
+  background: white;
+  border-left-color: var(--gradient-end);
+}
+
+.software-card h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(168, 156, 176, 0.3);
+  font-size: 1.4rem;
+}
+
+.software-card h3::before {
+  content: "⚙ ";
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Enhanced link styling within software tools */
+.software-card a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.software-card a:hover {
+  border-bottom-color: var(--primary-color);
+  color: var(--gradient-end);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .software-card {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .software-card h3 {
+    font-size: 1.2rem;
+  }
 }
