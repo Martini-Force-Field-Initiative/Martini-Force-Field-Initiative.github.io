@@ -196,7 +196,7 @@ In the last module of this protein tutorial, we will increase the complexity of 
 
 - If a stable DPPC membrane with the wanted box dimensions is already available, `gmx solvate` will be able to insert the peptides in the bilayer (the peptides have to be pre-centered and positioned to ensure their presence inside the membrane).
 
-- The use of the script `insane.py`, downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane), allows the setting up of bilayers of arbitrary composition around our protein.
+- The use of the script `insane.py`, downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane), allows the setting up of bilayers of arbitrary composition around our protein.
 
 The latter method, being the easiest and the most straightforward, is recommended and is the method we present here.
 
@@ -220,7 +220,7 @@ The previous command line will set up a complete system, containing a squared DP
 <hr>
 - `gromacs` [http://www.gromacs.org/](http://www.gromacs.org/)
 - `martinize.py` (downloadable [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py))
-- `insane.py` (downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane))
+- `insane.py` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
 
 ### References
 <hr>

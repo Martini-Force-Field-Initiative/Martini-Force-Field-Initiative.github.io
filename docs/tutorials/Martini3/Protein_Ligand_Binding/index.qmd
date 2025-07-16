@@ -59,7 +59,7 @@ Since we now have both the coordinates and topology of the Martini 3 protein, we
 python2 insane.py -f t4l_cg.pdb -o CG.gro -p CG.top -pbc cubic -box 10,10,10 -salt 0.15 -sol W -d 0
 ```
 
-You can look for more details about the `insane.py` script [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane). The output file (`CG.gro`) contains NA+, CL-, and W residues while `CG.top` is a prototype of the master topology file. You can remove the charge signs of NA and CL in the `CG.top` file. You should also replace “Protein” by molecule_0. You may get a list of molecules which is similar to:
+You can look for more details about the `insane.py` script [here](../../../downloads/tools/topology-structure-generation.qmd#insane). The output file (`CG.gro`) contains NA+, CL-, and W residues while `CG.top` is a prototype of the master topology file. You can remove the charge signs of NA and CL in the `CG.top` file. You should also replace “Protein” by molecule_0. You may get a list of molecules which is similar to:
 
 ``` markdown
 [ molecules ]
@@ -234,7 +234,7 @@ Be aware that the [4S0W](https://www.rcsb.org/structure/4S0W) structure has two 
 
 - `martinize2` ([https://github.com/marrink-lab/vermouth-martinize](https://github.com/marrink-lab/vermouth-martinize))
 
-- `insane` (downloadable [here](../../../downloads/tools/proteins-and-bilayers.qmd#insane))
+- `insane` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
 
 ### References
 <hr>
