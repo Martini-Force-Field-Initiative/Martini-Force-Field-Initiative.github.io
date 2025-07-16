@@ -130,7 +130,7 @@ gmx trjconv -s dppc-md.tpr -f dppc-md.xtc -o dppc-md.pdb -pbc whole -conect
 pymol dppc-md.pdb 
 ```
 
-For `VMD`, a plugin script `cg_bonds-v5.tcl` was written that takes the GROMACS topology file and adds the Martini bonds defined in the topology (this file is included in the directory for your convenience, but you would normally want to download it from the [Tools -> Visualization](../../../downloads/tools/visualization.qmd) section of the website, store it in a generally useful location and refer to it when needed). A useful preprocessing step for `VMD` visualization is to avoid molecules being split over the periodic boundary, because if they are, very long bonds will be drawn between them. A script `do_vmd.sh` has been prepared for you for visualization using `VMD`. You will probably need to make the script executable.
+For `VMD`, a plugin script `cg_bonds-v5.tcl` was written that takes the GROMACS topology file and adds the Martini bonds defined in the topology (this file is included in the directory for your convenience, but you would normally want to download it from the [Tools -> Visualization](../../../downloads/tools/analysis.qmd) section of the website, store it in a generally useful location and refer to it when needed). A useful preprocessing step for `VMD` visualization is to avoid molecules being split over the periodic boundary, because if they are, very long bonds will be drawn between them. A script `do_vmd.sh` has been prepared for you for visualization using `VMD`. You will probably need to make the script executable.
 
 ``` bash
 chmod +x do_vmd.sh
