@@ -38,7 +38,9 @@ Elastic network <sup>[\[4\]](#references)</sup>, Gō <sup>[\[5\]](#references)</
 
 ### Water biasing to correct model artifacts. {#waterbias}
 
-To enhance the insertion of peptides into lipid bilayers, a water bias can be applied to reduce the strength of protein-water interactions in selected regions of the peptide. This is particularly useful for transmembrane peptides that may otherwise remain adsorbed at the membrane interface. The bias is implemented via virtual backbone sites, which allow tuning of Lennard-Jones interactions with water beads without altering bonded interactions.
+Small peptides, particularly those with uncharged terminal regions, may fail to insert properly into lipid bilayers in Martini 3 and instead become adsorbed at the membrane surface or even get ejected during the simulation<sup>[\[7\]](#references)</sup>.
+
+To enhance the insertion of peptides into lipid bilayers, a water bias can be applied to reduce the strength of protein-water interactions in selected regions of the peptide. This is particularly useful for transmembrane peptides or small transmembrane proteins that may otherwise remain adsorbed at the membrane interface. The bias is implemented via virtual backbone sites<sup>[\[5\]](#references)</sup> which allow tuning of Lennard-Jones interactions with water beads without altering bonded interactions.
 
 In `martinize2`, this is done using the `-water-bias` flag along with `-water-bias-eps`, specifying a bias for each secondary structure category. For example:
 
@@ -119,7 +121,7 @@ These tools can automatically generate a pre-assembled bilayer with one or more 
 
 The basic procedure using `insane` is outlined below:
 
-The syntax of the `insane.py` <sup>[\[7\]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page.) Let's see a practical example:
+The syntax of the `insane.py` <sup>[\[8\]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page.) Let's see a practical example:
 
 ``` bash
 python2 insane.py -f kalp.gro -o system.gro -p system.top -pbc square -box 7,7,9 -l POPC -u POPC -center -sol W -salt 0.01
@@ -133,7 +135,7 @@ The previous command line will set up a complete system, containing a squared PO
 
 blah blah blah
 
-<sup>[\[8\]](#references)</sup>
+<sup>[\[9\]](#references)</sup>
 
 https://github.com/MikkelDA/COBY 
 
@@ -185,6 +187,9 @@ Double these previous boxes in one dimension (`gmx genconf`) and rerun the simul
 
 \[6\] Pedersen, K.B., Borges-Araújo, L., Stange, A.D., Souza, P.C.T., Marrink, S.J., and Schiøtt, B. OLIVES: A Go̅-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field. Journal of Chemical Theory and Computation 2024 20 (18), 8049-8070 https://doi.org/10.1021/acs.jctc.4c00553
 
-\[7\] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.
+\[7\] Spinti, J.K, Nunes, F.N., Melo, M.N. Room for improvement in the initial martini 3 parameterization of peptide interactions,
+Chemical Physics Letters, Volume 819, 2023, 140436, 0009-2614, https://doi.org/10.1016/j.cplett.2023.140436.
 
-\[8\] Andreasen, M.D., Souza, P.C.T., Schiøtt, B., and Zuzic, L. Creating Coarse-Grained Systems with COBY: Toward Higher Accuracy of Complex Biological Systems. Journal of Chemical Information and Modeling 2025 65 (10), 4760-4766 https://doi.org/10.1021/acs.jcim.5c00069 
+\[8\] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.
+
+\[9\] Andreasen, M.D., Souza, P.C.T., Schiøtt, B., and Zuzic, L. Creating Coarse-Grained Systems with COBY: Toward Higher Accuracy of Complex Biological Systems. Journal of Chemical Information and Modeling 2025 65 (10), 4760-4766 https://doi.org/10.1021/acs.jcim.5c00069 
