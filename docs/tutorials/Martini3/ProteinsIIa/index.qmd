@@ -1,0 +1,196 @@
+---
+title: "Proteins - Part IIa: TM proteins"
+format: html
+---
+
+<hr>
+
+In case of issues, please contact [paulo.telles-de-souza\@ibcp.fr](mailto:%20paulo.telles-de-souza@ibcp.fr).
+
+<hr>
+
+### Summary
+
+-   [`Introduction`](#introduction)
+-   [`Proteins in membrane environment`](#proteins-in-membrane-environment)
+    -   [`Self-assembly approach`](#self-assembly-approach)
+    -   ['Insane approach'](#insane-approach)
+-   [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
+-   [`References`](#references)
+
+### Introduction {#introduction}
+<hr>
+
+In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a protein in a lipid bilayer.
+For background on setting up membranes, please refer to the [Lipids part I](../LipidsI/index.qmd) and [Lipids part II](../LipidsII/index.qmd) tutorials. 
+Here we will explore the tilt and dimerization of KALP peptides <sup>[\[1,2\]](#references)</sup> embedded in a POPC membrane. 
+Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup>[\[3\]](#references)</sup>.
+
+The coarse-grained structure and topology of KALP can be easily generated from an all-atom structure using `martinize2`, as explored in the previous protein tutorials.
+
+``` bash
+martinize2 -ff martini3001 -f kalp-AA.pdb -x kalp.pdb -p backbone -o system.top -ss CCHHHHHHHHHHHHHHHHHHHCC
+```
+
+In simulations involving peptides, it is important to carefully define the secondary structure. Since peptides can be highly flexible, your structural assumptions must be well justified. For transmembrane (TM) peptides like KALP, which typically contain 20 to 30 residues (23 residues in the example used in this tutorial), the terminal regions are expected to be relatively disordered, while the hydrophobic TM core should adopt a stable helical conformation. For other TM peptides, it may be useful to include longer terminal regions or apply terminal capping, depending on the system under study. As such, we will assign the secondary structure string using the `-ss` flag in `martinize2`, for example: `-ss CCHHHHHHHHHHHHHHHHHHHC`.
+
+Elastic network <sup>[\[4\]](#references)</sup>, Gō <sup>[\[5\]](#references)</sup> or OLIVES models <sup>[\[5\]](#references)</sup> are not necessary in this case, as the bonded parameters in the Martini model are usually sufficient to maintain structural integrity. 
+
+### Proteins in membrane environment {#proteins-in-membrane-environment}
+<hr>
+
+After generating the coarse-grained structure and topology of KALP, we can proceed by embedding the protein into a membrane environment. There are different ways to achieve this, and in this tutorial, we present two common approaches, which are described in the following sections:
+
+#### Self-assembly approach {#self-assembly-approach}
+<hr>
+
+A bilayer self-assembly dynamics, as introduced in the first module of the [lipid tutorial part I](../LipidsI/index.qmd), will lead to the spontaneous insertion of the KALP peptide into the the bilayer (Fig. 1). **The files required for this tutorial (including worked files) can be downloaded from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip).**
+
+1.  The first step is to create a simulation box containing KALP, POPC, water, and ions, randomly distributed throughout the box. This can be done using the following commands:
+
+``` bash
+gmx editconf -f kalp.pdb -o kalp.gro -d 1.5
+```
+
+``` bash
+gmx insert-molecules -f kalp.gro -ci popc.gro -nmol 156 -box 7 7 6 -try 500 -o system_no-solvent.gro
+```
+
+``` bash
+gmx editconf -f system_no-solvent.gro -o system_no-solvent.gro -c -box 7 7 10
+```
+
+``` bash
+gmx solvate -cp system_no-solvent.gro -cs water.gro -o system_solvated.gro -radius 0.21
+```
+
+![Figure 1 \| A) Self-assembly (4 ns) of a lipid bilayer (green) embedding a KALP peptide. B) Initial "soup" of lipid and solvent (water; blue) in which the KALP (red) is mixed. C) Final conformation of the simulation.](fig1.png)
+
+2.  In addition, the `.top` file should be updated to include the necessary Martini 3 `.itp` files:
+
+``` bash
+sed -i -e 's/martini\.itp/martini_v3.0.0.itp/' system.top
+```
+
+``` bash
+NLIPIDS=$(($(grep -c POPC system_solvated.gro)/12))
+```
+
+``` bash
+NWATERS=$(grep -c W system_solvated.gro)
+```
+
+``` bash
+echo -e "\nPOPC   $NLIPIDS \nW  $NWATERS" >> system.top
+```
+
+You should also replace 4 water beads with CL ions in the `.top` file to neutralize the system. In addition, make sure to include any missing `.itp` files by adding them to the `.top` file.
+
+3.  Now, run the minimization, equilibration and production simulations. Do not forget to create a `restraint.gro` based on the initial configuration.
+
+``` bash
+gmx grompp -f minimization.mdp -c system_solvated.gro -p system.top -o minimization.tpr 
+```
+
+``` bash
+gmx mdrun -deffnm minimization -v
+```
+
+``` bash
+gmx grompp -f equilibration.mdp -c minimization.gro -p system.top -o equilibration.tpr -n index.ndx
+```
+
+``` bash
+gmx mdrun -deffnm equilibration -v
+```
+
+``` bash
+gmx grompp -f dynamic.mdp -c equilibration.gro -p system.top -o dynamic.tpr -n index.ndx
+```
+
+``` bash
+gmx mdrun -deffnm dynamic -v
+```
+
+#### Pre-built approach {#Prebuilt-approach}
+<hr>
+
+This second method is the easiest and most straightforward, and it is the recommended approach for building protein-in-membrane systems. It makes use of membrane builder programs, such as `insane` or `COBY`, which are designed to construct complex Martini systems efficiently.
+
+These tools can automatically generate a pre-assembled bilayer with one or more proteins already inserted into the membrane, typically positioned at the center or at user-defined locations. They allow you to customize the number of proteins, their orientation, and lateral placement within the bilayer. In addition, you can define the lipid composition, box dimensions, water content, and ionic strength, all in a single step. This greatly simplifies system setup and reduces the chance of user errors.
+
+<hr>
+
+##### Option 1: `Insane`
+The basic procedure using `insane` is outlined below:
+
+The syntax of the `insane.py` <sup>[\[9\]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page.) Let's see a practical example:
+
+``` bash
+python2 insane.py -f kalp.gro -o system.gro -p system.top -pbc square -box 7,7,9 -l POPC -u POPC -center -sol W -salt 0.01
+```
+
+The previous command line will set up a complete system, containing a squared POPC bilayer of $7×7 nm^2$, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. More on the `insane.py` tool can be found in separate tutorials, notably setting up a complex bilayer ([lipid tutorial part II](../LipidsII/index.qmd)).
+<hr>
+
+##### Option 2: `COBY`
+blah blah blah
+<hr>
+
+
+
+Proceed as before and start a production run. To remind you, this involves (A) editing the `system.top` file to reflect the version of Martini you want to use and providing include statements for the topology files; (B) downloading or copying definitions of Martini 3 `.itp` files, including `martini_v3.0.0_phospholipids_v1.itp`; (C) using the correct names of the molecules involved; (D) downloading or copying set-up `.mdp` files for minimization, equilibration, and production runs (you can also find them in the template folder of this module zip file) and if necessary, editing them (bilayer simulations are best done using semi-isotropic pressure coupling and you may want to separately couple different groups to the thermostat(s)); (E) running the minimization and equilibration runs.
+
+3.  Generate a new system in which membrane thickness is reduced (different the lipid type, DLPC for instance). Observe how the thickness is affecting the tilt of the transmembrane helix; compare it to the previous simulation.
+
+4.  Double these previous boxes in one dimension (`gmx genconf`) and rerun the simulations. Observe the different dimerization conformations (parallel or anti-parallel tilts). Note that more than one simulation (or a longer one) might be required to observe both cases!
+
+### Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
+
+<hr>
+
+-   `GROMACS` (<http://www.gromacs.org/>)
+
+-   `VMD` (<https://www.ks.uiuc.edu/Research/vmd/>)
+
+-   `martinize2` (<https://github.com/marrink-lab/vermouth-martinize>)
+
+-   `insane` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
+
+### References {#references}
+
+<hr>
+
+\[1\] Monticelli, L.; Kandasamy, S. K.; Periole, X.; Larson, R. G.; Tieleman, D. P.; Marrink, S.-J. The MARTINI Coarse-Grained Force Field: Extension to Proteins. J. Chem. Theory Comput. 2008, 4 (5), 819–834. https://doi.org/10.1021/ct700324x.
+
+\[2\] Ramadurai, S.; Holt, A.; Schäfer, L. V.; Krasnikov, V. V.; Rijkers, D. T. S.; Marrink, S. J.; Killian, J. A.; Poolman, B. Influence of Hydrophobic Mismatch and Amino Acid Composition on the Lateral Diffusion of Transmembrane Peptides. Biophys. J. 2010, 99 (5), 1447–1454. https://doi.org/10.1016/J.BPJ.2010.05.042.
+
+\[3\] Marrink, S. J.; Corradi, V.; Souza, P. C. T.; Ingólfsson, H. I.; Tieleman, D. P.; Sansom, M. S. P. Computational Modeling of Realistic Cell Membranes. Chem. Rev. 2019, 119 (9), 6184–6226. https://doi.org/10.1021/acs.chemrev.8b00460.
+
+\[4\] Periole, X.; Cavalli, M.; Marrink, S.-J.; Ceruso, M. A. Combining an Elastic Network With a Coarse-Grained Molecular Force Field: Structure, Dynamics, and Intermolecular Recognition. J. Chem. Theory Comput. 2009, 5 (9), 2531–2543. https://doi.org/10.1021/ct9002114.
+
+\[5\] Poma, A. B.; Cieplak, M.; Theodorakis, P. E. Combining the MARTINI and Structure-Based Coarse-Grained Approaches for the Molecular Dynamics Studies of Conformational Transitions in Proteins. J. Chem. Theory Comput. 2017, 13 (3), 1366–1374. https://doi.org/10.1021/acs.jctc.6b00986.
+
+\[6\] Herzog, F. A.; Braun, L.; Schoen, I.; Vogel, V. Improved Side Chain Dynamics in MARTINI Simulations of Protein–Lipid Interfaces. J. Chem. Theory Comput. 2016, 12 (5), 2446–2458. https://doi.org/10.1021/acs.jctc.6b00122.
+
+\[7\] Souza, P. C. T.; Alessandri, R.; Barnoud, J.; Thallmair, S.; Faustino, I.; Grünewald, F.; Patmanidis, I.; Abdizadeh, H.; Bruininks, B. M. H.; Wassenaar, T. A.; et al. Martini 3: A General Purpose Force Field for Coarse-Grained Molecular Dynamics. Nat. Methods 2021, 18 (4), 382–388. https://doi.org/10.1038/s41592-021-01098-3.
+
+\[8\] de Jong, D. H.; Singh, G.; Bennett, W. F. D.; Arnarez, C.; Wassenaar, T. A.; Schäfer, L. V; Periole, X.; Tieleman, D. P.; Marrink, S. J. Improved Parameters for the Martini Coarse-Grained Protein Force Field. J. Chem. Theory Comput. 2013, 9 (1), 687–697. https://doi.org/10.1021/ct300646g.
+
+\[9\] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.
+
+\[10\] Nicholson, L. K.; Yamazaki, T.; Torchia, D. A.; Grzesiek, S.; Bax, A.; Stahl, S. J.; Kaufman, J. D.; Wingfield, P. T.; Lam, P. Y. .; Jadhav, P. K.; et al. Flexibility and Function in HIV-1 Protease. Nat. Struct. Biol. 1995 24 1995, 2 (4), 274–280. https://doi.org/10.1038/nsb0495-274.
+
+\[11\] Pomerantz, R. J.; Horn, D. L. Twenty Years of Therapy for HIV-1 Infection. Nat. Med. 2003 97 2003, 9 (7), 867–873. https://doi.org/10.1038/nm0703-867.
+
+\[12\] Torbeev, V. Y.; Raghuraman, H.; Hamelberg, D.; Tonelli, M.; Westler, W. M.; Perozo, E.; Kent, S. B. H. Protein Conformational Dynamics in the Mechanism of HIV-1 Protease Catalysis. Proc. Natl. Acad. Sci. 2011, 108 (52), 20982–20987. https://doi.org/10.1073/PNAS.1111202108.
+
+\[13\] Uusitalo, J. J.; Ingólfsson, H. I.; Akhshi, P.; Tieleman, D. P.; Marrink, S. J. Martini Coarse-Grained Force Field: Extension to DNA. J. Chem. Theory Comput. 2015, 11 (8), 3932–3945. https://doi.org/10.1021/acs.jctc.5b00286.
+
+\[14\] Uusitalo, J. J.; Ingólfsson, H. I.; Marrink, S. J.; Faustino, I. Martini Coarse-Grained Force Field: Extension to RNA. Biophys. J. 2017, 113 (2), 246–256. https://doi.org/10.1016/J.BPJ.2017.05.043.
+
+\[15\] Abraham, M. J.; Murtola, T.; Schulz, R.; Páll, S.; Smith, J. C.; Hess, B.; Lindah, E. Gromacs: High Performance Molecular Simulations through Multi-Level Parallelism from Laptops to Supercomputers. SoftwareX 2015, 1–2, 19–25. https://doi.org/10.1016/j.softx.2015.06.001.
+
+\[16\] Humphrey, W., Dalke, A. and Schulten, K. VMD - Visual Molecular Dynamics. J. Molec. Graph. 1996, 14, 33–38.
+
+<hr>
