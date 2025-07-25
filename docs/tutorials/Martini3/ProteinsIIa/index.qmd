@@ -34,15 +34,26 @@ martinize2 -ff martini3001 -f kalp-AA.pdb -x kalp.pdb -p backbone -o system.top 
 
 In simulations involving peptides, it is important to carefully define the secondary structure. Since peptides can be highly flexible, your structural assumptions must be well justified. For transmembrane (TM) peptides like KALP, which typically contain 20 to 30 residues (23 residues in the example used in this tutorial), the terminal regions are expected to be relatively disordered, while the hydrophobic TM core should adopt a stable helical conformation. For other TM peptides, it may be useful to include longer terminal regions or apply terminal capping, depending on the system under study. As such, we will assign the secondary structure string using the `-ss` flag in `martinize2`, for example: `-ss CCHHHHHHHHHHHHHHHHHHHC`.
 
-Elastic network <sup>[\[4\]](#references)</sup>, Gō <sup>[\[5\]](#references)</sup> or OLIVES models <sup>[\[5\]](#references)</sup> are not necessary in this case, as the bonded parameters in the Martini model are usually sufficient to maintain the structural integrity of simple helices.
+Elastic network <sup>[\[4\]](#references)</sup>, Gō <sup>[\[5\]](#references)</sup> or OLIVES models <sup>[\[6\]](#references)</sup> are not necessary in this case, as the bonded parameters in the Martini model are usually sufficient to maintain the structural integrity of simple helices.
 
 ### Water biasing to correct model artifacts. {#waterbias}
 
-Add biasing chat here.
+To enhance the insertion of peptides into lipid bilayers, a water bias can be applied to reduce the strength of protein-water interactions in selected regions of the peptide. This is particularly useful for transmembrane peptides that may otherwise remain adsorbed at the membrane interface. The bias is implemented via virtual backbone sites, which allow tuning of Lennard-Jones interactions with water beads without altering bonded interactions.
+
+In `martinize2`, this is done using the `-water-bias` flag along with `-water-bias-eps`, specifying a bias for each secondary structure category. For example:
+
+```bash
+martinize2 -ff martini3001 -f kalp-AA.pdb -x kalp.pdb -p backbone -o system.top -ss CCHHHHHHHHHHHHHHHHHHHCC \
+-water-bias -water-bias-eps E:-.5 C:1.0 H:-1.0
+```
+
+This applies a 0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil and helical residues, respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.
+
+Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `virtual_sites_nonbond_params.itp` which include the definition of the virtual sites. These must be included in the `martini_v3.0.0.itp` file.
 
 ## Insert your protein in a membrane environment {#proteins-in-membrane-environment}
 
-After generating the coarse-grained structure and topology of KALP, we can proceed by embedding the protein into a membrane environment. There are different ways to achieve this, and in this tutorial, we present two common approaches, which are described in the following sections:
+After generating the coarse-grained structure and topology of KALP, we can proceed by embedding the protein into a membrane environment. Specifically, into a lipid bilayer. There are different ways to achieve this, and in this tutorial, we present two common approaches, which are described in the following sections:
 
 ### Self-assembly approach {#self-assembly-approach}
 
@@ -108,7 +119,7 @@ These tools can automatically generate a pre-assembled bilayer with one or more 
 
 The basic procedure using `insane` is outlined below:
 
-The syntax of the `insane.py` <sup>[\[9\]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page.) Let's see a practical example:
+The syntax of the `insane.py` <sup>[\[7\]](#references)</sup> script is very similar to what was used so far; it can be invoked by running `insane.py -h`. (Get the latest from the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page.) Let's see a practical example:
 
 ``` bash
 python2 insane.py -f kalp.gro -o system.gro -p system.top -pbc square -box 7,7,9 -l POPC -u POPC -center -sol W -salt 0.01
@@ -121,6 +132,12 @@ The previous command line will set up a complete system, containing a squared PO
 #### Option 2: `COBY`
 
 blah blah blah
+
+<sup>[\[8\]](#references)</sup>
+
+https://github.com/MikkelDA/COBY 
+
+https://github.com/MikkelDA/COBY/tree/master/Tutorial 
 
 <hr>
 
@@ -164,12 +181,10 @@ Double these previous boxes in one dimension (`gmx genconf`) and rerun the simul
 
 \[4\] Periole, X.; Cavalli, M.; Marrink, S.-J.; Ceruso, M. A. Combining an Elastic Network With a Coarse-Grained Molecular Force Field: Structure, Dynamics, and Intermolecular Recognition. J. Chem. Theory Comput. 2009, 5 (9), 2531–2543. https://doi.org/10.1021/ct9002114.
 
-\[5\] Poma, A. B.; Cieplak, M.; Theodorakis, P. E. Combining the MARTINI and Structure-Based Coarse-Grained Approaches for the Molecular Dynamics Studies of Conformational Transitions in Proteins. J. Chem. Theory Comput. 2017, 13 (3), 1366–1374. https://doi.org/10.1021/acs.jctc.6b00986.
+\[5\] Souza, P.C.T., Borges-Araújo, L., Brasnett, C. et al. GōMartini 3: From large conformational changes in proteins to environmental bias corrections. Nat Commun 16, 4051 (2025). https://doi.org/10.1038/s41467-025-58719-0 
 
-\[6\] Herzog, F. A.; Braun, L.; Schoen, I.; Vogel, V. Improved Side Chain Dynamics in MARTINI Simulations of Protein–Lipid Interfaces. J. Chem. Theory Comput. 2016, 12 (5), 2446–2458. https://doi.org/10.1021/acs.jctc.6b00122.
+\[6\] Pedersen, K.B., Borges-Araújo, L., Stange, A.D., Souza, P.C.T., Marrink, S.J., and Schiøtt, B. OLIVES: A Go̅-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field. Journal of Chemical Theory and Computation 2024 20 (18), 8049-8070 https://doi.org/10.1021/acs.jctc.4c00553
 
-\[7\] Souza, P. C. T.; Alessandri, R.; Barnoud, J.; Thallmair, S.; Faustino, I.; Grünewald, F.; Patmanidis, I.; Abdizadeh, H.; Bruininks, B. M. H.; Wassenaar, T. A.; et al. Martini 3: A General Purpose Force Field for Coarse-Grained Molecular Dynamics. Nat. Methods 2021, 18 (4), 382–388. https://doi.org/10.1038/s41592-021-01098-3.
+\[7\] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.
 
-\[8\] de Jong, D. H.; Singh, G.; Bennett, W. F. D.; Arnarez, C.; Wassenaar, T. A.; Schäfer, L. V; Periole, X.; Tieleman, D. P.; Marrink, S. J. Improved Parameters for the Martini Coarse-Grained Protein Force Field. J. Chem. Theory Comput. 2013, 9 (1), 687–697. https://doi.org/10.1021/ct300646g.
-
-\[9\] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.
+\[8\] Andreasen, M.D., Souza, P.C.T., Schiøtt, B., and Zuzic, L. Creating Coarse-Grained Systems with COBY: Toward Higher Accuracy of Complex Biological Systems. Journal of Chemical Information and Modeling 2025 65 (10), 4760-4766 https://doi.org/10.1021/acs.jcim.5c00069 
