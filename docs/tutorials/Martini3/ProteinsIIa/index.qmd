@@ -117,13 +117,36 @@ gmx solvate -cp system_no-solvent.gro -cs water.gro -o system_solvated.gro -radi
 
 The `.top` file must be updated to include the necessary Martini 3 `.itp` files. You should also replace 4 water beads with CL ions in the `.top` file to neutralize the system. 
 
-``` bash
-sed -i -e 's/martini\.itp/martini_v3.0.0.itp/' system.top
+`system.top` should look something like this:
 
+``` bash
+; if you use water biasing add the following define.
+#define WBIAS
+
+; here you include all the .itps
+#include "martini_v3.0.0.itp"
+#include "molecule_0.itp"
+#include "martini_v3.0.0_phospholipids_v1.itp"
+#include "martini_v3.0.0_solvents_v1.itp"
+#include "martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+; name
+Your very first self assembly system :).
+
+[ molecules ]
+; name  number
+molecule_0        1
+POPC            <NLIPIDS>
+W               <NWATERS-4>
+CL               4
+```
+
+You can easily find the number of waters and lipids in your system using grep to correctly finalize your `.top` file: 
+
+``` bash
 NLIPIDS=$(($(grep -c POPC system_solvated.gro)/12))
 NWATERS=$(grep -c W system_solvated.gro)
-
-echo -e "\nPOPC   $NLIPIDS \nW  $NWATERS" >> system.top
 ```
 
 Now, run the minimization, equilibration and production simulations. 
