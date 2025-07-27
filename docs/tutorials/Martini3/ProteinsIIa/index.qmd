@@ -1,5 +1,5 @@
 ---
-title: "Proteins - Part IIa: TM proteins"
+title: "Proteins - Part IIa: Transmembrane peptides"
 format: html
 ---
 
@@ -11,20 +11,25 @@ In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borg
 
 ## Summary
 
--   [`Introduction`](#introduction)
--   [`Setting up your protein model`](#setup)
-    -   [`Water biasing to correct model artifacts`](#waterbias)
--   [`Insert your protein in a membrane environment`](#proteins-in-membrane-environment)
-    -   [`Self-assembly approach`](#self-assembly-approach)
-    -   [`Pre-built approach`](#pre-built-approach)
--   [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
--   [`References`](#references)
+-   [`1. Introduction`](#introduction)
+-   [`2. Setting up your protein model`](#setup)
+    -   [`2.1. Water biasing to correct model artifacts`](#waterbias)
+-   [`3. Insert your protein in a membrane environment`](#proteins-in-membrane-environment)
+    -   [`3.1. Self-assembly approach`](#self-assembly-approach)
+    -   [`3.2. Pre-built approach`](#pre-built-approach)
+        -   [`3.2.1. Insane`](#pre-built-approach)
+        -   [`3.2.2. COBY`](#pre-built-approach)
+-   [`4. Going Further`](#GoingFurther)
+    -   [`4.1. Studying the impact of lipid composition`](#insane)
+    -   [`4.2. Studying peptide dimerization`](#coby)
+-   [`5. Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
+-   [`6. References`](#references)
 
-## Introduction {#introduction}
+## 1. Introduction {#introduction}
 
 In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a protein in a lipid bilayer. For background on setting up membranes, please refer to the [Lipids part I](../LipidsI/index.qmd) and [Lipids part II](../LipidsII/index.qmd) tutorials. Here we will explore the tilt and dimerization of KALP peptides <sup>[\[1,2\]](#references)</sup> embedded in a POPC membrane. Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup>[\[3\]](#references)</sup>.
 
-## Setting up your protein model {#setup}
+## 2. Setting up your protein model {#setup}
 
 The coarse-grained structure and topology of KALP can be easily generated from an all-atom structure using `martinize2`, as explored in the previous protein tutorials.
 
@@ -36,7 +41,14 @@ In simulations involving peptides, it is important to carefully define the secon
 
 Elastic network <sup>[\[4\]](#references)</sup>, Gō <sup>[\[5\]](#references)</sup> or OLIVES models <sup>[\[6\]](#references)</sup> are not necessary in this case, as the bonded parameters in the Martini model are usually sufficient to maintain the structural integrity of simple helices.
 
-### Water biasing to correct model artifacts. {#waterbias}
+### 2.1. Water biasing to correct model artifacts. {#waterbias}
+
+::: callout-note
+## ⚠️ Warning: Use biasing with caution.
+
+While we demonstrate the use of water biasing here for educational purposes, it should be treated as a last resort. Incorrectly applied biasing can distort and artifically drive the physical behavior of the system. This can compromise the interpretability and generalizability of your results. Always first try standard protocols before introducing bias. If you do use biasing, be explicit about it in your analysis and consider running controls without it.
+
+:::
 
 Small peptides, particularly those with uncharged terminal regions, may fail to insert properly into lipid bilayers in Martini 3 and instead become adsorbed at the membrane surface or even get ejected during the simulation<sup>[\[7\]](#references)</sup>.
 
@@ -51,13 +63,36 @@ martinize2 -ff martini3001 -f kalp-AA.pdb -x kalp.pdb -p backbone -o system.top 
 
 This applies a 0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil and helical residues, respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.
 
-Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `virtual_sites_nonbond_params.itp` which include the definition of the virtual sites. These must be included in the `martini_v3.0.0.itp` file.
+Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `virtual_sites_nonbond_params.itp` which include the definition of the virtual sites. Have a look at these files and familiarize yourself with their format. 
 
-## Insert your protein in a membrane environment {#proteins-in-membrane-environment}
+To use them, you must modify your `martini_v3.0.0.itp` file to include their content conditionally. This can be done by inserting the following lines between the `[ atomtypes ]` and `[ nonbond_params ]` sections (line 858).
+
+```bash
+#ifdef WBIAS
+#include "virtual_sites_atomtypes.itp"
+#include "virtual_sites_nonbond_params.itp"
+#endif
+```
+
+You can do this manually using a text editor, or programmatically using the following `sed` command, which inserts the lines after line 858 (adjust the number if needed):
+
+```bash
+sed -i '858i\
+#ifdef WBIAS\n#include "virtual_sites_atomtypes.itp"\n#include "virtual_sites_nonbond_params.itp"\n#endif' martini_v3.0.0.itp
+```
+**Important: Run this command only once, or you will introduce duplicate blocks into your file.**
+
+Finally, activate the bias by adding the following line to the top of your `.top` file:
+
+```bash
+#define WBIAS
+```
+
+## 3. Insert your protein in a membrane environment {#proteins-in-membrane-environment}
 
 After generating the coarse-grained structure and topology of KALP, we can proceed by embedding the protein into a membrane environment. Specifically, into a lipid bilayer. There are different ways to achieve this, and in this tutorial, we present two common approaches, which are described in the following sections:
 
-### Self-assembly approach {#self-assembly-approach}
+### 3.1. Self-assembly approach {#self-assembly-approach}
 
 <hr>
 
@@ -107,7 +142,7 @@ gmx grompp -f dynamic.mdp -c equilibration.gro -p system.top -o dynamic.tpr -n i
 gmx mdrun -deffnm dynamic -v
 ```
 
-### Pre-built approach {#Prebuilt-approach}
+### 3.2. Pre-built approach {#Prebuilt-approach}
 
 <hr>
 
@@ -117,7 +152,7 @@ These tools can automatically generate a pre-assembled bilayer with one or more 
 
 <hr>
 
-#### Option 1: `Insane`
+#### 3.2.1. `Insane` {#insane}
 
 The basic procedure using `insane` is outlined below:
 
@@ -127,11 +162,15 @@ The syntax of the `insane.py` <sup>[\[8\]](#references)</sup> script is very sim
 python2 insane.py -f kalp.gro -o system.gro -p system.top -pbc square -box 7,7,9 -l POPC -u POPC -center -sol W -salt 0.01
 ```
 
-The previous command line will set up a complete system, containing a squared POPC bilayer of $7×7 nm^2$, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. More on the `insane.py` tool can be found in separate tutorials, notably setting up a complex bilayer ([lipid tutorial part II](../LipidsII/index.qmd)).
+The previous command line will set up a complete system, containing a squared POPC bilayer of $7×7 nm^2$, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. 
+
+`insane.py` provides a prototype system.top file. However, you should always double-check that all `#include` statements match the components in your system and point to the correct `.itp` files.
+
+More on the `insane.py` tool can be found in separate tutorials, notably setting up a complex bilayer ([lipid tutorial part II](../LipidsII/index.qmd)).
 
 <hr>
 
-#### Option 2: `COBY`
+#### 3.2.2. `COBY` {#coby}
 
 blah blah blah
 
@@ -151,15 +190,15 @@ You can now proceed as before and set up the production run. To recap, this invo
 (D) Obtain the appropriate `.mdp` files for energy minimization, equilibration, and production runs. These can be downloaded or copied from the `template/` folder included with this module’s zip file. Modify them as needed — **for bilayer systems, make sure to use semi-isotropic pressure coupling and consider applying separate thermostat coupling groups**.
 (E) Run the minimization and equilibration steps before launching the production simulation.
 
-## Going further {#proteins-in-membrane-environment}
+## 4. Going further {#GoingFurther}
 
-### Studying the impact of lipid composition.
+### 4.1. Studying the impact of lipid composition. {#GoingFurther1}
 Generate a new system in which membrane thickness is reduced (different the lipid type, DLPC for instance). Observe how the thickness is affecting the tilt of the transmembrane helix; compare it to the previous simulation.
 
-### Studying peptide dimerization.
+### 4.2. Studying peptide dimerization. {#GoingFurther2}
 Double these previous boxes in one dimension (`gmx genconf`) and rerun the simulations. Observe the different dimerization conformations (parallel or anti-parallel tilts). Note that more than one simulation (or a longer one) might be required to observe both cases!
 
-### Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
+### 5. Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
 
 <hr>
 
@@ -171,7 +210,7 @@ Double these previous boxes in one dimension (`gmx genconf`) and rerun the simul
 
 -   `insane` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
 
-### References {#references}
+### 6. References {#references}
 
 <hr>
 
