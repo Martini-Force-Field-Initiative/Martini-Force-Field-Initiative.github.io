@@ -199,9 +199,56 @@ An alternative to insane.py is COBY <sup>[\[9\]](#references)</sup>, a membrane 
 
 Let’s look at a practical example:
 
-add the code
+```python
+import time
+import sys
+import os
+import COBY
 
-mention it is python
+COBY.COBY(
+    ### Designates box size and type
+    ### box = [x, y, z] [nm] 
+    box = [10, 10, 10], 
+    box_type = "rectangular", # default (other options: hexagonal, dodecahedron)
+    
+    ### 'membrane' argument creates a single membrane consisting of POPC lipids
+    ### The membrane spans the x/y-plane with its middle at the center of the z-axis
+    membrane = "lipid:POPC",
+    
+    ### 'protein' argument inserts a single protein at the center of the system
+    ### Note that "moleculetypes:8BB6_CG" designates the topology name for the protein, which should be included under itp_input
+    ### If "moleculetypes" is not included, then charges will be estimated from an in-built charge library that reads residue names
+    protein = "file:M3_proteins_tutorial_part2/KALP/self-assembly/kalp.pdb moleculetypes:molecule_0",
+    
+    ### 'solvation' argument solvates the system using the default solvation settings of "solv:W pos:NA neg:CL"
+    ### The default concentration of water is 55.56 [mol/L] ("solv_molarity:55.56")
+    ### The default salt concentration is 0.15 [mol/L] ("salt_molarity:0.15")
+    solvation = "default",
+    
+    ### Uses topologies found in "toppar/top_for_COBY.itp" for charge determination
+    ### Also include the topology file specifically for the protein
+    itp_input = [
+        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0.itp",
+        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0_ions_v1.itp",
+        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0_phospholipids_v1.itp",
+        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0_solvents_v1.itp",
+        "include:M3_proteins_tutorial_part2/KALP/self-assembly/molecule_0.itp",
+    ],
+    
+    ### File writing
+    ### out_sys writes both a .pdb and .gro file if no file extension is given
+    out_sys = "system",
+    out_top = "system.top",
+    out_log = "log.log",
+    
+    ### Sets the verboseness of the terminal print
+    verbose = 1, # default
+    
+    ### Designates the system name that is written in .pdb, .gro and .top files
+    sn = "SimpleMembrane",
+)
+
+```
 
 etc
 
