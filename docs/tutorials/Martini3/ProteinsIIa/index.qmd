@@ -5,7 +5,7 @@ format: html
 
 <hr>
 
-In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borges@ens-lyon.fr) or [paulo.telles_de_souza\@ens-lyon.fr](mailto:%20paulo.telles_de_souza@ens-lyon.fr).
+In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borges@ens-lyon.fr).
 
 <hr>
 
@@ -195,13 +195,19 @@ More on the `insane.py` tool can be found in separate tutorials, notably setting
 
 #### Option 2: `COBY` {#coby}
 
-blah blah blah
+An alternative to insane.py is COBY <sup>[\[9\]](#references)</sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on [GitHub](https://github.com/MikkelDA/COBY).
 
-<sup>[\[9\]](#references)</sup>
+Let’s look at a practical example:
 
-https://github.com/MikkelDA/COBY 
+add the code
 
-https://github.com/MikkelDA/COBY/tree/master/Tutorial 
+mention it is python
+
+etc
+
+This command creates a POPC bilayer of size 7 × 7 nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with a small concentration of NaCl.
+
+COBY automatically generates a system.top file and includes relevant #include statements. However, as always, you should carefully check that all entries are consistent with your system and that required .itp files are present and correctly referenced.
 
 <hr>
 
