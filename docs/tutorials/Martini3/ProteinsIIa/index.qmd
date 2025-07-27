@@ -17,8 +17,8 @@ In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borg
 -   [`3. Insert your protein in a membrane environment`](#proteins-in-membrane-environment)
     -   [`3.1. Self-assembly approach`](#self-assembly-approach)
     -   [`3.2. Pre-built approach`](#pre-built-approach)
-        -   [`3.2.1. Insane`](#pre-built-approach)
-        -   [`3.2.2. COBY`](#pre-built-approach)
+        -   [`Option 1: Insane`](#pre-built-approach)
+        -   [`Option 2: COBY`](#pre-built-approach)
 -   [`4. Going Further`](#GoingFurther)
     -   [`4.1. Studying the impact of lipid composition`](#insane)
     -   [`4.2. Studying peptide dimerization`](#coby)
@@ -152,7 +152,7 @@ These tools can automatically generate a pre-assembled bilayer with one or more 
 
 <hr>
 
-#### 3.2.1. `Insane` {#insane}
+#### Option 1: `Insane` {#insane}
 
 The basic procedure using `insane` is outlined below:
 
@@ -170,7 +170,7 @@ More on the `insane.py` tool can be found in separate tutorials, notably setting
 
 <hr>
 
-#### 3.2.2. `COBY` {#coby}
+#### Option 2: `COBY` {#coby}
 
 blah blah blah
 
@@ -192,11 +192,53 @@ You can now proceed as before and set up the production run. To recap, this invo
 
 ## 4. Going further {#GoingFurther}
 
+The following sections are optional extensions for those interested in exploring more advanced topics. These exercises go beyond the core tutorial and are meant to give you a taste of how membrane composition and peptide–peptide interactions can influence simulation outcomes.
+
 ### 4.1. Studying the impact of lipid composition. {#GoingFurther1}
-Generate a new system in which membrane thickness is reduced (different the lipid type, DLPC for instance). Observe how the thickness is affecting the tilt of the transmembrane helix; compare it to the previous simulation.
+
+Membrane properties, such as thickness, fluidity, and packing, can significantly influence the behavior of embedded transmembrane peptides. In this exercise, we explore how changing the lipid composition affects the orientation and insertion of a transmembrane helix.
+
+Specifically, you will generate a new system in which the membrane is composed of a thinner lipid species — for example, DLPC instead of POPC. DLPC has shorter acyl chains (12:0), which results in a thinner bilayer compared to POPC (16:0–18:1). This difference in thickness can lead to hydrophobic mismatch, altering the tilt angle of the peptide as it attempts to optimize interactions between its hydrophobic core and the membrane interior.
+
+**Tasks:**
+
+(A) Use the same procedure as before to build a KALP-in-membrane system, replacing POPC with DLPC.
+
+(B) Equilibrate and simulate the system under the same conditions as your previous run.
+
+(C) Visualize and measure the tilt angle of the transmembrane helix over time (e.g., using [`gmx gangle`](https://manual.gromacs.org/current/onlinehelp/gmx-gangle.html) or a custom script).
+
+(D) Compare the results to those obtained with POPC. How does the membrane thickness influence peptide orientation?
+
+This simple example illustrates how Martini simulations can be used to study lipid–protein coupling effects, which are relevant for understanding membrane protein function, adaptation, and stability in different lipid environments.
 
 ### 4.2. Studying peptide dimerization. {#GoingFurther2}
-Double these previous boxes in one dimension (`gmx genconf`) and rerun the simulations. Observe the different dimerization conformations (parallel or anti-parallel tilts). Note that more than one simulation (or a longer one) might be required to observe both cases!
+
+Membrane-embedded peptides can self-associate into dimers or higher-order oligomers, often adopting specific orientations such as parallel or anti-parallel arrangements. These interactions are sensitive to peptide sequence, concentration, membrane environment, etc.
+
+In this exercise, you will explore peptide dimerization by increasing the system size to include two KALP peptides.
+
+**Tasks:**
+
+(A) Use gmx genconf to double the previous system in one dimension (e.g., the x-axis), creating a box with two peptides placed side-by-side (see code below). Alternatively, use `COBY` or `insane` to generate a larger base system containing 2 or more peptides.
+
+```bash
+gmx genconf -f system_solvated.gro -o system_dimer.gro -nbox 2 1 1
+```
+
+(B) Update the topology file (`system.top`) accordingly by doubling the number of KALP molecules and adjusting the `[ molecules ]` section.
+
+(C) Rerun the minimization, equilibration, and production simulations.
+
+(D) Analyze the peptide–peptide interactions: do they form dimers? Are the helices aligned in a parallel or anti-parallel orientation? You can use tools like `gmx mindist`, `gmx angle`, or trajectory visualization to characterize the geometry of dimerization.
+
+::: callout-note
+## Note: 
+
+Due to the stochastic nature of dimer formation, more than one simulation or longer trajectories may be needed to observe both dimerization and its preferred orientation. Running multiple, long replicas with different initial velocities is strongly recommended.
+
+:::
+
 
 ### 5. Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
 
@@ -209,6 +251,8 @@ Double these previous boxes in one dimension (`gmx genconf`) and rerun the simul
 -   `martinize2` (<https://github.com/marrink-lab/vermouth-martinize>)
 
 -   `insane` (downloadable [here](../../../downloads/tools/topology-structure-generation.qmd#insane))
+
+-   `COBY` (<https://github.com/MikkelDA/COBY>)
 
 ### 6. References {#references}
 
