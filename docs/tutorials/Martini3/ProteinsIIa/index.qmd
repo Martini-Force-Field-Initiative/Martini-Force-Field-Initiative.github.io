@@ -66,7 +66,7 @@ martinize2 -ff martini3001 -f kalp-AA.pdb -x kalp.pdb -p backbone -o system.top 
 -water-bias -water-bias-eps E:-.5 C:1.0 H:-1.0
 ```
 
-This applies a 0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil and helical residues, respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.
+This applies a -0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil, and helical residues respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.
 
 Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `virtual_sites_nonbond_params.itp` which include the definition of the virtual sites. Have a look at these files and familiarize yourself with their format. 
 
