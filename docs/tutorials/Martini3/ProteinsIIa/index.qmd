@@ -19,11 +19,12 @@ In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borg
     -   [`3.2. Pre-built approach`](#pre-built-approach)
         -   [`Option 1: Insane`](#insane)
         -   [`Option 2: COBY`](#coby)
--   [`4. Going Further`](#GoingFurther)
-    -   [`4.1. Studying the impact of lipid composition`](#insane)
-    -   [`4.2. Studying peptide dimerization`](#coby)
--   [`5. Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
--   [`6. References`](#references)
+-   [`4. Analyzing helix tilt angle`](#analysis-tilt)
+-   [`5. Going Further`](#GoingFurther)
+    -   [`5.1. Studying the impact of lipid composition`](#insane)
+    -   [`5.2. Studying peptide dimerization`](#coby)
+-   [`6. Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
+-   [`7. References`](#references)
 
 ## 1. Introduction {#introduction}
 
@@ -252,11 +253,45 @@ You can now proceed as before and set up the production run. To recap, this invo
 (D) Obtain the appropriate `.mdp` files for energy minimization, equilibration, and production runs. These can be downloaded or copied from the `template/` folder included with this module’s zip file. Modify them as needed — **for bilayer systems, make sure to use semi-isotropic pressure coupling and consider applying separate thermostat coupling groups**.
 (E) Run the minimization and equilibration steps before launching the production simulation.
 
-## 4. Going further {#GoingFurther}
+## 4. Analyzing helix tilt angle {#analysis-tilt}
+Once your simulation has completed, a useful quantity to analyze is the tilt angle of the transmembrane helix with respect to the bilayer normal (typically the z-axis). This gives insight into how the peptide aligns within the membrane and how this orientation might change depending on lipid composition or bilayer thickness.
+
+One way to compute the tilt angle is using `gmx gangle`. This tool calculates the angle between two vectors over time — in our case, between the peptide axis and the z-axis (bilayer normal).
+
+First, you need to create an `index.ndx` file that defines the atoms (or beads) used to construct the peptide vector. A common choice is the backbone beads along the transmembrane region of the peptide, for example, the vector between residues 3 and 21 in KALP:
+
+```bash
+gmx make_ndx -f dynamic.tpr -o index.ndx
+```
+Inside the interactive prompt, enter:
+
+```bash
+a 7 43
+q
+```
+
+This creates a group called `a_7_43` corresponding to the backbone beads in the helical region.
+
+Next, compute the tilt angle with:
+
+```bash
+gmx gangle -f dynamic.xtc -s dynamic.tpr -g1 vector -group1 a_7_43 -g2 z -n index.ndx -oall angles.xvg -rmpbc
+```
+
+This will output the angle (in degrees) between the peptide vector and the z-axis over the course of the simulation (`angles.xvg`). You can visualize this data to assess whether the helix remains vertical, adopts a tilted orientation, or fluctuates dynamically. 
+
+To plot the data you can, for example, use xmgrace:
+```bash
+xmgrace angles.xvg
+```
+
+Take a moment to reflect on the tilt angle values — what do they tell you about how the peptide interacts with the membrane? Can you relate the observed behavior to membrane thickness, peptide length, or hydrophobic mismatch?
+
+## 5. Going further {#GoingFurther}
 
 The following sections are optional extensions for those interested in exploring more advanced topics. These exercises go beyond the core tutorial and are meant to give you a taste of how membrane composition and peptide–peptide interactions can influence simulation outcomes.
 
-### 4.1. Studying the impact of lipid composition. {#GoingFurther1}
+### 5.1. Studying the impact of lipid composition. {#GoingFurther1}
 
 Membrane properties, such as thickness, fluidity, and packing, can significantly influence the behavior of embedded transmembrane peptides. In this exercise, we explore how changing the lipid composition affects the orientation and insertion of a transmembrane helix.
 
@@ -274,7 +309,7 @@ Specifically, you will generate a new system in which the membrane is composed o
 
 This simple example illustrates how Martini simulations can be used to study lipid–protein coupling effects, which are relevant for understanding membrane protein function, adaptation, and stability in different lipid environments.
 
-### 4.2. Studying peptide dimerization. {#GoingFurther2}
+### 5.2. Studying peptide dimerization. {#GoingFurther2}
 
 Membrane-embedded peptides can self-associate into dimers or higher-order oligomers, often adopting specific orientations such as parallel or anti-parallel arrangements. These interactions are sensitive to peptide sequence, concentration, membrane environment, etc.
 
@@ -302,7 +337,7 @@ Due to the stochastic nature of dimer formation, more than one simulation or lon
 :::
 
 
-### 5. Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
+### 6. Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
 
 <hr>
 
@@ -316,7 +351,7 @@ Due to the stochastic nature of dimer formation, more than one simulation or lon
 
 -   `COBY` (<https://github.com/MikkelDA/COBY>)
 
-### 6. References {#references}
+### 7. References {#references}
 
 <hr>
 
