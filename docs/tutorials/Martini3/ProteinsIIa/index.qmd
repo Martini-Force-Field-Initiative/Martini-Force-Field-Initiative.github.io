@@ -1,11 +1,11 @@
 ---
-title: "Proteins - Part IIa: Transmembrane peptides"
+title: "Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini"
 format: html
 ---
 
 <hr>
 
-In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borges@ens-lyon.fr).
+In case of issues, please contact [Luís Borges-Araújo](mailto:%20luis.borges@ens-lyon.fr).
 
 <hr>
 
@@ -247,7 +247,7 @@ This short Python script creates a POPC bilayer of size 7 × 7  nm² with the KA
 
 You can now proceed as before and set up the production run. To recap, this involves the following steps:
 
-(A) Edit the `system.top` file to match the Martini version you are using, and make sure it includes the correct topology files via `#include` statements.
+(A) If necessary, edit the `system.top` file to match the Martini version you are using, and make sure it includes the correct topology files via `#include` statements.
 (B) Download or copy the necessary Martini 3 `.itp` files, including `martini_v3.0.0_phospholipids_v1.itp`.
 (C) Ensure that the molecule names in your coordinate and topology files are consistent.
 (D) Obtain the appropriate `.mdp` files for energy minimization, equilibration, and production runs. These can be downloaded or copied from the `template/` folder included with this module’s zip file. Modify them as needed — **for bilayer systems, make sure to use semi-isotropic pressure coupling and consider applying separate thermostat coupling groups**.
