@@ -17,8 +17,8 @@ In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borg
 -   [`3. Insert your protein in a membrane environment`](#proteins-in-membrane-environment)
     -   [`3.1. Self-assembly approach`](#self-assembly-approach)
     -   [`3.2. Pre-built approach`](#pre-built-approach)
-        -   [`Option 1: Insane`](#pre-built-approach)
-        -   [`Option 2: COBY`](#pre-built-approach)
+        -   [`Option 1: Insane`](#insane)
+        -   [`Option 2: COBY`](#coby)
 -   [`4. Going Further`](#GoingFurther)
     -   [`4.1. Studying the impact of lipid composition`](#insane)
     -   [`4.2. Studying peptide dimerization`](#coby)
@@ -27,7 +27,11 @@ In case of issues, please contact [luis.borges\@ens-lyon.fr](mailto:%20luis.borg
 
 ## 1. Introduction {#introduction}
 
-In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a protein in a lipid bilayer. For background on setting up membranes, please refer to the [Lipids part I](../LipidsI/index.qmd) and [Lipids part II](../LipidsII/index.qmd) tutorials. Here we will explore the tilt and dimerization of KALP peptides <sup>[\[1,2\]](#references)</sup> embedded in a POPC membrane. Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup>[\[3\]](#references)</sup>.
+In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a peptide in a lipid bilayer. For background on setting up membranes, please refer to the [Lipids part I](../LipidsI/index.qmd) and [Lipids part II](../LipidsII/index.qmd) tutorials. 
+
+The main goal here is to explore different strategies for building basic membrane-peptide systems using Martini. To do so, we will explore the tilt and dimerization of KALP peptides <sup>[\[1,2\]](#references)</sup> embedded in a POPC membrane. 
+
+KALP peptides are synthetic model helices composed of alternating leucine and alanine residues, flanked by lysines. They are widely used to study generic properties of transmembrane helices, such as insertion, tilt, and dimerization, in simplified membrane environments. Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup>[\[3\]](#references)</sup>.
 
 ## 2. Setting up your protein model {#setup}
 
@@ -197,64 +201,46 @@ More on the `insane.py` tool can be found in separate tutorials, notably setting
 
 An alternative to insane.py is COBY <sup>[\[9\]](#references)</sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on [GitHub](https://github.com/MikkelDA/COBY).
 
-Let’s look at a practical example:
+COBY is a python package which can be easily installed using `pip`:
+```bash
+pip install COBY
+```
+
+It can be run both within a Python script, Jupyter notebook or as a terminal command-line, and uses a single command to specify all the system requirements. Let’s look at a practical example:
 
 ```python
-import time
-import sys
-import os
 import COBY
 
 COBY.COBY(
-    ### Designates box size and type
-    ### box = [x, y, z] [nm] 
-    box = [10, 10, 10], 
-    box_type = "rectangular", # default (other options: hexagonal, dodecahedron)
+    ### Def. box size (xyz, nm) and type.
+    box = [7, 7, 9], 
+    box_type = "rectangular", 
     
-    ### 'membrane' argument creates a single membrane consisting of POPC lipids
-    ### The membrane spans the x/y-plane with its middle at the center of the z-axis
+    ### 'membrane' creates a simple POPC membrane 
     membrane = "lipid:POPC",
     
-    ### 'protein' argument inserts a single protein at the center of the system
-    ### Note that "moleculetypes:8BB6_CG" designates the topology name for the protein, which should be included under itp_input
-    ### If "moleculetypes" is not included, then charges will be estimated from an in-built charge library that reads residue names
-    protein = "file:M3_proteins_tutorial_part2/KALP/self-assembly/kalp.pdb moleculetypes:molecule_0",
+    ### 'protein' inserts a protein at the center of the system
+    protein = "file:kalp.pdb moleculetypes:molecule_0",
     
-    ### 'solvation' argument solvates the system using the default solvation settings of "solv:W pos:NA neg:CL"
-    ### The default concentration of water is 55.56 [mol/L] ("solv_molarity:55.56")
-    ### The default salt concentration is 0.15 [mol/L] ("salt_molarity:0.15")
+    ### 'solvation' solvates the system using the default  settings [water] = 55.56 M & [NaCl] = .15 M
     solvation = "default",
     
-    ### Uses topologies found in "toppar/top_for_COBY.itp" for charge determination
-    ### Also include the topology file specifically for the protein
+    ### Include .itps for charge calcs and to write .top file.
     itp_input = [
-        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0.itp",
-        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0_ions_v1.itp",
-        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0_phospholipids_v1.itp",
-        "include:M3_proteins_tutorial_part2/KALP/self-assembly/martini_v3.0.0_solvents_v1.itp",
-        "include:M3_proteins_tutorial_part2/KALP/self-assembly/molecule_0.itp",
-    ],
-    
-    ### File writing
-    ### out_sys writes both a .pdb and .gro file if no file extension is given
-    out_sys = "system",
-    out_top = "system.top",
-    out_log = "log.log",
-    
-    ### Sets the verboseness of the terminal print
-    verbose = 1, # default
-    
-    ### Designates the system name that is written in .pdb, .gro and .top files
-    sn = "SimpleMembrane",
-)
+        "include:martini_v3.0.0.itp",
+        "include:martini_v3.0.0_ions_v1.itp",
+        "include:martini_v3.0.0_phospholipids_v1.itp",
+        "include:martini_v3.0.0_solvents_v1.itp",
+        "include:molecule_0.itp", ],
 
+    ### Designates the system name 
+    sn = "SimpleMembrane",
+
+    ### File writing
+    out_sys = "system.gro", out_top = "system.top", out_log = "log.log")
 ```
 
-etc
-
-This command creates a POPC bilayer of size 7 × 7 nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with a small concentration of NaCl.
-
-COBY automatically generates a system.top file and includes relevant #include statements. However, as always, you should carefully check that all entries are consistent with your system and that required .itp files are present and correctly referenced.
+This short Python script creates a POPC bilayer of size 7 × 7  nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a `system.top` file and includes relevant `#include` statements. However, as always, you should carefully check that all entries are consistent with your system and that required `.itp` files are present and correctly referenced.
 
 <hr>
 
