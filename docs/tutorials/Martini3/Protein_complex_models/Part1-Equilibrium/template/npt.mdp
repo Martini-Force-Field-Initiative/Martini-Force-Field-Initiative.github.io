@@ -1,0 +1,65 @@
+; Martini 3.x standard mdp for GROMACS >=202x
+title                    = Martini
+define                   = -DPOSRES
+
+; integrator and time stepping
+integrator               = md
+dt                       = 0.02       ; 20 fs
+nsteps                   = 500000     ; total simulation time = 10 ns
+
+; communication
+nstcomm                  = 100
+comm_mode                = linear
+
+; output control
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 1000
+nstenergy                = 100
+nstxout_compressed       = 1000
+compressed_x_precision   = 100
+
+; neighbor searching
+cutoff_scheme            = Verlet
+nstlist                  = 35
+ns_type                  = grid
+pbc                      = xyz
+verlet_buffer_tolerance  = 0.005
+rlist                    = 1.4
+
+; electrostatics and van der Waals
+coulombtype              = reaction-field-zero
+rcoulomb                 = 1.2
+epsilon_r                = 15         ; use 2.5 with polarizable water
+epsilon_rf               = 0
+vdw_type                 = cutoff
+vdw_modifier             = Potential-shift
+rvdw                     = 1.2
+
+; temperature coupling
+tcoupl                   = V-rescale
+tc_grps                  = Protein Non-Protein
+tau_t                    = 1.0  1.0
+ref_t                    = 300  300
+
+; pressure coupling
+Pcoupl                   = C-rescale
+pcoupltype               = isotropic
+nstpcouple               = 10
+tau_p                    = 12
+compressibility          = 1e-4
+ref_p                    = 1.0
+
+; reference coordinate scaling
+refcoord_scaling         = com
+
+; velocity generation
+gen_vel                  = yes
+gen_temp                 = 300
+gen_seed                 = -1
+
+; constraints
+constraints              = none
+constraint_algorithm     = lincs
+

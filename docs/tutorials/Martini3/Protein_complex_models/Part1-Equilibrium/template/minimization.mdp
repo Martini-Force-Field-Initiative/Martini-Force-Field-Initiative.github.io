@@ -1,0 +1,44 @@
+; Martini 3.x minimization mdp for GROMACS >=202x
+title                    = Steep minimization
+
+; integrator and time stepping
+integrator               = steep
+dt                       = 0.005      ; 5 fs
+nsteps                   = 5000       ; total minimization steps
+emtol                    = 0.0001     ; convergence tolerance
+
+; output control
+nstxout                  = 100
+nstfout                  = 0
+nstlog                   = 100
+
+; neighbor searching
+cutoff-scheme            = Verlet
+nstlist                  = 50
+ns_type                  = grid
+pbc                      = xyz
+verlet-buffer-tolerance  = 0.005
+rlist                    = 1.4
+
+; electrostatics and van der Waals
+coulombtype              = reaction-field-zero
+rcoulomb                 = 1.2
+epsilon_r                = 15         ; use 2.5 with polarizable water
+epsilon_rf               = 0
+vdw_type                 = cutoff
+vdw-modifier             = Potential-shift
+rvdw-switch              = 0.9
+rvdw                     = 1.2
+
+; constraints
+constraints              = none
+lincs-order              = 10
+lincs-iter               = 2
+lincs-warnangle          = 90
+
+; temperature coupling
+tcoupl                   = Berendsen
+tc-grps                  = Protein
+tau_t                    = 1.0
+ref_t                    = 300
+
