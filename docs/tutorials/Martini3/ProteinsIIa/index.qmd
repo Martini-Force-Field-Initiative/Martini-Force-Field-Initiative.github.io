@@ -34,6 +34,8 @@ The main goal here is to explore different strategies for building basic membran
 
 KALP peptides are synthetic model helices composed of alternating leucine and alanine residues, flanked by lysines. They are widely used to study generic properties of transmembrane helices, such as insertion, tilt, and dimerization, in simplified membrane environments. Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup>[\[3\]](#references)</sup>.
 
+**The files required for this tutorial (including worked files) can be downloaded from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip).**
+
 ## 2. Setting up your protein model {#setup}
 
 The coarse-grained structure and topology of KALP can be easily generated from an all-atom structure using `martinize2`, as explored in the previous protein tutorials.
@@ -68,7 +70,7 @@ martinize2 -ff martini3001 -f kalp-AA.pdb -x kalp.pdb -p backbone -o system.top 
 
 This applies a -0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil, and helical residues respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.
 
-Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `virtual_sites_nonbond_params.itp` which include the definition of the virtual sites. Have a look at these files and familiarize yourself with their format. 
+Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `virtual_sites_nonbond_params.itp` which include the definition of the virtual sites. Have a look at these files and familiarize yourself with their format. **Do not rename these files**, as their names are referenced explicitly in the conditional `#include` statements used in the topology. **Renaming them may cause errors or missing parameters during preprocessing.**
 
 To use them, you must modify your `martini_v3.0.0.itp` file to include their content conditionally. This can be done by inserting the following lines between the `[ atomtypes ]` and `[ nonbond_params ]` sections (line 858).
 
@@ -101,9 +103,7 @@ After generating the coarse-grained structure and topology of KALP, we can proce
 
 <hr>
 
-A bilayer self-assembly dynamics, as introduced in the first module of the [lipid tutorial part I](../LipidsI/index.qmd), will lead to the spontaneous insertion of the KALP peptide into the the bilayer (Fig. 1). **The files required for this tutorial (including worked files) can be downloaded from [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip).**
-
-The first step is to create a simulation box containing your CG KALP model, POPC, water, and ions, randomly distributed throughout the box. This can be done using the following commands:
+A bilayer self-assembly simulation, as introduced in the first module of the as introduced in the first module of the [lipid tutorial part I](../LipidsI/index.qmd), will lead to the spontaneous insertion of the KALP peptide into the the bilayer (Fig. 1). The first step is to create a simulation box containing your coarse-grained KALP model, POPC lipids, water, and ions, all randomly distributed. This sets up the initial conditions for bilayer self-assembly. You can generate this system using the following commands:
 
 ``` bash
 gmx editconf -f kalp.pdb -o kalp.gro -d 1.5
@@ -158,17 +158,25 @@ Now, run the minimization, equilibration and production simulations.
 
 ``` bash
 # Minimization
-gmx grompp -f minimization.mdp -c system_solvated.gro -p system.top -o minimization.tpr 
+gmx grompp -f minimization.mdp -c system_solvated.gro -p system.top -o minimization.tpr -warning 1
 gmx mdrun -deffnm minimization -v
 
 # Equilibraton
-gmx grompp -f equilibration.mdp -c minimization.gro -p system.top -o equilibration.tpr -n index.ndx
+gmx grompp -f equilibration.mdp -c minimization.gro -p system.top -o equilibration.tpr -r minimization.gro
 gmx mdrun -deffnm equilibration -v
 
 # Production
-gmx grompp -f dynamic.mdp -c equilibration.gro -p system.top -o dynamic.tpr -n index.ndx
+gmx grompp -f dynamic.mdp -c equilibration.gro -p system.top -o dynamic.tpr 
 gmx mdrun -deffnm dynamic -v
 ```
+
+::: callout-note
+
+**Note 1:** During the equilibration step, if position restraints are applied, the coordinates provided via `-c` (in this case, `minimization.gro`) will be used as the reference positions for the restraints with flag `-r`. Make sure the structure used as input is consistent with what you intend to restrain.
+
+**Note 2:** Note: During the self-assembly stage, we use isotropic pressure coupling to allow the system to equilibrate freely in all directions. Once the bilayer has formed and stabilized, you should switch to semi-isotropic pressure coupling to maintain realistic membrane structure and fluctuations. Additionally, consider applying separate thermostat coupling groups for the solvent and the membrane (and protein, if present). This helps maintain better thermal equilibration across different components of the system, especially when their dynamics differ significantly.
+
+::: 
 
 ### 3.2. Pre-built approach {#Prebuilt-approach}
 
@@ -192,7 +200,7 @@ python2 insane.py -f kalp.gro -o system.gro -p system.top -pbc square -box 7,7,9
 
 The previous command line will set up a complete system, containing a squared POPC bilayer of $7×7 nm^2$, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. 
 
-`insane.py` provides a prototype system.top file. However, you should always double-check that all `#include` statements match the components in your system and point to the correct `.itp` files.
+`insane.py` provides a prototype system.top file. However, you should always double-check that all `#include` statements match the components in your system and point to the correct `.itp` files. Certain versions of `insane.py` may also name ions as `NA+` and `CL-` by default. You must rename them to `NA` and `CL` in both the `.gro` and `.top` files to match the standard Martini 3 ion definitions and avoid issues during preprocessing.
 
 More on the `insane.py` tool can be found in separate tutorials, notably setting up a complex bilayer ([lipid tutorial part II](../LipidsII/index.qmd)).
 
@@ -250,7 +258,7 @@ You can now proceed as before and set up the production run. To recap, this invo
 (A) If necessary, edit the `system.top` file to match the Martini version you are using, and make sure it includes the correct topology files via `#include` statements.
 (B) Download or copy the necessary Martini 3 `.itp` files, including `martini_v3.0.0_phospholipids_v1.itp`.
 (C) Ensure that the molecule names in your coordinate and topology files are consistent.
-(D) Obtain the appropriate `.mdp` files for energy minimization, equilibration, and production runs. These can be downloaded or copied from the `template/` folder included with this module’s zip file. Modify them as needed — **for bilayer systems, make sure to use semi-isotropic pressure coupling and consider applying separate thermostat coupling groups**.
+(D) Obtain the appropriate `.mdp` files for energy minimization, equilibration, and production runs. These can be downloaded or copied from the `template/` folder included with this module’s zip file. Modify them as needed — **for bilayer systems, make sure to use semi-isotropic pressure coupling and consider applying separate thermostat coupling groups for the solvent and bilayer**.
 (E) Run the minimization and equilibration steps before launching the production simulation.
 
 ## 4. Analyzing helix tilt angle {#analysis-tilt}
