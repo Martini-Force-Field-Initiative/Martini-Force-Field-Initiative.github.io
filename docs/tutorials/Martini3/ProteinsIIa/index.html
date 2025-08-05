@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-69fe911abf326d3c3f52f7dd89351358.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/ProteinsIIa/fig1.png">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta property="og:image:height" content="1392">
+<meta property="og:image:width" content="1044">
+<meta name="twitter:title" content="Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/ProteinsIIa/fig1.png">
+<meta name="twitter:image-height" content="1392">
+<meta name="twitter:image-width" content="1044">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/index.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">2. Setting up your protein model</a>
+  <ul class="collapse">
+  <li><a href="#waterbias" id="toc-waterbias" class="nav-link" data-scroll-target="#waterbias">2.1. Water biasing to correct model artifacts.</a></li>
+  </ul></li>
+  <li><a href="#proteins-in-membrane-environment" id="toc-proteins-in-membrane-environment" class="nav-link" data-scroll-target="#proteins-in-membrane-environment">3. Insert your protein in a membrane environment</a>
+  <ul class="collapse">
+  <li><a href="#self-assembly-approach" id="toc-self-assembly-approach" class="nav-link" data-scroll-target="#self-assembly-approach">3.1. Self-assembly approach</a></li>
+  <li><a href="#Prebuilt-approach" id="toc-Prebuilt-approach" class="nav-link" data-scroll-target="#Prebuilt-approach">3.2. Pre-built approach</a></li>
+  </ul></li>
+  <li><a href="#analysis-tilt" id="toc-analysis-tilt" class="nav-link" data-scroll-target="#analysis-tilt">4. Analyzing helix tilt angle</a></li>
+  <li><a href="#GoingFurther" id="toc-GoingFurther" class="nav-link" data-scroll-target="#GoingFurther">5. Going further</a>
+  <ul class="collapse">
+  <li><a href="#GoingFurther1" id="toc-GoingFurther1" class="nav-link" data-scroll-target="#GoingFurther1">5.1. Studying the impact of lipid composition.</a></li>
+  <li><a href="#GoingFurther2" id="toc-GoingFurther2" class="nav-link" data-scroll-target="#GoingFurther2">5.2. Studying peptide dimerization.</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">6. Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">7. References</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p>In case of issues, please contact <a href="mailto:%20luis.borges@ens-lyon.fr">Luís Borges-Araújo</a>.</p>
+<hr>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li><a href="#introduction"><code>1. Introduction</code></a></li>
+<li><a href="#setup"><code>2. Setting up your protein model</code></a>
+<ul>
+<li><a href="#waterbias"><code>2.1. Water biasing to correct model artifacts</code></a></li>
+</ul></li>
+<li><a href="#proteins-in-membrane-environment"><code>3. Insert your protein in a membrane environment</code></a>
+<ul>
+<li><a href="#self-assembly-approach"><code>3.1. Self-assembly approach</code></a></li>
+<li><a href="#pre-built-approach"><code>3.2. Pre-built approach</code></a>
+<ul>
+<li><a href="#insane"><code>Option 1: Insane</code></a></li>
+<li><a href="#coby"><code>Option 2: COBY</code></a></li>
+</ul></li>
+</ul></li>
+<li><a href="#analysis-tilt"><code>4. Analyzing helix tilt angle</code></a></li>
+<li><a href="#GoingFurther"><code>5. Going Further</code></a>
+<ul>
+<li><a href="#insane"><code>5.1. Studying the impact of lipid composition</code></a></li>
+<li><a href="#coby"><code>5.2. Studying peptide dimerization</code></a></li>
+</ul></li>
+<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>6. Tools and scripts used in this tutorial</code></a></li>
+<li><a href="#references"><code>7. References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">1. Introduction</h2>
+<p>In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a peptide in a lipid bilayer. For background on setting up membranes, please refer to the <a href="../../../../docs/tutorials/Martini3/LipidsI/index.html">Lipids part I</a> and <a href="../../../../docs/tutorials/Martini3/LipidsII/index.html">Lipids part II</a> tutorials.</p>
+<p>The main goal here is to explore different strategies for building basic membrane-peptide systems using Martini. To do so, we will explore the tilt and dimerization of KALP peptides <sup><a href="#references">[1,2]</a></sup> embedded in a POPC membrane.</p>
+<p>KALP peptides are synthetic model helices composed of alternating leucine and alanine residues, flanked by lysines. They are widely used to study generic properties of transmembrane helices, such as insertion, tilt, and dimerization, in simplified membrane environments. Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup><a href="#references">[3]</a></sup>.</p>
+<p><strong>The files required for this tutorial (including worked files) can be downloaded from <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip">here</a>.</strong></p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">2. Setting up your protein model</h2>
+<p>The coarse-grained structure and topology of KALP can be easily generated from an all-atom structure using <code>martinize2</code>, as explored in the previous protein tutorials.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-ss</span> CCHHHHHHHHHHHHHHHHHHHCC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In simulations involving peptides, it is important to carefully define the secondary structure. Since peptides can be highly flexible, your structural assumptions must be well justified. For transmembrane (TM) peptides like KALP, which typically contain 20 to 30 residues (23 residues in the example used in this tutorial), the terminal regions are expected to be relatively disordered, while the hydrophobic TM core should adopt a stable helical conformation. For other TM peptides, it may be useful to include longer terminal regions or apply terminal capping, depending on the system under study. As such, we will assign the secondary structure string using the <code>-ss</code> flag in <code>martinize2</code>, for example: <code>-ss CCHHHHHHHHHHHHHHHHHHHC</code>.</p>
+<p>Elastic network <sup><a href="#references">[4]</a></sup>, Gō <sup><a href="#references">[5]</a></sup> or OLIVES models <sup><a href="#references">[6]</a></sup> are not necessary in this case, as the bonded parameters in the Martini model are usually sufficient to maintain the structural integrity of simple helices.</p>
+<section id="waterbias" class="level3">
+<h3 class="anchored" data-anchor-id="waterbias">2.1. Water biasing to correct model artifacts.</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Warning: Use biasing with caution.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While we demonstrate the use of water biasing here for educational purposes, it should be treated as a last resort. Incorrectly applied biasing can distort and artifically drive the physical behavior of the system. This can compromise the interpretability and generalizability of your results. Always first try standard protocols before introducing bias. If you do use biasing, be explicit about it in your analysis and consider running controls without it.</p>
+</div>
+</div>
+<p>Small peptides, particularly those with uncharged terminal regions, may fail to insert properly into lipid bilayers in Martini 3 and instead become adsorbed at the membrane surface or even get ejected during the simulation<sup><a href="#references">[7]</a></sup>.</p>
+<p>To enhance the insertion of peptides into lipid bilayers, a water bias can be applied to reduce the strength of protein-water interactions in selected regions of the peptide. This is particularly useful for transmembrane peptides or small transmembrane proteins that may otherwise remain adsorbed at the membrane interface. The bias is implemented via virtual backbone sites<sup><a href="#references">[5]</a></sup> which allow tuning of Lennard-Jones interactions with water beads without altering bonded interactions.</p>
+<p>In <code>martinize2</code>, this is done using the <code>-water-bias</code> flag along with <code>-water-bias-eps</code>, specifying a bias for each secondary structure category. For example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-ss</span> CCHHHHHHHHHHHHHHHHHHHCC <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>-water-bias <span class="at">-water-bias-eps</span> E:-.5 C:1.0 H:-1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This applies a -0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil, and helical residues respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.</p>
+<p>Adding this bias generates additional files, <code>virtual_sites_atomtypes.itp</code> and <code>virtual_sites_nonbond_params.itp</code> which include the definition of the virtual sites. Have a look at these files and familiarize yourself with their format. <strong>Do not rename these files</strong>, as their names are referenced explicitly in the conditional <code>#include</code> statements used in the topology. <strong>Renaming them may cause errors or missing parameters during preprocessing.</strong></p>
+<p>To use them, you must modify your <code>martini_v3.0.0.itp</code> file to include their content conditionally. This can be done by inserting the following lines between the <code>[ atomtypes ]</code> and <code>[ nonbond_params ]</code> sections (line 858).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ifdef WBIAS</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#include "virtual_sites_atomtypes.itp"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#include "virtual_sites_nonbond_params.itp"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can do this manually using a text editor, or programmatically using the following <code>sed</code> command, which inserts the lines after line 858 (adjust the number if needed):</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'858i\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">#ifdef WBIAS\n#include "virtual_sites_atomtypes.itp"\n#include "virtual_sites_nonbond_params.itp"\n#endif'</span> martini_v3.0.0.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Important: Run this command only once, or you will introduce duplicate blocks into your file.</strong></p>
+<p>Finally, activate the bias by adding the following line to the top of your <code>.top</code> file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#define WBIAS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="proteins-in-membrane-environment" class="level2">
+<h2 class="anchored" data-anchor-id="proteins-in-membrane-environment">3. Insert your protein in a membrane environment</h2>
+<p>After generating the coarse-grained structure and topology of KALP, we can proceed by embedding the protein into a membrane environment. Specifically, into a lipid bilayer. There are different ways to achieve this, and in this tutorial, we present two common approaches, which are described in the following sections:</p>
+<section id="self-assembly-approach" class="level3">
+<h3 class="anchored" data-anchor-id="self-assembly-approach">3.1. Self-assembly approach</h3>
+<hr>
+<p>A bilayer self-assembly simulation, as introduced in the first module of the as introduced in the first module of the <a href="../../../../docs/tutorials/Martini3/LipidsI/index.html">lipid tutorial part I</a>, will lead to the spontaneous insertion of the KALP peptide into the the bilayer (Fig. 1). The first step is to create a simulation box containing your coarse-grained KALP model, POPC lipids, water, and ions, all randomly distributed. This sets up the initial conditions for bilayer self-assembly. You can generate this system using the following commands:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> kalp.pdb <span class="at">-o</span> kalp.gro <span class="at">-d</span> 1.5</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserts 156 POPC molecules around KALP in a 7 × 7 × 6 nm box.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> insert-molecules <span class="at">-f</span> kalp.gro <span class="at">-ci</span> popc.gro <span class="at">-nmol</span> 156 <span class="at">-box</span> 7 7 6 <span class="at">-try</span> 500 <span class="at">-o</span> system_no-solvent.gro</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extends the box in the z-direction to allow for some extra space for solvation</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> system_no-solvent.gro <span class="at">-o</span> system_no-solvent.gro <span class="at">-c</span> <span class="at">-box</span> 7 7 10</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds water beads to the system, avoiding overlaps within a 0.21 nm radius.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> system_no-solvent.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> system_solvated.gro <span class="at">-radius</span> 0.21</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 | A) Self-assembly (4 ns) of a lipid bilayer (green) embedding a KALP peptide. B) Initial “soup” of lipid and solvent (water; blue) in which the KALP (red) is mixed. C) Final conformation of the simulation.</figcaption>
+</figure>
+</div>
+<p>The <code>.top</code> file must be updated to include the necessary Martini 3 <code>.itp</code> files. You should also replace 4 water beads with CL ions in the <code>.top</code> file to neutralize the system.</p>
+<p><code>system.top</code> should look something like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="cf">if</span> <span class="ex">you</span> use water biasing add the following define.</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#define WBIAS</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">here</span> you include all the .itps</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0.itp"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#include "molecule_0.itp"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0_phospholipids_v1.itp"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0_solvents_v1.itp"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0_ions_v1.itp"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> system <span class="bu">]</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">name</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Your</span> very first self assembly system :<span class="er">)</span><span class="bu">.</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">name</span>  number</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ex">molecule_0</span>        1</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span>            <span class="op">&lt;</span>NLIPIDS<span class="op">&gt;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">W</span>               <span class="op">&lt;</span>NWATERS-4<span class="op">&gt;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">CL</span>               4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can easily find the number of waters and lipids in your system using grep to correctly finalize your <code>.top</code> file:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">NLIPIDS</span><span class="op">=</span><span class="va">$(($(</span><span class="fu">grep</span> <span class="at">-c</span> POPC system_solvated.gro<span class="va">)</span><span class="op">/</span><span class="dv">12</span><span class="va">))</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">NWATERS</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-c</span> W system_solvated.gro<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, run the minimization, equilibration and production simulations.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimization</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> system_solvated.gro <span class="at">-p</span> system.top <span class="at">-o</span> minimization.tpr <span class="at">-warning</span> 1</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Equilibraton</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> equilibration.mdp <span class="at">-c</span> minimization.gro <span class="at">-p</span> system.top <span class="at">-o</span> equilibration.tpr <span class="at">-r</span> minimization.gro</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Production</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> dynamic.mdp <span class="at">-c</span> equilibration.gro <span class="at">-p</span> system.top <span class="at">-o</span> dynamic.tpr </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Note 1:</strong> During the equilibration step, if position restraints are applied, the coordinates provided via <code>-c</code> (in this case, <code>minimization.gro</code>) will be used as the reference positions for the restraints with flag <code>-r</code>. Make sure the structure used as input is consistent with what you intend to restrain.</p>
+<p><strong>Note 2:</strong> Note: During the self-assembly stage, we use isotropic pressure coupling to allow the system to equilibrate freely in all directions. Once the bilayer has formed and stabilized, you should switch to semi-isotropic pressure coupling to maintain realistic membrane structure and fluctuations. Additionally, consider applying separate thermostat coupling groups for the solvent and the membrane (and protein, if present). This helps maintain better thermal equilibration across different components of the system, especially when their dynamics differ significantly.</p>
+</div>
+</div>
+</section>
+<section id="Prebuilt-approach" class="level3">
+<h3 class="anchored" data-anchor-id="Prebuilt-approach">3.2. Pre-built approach</h3>
+<hr>
+<p>This second method is the easiest and most straightforward, and it is the recommended approach for building protein-in-membrane systems. It makes use of membrane builder programs, such as <code>insane</code> or <code>COBY</code>, which are designed to construct complex Martini systems efficiently.</p>
+<p>These tools can automatically generate a pre-assembled bilayer with one or more proteins already inserted into the membrane, typically positioned at the center or at user-defined locations. They allow you to customize the number of proteins, their orientation, and lateral placement within the bilayer. In addition, you can define the lipid composition, box dimensions, water content, and ionic strength, all in a single step. This greatly simplifies system setup and reduces the chance of user errors.</p>
+<hr>
+<section id="insane" class="level4">
+<h4 class="anchored" data-anchor-id="insane">Option 1: <code>Insane</code></h4>
+<p>The basic procedure using <code>insane</code> is outlined below:</p>
+<p>The syntax of the <code>insane.py</code> <sup><a href="#references">[8]</a></sup> script is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (Get the latest from the <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">Downloads</a> page.) Let’s see a practical example:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2</span> insane.py <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> POPC <span class="at">-u</span> POPC <span class="at">-center</span> <span class="at">-sol</span> W <span class="at">-salt</span> 0.01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The previous command line will set up a complete system, containing a squared POPC bilayer of <span class="math inline">\(7×7 nm^2\)</span>, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP.</p>
+<p><code>insane.py</code> provides a prototype system.top file. However, you should always double-check that all <code>#include</code> statements match the components in your system and point to the correct <code>.itp</code> files. Certain versions of <code>insane.py</code> may also name ions as <code>NA+</code> and <code>CL-</code> by default. You must rename them to <code>NA</code> and <code>CL</code> in both the <code>.gro</code> and <code>.top</code> files to match the standard Martini 3 ion definitions and avoid issues during preprocessing.</p>
+<p>More on the <code>insane.py</code> tool can be found in separate tutorials, notably setting up a complex bilayer (<a href="../../../../docs/tutorials/Martini3/LipidsII/index.html">lipid tutorial part II</a>).</p>
+<hr>
+</section>
+<section id="coby" class="level4">
+<h4 class="anchored" data-anchor-id="coby">Option 2: <code>COBY</code></h4>
+<p>An alternative to insane.py is COBY <sup><a href="#references">[9]</a></sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on <a href="https://github.com/MikkelDA/COBY">GitHub</a>.</p>
+<p>COBY is a python package which can be easily installed using <code>pip</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install COBY</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It can be run both within a Python script, Jupyter notebook or as a terminal command-line, and uses a single command to specify all the system requirements. Let’s look at a practical example:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> COBY</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>COBY.COBY(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Def. box size (xyz, nm) and type.</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    box <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">9</span>], </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    box_type <span class="op">=</span> <span class="st">"rectangular"</span>, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">### 'membrane' creates a simple POPC membrane </span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    membrane <span class="op">=</span> <span class="st">"lipid:POPC"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">### 'protein' inserts a protein at the center of the system</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    protein <span class="op">=</span> <span class="st">"file:kalp.pdb moleculetypes:molecule_0"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">### 'solvation' solvates the system using the default  settings [water] = 55.56 M &amp; [NaCl] = .15 M</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    solvation <span class="op">=</span> <span class="st">"default"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Include .itps for charge calcs and to write .top file.</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    itp_input <span class="op">=</span> [</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"include:martini_v3.0.0.itp"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"include:martini_v3.0.0_ions_v1.itp"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"include:martini_v3.0.0_phospholipids_v1.itp"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"include:martini_v3.0.0_solvents_v1.itp"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"include:molecule_0.itp"</span>, ],</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Designates the system name </span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    sn <span class="op">=</span> <span class="st">"SimpleMembrane"</span>,</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">### File writing</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    out_sys <span class="op">=</span> <span class="st">"system.gro"</span>, out_top <span class="op">=</span> <span class="st">"system.top"</span>, out_log <span class="op">=</span> <span class="st">"log.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This short Python script creates a POPC bilayer of size 7 × 7 nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a <code>system.top</code> file and includes relevant <code>#include</code> statements. However, as always, you should carefully check that all entries are consistent with your system and that required <code>.itp</code> files are present and correctly referenced.</p>
+<hr>
+<p>You can now proceed as before and set up the production run. To recap, this involves the following steps:</p>
+<ol type="A">
+<li>If necessary, edit the <code>system.top</code> file to match the Martini version you are using, and make sure it includes the correct topology files via <code>#include</code> statements.</li>
+<li>Download or copy the necessary Martini 3 <code>.itp</code> files, including <code>martini_v3.0.0_phospholipids_v1.itp</code>.</li>
+<li>Ensure that the molecule names in your coordinate and topology files are consistent.</li>
+<li>Obtain the appropriate <code>.mdp</code> files for energy minimization, equilibration, and production runs. These can be downloaded or copied from the <code>template/</code> folder included with this module’s zip file. Modify them as needed — <strong>for bilayer systems, make sure to use semi-isotropic pressure coupling and consider applying separate thermostat coupling groups for the solvent and bilayer</strong>.</li>
+<li>Run the minimization and equilibration steps before launching the production simulation.</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="analysis-tilt" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-tilt">4. Analyzing helix tilt angle</h2>
+<p>Once your simulation has completed, a useful quantity to analyze is the tilt angle of the transmembrane helix with respect to the bilayer normal (typically the z-axis). This gives insight into how the peptide aligns within the membrane and how this orientation might change depending on lipid composition or bilayer thickness.</p>
+<p>One way to compute the tilt angle is using <code>gmx gangle</code>. This tool calculates the angle between two vectors over time — in our case, between the peptide axis and the z-axis (bilayer normal).</p>
+<p>First, you need to create an <code>index.ndx</code> file that defines the atoms (or beads) used to construct the peptide vector. A common choice is the backbone beads along the transmembrane region of the peptide, for example, the vector between residues 3 and 21 in KALP:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> dynamic.tpr <span class="at">-o</span> index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Inside the interactive prompt, enter:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">a</span> 7 43</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">q</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a group called <code>a_7_43</code> corresponding to the backbone beads in the helical region.</p>
+<p>Next, compute the tilt angle with:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> gangle <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-g1</span> vector <span class="at">-group1</span> a_7_43 <span class="at">-g2</span> z <span class="at">-n</span> index.ndx <span class="at">-oall</span> angles.xvg <span class="at">-rmpbc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will output the angle (in degrees) between the peptide vector and the z-axis over the course of the simulation (<code>angles.xvg</code>). You can visualize this data to assess whether the helix remains vertical, adopts a tilted orientation, or fluctuates dynamically.</p>
+<p>To plot the data you can, for example, use xmgrace:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> angles.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Take a moment to reflect on the tilt angle values — what do they tell you about how the peptide interacts with the membrane? Can you relate the observed behavior to membrane thickness, peptide length, or hydrophobic mismatch?</p>
+</section>
+<section id="GoingFurther" class="level2">
+<h2 class="anchored" data-anchor-id="GoingFurther">5. Going further</h2>
+<p>The following sections are optional extensions for those interested in exploring more advanced topics. These exercises go beyond the core tutorial and are meant to give you a taste of how membrane composition and peptide–peptide interactions can influence simulation outcomes.</p>
+<section id="GoingFurther1" class="level3">
+<h3 class="anchored" data-anchor-id="GoingFurther1">5.1. Studying the impact of lipid composition.</h3>
+<p>Membrane properties, such as thickness, fluidity, and packing, can significantly influence the behavior of embedded transmembrane peptides. In this exercise, we explore how changing the lipid composition affects the orientation and insertion of a transmembrane helix.</p>
+<p>Specifically, you will generate a new system in which the membrane is composed of a thinner lipid species — for example, DLPC instead of POPC. DLPC has shorter acyl chains (12:0), which results in a thinner bilayer compared to POPC (16:0–18:1). This difference in thickness can lead to hydrophobic mismatch, altering the tilt angle of the peptide as it attempts to optimize interactions between its hydrophobic core and the membrane interior.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="A">
+<li><p>Use the same procedure as before to build a KALP-in-membrane system, replacing POPC with DLPC.</p></li>
+<li><p>Equilibrate and simulate the system under the same conditions as your previous run.</p></li>
+<li><p>Visualize and measure the tilt angle of the transmembrane helix over time (e.g., using <a href="https://manual.gromacs.org/current/onlinehelp/gmx-gangle.html"><code>gmx gangle</code></a> or a custom script).</p></li>
+<li><p>Compare the results to those obtained with POPC. How does the membrane thickness influence peptide orientation?</p></li>
+</ol>
+<p>This simple example illustrates how Martini simulations can be used to study lipid–protein coupling effects, which are relevant for understanding membrane protein function, adaptation, and stability in different lipid environments.</p>
+</section>
+<section id="GoingFurther2" class="level3">
+<h3 class="anchored" data-anchor-id="GoingFurther2">5.2. Studying peptide dimerization.</h3>
+<p>Membrane-embedded peptides can self-associate into dimers or higher-order oligomers, often adopting specific orientations such as parallel or anti-parallel arrangements. These interactions are sensitive to peptide sequence, concentration, membrane environment, etc.</p>
+<p>In this exercise, you will explore peptide dimerization by increasing the system size to include two KALP peptides.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="A">
+<li>Use gmx genconf to double the previous system in one dimension (e.g., the x-axis), creating a box with two peptides placed side-by-side (see code below). Alternatively, use <code>COBY</code> or <code>insane</code> to generate a larger base system containing 2 or more peptides.</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> genconf <span class="at">-f</span> system_solvated.gro <span class="at">-o</span> system_dimer.gro <span class="at">-nbox</span> 2 1 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="A">
+<li><p>Update the topology file (<code>system.top</code>) accordingly by doubling the number of KALP molecules and adjusting the <code>[ molecules ]</code> section.</p></li>
+<li><p>Rerun the minimization, equilibration, and production simulations.</p></li>
+<li><p>Analyze the peptide–peptide interactions: do they form dimers? Are the helices aligned in a parallel or anti-parallel orientation? You can use tools like <code>gmx mindist</code>, <code>gmx angle</code>, or trajectory visualization to characterize the geometry of dimerization.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Due to the stochastic nature of dimer formation, more than one simulation or longer trajectories may be needed to observe both dimerization and its preferred orientation. Running multiple, long replicas with different initial velocities is strongly recommended.</p>
+</div>
+</div>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">6. Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/" class="uri">http://www.gromacs.org/</a>)</p></li>
+<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/" class="uri">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
+<li><p><code>martinize2</code> (<a href="https://github.com/marrink-lab/vermouth-martinize" class="uri">https://github.com/marrink-lab/vermouth-martinize</a>)</p></li>
+<li><p><code>insane</code> (downloadable <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>)</p></li>
+<li><p><code>COBY</code> (<a href="https://github.com/MikkelDA/COBY" class="uri">https://github.com/MikkelDA/COBY</a>)</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">7. References</h3>
+<hr>
+<p>[1] Monticelli, L.; Kandasamy, S. K.; Periole, X.; Larson, R. G.; Tieleman, D. P.; Marrink, S.-J. The MARTINI Coarse-Grained Force Field: Extension to Proteins. J. Chem. Theory Comput. 2008, 4 (5), 819–834. https://doi.org/10.1021/ct700324x.</p>
+<p>[2] Ramadurai, S.; Holt, A.; Schäfer, L. V.; Krasnikov, V. V.; Rijkers, D. T. S.; Marrink, S. J.; Killian, J. A.; Poolman, B. Influence of Hydrophobic Mismatch and Amino Acid Composition on the Lateral Diffusion of Transmembrane Peptides. Biophys. J. 2010, 99 (5), 1447–1454. https://doi.org/10.1016/J.BPJ.2010.05.042.</p>
+<p>[3] Marrink, S. J.; Corradi, V.; Souza, P. C. T.; Ingólfsson, H. I.; Tieleman, D. P.; Sansom, M. S. P. Computational Modeling of Realistic Cell Membranes. Chem. Rev.&nbsp;2019, 119 (9), 6184–6226. https://doi.org/10.1021/acs.chemrev.8b00460.</p>
+<p>[4] Periole, X.; Cavalli, M.; Marrink, S.-J.; Ceruso, M. A. Combining an Elastic Network With a Coarse-Grained Molecular Force Field: Structure, Dynamics, and Intermolecular Recognition. J. Chem. Theory Comput. 2009, 5 (9), 2531–2543. https://doi.org/10.1021/ct9002114.</p>
+<p>[5] Souza, P.C.T., Borges-Araújo, L., Brasnett, C. et al.&nbsp;GōMartini 3: From large conformational changes in proteins to environmental bias corrections. Nat Commun 16, 4051 (2025). https://doi.org/10.1038/s41467-025-58719-0</p>
+<p>[6] Pedersen, K.B., Borges-Araújo, L., Stange, A.D., Souza, P.C.T., Marrink, S.J., and Schiøtt, B. OLIVES: A Go̅-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field. Journal of Chemical Theory and Computation 2024 20 (18), 8049-8070 https://doi.org/10.1021/acs.jctc.4c00553</p>
+<p>[7] Spinti, J.K, Nunes, F.N., Melo, M.N. Room for improvement in the initial martini 3 parameterization of peptide interactions, Chemical Physics Letters, Volume 819, 2023, 140436, 0009-2614, https://doi.org/10.1016/j.cplett.2023.140436.</p>
+<p>[8] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.</p>
+<p>[9] Andreasen, M.D., Souza, P.C.T., Schiøtt, B., and Zuzic, L. Creating Coarse-Grained Systems with COBY: Toward Higher Accuracy of Complex Biological Systems. Journal of Chemical Information and Modeling 2025 65 (10), 4760-4766 https://doi.org/10.1021/acs.jcim.5c00069</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cgmartini\.nl");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+<script src="../../../../js/sidebar-close.js"></script> 
+
+
+
+
+</body></html>
