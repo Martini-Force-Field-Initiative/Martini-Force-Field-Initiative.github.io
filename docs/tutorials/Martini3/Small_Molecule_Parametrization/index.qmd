@@ -359,13 +359,13 @@ gnuplot plot_dihedrals_tutorial_4x1.gnu
 
 The plots produced should look like the following, for bonds (Fig. 4):
 
-![Figure 4 | Comparison of the mapped and target distributions for the bonds in the 1-ethylnaphthalene.](fig4.jpeg)
+![Figure 4 | Comparison of the mapped and target distributions for the bonds in the 1-ethylnaphthalene. AA is in blue, Martini is in red](fig4.jpeg)
 
 and dihedrals (Fig. 5):
 
 ![Figure 5 | Comparison of the mapped and target distributions for the dihedrals in the 1-ethylnaphthalene. AA is in blue, Martini is in red.](fig5.jpeg)
 
-The agreement is very good. Note that the bimodality of the distributions of the first two dihedrals cannot be captured by the CG model. However, the size of the CG distribution will seemingly capture the two AA configurations into the single CG configuration. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG `.itp` and iterate till satisfactory agreement is achieved.
+The agreement is overall very good. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG `.itp` and iterate till satisfactory agreement is achieved. Note that the bimodality of the distributions of the first two dihedrals cannot be captured by this CG model because of the use of improper dihedral potentials. For dihedral 1-3-6-5, however, the size of the CG distribution roughly already captures the two AA configurations into the single CG configuration. For dihedral 2-1-4-3, one may resort to more complex dihedral potentials that allow to capture more than one minimum, i.e., proper dihedrals (periodic/Fourier/Ryckaert-Bellemans/etc. - see the [GROMACS manual](https://manual.gromacs.org/documentation/current/reference-manual/functions/bonded-interactions.html#proper-dihedrals) for more info on available dihedral potentials).
 
 ### 8. Comparison to experimental results, further refinements, and final considerations
 <hr>
