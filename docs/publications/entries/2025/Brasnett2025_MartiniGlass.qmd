@@ -1,0 +1,32 @@
+---
+title: "MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Christopher Brasnett, and Siewert J. Marrink"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "Journal of Chemical Information and Modeling"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jcim.4c02277"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Methods
+  - Visualization
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Brasnett, C., & Marrink, S. J. (2025). MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies. Journal of chemical information and modeling, 65(7), 3137-3141.
+
+## Abstract
+
+As molecular modeling gains ever more prominence in understanding cellular processes, high quality visualization of models and dynamics has never been more important. Naturally, much molecular visualization software is written to enable the visualization of atomic level details in structures. While necessary, this means that visualization of increasingly popular coarse-grained (CG) models remains a challenge. Here, we present a Python package, MartiniGlass, that facilitates the visualization of systems simulated with the widely used CG Martini force field using the popular visualization package VMD. MartiniGlass rapidly processes molecular topologies and accounts for important topological features at CG resolution, such as secondary structure restraints, preparing them for easy visualization of simulated trajectories.
