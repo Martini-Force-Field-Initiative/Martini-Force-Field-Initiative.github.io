@@ -451,7 +451,7 @@ The SASA distributions show a discrepancy of about 5% (the average CG SASA is ab
 
 * It can be very useful to monitor distances/angles/dihedrals not defined in the topology, as it can give insights as to how well the model is performing and/or whether some more bond/angle/dihedral potentials are needed.
 
-* Take inspiration from already-developed models when trying to build a Martini 3 molecule for a new small molecule. Several examples can be found on the [Martini 3 small molecule GitHub repo](https://github.com/ricalessandri/Martini3-small-molecules/blob/main/models/martini_v3.0.0_small_molecules_v1.itp).
+* Take inspiration from already-developed models when trying to build a Martini 3 molecule for a new small molecule. Several examples can be found on the [Martini 3 small molecule GitHub repo](https://github.com/ricalessandri/Martini3-small-molecules/blob/main/models/martini_v3.0.0_small_molecules_v1.itp) or in the [MArtini Datbase (MAD) server](https://mad.ens-lyon.fr/explore).
 
 Besides hydrogen bonding labels ("d" for donor, and "a" for acceptor), electron polarizability labels are also made available in Martini 3: these mimic electron-rich (label "e") or electron-poor (label "v", for "vacancy") regions of aromatic rings. Such labels have been tested to a less extended degree than "d"/"a" labels, but have shown great potentials in applications involving aedamers <sup>[[1]](#references)</sup>. In the case of 1-ethylnaphthalene, the "e" label may be used to describe bead number 4 (at the center of the naphthalene moiety) and bead number 1 (because connected to an electron-donating group such as -CH2CH3).
 
