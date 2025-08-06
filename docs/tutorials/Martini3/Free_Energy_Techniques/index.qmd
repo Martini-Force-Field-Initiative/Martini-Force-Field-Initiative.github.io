@@ -4,12 +4,14 @@ format: html
 ---
 
 <hr>
-In case of issues, please contact duve@fias.uni-frankfurt.de, riccardo.alessandri@kuleuven.be, or thallmair@fias.uni-frankfurt.de.
+In case of issues, please contact [duve@fias.uni-frankfurt.de](mailto:duve@fias.uni-frankfurt.de), [riccardo.alessandri@kuleuven.be](mailto:riccardo.alessandri@kuleuven.be), or [thallmair@fias.uni-frankfurt.de](mailto:thallmair@fias.uni-frankfurt.de).
 <hr>
 
 ### Summary
 - [`Introduction`](#introduction)
 - [`Free sampling`](#free-sampling)
+- [`Umbrella sampling`](#umbrella-sampling)
+- [`Thermodynamic integration`](#thermodynamic-integration)
 - [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
 - [`References`](#references)
 
@@ -334,6 +336,13 @@ gmx solvate -cp acetone.gro -cs solvent.gro -o solvated.gro -box 5.5 5.5 5.5 -ma
 Again we first run a minimization, followed by production runs for each value of λ using the TI.sh script. The result will be printed to final.dat. 
 
 Using the difference between the free energy values of water and hexane we can calculate the $log(P_{hexadecane-water})$ of acetone, as discussed in the previous section.
+
+### Tools and scripts used in this tutorial
+<hr>
+
+- `GROMACS` ([http://www.gromacs.org/](http://www.gromacs.org/))
+
+- `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
 
 ### References
 <hr>
