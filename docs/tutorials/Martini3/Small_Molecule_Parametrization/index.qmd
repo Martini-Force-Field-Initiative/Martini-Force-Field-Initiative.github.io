@@ -262,6 +262,7 @@ Finally, to apply exclusions, we state the atom number of the target particle fo
 ``` bash
 [ exclusions ]
  1 2 3 4 5 6
+...
 ```
 
 Using initial guesses for the reference bond lengths/angles and force constants you can now create a complete topology for the target molecule. These initial guesses will be improved upon in a further section by comparing the AA and CG bonded distributions and adjusting these values.
