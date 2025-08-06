@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bentopy: from simple packing to building cellular models – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-69fe911abf326d3c3f52f7dd89351358.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Bentopy: from simple packing to building cellular models – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Bentopy/figure1.png">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta property="og:image:height" content="2000">
+<meta property="og:image:width" content="2500">
+<meta name="twitter:title" content="Bentopy: from simple packing to building cellular models – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Bentopy/figure1.png">
+<meta name="twitter:image-height" content="2000">
+<meta name="twitter:image-width" content="2500">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/index.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Bentopy: from simple packing to building cellular models</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#Programs" id="toc-Programs" class="nav-link" data-scroll-target="#Programs">Programs</a></li>
+  <li><a href="#Tut1" id="toc-Tut1" class="nav-link" data-scroll-target="#Tut1">Tutorial 1: Basic Packing in Empty Space</a></li>
+  <li><a href="#Tut2" id="toc-Tut2" class="nav-link" data-scroll-target="#Tut2">Tutorial 2: Packing Around Existing Structures</a></li>
+  <li><a href="#Tut3" id="toc-Tut3" class="nav-link" data-scroll-target="#Tut3">Tutorial 3: Multi-Compartment Systems with Placement Rules</a></li>
+  <li><a href="#Advanced_Features_and_Tips" id="toc-Advanced_Features_and_Tips" class="nav-link" data-scroll-target="#Advanced_Features_and_Tips">Advanced Features and Tips</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Bentopy: from simple packing to building cellular models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<strong>Tutorial authors</strong>: J.A. Stevens and M.S.S. Westendorp, with contributions from C.M. Brown and W. Nauta. <br> <strong>In case of issues</strong>: Please contact <a href="mailto:j.a.stevens@rug.nl">j.a.stevens@rug.nl</a> or <a href="mailto:ma3ke.cyber@gmail.com">ma3ke.cyber@gmail.com</a>.
+<hr>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li><a href="#Introduction"><code>Introduction</code></a></li>
+<li><a href="#Programs"><code>Programs</code></a></li>
+<li><a href="#Tut1"><code>Tutorial 1: Basic Packing in Empty Space</code></a></li>
+<li><a href="#Tut2"><code>Tutorial 2: Packing Around Existing Structures</code></a></li>
+<li><a href="#Tut3"><code>Tutorial 3: Multi-Compartment Systems with Placement Rules</code></a></li>
+<li><a href="#Advanced_Features_and_Tips"><code>Advanced Features and Tips</code></a></li>
+<li><a href="#references"><code>References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p><em><strong>Bentopy</strong>¹</em> is a tool for packing molecules in arbitrary volumes, designed specifically for setting up large-scale molecular dynamics (MD) simulations. Through an efficient packing algorithm, <em>bentopy</em> can assemble molecular structures into MD models with biological densities and cellular-scales.</p>
+<p><img src="figure1.png" class="img-fluid"></p>
+<p><em><strong>Figure 1: Showcase models.</strong> a) The bentopy logo, packed with bentopy. For those interested a thread on the making of this model can be found <a href="https://hachyderm.io/@ma3ke/114081904829438250">here</a>. b) Mitochondrial cytoplasm model, showing distinct compartments with compartment-specific molecular components.</em></p>
+<p>The tool was built to create cellular-scale models by integrating multiple structural components atphysiological concentrations while ensuring simulation compatibility. <em>bentopy</em> uses voxels to represent space as a regular 3D grid, providing computational efficiency for spatial operations like collision detection and informing molecule placement. For example, this voxel approach enables mdvcontainment to automatically identify compartments within molecular models for packing, which is a central feature of <em>bentopy</em>².</p>
+<p>In this tutorial, we will showcase <em>bentopy’s</em> capabilities through three progressively complex tutorials that build on each other:</p>
+<ol type="1">
+<li><strong>Simple packing</strong>: Learn the basic workflow by packing proteins in empty space</li>
+<li><strong>Packing around existing structures</strong>: Add a membrane and pack proteins around it</li>
+<li><strong>Multi-compartment systems</strong>: Add a second membrane creating distinct compartments for different proteins</li>
+</ol>
+<p>Each tutorial builds on the previous one, showing how to evolve a simple system into a complex model while using the standard <em>bentopy</em> workflow.</p>
+<p><img src="figure2.png" class="img-fluid"></p>
+<p><em><strong>Figure 2: Bentopy workflow overview.</strong> The workflow consists of multiple consecutive steps including mask preparation, packing configuration, structure rendering, merging, and solvation.</em></p>
+</section>
+<section id="Programs" class="level3">
+<h3 class="anchored" data-anchor-id="Programs">Programs</h3>
+<hr>
+<section id="installing-bentopy" class="level4">
+<h4 class="anchored" data-anchor-id="installing-bentopy">Installing <em>bentopy</em></h4>
+<p><strong>Prerequisites</strong>: <em>Bentopy</em> is written in Rust, so a Rust compiler is required during installation. Check if Rust is present:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If not present, <a href="https://www.rust-lang.org/learn/get-started">install Rust</a> through <a href="https://rustup.rs/">Rustup</a>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After installing Rust via rustup, you may need to reload your bash environment for the Rust tools (cargo, etc.) to be available in your PATH. Either restart your terminal or run:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc    <span class="co"># For bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc     <span class="co"># For zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can verify the installation worked by running `cargo --version`.</p>
+</div>
+</div>
+<p>Now you can install <em>bentopy</em> directly via <code>pip</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/marrink-lab/bentopy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="download-tutorial-files" class="level4">
+<h4 class="anchored" data-anchor-id="download-tutorial-files">Download tutorial files</h4>
+<p>Before starting the tutorial, download the required structure and parameter files. You download the tutorial files <strong><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Bentopy/tutorial_files.tar.gz">here</a>.</strong> Extract the files:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This archive contains:</p>
+<ul>
+<li><code>structures/</code> - Provided structure files: proteins (<code>lysozyme.pdb</code>, <code>ubiquitin.pdb</code>), membranes (<code>membrane.gro</code>, <code>double\_membrane.gro</code>) and solvent (<code>water.gro</code>)</li>
+<li><code>topology/</code> - Martini force field files and protein topologies (<code>lysozyme.itp</code>, <code>ubiquitin.itp</code>)</li>
+<li><code>mdp_files/</code> - Example GROMACS input files (<code>em.mdp</code>, <code>eq.mdp</code>, <code>md.mdp</code>)</li>
+</ul>
+<p><strong>Other tools:</strong></p>
+<ul>
+<li>Standard command line tools</li>
+<li>Visualisation software: <strong><code>VMD</code></strong></li>
+</ul>
+</section>
+</section>
+<section id="Tut1" class="level3">
+<h3 class="anchored" data-anchor-id="Tut1">Tutorial 1: Basic Packing in Empty Space</h3>
+<hr>
+<section id="overview" class="level4">
+<h4 class="anchored" data-anchor-id="overview">Overview</h4>
+<p>We begin with the basic <em>bentopy</em> workflow by packing proteins into a simple cubic space. This tutorial introduces:</p>
+<ul>
+<li>The JSON input file syntax</li>
+<li>Analytical mask definitions</li>
+<li>The <code>bentopy-pack</code>, <code>bentopy-render</code> and <code>bentopy-solvate</code> commands</li>
+</ul>
+</section>
+<section id="create-the-packing-configuration" class="level4">
+<h4 class="anchored" data-anchor-id="create-the-packing-configuration">Create the packing configuration</h4>
+<p><em>Bentopy</em> uses recipe files to define packing parameters, they are stored in the JSON file format. Create a file called <code>simple_packing.json</code> and copy the contents from the dropdown below.</p>
+<details>
+<summary>
+Click to show the complete recipe file
+</summary>
+<div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"space"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"size"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"resolution"</span><span class="fu">:</span> <span class="fl">0.5</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"system"</span><span class="fu">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"shape"</span><span class="fu">:</span> <span class="st">"cuboid"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="ot">]</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"output"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"simple_protein_system"</span><span class="fu">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"topol_includes"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"topology/martini_v3.0.0.itp"</span><span class="ot">,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"topology/martini_v3.0.0_ions_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>             <span class="st">"topology/martini_v3.0.0_solvents_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"topology/lysozyme.itp"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        <span class="ot">]</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"segments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYS"</span><span class="fu">,</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"number"</span><span class="fu">:</span> <span class="dv">650</span><span class="fu">,</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"system"</span><span class="ot">]</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><strong>Note</strong> the key parts in this <em>bentopy</em> recipe:</p>
+<p><strong>Space section</strong>: Defines a 40×40×40 nm³ simulation box with 0.5 nm voxel resolution. The <code>"shape": "cuboid"</code> creates an analytical mask filling the entire box.</p>
+<p><strong>Output section</strong>: Sets the system title and specifies topology files for GROMACS compatibility. These files will be included when we generate the final topology.</p>
+<p><strong>Segments section</strong>: Defines 650 lysozyme proteins to be randomly placed with full rotational freedom in the “system” compartment.</p>
+</section>
+<section id="pack-the-system" class="level4">
+<h4 class="anchored" data-anchor-id="pack-the-system">Pack the system</h4>
+<p>Perform the packing step with a fixed random seed for reproducibility:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 simple_packing.json placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output <code>placements.json</code> contains all placement information in a lightweight instanced file format.</p>
+</section>
+<section id="render-the-structure" class="level4">
+<h4 class="anchored" data-anchor-id="render-the-structure">Render the structure</h4>
+<p>Convert the placement list to a Gromacs coordinate file:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates <code>system.gro</code> with all protein coordinates and <code>topol.top</code> with the simulation topology.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Splitting the computationally intensive packing step from the fast rendering process allows for more efficient workflows with large systems. This workflow also improves the shareability of models, as distributing the lightweight placement file is orders of magnitude more efficient than sharing the complete coordinate file.</p>
+</div>
+</div>
+</section>
+<section id="solvation" class="level4">
+<h4 class="anchored" data-anchor-id="solvation">Solvation</h4>
+<p>Add water and ions to complete the system preparation:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 5440 <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Key solvation options used:</p>
+<ul>
+<li><code>-s NA:0.15M -s CL:0.15M</code>: Add 150 mM NaCl concentration</li>
+<li><code>--charge 5440</code>: Neutralize the system charges due to the net positive charge of each lysozyme monomer (add/remove ions as needed)</li>
+<li><code>-t topol.top</code>: Append solvent information to topology file</li>
+</ul>
+<p>We have now created a fully solvated system with 150 mM NaCl concentration and neutralized the system charge, ready for MD simulation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>Bentopy-solvate</code> is specifically designed and optimized for solvating large-scale models with millions or billions of particles, where traditional solvation tools become impractically slow. For this small system, you won’t notice the performance benefits, but it works just as well.</p>
+</div>
+</div>
+</section>
+<section id="visualization-and-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-and-analysis">Visualization and analysis</h4>
+<p>Open the system with <code>VMD</code> to inspect the packing:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>The lysozyme proteins are distributed uniformly throughout the simulation box.</li>
+<li>The lysozyme proteins are packed at cytoplasmic densities.</li>
+<li>No proteins overlap</li>
+</ul>
+<p><img src="figure3.png" class="img-fluid"></p>
+<p><em><strong>Figure 3: Basic protein packing.</strong> Lysozyme proteins packed in a cubic box with water and ions with non-overlapping placements.</em></p>
+</section>
+<section id="extra-try-a-different-analytical-mask" class="level4">
+<h4 class="anchored" data-anchor-id="extra-try-a-different-analytical-mask">EXTRA: Try a different analytical mask</h4>
+<p>Before moving to the next tutorial, you can experiment a bit by trying a different analytical compartment shape. Simply replace the compartment definition in your <code>simple_packing.json</code> file to pack proteins inside a sphere instead of a cube like:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="er">"compartments":</span> <span class="ot">[</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"system"</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"analytical"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"shape"</span><span class="fu">:</span> <span class="st">"spherical"</span><span class="fu">,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"radius"</span><span class="fu">:</span> <span class="dv">20</span><span class="fu">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"center"</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">20.0</span><span class="ot">,</span> <span class="fl">20.0</span><span class="ot">,</span> <span class="fl">20.0</span><span class="ot">]</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that the available space to pack proteins got smaller, so not all the requested proteins were placed. Bentopy indicated this with the remark ‘&lt;’ in the packing summary that gets printed to your terminal. It’s advised to save this summary to a file as it contains all the relevant packing information for your project.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> up compartments...</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> segment structures...</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rearranging</span> segments according to the MomentOfInertia method... Done.</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span>  <span class="ex">1/1</span><span class="kw">)</span> <span class="ex">Attempting</span> to pack 650 instances instances of segment <span class="st">'LYZ'</span>.</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Packing</span> process took 0.128 s.</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">idx</span>   name           ok%  target  placed  time <span class="er">(</span><span class="ex">s</span><span class="kw">)</span>  <span class="ex">remark</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">----</span>  <span class="at">----------</span>  <span class="at">------</span>  <span class="at">------</span>  <span class="at">------</span>  <span class="at">--------</span>  <span class="at">------</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>   <span class="ex">0</span>  LYZ          50.5%     650     328      0.13  <span class="op">&lt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                   <span class="ex">50.5%</span>     650     328      0.13  <span class="op">&lt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> placement list to <span class="st">"placements.json"</span>... Done in 0.353 s.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="Tut2" class="level3">
+<h3 class="anchored" data-anchor-id="Tut2">Tutorial 2: Packing Around Existing Structures</h3>
+<hr>
+<section id="overview-1" class="level4">
+<h4 class="anchored" data-anchor-id="overview-1">Overview</h4>
+<p>In this tutorial, we’ll add a membrane that creates excluded volume, ensuring proteins are not placed within it. We’ll also introduce packing rules to place specific proteins close to the membrane surface. This tutorial introduces:</p>
+<ul>
+<li>Compartment definitions using voxel masks generated from existing structures</li>
+<li>Proximity-based placement rules</li>
+<li>The <code>bentopy-mask</code> and <code>bentopy-merge</code> commands</li>
+</ul>
+</section>
+<section id="inspect-the-mask-compartments" class="level4">
+<h4 class="anchored" data-anchor-id="inspect-the-mask-compartments">Inspect the mask compartments</h4>
+<p>Before creating masks, it’s essential to understand what compartments <em>bentopy</em> identifies in your system. First, generate a visualisation file to inspect the compartments identified in the voxel representation:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro <span class="at">-b</span> labels.gro <span class="at">--autofill</span> <span class="at">--no-interactive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This automatically generates the debug file <code>labels.gro</code>. Visualise the voxel representation of our membrane system by opening the file with VMD:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> labels.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here you can use the following atom selections to visualise the identified compartments:</p>
+<ul>
+<li><strong>Solvent regions</strong> (available for packing): <code>name “-1”</code></li>
+<li><strong>membrane region</strong> (excluded from packing): <code>name 1</code></li>
+</ul>
+<p>The negative label (-1) typically represents the outermost compartment (solvent), while positive labels (1) represent inner or solid structures (membrane). Understanding these labels is important for selecting the correct compartments for protein placement.</p>
+</section>
+<section id="create-the-masks" class="level4">
+<h4 class="anchored" data-anchor-id="create-the-masks">Create the masks</h4>
+<p>Now that you understand the compartments, we will create the masks to guide our protein placement. First, run the masking command and follow the interactive prompts:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro solvent_mask.npz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When running the masking command, you’ll encounter several interactive prompts during the process. For most prompts (such as debug file outputs), you can simply press Enter to skip and continue. The important prompt is the compartment selection where you’ll see options [-1 1], here you should select -1 to choose the solvent regions where proteins can be placed. This creates <code>solvent_mask.npz</code>, a compressed voxel representation of the available space for protein packing.</p>
+<p>Next, we need a separate mask representing the membrane itself. This will be used for proximity rules to place proteins near the membrane surface. Run the masking command again with a different output filename:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro membrane_mask.npz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When prompted with the compartment options <code>[-1 1]</code>, select <code>1</code> to choose the membrane region. This creates <code>membrane_mask.npz</code>. Having both masks allows us to exclude proteins from the membrane (using the solvent mask) while simultaneously attracting certain proteins toward the membrane surface (using the membrane mask for proximity rules).</p>
+</section>
+<section id="update-the-recipe" class="level4">
+<h4 class="anchored" data-anchor-id="update-the-recipe">Update the recipe</h4>
+<p>Now modify your <em>bentopy</em> recipe to use the aqueous mask and include proximity rules. Create <code>membrane_packing.json</code> and copy the contents from the dropdown below:</p>
+<details>
+<summary>
+Click to show the complete configuration file
+</summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"space"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"size"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"resolution"</span><span class="fu">:</span> <span class="fl">0.5</span><span class="fu">,</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"solvent"</span><span class="fu">,</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"voxels"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"solvent_mask.npz"</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"membrane"</span><span class="fu">,</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"voxels"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"membrane_mask.npz"</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"output"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"system_w_membrane"</span><span class="fu">,</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"topol_includes"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0.itp"</span><span class="ot">,</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0_ions_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0_solvents_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0_phospholipids_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/lysozyme.itp"</span><span class="ot">,</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/ubiquitin.itp"</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"segments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"number"</span><span class="fu">:</span> <span class="dv">300</span><span class="fu">,</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"tag"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">"solvent"</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"UBQ"</span><span class="fu">,</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/ubiquitin.pdb"</span><span class="fu">,</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"number"</span><span class="fu">:</span> <span class="dv">100</span><span class="fu">,</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"tag"</span><span class="fu">:</span> <span class="st">"UBQ"</span><span class="fu">,</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>        <span class="st">"solvent"</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"rules"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"is_closer_to membrane 5.0"</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><strong>Note</strong> the key changes in this <em>bentopy</em> recipe:</p>
+<ul>
+<li>Reduced total protein numbers (less available space due to membrane).</li>
+<li>Added ubiquitin with a proximity rule to stay within 5 nm of the membrane surface. See the <a href="#advanced-features-and-tips">Advanced Features section</a> for more information on packing rules.</li>
+<li>Added the ‘tag’ option, which will overwrite the resnames in each segment for easier visualization.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using tags will override the original residue names in the gro file that <em>bentopy</em> outputs. While this makes visualization easier to inspect <em>bentopy</em> output (e.g., selecting all lysozyme with `resname LYZ`), it may cause issues with analysis tools that expect standard residue names. Note that during MD simulation, GROMACS will automatically assign the correct chemical residue names based on the topology file, so simulation output will have proper residue naming.</p>
+</div>
+</div>
+</section>
+<section id="pack-the-system-1" class="level4">
+<h4 class="anchored" data-anchor-id="pack-the-system-1">Pack the system</h4>
+<p>Perform the packing step with a fixed random seed for reproducibility:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 <span class="at">--rearrange</span> moment-of-inertia membrane_packing.json placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>--rearrange</code> flag optimizes the placement order of the segments using a heuristic for packing difficulty. Here we use the moment of inertia to determine the order in which the segments should be placed, this dramatically improves the packing densities that can be reached with bentopy.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Other heuristics are available to rearrange segments based on packing difficulty. The implemented options are:</p>
+<ul>
+<li>moment-of-inertia (orders by rotational inertia, used here)</li>
+<li>volume (orders by molecular volume)</li>
+<li>bounding-sphere (orders by bounding sphere radius)</li>
+<li>None (takes the order from the user-specified .json input file).</li>
+</ul>
+<p>In our testing, moment-of-inertia worked best for most systems, but for specific use cases it may be worth experimenting with other options.</p>
+</div>
+</div>
+</section>
+<section id="render-and-merge" class="level4">
+<h4 class="anchored" data-anchor-id="render-and-merge">Render and merge</h4>
+<p>Convert the placement list to a Gromacs coordinate file and combine the packed proteins with the membrane structure.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json packed_proteins.gro <span class="at">-t</span> topol.top</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge proteins with membrane structure</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> packed_proteins.gro structures/membrane.gro <span class="at">-o</span> system.gro</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"POPC    5408"</span> <span class="op">&gt;&gt;</span> topol.top  <span class="co"># Add lipid molecules to the topology file.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>merge</code> command combines the original membrane with packed proteins.</p>
+</section>
+<section id="solvation-1" class="level4">
+<h4 class="anchored" data-anchor-id="solvation-1">Solvation</h4>
+<p>Add water and ions to complete the system preparation:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 2400 <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualization-and-analysis-1" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-and-analysis-1">Visualization and analysis</h4>
+<p>Open the system with <code>VMD</code> to inspect the packing:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize in VMD</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since we used tags, you can now use the selections resname UBQ and resname LYZ in VMD to select the ubiquitin and lysozyme proteins respectively.</p>
+</div>
+</div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>The lysozyme proteins are distributed throughout the aqueous regions.</li>
+<li>The ubiquitin proteins concentrated near the membrane surfaces due to the proximity rule.</li>
+<li>No protein overlaps with the membrane structure.</li>
+</ul>
+<p><img src="figure4.png" class="img-fluid"></p>
+<p><em><strong>Figure 4: Membrane system with proximity rules.</strong> The membrane (gray) creates excluded volume, with lysozyme proteins (green) distributed throughout the solvent region and ubiquitin proteins (blue) concentrated near the membrane surface.</em></p>
+</section>
+</section>
+<section id="Tut3" class="level3">
+<h3 class="anchored" data-anchor-id="Tut3">Tutorial 3: Multi-Compartment Systems with Placement Rules</h3>
+<hr>
+<section id="overview-2" class="level4">
+<h4 class="anchored" data-anchor-id="overview-2">Overview</h4>
+<p>Now we’ll add even more complexity by creating a double membrane system that forms distinct compartments. Different proteins will be placed in different compartments. This tutorial demonstrates:</p>
+<ul>
+<li>Compartment-specific protein placement</li>
+</ul>
+<p>We’ll use the provided double membrane to create distinct inner and outer compartments, then place different proteins in each compartment.</p>
+</section>
+<section id="inspect-the-double-membrane-structure" class="level4">
+<h4 class="anchored" data-anchor-id="inspect-the-double-membrane-structure">Inspect the double membrane structure</h4>
+<p>First, let’s examine the double membrane structure we’ll be working with:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> structures/double_membrane.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice how this system has two lipid bilayers, creating three distinct regions: the space between the membranes (inner compartment), the space outside the membranes (outer compartment), and the membrane regions themselves. This structure represents a compartmentalised space similar to a vesicle or double-layer cell wall.</p>
+</section>
+<section id="create-compartment-specific-masks" class="level4">
+<h4 class="anchored" data-anchor-id="create-compartment-specific-masks">Create compartment-specific masks</h4>
+<p>Generate masks for the different compartments created by the double membrane:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro mask.npz <span class="at">--inspect-labels-path</span> compartment_labels.gro  <span class="at">--autofill</span> <span class="at">--no-interactive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Visualise the voxel representation of our membrane system by opening the file with VMD:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> compartment_labels.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now also double-check the different spatial compartments identified by the containment algorithm:</p>
+<ul>
+<li>Outer compartment (outside the membrane system): <code>name “-1”</code></li>
+<li>Inner compartment (between the two membranes): <code>name “-2”</code></li>
+<li>membrane regions (excluded): <code>name 1 2</code></li>
+</ul>
+</section>
+<section id="create-separate-masks-for-each-compartment" class="level4">
+<h4 class="anchored" data-anchor-id="create-separate-masks-for-each-compartment">Create separate masks for each compartment</h4>
+<p>Create individual masks for precise control:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for outer compartment: label -1</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro outer_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> <span class="at">-1</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for inner compartment: label -2</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro inner_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> <span class="at">-2</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for the membranes: labels 1 2</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro memb_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> 1,2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since we’re now using the <code>--no-interactive</code> flag of <code>bentopy-mask</code>, we will not be prompted by the interactive selection. The requested labels selection is written to the specified mask .npz file.</p>
+</section>
+<section id="update-the-configuration-with-compartments" class="level4">
+<h4 class="anchored" data-anchor-id="update-the-configuration-with-compartments">Update the configuration with compartments</h4>
+<p>Create a new configuration file <code>compartment_packing.json</code> with multiple compartments and different protein compositions:</p>
+<details>
+<summary>
+Click to show the complete configuration file
+</summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"space"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"size"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"resolution"</span><span class="fu">:</span> <span class="fl">0.5</span><span class="fu">,</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"inner_compartment"</span><span class="fu">,</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"voxels"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"inner_mask.npz"</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"outer_compartment"</span><span class="fu">,</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"voxels"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"outer_mask.npz"</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"membrane"</span><span class="fu">,</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"voxels"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"memb_mask.npz"</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"output"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"compartmentalized_system"</span><span class="fu">,</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"topol_includes"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0.itp"</span><span class="ot">,</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0_ions_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0_solvents_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/martini_v3.0.0_phospholipids_v1.itp"</span><span class="ot">,</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/lysozyme.itp"</span><span class="ot">,</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"topology/ubiquitin.itp"</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"segments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"number"</span><span class="fu">:</span> <span class="dv">200</span><span class="fu">,</span></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"tag"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"outer_compartment"</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"UBQ"</span><span class="fu">,</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/ubiquitin.pdb"</span><span class="fu">,</span></span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"number"</span><span class="fu">:</span> <span class="dv">100</span><span class="fu">,</span></span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"tag"</span><span class="fu">:</span> <span class="st">"UBQ"</span><span class="fu">,</span></span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a>        <span class="st">"inner_compartment"</span></span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"rules"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a>        <span class="st">"is_closer_to membrane 4.0"</span></span>
+<span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><strong>Note</strong> the key changes in this <em>bentopy</em> recipe:</p>
+<ul>
+<li>Added multiple compartments (inner and outer)</li>
+<li>Placed lysozyme only in the outer compartment</li>
+<li>Placed ubiquitin only in the inner compartment</li>
+</ul>
+</section>
+<section id="pack-the-system-2" class="level4">
+<h4 class="anchored" data-anchor-id="pack-the-system-2">Pack the system</h4>
+<p>Perform the packing step with a fixed random seed for reproducibility:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 <span class="at">--rearrange</span> moment-of-inertia compartment_packing.json placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="render-and-merge-1" class="level4">
+<h4 class="anchored" data-anchor-id="render-and-merge-1">Render and merge</h4>
+<p>Convert the placement list to a Gromacs coordinate file and combine the packed proteins with the membrane structure.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json packed_proteins.gro <span class="at">-t</span> topol.top</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge proteins with membrane structure</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> packed_proteins.gro structures/double_membrane.gro <span class="at">-o</span> system.gro</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"POPC    10816"</span> <span class="op">&gt;&gt;</span> topol.top  <span class="co"># Add lipid molecules to the topology file.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="solvation-2" class="level4">
+<h4 class="anchored" data-anchor-id="solvation-2">Solvation</h4>
+<p>Add water and ions to complete the system preparation:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 1600 <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualization-and-final-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-and-final-analysis">Visualization and final analysis</h4>
+<p>Open the system with <code>VMD</code> to inspect the packing:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>The lysozyme proteins are distributed throughout the outer compartment.</li>
+<li>The Ubiquitin proteins are concentrated near the membrane surfaces in the inner compartment.</li>
+<li>No protein overlaps with the membrane structure.</li>
+</ul>
+<p><img src="figure5.png" class="img-fluid"></p>
+<p><em><strong>Figure 5: Multi-compartment double membrane system.</strong> The double membrane creates distinct inner and outer compartments. Ubiquitin (blue) is confined to the inner compartment between the membranes, while lysozyme (green) is placed only in the outer compartment.</em></p>
+</section>
+<section id="run-a-simulation" class="level4">
+<h4 class="anchored" data-anchor-id="run-a-simulation">Run a simulation</h4>
+<p>With the complete solvated system, you can now run a MD simulations using the provided input files:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Energy minimization</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> mdp_files/em.mdp <span class="at">-c</span> solvated_system.gro <span class="at">-p</span> topol.top <span class="at">-o</span> em.tpr</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> em</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Make index file</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> em.gro <span class="at">-o</span> index.ndx <span class="op">&lt;&lt; EOF</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="st">name 13 Lipid</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="st">r W | r ION</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="st">name 16 Solvent</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="st">q</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Equilibration</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> mdp_files/eq.mdp <span class="at">-c</span> em.gro <span class="at">-p</span> topol.top <span class="at">-o</span> eq.tpr <span class="at">-n</span> index.ndx</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> eq</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Production run</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> mdp_files/md.mdp <span class="at">-c</span> eq.gro <span class="at">-p</span> topol.top <span class="at">-o</span> md.tpr <span class="at">-n</span> index.ndx</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You’ve now learned the complete <em>bentopy</em> workflow from simple packing to a complex MD mode!</p>
+<p>Through these three tutorials, you’ve learned how <em>bentopy</em> can help you build complex molecular models with a well-structured workflow. This scalable approach enables researchers to construct everything from crowded cytoplasm to whole-cell models with multiple compartments. The strength of <em>bentopy</em> lies in its ability to handle this complexity efficiently, making large-scale modeling accessible without sacrificing the molecular detail needed for accurate biological representation.</p>
+<p><img src="figure6.png" class="img-fluid"></p>
+<p><em><strong>Figure 6:</strong> Tutorial progression from simple protein packing to complex multi-compartment systems.</em></p>
+</section>
+</section>
+<section id="Advanced_Features_and_Tips" class="level3">
+<h3 class="anchored" data-anchor-id="Advanced_Features_and_Tips">Advanced Features and Tips</h3>
+<hr>
+<section id="solvation-options" class="level4">
+<h4 class="anchored" data-anchor-id="solvation-options">Solvation Options</h4>
+<p><em>Bentopy</em> includes <code>bentopy-solvate</code>, a solvation tool optimized for large-scale systems. For the complete documentation, see the <code>bentopy-solvate</code> <a href="https://github.com/marrink-lab/bentopy/blob/main/src/solvate/README.md">README</a>.</p>
+<section id="ion-substitutions-with-different-quantities" class="level5">
+<h5 class="anchored" data-anchor-id="ion-substitutions-with-different-quantities">Ion substitutions with different quantities</h5>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Molarity: 150 mM NaCl</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:0.15M <span class="at">-s</span> CL:0.15M</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed number: exactly 100 Na+ and 100 Cl- ions</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:100 <span class="at">-s</span> CL:100</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ratio: replace 1% of water with Na+ ions</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:0.01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-custom-cutoff-distances" class="level5">
+<h5 class="anchored" data-anchor-id="set-custom-cutoff-distances">Set custom cutoff distances</h5>
+<p>For models with compartments, fine-tuning the number of water beads in the compartments is crucial for achieving a well solvated model. The <code>--cutoff</code> flag controls the minimum distance between solvent and structure beads, allowing you to adjust the water bead placement. Increasing the cutoff creates more space around solutes (fewer water molecules), while decreasing it allows tighter packing (more water molecules).</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="dt">\</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>--cutoff 0.5 <span class="at">--solvent-cutoff</span> 0.25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="render-options-for-large-systems" class="level4">
+<h4 class="anchored" data-anchor-id="render-options-for-large-systems">Render Options for Large Systems</h4>
+<p>For large systems, <code>bentopy-render</code> provides several options to manage visualization and analysis:</p>
+<section id="limiting-render-regions" class="level5">
+<h5 class="anchored" data-anchor-id="limiting-render-regions">Limiting render regions</h5>
+<p>Render only a specific region using <code>--limits</code> (format: <code>minx,maxx,miny,maxy,minz,maxz</code>):</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a 10×10×10 nm cube from (40,40,40) to (50,50,50)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json small_region.gro <span class="at">--limits</span> 40,50,40,50,40,50</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a thin slice in z-direction only</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json slice.gro <span class="at">--limits</span> none,none,none,none,45,55</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reduced-atom-rendering" class="level5">
+<h5 class="anchored" data-anchor-id="reduced-atom-rendering">Reduced atom rendering</h5>
+<p>Use <code>--mode</code> to render fewer atoms for easier visualization:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render only alpha carbons</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json alpha_only.gro <span class="at">--mode</span> alpha</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render one bead per residue</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json residue_beads.gro <span class="at">--mode</span> residue</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Render one bead per protein instance</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json instance_beads.gro <span class="at">--mode</span> instance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reduced rendering modes cannot generate topology files. Use --mode full (default) when topology files are needed.</p>
+</div>
+</div>
+</section>
+<section id="residue-numbering-control" class="level5">
+<h5 class="anchored" data-anchor-id="residue-numbering-control">Residue numbering control</h5>
+<p>Control how residue numbers are assigned using <code>--resnum-mode</code>:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Each protein instance gets unique residue number</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">--resnum-mode</span> instance</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># All instances of same protein type get same residue number</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">--resnum-mode</span> segment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="residue-name-relabeling" class="level5">
+<h5 class="anchored" data-anchor-id="residue-name-relabeling">Residue name relabeling</h5>
+<p>Assign custom residue names when merging files for better organization and visualization:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign custom residue names using colon syntax</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">betopy-merge</span> membrane.gro:MEM packed_proteins.gro:PROT <span class="at">-o</span> complete_system.gro# Multiple components with descriptive labels</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> membrane.gro:MEM cytosol.gro:CYT chromosome.gro:CHR <span class="at">-o</span> cell.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This allows easy selection and visualization of different system components in molecular viewers.</p>
+</section>
+</section>
+<section id="alternative-configuration-options" class="level4">
+<h4 class="anchored" data-anchor-id="alternative-configuration-options">Alternative Configuration Options</h4>
+<section id="using-concentrations-instead-of-fixed-numbers" class="level5">
+<h5 class="anchored" data-anchor-id="using-concentrations-instead-of-fixed-numbers">Using concentrations instead of fixed numbers</h5>
+<p>Specify physiological concentrations (in mol/L) instead of absolute copy numbers:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="er">"segments":</span> <span class="ot">[</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"concentration"</span><span class="fu">:</span> <span class="fl">5.0</span><span class="fu">,</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"system"</span><span class="ot">]</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="controlling-protein-rotations" class="level5">
+<h5 class="anchored" data-anchor-id="controlling-protein-rotations">Controlling protein rotations</h5>
+<p>Constrain or set initial rotations for more realistic placement:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="er">"segments":</span> <span class="ot">[</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"number"</span><span class="fu">:</span> <span class="dv">50</span><span class="fu">,</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"system"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"rotation_axes"</span><span class="fu">:</span> <span class="st">"z"</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>rotation_axes</code>: Limit random rotations to specific axes (e.g., <code>"z"</code>, <code>"xy"</code>, <code>"xyz"</code>)</li>
+</ul>
+</section>
+<section id="compartment-combinations" class="level5">
+<h5 class="anchored" data-anchor-id="compartment-combinations">Compartment combinations</h5>
+<p>Create complex spaces using boolean operations on preexisting compartments:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="er">"compartments":</span> <span class="ot">[</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="dt">"id"</span><span class="fu">:</span> <span class="st">"a"</span><span class="fu">,</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"analytical"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"shape"</span><span class="fu">:</span> <span class="st">"spherical"</span><span class="fu">,</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"radius"</span><span class="fu">:</span> <span class="fl">7.5</span><span class="fu">,</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"center"</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">7.5</span><span class="ot">,</span> <span class="fl">10.0</span><span class="ot">,</span> <span class="fl">10.0</span><span class="ot">]</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"b"</span><span class="fu">,</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"analytical"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"shape"</span><span class="fu">:</span> <span class="st">"spherical"</span><span class="fu">,</span></span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"radius"</span><span class="fu">:</span> <span class="fl">7.5</span><span class="fu">,</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"center"</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">12.5</span><span class="ot">,</span> <span class="fl">10.0</span><span class="ot">,</span> <span class="fl">10.0</span><span class="ot">]</span></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"c"</span><span class="fu">,</span></span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"combination"</span><span class="fu">:</span> <span class="st">"intersect(a b)"</span></span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"d"</span><span class="fu">,</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"combination"</span><span class="fu">:</span> <span class="st">"!c"</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="command-line-tips" class="level4">
+<h4 class="anchored" data-anchor-id="command-line-tips">Command Line Tips</h4>
+<section id="inspect-placement-lists" class="level5">
+<h5 class="anchored" data-anchor-id="inspect-placement-lists">Inspect placement lists:</h5>
+<p>Use <code>jq</code> to view placement files in readable format:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> . placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="troubleshooting-common-issues" class="level4">
+<h4 class="anchored" data-anchor-id="troubleshooting-common-issues">Troubleshooting Common Issues</h4>
+<p><strong>Packing failures</strong>:</p>
+<ul>
+<li>Check <em>bentopy’s</em> packing summary output to see which segments failed</li>
+<li>Use the <code>--verbose</code> flag of <code>bentopy-pack</code> for detailed information on the packing process</li>
+<li>Double-check molecule counts/concentrations against available space</li>
+<li>Use the <code>BENTOPY_TRIES=10000</code> environment variable to increase placement attempts</li>
+</ul>
+<p><strong>Mask problems</strong>:</p>
+<ul>
+<li>Ensure mask dimensions match space size ÷ resolution</li>
+<li>Use the <code>--inspect-labels-path</code> flag of <code>bentopy-mask,</code> to output a visualization file for the voxel representation of the identified compartments.</li>
+<li>Try different containment/mask resolutions if too many compartments are identified</li>
+</ul>
+<p><strong>Rendering errors</strong>:</p>
+<ul>
+<li>Verify all structure paths in placement list are accessible</li>
+<li>Check structure file formats (PDB/GRO supported)</li>
+</ul>
+<p><strong>Topology issues</strong>:</p>
+<ul>
+<li>Ensure segment names in JSON match molecule names in .itp files</li>
+<li>Verify all .itp files listed in <code>topol_includes</code> exist</li>
+</ul>
+</section>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] Westendorp, M.S.S, Stevens, J.A. et al.&nbsp;Bentopy: building molecular dynamics simulations with cellular complexity and scale. <em>In preparation</em>.</p>
+<p>[2] Bruininks, B.M.H. et al.&nbsp;MDVcontainment: Robust characterization of inside and outside in periodic spaces. <em>In preparation</em>.</p>
+<hr>
+<p>For additional support, examples, and updates, visit the <a href="https://github.com/marrink-lab/bentopy">bentopy GitHub repository</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cgmartini\.nl");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+<script src="../../../../js/sidebar-close.js"></script> 
+
+
+
+
+</body></html>

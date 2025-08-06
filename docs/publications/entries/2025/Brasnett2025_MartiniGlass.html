@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.7.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Paulo CT Souza, Luis P Borges Araujo, Chris Brasnett, Rodrigo A Moreira, Fabian Grunewald, Peter Park, Liguo Wang, Hafez Razmazma, Ana C Borges-Araujo, Luis F Cofas-Vargas, Luca Monticelli, Raul Mera-Adasme, Manuel N Melo, Sangwook Wu, Siewert J Marrink, Adolfo B Poma, and Sebastian Thallmair">
+<meta name="author" content="Christopher Brasnett, and Siewert J. Marrink">
 
-<title>GōMartini 3: From large conformational changes in proteins to environmental bias corrections – Martini Force Field Initiative</title>
+<title>MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../../site_libs/bootstrap/bootstrap-69fe911abf326d3c3f52f7dd89351358.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -97,13 +97,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="GōMartini 3: From large conformational changes in proteins to environmental bias corrections – Martini Force Field Initiative">
+<meta property="og:title" content="MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies – Martini Force Field Initiative">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
+<meta property="og:image" content="https://cgmartini.nl/docs/publications/entries/2025/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="GōMartini 3: From large conformational changes in proteins to environmental bias corrections – Martini Force Field Initiative">
+<meta name="twitter:title" content="MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies – Martini Force Field Initiative">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/publications/entries/2025/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -193,12 +193,11 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">GōMartini 3: From large conformational changes in proteins to environmental bias corrections</h1>
+<h1 class="title">MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Pre-print</div>
-    <div class="quarto-category">Forcefield</div>
-    <div class="quarto-category">Proteins</div>
+    <div class="quarto-category">Journal article</div>
     <div class="quarto-category">Methods</div>
+    <div class="quarto-category">Visualization</div>
   </div>
   </div>
 
@@ -209,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Paulo CT Souza, Luis P Borges Araujo, Chris Brasnett, Rodrigo A Moreira, Fabian Grunewald, Peter Park, Liguo Wang, Hafez Razmazma, Ana C Borges-Araujo, Luis F Cofas-Vargas, Luca Monticelli, Raul Mera-Adasme, Manuel N Melo, Sangwook Wu, Siewert J Marrink, Adolfo B Poma, and Sebastian Thallmair </p>
+             <p>Christopher Brasnett, and Siewert J. Marrink </p>
           </div>
   </div>
     
@@ -219,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title-meta-heading">Doi</div>
     <div class="quarto-title-meta-contents">
       <p class="doi">
-        <a href="https://doi.org/https://doi.org/10.1101/2024.04.15.589479">https://doi.org/10.1101/2024.04.15.589479</a>
+        <a href="https://doi.org/https://doi.org/10.1021/acs.jcim.4c02277">https://doi.org/10.1021/acs.jcim.4c02277</a>
       </p>
     </div>
   </div>
@@ -240,12 +239,12 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
 <section id="citation-apa-7" class="level2">
 <h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
 <blockquote class="blockquote">
-<p>Souza, P. C., Borges Araujo, L. P., Brasnett, C., Moreira, R. A., Grunewald, F., Park, P., … &amp; Thallmair, S. (2024). GōMartini 3: From large conformational changes in proteins to environmental bias corrections. BioRxiv, 2024-04.</p>
+<p>Brasnett, C., &amp; Marrink, S. J. (2025). MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies. Journal of chemical information and modeling, 65(7), 3137-3141.</p>
 </blockquote>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Coarse-grained modeling has become an important tool to supplement experimental measurements, allowing access to spatio-temporal scales beyond all-atom based approaches. The GōMartini model combines structure- and physics-based coarse-grained approaches, balancing computational efficiency and accurate representation of protein dynamics with the capabilities of studying proteins in different biological environments. This paper introduces an enhanced GōMartini model, which combines a virtual-site implementation of Gō models with Martini 3. The implementation has been extensively tested by the community since the release of the new version of Martini. This work demonstrates the capabilities of the model in diverse case studies, ranging from protein-membrane binding to protein-ligand interactions and AFM force profile calculations. The model is also versatile, as it can address recent inaccuracies reported in the Martini protein model. Lastly, the paper discusses the advantages, limitations, and future perspectives of the Martini 3 protein model and its combination with Gō models.</p>
+<p>As molecular modeling gains ever more prominence in understanding cellular processes, high quality visualization of models and dynamics has never been more important. Naturally, much molecular visualization software is written to enable the visualization of atomic level details in structures. While necessary, this means that visualization of increasingly popular coarse-grained (CG) models remains a challenge. Here, we present a Python package, MartiniGlass, that facilitates the visualization of systems simulated with the widely used CG Martini force field using the popular visualization package VMD. MartiniGlass rapidly processes molecular topologies and accounts for important topological features at CG resolution, such as secondary structure restraints, preparing them for easy visualization of simulated trajectories.</p>
 
 
 </section>
