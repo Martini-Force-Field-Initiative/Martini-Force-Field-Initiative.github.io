@@ -1,0 +1,33 @@
+---
+title: "Martini 3 Protein Models - A Practical Introduction to Different Structure Bias Models and their Comparison"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Thilo Duve, Liguo Wang, Luís Borges-Araújo, Siewert J. Marrink, Paulo C. T. Souza, and Sebastian Thallmair"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "bioRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://www.biorxiv.org/content/10.1101/2025.03.17.643608v2"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Book chapter
+  - Proteins
+  - Protocol
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Duve, T., Wang, L., Borges-Araújo, L., Marrink, S. J., Souza, P. C., & Thallmair, S. (2025). Martini 3 protein models - a practical introduction to different structure bias models and their comparison. bioRxiv, 2025-03.
+
+## Abstract
+
+Biophysical characterization of protein structure and dynamics is essential in many scientific fields, including molecular biology, drug discovery, and enzyme design. Molecular dynamics (MD) simulations have become an increasingly important tool for studying these properties. This chapter provides a hands-on introduction to protein modeling with the Martini 3 coarse-grained (CG) force field. We outline its two-layer framework, where the first layer defines molecular topology and interactions, while the second layer applies structural bias to maintain secondary, tertiary, and quaternary structures. Three structure bias approaches - Elastic Network (EN), GōMartini, and OLIVES - are discussed, highlighting their advantages and trade-offs. Using a protein kinase as a case study, we demonstrate the step-by-step setup of Martini 3 protein models for simulations with the program package GROMACS, including system preparation, fine-tuning, and validation against atomistic reference simulations. Additionally, we explore the combination of an intrinsically disordered region (IDR) with a structured protein domain. By the end of this chapter, readers will have the necessary expertise to apply Martini 3-based protein modeling to a wide range of research applications.
