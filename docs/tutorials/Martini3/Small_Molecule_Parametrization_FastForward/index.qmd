@@ -1,5 +1,5 @@
 ---
-title: "Parametrization of a new small molecule using FastForward"
+title: "Parametrization of a new small molecule using Fast_Forward"
 format: html
 ---
 
@@ -27,7 +27,7 @@ In case of issues, please contact [riccardo.alessandri@kuleuven.be](mailto: ricc
 ### Introduction
 <hr>
 
-In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method with the FastForward Python package. This tutorial builds on ideas and techniques discussed in the (classic Small Molecule Parameterization tutorial)[../Small_Molecule_Parametrization/index.qmd], and it is recommended that you do that tutorial before this one.
+In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method with the Fast_Forward Python package. This tutorial builds on ideas and techniques discussed in the [classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd), and it is recommended that you do that tutorial before this one.
 
 
 As before, we will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2024.x or later. FILES AVAILABLE HERE
@@ -71,7 +71,7 @@ The last command will run an energy-minimization, followed by an NPT equilibrati
 ### 2. Atom-to-bead mapping
 <hr>
 
-Following the rules set out in the (classic Small Molecule Parameterization tutorial)[../Small_Molecule_Parametrization/index.qmd], the molecule can be mapped to 6 T-beads, as shown in Fig. 2 below:
+Following the rules set out in the [classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd), the molecule can be mapped to 6 T-beads, as shown in Fig. 2 below:
 
 <!-- insert figure with html to modify width -->
 <figure>
@@ -94,7 +94,7 @@ You can now try to map the trajectory using a `.map` file from `CGBuilder`. Once
 ``` bash
 cd ../2_mapping/
 ```
-> [download cgbuilder.map and move it to the current folder, i.e., '2_mapping']
+> download cgbuilder.map and move it to the current folder, i.e., '2_mapping'
 
 The header of `CGbuilder` .map files doesn’t quite align with what we exactly need for `fast_forward`. Make sure the first two lines of the file read as:
 
@@ -121,7 +121,7 @@ Note that running `ff_map` on a trajectory file automatically generates both the
 ### 4. Generating an initial CG topology
 <hr>
 
-As before, the first goal of parameterisation is to match the bonded parameters at the CG level to the ones mapped from our atomistic simulation. Using the same bonded network as (before)[../Small_Molecule_Parametrization/index.qmd/], generate an initial topology (i.e. `ENAP_initial.itp`) file for the molecule containing directives for `atoms`, `bonds`, `dihedrals`, `virtual_sitesn`, and `exclusions`.
+As before, the first goal of parameterisation is to match the bonded parameters at the CG level to the ones mapped from our atomistic simulation. Using the same bonded network as [before](../Small_Molecule_Parametrization/index.qmd/#generate-target-cg-distributions-from-the-cg-mapped-trajectory/), generate an initial topology (i.e. `ENAP_initial.itp`) file for the molecule containing directives for `atoms`, `bonds`, `dihedrals`, `virtual_sitesn`, and `exclusions`.
 
 ### 4.1 Using fast_forward to generate initial parameters
 
@@ -276,7 +276,7 @@ The SASA distributions show a discrepancy of about 5% (the average CG SASA is ab
 #### 7.3 Final considerations
 <hr>
 
-This tutorial builds on the  (classic Small Molecule Parameterization tutorial)[../Small_Molecule_Parametrization/index.qmd] to use the FastForward package to provide partial automation of some processes. From here, it may be a good idea to explore some of the other features of the package, particularly the `ff_inter` program, to aid with parameterization of other small molecules from scratch.
+This tutorial builds on the [Classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd) using the Fast_Forward package to provide partial automation of some processes. From here, it may be a good idea to explore some of the other features of the package, particularly the `ff_inter` program, to aid with parameterization of other small molecules from scratch.
 
 
 ### Tools and scripts used in this tutorial
@@ -286,7 +286,7 @@ This tutorial builds on the  (classic Small Molecule Parameterization tutorial)[
 
 - `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
 
-- `FastForward` ([https://github.com/fgrunewald/fast_forward/tree/main/fast_forward](https://github.com/fgrunewald/fast_forward/tree/main/fast_forward))
+- `Fast_Forward` ([https://github.com/fgrunewald/fast_forward/tree/main/fast_forward](https://github.com/fgrunewald/fast_forward/tree/main/fast_forward))
 
 ### References
 <hr>
