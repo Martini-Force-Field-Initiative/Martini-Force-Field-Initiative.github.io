@@ -32,13 +32,13 @@ This tutorial will focus on the use of `ProLint2` for the analysis and visualiza
 
 To avoid conflicts with other Python packages, we recommend creating a dedicated environment for `ProLint2` using `conda`. You can do this by running the following commands in your terminal:
 ``` bash
-conda create -n prolint2 python=3.10
+conda create -n prolint2 python=3.10 jupyter
 conda activate prolint2
 python -m pip install prolint2
 ```
 
 ::: callout-note
-`ProLint2` relies on `MDAnalysis` to read input data files, which makes it compatible with all the most popular MD engines, including GROMACS, CHARMM, NAMD, LAMMPS, and OpenMM.
+`ProLint2` relies on `MDAnalysis` to read input data files, which makes it compatible with all the most popular MD engines, including GROMACS, CHARMM, NAMD, LAMMPS, and OpenMM. `MDAnalysis` is a powerful Python library designed for analyzing MD trajectories. If you're not familiar with it, we strongly encourage you to consult the [`MDAnalysis` documentation](https://docs.mdanalysis.org/stable/index.html) for an overview of its features, supported file formats, and usage examples.
 :::
 
 ### ProLint2 Workflow
@@ -50,7 +50,7 @@ down into four sequential steps, which aligns with the four main components of t
 
 #### <strong>• Universe</strong>
 
-Once you load your trajectory files with `ProLint2` it will automatically creates a modified `MDAnalysis` Universe that keeps all the functionalities of any `MDAnalysis` Universe, but adds an extra set of methods and attributes that are specific for the analysis of membrane protein systems. These are based on the automatic categorization of residues into two essential components (database and query), as shown below:
+Once you load your trajectory files with `ProLint2` it will automatically create a modified `MDAnalysis` Universe that keeps all the functionalities of any `MDAnalysis` Universe, but adds an extra set of methods and attributes that are specific for the analysis of membrane protein systems. These are based on the automatic categorization of residues into two essential components (database and query), as shown below:
 
 ![](fig2.png)
 
@@ -134,13 +134,29 @@ pl_u.database = pl_u.database.add("LIPX")
 ```
 
 ::: callout-warning
-This will add the LIPX lipid type to the database group. Please notice we are using the residue name "LIPX" here as an example of a custom lipid type, but you can use any residue name that is relevant to your system. As LIPX is not part of the GIRK system, it will not add anything in this case.
+This will add the LIPX lipid type to the database group. Please notice we are using the residue name "LIPX" here as an example of a custom lipid type, but you can use any residue name that is relevant to your system. As LIPX is not part of the GIRK system, it will not add anything in this case. This can be checked by running `pl_u.database.resname_counts` again.
 :::
 
 To remove a residue from the query group, you can use the `remove()` method and reassign the query group as follows:
 
 ``` python
 pl_u.query = pl_u.query.remove("ARG")
+print(f"Number of arginine residues: {pl_u.query.resname_counts['ARG']}")
+```
+
+``` output
+Number of arginine residues: 0
+```
+
+To add the ARG residues back to the query group in this case, we can use the `add()` method:
+
+``` python
+pl_u.query = pl_u.query.add("ARG")
+print(f"Number of arginine residues: {pl_u.query.resname_counts['ARG']}")
+```
+
+``` output
+Number of arginine residues: 64
 ```
 
 ::: callout-warning
@@ -165,7 +181,7 @@ pl_u.params
 
 Here is a list of each parameter and its meaning:
 
-- `units`: this is the unit we want to display the results in. 
+- `units`: this is the time unit we want to display the results in. 
 - `normalizer`: this is how we want to normalize the results. `ProLint2` supports three types of normalization: 
     - `counts`: Display the raw counts (i.e., count of frame numbers)
     - `actual_time`: Normalize by the true simulation -> (dt/unit_conversion_factor)
@@ -250,6 +266,8 @@ defaultdict(<function prolint2.metrics.exact_contacts.ExactContacts.pooled_resul
              np.int64(306): defaultdict(list, {'POPE': [np.float64(4.0)]})})
 ```
 
+The output above can be interpreted as follows: for residue 14, there are several contact windows with POPE lipids, each lasting 4 ns, 4 ns, 8 ns, and so on. In contrast, it has only two contact windows with POPS lipids, both lasting 4 ns (equivalent to 1 frame in the trajectory). This information is provided for all protein residues in the system that have at least one contact with any lipid type.
+
 ``` python
 pl_c.contact_frames
 ```
@@ -288,6 +306,8 @@ defaultdict(<function prolint2.computers.contacts.SerialContacts.__init__.<local
              np.int64(306): defaultdict(list, {np.int64(2508): [1236]})})
 ```
 
+The output above can be understood as follows: protein residue 14 interacts with lipid residue 2527 in frames 0, 15, 20, and so on; it only interacts with lipid residue 2760 in frames 0 and 2, and with lipid residue 2800 in frames 2, 7, 8, and so forth. This information is provided for all protein residues in the system that have at least one contact with any lipid molecule. While ProLint2 facilitates easy exploration of this data, you can always access the raw data in these attributes if you wish to conduct any other type of analysis.
+
 We will now proceed to the next step in the ProLint2 workflow, which involves creating metrics based on the contacts we have just computed. Metrics serve as a means to quantify the various interaction patterns between lipids and protein residues within the system. Given the highly dynamic nature of lipids, these interactions can be transient, depending on the affinity, meaning they can be quickly established and replaced by another lipid molecule, or persistent, indicating they can last for an extended period. Additionally, the specificity of the interaction can be high, meaning it is established with a specific lipid type, or low, meaning it can occur with any lipid type. ProLint2 offers a set of default metrics:
 
 - **MaxMetric**: This metric finds the longest contact window between each residue and each lipid type. If this metric is high for a certain residue-lipid_type combination, that interaction is likely to have high affinity. 
@@ -322,9 +342,9 @@ from prolint2.plotting.multiples import MultiplePointDistribution
 MPD = MultiplePointDistribution(pl_u, contacts_out)
 MPD.create_plot()
 ```
-![Exploratory Point Distribution Plot: Columns show the different lipid types, and the rows represent different metrics.](fig4.png)
+![Exploratory Point Distribution Plot: Columns show the different lipid types, and the rows represent different metrics. On each individual plot x-axis represents the protein residues and the y-axis represents the metric values.](fig4.png)
 
-It becomes clear from this analysis that interactions with POPE are not significant, while there are certain specific interactions with CHOL and POPS that are worth exploring in more detail. Different ProLint2 Plotters can be used to focus the analysis on certain lipid types and metrics. For this tutorial,  we have decided to use normalized lipid density profiles and logo plots to analyze the interactions with POPS lipids.
+The peaks displayed in the plot above highlight the regions of the protein that are directly exposed to the membrane, while the areas between the peaks represent fragments of the protein forming the internal core. This analysis revealed that interactions with POPE appear to be less relevant, as the metric values are lower than those of other lipids with similar representativeness in the system. On the other hand, it shows specific interactions with CHOL and POPS that merit further exploration, corresponding to the notably high MeanMetric values observed for certain residues. For this tutorial,  we have decided to use normalized lipid density profiles and logo plots to analyze the interactions with POPS lipids.
 
 #### Normalized Lipid Density Plotter
 <hr>
@@ -350,9 +370,9 @@ LR.create_plot(lipid_type='POPS', metric_name='MeanMetric')
 
 From this, we can identify three residues with high MeanMetric values with POPS: Val354, Lys461, and Lys467. The figure below illustrates that these residues are closely situated within the protein structure, forming a potential binding site for POPS. 
 
-![Surface representation of the GIRK protein. In red are Lys361 and Lys367, and in blue is Val354.](fig7.jpeg)
+![Surface representation of the GIRK protein. In red are Lys361 and Lys367, and in blue is Val354. Picture generated through VMD.](fig7.jpeg)
 
-The specificity of this interaction is anticipated due to the positively charged lysine side chain, which can engage in electrostatic interactions with the negatively charged headgroup of POPS. To further investigate this interaction, we can use an Interaction Heatmap Plotter to visualize the contact patter at the atom-atom level of detail. For these analyses, we must first identify the POPS molecule that most frequently interact with one of these residues, let's choose Lys461. We can get this information by using the get_lipid_contact_durations() function, which provides a dataframe listing the lipid molecule IDs sorted by their total contact frequencies.
+The specificity of this interaction is anticipated due to the positively charged lysine side chain, which can engage in electrostatic interactions with the negatively charged headgroup of POPS. To further investigate this interaction, we can use an Interaction Heatmap Plotter to visualize the contact patter at the atom-atom level of detail. For these analyses, we must first identify the POPS molecule that most frequently interacts with one of these residues, let's choose Lys461. We can get this information by using the get_lipid_contact_durations() function, which provides a dataframe listing the lipid molecule IDs sorted by their total contact frequencies.
 
 
 ``` python
@@ -399,7 +419,7 @@ For more advanced application, please refer to the following sources:
 ### Conclusions
 <hr>
 
-In this tutorial, we have showcased the capabilities of `ProLint2` for the analysis and visualization of lipid-protein interactions using as example a Martini simulation of the GIRK system. We have seen how to create a `ProLint2` Universe, compute contacts, and analyze lipid-protein interactions using different metrics and levels of detail. The idea is to provide ou with the basis for you to start exploring lipid-protein interactions in your own systems, using the incredible versatility of `ProLint2`. Please do not hesitate to reach out to the authors if you have any questions or suggestions for improvements.
+In this tutorial, we have showcased the capabilities of `ProLint2` for the analysis and visualization of lipid-protein interactions using as example a Martini simulation of the GIRK system. We have seen how to create a `ProLint2` Universe, compute contacts, and analyze lipid-protein interactions using different metrics and levels of detail. The goal is to provide you with the basis for you to start exploring lipid-protein interactions in your own systems, using the incredible versatility of `ProLint2`. Please do not hesitate to reach out to the authors if you have any questions or suggestions for improvements.
 
 ### Tools and scripts used in this tutorial
 <hr>
