@@ -73,7 +73,7 @@ pip3 install git+https://github.com/marrink-lab/bentopy
 
 #### Download tutorial files
 
-Before starting the tutorial, download the required structure and parameter files. You download the tutorial files **[here](https://drive.google.com/file/d/1fOIiM5eI6y0fHY1Bl-sPhHMTgXbK6olQ/view?usp=sharing).** Extract the files:
+Before starting the tutorial, download the required structure and parameter files. You download the tutorial files **[here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Bentopy/tutorial_files.tar.gz).** Extract the files:
 
 ```bash
 tar -xzf tutorial_files.tar.gz
@@ -291,7 +291,7 @@ Now that you understand the compartments, we will create the masks to guide our 
 bentopy-mask structures/membrane.gro solvent_mask.npz
 ```
 
-When running the masking command, you'll encounter several interactive prompts during the process. For most prompts (such as debug file outputs), you can simply press Enter to skip and continue. The important prompt is the compartment selection where you'll see options \[-1  1\], here you should select \-1 to choose the solvent regions where proteins can be placed. This creates `solvent\_mask.npz`, a compressed voxel representation of the available space for protein packing.
+When running the masking command, you'll encounter several interactive prompts during the process. For most prompts (such as debug file outputs), you can simply press Enter to skip and continue. The important prompt is the compartment selection where you'll see options \[-1  1\], here you should select \-1 to choose the solvent regions where proteins can be placed. This creates `solvent_mask.npz`, a compressed voxel representation of the available space for protein packing.
 
 Next, we need a separate mask representing the membrane itself. This will be used for proximity rules to place proteins near the membrane surface. Run the masking command again with a different output filename:
 
