@@ -1,0 +1,34 @@
+---
+title: "TS2CG as a membrane builder"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Fabian Schuhmann, Jan A Stevens, Neda Rahmani, Isabell Lindahl, Chelsea M Brown, Christopher Brasnett, Dimitrios Anastasiou, Adrià Bravo Vidal, Beatrice J Geiger, Siewert J Marrink, and Weria Pezeshkian"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "bioRxiv"    # Journal or similar (required)
+preprint: "https://www.biorxiv.org/content/10.1101/2025.04.16.649160v4"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1101/2025.04.16.649160"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Methods
+  - Multi-scale
+  - Lipid membranes
+  - Vesicles
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Schuhmann, F., Stevens, J. A., Rahmani, N., Lindahl, I., Brown, C. M., Brasnett, C., ... & Pezeshkian, W. (2025). TS2CG as a membrane builder. bioRxiv, 2025-04.
+
+## Abstract
+
+Molecular dynamics (MD) simulations excel at capturing biological processes at the molecular scale but rely on a well-defined initial structure. As MD simulations now extend to whole-cell-level modeling, new tools are needed to efficiently build initial structures. Here, we introduce TS2CG version 2, designed to construct coarse-grained membrane structures with any desired shape and lateral organization. This version enables precise placement of lipids and proteins based on curvature preference, facilitating the creation of large, near-equilibrium membranes. Additional features include controlled pore generation and the placement of specific lipids at membrane edges for stabilization. Moreover, a Python interface allows users to extend functionality while maintaining the high performance of the C++ core. To demonstrate its capabilities, we showcase challenging simulations, including a Möbius strip membrane, a vesicle with lipid domain as continental plates (Martini globe), and entire mitochondrial membranes exhibiting lipid heterogeneity due to curvature, along with a comprehensive set of tutorials.
