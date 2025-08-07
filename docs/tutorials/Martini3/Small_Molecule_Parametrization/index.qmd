@@ -74,7 +74,7 @@ sed -i 's/UNK /ENAP/' ENAP_LigParGen.itp
 Now launch the AA MD simulation:
 
 ``` bash
-bash prepare_1mol_AA_system.sh  ENAP_LigParGen.pdb  spc216.gro  SOL  3
+bash run_1mol_AA_system.sh  ENAP_LigParGen.pdb  spc216.gro  SOL  3
 ```
 
 The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various `.mdp` files to know more). Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time.
@@ -326,7 +326,7 @@ cp ../4_initial-CG/ENAP_initial.itp ENAP_take1.itp
 ```
 > [adjust ENAP_take1.itp with input from the previous step]
 ``` bash
-bash prepare_CG_1mol_system.sh  molecule.gro  box_CG_W_eq.gro  W  1
+bash run_CG_1mol_system.sh  molecule.gro  box_CG_W_eq.gro  W  1
 ```
 
 where the command will run an energy-minimization, followed by an NPT equilibration, and by an MD run of 50 ns (inspect the script and the various `.mdp` files to know more) for the Martini system in water.
