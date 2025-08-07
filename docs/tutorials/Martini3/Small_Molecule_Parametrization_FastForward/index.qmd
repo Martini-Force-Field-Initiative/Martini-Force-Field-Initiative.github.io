@@ -4,6 +4,8 @@ format: html
 ---
 
 <hr>
+Contributed by: <a href="https://github.com/csbrasnett">@csbrasnett</a>, <a href="https://github.com/ricalessandri">@ricalessandri</a>.
+
 In case of issues, please contact [Chris Brasnett](c.s.brasnett@rug.nl) or open an [issue on the repo](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/issues).
 <hr>
 
@@ -26,7 +28,7 @@ In case of issues, please contact [Chris Brasnett](c.s.brasnett@rug.nl) or open 
 ### Introduction
 <hr>
 
-In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method with the Fast_Forward Python package. This tutorial builds on ideas and techniques discussed in the [classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd), and it is recommended that you do that tutorial before this one.
+In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method with the Fast_Forward Python package. This tutorial builds on ideas and techniques discussed in the [classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd) <sup>[[1,2]](#references)</sup>, and it is recommended that you do that tutorial before this one.
 
 
 As before, we will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2024.x or later. FILES AVAILABLE HERE
@@ -38,9 +40,11 @@ As before, we will use as an example the molecule *1-ethylnaphthalene* (Fig. 1),
 <hr>
 
 
-Here, we will use the [SwissParam server](https://swissparam.ch/) as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the Charmm36 force field, but of course feel free to use your favorite atomistic force field.
+Here, we will use the [SwissParam server](https://swissparam.ch/) <sup>[[3]](#references)</sup> as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the Charmm36 force field, but of course feel free to use your favorite atomistic force field.
 
-> The previous tutorial used [LigParGen](https://zarbi.chem.yale.edu/ligpargen/) to obtain reference topologies. It may be instructive to investigate how the results obtained in parameterization here are different to that one.
+:::{.callout-tip}
+The [previous tutorial](../Small_Molecule_Parametrization/index.qmd) used [LigParGen](https://zarbi.chem.yale.edu/ligpargen/) to obtain reference topologies. It may be instructive to investigate how the results obtained in parameterization here are different to that one.
+:::
 
 Start by feeding the SMILES string for *1-ethylnaphthalene* (namely, `CCc1cccc2ccccc21`) to the SwissParam server. After submitting the molecule, the server will generate input parameters for several molecular dynamics (MD) packages. Download the resulting zip file. You can now unzip the zip archive provided:
 
@@ -86,7 +90,7 @@ Following the rules set out in the [classic Small Molecule Parameterization tuto
 
 Using the mapping you just created, you will now transform the simulation you did at [section 1](#generate-atomistic-reference-data) to CG resolution using a file in the `.map` format.
 
-The [CGbuilder tool](https://jbarnoud.github.io/cgbuilder/) can generate such a file, as it did with the index-based approach in the previous tutorial <sup>[[7]](#references)</sup>. Load the `lig.gro` generated in the previous step, and assign each of the atoms to its corresponding bead in the viewer.
+The [CGbuilder tool](https://jbarnoud.github.io/cgbuilder/) can generate such a file, as it did with the index-based approach in the previous tutorial <sup>[[4]](#references)</sup>. Load the `lig.gro` generated in the previous step, and assign each of the atoms to its corresponding bead in the viewer.
 
 You can now try to map the trajectory using a `.map` file from `CGBuilder`. Once done, download the `cgbuilder.map` file that `CGbuilder` creates to the `2_mapping` folder.
 
@@ -210,13 +214,13 @@ Note that the bimodality of the distributions of the first two dihedrals cannot 
 ### 7. Comparison to experimental results, further refinements, and final considerations
 <hr>
 
-As [before](../Small_Molecule_Parametrization/index.qmd#comparison-to-experimental-results-further-refinements-and-final-considerations) it is imperative that any newly parameterised molecule for the Martini force field is validated against as many references as possible. The log P and SASA are
+As [before](../Small_Molecule_Parametrization/index.qmd#comparison-to-experimental-results-further-refinements-and-final-considerations) it is imperative that any newly parameterised molecule for the Martini force field is validated against as many references as possible.
 
 
 #### 7.1 Molecular volume and shape
 <hr>
 
-To automate the creation of a vdwradii.dat for a CG molecule, a small Python script, `make_cg_sasa_file.py` is provided with this tutorial to automate the process. Otherwise, the steps and scripts from the previous tutorial can be followed again.
+To automate the creation of a vdwradii.dat for a CG molecule, a small Python script, `make_cg_sasa_file.py` is provided with this tutorial to automate the process. Otherwise, the steps and scripts [from the previous tutorial](../Small_Molecule_Parametrization/index.qmd#molecular-volume-and-shape) can be followed again.
 
 
 #### 7.2 Final considerations
@@ -237,28 +241,13 @@ This tutorial builds on the [Classic Small Molecule Parameterization tutorial](.
 ### References
 <hr>
 
-[1] P.C.T. Souza, et al., Nat. Methods 2021, DOI: 10.1038/s41592-021-01098-3.
+[1] P.C.T. Souza, et al., [*Nat. Methods* **2021**, *18*, 382–388](http://doi.org/10.1038/s41592-021-01098-3).
 
-[2] R. Alessandri, et al., Chemrxiv 2021, DOI: 10.33774/chemrxiv-2021-1qmq9.
+[2] R. Alessandri, et al., [*Adv. Theory Simul.* **2022**, *5*, 2100391.](https://doi.org/10.1002/adts.202100391).
 
-[3] S.J. Marrink, et al., J. Phys. Chem. B. 2007, 111, 7812-7824.
+[3] M. Bugnon M, et al., [*J. Chem. Inf. Model.* **2023**, *63*, 6469-75](https://doi.org/10.1021/acs.jcim.3c01053).
 
-[4] P.C.T. Souza, S. Thallmair, et al., Nat. Commun. 2020, DOI: 10.1038/s41467-020-17437-5.
 
-[5] J. Liu, et al., Adv. Mater. 2018, DOI: 10.1002/adma.201704630.
-
-[6] W.L. Jorgensen and J. Tirado-Rives, PNAS 2005, 102, 6665; L.S. Dodda, et al., J. Phys. Chem. B, 2017, 121, 3864; L.S. Dodda, et al., Nucleic Acids Res. 2017, 45, W331.
-
-[7] J. Barnoud, https://github.com/jbarnoud/cgbuilder.
-
-[8] M.N. Melo, H.I. Ingolfsson, S.J. Marrink, J. Chem. Phys. 2015, 143, 243152.
-
-[9] S. Natesan, et al., J. Chem. Inf. Model. 2013, 53, 6, 1424-1435.
-
-[10] L.I. Vazquez-Salazar, M. Selle, et al., Green Chem. 2020, DOI: 10.1039/D0GC01823F.
-
-[11] J.J. Uusitalo, et al., J. Chem. Theory Comput. 2015, 11, 8, 3932-3945.
-
-[12]  [General reference] C. Bannwarth, et al., WIRES Comput. Mol. Sci. 2021, DOI: 10.1002/wcms.1493. [Solvation model] S. Ehlert, et al., Chemrxiv 2021, DOI: 10.26434/chemrxiv.14555355.v1. [GFN2-xTB] C. Bannwarth, et al., J. Chem. Theory. Comput. 2019, 15, 1652-1671. [GFNFF] S. Spicher and S. Grimme Ang. Chem. Int. Ed. 2020, 59, 15665-15673.
+[4] J. Barnoud, https://github.com/jbarnoud/cgbuilder.
 
 <hr>
