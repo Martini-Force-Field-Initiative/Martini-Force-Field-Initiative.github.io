@@ -38,7 +38,11 @@ We will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make u
 ### 1. Generate atomistic reference data
 <hr>
 
-We will need atomistic reference data to extract bonded parameters for the CG model. Note that we will need all the hydrogen atoms to extract bond lengths further down this tutorial, so make sure that your atomistic structure contains all the hydrogens.
+We will need atomistic reference data to extract bonded parameters for the CG model. 
+
+:::{.callout-note}
+Note that we will need all the hydrogen atoms to extract bond lengths further down this tutorial, so make sure that your atomistic structure contains all the hydrogens.
+:::
 
 Here, we will use the [LigParGen server](http://zarbi.chem.yale.edu/ligpargen/) <sup>[[6]](#references)</sup> as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the OPLS-AA force field, but of course feel free to use your favorite atomistic force field. Other web-based services such as the [automated topology builder (ATB)](https://atb.uq.edu.au/) or [CHARMM-GUI](https://www.charmm-gui.org/) can also be used to obtain reference topologies based on other AA force fields. Another important option is to look in the literature for atomistic studies of the molecule you want to parametrize: if you are lucky, somebody might have already published a validated atomistic force field for the molecule, which you can then use to create reference atomistic simulations.
 
@@ -48,7 +52,11 @@ Start by feeding the SMILES string for *1-ethylnaphthalene* (namely, `CCc1cccc2c
 unzip files-m3-parametrize_new_small_molecule.zip
 ```
 
-which contains a folder called `ENAP-in-water` that contains some template folders and useful scripts. We will assume that you will be carrying out the tutorial using this folder structure and scripts. Note that the archive contains also a folder called `ENAP-worked` where you will find a worked version of the tutorial (trajectories not included). This might be useful to use as reference to compare your files (e.g., to compare the `ENAP_LigParGen.itp` you obtained with the one you find in `ENAP-worked/1_AA-reference`).
+which contains a folder called `ENAP-in-water` that contains some template folders and useful scripts. We will assume that you will be carrying out the tutorial using this folder structure and scripts. 
+
+:::{.callout-note}
+Note that the archive contains also a folder called `ENAP-worked` where you will find a worked version of the tutorial (trajectories not included). This might be useful to use as reference to compare your files (e.g., to compare the `ENAP_LigParGen.itp` you obtained with the one you find in `ENAP-worked/1_AA-reference`).
+:::
 
 We can now move to the first subfolder, `1_AA-reference`, and copy over the files you just obtained from the LigParGen server:
 
@@ -72,7 +80,11 @@ Now launch the AA MD simulation:
 bash run_1mol_AA_system.sh  ENAP_LigParGen.pdb  spc216.gro  SOL  3
 ```
 
-The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various `.mdp` files to know more). Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time.
+The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various `.mdp` files to know more). 
+
+:::{.callout-note}
+Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time.
+:::
 
 ### 2. Atom-to-bead mapping
 <hr>
@@ -119,7 +131,11 @@ cd ../2_atom-to-bead-mapping/
 ```
 > [download cgbuilder.ndx, cgbuilder.map, and cgbuilder.gro and move them to the current folder, i.e., '2_atom-to-bead-mapping']
 
-and compare the files obtained to the ones provided in `ENAP-worked/2_atom-to-bead-mapping` where, besides the files we just explained, you can also find a screenshot (`ENAP_cgbuilder.png`) of the mapping as done with the `CGbuilder` tool. **Note also that the files provided assume the beads to be ordered in the same way as shown in [Fig. 2](#atom-to-bead-mapping)**; it is hence recommended to use the same order to greatly facilitate comparisons.
+and compare the files obtained to the ones provided in `ENAP-worked/2_atom-to-bead-mapping` where, besides the files we just explained, you can also find a screenshot (`ENAP_cgbuilder.png`) of the mapping as done with the `CGbuilder` tool. 
+
+:::{.callout-note}
+Note also that the files provided assume the beads to be ordered in the same way as shown in [Fig. 2](#atom-to-bead-mapping); it is hence recommended to use the same order to greatly facilitate comparisons.
+:::
 
 After having populated your own ``ENAP-in-water/2_atom-to-bead-mapping`` subfolder with - at least - the ndx file (let's call it `ENAP_oplsaaTOcg_cgbuilder.ndx`), move to the folder `3_mapped` and copy over the index (we just rename it to `mapping.ndx`), that is:
 
@@ -363,7 +379,11 @@ and dihedrals (Fig. 5):
 
 ![Figure 5 | Comparison of the mapped and target distributions for the dihedrals in the 1-ethylnaphthalene. AA is in blue, Martini is in red.](fig5.jpeg)
 
-The agreement is overall very good. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG `.itp` and iterate till satisfactory agreement is achieved. Note that the bimodality of the distributions of the first two dihedrals cannot be captured by this CG model because of the use of improper dihedral potentials. For dihedral 1-3-6-5, however, the size of the CG distribution roughly already captures the two AA configurations into the single CG configuration. For dihedral 2-1-4-3, one may resort to more complex dihedral potentials that allow to capture more than one minimum, i.e., proper dihedrals (periodic/Fourier/Ryckaert-Bellemans/etc. - see the [GROMACS manual](https://manual.gromacs.org/documentation/current/reference-manual/functions/bonded-interactions.html#proper-dihedrals) for more info on available dihedral potentials).
+The agreement is overall very good. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG `.itp` and iterate till satisfactory agreement is achieved. 
+
+:::{.callout-note}
+Note that the bimodality of the distributions of the first two dihedrals cannot be captured by this CG model because of the use of improper dihedral potentials. For dihedral 1-3-6-5, however, the size of the CG distribution roughly already captures the two AA configurations into the single CG configuration. For dihedral 2-1-4-3, one may resort to more complex dihedral potentials that allow to capture more than one minimum, i.e., proper dihedrals (periodic/Fourier/Ryckaert-Bellemans/etc. - see the [GROMACS manual](https://manual.gromacs.org/documentation/current/reference-manual/functions/bonded-interactions.html#proper-dihedrals) for more info on available dihedral potentials).
+:::
 
 ### 8. Comparison to experimental results, further refinements, and final considerations
 <hr>
