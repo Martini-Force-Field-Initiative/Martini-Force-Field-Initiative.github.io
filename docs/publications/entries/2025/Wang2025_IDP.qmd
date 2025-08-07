@@ -1,0 +1,35 @@
+---
+title: "Martini3-IDP: improved Martini 3 force field for disordered proteins"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Liguo Wang, Christopher Brasnett, Luís Borges-Araújo, Paulo C. T. Souza, and Siewert J. Marrink"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "Nature Communications"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1038/s41467-025-58199-2"            # URL of DOI (required)  
+materials: "https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-58199-2/MediaObjects/41467_2025_58199_MOESM1_ESM.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Proteins
+  - Parametrization
+  - Coacervate
+  - Biomolecular condensates
+  - Methods
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Wang, L., Brasnett, C., Borges-Araújo, L., Souza, P. C., & Marrink, S. J. (2025). Martini3-IDP: improved Martini 3 force field for disordered proteins. Nature Communications, 16(1), 1-14.
+
+## Abstract
+
+Coarse-grained (CG) molecular dynamics (MD) is widely used for the efficient simulation of intrinsically disordered proteins (IDPs). The Martini model, one of the most popular CG force fields in biomolecular simulation, was reported to yield too compact IDP conformations, limiting its applications. Addressing this, we optimized the bonded parameters based on fitting to reference simulations of a diverse set of IDPs at atomistic resolution, resulting in a Martini3-based disordered protein model coined Martini3-IDP. This model leads to expanded IDP conformations, greatly improving the reproduction of the experimentally measured radii of gyration. Moreover, contrary to ad-hoc fixes based on scaling of protein-protein or protein-water interactions, Martini3-IDP keeps the overall interaction balance underlying Martini 3. To validate that, we perform a comprehensive testing including full-length multidomain proteins, IDP-lipid membrane binding and IDP-small molecule binding, confirming its ability to successfully capture the complex interplay between disordered proteins and diverse biomolecular components. Finally, the recently emerging concept of biomolecular condensate, through liquid-liquid phase separation, was also reproduced by Martini3-IDP for a number of both homotypic and heterotypic systems. With the improved Martini3-IDP model, we expand the ability to simulate processes involving IDPs in complex environments, at spatio-temporal scales inaccessible with all-atom models.
