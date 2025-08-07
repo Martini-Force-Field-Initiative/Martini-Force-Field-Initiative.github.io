@@ -4,7 +4,7 @@ format: html
 ---
 
 <hr>
-Contributed by: <a href="https://github.com/ricalessandri">@ricalessandri</a>, <a href="https://github.com/Lp0lp">@Lp0lp</a>, <a href="https://github.com/paulocts">@paulocts</a>, <a href="https://github.com/rmera">@rmera</a>, <a href="https://github.com/ThiloDu">@ThiloDu</a>.
+Contributed by: <a href="https://github.com/ricalessandri">@ricalessandri</a>, <a href="https://github.com/Lp0lp">@Lp0lp</a>, <a href="https://github.com/paulocts">@paulocts</a>, <a href="https://github.com/ThiloDu">@ThiloDu</a>.
 
 In case of issues, please contact [riccardo.alessandri@kuleuven.be](mailto: riccardo.alessandri@kuleuven.be) or open an [issue on the repo](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/issues).
 <hr>
@@ -23,11 +23,6 @@ In case of issues, please contact [riccardo.alessandri@kuleuven.be](mailto: ricc
 - [`Comparison to experimental results, further refinements, and final considerations`](#comparison-to-experimental-results-further-refinements-and-final-considerations)
     - [`Partitioning free energies`](#partitioning-free-energies)
     - [`Molecular volume and shape`](#molecular-volume-and-shape)
-- [`Using Bartender to generate bonded parameters`](#using-bartender-to-obtain-bonded-parameters-for-a-small-molecule)
-    - [`Installing Bartender`](#installing-bartender)
-    - [`Preparing Bartender input files`](#preparing-bartender-input-files)
-    - [`Running Bartender`](#running-bartender)
-    - [`Analyzing the resulting files`](#analyzing-the-resulting-files)
 - [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
 - [`References`](#references)
 
@@ -36,7 +31,7 @@ In case of issues, please contact [riccardo.alessandri@kuleuven.be](mailto: ricc
 
 In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule. The aim is to have a pragmatic description of the Martini 3 coarse-graining (CGing) principles <sup>[[1,2]](#references)</sup>, which follow the main ideas outlined in the seminal Martini 2 work <sup>[[3]](#references)</sup>. Among other things, you may want to parametrize a small molecule with Martini 3 in order to perform protein-ligand binding simulations <sup>[[4]](#references)</sup> or perhaps test the solubility of a molecular dopant in different environments <sup>[[5]](#references)</sup>.
 
-We will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2019.x or later. Required files and worked examples can be downloaded [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/parametrize_new_small_molecule.zip), and files for Bartender can be obtained [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip).
+We will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2019.x or later. Required files and worked examples can be downloaded [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/parametrize_new_small_molecule.zip).
 
 ![Figure 1 | 1-ethylnaphthalene.](fig1.png)
 
@@ -465,109 +460,6 @@ The SASA distributions show a discrepancy of about 5% (the average CG SASA is ab
     * other experimental data such as the density of pure liquids or phase transition temperatures <sup>[[13]](#references)</sup> can be also used;
     * finally, more specific references are also used, such as the hydrogen-bonding strengths and specificity of interactions for nucleobases <sup>[[1]](#references)</sup>, following the Martini 2 DNA work <sup>[[14]](#references)</sup>.
 
-### 9. Using Bartender to obtain bonded parameters for a small molecule
-<hr>
-
-Bartender is a program aimed at obtaining bonded parameters for Martini models while bypassing the atomistic force field development and simulation step. It does so by relying on (semi-empirical) quantum chemical calculations. Specifically, Bartender makes extensive use of the GFN family of methods from the Grimme group, implemented in their xtb program. If you use Bartender in your research we ask you to cite the relevant GFN papers <sup>[[15]](#references)</sup>. 
-
-Hence, this step of the tutorial can replace steps [1](#generate-atomistic-reference-data), [3](#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation), and [5](#generate-target-cg-distributions-from-the-cg-mapped-trajectory) above.
-
-#### 9.1 Installing Bartender
-<hr>
-
-To install `Bartender`, first uncompress the `m3_bartender.zip` provided in the [Introduction](#introduction) (if you did't download it then, you can also download it [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip)) and access the `.tgz` file inside. Uncompress the `.tgz` file into a directory and set the `BTROOT` environment variable to point to that directory. Optionally, you can add `BTROOT` to `PATH`. 
-
-Let us go through this installation process. Say your home directory is `/home/alfred`, and you have the `Bartender` `.tgz` file in that folder (you can find the `.tgz` file among the downloaded files). Switch to that directory:
-
-``` bash
-cd /home/alfred
-```
-
-Create a `bartender` directory and move the `Bartender` `.tgz` file there:
-
-``` bash
-mkdir bartender
-```
-``` bash
-mv bartenderX.Y.Z.tgz bartender/
-```
-
-Where X.Y.Z is the version number for your binary. Now enter the bartender directory and uncompress the binary:
-
-``` bash
-cd bartender
-```
-``` bash
-tar xvzf bartenderX.Y.Z.tgz
-```
-
-Go back to the home directory and define the required environment variables. If you are using the Bash shell, that would be:
-
-``` bash
-cd 
-```
-``` bash
-echo "export BTROOT=/home/alfred/bartender" >> .bashrc
-```
-``` bash
-echo "source $BTROOT/bartender_config.sh" >> .bashrc
-```
-
-Now use:
-
-``` bash
-source .bashrc
-```
-
-and `Bartender` is ready to use.
-
-#### 9.2 Preparing Bartender input files
-<hr>
-
-In the following step you will need the `bartender` python script, and a few input files. You can find the necessary input files in the `m3_bartender.zip` file you downloaded in the previous step!
-
-Bartender requires an input file and a geometry file.
-
-The input file tells Bartender two things:
-
-* the atom-to-bead mapping;
-* the bonded terms you want to obtain.
-
-The syntax of the Bartender input file is fairly simple, but we provide a script to automatically generate it from existing `.itp` and `.ndx` files. The `.itp` needs to contain the bonded terms, although, of course, you can assign any nonsensical value you want to each of the required constants. The ndx file contains the atom-to-bead mapping. Issuing the command (note that script requires `python3`, of course!):
-
-``` bash
-python3 ./write_bartender_inp.py --ndx ENAP_oplsaaTOcg_cgbuilder.ndx --itp ENAP_blank.itp --out ENAP_bartender.inp
-```
-
-will produce the required `ENAP_bartender.inp` input file. Notice that `gmx2bar` also asks for the number of atoms in the geometry file (24, in this case).
-
-For the geometry file, Bartender supports the `.pdb`, `.gro`, and `.xyz` formats. Unfortunately, the `LigParGen` server generates non-standard `.pdb` files which `Bartender` cannot read. The easiest way to proceed is to transform these non-standard `.pdb` files into simpler `.xyz` files. This conversion is easy to do with a text editor that supports column selection, but you can also issue the command:
-
-``` bash
-awk 'BEGIN{COORDS="";NATOMS=0};NF==8{ COORDS=COORDS substr($3,1,1)" "$6" "$7" "$8"\n";NATOMS++}END{print NATOMS"\n\n"COORDS }' ENAP_LigParGen.pdb > ENAP.xyz
-```
-
-which calls the Unix utility `awk` and casts the non-standard ~ file onto an `.xyx` file. We now have everything Bartender needs!
-
-#### 9.3 Running Bartender
-<hr>
-
-Bartender has many optional flags, but it is designed so they are rarely needed. Here, we can just use the basic command: `bartender geometry.pdb/.gro/.xyz bartender_input.inp`, which, in our case, will be:
-
-``` bash
-bartender ENAP.xyz ENAP_bartender.inp
-```
-
-#### 9.4 Analyzing the resulting files
-<hr>
-
-After a short wait (3-10 minutes depending on your CPU(s)), `Bartender` has produced several files, among which:
-
-* A `gmx_out.itp` file: This is the topology file we were after, with the bonded parameters.
-* A series of `.png` files. These files contain plots of the actual distributions for each term and each fit (red triangles) and the corresponding fitted function (blue lines).
-
-If we open the `gmx_out.itp` file, we will see that Bartender will have generated bonded parameters for all the bonds, constraints, and impropers terms we have in the topology. How do the parameters compare to the ones you obtained by optimizing them by hand while using the atomistic simulation as a reference?
-
 
 ### Tools and scripts used in this tutorial
 <hr>
@@ -576,7 +468,6 @@ If we open the `gmx_out.itp` file, we will see that Bartender will have generate
 
 - `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
 
-- `Bartender` (downloadable [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip))
 
 ### References
 <hr>
@@ -608,8 +499,6 @@ If we open the `gmx_out.itp` file, we will see that Bartender will have generate
 [13] L.I. Vazquez-Salazar, M. Selle, et al., [*Green Chem.* **2020**, *22*, 7376-7386](https://doi.org/10.1039/D0GC01823F).
 
 [14] J.J. Uusitalo, et al., [*J. Chem. Theory Comput.* **2015**, *11*, 8, 3932-3945](https://doi.org/10.1021/acs.jctc.5b00286).
-
-[15]  [General reference] C. Bannwarth, et al., [*WIRES Comput. Mol. Sci.* **2021**, *11*, e1493DOI](https://doi.org/10.1002/wcms.1493). [Solvation model] S. Ehlert, et al., [*J. Chem. Theory Comput.* **2021**, *17*, 4250–4261](https://doi.org/10.1021/acs.jctc.1c00471). [GFN2-xTB] C. Bannwarth, et al., [*J. Chem. Theory. Comput.* **2019**, *15*, 1652-1671](https://doi.org/10.1021/acs.jctc.8b01176). [GFNFF] S. Spicher and S. Grimme, [*Ang. Chem. Int. Ed.* **2020**, *59*, 15665-15673](https://doi.org/10.1002/ange.202004239).
 
 <hr>
 
