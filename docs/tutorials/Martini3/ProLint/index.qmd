@@ -27,6 +27,9 @@ For many years, proteins were the primary focus in studies of biological membran
 
 This tutorial will focus on the use of `ProLint2` for the analysis and visualization of specific lipid-protein interactions in a Martini simulation of the G-protein-gated inwardly rectifying potassium channel (GIRK). The system features a single GIRK copy within a lipid model composed of (POPE:1|POPS:1|CHOL:1), which mimics the inner leaflet of neuronal and cardiac cell membranes, where GIRK channels are physiologically active. Te purposes of these analyses is to highlight the capabilities of `ProLint2` to analyze lipid-protein interactions, providing you with the basis for their application to any other membrane-protein MD system.
 
+A Jupyter notebook to follow this tutorial can be accessed [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProLint/ProLint_Tutorial.ipynb).
+
+
 ### Recommended Installation
 <hr>
 
@@ -229,7 +232,7 @@ pl_c = pl_u.compute_contacts(cutoff=7.0)
 Contacts information is stored in two main attributes: `pl_c.contacts` and `pl_c.contact_frames`, with structures: `{Query_ResID: {Database_ResType: [Contact_Windows]}}` and `{Query_ResID: {Database_ResID: [Frame_Numbers]}}` respectively. The contact windows are defined as the time intervals in which a contact is established between a lipid and a protein residue, while the frame numbers are the corresponding frame numbers in the trajectory. The output of these attributes is shown below for demonstration purposes, but `ProLint2` is designed to help you explore this information in a more user-friendly way, as we will see in the next sections.
 
 ``` python
-pl_c.contacts
+pl_c.contacts[14]
 ```
 
 ``` output
@@ -269,7 +272,7 @@ defaultdict(<function prolint2.metrics.exact_contacts.ExactContacts.pooled_resul
 The output above can be interpreted as follows: for residue 14, there are several contact windows with POPE lipids, each lasting 4 ns, 4 ns, 8 ns, and so on. In contrast, it has only two contact windows with POPS lipids, both lasting 4 ns (equivalent to 1 frame in the trajectory). This information is provided for all protein residues in the system that have at least one contact with any lipid type.
 
 ``` python
-pl_c.contact_frames
+pl_c.contact_frames[14]
 ```
 
 ``` output
