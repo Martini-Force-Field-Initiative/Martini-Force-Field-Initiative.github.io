@@ -326,7 +326,7 @@ cp ../4_initial-CG/ENAP_initial.itp ENAP_take1.itp
 ```
 > [adjust ENAP_take1.itp with input from the previous step]
 ``` bash
-bash run_CG_1mol_system.sh  molecule.gro  box_CG_W_eq.gro  W  1
+bash run_1mol_CG_system.sh  molecule.gro  box_CG_W_eq.gro  W  1
 ```
 
 where the command will run an energy-minimization, followed by an NPT equilibration, and by an MD run of 50 ns (inspect the script and the various `.mdp` files to know more) for the Martini system in water.
