@@ -1,5 +1,5 @@
 ---
-title: "Tutorial I.III - Simulations of IDRs in Martini 3"
+title: "Tutorial I.III - Simulations of Intrinsically Disordered Regions in Martini 3"
 format: html
 ---
 
@@ -12,20 +12,20 @@ In case of issues, please contact [duve\@fias.uni-frankfurt.de](mailto:%20duve@f
 If you would like to refer to information of this tutorial, please cite [T. Duve, L. Wang, L. Borges-Araújo, S. J. Marrink, P. C. T. Souza, S. Thallmair, Martini 3 Protein Models - A Practical Introduction to Different Structure Bias Models and their Comparison, bioRxiv (2025), doi: 10.1101/2025.03.17.643608](<https://www.biorxiv.org/content/10.1101/2025.03.17.643608v2>).
 <hr>
 
-This section focuses on introducing the IDR of CK1δ to the system. Previous works have shown that simulations of IDRs using the default Martini 3.0.0 force field result in too compact IDR conformations and an underestimation of the radius of gyration \[10, 13, 36, 37\]. Therefore, the force field should be modified to account for the specific properties of IDRs. Here, we present two options: modifying the BB-water interaction strength and the dedicated force field Martini3-IDP.
+This section focuses on introducing the Intrinsically Disordered Region (IDR) of CK1δ to the system. Previous works have shown that simulations of IDRs using the default Martini 3.0.0 force field result in underestimations of radii of gyration \[10, 13, 36, 37\]. Therefore, the force field should be modified to account for the specific properties of IDRs. Here, we present two options: modifying the BB-water interaction strength and the dedicated force field Martini3-IDP.
 
 ## I.III.1 Adding a Water Bias
 
 One way to improve the performance of Martini 3 when simulating IDRs is to modify the strength of the protein-water interactions for the IDR only. This technique utilizes the BB virtual sites, which are also used in the GōMartini model to implement the structural bias, to modify the LJ potential depth between the BB and water beads. Since these virtual sites overlap with the BB bead, the non-bonded interactions between BB and water beads can be effectively adjusted by introducing an additional potential between the virtual site and water beads \[13\].
 
-In this approach to set up the multi-domain protein model, we use the full length CK1δ atomistic structure as Martinize2 input. As the IDR structure is typically not present in experimental structures, AlphaFold or SWISS-MODEL can be used to generate the full length atomistic protein structure (`CK1d_IDR.pdb`)\[23, 24\]. In Martinize2, the water bias can be added via the `-water-bias` flag. The residues of the IDR are defined via `-id-regions 293:415`, and the strength of the water-bias is set to a value of 0.5 kJ/mol here by `-water-bias-eps idr:0.5` \[13\]. The corrected bonded parameters for IDRs are applied with the `-idr-tune` flag. For the secondary structure, the regions indicated as disordered by the `-id-regions` flag are automatically assigned as coil from Martinize v0.14.0 onwards. The water bias can be combined with the GōMartini model for the structured region, although any of the protein structure models discussed previously are also compatible. Here we add a Gō-like network for the folded domain using `-go`. When disordered regions are additionally specified, Martinize2 ensures that Gō bonds initially found between folded and disordered domains are removed.
+In this approach to set up the multi-domain protein model, we use the full length CK1δ atomistic structure as Martinize2 input. As the IDR structure is typically not present in experimental structures, AlphaFold or SWISS-MODEL can be used to generate the full length atomistic protein structure (`CK1d_IDR.pdb`)\[23, 24\]. The structure is available in AlphaFold as entry [Q9DC28](https://alphafold.ebi.ac.uk/entry/Q9DC28) In Martinize2, the water bias can be added via the `-water-bias` flag. The residues of the IDR are defined via `-id-regions 293:415`, and the strength of the water-bias is set to a value of 0.5 kJ/mol here by `-water-bias-eps idr:0.5` \[13\]. The corrected bonded parameters for IDRs are applied with the `-idr-tune` flag. For the secondary structure, the regions indicated as disordered by the `-id-regions` flag are automatically assigned as coil from Martinize v0.14.0 onwards. The water bias can be combined with the GōMartini model for the structured region, although any of the protein structure models discussed previously are also compatible. Here we add a Gō-like network for the folded domain using `-go`. When disordered regions are additionally specified, Martinize2 ensures that Gō bonds initially found between folded and disordered domains are removed.
 
 ``` bash
 martinize2 -f CK1d_IDR.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3001 \
 -p backbone -dssp -go -water-bias -water-bias-eps idr:0.5 -id-regions 293:415 -idr-tune
 ```
 
-In addition to the CG protein structure and topology, Martinize2 returns two files: virtual_sites_atomtypes.itp, and virtual_sites_nonbond_params.itp, which need to be added to the Martini 3 topology file, as described in [Section I.I.3.3](Tut1.qmd).
+In addition to the CG protein structure and topology, Martinize2 returns two files: `go_atomtypes.itp`, and `go_nbparams.itp`, which need to be added to the Martini 3 topology file, as described in [Section I.I.3.3](Tut1.qmd). Inspect the `go_nbparams.itp` file: you should note that it contains first a set of site-specific non-bonded potentials between backbone virtual sites in the folded domain of the protein, followed by a set of interactions between backbone virtual sites in the disordered domain and water, to effectively increase the strength of the interaction.
 
 ## I.III.2 Martini3-IDP
 
@@ -33,7 +33,7 @@ Another way to improve the performance of IDRs in Martini 3 is offered by the re
 
 Proteins using the Martini3-IDP model can be generated in two ways. For pure IDPs, [Polyply](https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-Martini-3-IDPs---proteins) can be used to generated both parameters and coordinates. For proteins with both folded and disordered domains, Martinize2 can be used as described above.
 
-The command used to martinize the protein is similar to Section 4.1, but the force field used is changed using the `-ff` flag. Additionally, an EN is applied to the folded region only instead of a Gō model, using the `-eunit` flag.
+The command used to martinize the protein is similar to Section 4.1, but the force field used is changed using the `-ff` flag. Additionally, an EN is applied to the folded region only instead of a Gō model, using the `-eunit` flag, demonstrating how different secondary structure biases can be combined with annotations for IDRs in a protein:
 
 ``` bash
 martinize2 -f CK1d_IDR.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3IDP \
@@ -47,12 +47,12 @@ martinize2 -f CK1d_IDR.pdb -x CK1d_cg.pdb -o CK1d_only.top -ff martini3IDP \
 As described in [Section I.I.4](Tut1.qmd), the system can be solvated using insane with the following command.
 
 ``` bash
-insane -f CK1d_cg.pdb -o CG.gro -p system.top -pbc cubic -box 35,35,35 -salt 0.15 -sol W -d 0 
+insane -f CK1d_cg.pdb -o CG.gro -p system.top -pbc cubic -box 35,35,35 -salt 0.15 -sol W -d 0
 ```
 
 When simulating a protein with an IDR, it is especially important to use an appropriately sized box, to prevent the extended IDR from interacting with its mirror image. We therefore use an edge length of 35 nm here. The simulation of the system follows the protocol outlined in [Section I.I.4](Tut1.qmd).
 
-The conformational ensemble sampled during the simulations is shown in Figure 10.
+An example of the conformational ensemble sampled during the simulations is shown in Figure 10.
 
 <hr>
 
