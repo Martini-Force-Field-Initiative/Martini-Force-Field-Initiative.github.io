@@ -1,0 +1,254 @@
+---
+title: "Parametrization of a new small molecule using Fast_Forward"
+format: html
+---
+
+<hr>
+Contributed by: <a href="https://github.com/csbrasnett">@csbrasnett</a>, <a href="https://github.com/ricalessandri">@ricalessandri</a>.
+
+In case of issues, please contact [Chris Brasnett](c.s.brasnett@rug.nl) or open an [issue on the repo](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/issues).
+<hr>
+
+### Summary
+- [`Introduction`](#introduction)
+- [`Generate atomistic reference data`](#generate-atomistic-reference-data)
+- [`Atom-to-bead mapping`](#atom-to-bead-mapping)
+- [`Generate the CG mapped trajectory from the atomistic simulation`](#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation)
+- [`Create the initial CG itp and tpr files`](#create-the-initial-cg-itp-and-tpr-files)
+- [`Generate target CG distributions from the CG mapped trajectory`](#generate-target-cg-distributions-from-the-cg-mapped-trajectory)
+    - [`On the choice of bonded terms for the CG model`](#on-the-choice-of-bonded-terms-for-the-cg-model)
+    - [`Index files and generation of target distributions`](#index-files-and-generation-of-target-distributions)
+- [`Create the CG simulation`](#create-the-cg-simulation)
+- [`Optimize CG bonded parameters`](#optimize-cg-bonded-parameters)
+- [`Comparison to experimental results, further refinements, and final considerations`](#comparison-to-experimental-results-further-refinements-and-final-considerations)
+   - [`Molecular volume and shape`](#molecular-volume-and-shape)
+- [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
+- [`References`](#references)
+
+### Introduction
+<hr>
+
+In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method with the Fast_Forward Python package. This tutorial builds on ideas and techniques discussed in the [classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd) <sup>[[1,2]](#references)</sup>, and it is recommended that you do that tutorial before this one.
+
+
+As before, we will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2024.x or later. Files for this tutorial can be found [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/small_mols_fast_forward.zip).
+
+
+
+![Figure 1 | 1-ethylnaphthalene.](../Small_Molecule_Parametrization/fig1.png)
+
+### 1. Generate atomistic reference data
+<hr>
+
+
+Here, we will use the [SwissParam server](https://swissparam.ch/) <sup>[[3]](#references)</sup> as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the Charmm36 force field, but of course feel free to use your favorite atomistic force field.
+
+:::{.callout-tip}
+The [previous tutorial](../Small_Molecule_Parametrization/index.qmd) used [LigParGen](https://zarbi.chem.yale.edu/ligpargen/) to obtain reference topologies. It may be instructive to investigate how the results obtained in parameterization here are different to that one.
+:::
+
+Start by feeding the SMILES string for *1-ethylnaphthalene* (namely, `CCc1cccc2ccccc21`) to the SwissParam server. After submitting the molecule, the server will generate input parameters for several molecular dynamics (MD) packages. Download the resulting zip file. You can now unzip the zip archive provided:
+
+``` bash
+unzip files-m3-parametrize_new_small_molecule.zip
+```
+
+which contains a folder called `ENAP-in-water` that contains some template folders and useful scripts. We will assume that you will be carrying out the tutorial using this folder structure and scripts. Note that the archive contains also a folder called `ENAP-worked` where you will find a worked version of the tutorial (trajectories not included). This might be useful to use as reference to compare your files (e.g., to compare the `ENAP_LigParGen.itp` you obtained with the one you find in `ENAP-worked/1_AA-reference`).
+
+We can now move to the first subfolder, `1_AA-reference`, and copy over the files you just obtained from the LigParGen server:
+
+``` bash
+cd ENAP-in-water/1_AA-reference
+```
+> [move here the obtained zip file from the SwissParam server.]
+
+Input files obtained from `SwissParam` come with a default residue name of `LIG`. For now, this does not particularly matter, but it may be useful to change it for record keeping or future reference.
+
+Now launch the AA MD simulation:
+
+``` bash
+bash generate_atomistic_reference.sh
+```
+
+The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various `.mdp` files to know more). Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time. Finally, a solvent-free trajectory is generated to use for mapping purposes later.
+
+### 2. Atom-to-bead mapping
+<hr>
+
+Following the rules set out in the [classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd), the molecule can be mapped to 6 T-beads, as shown in Fig. 2 below:
+
+<!-- insert figure with html to modify width -->
+<figure>
+    <center>
+    <img src="../Small_Molecule_Parametrization/fig2.png" alt="Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene." style="width:60%">
+    <figcaption>Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.</figcaption>
+    </center>
+</figure>
+
+
+### 3. Generate the CG mapped trajectory from the atomistic simulation
+<hr>
+
+Using the mapping you just created, you will now transform the simulation you did at [section 1](#generate-atomistic-reference-data) to CG resolution using a file in the `.map` format.
+
+The [CGbuilder tool](https://jbarnoud.github.io/cgbuilder/) can generate such a file, as it did with the index-based approach in the previous tutorial <sup>[[4]](#references)</sup>. Load the `lig.gro` generated in the previous step, and assign each of the atoms to its corresponding bead in the viewer.
+
+You can now try to map the trajectory using a `.map` file from `CGBuilder`. Once done, download the `cgbuilder.map` file that `CGbuilder` creates to the `2_mapping` folder.
+
+``` bash
+cd ../2_mapping/
+```
+> download cgbuilder.map and move it to the current folder, i.e., '2_mapping'
+
+The header of `CGbuilder` .map files doesn’t quite align with what we exactly need for `fast_forward`. Make sure the first two lines of the file read as:
+
+``` bash
+[ molecule ]
+LIG ENAP
+```
+
+These lines define the name of the molecule at atomistic (`LIG`) and CG (`ENAP`) resolution.
+
+You can now run the script:
+
+``` bash
+bash 2_mapping.sh
+```
+
+which will:
+
+ 1. Make a python virtual environment and install the fast forward package in it.
+ 2. Use the `ff_map` program of `fast_forward` to map the ligand-only trajectory generated in the previous step.
+
+Note that running `ff_map` on a trajectory file automatically generates both the mapped trajectory and a single initial frame. Note in the `mapped.gro` file generated the residue name is now `ENAP`, having been defined in the `.map` file above.
+
+### 4. Generating an initial CG topology
+<hr>
+
+As before, the first goal of parameterisation is to match the bonded parameters at the CG level to the ones mapped from our atomistic simulation. Using the same bonded network as [before](../Small_Molecule_Parametrization/index.qmd#generate-target-cg-distributions-from-the-cg-mapped-trajectory), generate an initial topology (i.e. `ENAP_initial.itp`) file for the molecule containing directives for `atoms`, `bonds`, `dihedrals`, `virtual_sitesn`, and `exclusions`.
+
+### 4.1 Using fast_forward to generate initial parameters
+
+One of the powerful features of fast_forward is the `ff_inter` (interactions) program, which can generate best guess parameters for a CG topology file from an initial input topology and a mapped trajectory.
+
+The initial input topology can be readily adapted from the file that we’ve just generated. Two additional considerations are:
+
+ 1. All interactions (*bonds*, *angles*, *dihedrals*, etc) need to be annotated with an interaction group name
+ 2. Bonds may be left as bonds only, `ff_inter` will automatically convert high force constants to constraints.
+
+
+The first interactions directive of the file can then look something like this:
+
+``` bash
+[bonds]
+; i j funct length kb
+ 1 2 1 0.300 5000 ; C1_R1
+ 1 4 1 0.300 5000 ; C1_R4
+ 2 3 1 0.300 5000 ; R2_R3
+…
+[ dihedrals ]
+; i j k l func ref.angle force_const
+ 1 3 6 5 2 0 10 ; C1_R3_R6_R5
+…
+```
+Note as well that the initial guesses here are completely arbitrary. Any interaction will be analysed *ab initio* with new parameters calculated.
+
+To run `ff_inter` we also need a reference `.tpr` file for the molecule on its own:
+
+``` bash
+gmx grompp -f initial.mdp -p topol.top -c ../2_mapping/mapped.gro -o mapped.tpr -maxwarn 1
+```
+
+The `ff_inter` program can then be invoked with the following command:
+
+``` bash
+ff_inter -f ../2_mapping/mapped.xtc -s mapped.tpr -i ENAP_initial.itp -dists -plots -itp-only
+```
+
+Here, the mapped trajectory and associated topology (`mapped.xtc` and `mapped.tpr` respectively) are analysed using the interactions notated in the input molecule topology file (`ENAP_initial.itp`). Using the `-dists` flag writes out time series and histogram data for each of the interactions. The histograms are all also plotted in a figure using the `-plots` flag: a file called `distribution_plots.png` is written. For each interaction, the histogram of the interaction data is plotted along with the fit the program has made. Finally, the `-itp-only` flag indicates that strictly *only* the interactions notated in the input file should be determined. Otherwise, `ff_inter` will attempt to generate all possible angles and dihedrals for the molecule from its bonded structure, a feature of the program which may be useful for slightly larger or more flexible molecules.
+
+The program will generate a new itp file based on the molecule name (i.e. `ENAP.itp`). Compare the input and the output file. The output file should now contain both bonds and constraints, with some bonds separated by an `#ifdef` statement for energy minimisation purposes, and written in the constraints directive with the inverse statement. The bond lengths and force constants should now be more ‘optimised’ for an initial simulation, with respect to the distributions calculated and shown in the figure generated.
+
+
+### 5. Create the CG simulation
+<hr>
+
+
+We can now finalize the first take on the CG model, `ENAP_take1.itp`, where we can use the info contained in the `data_bonds.txt` and `data_dihedrals.txt` files to come up with better guesses for the bonded parameters:
+
+``` bash
+cd ../4_CG_sim
+```
+``` bash
+cp ../3_initial_CG/ENAP.itp .
+```
+``` bash
+bash run_CG.sh
+```
+
+where the command will run an energy-minimization, followed by an NPT equilibration, and by an MD run of 100 ns (inspect the script and the various `.mdp` files to know more) for the Martini system in water. Finally, a ligand-only trajectory and topology are generated for comparison to the mapped ones made earlier.
+
+### 6. Optimize CG bonded parameters
+<hr>
+
+You can now compare the simulated distributions to the reference ones using the final program of the fast_forward package, `ff_assess`. Use the following command:
+
+``` bash
+ff_assess -f prod/lig_CG.xtc -s prod/lig_CG.tpr -i ENAP.itp -d ../3_initial_CG/ -plots
+```
+
+The `ff_assess` program simply uses the annotated topology of the molecule to calculate the interactions actually obtained during the CG simulation, and plots them against the reference distributions previously generated by `ff_inter` (given in a file path to the `-d` flag). Finally, a score is generated using the [Hellinger distance](https://en.wikipedia.org/wiki/Hellinger_distance) comparing the simulated and mapped distributions.
+
+The plot produced should look like this:
+
+<!-- insert figure with html to modify width -->
+<figure>
+    <center>
+    <img src="fig1.png" alt="Figure 3 | CG simulation vs. mapped bonded distributions." style="width:100%">
+    <figcaption>Figure 3 | CG simulation vs. mapped bonded distributions.</figcaption>
+    </center>
+</figure>
+The agreement is very good, noted from both the figure above and also the report of the distribution distance scores generated.
+
+Note that the bimodality of the distributions of the first two dihedrals cannot be captured by the CG model. However, the size of the CG distribution will seemingly capture the two AA configurations into the single CG configuration. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG `.itp` and iterate till satisfactory agreement is achieved.
+
+### 7. Comparison to experimental results, further refinements, and final considerations
+<hr>
+
+As [before](../Small_Molecule_Parametrization/index.qmd#comparison-to-experimental-results-further-refinements-and-final-considerations) it is imperative that any newly parameterised molecule for the Martini force field is validated against as many references as possible.
+
+
+#### 7.1 Molecular volume and shape
+<hr>
+
+To automate the creation of a vdwradii.dat for a CG molecule, a small Python script, `make_cg_sasa_file.py` is provided with this tutorial to automate the process. Otherwise, the steps and scripts [from the previous tutorial](../Small_Molecule_Parametrization/index.qmd#molecular-volume-and-shape) can be followed again.
+
+
+#### 7.2 Final considerations
+<hr>
+
+This tutorial builds on the [Classic Small Molecule Parameterization tutorial](../Small_Molecule_Parametrization/index.qmd) using the Fast_Forward package to provide partial automation of some processes. From here, it may be a good idea to explore some of the other features of the package, particularly the `ff_inter` program, to aid with parameterization of other small molecules from scratch.
+
+
+### Tools and scripts used in this tutorial
+<hr>
+
+- `GROMACS` ([http://www.gromacs.org/](http://www.gromacs.org/))
+
+- `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
+
+- `Fast_Forward` ([https://github.com/fgrunewald/fast_forward/tree/main/fast_forward](https://github.com/fgrunewald/fast_forward/tree/main/fast_forward))
+
+### References
+<hr>
+
+[1] P.C.T. Souza, et al., [*Nat. Methods* **2021**, *18*, 382–388](http://doi.org/10.1038/s41592-021-01098-3).
+
+[2] R. Alessandri, et al., [*Adv. Theory Simul.* **2022**, *5*, 2100391.](https://doi.org/10.1002/adts.202100391).
+
+[3] M. Bugnon M, et al., [*J. Chem. Inf. Model.* **2023**, *63*, 6469-75](https://doi.org/10.1021/acs.jcim.3c01053).
+
+
+[4] J. Barnoud, https://github.com/jbarnoud/cgbuilder.
+
+<hr>

@@ -38,11 +38,7 @@ We will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make u
 ### 1. Generate atomistic reference data
 <hr>
 
-We will need atomistic reference data to extract bonded parameters for the CG model. 
-
-:::{.callout-note}
-Note that we will need all the hydrogen atoms to extract bond lengths further down this tutorial, so make sure that your atomistic structure contains all the hydrogens.
-:::
+We will need atomistic reference data to extract bonded parameters for the CG model. Note that we will need all the hydrogen atoms to extract bond lengths further down this tutorial, so make sure that your atomistic structure contains all the hydrogens.
 
 Here, we will use the [LigParGen server](http://zarbi.chem.yale.edu/ligpargen/) <sup>[[6]](#references)</sup> as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the OPLS-AA force field, but of course feel free to use your favorite atomistic force field. Other web-based services such as the [automated topology builder (ATB)](https://atb.uq.edu.au/) or [CHARMM-GUI](https://www.charmm-gui.org/) can also be used to obtain reference topologies based on other AA force fields. Another important option is to look in the literature for atomistic studies of the molecule you want to parametrize: if you are lucky, somebody might have already published a validated atomistic force field for the molecule, which you can then use to create reference atomistic simulations.
 
@@ -221,7 +217,7 @@ The script will:
 
 ### 5. Generate target CG distributions from the CG mapped trajectory
 
-We need to obtain the parameters of the bonded interactions (*bonds*, *constraints*, *angles*, *proper* and *improper dihedrals*) which we want in our CG model from our mapped-to-CG atomistic simulations from [section 3](#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation)). However, which bonded terms do we need to have? Let's go back to the drawing table and identify between which beads there should be bonded interactions.
+We need to obtain the parameters of the bonded interactions (*bonds*, *constraints*, *angles*, *proper* and *improper dihedrals*) which we want in our CG model from our mapped-to-CG atomistic simulations from [section 3](#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation)). However, which bonded terms do we need to have? Let's go back to the drawing board and identify between which beads there should be bonded interactions.
 
 #### 5.1 On the choice of bonded terms for the CG model
 <hr>
@@ -391,7 +387,7 @@ Note that the bimodality of the distributions of the first two dihedrals cannot 
 #### 8.1 Partitioning free energies
 <hr>
 
-Partitioning free energies (see [tutorial on how to compute them](../../Legacy/martini2/free_energy.qmd)) constitute particularly good reference experimental data. In the case of 1-ethyl-naphthalene, a model using 5 TC5 beads for the naphthalene ring, and a TC3 bead for the ethyl group, leads to the following (excellent!) agreement with available partitioning data (the experimental values are from Ref. <sup>[[10]](#references)</sup>):
+Partitioning free energies (see [tutorial on how to compute them](../Free_Energy_Techniques/index.qmd)) constitute particularly good reference experimental data. In the case of 1-ethyl-naphthalene, a model using 5 TC5 beads for the naphthalene ring, and a TC3 bead for the ethyl group, leads to the following (excellent!) agreement with available partitioning data (the experimental values are from Ref. <sup>[[10]](#references)</sup>):
 
 <table>
 <thead>
@@ -471,8 +467,8 @@ The SASA distributions show a discrepancy of about 5% (the average CG SASA is ab
 * Besides hydrogen bonding labels ("d" for donor, and "a" for acceptor), electron polarizability labels are also made available in Martini 3: these mimic electron-rich (label "e") or electron-poor (label "v", for "vacancy") regions of aromatic rings. Such labels have been tested to a less extended degree than "d"/"a" labels, but have shown great potentials in applications involving aedamers <sup>[[1]](#references)</sup>. In the case of 1-ethylnaphthalene, the "e" label may be used to describe bead number 4 (at the center of the naphthalene moiety) and bead number 1 (because connected to an electron-donating group such as -CH2CH3).
 
 * Common numerical instability causes include:
-    * The use of a dihedral angle i-j-k-l, where each letter labels a different bead involved in the dihedral, that involves internal angles (i.e., the i-j-k and j-k-l angles) that approach 0/180 degrees. Strategies to avoid this situtation include virtual site-assisted dihedral design or the use of Restricted Bending potentials, among others. Please see Ref. <sup>[[11]](#references)</sup>) for more details.
-    * Interconnected constraints; we saw an example above, but for a more in depth and quantitative description, please see Ref. <sup>[[12]](#references)</sup>).
+    * The use of a dihedral angle i-j-k-l, where each letter labels a different bead involved in the dihedral, that involves internal angles (i.e., the i-j-k and j-k-l angles) that approach 0/180 degrees. Strategies to avoid this situtation include virtual site-assisted dihedral design or the use of Restricted Bending potentials, among others. Please see Ref. <sup>[[11]](#references)</sup> for more details.
+    * Interconnected constraints; we saw an example above, but for a more in depth and quantitative description, please see Ref. <sup>[[12]](#references)</sup>.
 
 * Depending on your application, you may want to include other validation targets, besides free energies of transfer. These can allow you to fine-tune and optimize bead type choices and bonded parameters. Below a non-exhaustive list of potential target properties:
     * if molecular stacking or packing are of importance, one can use use dimerization free energy landscapes as reference <sup>[[2]](#references)</sup>;
@@ -494,7 +490,7 @@ The SASA distributions show a discrepancy of about 5% (the average CG SASA is ab
 
 [1] P.C.T. Souza, et al., [*Nat. Methods* **2021**, *18*, 382–388](http://doi.org/10.1038/s41592-021-01098-3).
 
-[2] R. Alessandri, et al., [*Adv. Theory Simul.* **2022**, *5*, 2100391.](https://doi.org/10.1002/adts.202100391).
+[2] R. Alessandri, et al., [*Adv. Theory Simul.* **2022**, *5*, 2100391](https://doi.org/10.1002/adts.202100391).
 
 [3] S.J. Marrink, et al., [*J. Phys. Chem. B.* **2007**, *111*, 7812-7824](https://doi.org/10.1021/jp071097f).
 
