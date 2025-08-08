@@ -236,37 +236,37 @@ pl_c.contacts[14]
 ```
 
 ``` output
-defaultdict(<function prolint2.metrics.exact_contacts.ExactContacts.pooled_results.<locals>.<lambda>()>,
-            {np.int64(14): defaultdict(list,
-                         {'POPE': [np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(8.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(8.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(8.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
-                           np.float64(4.0),
+defaultdict(list,
+            {'POPE': [np.float64(4.0),
+              np.float64(4.0),
+              np.float64(8.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(8.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(8.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(4.0),
+              np.float64(8.0),
 ...
-                         {'POPS': [np.float64(4.0), np.float64(4.0)]}),
-             np.int64(5): defaultdict(list, {'POPS': [np.float64(4.0)]}),
-             np.int64(793): defaultdict(list, {'POPS': [np.float64(4.0)]}),
-             np.int64(287): defaultdict(list, {'POPE': [np.float64(4.0)]}),
-             np.int64(306): defaultdict(list, {'POPE': [np.float64(4.0)]})})
+              np.float64(8.0),
+              np.float64(4.0),
+              np.float64(16.0),
+              np.float64(4.0),
+              np.float64(4.0)]})
 ```
 
 The output above can be interpreted as follows: for residue 14, there are several contact windows with POPE lipids, each lasting 4 ns, 4 ns, 8 ns, and so on. In contrast, it has only two contact windows with POPS lipids, both lasting 4 ns (equivalent to 1 frame in the trajectory). This information is provided for all protein residues in the system that have at least one contact with any lipid type.
@@ -276,37 +276,37 @@ pl_c.contact_frames[14]
 ```
 
 ``` output
-defaultdict(<function prolint2.computers.contacts.SerialContacts.__init__.<locals>.<lambda>()>,
-            {np.int64(14): defaultdict(list,
-                         {np.int64(2527): [0,
-                           15,
-                           20,
-                           21,
-                           25,
-                           35,
-                           38,
-                           47,
-                           49,
-                           65,
-                           197,
-                           246,
-                           251,
-                           291,
-                           323],
-                          np.int64(2760): [0, 2],
-                          np.int64(2800): [2,
-                           7,
-                           8,
-                           13,
-                           18,
-                           20,
-                           21,
+defaultdict(list,
+            {np.int64(2527): [0,
+              15,
+              20,
+              21,
+              25,
+              35,
+              38,
+              47,
+              49,
+              65,
+              197,
+              246,
+              251,
+              291,
+              323],
+             np.int64(2760): [0, 2],
+             np.int64(2800): [2, 7, 8, 13, 18, 20, 21, 22, 24, 27, 33, 57],
+             np.int64(2506): [10, 11],
+             np.int64(2888): [11,
+              13,
+              15,
+              19,
+              353,
+              355,
 ...
-             np.int64(1089): defaultdict(list, {np.int64(2670): [1181, 1197]}),
-             np.int64(5): defaultdict(list, {np.int64(2740): [1185]}),
-             np.int64(793): defaultdict(list, {np.int64(2696): [1204]}),
-             np.int64(287): defaultdict(list, {np.int64(2558): [1236]}),
-             np.int64(306): defaultdict(list, {np.int64(2508): [1236]})})
+              1240,
+              1241],
+             np.int64(2776): [1228, 1244],
+             np.int64(2347): [1236],
+             np.int64(2480): [1239, 1240, 1250]})
 ```
 
 The output above can be understood as follows: protein residue 14 interacts with lipid residue 2527 in frames 0, 15, 20, and so on; it only interacts with lipid residue 2760 in frames 0 and 2, and with lipid residue 2800 in frames 2, 7, 8, and so forth. This information is provided for all protein residues in the system that have at least one contact with any lipid molecule. While ProLint2 facilitates easy exploration of this data, you can always access the raw data in these attributes if you wish to conduct any other type of analysis.
@@ -375,7 +375,7 @@ From this, we can identify three residues with high MeanMetric values with POPS:
 
 ![Surface representation of the GIRK protein. In red are Lys361 and Lys367, and in blue is Val354. Picture generated through VMD.](fig7.jpeg)
 
-The specificity of this interaction is anticipated due to the positively charged lysine side chain, which can engage in electrostatic interactions with the negatively charged headgroup of POPS. To further investigate this interaction, we can use an Interaction Heatmap Plotter to visualize the contact patter at the atom-atom level of detail. For these analyses, we must first identify the POPS molecule that most frequently interacts with one of these residues, let's choose Lys461. We can get this information by using the get_lipid_contact_durations() function, which provides a dataframe listing the lipid molecule IDs sorted by their total contact frequencies.
+The specificity of this interaction is anticipated due to the positively charged lysine side chain, which can engage in electrostatic interactions with the negatively charged headgroup of POPS. To further investigate this interaction, we can use an Interaction Heatmap Plotter to visualize the contact pattern at the atom-atom level of detail. For these analyses, we must first identify the POPS molecule that most frequently interacts with one of these residues, let's choose Lys461. We can get this information by using the get_lipid_contact_durations() function, which provides a dataframe listing the lipid molecule IDs sorted by their total contact frequencies.
 
 
 ``` python
