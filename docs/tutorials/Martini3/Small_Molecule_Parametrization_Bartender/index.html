@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hands-on Tutorials – Martini Force Field Initiative</title>
+<title>Parametrization of a new small molecule – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../docs/tutorials/Legacy/index.html" rel="next">
-<link href="../../../docs/tutorials/Martini3/lectures.html" rel="prev">
-<link href="../../../images/favicon.png" rel="icon" type="image/png">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-69fe911abf326d3c3f52f7dd89351358.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-69fe911abf326d3c3f52f7dd89351358.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,12 +104,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>
-
-      .quarto-title-block .quarto-title-banner {
-        background: #FDF7F4;
-      }
-</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -103,26 +130,30 @@ ul.task-list li input[type="checkbox"] {
 </script>
 
 
-<link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Hands-on Tutorials – Martini Force Field Initiative">
-<meta property="og:description" content="Step by step tutorials to get you started with Martini">
-<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Parametrization of a new small molecule – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Small_Molecule_Parametrization/fig1.png">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Hands-on Tutorials – Martini Force Field Initiative">
-<meta name="twitter:description" content="Step by step tutorials to get you started with Martini">
-<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
+<meta property="og:image:height" content="227">
+<meta property="og:image:width" content="227">
+<meta name="twitter:title" content="Parametrization of a new small molecule – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Small_Molecule_Parametrization/fig1.png">
+<meta name="twitter:image-height" content="227">
+<meta name="twitter:image-width" content="227">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -132,31 +163,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
 </i> 
 <span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
 </i> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/announcements/index.html"> 
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/contact/index.html"> 
+    <a class="nav-link" href="../../../../docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -175,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Report an Issue</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
 </i> 
  <span class="dropdown-text">FAQs</span></a>
   </li>  
@@ -194,56 +225,39 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/tutorials/Martini3/tutorials.html">🛠️ Hands-on Tutorials</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Parametrization of a new small molecule</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-right">
-      <h1 class="title">Hands-on Tutorials</h1>
-            <p class="subtitle lead">Step by step tutorials to get you started with Martini</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-right">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><b>Summary</b></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🎓 Martini Lectures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🕸️ Legacy Material</span></a>
   </div>
 </li>
@@ -252,250 +266,164 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#using-bartender-to-obtain-bonded-parameters-for-a-small-molecule" id="toc-using-bartender-to-obtain-bonded-parameters-for-a-small-molecule" class="nav-link" data-scroll-target="#using-bartender-to-obtain-bonded-parameters-for-a-small-molecule">1. Using Bartender to obtain bonded parameters for a small molecule</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Parametrization of a new small molecule</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
-  <style>
-    :root {
-      --primary-color: #4B2E4C; /* Muted, deep eggplant */
-      --secondary-color: #A89CB0; /* Muted lavender/gray accent */
-      --accent-color: #7A5C85; /* Muted eggplant accent */
-      --text-color: #232129; /* Neutral, dark gray for high contrast */
-      --light-bg: #f8f9fa;
-      --white: #fff;
-      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
-      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
-      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
-      --card-height: calc(80vh - 8rem);
-      --card-min-height: 420px;
-      --card-max-height: 800px;
-    }
-    .btn-rounded-primary {
-        margin-right: 0.5rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        background-color: var(--primary-color);
-        color: var(--white);
-    }
-    .btn-rounded-secondary {
-        margin-right: 0.5rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        background-color: var(--white);
-        color: var(--primary-color);
-        border: 1px solid var(--primary-color);
-    }
 
-    @media (max-width: 754px) {
-        /* Make the buttons smaller on mobile */
-        .btn-rounded-primary {
-            padding-left: 0;
-            padding-right: 0;
-            font-size: 0.8rem;
-            margin-right: 0;
-            margin-left: 0;
-            margin-bottom: 0.5rem;
-            margin-top: 0.5rem;
-            text-align: center;
-        }
-        .btn-rounded-secondary {
-            padding-left: 0;
-            padding-right: 0;
-            font-size: 0.8rem;
-            margin-right: 0;
-            margin-left: 0;
-            margin-bottom: 0.5rem;
-            margin-top: 0.5rem;
-            /* decrease the width of the buttons */            text-align: center;
-        }
-
-        .lecture-item {
-            grid-template-columns: 1fr;
-        }
-    }
-  </style>
-
-<div class="tutorial-grid">
-<div class="tutorial-item">
-<p><strong>• Lipid bilayers - Part I: Self-assembly</strong></p>
-<p><strong>Description:</strong> <em>Basic tutorial on lipid bilayer self-assembly</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/LipidsI/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
+<hr>
+<p>Contributed by: <a href="https://github.com/rmera"><span class="citation" data-cites="rmera">@rmera</span></a>, <a href="https://github.com/ricalessandri"><span class="citation" data-cites="ricalessandri">@ricalessandri</span></a>, <a href="https://github.com/csbrasnett"><span class="citation" data-cites="csbrasnett">@csbrasnett</span></a>.</p>
+In case of issues, please contact <a href="mailto:%20rmeraa@%20academicos.uta.cl">Raul Mera A.</a> or open an <a href="https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/issues">issue on the repo</a>.
+<hr>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li><a href="#introduction"><code>Introduction</code></a></li>
+<li><a href="#using-bartender-to-obtain-bonded-parameters-for-a-small-molecule"><code>Using Bartender to generate bonded parameters</code></a>
+<ul>
+<li><a href="#installing-bartender"><code>Installing Bartender</code></a></li>
+<li><a href="#preparing-bartender-input-files"><code>Preparing Bartender input files</code></a></li>
+<li><a href="#running-bartender"><code>Running Bartender</code></a></li>
+<li><a href="#analyzing-the-resulting-files"><code>Analyzing the resulting files</code></a></li>
+</ul></li>
+<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
+<li><a href="#references"><code>References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p>In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method based on semi-empirical quantum mechnical (QM) data with the Bartender package <sup><a href="#references">[1]</a></sup>. This tutorial builds on ideas and techniques discussed in the <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">classic Small Molecule Parameterization tutorial</a> <sup><a href="#references">[2,3]</a></sup>, and it is recommended that you do that tutorial before this one.</p>
+<p>As before, we will use as an example the molecule <em>1-ethylnaphthalene</em> (Fig. 1). Files for Bartender can be obtained <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip">here</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../Small_Molecule_Parametrization/fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 | 1-ethylnaphthalene.</figcaption>
+</figure>
 </div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Lipid bilayers - Part II: Complex lipid mixtures</strong></p>
-<p><strong>Description:</strong> <em>Learn how to create complex lipid mixtures using Insane</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/LipidsII/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part I(a): Introduction</strong></p>
-<p><strong>Description:</strong> <em>A practical introduction to different structure bias models and their comparison</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsI/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part I(b): Using Martinize2</strong></p>
-<p><strong>Description:</strong> <em>Setup of Martini 3 Protein Structure Models</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsI/Tut1.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part I(c): Evaluating Proteins Models</strong></p>
-<p><strong>Description:</strong> <em>Metrics to Compare Protein Structure Models</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsI/Tut2.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part I(d): Intrinsically Disordered Regions</strong></p>
-<p><strong>Description:</strong> <em>Simulations of IDRs in Martini 3</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsI/Tut3.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part I(e): Conclusions</strong></p>
-<p><strong>Description:</strong> <em>Additional Notes, Limitations, Summary, and Outlook</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsI/Tut4.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part II(a): Setting Up Transmembrane Peptide Simulations</strong></p>
-<p><strong>Description:</strong> <em>Learn to build and simulate peptides embedded in lipid bilayers.</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsIIa/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Proteins - Part II(b): Protein complexes</strong></p>
-<p><strong>Description:</strong> <em>Advanced protein modeling applications: Protein complexes</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProteinsIIb/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Parametrization of a new small molecule - (a) Classic Method</strong></p>
-<p><strong>Description:</strong> <em>Learn how to parametrize new molecules for Martini</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Parametrization of a new small molecule - (b) Semi-automated using Fast_Forward</strong></p>
-<p><strong>Description:</strong> <em>Learn how to parametrize new molecules for Martini in a semi-automated way using Fast_Forward</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Small_Molecule_Parametrization_FastForward/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Parametrization of a new small molecule - (c) Bartender for semi-empirical QM reference data</strong></p>
-<p><strong>Description:</strong> <em>Learn how to parametrize new molecules for Martini using semi-empirical QM</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Small_Molecule_Parametrization_Bartender/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Protein-small molecule binding</strong></p>
-<p><strong>Description:</strong> <em>Study protein-ligand interactions</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Protein_Ligand_Binding/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Reverse coarse-graining with Backward</strong></p>
-<p><strong>Description:</strong> <em>Convert Martini structures to atomistic resolution</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Backward/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Polyply: generating input parameters and coordinates</strong></p>
-<p><strong>Description:</strong> <em>Create complex molecular systems for Martini</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Polyply/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• TS2CG: membranes with user-defined shapes and compositions</strong></p>
-<p><strong>Description:</strong> <em>Create custom membrane shapes</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/TS2CG/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Bentopy: from simple packing to building cellular models</strong></p>
-<p><strong>Description:</strong> <em>A tool for packing molecules in arbitrary volumes</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Bentopy/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Running Martini simulation with ddcMD</strong></p>
-<p><strong>Description:</strong> <em>Learn how to use ddcMD for Martini simulations</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ddcMD/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Titratable Martini for constant pH simulations</strong></p>
-<p><strong>Description:</strong> <em>Perform pH-dependent simulations with Martini</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Titratable_Martini/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Free energy techniques</strong></p>
-<p><strong>Description:</strong> <em>Introduction to free energy techniques with Gromacs</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Free_Energy_Techniques/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• ProLint2: Analysis of lipid-protein interactions</strong></p>
-<p><strong>Description:</strong> <em>Advanced analysis of lipid-protein interactions from Martini simulations</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/ProLint/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-<div class="tutorial-item">
-<p><strong>• Dual resolution membrane simulation</strong></p>
-<p><strong>Description:</strong> <em>Combine different resolution models for membrane simulations</em></p>
-<div class="tutorial-buttons">
-<p><a href="../../../docs/tutorials/Martini3/Dual_Resolution_Membrane/index.html" class="btn btn-primary btn-rounded-primary">Start Tutorial</a></p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
+</section>
+<section id="using-bartender-to-obtain-bonded-parameters-for-a-small-molecule" class="level3">
+<h3 class="anchored" data-anchor-id="using-bartender-to-obtain-bonded-parameters-for-a-small-molecule">1. Using Bartender to obtain bonded parameters for a small molecule</h3>
+<hr>
+<p>Bartender is a program aimed at obtaining bonded parameters for Martini models while bypassing the atomistic force field development and simulation step. It does so by relying on (semi-empirical) quantum chemical calculations. Specifically, Bartender makes extensive use of the GFN family of methods from the Grimme group, implemented in their xtb program. If you use Bartender in your research we ask you to cite the relevant GFN papers <sup><a href="#references">[13]</a></sup>.</p>
+<p>Hence, Bartender can replace steps <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#generate-atomistic-reference-data">1</a>, <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation">3</a>, and <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#generate-target-cg-distributions-from-the-cg-mapped-trajectory">5</a> of the <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">classic Small Molecule Parameterization tutorial</a>.</p>
+<section id="installing-bartender" class="level4">
+<h4 class="anchored" data-anchor-id="installing-bartender">1.1 Installing Bartender</h4>
+<hr>
+<p>To install <code>Bartender</code>, first uncompress the <code>m3_bartender.zip</code> provided in the <a href="#introduction">Introduction</a> and access the <code>.tgz</code> file inside. Uncompress the <code>.tgz</code> file into a directory and set the <code>BTROOT</code> environment variable to point to that directory. Optionally, you can add <code>BTROOT</code> to <code>PATH</code>.</p>
+<p>Let us go through this installation process. Say your home directory is <code>/home/alfred</code>, and you have the <code>Bartender</code> <code>.tgz</code> file in that folder (you can find the <code>.tgz</code> file among the downloaded files). Switch to that directory:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/alfred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create a <code>bartender</code> directory and move the <code>Bartender</code> <code>.tgz</code> file there:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> bartender</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> bartenderX.Y.Z.tgz bartender/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Where X.Y.Z is the version number for your binary. Now enter the bartender directory and uncompress the binary:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> bartender</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvzf bartenderX.Y.Z.tgz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Go back to the home directory and define the required environment variables. If you are using the Bash shell, that would be:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"export BTROOT=/home/alfred/bartender"</span> <span class="op">&gt;&gt;</span> .bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"source </span><span class="va">$BTROOT</span><span class="st">/bartender_config.sh"</span> <span class="op">&gt;&gt;</span> .bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now use:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and <code>Bartender</code> is ready to use.</p>
+</section>
+<section id="preparing-bartender-input-files" class="level4">
+<h4 class="anchored" data-anchor-id="preparing-bartender-input-files">1.2 Preparing Bartender input files</h4>
+<hr>
+<p>In the following step you will need the <code>bartender</code> python script, and a few input files. You can find the necessary input files in the <code>m3_bartender.zip</code> file you downloaded in the previous step!</p>
+<p>Bartender requires an input file and a geometry file.</p>
+<p>The input file tells Bartender two things:</p>
+<ul>
+<li>the atom-to-bead mapping - see <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#atom-to-bead-mapping">step 2 of the classic tutorial</a>;</li>
+<li>the bonded terms you want to obtain - see <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#on-the-choice-of-bonded-terms-for-the-cg-model">step 5.1 of the classic tutorial</a>.</li>
+</ul>
+<p>The syntax of the Bartender input file is fairly simple, but we provide a script to automatically generate it from existing <code>.itp</code> and <code>.ndx</code> files. The <code>.itp</code> needs to contain the bonded terms, although, of course, you can assign any nonsensical value you want to each of the required constants. The ndx file contains the atom-to-bead mapping. Issuing the command (note that script requires <code>python3</code>, of course!):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> ./write_bartender_inp.py <span class="at">--ndx</span> ENAP_oplsaaTOcg_cgbuilder.ndx <span class="at">--itp</span> ENAP_blank.itp <span class="at">--out</span> ENAP_bartender.inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will produce the required <code>ENAP_bartender.inp</code> input file. Notice that <code>gmx2bar</code> also asks for the number of atoms in the geometry file (24, in this case).</p>
+<p>For the geometry file, Bartender supports the <code>.pdb</code>, <code>.gro</code>, and <code>.xyz</code> formats. Unfortunately, the <code>LigParGen</code> server generates non-standard <code>.pdb</code> files which <code>Bartender</code> cannot read. The easiest way to proceed is to transform these non-standard <code>.pdb</code> files into simpler <code>.xyz</code> files. This conversion is easy to do with a text editor that supports column selection, but you can also issue the command:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'BEGIN{COORDS="";NATOMS=0};NF==8{ COORDS=COORDS substr($3,1,1)" "$6" "$7" "$8"\n";NATOMS++}END{print NATOMS"\n\n"COORDS }'</span> ENAP_LigParGen.pdb <span class="op">&gt;</span> ENAP.xyz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which calls the Unix utility <code>awk</code> and casts the non-standard ~ file onto an <code>.xyx</code> file. We now have everything Bartender needs!</p>
+</section>
+<section id="running-bartender" class="level4">
+<h4 class="anchored" data-anchor-id="running-bartender">1.3 Running Bartender</h4>
+<hr>
+<p>Bartender has many optional flags, but it is designed so they are rarely needed. Here, we can just use the basic command: <code>bartender geometry.pdb/.gro/.xyz bartender_input.inp</code>, which, in our case, will be:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bartender</span> ENAP.xyz ENAP_bartender.inp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="analyzing-the-resulting-files" class="level4">
+<h4 class="anchored" data-anchor-id="analyzing-the-resulting-files">1.4 Analyzing the resulting files</h4>
+<hr>
+<p>After a short wait (3-10 minutes depending on your CPU(s)), <code>Bartender</code> has produced several files, among which:</p>
+<ul>
+<li>A <code>gmx_out.itp</code> file: This is the topology file we were after, with the bonded parameters.</li>
+<li>A series of <code>.png</code> files. These files contain plots of the actual distributions for each term and each fit (red triangles) and the corresponding fitted function (blue lines).</li>
+</ul>
+<p>If we open the <code>gmx_out.itp</code> file, we will see that Bartender will have generated bonded parameters for all the bonds, constraints, and impropers terms we have in the topology.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Contribute to this collection
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To contribute with new tutorials, please get in touch with the Martini team through the <a href="../../../docs/contact/index.html">Contacts Page</a> or review the <a href="https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/blob/main/README.md">Contribution Guidelines</a> to this web portal.</p>
+<p>It may be instructive to investigate how the results obtained from this parameterization differ from those obtained using atomistic simulation data - <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">LigParGen in the classic tutorial</a> or <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization_FastForward/index.html">SwissParam in the Fast Forward tutorial</a> - as a reference.</p>
 </div>
 </div>
+</section>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
+<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
+<li><p><code>Bartender</code> (downloadable <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/m3_bartender.zip">here</a>)</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] G.P. Pereira, et al., <a href="https://doi.org/10.1021/acs.jctc.4c00275"><em>J. Chem. Theory Comput.</em> <strong>2024</strong>, <em>20</em>, 5763</a>.</p>
+<p>[2] P.C.T. Souza, et al., <a href="http://doi.org/10.1038/s41592-021-01098-3"><em>Nat. Methods</em> <strong>2021</strong>, <em>18</em>, 382–388</a>.</p>
+<p>[3] R. Alessandri, et al., <a href="https://doi.org/10.1002/adts.202100391"><em>Adv. Theory Simul.</em> <strong>2022</strong>, <em>5</em>, 2100391.</a>.</p>
+<p>[4] [General reference] C. Bannwarth, et al., <a href="https://doi.org/10.1002/wcms.1493"><em>WIRES Comput. Mol. Sci.</em> <strong>2021</strong>, <em>11</em>, e1493DOI</a>. [Solvation model] S. Ehlert, et al., <a href="https://doi.org/10.1021/acs.jctc.1c00471"><em>J. Chem. Theory Comput.</em> <strong>2021</strong>, <em>17</em>, 4250–4261</a>. [GFN2-xTB] C. Bannwarth, et al., <a href="https://doi.org/10.1021/acs.jctc.8b01176"><em>J. Chem. Theory. Comput.</em> <strong>2019</strong>, <em>15</em>, 1652-1671</a>. [GFNFF] S. Spicher and S. Grimme, <a href="https://doi.org/10.1002/ange.202004239"><em>Ang. Chem. Int. Ed.</em> <strong>2020</strong>, <em>59</em>, 15665-15673</a>.</p>
+<hr>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -897,18 +825,6 @@ Contribute to this collection
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
-      <a href="../../../docs/tutorials/Martini3/lectures.html" class="pagination-link" aria-label="🎓 Martini Lectures">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🎓 Martini Lectures</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../../docs/tutorials/Legacy/index.html" class="pagination-link" aria-label="🕸️ Legacy Material">
-        <span class="nav-page-text">🕸️ Legacy Material</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -926,7 +842,7 @@ Contribute to this collection
     </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../../docs/faq/index.html">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
 <p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
 </a>
   </li>  
@@ -969,7 +885,7 @@ Contribute to this collection
       }
     });
 </script>
-<script src="../../../js/sidebar-close.js"></script> 
+<script src="../../../../js/sidebar-close.js"></script> 
 
 
 

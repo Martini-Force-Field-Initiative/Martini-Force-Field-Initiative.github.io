@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Parametrization of a new small molecule using Fast_Forward – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-69fe911abf326d3c3f52f7dd89351358.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Parametrization of a new small molecule using Fast_Forward – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Small_Molecule_Parametrization/fig1.png">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta property="og:image:height" content="227">
+<meta property="og:image:width" content="227">
+<meta name="twitter:title" content="Parametrization of a new small molecule using Fast_Forward – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Small_Molecule_Parametrization/fig1.png">
+<meta name="twitter:image-height" content="227">
+<meta name="twitter:image-width" content="227">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/index.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Parametrization of a new small molecule using Fast_Forward</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#generate-atomistic-reference-data" id="toc-generate-atomistic-reference-data" class="nav-link" data-scroll-target="#generate-atomistic-reference-data">1. Generate atomistic reference data</a></li>
+  <li><a href="#atom-to-bead-mapping" id="toc-atom-to-bead-mapping" class="nav-link" data-scroll-target="#atom-to-bead-mapping">2. Atom-to-bead mapping</a></li>
+  <li><a href="#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation" id="toc-generate-the-cg-mapped-trajectory-from-the-atomistic-simulation" class="nav-link" data-scroll-target="#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation">3. Generate the CG mapped trajectory from the atomistic simulation</a></li>
+  <li><a href="#generating-an-initial-cg-topology" id="toc-generating-an-initial-cg-topology" class="nav-link" data-scroll-target="#generating-an-initial-cg-topology">4. Generating an initial CG topology</a></li>
+  <li><a href="#using-fast_forward-to-generate-initial-parameters" id="toc-using-fast_forward-to-generate-initial-parameters" class="nav-link" data-scroll-target="#using-fast_forward-to-generate-initial-parameters">4.1 Using fast_forward to generate initial parameters</a></li>
+  <li><a href="#create-the-cg-simulation" id="toc-create-the-cg-simulation" class="nav-link" data-scroll-target="#create-the-cg-simulation">5. Create the CG simulation</a></li>
+  <li><a href="#optimize-cg-bonded-parameters" id="toc-optimize-cg-bonded-parameters" class="nav-link" data-scroll-target="#optimize-cg-bonded-parameters">6. Optimize CG bonded parameters</a></li>
+  <li><a href="#comparison-to-experimental-results-further-refinements-and-final-considerations" id="toc-comparison-to-experimental-results-further-refinements-and-final-considerations" class="nav-link" data-scroll-target="#comparison-to-experimental-results-further-refinements-and-final-considerations">7. Comparison to experimental results, further refinements, and final considerations</a></li>
+  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Parametrization of a new small molecule using Fast_Forward</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p>Contributed by: <a href="https://github.com/csbrasnett"><span class="citation" data-cites="csbrasnett">@csbrasnett</span></a>, <a href="https://github.com/ricalessandri"><span class="citation" data-cites="ricalessandri">@ricalessandri</span></a>.</p>
+In case of issues, please contact <a href="c.s.brasnett@rug.nl">Chris Brasnett</a> or open an <a href="https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/issues">issue on the repo</a>.
+<hr>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li><a href="#introduction"><code>Introduction</code></a></li>
+<li><a href="#generate-atomistic-reference-data"><code>Generate atomistic reference data</code></a></li>
+<li><a href="#atom-to-bead-mapping"><code>Atom-to-bead mapping</code></a></li>
+<li><a href="#generate-the-cg-mapped-trajectory-from-the-atomistic-simulation"><code>Generate the CG mapped trajectory from the atomistic simulation</code></a></li>
+<li><a href="#create-the-initial-cg-itp-and-tpr-files"><code>Create the initial CG itp and tpr files</code></a></li>
+<li><a href="#generate-target-cg-distributions-from-the-cg-mapped-trajectory"><code>Generate target CG distributions from the CG mapped trajectory</code></a>
+<ul>
+<li><a href="#on-the-choice-of-bonded-terms-for-the-cg-model"><code>On the choice of bonded terms for the CG model</code></a></li>
+<li><a href="#index-files-and-generation-of-target-distributions"><code>Index files and generation of target distributions</code></a></li>
+</ul></li>
+<li><a href="#create-the-cg-simulation"><code>Create the CG simulation</code></a></li>
+<li><a href="#optimize-cg-bonded-parameters"><code>Optimize CG bonded parameters</code></a></li>
+<li><a href="#comparison-to-experimental-results-further-refinements-and-final-considerations"><code>Comparison to experimental results, further refinements, and final considerations</code></a>
+<ul>
+<li><a href="#molecular-volume-and-shape"><code>Molecular volume and shape</code></a></li>
+</ul></li>
+<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
+<li><a href="#references"><code>References</code></a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p>In this tutorial, we will discuss how to build a Martini 3 topology for a new small molecule using a semi-automated method with the Fast_Forward Python package. This tutorial builds on ideas and techniques discussed in the <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">classic Small Molecule Parameterization tutorial</a> <sup><a href="#references">[1,2]</a></sup>, and it is recommended that you do that tutorial before this one.</p>
+<p>As before, we will use as an example the molecule <em>1-ethylnaphthalene</em> (Fig. 1), and make use of <code>Gromacs</code> versions 2024.x or later. Files for this tutorial can be found <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Parametrize_Small_Molecule/small_mols_fast_forward.zip">here</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../Small_Molecule_Parametrization/fig1.png" class="img-fluid figure-img"></p>
+<figcaption>Figure 1 | 1-ethylnaphthalene.</figcaption>
+</figure>
+</div>
+</section>
+<section id="generate-atomistic-reference-data" class="level3">
+<h3 class="anchored" data-anchor-id="generate-atomistic-reference-data">1. Generate atomistic reference data</h3>
+<hr>
+<p>Here, we will use the <a href="https://swissparam.ch/">SwissParam server</a> <sup><a href="#references">[3]</a></sup> as a way to obtain an atomistic (or all-atom, AA) structure and molecule topology based on the Charmm36 force field, but of course feel free to use your favorite atomistic force field.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">previous tutorial</a> used <a href="https://zarbi.chem.yale.edu/ligpargen/">LigParGen</a> to obtain reference topologies. It may be instructive to investigate how the results obtained in parameterization here are different to that one.</p>
+</div>
+</div>
+<p>Start by feeding the SMILES string for <em>1-ethylnaphthalene</em> (namely, <code>CCc1cccc2ccccc21</code>) to the SwissParam server. After submitting the molecule, the server will generate input parameters for several molecular dynamics (MD) packages. Download the resulting zip file. You can now unzip the zip archive provided:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> files-m3-parametrize_new_small_molecule.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which contains a folder called <code>ENAP-in-water</code> that contains some template folders and useful scripts. We will assume that you will be carrying out the tutorial using this folder structure and scripts. Note that the archive contains also a folder called <code>ENAP-worked</code> where you will find a worked version of the tutorial (trajectories not included). This might be useful to use as reference to compare your files (e.g., to compare the <code>ENAP_LigParGen.itp</code> you obtained with the one you find in <code>ENAP-worked/1_AA-reference</code>).</p>
+<p>We can now move to the first subfolder, <code>1_AA-reference</code>, and copy over the files you just obtained from the LigParGen server:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ENAP-in-water/1_AA-reference</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>[move here the obtained zip file from the SwissParam server.]</p>
+</blockquote>
+<p>Input files obtained from <code>SwissParam</code> come with a default residue name of <code>LIG</code>. For now, this does not particularly matter, but it may be useful to change it for record keeping or future reference.</p>
+<p>Now launch the AA MD simulation:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> generate_atomistic_reference.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various <code>.mdp</code> files to know more). Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time. Finally, a solvent-free trajectory is generated to use for mapping purposes later.</p>
+</section>
+<section id="atom-to-bead-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="atom-to-bead-mapping">2. Atom-to-bead mapping</h3>
+<hr>
+<p>Following the rules set out in the <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">classic Small Molecule Parameterization tutorial</a>, the molecule can be mapped to 6 T-beads, as shown in Fig. 2 below:</p>
+<!-- insert figure with html to modify width -->
+<figure class="figure">
+<center>
+<img src="../Small_Molecule_Parametrization/fig2.png" alt="Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene." style="width:60%" class="figure-img">
+<figcaption>
+Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.
+</figcaption>
+</center>
+</figure>
+</section>
+<section id="generate-the-cg-mapped-trajectory-from-the-atomistic-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="generate-the-cg-mapped-trajectory-from-the-atomistic-simulation">3. Generate the CG mapped trajectory from the atomistic simulation</h3>
+<hr>
+<p>Using the mapping you just created, you will now transform the simulation you did at <a href="#generate-atomistic-reference-data">section 1</a> to CG resolution using a file in the <code>.map</code> format.</p>
+<p>The <a href="https://jbarnoud.github.io/cgbuilder/">CGbuilder tool</a> can generate such a file, as it did with the index-based approach in the previous tutorial <sup><a href="#references">[4]</a></sup>. Load the <code>lig.gro</code> generated in the previous step, and assign each of the atoms to its corresponding bead in the viewer.</p>
+<p>You can now try to map the trajectory using a <code>.map</code> file from <code>CGBuilder</code>. Once done, download the <code>cgbuilder.map</code> file that <code>CGbuilder</code> creates to the <code>2_mapping</code> folder.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2_mapping/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>download cgbuilder.map and move it to the current folder, i.e., ‘2_mapping’</p>
+</blockquote>
+<p>The header of <code>CGbuilder</code> .map files doesn’t quite align with what we exactly need for <code>fast_forward</code>. Make sure the first two lines of the file read as:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecule <span class="bu">]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">LIG</span> ENAP</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These lines define the name of the molecule at atomistic (<code>LIG</code>) and CG (<code>ENAP</code>) resolution.</p>
+<p>You can now run the script:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 2_mapping.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which will:</p>
+<ol type="1">
+<li>Make a python virtual environment and install the fast forward package in it.</li>
+<li>Use the <code>ff_map</code> program of <code>fast_forward</code> to map the ligand-only trajectory generated in the previous step.</li>
+</ol>
+<p>Note that running <code>ff_map</code> on a trajectory file automatically generates both the mapped trajectory and a single initial frame. Note in the <code>mapped.gro</code> file generated the residue name is now <code>ENAP</code>, having been defined in the <code>.map</code> file above.</p>
+</section>
+<section id="generating-an-initial-cg-topology" class="level3">
+<h3 class="anchored" data-anchor-id="generating-an-initial-cg-topology">4. Generating an initial CG topology</h3>
+<hr>
+<p>As before, the first goal of parameterisation is to match the bonded parameters at the CG level to the ones mapped from our atomistic simulation. Using the same bonded network as <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#generate-target-cg-distributions-from-the-cg-mapped-trajectory">before</a>, generate an initial topology (i.e.&nbsp;<code>ENAP_initial.itp</code>) file for the molecule containing directives for <code>atoms</code>, <code>bonds</code>, <code>dihedrals</code>, <code>virtual_sitesn</code>, and <code>exclusions</code>.</p>
+</section>
+<section id="using-fast_forward-to-generate-initial-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="using-fast_forward-to-generate-initial-parameters">4.1 Using fast_forward to generate initial parameters</h3>
+<p>One of the powerful features of fast_forward is the <code>ff_inter</code> (interactions) program, which can generate best guess parameters for a CG topology file from an initial input topology and a mapped trajectory.</p>
+<p>The initial input topology can be readily adapted from the file that we’ve just generated. Two additional considerations are:</p>
+<ol type="1">
+<li>All interactions (<em>bonds</em>, <em>angles</em>, <em>dihedrals</em>, etc) need to be annotated with an interaction group name</li>
+<li>Bonds may be left as bonds only, <code>ff_inter</code> will automatically convert high force constants to constraints.</li>
+</ol>
+<p>The first interactions directive of the file can then look something like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[bonds]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">i</span> j funct length kb</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> 2 1 0.300 5000 <span class="kw">;</span> <span class="ex">C1_R1</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> 4 1 0.300 5000 <span class="kw">;</span> <span class="ex">C1_R4</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">2</span> 3 1 0.300 5000 <span class="kw">;</span> <span class="ex">R2_R3</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">…</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> dihedrals <span class="bu">]</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">i</span> j k l func ref.angle force_const</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> 3 6 5 2 0 10 <span class="kw">;</span> <span class="ex">C1_R3_R6_R5</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note as well that the initial guesses here are completely arbitrary. Any interaction will be analysed <em>ab initio</em> with new parameters calculated.</p>
+<p>To run <code>ff_inter</code> we also need a reference <code>.tpr</code> file for the molecule on its own:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> initial.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> ../2_mapping/mapped.gro <span class="at">-o</span> mapped.tpr <span class="at">-maxwarn</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>ff_inter</code> program can then be invoked with the following command:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ff_inter</span> <span class="at">-f</span> ../2_mapping/mapped.xtc <span class="at">-s</span> mapped.tpr <span class="at">-i</span> ENAP_initial.itp <span class="at">-dists</span> <span class="at">-plots</span> <span class="at">-itp-only</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, the mapped trajectory and associated topology (<code>mapped.xtc</code> and <code>mapped.tpr</code> respectively) are analysed using the interactions notated in the input molecule topology file (<code>ENAP_initial.itp</code>). Using the <code>-dists</code> flag writes out time series and histogram data for each of the interactions. The histograms are all also plotted in a figure using the <code>-plots</code> flag: a file called <code>distribution_plots.png</code> is written. For each interaction, the histogram of the interaction data is plotted along with the fit the program has made. Finally, the <code>-itp-only</code> flag indicates that strictly <em>only</em> the interactions notated in the input file should be determined. Otherwise, <code>ff_inter</code> will attempt to generate all possible angles and dihedrals for the molecule from its bonded structure, a feature of the program which may be useful for slightly larger or more flexible molecules.</p>
+<p>The program will generate a new itp file based on the molecule name (i.e.&nbsp;<code>ENAP.itp</code>). Compare the input and the output file. The output file should now contain both bonds and constraints, with some bonds separated by an <code>#ifdef</code> statement for energy minimisation purposes, and written in the constraints directive with the inverse statement. The bond lengths and force constants should now be more ‘optimised’ for an initial simulation, with respect to the distributions calculated and shown in the figure generated.</p>
+</section>
+<section id="create-the-cg-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-cg-simulation">5. Create the CG simulation</h3>
+<hr>
+<p>We can now finalize the first take on the CG model, <code>ENAP_take1.itp</code>, where we can use the info contained in the <code>data_bonds.txt</code> and <code>data_dihedrals.txt</code> files to come up with better guesses for the bonded parameters:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../4_CG_sim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../3_initial_CG/ENAP.itp .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> run_CG.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the command will run an energy-minimization, followed by an NPT equilibration, and by an MD run of 100 ns (inspect the script and the various <code>.mdp</code> files to know more) for the Martini system in water. Finally, a ligand-only trajectory and topology are generated for comparison to the mapped ones made earlier.</p>
+</section>
+<section id="optimize-cg-bonded-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="optimize-cg-bonded-parameters">6. Optimize CG bonded parameters</h3>
+<hr>
+<p>You can now compare the simulated distributions to the reference ones using the final program of the fast_forward package, <code>ff_assess</code>. Use the following command:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ff_assess</span> <span class="at">-f</span> prod/lig_CG.xtc <span class="at">-s</span> prod/lig_CG.tpr <span class="at">-i</span> ENAP.itp <span class="at">-d</span> ../3_initial_CG/ <span class="at">-plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>ff_assess</code> program simply uses the annotated topology of the molecule to calculate the interactions actually obtained during the CG simulation, and plots them against the reference distributions previously generated by <code>ff_inter</code> (given in a file path to the <code>-d</code> flag). Finally, a score is generated using the <a href="https://en.wikipedia.org/wiki/Hellinger_distance">Hellinger distance</a> comparing the simulated and mapped distributions.</p>
+<p>The plot produced should look like this:</p>
+<!-- insert figure with html to modify width -->
+<figure class="figure">
+<center>
+<img src="fig1.png" alt="Figure 3 | CG simulation vs. mapped bonded distributions." style="width:100%" class="figure-img">
+<figcaption>
+Figure 3 | CG simulation vs.&nbsp;mapped bonded distributions.
+</figcaption>
+</center>
+</figure>
+<p>The agreement is very good, noted from both the figure above and also the report of the distribution distance scores generated.</p>
+<p>Note that the bimodality of the distributions of the first two dihedrals cannot be captured by the CG model. However, the size of the CG distribution will seemingly capture the two AA configurations into the single CG configuration. If the agreement is not satisfactory at the first iteration - which is likely to happen - you should play with the equilibrium value and force constants in the CG <code>.itp</code> and iterate till satisfactory agreement is achieved.</p>
+</section>
+<section id="comparison-to-experimental-results-further-refinements-and-final-considerations" class="level3">
+<h3 class="anchored" data-anchor-id="comparison-to-experimental-results-further-refinements-and-final-considerations">7. Comparison to experimental results, further refinements, and final considerations</h3>
+<hr>
+<p>As <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#comparison-to-experimental-results-further-refinements-and-final-considerations">before</a> it is imperative that any newly parameterised molecule for the Martini force field is validated against as many references as possible.</p>
+<section id="molecular-volume-and-shape" class="level4">
+<h4 class="anchored" data-anchor-id="molecular-volume-and-shape">7.1 Molecular volume and shape</h4>
+<hr>
+<p>To automate the creation of a vdwradii.dat for a CG molecule, a small Python script, <code>make_cg_sasa_file.py</code> is provided with this tutorial to automate the process. Otherwise, the steps and scripts <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html#molecular-volume-and-shape">from the previous tutorial</a> can be followed again.</p>
+</section>
+<section id="final-considerations" class="level4">
+<h4 class="anchored" data-anchor-id="final-considerations">7.2 Final considerations</h4>
+<hr>
+<p>This tutorial builds on the <a href="../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">Classic Small Molecule Parameterization tutorial</a> using the Fast_Forward package to provide partial automation of some processes. From here, it may be a good idea to explore some of the other features of the package, particularly the <code>ff_inter</code> program, to aid with parameterization of other small molecules from scratch.</p>
+</section>
+</section>
+<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
+<hr>
+<ul>
+<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
+<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
+<li><p><code>Fast_Forward</code> (<a href="https://github.com/fgrunewald/fast_forward/tree/main/fast_forward">https://github.com/fgrunewald/fast_forward/tree/main/fast_forward</a>)</p></li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] P.C.T. Souza, et al., <a href="http://doi.org/10.1038/s41592-021-01098-3"><em>Nat. Methods</em> <strong>2021</strong>, <em>18</em>, 382–388</a>.</p>
+<p>[2] R. Alessandri, et al., <a href="https://doi.org/10.1002/adts.202100391"><em>Adv. Theory Simul.</em> <strong>2022</strong>, <em>5</em>, 2100391.</a>.</p>
+<p>[3] M. Bugnon M, et al., <a href="https://doi.org/10.1021/acs.jcim.3c01053"><em>J. Chem. Inf. Model.</em> <strong>2023</strong>, <em>63</em>, 6469-75</a>.</p>
+<p>[4] J. Barnoud, https://github.com/jbarnoud/cgbuilder.</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cgmartini\.nl");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+<script src="../../../../js/sidebar-close.js"></script> 
+
+
+
+
+</body></html>
