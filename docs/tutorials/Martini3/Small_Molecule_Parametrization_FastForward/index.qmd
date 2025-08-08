@@ -34,7 +34,7 @@ In this tutorial, we will discuss how to build a Martini 3 topology for a new sm
 As before, we will use as an example the molecule *1-ethylnaphthalene* (Fig. 1), and make use of `Gromacs` versions 2024.x or later. FILES AVAILABLE HERE
 
 
-![Figure 1 | 1-ethylnaphthalene.](fig1.png)
+![Figure 1 | 1-ethylnaphthalene.](../Small_Molecule_Parametrization/fig1.png)
 
 ### 1. Generate atomistic reference data
 <hr>
@@ -79,7 +79,7 @@ Following the rules set out in the [classic Small Molecule Parameterization tuto
 <!-- insert figure with html to modify width -->
 <figure>
     <center>
-    <img src="fig2.png" alt="Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene." style="width:60%">
+    <img src="../Small_Molecule_Parametrization/fig2.png" alt="Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene." style="width:60%">
     <figcaption>Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.</figcaption>
     </center>
 </figure>
@@ -203,7 +203,7 @@ The plot produced should look like this:
 <!-- insert figure with html to modify width -->
 <figure>
     <center>
-    <img src="fig3.png" alt="Figure 3 | CG simulation vs. mapped bonded distributions." style="width:100%">
+    <img src="fig1.png" alt="Figure 3 | CG simulation vs. mapped bonded distributions." style="width:100%">
     <figcaption>Figure 3 | CG simulation vs. mapped bonded distributions.</figcaption>
     </center>
 </figure>
