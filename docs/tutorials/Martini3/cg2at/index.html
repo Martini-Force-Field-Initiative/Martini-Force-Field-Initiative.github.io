@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Backmapping systems with CG2AT – Martini Force Field Initiative</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-094f87d8d1cb9068919611e167c728e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Backmapping systems with CG2AT – Martini Force Field Initiative">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/cg2at/figure1.jpeg">
+<meta property="og:site_name" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="Backmapping systems with CG2AT – Martini Force Field Initiative">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/cg2at/figure1.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+<span class="menu-text">Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+</i> 
+<span class="menu-text">Downloads</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+</i> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+<span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/contact/index.html"> 
+<span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-fa-circle-info--help" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-circle-info" aria-label="circle-info"></i> Help</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-fa-circle-info--help">    
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-chat-right-text" role="img">
+</i> 
+ <span class="dropdown-text">Discussion Board</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/orgs/Martini-Force-Field-Initiative/discussions"><i class="bi bi-bug" role="img">
+</i> 
+ <span class="dropdown-text">Report an Issue</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+</i> 
+ <span class="dropdown-text">FAQs</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
+    <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Backmapping systems with CG2AT</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><b>Summary</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎓 Martini Lectures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🕸️ Legacy Material</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link active" data-scroll-target="#table-of-contents">Table of Contents</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#overview-and-required-tools" id="toc-overview-and-required-tools" class="nav-link" data-scroll-target="#overview-and-required-tools">Overview and Required Tools</a></li>
+  <li><a href="#tutorial" id="toc-tutorial" class="nav-link" data-scroll-target="#tutorial">Tutorial</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Backmapping systems with CG2AT</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p>Tutorial composed by C.M. Brown with inspiration from the original <a href="https://github.com/pstansfeld/cg2at">GitHub</a> page by P.J. Stansfeld and O.N. Vickery, and the help of A.H. de Vries.</p>
+In case of issues, please contact <a href="mailto:c.m.brown@rug.nl">c.m.brown@rug.nl</a>
+<hr>
+<section id="table-of-contents" class="level3">
+<h3 class="anchored" data-anchor-id="table-of-contents">Table of Contents</h3>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#overview-and-required-tools">Overview and Required Tools</a></li>
+<li><a href="#tutorial">Tutorial</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</section>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<hr>
+<p>As explained in the <a href="../../../../docs/tutorials/Martini3/Backward/index.html">backward tutorial</a>, to convert a coarse-grained (CG) structure to an atomistic (AT) level of detail, knowledge of the arrangements of atoms that correspond to the particle is needed. <code>CG2AT</code><sup>[1]</sup> is one such programme that does that using a fragment-based methodology that contains all the chemical and stereochemical information required to assemble the system. To improve the protein output, optionally an atomistic structure for the protein within the system can be provided, which <code>CG2AT</code> steers the <em>de novo</em> structure (that produced from just the CG information) to fit to, often improving the secondary structure (see <strong>Figure 1</strong>). At the end of the workflow, the user will have the necessary files to launch an AT simulation with <code>gromacs</code>. <br></p>
+<p><br></p>
+<p><img src="figure1.jpeg" class="img-fluid"></p>
+<p><strong>Figure 1: The CG2AT workflow.</strong> (A) Fragment file for phenylalanine. Each fragment has a header containing the corresponding CG bead name, for example, backbone [BB], side chain [SC1], and so on, followed by the atoms within the fragment. If the molecule is not processed by pdb2gmx, then the atom numbers should match the supplied topology itp file. (B) Topology file for phenylalanine. There are six sections within the topology file: CONNECT details the connectivity of the backbone and should follow a four-column convention: bead name, associated atom name, connected bead name, and numeric direction of the connected bead. GROUPS contain the fragment groupings, as shown in the (C) “Grouped” section. N_TERMINAL and C_TERMINAL contain any non-standard atomistic termini for the residue. CHIRAL contains any stereochemistry information present within the residue. This is described in the column format: central atom, atom to move, atom 1, atom 2, and atom 3. (C) Graphical depiction of the grouped (left) and modular (right) methodologies implemented within CG2AT, where atomistic fragments are either grouped and aligned with their CG beads or aligned individually in a modular fashion. (D) Description of the conversion of CG to AT. Initially, CG2AT converts the CG system in a de novo manner from the fragments supplied. If an atomistic protein structure is provided, this structure is aligned with the CG coordinates, with the de novo protein coordinates steered to the aligned protein coordinates to remove clashes with surrounding atoms, for example, lipids. Figure and caption taken from Vickery &amp; Stansfeld, 2021<sup>[1]</sup>.</p>
+</section>
+<section id="overview-and-required-tools" class="level3">
+<h3 class="anchored" data-anchor-id="overview-and-required-tools">Overview and Required Tools</h3>
+<hr>
+<p><strong>Requirements</strong></p>
+<blockquote class="blockquote">
+<p><strong><em>Software</em></strong></p>
+<ul>
+<li>Python v3 or higher<br>
+</li>
+<li>GROMACS &gt; v5</li>
+</ul>
+<p><strong><em>Non-standard python modules</em></strong></p>
+<ul>
+<li>Numpy<br>
+</li>
+<li>Scipy</li>
+</ul>
+</blockquote>
+<p><code>CG2AT</code> does not require compilation and can be downloaded from <a href="https://github.com/pstansfeld/cg2at">GitHub</a> or <a href="https://zenodo.org/records/5076091">Zenodo</a>, which is ready to use. However, it can also be installed via the command line. This can be achieved using:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install cg2at</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> stansfeld_rg cg2at</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The addition of <code>CG2AT</code> to the system PATH will make using the programme easier. To do this, in either your .profile, .bashrc or .zshrc file, you can add the following line:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"path_to_CG2AT2:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>path_to_CG2AT2</code> is replaced with the installation path for CG2AT. This will enable you to run the commands as shown in the tutorial.</p>
+</section>
+<section id="tutorial" class="level3">
+<h3 class="anchored" data-anchor-id="tutorial">Tutorial</h3>
+<hr>
+<p>In theory, <code>CG2AT</code> can convert between a large range of force fields and their iterations (see the <a href="https://github.com/pstansfeld/cg2at">GitHub</a> page and publication<sup>[1]</sup> for more information) to others, but in this tutorial, the focus will be on the charmm36m atomistic force field and Martini 3.</p>
+<p>The outputs from the <a href="../../../../docs/tutorials/Martini3/ProteinsIIa/index.html">Proteins IIa</a> KALP tutorial will be used, and all of the files for this tutorial can be downloaded <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/cg2at/tutorial_files.tar.gz">here</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To make the conversion from CG to AT (assuming that the fragments are present within <code>CG2AT</code>), all that is needed as input is the CG coordinate file. An additional file of the AT protein structure can be provided to obtain an aligned file (see <strong>Figure 1</strong>).</p>
+<p>From the downloaded files, we will use the final frame of the simulation, <code>dynamic.gro</code> and the initial KALP structure, <code>kalp-AA.pdb</code>. We are then ready to perform the <code>CG2AT</code> conversion using the following command:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cg2at</span> <span class="at">-c</span> dynamic.gro <span class="at">-a</span> kalp-AA.pdb <span class="at">-ff</span> charmm36-jul2020-updated <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="at">-fg</span> martini_3-0_charmm36 <span class="at">-w</span> tip3p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>-c</code> flag is for the CG coordinates, <code>-a</code> is for the AT protein structure, <code>-ff</code> will select the atomistic force field to map to, <code>-fg</code> will select the coarse-grained forcefield the supplied file is in and <code>-w</code> will select the water model to use in the AT system.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The command used can be simplified to</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cg2at</span> <span class="at">-c</span> dynamic.gro </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which will prompt selection of the force fields and water model, and only provide the <em>de novo</em> protein structure.</p>
+</div>
+</div>
+<p>The script will run through the following steps before producing the final atomistic system (which can be seen in <strong>Figure 1D</strong>):</p>
+<ul>
+<li>Initialisation</li>
+<li>Read in CG system</li>
+<li>Build protein systems</li>
+<li>Build non-protein system</li>
+<li>Merge and minimise <em>de novo</em></li>
+<li>NVT on <em>de novo</em></li>
+<li>Creating aligned system</li>
+</ul>
+<p>Depending on the size of your system, this command can take a while to complete, but should be relatively quick for this example. It will produce a file called <code>CG2AT_</code><em><code>date</code></em><code>_</code><em><code>time</code></em> in your working directory. This contains multiple sub-folders for the different mapping and minimisation steps.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If the programme fails, in each folder (and any sub-folders) the <code>gromacs-outputs</code> file will record if there are any warnings/errors.</p>
+</div>
+</div>
+<p>The folder of the most interest is the <code>FINAL</code> folder, which contains the <code>final_cg2at_aligned.pdb</code> (and the <em>de novo</em> version), the <code>.ff</code> folder, relevant <code>.itp</code> files (including position restraint files) and the topology file <code>topol_final.top</code>. Additionally, within this folder, the <code>script_timings.dat</code> will provide information about how long each step takes. We can look at the final structure:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CG2AT_date_time/FINAL/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> final_cg2at_aligned.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The system should look like that on the right in <strong>Figure 2</strong> after adjusting the visualisation selections. <br></p>
+<p><br> <img src="figure2.jpg" class="img-fluid"> <strong>Figure 2: Visualisation of the CG and AT systems.</strong> The left shows a cut-through of the CG KALP system embedded in a POPC bilayer, with the protein shown as the grey surface, lipids as spheres and solvent as a transparent blue surface. The right shows the AT conversion, with the protein shown as a cartoon, lipids and sticks (with hydrogens hidden for clarity) and solvent as a transparent blue surface. <br></p>
+<p><br> The atomistic system is now ready to simulate. Still working within the <code>FINAL</code> folder, we can perform an energy minimisation, an equilibration with position restraints and finally a short production run. The <code>.mdp</code> files are modified from <a href="http://www.mdtutorials.com/gmx/">Justin Lemkul’s gromacs tutorials</a><sup>[2]</sup>, which are a fantastic resource for an introduction to atomistic molecular dynamics simulations. For our system, we can run:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First energy minimisation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../../mdp_files/em.mdp <span class="at">-c</span> final_cg2at_aligned.pdb <span class="at">-p</span> topol_final.top <span class="at">-o</span> em.tpr</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> em <span class="at">-v</span> <span class="at">-nt</span> 4</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Now an equilibration step with position restraints</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../../mdp_files/eq.mdp <span class="at">-c</span> em.gro <span class="at">-r</span> em.gro <span class="at">-p</span> topol_final.top <span class="at">-o</span> eq.tpr</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> eq <span class="at">-v</span> <span class="at">-nt</span> 4</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#A short production run</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../../mdp_files/md.mdp <span class="at">-c</span> eq.gro <span class="at">-p</span> topol_final.top <span class="at">-o</span> md.tpr</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> md <span class="at">-v</span> <span class="at">-nt</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is not intended to be a guide to the best practices for atomistic simulations, but an idea of how the outputs from <code>CG2AT</code> can be used. Please see <a href="http://www.mdtutorials.com/gmx/">Justin Lemkul’s gromacs tutorials</a><sup>[2]</sup> as a more comprehensive guide.</p>
+</div>
+</div>
+<p>On a decent workstation, this simulation will take ~15 minutes to run, but it is for illustration purposes only. The simulation time can be shortened by reducing the number of steps in the <code>md.mdp</code> file. The simulation can be visualised using:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> md.gro md.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To improve visualisation, the perodic issues can be fixed using the following commands (for example, but there are many ways to do this):</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-s</span> md.tpr <span class="at">-pbc</span> whole <span class="at">-center</span> <span class="at">-o</span> md_whole.xtc <span class="co"># then select protein</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> md.gro md_whole.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Hope you enjoy converting your CG systems!</p>
+</section>
+<section id="troubleshooting" class="level3">
+<h3 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h3>
+<hr>
+<p>To try and solve any issues, the best port of call is the <a href="https://github.com/pstansfeld/cg2at">GitHub</a> page for further guidance, but some issues are discussed here.</p>
+<details>
+<summary>
+Fragment is not in the database
+</summary>
+<p>One of the most common errors is that a fragment is not part of the database. There are multiple things to check:</p>
+<ol type="1">
+<li><p>The first thing to check is that you are selecting the correct CG force field with the <code>CG2AT</code> command.</p></li>
+<li><p>Next, you can check the fragments that are present in the database. These can be found in the <code>CG2AT</code> installation, or by looking on the <a href="https://github.com/pstansfeld/cg2at">GitHub</a> page. The (non-protein or solvent) fragments (for martini_3-0_charmm36, for example) will be found in <code>cg2at/database/fragments/martini_3-0_charmm36/non_protein</code>. The residue name needs to match exactly for this to be recognised by <code>CG2AT</code>.</p></li>
+<li><p>If the fragment is not in the database, new fragments can be added by the user, which is useful for small molecules or less commonly encountered lipids, for example. The files needed to add a molecule/fragment to the database are:</p></li>
+</ol>
+<ul>
+<li><code>FRAG.pdb</code> (specific format, see below)</li>
+<li><code>FRAG.itp</code> (standard atomistic .itp file for the specified force field)</li>
+<li><code>FRAG_posre.itp</code> (position restraint file for the non-hydrogen atoms of the fragment)</li>
+<li><code>FRAG.top</code> <em>optional</em> (contains the information about grouping, connectivity and chirality). A small example can be seen in <strong>Figure 1B</strong>.</li>
+</ul>
+<p>The supplied <code>.pdb</code> file contains information about which atoms belong to which particles, and the atomistic relative position in space. The format for the atomistic part is a standard <code>.pdb</code> style. For example, this small molecule called 4HPA, which you can see below. This shows that atoms 1,2 and 18 belong to the <code>BB</code> bead etc. It is important <strong>all</strong> atoms are listed, including hydrogens.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">BB</span> <span class="ot">]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">1</span>  <span class="er">OA1</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.810</span>  <span class="er">-2.200</span>   <span class="er">1.420</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">2</span>  <span class="er">CA</span>  <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.610</span>  <span class="er">-2.080</span>   <span class="er">1.130</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">18</span>  <span class="er">OA2</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">1.440</span>  <span class="er">-2.790</span>   <span class="er">2.170</span>  <span class="er">1.00</span>  <span class="er">0.00</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">SC1</span> <span class="ot">]</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">3</span>  <span class="er">CB</span>  <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">1.050</span>  <span class="er">-0.590</span>   <span class="er">1.100</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">4</span>  <span class="er">HB1</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.850</span>  <span class="er">-0.190</span>   <span class="er">1.990</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">5</span>  <span class="er">HB2</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">2.040</span>  <span class="er">-0.560</span>   <span class="er">0.930</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">6</span>  <span class="er">CG</span>  <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.390</span>   <span class="er">0.300</span>   <span class="er">0.040</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">SC2</span> <span class="ot">]</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">7</span>  <span class="er">CD1</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.810</span>   <span class="er">0.250</span>  <span class="er">-1.300</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">8</span>  <span class="er">HD1</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">1.550</span>  <span class="er">-0.360</span>  <span class="er">-1.560</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">9</span>  <span class="er">CE1</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.190</span>   <span class="er">1.060</span>  <span class="er">-2.250</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">10</span>  <span class="er">HE1</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.490</span>   <span class="er">1.020</span>  <span class="er">-3.200</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">SC4</span> <span class="ot">]</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">11</span>  <span class="er">CZ</span>  <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.850</span>   <span class="er">1.910</span>  <span class="er">-1.880</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">12</span>  <span class="er">OH</span>  <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-1.450</span>   <span class="er">2.700</span>  <span class="er">-2.820</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">13</span>  <span class="er">HH</span>  <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-2.170</span>   <span class="er">3.240</span>  <span class="er">-2.380</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">SC3</span> <span class="ot">]</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">14</span>  <span class="er">CD2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.650</span>   <span class="er">1.160</span>   <span class="er">0.410</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">15</span>  <span class="er">HD2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.950</span>   <span class="er">1.200</span>   <span class="er">1.360</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">16</span>  <span class="er">CE2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-1.260</span>   <span class="er">1.970</span>  <span class="er">-0.550</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">17</span>  <span class="er">HE2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-2.010</span>   <span class="er">2.580</span>  <span class="er">-0.280</span>  <span class="er">1.00</span>  <span class="er">0.00</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These files would then be added to a folder with the name of your fragment (i.e.&nbsp;FRAG) in the <code>cg2at/database/fragments/martini_3-0_charmm36/non_protein</code> folder. When you run <code>CG2AT</code> again, the warning should be gone.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Currently, the most recent <a href="https://pubs.acs.org/doi/10.1021/acscentsci.5c00755">Martini 3 lipidome</a> lipids are not included in the database, so it would require manual inclusion by the user. The Martini 3 lipids released with the initial force field are included.</p>
+</div>
+</div>
+</details>
+<details>
+<summary>
+Issue finding information for residue: CYSD
+</summary>
+This is an issue with some combinations of selected force fields. It originates from a mismatch in the naming with the deprotonated CYS and those present in the selected <code>aminoacids.rtp</code>. The combination used in the tutorial can bypass this issue, but it is intended to be fixed overall.
+</details>
+<details>
+<summary>
+CUDA error
+</summary>
+Occasionally, you could get something similar to a CUDA error. The flag <code>-ncpus</code> can change the number of cores it utilises.
+</details>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<hr>
+<p>[1] Vickery, O. N., &amp; Stansfeld, P. J. (2021). CG2AT2: an enhanced fragment-based approach for serial multi-scale molecular dynamics simulations. <em>Journal of chemical theory and computation</em>, <em>17</em>(10), 6472-6482.</p>
+<p>[2] Lemkul J.A. (2018). From Proteins to Perturbed Hamiltonians: A Suite of Tutorials for the GROMACS-2018 Molecular Simulation Package, v1.0. <em>Living J. Comp. Mol. Sci. 1</em>, (1): 5068.</p>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cgmartini\.nl");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-left">
+
+</div>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../../../docs/faq/index.html">
+<p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
+</a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+<div class="footer-right">
+© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon">
+</div>
+</div>
+  </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const quotes = [
+          "<i>Shaken, not stirred.</i> - James Bond",
+          "<i>He was white and shaken, like a dry martini.</i> - P. G. Wodehouse",      
+          "<i>I think people think we're all sipping martinis by the pool.</i> - Maria Menounos",
+          "<i>Why don't you get out of that wet coat and into a dry martini?</i> - Robert Benchley",
+          "<i>Really, can anyone drink several martinis at lunch?</i> - Christine Baranski",
+          "<i>Zen martini: A martini with no vermouth at all. And no gin, either.</i> - P.J. O'Rourke",
+          "<i>I never go jogging, it makes me spill my martini.</i> - George Burns",
+          "<i>Martinis are the only American invention as perfect as a sonnet.</i> - H. L. Mencken",
+          "<i>He knows just how I like my martini: full of alcohol.</i> - Homer Simpson",
+          "<i>Happiness is: finding olives in your martini when you're hungry.</i> - Johnny Carson",
+          "<i>If it wasn't for the olives in his martinis he'd starve to death.</i> - Milton Berle",
+        ];
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
+
+      const footerLeft = document.querySelector('.footer-left');
+      if (footerLeft) {
+          footerLeft.innerHTML = randomQuote;
+      }
+    });
+</script>
+<script src="../../../../js/sidebar-close.js"></script> 
+
+
+
+
+</body></html>
