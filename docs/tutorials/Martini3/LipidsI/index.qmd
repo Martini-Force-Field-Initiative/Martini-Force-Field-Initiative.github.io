@@ -37,12 +37,12 @@ You can download all the files, including worked examples of this tutorial (GROM
 
 ``` bash
 tar -xzvf bilayer-lipidome-tutorial-I_minimal.tgz
-cd bilayer-lipidome-tutorial-I/minimal/spontaneous-assembly
+cd bilayer-lipidome-tutorial-I/minimal/
 ```
 
 ### Bilayer self-assembly
 ***
-We will begin with self-assembling a distearoyl-phosphatidylcholine (DSPC) bilayer from a random configuration of lipids and water in the simulation box. Enter the `spontaneous-assembly/initial_assembly` subdirectory. The first step is to create a simulation box containing a random configuration of 128 DSPC lipids. This can be done by starting from a file containing a single DSPC molecule, which you can get from the [Martini 2 lipidome](../../../downloads/force-field-parameters/martini2/lipidome.qmd#phosphatidylcholine-(pc)).
+We will begin with self-assembling a distearoyl-phosphatidylcholine (DSPC) bilayer from a random configuration of lipids and water in the simulation box. Enter the `spontaneous-assembly/` subdirectory. The first step is to create a simulation box containing a random configuration of 128 DSPC lipids. This can be done by starting from a file containing a single DSPC molecule, which you can get from the [Martini 2 lipidome](../../../downloads/force-field-parameters/martini2/lipidome.qmd#phosphatidylcholine-(pc)).
 
 ***
 > **_Note_** In the Martini 2 lipidome, the DPPC model structure, with 4 beads per tail, can represent both atomistic C16:0 dipalmitoyl-phosphatidylcholine (DPPC) and C18:0 distearoyl-phosphatidylcholine (DSPC) lipids. In the 2025 lipid parameter update<sup>[[4]](#references)</sup> that we will be using, the number of beads in DPPC and DSPC is still the same, but bonded parameters now distinguish the behavior between the two lipids (previously, both the same structure and the same topology model would represent C-16 (palmitoyl) and C-18 (stearoyl) tails, which would therefore be indistinguishable). For our purposes, it will be fine to use the DPPC structure from the Martini 2 lipidome as a starting point. Also note that you can download coordinate files for many Martini lipids from the website. For the time being these structures are mostly for Martini 2 lipids, but structurally the difference doesn’t matter in the cases, like DPPC/DSPC, where the Martini 3 lipid has the same overall mapping and number of beads. Finally, for cases when you have a lipid topology but not its structure, see the [Lipid Bilayers II tutorial](../LipidsII/index.qmd) on using the insane script, or look into the [`molmaker.py`](../../../downloads/tools/legacy.qmd#molmaker.py-create-molecule-coordinates-from-their-.itps) script for generating structures directly from topologies.
@@ -86,7 +86,7 @@ Now you will perform an energy minimization of the solvated system, to get rid o
 
 ``` bash
 wget https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/ff_parameters/martini3/martini_v300.zip
-unzip martini_v300.zip -x __MACOSX/*
+unzip martini_v300.zip -x __MACOSX/* */.DS_Store
 wget https://github.com/Martini-Force-Field-Initiative/M3-Lipid-Parameters/raw/refs/heads/main/ITPs/martini_v3.0.0_ffbonded_v2.itp
 wget https://github.com/Martini-Force-Field-Initiative/M3-Lipid-Parameters/raw/refs/heads/main/ITPs/martini_v3.0.0_phospholipids_PC_v2.itp
 ```
@@ -127,9 +127,11 @@ gmx grompp -f martini_md.mdp -c minimized.gro -p dspc.top -o dspc-md.tpr
 gmx mdrun -s dspc-md.tpr -v -x dspc-md.xtc -c dspc-md.gro
 ```
 
-This might take approximately 10 minutes on a single CPU but by default `gmx mdrun` will use all available CPUs on your machine. The `-v` option shows an estimate of the time to completion, and it is interesting to observe how the generations of desktop computers have sped up this 30 ns simulation over the years. See `gmx mdrun`’s help (`-h`) for instructions on how to tune the numbers of parallel threads gmx mdrun uses. You may want to check the progress of the simulation to see whether the bilayer has already formed before the end of the simulation. You may do this most easily by using a molecular viewer such as `VMD` or `pymol`. 
+This might take approximately 10 minutes on a single CPU but by default `gmx mdrun` will use all available CPUs on your machine. The `-v` option shows an estimate of the time to completion, and it is interesting to observe how the generations of desktop computers have sped up this 30 ns simulation over the years. See `gmx mdrun`’s help (`-h`) for instructions on how to tune the numbers of parallel threads gmx mdrun uses.
 
-Both `VMD` and `pymol` suffer from the fact that Martini bonds are usually not drawn because they are much longer than standard bonds and the default visualization is not very informative. For visualization with `pymol` this is solved most easily by converting the trajectory to `.pdb` format, explicitly writing out all bonds (select `System` or `DSPC`, depending on whether you want to visualize the entire system or only the lipids). The disadvantage is that very large files are produced in this conversion!
+Take the time while you wait for the simulation to complete to have a close look at the DSPC section of `martini_v3.0.0_phospholipids_PC_v2.itp`. The available bead types and their interactions are defined in `martini_v3.0.0.itp` and described in the 2021 Martini 3 paper<sup>[[3]](#references)</sup>. Also check out the bonded parameter definitions in `martini_v3.0.0_ffbonded_v2.itp`. Understanding how these files interoperate will help you work with the Martini 3 model and define new molecules or refine existing models.
+
+After the simulation has finished, you can visualize the trajectory to see whether a bilayer formed. You may do this most easily by using a molecular viewer such as `VMD` or `pymol`. Both `VMD` and `pymol` suffer from the fact that Martini bonds are usually not drawn because they are much longer than standard bonds and the default visualization is not very informative. For visualization with `pymol` this is solved most easily by converting the trajectory to `.pdb` format, explicitly writing out all bonds (select `System` or `DSPC`, depending on whether you want to visualize the entire system or only the lipids). The disadvantage is that very large files are produced in this conversion!
 
 ``` bash
 gmx trjconv -s dspc-md.tpr -f dspc-md.xtc -o dspc-md.pdb -pbc whole -conect
@@ -143,8 +145,6 @@ For `VMD`, a plugin script `cg_bonds-v5.tcl` was written that takes the `GROMACS
 ```
 
 The initial and final snapshots should look similar to `Fig. 1`, at least if the self-assembly resulted in a bilayer in the allotted time, which is not guaranteed. You may have noticed, however, that there is relatively little water, and some part of the initial solvated box is actually devoid of water. This helps to more or less guarantee a bilayer, but does make the simulation a little less realistic. You can test by solvating the lipids with more solvent. You can do this by changing the `-maxsol` flag on the `gmx solvate` command.
-
-In the meantime, have a close look at the DSPC section of the phospholipid `.itp` file. The available bead types and their interactions are defined in `martini_v3.0.0.itp` and described in the 2021 Martini 3 paper<sup>[[3]](#references)</sup>. Understanding how these files work, will help you work with the Martini 3 model and define new molecules or refine existing models.
 
 ![Figure 1 | DSPC bilayer formation. A) 128 randomly localized DSPC lipid molecules with water, shortly after starting the simulation. B) After a 30 ns-long simulation the DSPC lipids have aggregated and formed a bilayer.](Fig1.png)
 
@@ -190,7 +190,7 @@ From the latter simulation, we can calculate properties such as:
 In general, for the analyses, you might want to discard the first few ns of your simulation as non-equilibrated behavior. Plotting the area per lipid as a function of time should give you an indication of which part of the simulation you should definitely not include in the analysis.
 
 ***
-> **_Note_** The commands below assume your production run is producing files with the prefix `md` (`md.xtc`, `md.gro`, `md.edr`, etc.). This need not be the case, so replace these entries with the appropriate names for your simulations.
+> **_Note_** The commands below assume your production run is producing files with the prefix `md` (`md.xtc`, `md.gro`, `md.edr`, etc.). This need not be the case, so replace these entries with the appropriate names for your simulations. You can ensure the outputs all have the `md` prefix by passing flag `-deffnm md` to `gmx mdrun`.
 
 ***
 
@@ -218,6 +218,7 @@ import numpy as np
 xy = np.loadtxt('box-xy.xvg', comments=('#','@'))
 areas = xy[:,1] * xy[:,2] / 64
 np.savetxt('area.xvg', np.column_stack((xy[:,0], areas)))
+quit
 ```
 
 This will create file `area.xvg`, which you can visualize with `xmgrace`:
@@ -287,10 +288,10 @@ P<sub>2</sub> = 1/2 (3 cos<sup>2</sup><θ> − 1),
 
 where θ is the angle between the bond and the bilayer normal. P<sub>2</sub> = 1 means perfect alignment with the bilayer normal, P<sub>2</sub> = −0.5 anti-alignment, and P<sub>2</sub> = 0 random orientation.
 
-A script to calculate these order parameters can be downloaded in the [Downloads -> Tools -> Other tools](../../../downloads/tools/legacy.qmd) section of the website. There is an updated version of the script included with this tutorial, under `initial_assembly/do-order-gmx5-p3.py` directory. As it explains when you invoke it without arguments, `do-order-gmx5-p3.py` expects several; you may need to or want to change some of them. The command:
+A script to calculate these order parameters can be downloaded in the [Downloads -> Tools -> Other tools](../../../downloads/tools/legacy.qmd) section of the website. There is an updated version of the script included with this tutorial, under `spontaneous-assembly/do-order-gmx5-p3.py`. As it explains when you invoke it without arguments, `do-order-gmx5-p3.py` expects several; you may need to or want to change some of them. The command:
 
 ``` bash
-python3 do-order-gmx5-p3.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DSPC
+python3 ../do-order-gmx5-p3.py md.xtc md.tpr 15000 30000 20 0 0 1 128 DSPC
 ```
 
 will, for example, read 15 to 30 ns from the trajectory `md.xtc`; the simulation has 128 DSPC lipids and the output is the P2 calculated relative to the Z-axis, and averaged over results from every 20th equally-spaced snapshot in the trajectory. Results are available as output to the terminal and in the files `order.dat` and `S-profile.dat`; the latter is a profile that can be visualized with `xmgrace` and compared to published profiles, e.g. the ones in the supporting material of Ref.<sup>[4]</sup>.
