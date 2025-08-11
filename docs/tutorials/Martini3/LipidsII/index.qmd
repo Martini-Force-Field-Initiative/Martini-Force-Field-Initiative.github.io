@@ -59,12 +59,7 @@ As of writing, the PyPi `Insane` releases do not yet work with the updated Marti
 
 Start by installing the latest `Insane`, using `pip` from [its GitHub repo](https://github.com/Tsjerk/Insane):
 ``` bash
-pip install --force-reinstall --no-deps --user simopt git+https://github.com/Tsjerk/Insane.git
-```
-
-At this point, this version of `Insane` will be available under the `.local/` directory tree in your home. If `$HOME/.local/bin` is not already in your path, add it:
-``` bash
-export PATH="$HOME/.local/bin:$PATH"
+pip install --force-reinstall --no-deps simopt git+https://github.com/Tsjerk/Insane.git
 ```
 
 Then download the Martini 3 particle definitions and solvent/ion topologies, as well as the required `.itp` files for the updated lipid parameters:
