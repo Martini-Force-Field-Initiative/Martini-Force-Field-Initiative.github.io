@@ -543,10 +543,10 @@ What advantage does it bring to make the voxels perfectly tile the box?
 :::
 
 ## Surface Analysis 
-Although containment is a volumetric analysis, nothing is stopping us from converting our volume to a (set of) surfaces. The advantage is that certain observables like surface area are not converging nicely for voxels as the voxel volume decreases -- like volume does. Another thing to keep in mind is that a volume has no genus, but. a surface does, therefore for certain topological analysis it might be important to work with explicit surfaces instead!  
+Although containment is a volumetric analysis, nothing is stopping us from converting our volume to a (set of) surfaces. The advantage is that certain observables like surface area are not converging nicely for voxels as the voxel volume decreases -- like volume does. Another thing to keep in mind is that a volume has no genus, but a surface does, therefore for certain topological analysis it might be important to work with explicit surfaces instead!  
 
 ### Marching cubes
-We can use the marching cubes agorithm to transform our density into (a) surfaces.
+We can use the marching cubes algorithm to transform our density into (a) surfaces.
 
 
 ```python
@@ -830,17 +830,17 @@ Uncomment these following lines and update the path, if you have VMD installed a
 
 # Assignments
 
-## Assignment 1: Define a Lipid Vescile
+## Assignment 1: Define a Lipid Vesicle
 Using component acquisition and composition analysis, define what it means to be a vesicle and only return what the vesicle coat is made of and what it contains.
 
 Keep the following complications in mind:
 * What would happen if there are no components satisfying your constraints?
-* What if there are multiple vesicle?
+* What if there are multiple vesicles?
 * What about nested vesicles?
-* Check out tutorial 2 to see if you definition hols up :D
+* Check out tutorial 2 to see if you definition holds up :D
 
 ## Assignment 2: Define the Leaflets of a Lipid Vesicle
-Use your definition of the lipid vesicle to find the compostions of its leaflets.
+Use your definition of the lipid vesicle to find the compositions of its leaflets.
 
 Keep the following in mind:
 
@@ -849,7 +849,7 @@ Keep the following in mind:
 * It can be useful to select the whole molecule if a single atom falls in your definition.
 * Use the MDAnalysis help.
 * Perform the growth in the voxel grid using scipy.ndimage.binary_dilation(mode='wrap') is another way to go.
-* Check out tutorial 2 to see if you definition hols up :D
+* Check out tutorial 2 to see if you definition holds up :D
 
 ## Assignment 3: Be Creative and Change the Solvent
 Being able to select objects with their content means it should be trivial with all your knowledge of Martini by now to exchange the water inside the bicelle with some alcohol.
