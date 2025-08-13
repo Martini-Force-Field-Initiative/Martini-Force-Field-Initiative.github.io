@@ -1,20 +1,20 @@
 # MDVContainment -- Tutorial 1 (MartiniWorkshop 2025)
-This tutorial makes use of the [helper_tutorial_01.py]( https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/MDVContainment/helper_tutorial_01.py) and the [bicelle.gro](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/MDVContainment/bicelle.gro) structure, which can be downloaded by clicking on their respective link. Make sure to put these files in the same folder as you use to run this tutorial.
+This tutorial makes use of the [helper_tutorial_01.py]( https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/MDVContainment/helper_tutorial_01.py) and the [bicelle.gro](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/MDVContainment/bicelle.gro) structure, which can be downloaded by clicking on their respective link. Make sure to put these files in the same folder as you use to run this tutorial.  To install MDVContainment, please take a look at the the project's github page: [https://github.com/BartBruininks/mdvcontainment](https://github.com/BartBruininks/mdvcontainment).
 
 ## What is Containment
 Containment can be simply thought of as something *surrounding* something else completely (Fig. 0). This is useful for analyzing volumetric data in a hierarchical manner, allowing for robust processing at high throughput. This means containment it is a property which combines: 
 
 1) **Components** How the total space is partitioned (Strongly Connected Components analysis, SCC).
 2) **Contact Graph** Components that share a boundary are connected with an edge.
-3) **Containment Graph** A component can be contained by another combonent, causing its edge designating the contact to point from the container to the containee. I.e. the contained component lies downstream of the container component in the acyclic directed graph (DAG).  Only the directed edges are present in the containment graph.
+3) **Containment Graph** A component can be contained by another component, causing its edge designating the contact to point from the container to the content. I.e. the contained component lies downstream of the container component in the acyclic directed graph (DAG).  Only the directed edges are present in the containment graph.
 
-Identifying inside and outside is non-trivial in periodic spaces and MDVContaiment uses the concept of percolation to solve this problem. A component is considered contained if its inverse has a higher percolation number (rank) than the component itself, where the inverse of a component is all of space which is not the component in question. Meaning it also works for objects spanning the PBC such as a hollow periodic cylinder.
+Identifying inside and outside is non-trivial in periodic spaces and MDVContainment uses the concept of percolation to solve this problem. A component is considered contained if its inverse has a higher percolation number (rank) than the component itself, where the inverse of a component is all of space which is not the component in question. Meaning it also works for objects spanning the PBC such as a hollow periodic cylinder.
 
 The binary nature of the component labeling (all labels are strongly connected) in combination with the containment status of individual components is enough to collapse the contact graph into the containment graph (adding direction and defining what is outside). The [manuscript](https://doi.org/10.1101/2025.08.06.668936) of this work is available as a preprint.
 
 <center><img src="containment_examples.png" width="600"/></center>
 
-**Fig. 0** Some examples of contaiment in periodic spaces. **(A)** A vesicle formed from a bicelle. **(B)** A periodic cylinder formed by dye molecules. **(C)** A lipoplex hovering above a membrane. **D** A horrific triple stacked bilayer system in which one of them has a pore. Try to wrap your head around that one with your intution... In all the figures the red and blue densities represent lipid and solvent phases respectively. A density is rendered opaque if it does not have a child (it is a leaf in the containment graph), otherwise it is transparent (is a container). The arrows point from container to content. One can put every content into its container recursively to obtain the full box (albeit fragmented as is the case in system C).  
+**Fig. 0** Some examples of containment in periodic spaces. **(A)** A vesicle formed from a bicelle. **(B)** A periodic cylinder formed by dye molecules. **(C)** A lipoplex hovering above a membrane. **D** A horrific triple stacked bilayer system in which one of them has a pore. Try to wrap your head around that one with your intuition... In all the figures the red and blue densities represent lipid and solvent phases respectively. A density is rendered opaque if it does not have a child (it is a leaf in the containment graph), otherwise it is transparent (is a container). The arrows point from container to content. One can put every content into its container recursively to obtain the full box (albeit fragmented as is the case in system C).  
 
 ### Theory
 We will start by clarifying the objective and what we mean by containment. To do so
@@ -126,7 +126,7 @@ The densities {A, D} are represented in peach. The void components {A, C} are wh
 For questions or more information feel free to send an email to the author of this math and software (BMH Bruininks): `bartbruininks@gmail.com`
 
 ## Content of this Tutorial
-To determine the containment hierarchy on the bicelle test system (Fig. 10) and then perform some basic analysis on it. This system contains a vesicle/bicelle made of oleic acids. The bicelle is solvated in water and inside the bicelle is a small which is also filled with water. Here you will get used to using mdv.Containment and run it directly on MDAalysis atomgroups. We will perform a volume, genus and composition analysis of the components/containment.
+To determine the containment hierarchy on the bicelle test system (Fig. 10) and then perform some basic analysis on it. This system contains a vesicle/bicelle made of oleic acids. The bicelle is solvated in water and inside the bicelle is a small which is also filled with water. Here you will get used to using mdv.Containment and run it directly on MDAnalysis atomgroups. We will perform a volume, genus and composition analysis of the components/containment.
 
 1. Load a structure file and prepare for containment analysis
 2. Running the containment analysis
@@ -207,6 +207,9 @@ print(f'Wrapped positions and unwrapped positions are idential (False is good): 
 {np.all(whole_universe.atoms.positions == wrapped_positions)}')
 ```
 
+    Wrapped positions and unwrapped positions are idential (False is good): False
+
+
 
 ```python
 # Write the atomgroup after it has been made whole
@@ -245,6 +248,14 @@ containment = mdv.Containment(selection_atomgroup, resolution, closing)
 print(containment) # Shows the containment hierarchy
 ```
 
+    WARNING: beta/tempfactors already set in the universe, and will be overwritten with the component ids.
+    Containment Graph with 3 components (component: nvoxels):
+    └── [-2: 59600]
+        └── [1: 3868]
+            └── [-1: 532]
+    
+
+
 ::: {.callout-tip}
 ## Question 1
 
@@ -252,7 +263,7 @@ Which component(s) are the ones occupied with your selection?
 :::
 
 ### Contact graph
-The contact graph annotates every components contacts where a component is considered in contact if they share on of their 26 voxel neighbors (they share a vertex of their voxel simplices). The contact graph is always strongky connected.
+The contact graph annotates every components contacts where a component is considered in contact if they share on of their 26 voxel neighbors (they share a vertex of their voxel simplices). The contact graph is always strongly connected.
 
 
 ```python
@@ -263,10 +274,19 @@ plt.show()
 ```
 
 
+    
+![png](output_21_0.png)
+    
+
+
+
 ```python
 # Check if the contact graph is indeed strongly connected 
 print(f'The amount of connected components in the contact graph: {len(list(nx.connected_components(contact_graph)))}')
 ```
+
+    The amount of connected components in the contact graph: 1
+
 
 ### Containment graph
 The containment graph annotates containment with a directed edge pointing from the container to the content. Their might be multiple outsides in a system (like in the case of a periodic bilayer), meaning the containment graph might be disconnected. This is due to the fact that the directed edges in the containment graph are a subset of the undirected edges in the contact graph.
@@ -278,6 +298,12 @@ containment_graph = containment.voxel_containment.containment_graph
 nx.draw_networkx(containment_graph)
 plt.show()
 ```
+
+
+    
+![png](output_24_0.png)
+    
+
 
 ::: {.callout-tip}
 ## Question 2
@@ -291,6 +317,9 @@ Which component is contained by component 1?
 print(f'The amount of connected components in the containment graph: {len(list(nx.connected_components(contact_graph)))}')
 ```
 
+    The amount of connected components in the containment graph: 1
+
+
 The containment graph is also strongly connected, meaning the whole box can be described as a single recursive containment branch (there is only one absolute outside).
 
 ### Rank
@@ -302,6 +331,11 @@ The rank of a component is the amount of orthogonal dimensions in which is spans
 ranks = containment.voxel_containment.component_ranks
 _ = [print(f'The rank for component {int(key)} is: {int(value)}') for key, value in ranks.items()]
 ```
+
+    The rank for component 1 is: 0
+    The rank for component -1 is: 0
+    The rank for component -2 is: 3
+
 
 ::: {.callout-tip}
 ## Question 3
@@ -320,6 +354,10 @@ print(f'The boolean grid has the following dimensions: {boolean_grid.shape}')
 print(f'The boolean grid contains the following unique values: {np.unique(boolean_grid)}')
 ```
 
+    The boolean grid has the following dimensions: (40, 40, 40)
+    The boolean grid contains the following unique values: [False  True]
+
+
 ::: {.callout-tip}
 ## Question 4
 
@@ -336,6 +374,10 @@ print(f'The labeling grid has the same dimensions as the boolean grid: {boolean_
 print(f'The labeled grid contains the following unique values: {np.unique(labeled_grid)}')
 ```
 
+    The labeling grid has the same dimensions as the boolean grid: True
+    The labeled grid contains the following unique values: [-2 -1  1]
+
+
 <div class="alert alert-block alert-info">
 <b>Tip:</b> You can take a look at the help and dir `help(containment)` and/or `dir(containment.voxel_containment)` to have a look at your options to work with the containment object (at the voxel level).
 </div>
@@ -345,13 +387,13 @@ print(f'The labeled grid contains the following unique values: {np.unique(labele
 * Inside this water compartment lies our only positive component {1}, meaning it is made out of atoms in our selection. Thus, we have a drifting lipid density in water. 
 * Finally, inside this lipid density lies one tiny compartment {-1}, as indicated by their voxel counts. As they are negative this must be another volume of non-lipid tails. However, if we select also the first lipid tail bead, we get two small compartments inside the lipid vesicle.
 
-Without havig to open the structure with a 3D viewer, we are pretty well informed about what is currently present in our simulation. This allows for high throughput processing of complex systems and morphologies!
+Without having to open the structure with a 3D viewer, we are pretty well informed about what is currently present in our simulation. This allows for high throughput processing of complex systems and morphologies!
 
 ## Containment Graph Handling
 Being able to define components not on their local identity, but their global graph identity can be a big deal for handling high throughput data. This can be done by using the containment graph, as it contains information of how a single component (or multiple) is nested in the global environment.
 
 ### Using roots and leafs
-This can for example be used to auto analyse the content of a container if present using the concept of roots and leafs. A root is a node in a directed ascyclic graph (DAG) which has no parent, and leaf is a node which has no children. We can recognize all components which contained by the fact that they have at least one parent. Thus all non-root nodes in the containment graph are contained.
+This can for example be used to auto analyze the content of a container if present using the concept of roots and leafs. A root is a node in a directed acyclic graph (DAG) which has no parent, and leaf is a node which has no children. We can recognize all components which contained by the fact that they have at least one parent. Thus all non-root nodes in the containment graph are contained.
 
 ::: {.callout-tip}
 ## Question 5
@@ -386,6 +428,10 @@ print(f'The following nodes are not contained: {not_contained_nodes}')
 print(f'The following nodes are contained: {contained_nodes}')
 ```
 
+    The following nodes are not contained: {-2}
+    The following nodes are contained: {1, -1}
+
+
 ### Relative component acquisition
 Using a list of component ids for relative component querying, traveling up and down the DAG of containment.
 
@@ -396,12 +442,18 @@ child_nodes = set(int(i) for i in containment.voxel_containment.get_child_nodes(
 print(f'The root nodes: {root_nodes} have the following child nodes: {child_nodes}')
 ```
 
+    The root nodes: {-2} have the following child nodes: {1}
+
+
 
 ```python
 # Get the parents of nodes
 parent_nodes = set(int(i) for i in containment.voxel_containment.get_parent_nodes(list(leaf_nodes))) # Again we should use a list here
 print(f'The leaf nodes: {leaf_nodes} have the following parent nodes: {parent_nodes}')
 ```
+
+    The leaf nodes: {-1} have the following parent nodes: {1}
+
 
 
 ```python
@@ -410,6 +462,9 @@ downstream_nodes = set(int(i) for i in containment.voxel_containment.get_downstr
 print(f'The root nodes: {root_nodes} have the following downstream nodes: {downstream_nodes}')
 ```
 
+    The root nodes: {-2} have the following downstream nodes: {1, -2, -1}
+
+
 
 ```python
 # Get all upstream nodes (includes self)
@@ -417,10 +472,13 @@ upstream_nodes = set(int(i) for i in containment.voxel_containment.get_upstream_
 print(f'The leaf nodes: {leaf_nodes} have the following upstream nodes: {upstream_nodes}')
 ```
 
+    The leaf nodes: {-1} have the following upstream nodes: {1, -2, -1}
+
+
 ## Volumetric Analysis
 The volume of the components is indicated by the voxel count per component in the containment graph and is stored in `.voxel_containment.voxel_counts`.
 
-If we want to be precise about the exact volume we should not naively assume that our target voxel volume (resolution^3) is perfectly matching the resulting voxel volume. This is due to the fact that MDVContainment has to pick the resolution such that it perfectly tiles the unit cell. Therefore mdvcontainment needs to adjust the requested resolution slightly to satisfy this constraint. Thus to obtain the exact volumes we need to query the voxel counts in each component and multiply it by our exact single voxel volume.
+If we want to be precise about the exact volume we should not naively assume that our target voxel volume (resolution^3) is perfectly matching the resulting voxel volume. This is due to the fact that MDVContainment has to pick the resolution such that it perfectly tiles the unit cell. Therefore MDVContainment needs to adjust the requested resolution slightly to satisfy this constraint. Thus to obtain the exact volumes we need to query the voxel counts in each component and multiply it by our exact single voxel volume.
 
 
 ```python
@@ -432,12 +490,18 @@ print(f'A single voxel has a volume of {voxel_volume:.3f} nm^3, which is {abs(re
 nm^3 off from the target resolution ({resolution} nm) with a volume of {resolution**3} nm^3.')
 ```
 
+    A single voxel has a volume of 0.123 nm^3, which is 0.002nm^3 off from the target resolution (0.5 nm) with a volume of 0.125 nm^3.
+
+
 
 ```python
 # All the nodes in the containment graph
 component_ids = [int(id) for id in containment.voxel_containment.nodes] 
 print(component_ids)
 ```
+
+    [-2, -1, 1]
+
 
 
 ```python
@@ -446,12 +510,18 @@ voxel_counts = {int(id):float(count) for id, count in containment.voxel_containm
 print(voxel_counts)
 ```
 
+    {-2: 59600.0, -1: 532.0, 1: 3868.0}
+
+
 
 ```python
 # Moving from counting voxels to quantitative volume determination
 volumes = {int(id):float(count*voxel_volume) for id, count in voxel_counts.items()} # Some additional formatting for nice printing
 print(volumes) # The component volumes in nm^3
 ```
+
+    {-2: 7350.741135707312, -1: 65.61399805698474, 1: 477.05816632409204}
+
 
 
 ```python
@@ -463,6 +533,9 @@ for component in active_components:
 print(f'The volume of the lipid component and its content is: {combined_volume:.02f} nm^3')
 ```
 
+    The volume of the lipid component and its content is: 542.67 nm^3
+
+
 ::: {.callout-tip}
 ## Question 6
 
@@ -470,7 +543,7 @@ What advantage does it bring to make the voxels perfectly tile the box?
 :::
 
 ## Surface Analysis 
-Although containment is a volumetric analysis, nothign is stopping us from converting our volume to a (set of) surfaces. The advantage is that certain observables like surface area are not converging nicely for voxels as the voxel volume drecreases -- like volume does. Another thing to keep in mind is that a volume has no genus, but. a surface does, therefore for certain topological anlysis it might be important to work with explicit surfaces instead!  
+Although containment is a volumetric analysis, nothing is stopping us from converting our volume to a (set of) surfaces. The advantage is that certain observables like surface area are not converging nicely for voxels as the voxel volume decreases -- like volume does. Another thing to keep in mind is that a volume has no genus, but. a surface does, therefore for certain topological analysis it might be important to work with explicit surfaces instead!  
 
 ### Marching cubes
 We can use the marching cubes agorithm to transform our density into (a) surfaces.
@@ -532,6 +605,9 @@ mesh = create_mesh_from_arrays(vertices, faces, visualize=False, write=False) # 
 total_area = mesh.get_surface_area() / 100 # We need to convert from A^2 to nm^2
 print(f'The total area of the combined mesh(es) is: {total_area:.02f} nm^2')
 ```
+
+    The total area of the combined mesh(es) is: 22.29 nm^2
+
 
 ### Split surface area between inner and outer surfaces
 For simplicity we simply split inner and outer, even though there might be multiple inner surfaces.
@@ -603,6 +679,10 @@ print(f'The sum of innner and outer area is equal to the combined area calculate
 {abs(total_area - np.sum(list(inner_outer_area.values()))) < 0.000001}')
 ```
 
+    The inner and outer surface areas are respectively: 4.74 and 17.55 nm^2
+    The sum of innner and outer area is equal to the combined area calculated previously: True
+
+
 ::: {.callout-tip}
 ## Question 8
 
@@ -624,6 +704,13 @@ component_ids = containment.voxel_containment.nodes
 print(containment)
 ```
 
+    Containment Graph with 3 components (component: nvoxels):
+    └── [-2: 59600]
+        └── [1: 3868]
+            └── [-1: 532]
+    
+
+
 <div class="alert alert-block alert-info">
 <b>Tip:</b> The atom name/resname/molar count of each atom in the compartments can be counted and stored easily in a `compositions_dict` using the helper functions in the `mdvcontainment.compositions_logic`.
 </div>
@@ -638,6 +725,12 @@ compositions_names = cl.get_compositions(containment, component_ids, mode)
 compositions, fig, axs = analyse_composition(u, containment, compositions_names, mode, min_label_percent=5)
 ```
 
+
+    
+![png](output_84_0.png)
+    
+
+
 #### Make the pie chart plots counting the resnames of the atoms
 
 
@@ -646,6 +739,12 @@ mode = 'resnames' # 'resnames, names or molar'
 compositions_resnames = cl.get_compositions(containment, component_ids, mode)
 compositions, fig, axs = analyse_composition(u, containment, compositions_resnames, mode, min_label_percent=5)
 ```
+
+
+    
+![png](output_86_0.png)
+    
+
 
 #### Make the pie chart plots counting the resnames of the involved molecules (only count each molecule once)
 
@@ -656,8 +755,14 @@ compositions_molar = cl.get_compositions(containment, component_ids, mode)
 compositions, fig, axs = analyse_composition(u, containment, compositions_molar, mode, min_label_percent=5)
 ```
 
+
+    
+![png](output_88_0.png)
+    
+
+
 ## Containment Atomgroup I/O
-If you are accustumed to working with MDAnalysis universes and atomgroups, it can be very useful to convert your voxel components back into atomgroups. MDVContainment comes with some nice MDAnalysis interfacing capabilities to shield you from most of the bookkeeping.
+If you are used to working with MDAnalysis universes and atomgroups, it can be very useful to convert your voxel components back into atomgroups. MDVContainment comes with some nice MDAnalysis interfacing capabilities to shield you from most of the bookkeeping.
 
 ### Atomgroup from nodes
 This is probably the most useful method to know. It can turn a selection of component_ids in the containment graph into an MDAnalysis atomgroup.
@@ -669,6 +774,9 @@ atomgroup_from_nodes = containment.get_atomgroup_from_nodes(list(leaf_nodes))
 print(atomgroup_from_nodes)
 ```
 
+    <AtomGroup [<Atom 11: COO of type C of resname OA-1, resid 3 and segid SYSTEM>, <Atom 12: C1A of type C of resname OA-1, resid 3 and segid SYSTEM>, <Atom 21: COO of type C of resname OA-1, resid 5 and segid SYSTEM>, ..., <Atom 66210: C1A of type C of resname OAOH, resid 61465 and segid SYSTEM>, <Atom 66259: COOH of type C of resname OAOH, resid 61475 and segid SYSTEM>, <Atom 66260: C1A of type C of resname OAOH, resid 61475 and segid SYSTEM>]>
+
+
 ### Voxels positions from nodes
 For more advanced analysis using voxel operations, one could prefer to work on the voxel grid itself.
 
@@ -679,6 +787,15 @@ voxel_positions_from_atomgroup = containment.voxel_containment.get_voxel_positio
 print(voxel_positions_from_atomgroup)
 ```
 
+    [[ 0  0  0]
+     [ 0  0  1]
+     [ 0  0  2]
+     ...
+     [39 39 37]
+     [39 39 38]
+     [39 39 39]]
+
+
 ### Atomgroup from voxel positions
 Why stick to converting components into atomgroups, any voxel selection can be converted into an atomgroup!
 
@@ -688,6 +805,9 @@ Why stick to converting components into atomgroups, any voxel selection can be c
 atomgroup_from_voxels = containment.get_atomgroup_from_voxel_positions(voxel_positions_from_atomgroup)
 print(atomgroup_from_voxels)
 ```
+
+    <AtomGroup [<Atom 1: COO of type C of resname OA-1, resid 1 and segid SYSTEM>, <Atom 2: C1A of type C of resname OA-1, resid 1 and segid SYSTEM>, <Atom 6: COO of type C of resname OA-1, resid 2 and segid SYSTEM>, ..., <Atom 66254: COOH of type C of resname OAOH, resid 61474 and segid SYSTEM>, <Atom 66264: COOH of type C of resname OAOH, resid 61476 and segid SYSTEM>, <Atom 66265: C1A of type C of resname OAOH, resid 61476 and segid SYSTEM>]>
+
 
 ### Writing the containment atomgroup with annotated components
 We can ignore all the MDAnalysis warnings with respect to missing information as we simply want to write the atoms/residues/positions and labeling. The labeling of the components is written to the beta factor. This means the labeled components are not present if one writes a GRO file, as GRO files don't have a beta factor field.
@@ -726,7 +846,7 @@ Keep the following in mind:
 
 * Remember one can obtain the atomgroups and use them with MDAnalysis distance queries.
 * Think about which components need to distance query each other to cause their overlap to define a leaflet.
-* It can be useful to selet the whole molecule if a single atom falls in your definition.
+* It can be useful to select the whole molecule if a single atom falls in your definition.
 * Use the MDAnalysis help.
 * Perform the growth in the voxel grid using scipy.ndimage.binary_dilation(mode='wrap') is another way to go.
 * Check out tutorial 2 to see if you definition hols up :D
@@ -757,16 +877,28 @@ show_containment_with_composition(u, containment.voxel_containment, compositions
 ```
 
 
+    VBox(children=(VBox(children=(HBox(children=(HTML(value="<b>Comp. -2</b> &nbsp;&nbsp;<span style='color:gray'>…
+
+
+
 ```python
 compositions_resnames = cl.get_compositions(containment, mode='resnames')
 show_containment_with_composition(u, containment.voxel_containment, compositions_resnames, 'resnames', max_display_items=1000)
 ```
 
 
+    VBox(children=(VBox(children=(HBox(children=(HTML(value="<b>Comp. -2</b> &nbsp;&nbsp;<span style='color:gray'>…
+
+
+
 ```python
 compositions_molar = cl.get_compositions(containment, mode='molar')
 show_containment_with_composition(u, containment.voxel_containment, compositions_molar, mode='molar', max_display_items=1000)
 ```
+
+
+    VBox(children=(VBox(children=(HBox(children=(HTML(value="<b>Comp. -2</b> &nbsp;&nbsp;<span style='color:gray'>…
+
 
 # Conclusion
 You can use MDVContainment to analyse your systems in a hierarchical manner. It allows you to specify your selections in a much more robust manner allowing for high throughput data analysis.
@@ -792,12 +924,7 @@ https://doi.org/10.1101/2025.08.06.668936
 3. Components of rank 1 would be volumetric curves (a topological wire) spanning the PBC.
 4. There are 40x40x40 = 64000 voxels in total in the grid.
 5. Yes, a root node can be a leaf node
-6. If the voxel perfectly tile the box, the voxel grid is translational invariant under interger translations.
-7. The PBC are taken into account for mesh generation, as no triangles are added at the box 'bounradies'. However, duplicate vertex positions exist for vertices at the boundaries (not properly identified). This can be fixed, but would mess with the area calculations, so be careful.
-8. By using containment to generate specific meshes, we keep our handles on the resultin meshes, allowing us to identify which densities cause which areas without oppertunistic guessing.
+6. If the voxel perfectly tile the box, the voxel grid is translational invariant under integer translations.
+7. The PBC are taken into account for mesh generation, as no triangles are added at the box 'boundaries'. However, duplicate vertex positions exist for vertices at the boundaries (not properly identified). This can be fixed, but would mess with the area calculations, so be careful.
+8. By using containment to generate specific meshes, we keep our handles on the resulting meshes, allowing us to identify which densities cause which areas without opportunistic guessing.
 
-
-
-```python
-
-```
