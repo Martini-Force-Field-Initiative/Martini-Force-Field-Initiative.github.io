@@ -1,0 +1,480 @@
+---
+title: "TS2CG: membranes with user-defined shapes and compositions"
+format: html
+---
+
+<hr>
+In case of issues, please contact [ w.pezeshkian@rug.nl](mailto:  w.pezeshkian@rug.nl) or [m.konig@rug.nl](mailto: m.konig@rug.nl).
+<hr>
+
+### Summary
+- [`Introduction`](#introduction)
+    - [`Download and install TS2CG`](#download-and-install-ts2cg)
+- [`Tutorials`](#tutorials)
+    - [`1: Creating a simple vesicle`](#creating-a-simple-vesicle)
+    - [`2: Creating lipid Mixture`](#creating-lipid-mixture)
+    - [`3: Membrane domains`](#membrane-domains)
+    - [`4: Adding proteins to a membrane`](#adding-proteins-to-a-membrane)
+    - [`5: Proteins with a specific domain`](#proteins-with-a-specific-domain)
+    - [`6: Fixed shapes`](#fixed-shapes)
+- [`General information on how to run the outputs from TS2CG`](#general-information-on-how-to-run-the-outputs-from-ts2cg)
+    - [`.tsi file Format`](#tsi-file-format)
+    - [`Visualizing .tsi or .q files`](#visualizing-.tsi-or-.q-files)
+- [`How to obtain a TS file`](#how-to-obtain-a-ts-file)
+- [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
+- [`References`](#references)
+
+### Introduction
+<hr>
+
+`TS2CG` is used to build coarse-grained membrane models with user-defined shapes and compositions. Initially, it was developed for backmapping dynamically triangulated simulation structures into their corresponding molecular models. This gives us the possibility to incorporate experimentally obtained membrane shapes and compositions and generate CG membrane's initial structure.
+
+In Fig. 1 the general workflow of `TS2CG` is exemplified for a vesicle containing a single protein (shown as a yellow bead). The initial triangulated surface is rescaled to the desired system size and the two monolayers are generated. In order to have enough points for the subsequent lipid placement, the number of vertices in both monolayers is increased using a pointillism operation, i.e. each triangle is divided into four new triangles thereby increasing the number of vertices by a factor of four. In the last steps, proteins and lipids are placed on the respective vertices. For more details on the method, please refer to the original paper<sup>[[1]](#references)</sup>.  
+
+![Figure 1 | Steps in backmapping a triangulated surface (TS) mesh using TS2CG. (Step 1) A TS structure of a vesicle containing one protein (yellow bead) is rescaled and two TS structures corresponding to the two monolayers that are generated. (Step 2) Using a Pointillism operation, the number of vertices is increased. (Step 3) The CG protein structure together with a membrane segment is placed at the appropriate TS position. (Step 4) Lipids are placed at the remaining positions and the configuration is ready for subsequent MD simulation.](fig1.png)
+
+
+Currently, `TS2CG` version 1.1 can utilize two types of TS input file formats: Files with `.q` and `.tsi` extension. While both are quite similar, `.tsi` files are more generic and future developments will be based on this file format. For more details about the `.tsi` file format see the end of this file. In tutorials 1 to 5 we will use a `.tsi` file called `Sphere.tsi` to build a simple vesicle and subsequently add different membrane domains with and without protein insertions.
+
+Additionally, `TS2CG` can be used to create well-defined (analytical) shapes from scratch. In tutorial 6 we will demonstrate how to build a curved bilayer and maintain the curvature using a shape-preserving wall.
+
+![Figure 2 | Example applications of `TS2CG`. Mitochodrion lipid membrane backmapped from EM map (upper panel left), protein induced membrane tubulation backmapped from DTS simulation (upper panel right), budded lipid bilayer including STxB proteins backmapped from DTS simulation (lower panel left) and curved lipid bilayer with two different lipid types created from scratch using PCG.](fig2.png)
+
+#### Download and install TS2CG 
+<hr>
+
+Download the latest version of the `TS2CG` from:
+
+* [https://github.com/marrink-lab/TS2CG1.1](https://github.com/marrink-lab/TS2CG1.1)
+
+For compiling, `gcc` version 8.3.0 or above is needed.
+
+In the source code folder, execute the script `compile.sh` as:
+
+``` bash
+./compile.sh
+```
+
+In this folder, two binary files will be generated: PLM and PCG (and a SOL script for adding solvent to the systems). PLM performs pointillism (Step 1 and 2) and PCG performs Membrane builder (Step 3 and 4).
+
+### Tutorials
+<hr>
+
+From the downloaded `TS2CG` folder, you can find all the files needed for these tutorials in the tutorials folder. Please create a new folder for each tutorial and copy the files you from the files folder into this new folder.
+
+#### 1: Creating a simple vesicle 
+<hr>
+
+In this tutorial we will use a simple TS file (sphere) to create a vesicle. We choose this shape because it is small and can be run on your local machines. However, the same scheme can be used for any other TS files.
+
+From the files folder select the `Sphere.tsi` file. Use a text editor to open this and familiarize yourself with the structure. See `.tsi` file format at the end of this document for more information about the file format. You can also use `pymol` or `paraview` to visualize the structure (see Visualizing `.tsi` or `.q` files).
+
+The first step in backmapping any TS file to a CG structure is to increase the number of vertices using a pointillism operation (done by PLM). In the same step we also generate the two monolayers. 
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 3.8 -rescalefactor 4 4 4 
+```
+
+In the `pointvisualization_data` folder, you will find `gromacs` compatible structure files (`.gro`) for the upper and lower monolayer including a topology file (`.top`) each as well as `paraview` compatible `.vtu` files for both monolayers. You can have a look at the created points using `vmd` or `paraview`. 
+
+The second step to create a vesicle is two place lipids on the generated points using PCG. For this you need to write a `.str` file defining the lipid composition of both monolayers. Using any text editor, create an `input.str` file and write the following text in it:
+
+``` markdown
+[Lipids List]
+Domain      0
+POPC     1     1     0.64
+End
+```
+
+This implies that your system should contain only one lipid domain with POPC in both monolayers using an area per lipid (APL) for POPC of 0.64. To know more about the `.str` file format and other options see the [User Manual](https://github.com/marrink-lab/TS2CG1.1).
+
+The other thing we need is a lipid structure file (`.LIB`). This file simply defines the lipid connectivity for placing the lipid beads on the previously generated points. Making this file is easy but might be time consuming for many different lipids. (See the [User Manual](https://github.com/marrink-lab/TS2CG1.1) for the exact file format). Luckily, we already have a file that contains all Martini3 lipids called `Martini3.LIB`, you can find it in the files folder.
+
+Using these two files now you can execute `PCG`:
+
+``` bash
+Path_to_TS2CG/PCG -str input.str -Bondlength 0.2 -LLIB Martini3.LIB -defout system
+```
+
+The outputs are `system.gro` and `system.top`:
+
+![Figure 3 | Snapshot of the simple POPC vesicle made with `vmd` (left) and the corresponding topology file (right).](fig3.png)
+
+``` markdown
+;This file was generated by TS Back Mapping
+[ system ]
+Expect a large membrane
+; domain 0
+; in the upper monolayer
+POPC 6256
+; domain 0
+; in the lower monolayer
+POPC 3876
+```
+
+Creating vesicles like shown above is straightforward however running them is not so simple. Here we used the assumption that POPC has the same area per lipid in both leaflets which is unfortunately not true for small vesicles due to the highly curved nature of the leaflets. To account for the curvature effect we have to allow the vesicle to equilibrate both water content and number of lipids in each leaflet. The easiest way to do this is by creating water pores for equilibration and closing theses pores in a step-wise manner. You can find a script called `run_vesicle.sh` in the files folder, which will create a POPC vesicle with 4 nm pores along each dimension. The vesicle will also be filled with water, energy minimized and equilibrated, thereby gradually closing the water pores. Note: We use MDAnalysis to create a position restraints file which is need to keep the lipid tails out of the pores.
+
+#### 2: Creating lipid Mixture
+<hr>
+
+Repeating the previous tutorial but with the `.str` file shown below, you will create a 50/50 mixture of POPC and DOPC in both monolayers. 
+
+``` markdown
+[Lipids List]
+Domain      0
+POPC      0.5     0.5     0.64
+DOPC      0.5     0.5     0.67
+End
+```
+
+Executing PCG will generate two output files system.gro and `system.top`:
+
+![Figure 4 | Snapshot of the mixed POPC (blue) / DOPC (orange) vesicle made with vmd (left) and the corresponding topology file (right).](fig4.png)
+
+``` markdown
+;This file was generated by TS Back Mapping
+[ system ]
+Expect a large membrane
+[ molecules ]
+; domain 0
+; in the upper monolayer
+POPC 3056
+DOPC 3056
+; domain 0
+; in the lower monolayer POPC 1893
+DOPC 1893
+```
+
+#### 3: Membrane domains
+<hr>
+
+To make a membrane containing two or more different lipid domains, we need to modify the `.tsi` file. These changes can be made manually or by using a script. Here we only try it manually.
+
+First use the command below to obtain a `.gro` file containing all the vertices:
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 0 -rescalefactor 0.2 0.2 0.2 -Mashno 0
+```
+
+This time, we reduced the size of the `original .tsi` file (using `-rescalefactor 0.2 0.2 0.2`) and kept the initial number of vertices (using `-Mashno 0`). This allows for an easier selection of points when done manually. Now, open the file `Upper.gro` from the `pointvisualization_data` folder using `vmd`. You will see all the vertices of the triangulated surface. Find a few beads for which you want to create a new domain of lipids (e.g. select beads in `vmd` using `Mouse > Label > Atoms`). I selected vertices [113, 117, 124, 48, 112] for domain number 1 and [74, 82, 81, 45] for domain number 2 and the rest remains as domain 0.
+
+Next, open `Sphere.tsi` using a text editor and find the line of selected vertices. Add the domain ID to the end of the line (here: add a 1 for vertices with index 113, 117, 124, 48, 112 and a 2 for vertices with index 74, 82, 81, 45). Note: Lines that do not have any domain ID belong to domain 0 per default. After doing so, you need to modify the `input.str` file to define the lipid composition of each domain:
+
+``` markdown
+[Lipids List]
+Domain      0
+POPC     1     1     0.64
+End
+Domain      1
+DOPC     1     1     0.64
+End
+Domain       2
+POPE     1     1     0.64
+End
+```
+
+Then execute `PLM` and `PCG` using the commands below (as done in the previous tutorials). This will generate a vesicle with three lipid domains.
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 3.8 -rescalefactor 4 4 4
+```
+``` bash
+Path_to_TS2CG/PCG -str input.str -Bondlength 0.2 -LLIB Martini3.LIB -defout system
+```
+
+![Figure 5 | Snapshot of vertices from Upper.gro  after defining three different domains made with `vmd` (left) and the corresponding topology file (right).](fig5.png)
+
+``` markdown
+;This file was generated by TS Back Mapping
+[ system ]
+Expect a large membrane
+; domain 0
+; in the upper monolayer
+POPC 5833
+; domain 0
+; in the lower monolayer
+POPC 3615
+; domain 1
+; in the upper monolayer
+DOPC 262
+; domain 1
+; in the lower monolayer
+DOPC 161
+; domain 2
+; in the upper monolayer
+POPE 160
+; domain 2
+; in the lower monolayer
+POPE 99
+```
+
+#### 4: Adding proteins to a membrane
+<hr>
+
+In this tutorial we are going to add two types of proteins to a vesicle containing POPC lipids. These proteins are named `P1.gro` and `P2.gro`, which will be called protein1 and protein2 in the rest of this tutorial. First, we need to select vertices for the protein placmenent in the `.tsi` file. Afterwards, we match their corresponding names in the `.gro` file with the ones in the `.str` file. Therefore, we need to perform some tricks on the `.tsi` and `.str` file. These changes can be made manually or by using a script. Here we only try it manually.
+
+First, use the below command to obtain a `.gro` file of vertices positions of our vesicle:
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 0 -rescalefactor 0.2 0.2 0.2 -Mashno 0
+```
+
+Then in the `pointvisualization_data` folder, open `Upper.gro` using `vmd`. You will see all the vertices of the triangulated surface. Find some vertices at which you would like to place the proteins. We selected vertices 22 and 5 to place two copies of protein1 and vertex 30 to place one copy of protein2. Using a text editor, open the `Sphere.tsi` file and go to the bottom of the file to the inclusion section. As we want to add 3 proteins, change the zero to 3 and then in the next line, add the protein information. For each protein, you need 3 integer numbers and 2 float numbers. The first number is the protein index that should start from 0. The second number is the protein type id, which is 1 for potein1 and 2 protein2 (it can be any number but the type id must match the one in `input.str`, see below). The third number is the index of the vertex that the protein will be placed on. The last two numbers are the orientation of the protein in the local coordinate frame of the vertex, these should be a unit two-dimensional vector. The inclusion section of `Sphere.tsi` file should look like this:
+
+``` markdown
+inclusion      3
+0     1     22     0     1
+1     1      5     0     1
+2     2     30     0     1
+```
+
+Now, open `P1.gro` and `P2.gro` from the files folder and change the first line to the name of the proteins (protein1 and protein2). These files should be included on top of your `input.str` file as:
+
+``` markdown
+include P1.gro
+include P2.gro
+```
+
+The last step is to define the proteins in the `input.str` file. In addition to including the protein `.gro` file names in the header, there should be some information about the protein placement:
+
+``` markdown
+[Protein List]
+protein1     1     0.01     0     0     -3.7
+protein2     2     0.01     0     0     -2.4
+End Protein
+```
+
+The first and the last line are keywords indicating that we want to define proteins. The lines in between the first and the last depend on the number of unique proteins you want to include. Here we got two, therefore we only have two lines in between. The first entry is the protein name in the `.gro` file. The second entry indicates the protein type ID (this ID was used in the `.tsi` file in the inclusion section). The last entry indicates how much we should move the proteins in the normal direction of the membrane surface. The remaining three numbers are not being used in the current approach.
+
+Finally, you can execute `PLM` and `PCG` using the commands below (or as previous tutorials). The result should be a POPC membrane with three proteins.
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 3.8 -rescalefactor 3 3 3
+```
+``` bash
+Path_to_TS2CG/PCG -str input.str -Bondlength 0.2 -LLIB Martini3.LIB -defout system
+```
+
+![Figure 6 | Cross-section (left) and full vesicle (right) of system.gro after placment of three protein copies.](fig6.png)
+
+#### 5: Proteins with a specific domain
+<hr>
+
+In this tutorial we are going to combine Tutorials 3 and 4 to define a specific lipid domain for each protein copy. So let's change the domain ID of vertices 22, 5, 30 that are supposed to be the location of the proteins in `Sphere.tsi` as demonstrated in Tutorial 3. We set 22 and 5 to domain 1 and 30 to domain 2. We also change the lipid section in `input.str` to:
+
+``` markdown
+[Lipids List]
+Domain      0
+POPC     1     1     0.64
+End
+Domain      1
+DOPC     1     1     0.64
+End
+Domain       2
+POPE     1     1     0.64
+End
+```
+
+Now perform `PLM` and `PCG` again:
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 3.8 -rescalefactor 6 6 6
+```
+``` bash
+Path_to_TS2CG/PCG -str input.str -Bondlength 0.2 -LLIB Martini3.LIB -defout system
+```
+
+![Figure 7 | Mixed POPC/DOPC/POPE with three proteins. Each protein copy has its own spectic lipid enviornment.](fig7.png)
+
+You may not be happy about the lipid domain around the proteins. Since the resolution of the `.tsi` file is low, the shape of the lipid domain around the proteins gets strongly affected by the discretization. This can be improved with a little bit of effort.
+
+Use `Sphere.tsi` from the files folder and add the same inclusion section as before but without adding the lipid domains. The end of your `.tsi` file should look like this:
+
+``` markdown
+inclusion      3
+0     1     22     0     1
+1     1      5     0     1
+2     2     30     0     1
+```
+
+Now we are adding the lipid domains around each protein copy using a small script. But first we need to increase the number of the triangles and global size of the system without affecting the shape of the `.tsi` file: 
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere.tsi -bilayerThickness 0 -rescalefactor 8 8 8
+```
+
+The output `.tsi` file is called `extended.tsi`. Change the name of this file to `Sphere_2.tsi`.
+
+Next, compile `tsi_format.cpp`, which can be found in the files, for creating the lipid domains using `c++`:
+
+``` bash
+g++ -o domain tsi_change.cpp
+```
+
+and then execute following command to create lipid domains with diameter of 8 nm around each protein copy:
+
+``` bash
+./domain Sphere_2.tsi Sphere_domain.tsi 8
+```
+
+The `Sphere_domain.tsi` file is the new `.tsi` file which contains the `Sphere_2.tsi` surface and protein information. The domain ids around each protein match the protein ids. Next, we are going to perform `PLM` and `PCG` using `Sphere_2.tsi`. This time we ask `PLM` to not to extend the surface and just create the two monolayer.
+
+``` bash
+Path_to_TS2CG/PLM -TSfile Sphere_domain.tsi -bilayerThickness 4 -rescalefactor 1 1 1 -Mashno 0 
+```
+``` bash
+Path_to_TS2CG/PCG -str input.str -Bondlength 0.2 -LLIB Martini3.LIB -defout system
+```
+
+You should get an output as shown below figure.
+
+![Figure 8 | Mixed POPC/DOPC/POPE with three proteins. The lipid domain around each protein is precisely defined by an 8 nm circle around each protein copy.](fig8.png)
+
+#### 6: Fixed shapes
+<hr>
+
+Without a need for a `.tsi` file, `PCG` also allows for creating membranes with certain fixed shapes such as flat bilayers, spheres, cylinders and other periodic shapes that can be written as a sum of fourier 1D modes. This is a new feature of `PCG` and therefore some limitations exist. There is also a wall option that allows you to keep the shape during both the equilibration and production run.
+
+``` bash
+Path_to_TS2CG/PCG -str input.str -Bondlength 0.2 -LLIB Martini3.LIB -defout system -function analytical_shape
+```
+
+In the `.str` file the shape information is defined as below for creating different shapes.
+
+Note: Not all the options need to be specified in the `.str` file. The shape type option is needed but you could use the default values for the rest. 
+
+<table style="border: none; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="7"><colgroup><col width="297" /> <col width="297" /> </colgroup>
+<tbody>
+<tr valign="top">
+<td style="text-align: justify;">
+<p><i><span style="text-decoration: underline;"><b>Cylinder</b></span></i></p>
+<p><span style="font-family: Courier New, serif;">[Shape Data]<br /> ShapeType Cylinder<br /> Box 40 40 40<br /> Density 2<br /> Thickness 4<br /> Radius 12<br /> End</span></p>
+</td>
+<td style="text-align: justify;">
+<p><i><span style="text-decoration: underline;"><b>1D Fourier Shape</b></span></i></p>
+<p><span style="font-family: Courier New, serif;">[Shape Data]<br /> ShapeType 1D_PBC_Fourier<br /> Box 20 10 20<br /> WallRange 0 1 0 1<br /> Density 3 1<br /> Thickness 4<br /> Mode 1.5 1 0<br /> Mode 0.5 2 0<br /> End</span></p>
+</td>
+</tr>
+<tr valign="top">
+<td style="text-align: justify;">
+<p><i><span style="text-decoration: underline;"><b>Sphere</b></span></i></p>
+<p><span style="font-family: Courier New, serif;">[Shape Data] <br />ShapeType Sphere<br /> Box 40 40 40<br /> Density 2<br /> WallDensity 1 1<br />Thickness 4<br />DL 0.2<br />Radius 15<br /> End</span></p>
+</td>
+<td style="text-align: justify;">
+<p><i><span style="text-decoration: underline;"><b>Flat</b></span></i></p>
+<p><span style="font-family: Courier New, serif;">[Shape Data] <br /> ShapeType Flat<br /> Box 40 40 40<br /> Density 2 2<br /> Thickness 4<br />WallRange 0 1 0 1<br /> End</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<center>
+![Figure 9 | Curved lipid bilayer created with the analytic shape function of PCG.](fig9.png)
+</center>
+
+##### Creating the Wall
+<hr>
+
+To generate the wall beads, you need to add the following flags to the `PCG` command line:
+
+``` bash
+-Wall -WallBName WL
+```
+
+Note, it is all on you how to make the wall bead to interact with the bilayer for keeping the shape. However, the best option is to create a repulsive LJ interaction between the wall beads and lipid tail beads while the wall beads are invisible to other beads in the system. Example `.mdp` can be found in `files/mdp_wall`.
+
+### General information on how to run the outputs from `TS2CG`
+<hr>
+
+1. A short (100 steps) energy minimization with softcore potentials while restraining the lipid headgroups and protein backbones.
+1. Normal energy minimization without solvent.
+1. Short equilibration without solvent.
+1. Solvation (Note: Before solvation, always make sure the box size is what you need).
+``` bash
+./SOL -in input.gro -tem water.gro -unsize 3 -ion 0 0 -o solvated.gro -Rcutoff 0.32
+```
+5. Energy minimization.
+5. Equilibration.
+5. Production run.
+
+#### `.tsi` file Format
+<hr>
+
+The following shows a part of a `.tsi` file with all necessary keywords highlighted in bold. Every `.tsi` file starts with a line calling **version 1.1** of `TS2CG`. The next line defines the **box** size (x, y, and z) of the system in nm. The next three sections describe the TS mesh. Each section starts with a keyword (vertex, triangle and inclusion) and their corresponding number. Here, we have 130 vertices (the numbering starts from 0). Each **vertex** has an index and a position in x, y and z (in nm). Additionally, a vertex can have a domain id, e.g., vertices 1, 126 and 127 belong to domain 1. The default domain is 0. The 130 vertices are connected via 256 triangles. Again, every **triangle** has an index (starting from 0) and is defined by the vertices the triangle connects, i.e. triangle 0 connects vertices 11, 55 and 43. Furthermore, a `.tsi` file can have a (protein) **inclusion** section. Here, there are three inclusions from two different types. Again, each inclusion has an index. The index is followed by the inclusion type (here: type 1 for inclusions 0 and 1, type 2 for inclusion 2) and the corresponding vertex index. The last two (floating point) numbers describe a unit two dimensional vector (sum of both numbers must be one!) which defines the orientation of the inclusion with respect to the bilayer normal.
+
+>
+**version 1.1**                                                                    <br>
+**box**  &emsp; 50.0000000000   &emsp;  50.0000000000   &emsp;  50.0000000000      <br>
+**vertex**   &emsp;      130                                                       <br>
+0   &emsp;  21.1606233083  &emsp;   25.4394806652   &emsp;  25.5960855271          <br>
+1   &emsp;  27.0284995400  &emsp;   23.2012757654   &emsp;  21.6715285158 &emsp; 1 <br>
+2   &emsp;  26.9921761232  &emsp;   25.5136587223   &emsp;  28.0195776981          <br>
+3   &emsp;  23.3273229896  &emsp;  26.2315165676    &emsp;  28.0075875808 &emsp; 2 <br>
+4   &emsp;  26.2722773116  &emsp;   26.3271061222   &emsp;  28.1420707299          <br>
+5   &emsp;  22.0396876425  &emsp;   23.6080597437   &emsp;  26.8858740866 &emsp; 2 <br>
+.                                                                                  <br>
+.                                                                                  <br>
+.                                                                                  <br>
+125 &emsp;  21.5556280860  &emsp;   25.5595098219   &emsp;  26.5363425272          <br>
+126 &emsp;  23.2182025326  &emsp;   26.8060871266   &emsp;  21.5195141902  &emsp;   1   <br>
+127 &emsp;  25.3199303865  &emsp;   24.3519379911   &emsp;  20.6752314764  &emsp;   1   <br>
+128 &emsp;  28.0093200458  &emsp;   22.6356946990   &emsp;  23.4685318698          <br>
+129 &emsp;  21.4000741257  &emsp;   26.5841316766   &emsp;  25.2761757772          <br>
+**triangle**       256                                                                 <br>
+0  &emsp;   11  &emsp;   55  &emsp;   43                                           <br>
+1  &emsp;   94  &emsp;   75  &emsp;  14                                            <br>
+2  &emsp;   64  &emsp;   3   &emsp;  &nbsp; 91                                     <br>
+3  &emsp;   59  &emsp;   52  &emsp;  40                                            <br>
+.                                                                                  <br>
+.                                                                                  <br>
+.                                                                                  <br>
+253 &emsp;  33  &emsp;  109  &emsp;   44                                           <br>
+254 &emsp;  53  &emsp;   69  &emsp; &nbsp;   47                                          <br>
+255 &emsp;  85  &emsp;   6   &emsp; &nbsp; &nbsp;  74                                          <br>
+**inclusion**     &emsp;   3                                                           <br>
+0  &emsp;    1   &emsp;  22   &emsp;   0   &emsp;  1                               <br>
+1  &emsp;    1  &emsp; &nbsp;  5   &emsp;   0   &emsp;  1                               <br>
+2  &emsp;    2   &emsp;  30   &emsp;   0   &emsp;  1                               <br>
+
+### Visualizing `.tsi` or `.q` files
+<hr>
+
+From the `files` folder in the tutorial folder copy a `.tsi` file in your working folder. These files can be visualized using `pymol`, `vmd` or `paraview`.
+
+##### `Pymol`
+
+You need `PyMOL2q.py` from the `TS2CG` folder then do the following steps:
+
+1. Load `Pymol`.
+1. On `pymol` window, execute `“run PyMOL2q.py”`
+1. Then execute `“loadq Your_TS_File.tsi”`
+
+##### `paraview` or `vmd` visualization of the generated points
+
+```bash 
+Path_to_TS2CG/PLM -TSfile Your_TS_File -bilayerThickness 0 -rescalefactor 1 1 1 -Mashno 0
+```
+
+Then in `pointvisualization_data` folder, you can find several files and it is the gro file which can be used for visualization.
+
+### How to obtain a TS file
+<hr>
+
+TS files can be obtained from different sources. 1) Form DTS simulations or 2) by converting density points to mashes for example using `Blender`, `Geogram` and `GAMer`. When using `Blender` you can import any `.stl` file or other 3D file and use `blender_mesh2tsi.py` which can be found in the files folder.
+
+### Tools and scripts used in this tutorial
+<hr>
+
+- `GROMACS` ([http://www.gromacs.org/](http://www.gromacs.org/))
+
+- `VMD` ([https://www.ks.uiuc.edu/Research/vmd/](https://www.ks.uiuc.edu/Research/vmd/))
+
+- `TS2CG` ([https://github.com/marrink-lab/TS2CG1.1](https://github.com/marrink-lab/TS2CG1.1))
+
+### References
+<hr>
+
+[1] Pezeshkian, W., König, M., Wassenaar, T.A. et al. Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020) (https://doi.org/10.1038/s41467-020-16094-y)
+
+
+<hr>
