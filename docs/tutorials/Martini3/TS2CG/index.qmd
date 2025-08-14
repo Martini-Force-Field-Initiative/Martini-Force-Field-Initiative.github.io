@@ -24,14 +24,14 @@ format: html
 
 ## Introduction
 
-*TS2CG* is a tool for building coarse-grained (CG) membrane models with user-defined and experimentally informed shapes and compositions$^1$. It builds simulation-ready membrane models for molecular dynamics (MD) simulations, based on triangulated surfaces or analytical membrane shape definitions. Additionally, *TS2CG* serves as a backmapping algorithm that converts dynamically triangulated surface (DTS) simulations into CG MD simulations$^2$.
+*TS2CG* is a tool for building coarse-grained (CG) membrane models with user-defined and experimentally informed shapes and compositions$^1$. It builds simulation-ready membrane models for molecular dynamics (MD) simulations, based on triangulated surfaces or analytical membrane shape definitions. Additionally, *TS2CG* serves as a backmapping algorithm that converts dynamically triangulated surface (DTS) simulations into CG MD simulations$^{2, 3}$.
 
 The latest release is *TS2CG* version 2.0, representing an advancement in membrane modeling capabilities$^1$. Building upon the original *TS2CG*, version 2.0 introduces new features for automated protein placement and curvature-informed lipid distributions. Additionally, it features a Python API that improves ease of use and enables easier extensibility through integration with Python modules.
 
 ![](image_0.png)
-**Figure 1: TS2CG 2.0 showcase models$^1$.** a) Mitochondrial crista with curvature-sorted lipids and proteins$^3$ b) Martini 3 Möbius strip membrane c) Glycolipid membrane with CTxB peripheral membrane protein d) Mitochondrial membrane from cryo-ET data with curvature-dependent lipid placement.
+**Figure 1: TS2CG 2.0 showcase models$^1$.** a) Mitochondrial crista with curvature-sorted lipids and proteins$^4$ b) Martini 3 Möbius strip membrane c) Glycolipid membrane with CTxB peripheral membrane protein d) Mitochondrial membrane from cryo-ET data with curvature-dependent lipid placement.
 
-*TS2CG* enables the creation of biologically realistic membrane models by providing precise control over membrane geometry, protein placement, and lipid composition. Designed primarily for the Martini coarse-grained force field$^4$, it is particularly well-suited for large-scale membrane simulations.
+*TS2CG* enables the creation of biologically realistic membrane models by providing precise control over membrane geometry, protein placement, and lipid composition. Designed primarily for the Martini coarse-grained force field$^5$, it is particularly well-suited for large-scale membrane simulations.
 
 Through six progressive chapters, we'll demonstrate *TS2CG's* capabilities by building increasingly complex membrane models:
 
@@ -710,8 +710,9 @@ While the DOP tool provides a new method to create curvature-informed lipid dist
 
 1. Schuhmann, F., Stevens, J., A., TS2CG as a membrane builder. BioRxiv (2025). [https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1](https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1)
 2. Pezeshkian, W. et al. Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020). [https://doi.org/10.1038/s41467-020-16094-y](https://doi.org/10.1038/s41467-020-16094-y)
-3. Brown, C.M. *et al.* An integrative modelling approach to the mitochondrial cristae. *Commun Biol* 8, 972 (2025). [https://doi.org/10.1038/s42003-025-08381-](https://doi.org/10.1038/s42003-025-08381-)
-4. Souza, P.C.T. et al. Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18, 382-388 (2021). [https://doi.org/10.1038/s41592-021-01098-3](https://doi.org/10.1038/s41592-021-01098-3)
+3. Pezeshkian, W. et al. Mesoscale simulation of biomembranes with FreeDTS. Nat Commun 15, 548 (2024). [https://doi.org/10.1038/s41467-024-44819-w](https://doi.org/10.1038/s41467-024-44819-w)
+4. Brown, C.M. *et al.* An integrative modelling approach to the mitochondrial cristae. *Commun Biol* 8, 972 (2025). [https://doi.org/10.1038/s42003-025-08381-](https://doi.org/10.1038/s42003-025-08381-)
+5. Souza, P.C.T. et al. Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18, 382-388 (2021). [https://doi.org/10.1038/s41592-021-01098-3](https://doi.org/10.1038/s41592-021-01098-3)
 
 *This tutorial was partially based on the original TS2CG tutorial by M. König and W. Pezeshkian.*
 
