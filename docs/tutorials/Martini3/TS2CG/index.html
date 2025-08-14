@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>TS2CG: membranes with user-defined shapes and compositions – Martini Force Field Initiative</title>
+<title>TS2CG 2.0 as a membrane builder – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,19 +129,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="TS2CG: membranes with user-defined shapes and compositions – Martini Force Field Initiative">
+<meta property="og:title" content="TS2CG 2.0 as a membrane builder – Martini Force Field Initiative">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/TS2CG/fig1.png">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/TS2CG/image_0.png">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta property="og:image:height" content="347">
-<meta property="og:image:width" content="1996">
-<meta name="twitter:title" content="TS2CG: membranes with user-defined shapes and compositions – Martini Force Field Initiative">
+<meta property="og:image:height" content="1735">
+<meta property="og:image:width" content="3000">
+<meta name="twitter:title" content="TS2CG 2.0 as a membrane builder – Martini Force Field Initiative">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/TS2CG/fig1.png">
-<meta name="twitter:image-height" content="347">
-<meta name="twitter:image-width" content="1996">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/TS2CG/image_0.png">
+<meta name="twitter:image-height" content="1735">
+<meta name="twitter:image-width" content="3000">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -225,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TS2CG: membranes with user-defined shapes and compositions</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TS2CG 2.0 as a membrane builder</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -271,13 +300,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#tutorials" id="toc-tutorials" class="nav-link" data-scroll-target="#tutorials">Tutorials</a></li>
-  <li><a href="#general-information-on-how-to-run-the-outputs-from-ts2cg" id="toc-general-information-on-how-to-run-the-outputs-from-ts2cg" class="nav-link" data-scroll-target="#general-information-on-how-to-run-the-outputs-from-ts2cg">General information on how to run the outputs from <code>TS2CG</code></a></li>
-  <li><a href="#visualizing-.tsi-or-.q-files" id="toc-visualizing-.tsi-or-.q-files" class="nav-link" data-scroll-target="#visualizing-.tsi-or-.q-files">Visualizing <code>.tsi</code> or <code>.q</code> files</a></li>
-  <li><a href="#how-to-obtain-a-ts-file" id="toc-how-to-obtain-a-ts-file" class="nav-link" data-scroll-target="#how-to-obtain-a-ts-file">How to obtain a TS file</a></li>
-  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
+  <li><a href="#table-of-contents" id="toc-table-of-contents" class="nav-link active" data-scroll-target="#table-of-contents">Table of Contents</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#the-ts2cg-workflow" id="toc-the-ts2cg-workflow" class="nav-link" data-scroll-target="#the-ts2cg-workflow">The TS2CG Workflow</a></li>
+  </ul></li>
+  <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup">Installation and Setup</a>
+  <ul class="collapse">
+  <li><a href="#installing-ts2cg" id="toc-installing-ts2cg" class="nav-link" data-scroll-target="#installing-ts2cg">Installing TS2CG</a></li>
+  <li><a href="#download-tutorial-files" id="toc-download-tutorial-files" class="nav-link" data-scroll-target="#download-tutorial-files">Download Tutorial Files</a></li>
+  <li><a href="#additional-requirements" id="toc-additional-requirements" class="nav-link" data-scroll-target="#additional-requirements">Additional Requirements</a></li>
+  </ul></li>
+  <li><a href="#chapter-1-basic-vesicle" id="toc-chapter-1-basic-vesicle" class="nav-link" data-scroll-target="#chapter-1-basic-vesicle">Chapter 1: Basic Vesicle</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#generate-point-folder-with-plm" id="toc-generate-point-folder-with-plm" class="nav-link" data-scroll-target="#generate-point-folder-with-plm">Generate Point Folder with PLM</a></li>
+  <li><a href="#create-lipid-composition-file" id="toc-create-lipid-composition-file" class="nav-link" data-scroll-target="#create-lipid-composition-file">Create Lipid Composition File</a></li>
+  <li><a href="#build-the-membrane-using-pcg" id="toc-build-the-membrane-using-pcg" class="nav-link" data-scroll-target="#build-the-membrane-using-pcg">Build the Membrane using PCG</a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  </ul></li>
+  <li><a href="#chapter-2-lipid-mixtures" id="toc-chapter-2-lipid-mixtures" class="nav-link" data-scroll-target="#chapter-2-lipid-mixtures">Chapter 2: Lipid Mixtures</a>
+  <ul class="collapse">
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1">Overview</a></li>
+  <li><a href="#create-mixed-composition" id="toc-create-mixed-composition" class="nav-link" data-scroll-target="#create-mixed-composition">Create Mixed Composition</a></li>
+  <li><a href="#build-the-membrane-using-pcg-1" id="toc-build-the-membrane-using-pcg-1" class="nav-link" data-scroll-target="#build-the-membrane-using-pcg-1">Build the Membrane using PCG</a></li>
+  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1">Visualization</a></li>
+  </ul></li>
+  <li><a href="#chapter-3-membrane-proteins" id="toc-chapter-3-membrane-proteins" class="nav-link" data-scroll-target="#chapter-3-membrane-proteins">Chapter 3: Membrane Proteins</a>
+  <ul class="collapse">
+  <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2">Overview</a></li>
+  <li><a href="#adding-a-protein-to-the-membrane" id="toc-adding-a-protein-to-the-membrane" class="nav-link" data-scroll-target="#adding-a-protein-to-the-membrane">Adding a Protein to the Membrane</a></li>
+  <li><a href="#place-proteins-using-inu" id="toc-place-proteins-using-inu" class="nav-link" data-scroll-target="#place-proteins-using-inu">Place Proteins using INU</a></li>
+  <li><a href="#build-the-membrane-using-pcg-2" id="toc-build-the-membrane-using-pcg-2" class="nav-link" data-scroll-target="#build-the-membrane-using-pcg-2">Build the Membrane using PCG</a></li>
+  <li><a href="#visualization-2" id="toc-visualization-2" class="nav-link" data-scroll-target="#visualization-2">Visualization</a></li>
+  </ul></li>
+  <li><a href="#chapter-4-lipid-domains-around-proteins" id="toc-chapter-4-lipid-domains-around-proteins" class="nav-link" data-scroll-target="#chapter-4-lipid-domains-around-proteins">Chapter 4: Lipid Domains Around Proteins</a>
+  <ul class="collapse">
+  <li><a href="#overview-3" id="toc-overview-3" class="nav-link" data-scroll-target="#overview-3">Overview</a></li>
+  <li><a href="#create-circular-domains-using-dai" id="toc-create-circular-domains-using-dai" class="nav-link" data-scroll-target="#create-circular-domains-using-dai">Create Circular Domains Using DAI</a></li>
+  <li><a href="#build-the-membrane-using-pcg-3" id="toc-build-the-membrane-using-pcg-3" class="nav-link" data-scroll-target="#build-the-membrane-using-pcg-3">Build the Membrane using PCG</a></li>
+  <li><a href="#visualization-3" id="toc-visualization-3" class="nav-link" data-scroll-target="#visualization-3">Visualization</a></li>
+  </ul></li>
+  <li><a href="#chapter-5-analytical-shapes" id="toc-chapter-5-analytical-shapes" class="nav-link" data-scroll-target="#chapter-5-analytical-shapes">Chapter 5: Analytical Shapes</a>
+  <ul class="collapse">
+  <li><a href="#overview-4" id="toc-overview-4" class="nav-link" data-scroll-target="#overview-4">Overview</a></li>
+  <li><a href="#sinusoidal-membrane-1d-fourier" id="toc-sinusoidal-membrane-1d-fourier" class="nav-link" data-scroll-target="#sinusoidal-membrane-1d-fourier">Sinusoidal Membrane (1D Fourier)</a></li>
+  <li><a href="#other-analytical-shapes" id="toc-other-analytical-shapes" class="nav-link" data-scroll-target="#other-analytical-shapes">Other Analytical Shapes</a></li>
+  <li><a href="#adding-shape-preserving-walls" id="toc-adding-shape-preserving-walls" class="nav-link" data-scroll-target="#adding-shape-preserving-walls">Adding Shape-Preserving Walls</a></li>
+  <li><a href="#visualization-4" id="toc-visualization-4" class="nav-link" data-scroll-target="#visualization-4">Visualization</a></li>
+  </ul></li>
+  <li><a href="#chapter-6-curvature-based-lipid-placement" id="toc-chapter-6-curvature-based-lipid-placement" class="nav-link" data-scroll-target="#chapter-6-curvature-based-lipid-placement">Chapter 6: Curvature-Based Lipid Placement</a>
+  <ul class="collapse">
+  <li><a href="#overview-5" id="toc-overview-5" class="nav-link" data-scroll-target="#overview-5">Overview</a></li>
+  <li><a href="#the-lipid-placement-algorithm" id="toc-the-lipid-placement-algorithm" class="nav-link" data-scroll-target="#the-lipid-placement-algorithm">The Lipid Placement Algorithm</a></li>
+  <li><a href="#create-initial-point-distribution" id="toc-create-initial-point-distribution" class="nav-link" data-scroll-target="#create-initial-point-distribution">Create Initial Point Distribution</a></li>
+  <li><a href="#define-curvature-preferences" id="toc-define-curvature-preferences" class="nav-link" data-scroll-target="#define-curvature-preferences">Define Curvature Preferences</a></li>
+  <li><a href="#optimize-lipid-placement-with-dop" id="toc-optimize-lipid-placement-with-dop" class="nav-link" data-scroll-target="#optimize-lipid-placement-with-dop">Optimize Lipid Placement with DOP</a></li>
+  <li><a href="#build-curvature-informed-membrane" id="toc-build-curvature-informed-membrane" class="nav-link" data-scroll-target="#build-curvature-informed-membrane">Build Curvature-Informed Membrane</a></li>
+  <li><a href="#visualization-and-analysis" id="toc-visualization-and-analysis" class="nav-link" data-scroll-target="#visualization-and-analysis">Visualization and Analysis</a></li>
+  </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
@@ -287,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TS2CG: membranes with user-defined shapes and compositions</h1>
+<h1 class="title">TS2CG 2.0 as a membrane builder</h1>
 </div>
 
 
@@ -304,390 +385,737 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><strong>Tutorial authors</strong>: J.A. Stevens, with contributions from F. Schuhmann, C.M. Brown and M. Bozoflu <br> <strong>In case of issues</strong>: Please contact <a href="mailto:j.a.stevens@rug.nl">j.a.stevens@rug.nl</a>, <a href="mailto:fabian.schuhmann@nbi.ku.dk">fabian.schuhmann@nbi.ku.dk</a> or <a href="mailto:w.pezeshkian@nbi.ku.dk">weria.pezeshkian@nbi.ku.dk</a></p>
 <hr>
-In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.pezeshkian@rug.nl</a> or <a href="mailto:%20m.konig@rug.nl">m.konig@rug.nl</a>.
+<section id="table-of-contents" class="level2">
+<h2 class="anchored" data-anchor-id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation-and-setup">Installation and Setup</a></li>
+<li><a href="#chapter-1-basic-vesicle">Chapter 1: Basic Uniform Vesicle</a></li>
+<li><a href="#chapter-2-lipid-mixtures">Chapter 2: Lipid Mixtures</a></li>
+<li><a href="#chapter-3-membrane-proteins">Chapter 3: Membrane Proteins</a></li>
+<li><a href="#chapter-4-lipid-domains-around-proteins">Chapter 4: Lipid Domains Around Proteins</a></li>
+<li><a href="#chapter-5-analytical-shapes">Chapter 5: Analytical Shapes</a></li>
+<li><a href="#chapter-6-curvature-based-lipid-placement">Chapter 6: Curvature-Based Lipid Placement</a></li>
+<li><a href="#references">References</a></li>
+</ul>
 <hr>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><em>TS2CG</em> is a tool for building coarse-grained (CG) membrane models with user-defined and experimentally informed shapes and compositions<span class="math inline">\(^1\)</span>. It builds simulation-ready membrane models for molecular dynamics (MD) simulations, based on triangulated surfaces or analytical membrane shape definitions. Additionally, <em>TS2CG</em> serves as a backmapping algorithm that converts dynamically triangulated surface (DTS) simulations into CG MD simulations<span class="math inline">\(^{2, 3}\)</span>.</p>
+<p>The latest release is <em>TS2CG</em> version 2.0, representing an advancement in membrane modeling capabilities<span class="math inline">\(^1\)</span>. Building upon the original <em>TS2CG</em>, version 2.0 introduces new features for automated protein placement and curvature-informed lipid distributions. Additionally, it features a Python API that improves ease of use and enables easier extensibility through integration with Python modules.</p>
+<p><img src="image_0.png" class="img-fluid"> <strong>Figure 1: TS2CG 2.0 showcase models<span class="math inline">\(^1\)</span>.</strong> a) Mitochondrial crista with curvature-sorted lipids and proteins<span class="math inline">\(^4\)</span> b) Martini 3 Möbius strip membrane c) Glycolipid membrane with CTxB peripheral membrane protein d) Mitochondrial membrane from cryo-ET data with curvature-dependent lipid placement.</p>
+<p><em>TS2CG</em> enables the creation of biologically realistic membrane models by providing precise control over membrane geometry, protein placement, and lipid composition. Designed primarily for the Martini coarse-grained force field<span class="math inline">\(^5\)</span>, it is particularly well-suited for large-scale membrane simulations.</p>
+<p>Through six progressive chapters, we’ll demonstrate <em>TS2CG’s</em> capabilities by building increasingly complex membrane models:</p>
+<p><strong>Chapters 1-4</strong>: Start with a simple vesicle and progressively add lipid mixtures, membrane proteins, and protein-specific lipid domains.</p>
+<p><strong>Chapters 5-6</strong>: Use analytical membrane shapes and curvature-informed lipid placement.</p>
+<p>Each chapter builds upon previous concepts while introducing new features. By the end, you’ll be equipped to create complex, biologically relevant membrane models ready for molecular dynamics simulation.</p>
+<section id="the-ts2cg-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="the-ts2cg-workflow">The TS2CG Workflow</h3>
+<p>The typical <em>TS2CG</em> workflow consists of several key steps:</p>
 <ul>
-<li><a href="#introduction"><code>Introduction</code></a>
+<li><strong>Input</strong>: Triangulated surfaces (.tsi, .q, .dat files) or analytical shape definitions</li>
+<li><strong>Pointillism (PLM)</strong>: Generates monolayer point distributions from triangulated surfaces and stores them in a point folder</li>
+<li><strong>Point folder customization</strong>:
 <ul>
-<li><a href="#download-and-install-ts2cg"><code>Download and install TS2CG</code></a></li>
+<li><strong>INU</strong>: Adds inclusions (proteins) and exclusions (membrane pores)</li>
+<li><strong>DAI</strong>: Creates circular lipid domains around protein types</li>
+<li><strong>DOP</strong>: Optimizes lipid placement based on curvature preferences</li>
 </ul></li>
-<li><a href="#tutorials"><code>Tutorials</code></a>
+<li><strong>Membrane Building (PCG)</strong>: Places lipids and proteins on the customized point distribution</li>
+<li><strong>Output</strong>: Simulation-ready topology and coordinate files for GROMACS</li>
+</ul>
+<p><img src="image_1.png" class="img-fluid"> <strong>Figure 2: TS2CG 2.0 workflow diagram.</strong> The workflow can start from an analytical shape or an arbitrary triangulated surface. Through PLM or PCG, a point directory is created which can then be manipulated using the Python API to place proteins, exclusions or introduce lipid domains. Lastly, PCG turns the point folder into a membrane model ready for MD simulation.</p>
+</section>
+</section>
+<section id="installation-and-setup" class="level2">
+<h2 class="anchored" data-anchor-id="installation-and-setup">Installation and Setup</h2>
+<section id="installing-ts2cg" class="level3">
+<h3 class="anchored" data-anchor-id="installing-ts2cg">Installing TS2CG</h3>
+<p><em>TS2CG</em> combines high-performance C++ algorithms with a user-friendly Python API. The C++ core provides computational efficiency, while the Python interface streamlines installation and enables easy integration with existing workflows.</p>
+<p>Install <em>TS2CG</em> directly via <code>pip</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/weria-pezeshkian/TS2CG-v2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>TS2CG is being developed on <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0">GitHub</a>. For bug reports, feature requests, or technical issues, please open an issue on the GitHub repository.</p>
+</div>
+</div>
+</section>
+<section id="download-tutorial-files" class="level3">
+<h3 class="anchored" data-anchor-id="download-tutorial-files">Download Tutorial Files</h3>
+<p>Before starting the tutorials, download the required structure and parameter files <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/TS2CG/tutorial_files.tar.gz"><strong>here</strong></a>. Extract the files:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This archive contains:</p>
 <ul>
-<li><a href="#creating-a-simple-vesicle"><code>1: Creating a simple vesicle</code></a></li>
-<li><a href="#creating-lipid-mixture"><code>2: Creating lipid Mixture</code></a></li>
-<li><a href="#membrane-domains"><code>3: Membrane domains</code></a></li>
-<li><a href="#adding-proteins-to-a-membrane"><code>4: Adding proteins to a membrane</code></a></li>
-<li><a href="#proteins-with-a-specific-domain"><code>5: Proteins with a specific domain</code></a></li>
-<li><a href="#fixed-shapes"><code>6: Fixed shapes</code></a></li>
-</ul></li>
-<li><a href="#general-information-on-how-to-run-the-outputs-from-ts2cg"><code>General information on how to run the outputs from TS2CG</code></a>
-<ul>
-<li><a href="#tsi-file-format"><code>.tsi file Format</code></a></li>
-<li><a href="#visualizing-.tsi-or-.q-files"><code>Visualizing .tsi or .q files</code></a></li>
-</ul></li>
-<li><a href="#how-to-obtain-a-ts-file"><code>How to obtain a TS file</code></a></li>
-<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
-<li><a href="#references"><code>References</code></a></li>
+<li><strong>structures/:</strong> Molecular structures: proteins (<code>protein.gro</code>), solvent (<code>water.gro</code>), and triangulated meshes (<code>sphere.tsi</code>)</li>
+<li><strong>topology/:</strong> Martini 3 force field files and protein topologies (<code>protein.itp</code>)</li>
+<li><strong><code>Martini3.LIB</code>:</strong> TS2CG lipid library defining molecular connectivity for membrane building</li>
 </ul>
 </section>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<hr>
-<p><code>TS2CG</code> is used to build coarse-grained membrane models with user-defined shapes and compositions. Initially, it was developed for backmapping dynamically triangulated simulation structures into their corresponding molecular models. This gives us the possibility to incorporate experimentally obtained membrane shapes and compositions and generate CG membrane’s initial structure.</p>
-<p>In Fig. 1 the general workflow of <code>TS2CG</code> is exemplified for a vesicle containing a single protein (shown as a yellow bead). The initial triangulated surface is rescaled to the desired system size and the two monolayers are generated. In order to have enough points for the subsequent lipid placement, the number of vertices in both monolayers is increased using a pointillism operation, i.e.&nbsp;each triangle is divided into four new triangles thereby increasing the number of vertices by a factor of four. In the last steps, proteins and lipids are placed on the respective vertices. For more details on the method, please refer to the original paper<sup><a href="#references">[1]</a></sup>.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig1.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 1 | Steps in backmapping a triangulated surface (TS) mesh using TS2CG. (Step 1) A TS structure of a vesicle containing one protein (yellow bead) is rescaled and two TS structures corresponding to the two monolayers that are generated. (Step 2) Using a Pointillism operation, the number of vertices is increased. (Step 3) The CG protein structure together with a membrane segment is placed at the appropriate TS position. (Step 4) Lipids are placed at the remaining positions and the configuration is ready for subsequent MD simulation.</figcaption>
-</figure>
-</div>
-<p>Currently, <code>TS2CG</code> version 1.1 can utilize two types of TS input file formats: Files with <code>.q</code> and <code>.tsi</code> extension. While both are quite similar, <code>.tsi</code> files are more generic and future developments will be based on this file format. For more details about the <code>.tsi</code> file format see the end of this file. In tutorials 1 to 5 we will use a <code>.tsi</code> file called <code>Sphere.tsi</code> to build a simple vesicle and subsequently add different membrane domains with and without protein insertions.</p>
-<p>Additionally, <code>TS2CG</code> can be used to create well-defined (analytical) shapes from scratch. In tutorial 6 we will demonstrate how to build a curved bilayer and maintain the curvature using a shape-preserving wall.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig2.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 2 | Example applications of <code>TS2CG</code>. Mitochodrion lipid membrane backmapped from EM map (upper panel left), protein induced membrane tubulation backmapped from DTS simulation (upper panel right), budded lipid bilayer including STxB proteins backmapped from DTS simulation (lower panel left) and curved lipid bilayer with two different lipid types created from scratch using PCG.</figcaption>
-</figure>
-</div>
-<section id="download-and-install-ts2cg" class="level4">
-<h4 class="anchored" data-anchor-id="download-and-install-ts2cg">Download and install TS2CG</h4>
-<hr>
-<p>Download the latest version of the <code>TS2CG</code> from:</p>
+<section id="additional-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="additional-requirements">Additional Requirements</h3>
 <ul>
-<li><a href="https://github.com/marrink-lab/TS2CG1.1">https://github.com/marrink-lab/TS2CG1.1</a></li>
+<li>Standard command line tools</li>
+<li>Visualization software: <a href="https://www.ks.uiuc.edu/Research/vmd/">VMD</a></li>
+<li>Simulation software: <a href="https://www.gromacs.org/">GROMACS</a></li>
 </ul>
-<p>For compiling, <code>gcc</code> version 8.3.0 or above is needed.</p>
-<p>In the source code folder, execute the script <code>compile.sh</code> as:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./compile.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this folder, two binary files will be generated: PLM and PCG (and a SOL script for adding solvent to the systems). PLM performs pointillism (Step 1 and 2) and PCG performs Membrane builder (Step 3 and 4).</p>
+<hr>
 </section>
 </section>
-<section id="tutorials" class="level3">
-<h3 class="anchored" data-anchor-id="tutorials">Tutorials</h3>
-<hr>
-<p>From the downloaded <code>TS2CG</code> folder, you can find all the files needed for these tutorials in the tutorials folder. Please create a new folder for each tutorial and copy the files you from the files folder into this new folder.</p>
-<section id="creating-a-simple-vesicle" class="level4">
-<h4 class="anchored" data-anchor-id="creating-a-simple-vesicle">1: Creating a simple vesicle</h4>
-<hr>
-<p>In this tutorial we will use a simple TS file (sphere) to create a vesicle. We choose this shape because it is small and can be run on your local machines. However, the same scheme can be used for any other TS files.</p>
-<p>From the files folder select the <code>Sphere.tsi</code> file. Use a text editor to open this and familiarize yourself with the structure. See <code>.tsi</code> file format at the end of this document for more information about the file format. You can also use <code>pymol</code> or <code>paraview</code> to visualize the structure (see Visualizing <code>.tsi</code> or <code>.q</code> files).</p>
-<p>The first step in backmapping any TS file to a CG structure is to increase the number of vertices using a pointillism operation (done by PLM). In the same step we also generate the two monolayers.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the <code>pointvisualization_data</code> folder, you will find <code>gromacs</code> compatible structure files (<code>.gro</code>) for the upper and lower monolayer including a topology file (<code>.top</code>) each as well as <code>paraview</code> compatible <code>.vtu</code> files for both monolayers. You can have a look at the created points using <code>vmd</code> or <code>paraview</code>.</p>
-<p>The second step to create a vesicle is two place lipids on the generated points using PCG. For this you need to write a <code>.str</code> file defining the lipid composition of both monolayers. Using any text editor, create an <code>input.str</code> file and write the following text in it:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This implies that your system should contain only one lipid domain with POPC in both monolayers using an area per lipid (APL) for POPC of 0.64. To know more about the <code>.str</code> file format and other options see the <a href="https://github.com/marrink-lab/TS2CG1.1">User Manual</a>.</p>
-<p>The other thing we need is a lipid structure file (<code>.LIB</code>). This file simply defines the lipid connectivity for placing the lipid beads on the previously generated points. Making this file is easy but might be time consuming for many different lipids. (See the <a href="https://github.com/marrink-lab/TS2CG1.1">User Manual</a> for the exact file format). Luckily, we already have a file that contains all Martini3 lipids called <code>Martini3.LIB</code>, you can find it in the files folder.</p>
-<p>Using these two files now you can execute <code>PCG</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The outputs are <code>system.gro</code> and <code>system.top</code>:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig3.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3 | Snapshot of the simple POPC vesicle made with <code>vmd</code> (left) and the corresponding topology file (right).</figcaption>
-</figure>
+<section id="chapter-1-basic-vesicle" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-1-basic-vesicle">Chapter 1: Basic Vesicle</h2>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>We start with the basic <em>TS2CG</em> workflow by creating a simple POPC vesicle. This demonstrates the core <strong>Mesh→PLM→PCG</strong> workflow and introduces the essential file formats and parameters.</p>
+</section>
+<section id="generate-point-folder-with-plm" class="level3">
+<h3 class="anchored" data-anchor-id="generate-point-folder-with-plm">Generate Point Folder with PLM</h3>
+<p>The workflow starts by converting the provided spherical triangulated surface (<code>sphere.tsi</code>) into a point distribution using pointillism (PLM), the process of transforming a mesh into discrete points that will guide membrane construction. The <code>.tsi</code> file format contains vertex coordinates and triangle connectivity. For detailed specifications, see the <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0"><em>TS2CG</em> documentation</a>.</p>
+<p>Execute the pointillism operation with the following command:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the point folder</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PLM <span class="at">-TSfile</span> structures/sphere.tsi <span class="at">-bilayerThickness</span> 3 <span class="at">-rescalefactor</span> 5 5 5 <span class="at">-Mashno</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>PLM parameters:</strong></p>
+<ul>
+<li><code>-TSfile</code>: Input triangulated surface file</li>
+<li><code>-bilayerThickness</code>: Distance between monolayers (nm)</li>
+<li><code>-rescalefactor</code>: Scaling factors for x, y, z dimensions</li>
+<li><code>-Mashno</code>: Pointillism iterations to increase mesh resolution (recommended: 1-4 iterations)</li>
+</ul>
+<p>This creates a <code>point/</code> folder with the bilayer point distributions, an <code>extended.tsi</code> with increased resolution, and a <code>pcg.log</code> file. The <code>pointvisualization_data/</code> folder contains visualization files to inspect the generated structure:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-m</span> pointvisualization_data/Upper.gro pointvisualization_data/Lower.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You should observe two leaflets of points that represent the bilayer where lipids will be placed. Each point has an associated coordinate frame defining the local membrane normal and tangent directions. The pointvisualization files are useful for understanding your membrane geometry before proceeding. Take time to examine how the points are distributed before continuing.</p>
+</section>
+<section id="create-lipid-composition-file" class="level3">
+<h3 class="anchored" data-anchor-id="create-lipid-composition-file">Create Lipid Composition File</h3>
+<p>Define the membrane composition by creating a file named <code>input.str</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 1 1 0.64</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Format explanation:</strong></p>
+<ul>
+<li><code>Domain 0</code>: Default domain for all lipids</li>
+<li><code>POPC 1 1 0.64</code>: Lipid type, upper leaflet ratio, lower leaflet ratio, area per lipid
+<ul>
+<li><code>Lipid type</code>: Define the lipid type</li>
+<li><code>Upper lipid ratio</code>: Fraction of the upper leaflet occupied by the lipid type</li>
+<li><code>Lower lipid ratio</code>: Fraction of the lower leaflet occupied by the lipid type</li>
+<li><code>Area per lipid</code>: Surface area occupied by a single lipid (<span class="math inline">\(nm^{2}\)</span>)</li>
+</ul></li>
+</ul>
+</section>
+<section id="build-the-membrane-using-pcg" class="level3">
+<h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg">Build the Membrane using PCG</h3>
+<p>Place lipids on the point distribution to create the final membrane structure:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-dts</span> point <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>PCG parameters:</strong></p>
+<ul>
+<li><code>-dts</code>: Folder containing point distributions from PLM</li>
+<li><code>-str</code>: Membrane composition file</li>
+<li><code>-Bondlength</code>: Bond length between lipid beads (nm)</li>
+<li><code>-LLIB</code>: Lipid library file containing the lipid structure</li>
+<li><code>-defout</code>: Base name for generated files (default: “output”)</li>
+</ul>
+<p>The PCG step performs the actual membrane assembly by placing lipids and generating an <code>output.gro</code> (coordinate file), <code>output.top</code> (GROMACS topology), and <code>pcg.log</code>. The number of lipids placed is determined by the specified area per lipid (APL) and distributed across the available points. The bond length parameter controls the initial spacing of lipid beads, which is intentionally set small so that lipids can expand during energy minimization to form a continuous bilayer.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>POPC 6256</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>POPC 3876</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Creating vesicles like shown above is straightforward however running them is not so simple. Here we used the assumption that POPC has the same area per lipid in both leaflets which is unfortunately not true for small vesicles due to the highly curved nature of the leaflets. To account for the curvature effect we have to allow the vesicle to equilibrate both water content and number of lipids in each leaflet. The easiest way to do this is by creating water pores for equilibration and closing theses pores in a step-wise manner. You can find a script called <code>run_vesicle.sh</code> in the files folder, which will create a POPC vesicle with 4 nm pores along each dimension. The vesicle will also be filled with water, energy minimized and equilibrated, thereby gradually closing the water pores. Note: We use MDAnalysis to create a position restraints file which is need to keep the lipid tails out of the pores.</p>
-</section>
-<section id="creating-lipid-mixture" class="level4">
-<h4 class="anchored" data-anchor-id="creating-lipid-mixture">2: Creating lipid Mixture</h4>
-<hr>
-<p>Repeating the previous tutorial but with the <code>.str</code> file shown below, you will create a 50/50 mixture of POPC and DOPC in both monolayers.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>POPC      0.5     0.5     0.64</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>DOPC      0.5     0.5     0.67</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Executing PCG will generate two output files system.gro and <code>system.top</code>:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig4.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 4 | Snapshot of the mixed POPC (blue) / DOPC (orange) vesicle made with vmd (left) and the corresponding topology file (right).</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> molecules </span><span class="co">]</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>POPC 3056</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>DOPC 3056</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer POPC 1893</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>DOPC 1893</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="membrane-domains" class="level4">
-<h4 class="anchored" data-anchor-id="membrane-domains">3: Membrane domains</h4>
-<hr>
-<p>To make a membrane containing two or more different lipid domains, we need to modify the <code>.tsi</code> file. These changes can be made manually or by using a script. Here we only try it manually.</p>
-<p>First use the command below to obtain a <code>.gro</code> file containing all the vertices:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This time, we reduced the size of the <code>original .tsi</code> file (using <code>-rescalefactor 0.2 0.2 0.2</code>) and kept the initial number of vertices (using <code>-Mashno 0</code>). This allows for an easier selection of points when done manually. Now, open the file <code>Upper.gro</code> from the <code>pointvisualization_data</code> folder using <code>vmd</code>. You will see all the vertices of the triangulated surface. Find a few beads for which you want to create a new domain of lipids (e.g.&nbsp;select beads in <code>vmd</code> using <code>Mouse &gt; Label &gt; Atoms</code>). I selected vertices [113, 117, 124, 48, 112] for domain number 1 and [74, 82, 81, 45] for domain number 2 and the rest remains as domain 0.</p>
-<p>Next, open <code>Sphere.tsi</code> using a text editor and find the line of selected vertices. Add the domain ID to the end of the line (here: add a 1 for vertices with index 113, 117, 124, 48, 112 and a 2 for vertices with index 74, 82, 81, 45). Note: Lines that do not have any domain ID belong to domain 0 per default. After doing so, you need to modify the <code>input.str</code> file to define the lipid composition of each domain:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>End</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Domain      1</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>DOPC     1     1     0.64</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>End</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Domain       2</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>POPE     1     1     0.64</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then execute <code>PLM</code> and <code>PCG</code> using the commands below (as done in the previous tutorials). This will generate a vesicle with three lipid domains.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig5.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 5 | Snapshot of vertices from Upper.gro after defining three different domains made with <code>vmd</code> (left) and the corresponding topology file (right).</figcaption>
-</figure>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>POPC 5833</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>POPC 3615</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>; domain 1</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>DOPC 262</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>; domain 1</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>DOPC 161</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>; domain 2</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>; in the upper monolayer</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>POPE 160</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>; domain 2</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>POPE 99</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="adding-proteins-to-a-membrane" class="level4">
-<h4 class="anchored" data-anchor-id="adding-proteins-to-a-membrane">4: Adding proteins to a membrane</h4>
-<hr>
-<p>In this tutorial we are going to add two types of proteins to a vesicle containing POPC lipids. These proteins are named <code>P1.gro</code> and <code>P2.gro</code>, which will be called protein1 and protein2 in the rest of this tutorial. First, we need to select vertices for the protein placmenent in the <code>.tsi</code> file. Afterwards, we match their corresponding names in the <code>.gro</code> file with the ones in the <code>.str</code> file. Therefore, we need to perform some tricks on the <code>.tsi</code> and <code>.str</code> file. These changes can be made manually or by using a script. Here we only try it manually.</p>
-<p>First, use the below command to obtain a <code>.gro</code> file of vertices positions of our vesicle:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then in the <code>pointvisualization_data</code> folder, open <code>Upper.gro</code> using <code>vmd</code>. You will see all the vertices of the triangulated surface. Find some vertices at which you would like to place the proteins. We selected vertices 22 and 5 to place two copies of protein1 and vertex 30 to place one copy of protein2. Using a text editor, open the <code>Sphere.tsi</code> file and go to the bottom of the file to the inclusion section. As we want to add 3 proteins, change the zero to 3 and then in the next line, add the protein information. For each protein, you need 3 integer numbers and 2 float numbers. The first number is the protein index that should start from 0. The second number is the protein type id, which is 1 for potein1 and 2 protein2 (it can be any number but the type id must match the one in <code>input.str</code>, see below). The third number is the index of the vertex that the protein will be placed on. The last two numbers are the orientation of the protein in the local coordinate frame of the vertex, these should be a unit two-dimensional vector. The inclusion section of <code>Sphere.tsi</code> file should look like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>0     1     22     0     1</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>1     1      5     0     1</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now, open <code>P1.gro</code> and <code>P2.gro</code> from the files folder and change the first line to the name of the proteins (protein1 and protein2). These files should be included on top of your <code>input.str</code> file as:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>include P1.gro</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>include P2.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The last step is to define the proteins in the <code>input.str</code> file. In addition to including the protein <code>.gro</code> file names in the header, there should be some information about the protein placement:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Protein List</span><span class="co">]</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>protein1     1     0.01     0     0     -3.7</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>protein2     2     0.01     0     0     -2.4</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>End Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The first and the last line are keywords indicating that we want to define proteins. The lines in between the first and the last depend on the number of unique proteins you want to include. Here we got two, therefore we only have two lines in between. The first entry is the protein name in the <code>.gro</code> file. The second entry indicates the protein type ID (this ID was used in the <code>.tsi</code> file in the inclusion section). The last entry indicates how much we should move the proteins in the normal direction of the membrane surface. The remaining three numbers are not being used in the current approach.</p>
-<p>Finally, you can execute <code>PLM</code> and <code>PCG</code> using the commands below (or as previous tutorials). The result should be a POPC membrane with three proteins.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 3 3 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig6.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 6 | Cross-section (left) and full vesicle (right) of system.gro after placment of three protein copies.</figcaption>
-</figure>
+<div class="callout-body-container callout-body">
+<p>When performing the PLM step you can use <code>-monolayer 1</code> or <code>-monolayer -1</code> to create only the upper or lower monolayers. The rest of the steps are identical.</p>
+</div>
 </div>
 </section>
-<section id="proteins-with-a-specific-domain" class="level4">
-<h4 class="anchored" data-anchor-id="proteins-with-a-specific-domain">5: Proteins with a specific domain</h4>
+<section id="visualization" class="level3">
+<h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
+<p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>A complete bilayer vesicle</li>
+<li>No overlapping lipid placements</li>
+</ul>
+<p><img src="image_2.png" class="img-fluid"> <strong>Figure 3: Basic POPC vesicle.</strong> a) Spherical vesicle containing only POPC lipids (green). b) Cross-sectional view showing both membrane leaflets.</p>
 <hr>
-<p>In this tutorial we are going to combine Tutorials 3 and 4 to define a specific lipid domain for each protein copy. So let’s change the domain ID of vertices 22, 5, 30 that are supposed to be the location of the proteins in <code>Sphere.tsi</code> as demonstrated in Tutorial 3. We set 22 and 5 to domain 1 and 30 to domain 2. We also change the lipid section in <code>input.str</code> to:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>End</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>Domain      1</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>DOPC     1     1     0.64</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>End</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Domain       2</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>POPE     1     1     0.64</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now perform <code>PLM</code> and <code>PCG</code> again:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 6 6 6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig7.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 7 | Mixed POPC/DOPC/POPE with three proteins. Each protein copy has its own spectic lipid enviornment.</figcaption>
-</figure>
+</section>
+</section>
+<section id="chapter-2-lipid-mixtures" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-2-lipid-mixtures">Chapter 2: Lipid Mixtures</h2>
+<section id="overview-1" class="level3">
+<h3 class="anchored" data-anchor-id="overview-1">Overview</h3>
+<p>Real biological membranes are composed of multiple lipid types with varying concentrations that can differ between membrane leaflets. This chapter builds on the basic workflow to create a mixed-composition membrane, demonstrating how to control lipid ratios through uniform random distribution.</p>
+</section>
+<section id="create-mixed-composition" class="level3">
+<h3 class="anchored" data-anchor-id="create-mixed-composition">Create Mixed Composition</h3>
+<p>Define a membrane with multiple lipid types by modifying the <code>input.str</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 0.5 0.5 0.64</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">DOPC</span> 0.5 0.5 0.67</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Adding a second lipid definition, creating a 50:50 mixture of POPC and DOPC lipids. Note that DOPC has a slightly larger APL (0.67 nm²) compared to POPC (0.64 nm²). When working with lipid mixtures, ensure that the APL values are realistic for your lipid types. The values should be based on experimental data and your chosen force field.</p>
+</section>
+<section id="build-the-membrane-using-pcg-1" class="level3">
+<h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg-1">Build the Membrane using PCG</h3>
+<p>Place the mixed lipid composition on the existing point distribution:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build mixed membrane using the same point folder from Chapter 1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The algorithm randomly distributes the two lipid types over the point distribution.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>You may not be happy about the lipid domain around the proteins. Since the resolution of the <code>.tsi</code> file is low, the shape of the lipid domain around the proteins gets strongly affected by the discretization. This can be improved with a little bit of effort.</p>
-<p>Use <code>Sphere.tsi</code> from the files folder and add the same inclusion section as before but without adding the lipid domains. The end of your <code>.tsi</code> file should look like this:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>0     1     22     0     1</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>1     1      5     0     1</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now we are adding the lipid domains around each protein copy using a small script. But first we need to increase the number of the triangles and global size of the system without affecting the shape of the <code>.tsi</code> file:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 8 8 8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The output <code>.tsi</code> file is called <code>extended.tsi</code>. Change the name of this file to <code>Sphere_2.tsi</code>.</p>
-<p>Next, compile <code>tsi_format.cpp</code>, which can be found in the files, for creating the lipid domains using <code>c++</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-o</span> domain tsi_change.cpp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and then execute following command to create lipid domains with diameter of 8 nm around each protein copy:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./domain</span> Sphere_2.tsi Sphere_domain.tsi 8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>Sphere_domain.tsi</code> file is the new <code>.tsi</code> file which contains the <code>Sphere_2.tsi</code> surface and protein information. The domain ids around each protein match the protein ids. Next, we are going to perform <code>PLM</code> and <code>PCG</code> using <code>Sphere_2.tsi</code>. This time we ask <code>PLM</code> to not to extend the surface and just create the two monolayer.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere_domain.tsi <span class="at">-bilayerThickness</span> 4 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You should get an output as shown below figure.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig8.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 8 | Mixed POPC/DOPC/POPE with three proteins. The lipid domain around each protein is precisely defined by an 8 nm circle around each protein copy.</figcaption>
-</figure>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This will override the <code>output.gro</code> and <code>output.top</code> files created in the previous chapter.</p>
+</div>
 </div>
 </section>
-<section id="fixed-shapes" class="level4">
-<h4 class="anchored" data-anchor-id="fixed-shapes">6: Fixed shapes</h4>
+<section id="visualization-1" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-1">Visualization</h3>
+<p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>A complete bilayer vesicle</li>
+<li>No overlapping lipid placements</li>
+<li>Randomly mixed POPC and DOPC lipids in both leaflets</li>
+</ul>
+<p><img src="image_3.png" class="img-fluid"> <strong>Figure 4: Mixed POPC/DOPC vesicle.</strong> a) Spherical vesicle with a 50% POPC (green) and 50% DOPC (cyan) composition. b) Cross-sectional view showing both membrane leaflets.</p>
 <hr>
-<p>Without a need for a <code>.tsi</code> file, <code>PCG</code> also allows for creating membranes with certain fixed shapes such as flat bilayers, spheres, cylinders and other periodic shapes that can be written as a sum of fourier 1D modes. This is a new feature of <code>PCG</code> and therefore some limitations exist. There is also a wall option that allows you to keep the shape during both the equilibration and production run.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system <span class="at">-function</span> analytical_shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the <code>.str</code> file the shape information is defined as below for creating different shapes.</p>
-<p>Note: Not all the options need to be specified in the <code>.str</code> file. The shape type option is needed but you could use the default values for the rest.</p>
-<table style="border: none; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="7">
+</section>
+</section>
+<section id="chapter-3-membrane-proteins" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3-membrane-proteins">Chapter 3: Membrane Proteins</h2>
+<section id="overview-2" class="level3">
+<h3 class="anchored" data-anchor-id="overview-2">Overview</h3>
+<p>Integral and peripheral membrane proteins are essential components that require careful integration during membrane model building. This chapter introduces automated protein placement using <em>TS2CG’s</em> INU tool, demonstrating how to randomly position proteins in membranes while preventing lipid-protein clashes.</p>
+</section>
+<section id="adding-a-protein-to-the-membrane" class="level3">
+<h3 class="anchored" data-anchor-id="adding-a-protein-to-the-membrane">Adding a Protein to the Membrane</h3>
+<p>Define the membrane composition including membrane proteins by modifying <code>input.str</code> to include a protein section:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_1.gro</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_2.gro</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 0.5 0.5 0.64</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">DOPC</span> 0.5 0.5 0.67</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">[Protein</span> List]</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span><span class="ex">proteinname</span> type     i       j     k    shift</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1</span>     1     0.01     0     0     <span class="at">-2</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2</span>     2     0.01     0     0     <span class="at">-2</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span> Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Format explanation:</strong></p>
+<ul>
+<li><code>protein 1 0.01 0 0 -2</code>:
+<ul>
+<li><code>protein_name</code>: Must match the header of the <code>.gro</code> file</li>
+<li><code>type_id</code>: Assign a unique integer to each protein type</li>
+<li><code>surface_coverage</code>: Fraction of membrane area occupied by proteins (typically set to 0.01)</li>
+<li>Two unused parameters: For now set to 0</li>
+<li><code>z_offset</code>: Distance to move protein along the membrane normal</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To identify the transmembrane region of your proteins and orient them correctly along the z-direction, use the Positioning of Proteins in Membranes (PPM) webserver. This tool determines the optimal membrane insertion depths and orientations based on protein structure and hydrophobicity profiles.</p>
+</div>
+</div>
+</section>
+<section id="place-proteins-using-inu" class="level3">
+<h3 class="anchored" data-anchor-id="place-proteins-using-inu">Place Proteins using INU</h3>
+<p>Use the INU (Inclusion Utility) tool to randomly place proteins in the membrane:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the membrane proteins</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> INU <span class="at">--protein-type</span> 1 <span class="at">--radius</span> 5 <span class="at">--num-proteins</span> 5</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> INU <span class="at">--protein-type</span> 2 <span class="at">--radius</span> 10 <span class="at">--num-proteins</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>INU Parameters:</strong></p>
+<ul>
+<li><code>-p, --point-dir</code>: Input point directory from PLM</li>
+<li><code>-t, --protein-type</code>: Protein type identifier (matches [Protein List])</li>
+<li><code>-r, --radius</code>: Exclusion radius around proteins (nm)</li>
+<li><code>-n, --num-proteins</code>: Number of proteins to place</li>
+<li><code>-o, --output</code>: Output point directory with proteins</li>
+</ul>
+<p>This automatically places the two types of proteins in the membrane membrane while preventing protein-protein overlaps using the <code>--radius</code> flag.</p>
+</section>
+<section id="build-the-membrane-using-pcg-2" class="level3">
+<h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg-2">Build the Membrane using PCG</h3>
+<p>Place the lipids and proteins using the modified point directory:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build complete model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-incdirtype</span> Local <span class="at">-Rcutoff</span> .65</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>PCG parameters:</strong></p>
+<ul>
+<li><code>-incdirtype</code>: Use local reference frames for proteins placed by INU (required when using INU)</li>
+<li><code>-Rcutoff</code>: Set the cutoff distance used to remove lipids near proteins.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An important parameter here is the <code>-Rcutoff</code>, which sets the exclusion distance around proteins where lipids are removed. After building, always check that <em>TS2CG</em> hasn’t placed lipids in unphysical locations, such as inside protein channels. If you find lipids within protein cavities, increase the cutoff radius and rebuild your system.</p>
+</div>
+</div>
+</section>
+<section id="visualization-2" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-2">Visualization</h3>
+<p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>A complete bilayer vesicle with embedded proteins</li>
+<li>No lipid-protein or protein-protein overlaps</li>
+<li>Mixed POPC and DOPC lipids in both leaflets</li>
+<li>Proteins randomly distributed in the membrane</li>
+</ul>
+<p><img src="image_4.png" class="img-fluid"> <strong>Figure 5: Protein-containing vesicle.</strong> a) Spherical vesicle with a 50% POPC (green) and 50% DOPC (cyan) composition with randomly distributed membrane proteins (grey). b) Cross-sectional view showing both membrane leaflets.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember to verify protein orientation within the membrane. Transmembrane proteins should span the bilayer with correct topology, since proper orientation is crucial for realistic membrane models. Type I proteins have their N-terminus extracellular and C-terminus cytoplasmic, while Type II proteins have the opposite orientation.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="chapter-4-lipid-domains-around-proteins" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-4-lipid-domains-around-proteins">Chapter 4: Lipid Domains Around Proteins</h2>
+<section id="overview-3" class="level3">
+<h3 class="anchored" data-anchor-id="overview-3">Overview</h3>
+<p>Proteins often influence their local lipid environment, creating specialized domains with distinct compositions that are crucial for protein function and membrane stability. This chapter demonstrates how to create protein-specific lipid microenvironments that mimic biological membrane organization using <em>TS2CG’s</em> DAI (Domains Around Inclusion) tool.</p>
+</section>
+<section id="create-circular-domains-using-dai" class="level3">
+<h3 class="anchored" data-anchor-id="create-circular-domains-using-dai">Create Circular Domains Using DAI</h3>
+<p>Use the DAI tool to create circular lipid domains around the proteins in the existing point folder from Chapter 3:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create domain 1 (radius 5 nm) around proteins of type 1</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> DAI <span class="at">--point-dir</span> point <span class="at">--protein-type</span> 1 <span class="at">--radius</span> 7 <span class="at">--domain</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>DAI Parameters:</strong></p>
+<ul>
+<li><code>-p, --point-dir</code>: Path to point folder</li>
+<li><code>-t, --protein-type</code>: Protein type ID to use as domain centers</li>
+<li><code>-r, --radius</code>: Radius for circular domain assignment (nm)</li>
+<li><code>-d, --domain-id</code>: Domain ID to assign</li>
+<li><code>-m, --manual-points</code>: Comma-separated point IDs to use as domain centers (not used here)</li>
+<li><code>-o, --output-dir</code>: Output directory (default: overwrite input with backup)</li>
+</ul>
+<p>All proteins of the specified type are automatically identified and a circular domain is created around them. If circular domains overlap, the later command overwrites the domain specification of the earlier one. Consider this when designing systems with multiple protein types or high protein densities.</p>
+<p>Define Domain-Specific Composition Now we have to define the composition of the newly created lipid domains in the membrane by modifying <code>input.str</code>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> Proteins/protein_1.gro</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> Proteins/protein_2.gro</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 1.0 1.0 0.64</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 1</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="ex">DOPC</span> 1.0 1.0 0.67</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="ex">[Protein</span> List]</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span><span class="ex">proteinname</span> type     i       j     k    shift</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1</span>     1     0.01     0     0     <span class="at">-2</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2</span>     2     0.01     0     0     <span class="at">-2</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span> Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This configuration creates two distinct lipid environments: POPC in the bulk membrane (Domain 0) and DOPC around proteins (Domain 1).</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many membrane proteins have experimentally validated preferences for specific lipid types that can guide your domain composition. Consider using this feature to improve the biological relevance of your model.</p>
+</div>
+</div>
+</section>
+<section id="build-the-membrane-using-pcg-3" class="level3">
+<h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg-3">Build the Membrane using PCG</h3>
+<p>Build the membrane with domain-specific compositions:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build with domain-specific compositions</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-incdirtype</span> Local <span class="at">-Rcutoff</span> .65</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The PCG algorithm respects the domain assignments created by DAI and places the appropriate lipid types in each region, creating a heterogeneous membrane with protein-specific lipid environments.</p>
+</section>
+<section id="visualization-3" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-3">Visualization</h3>
+<p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>A complete bilayer vesicle with embedded proteins</li>
+<li>Two distinct lipid domains in both leaflets
+<ul>
+<li>Domain 0: POPC (bulk membrane)</li>
+<li>Domain 1: DOPC around protein copies</li>
+</ul></li>
+<li>Proteins randomly distributed in the membrane</li>
+<li>Clear lipid domain boundaries around proteins</li>
+</ul>
+<p><img src="image_5.png" class="img-fluid"> <strong>Figure 6: Vesicle with protein-specific lipid domains.</strong> a) Spherical vesicle with circular DOPC (cyan) domains around randomly distributed membrane proteins (grey), while the bulk membrane consisting of POPC lipids. b) Cross-sectional view showing both membrane leaflets.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Ready to simulate?</strong> Complete simulation protocols, including GROMACS <code>.mdp</code> files and instructions for running membrane simulations are in our <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-10">GitHub tutorials</a>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="chapter-5-analytical-shapes" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-5-analytical-shapes">Chapter 5: Analytical Shapes</h2>
+<section id="overview-4" class="level3">
+<h3 class="anchored" data-anchor-id="overview-4">Overview</h3>
+<p>While triangulated surfaces provide flexibility for building complex membrane geometries, analytical shapes offer parametric control and reproducibility that are essential for systematic studies. This chapter demonstrates <em>TS2CG’s</em> ability to generate membranes with precise geometries, eliminating the variability inherent in the mesh-based approach. We also introduce shape-preserving walls that maintain precise membrane curvature throughout MD simulations, enabling controlled studies of curvature-dependent properties.</p>
+</section>
+<section id="sinusoidal-membrane-1d-fourier" class="level3">
+<h3 class="anchored" data-anchor-id="sinusoidal-membrane-1d-fourier">Sinusoidal Membrane (1D Fourier)</h3>
+<p>Create a curved membrane using Fourier modes by defining <code>input.str</code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">CDL2</span> 0.1 0.1 0.94</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 0.9 0.9 0.64</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[Shape</span> Data]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">ShapeType</span> 1D_PBC_Fourier</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Box</span> 30 10 20</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="ex">WallRange</span> 0 1 0 1</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Density</span> 3 1</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Thickness</span> 4</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span> 1.5 1 0</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span> 2.5 2 0</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Build the sinusoidal membrane directly with PCG:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-function</span> analytical_shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The sinusoidal membrane provides controlled curvature variation for studying membrane curvature effects. The Fourier modes allow precise control over wavelength and amplitude of membrane undulations.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Experiment with different Mode parameters to create various curvature patterns. The first number is the amplitude, the second is the frequency, and the third is the phase offset.</p>
+</div>
+</div>
+</section>
+<section id="other-analytical-shapes" class="level3">
+<h3 class="anchored" data-anchor-id="other-analytical-shapes">Other Analytical Shapes</h3>
+<p>Multiple different analytical shapes are supported and can be built using the same PCG command with the <code>-function analytical_shape</code> flag.</p>
+<table class="caption-top table" data-quarto-postprocess="true">
 <colgroup>
-<col width="297">
-<col width="297">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <tbody>
-<tr valign="top">
-<td style="text-align: justify;">
-<p>
-<i><span style="text-decoration: underline;"><b>Cylinder</b></span></i>
-</p>
-<p>
-<span style="font-family: Courier New, serif;">[Shape Data]<br> ShapeType Cylinder<br> Box 40 40 40<br> Density 2<br> Thickness 4<br> Radius 12<br> End</span>
-</p>
-</td>
-<td style="text-align: justify;">
-<p>
-<i><span style="text-decoration: underline;"><b>1D Fourier Shape</b></span></i>
-</p>
-<p>
-<span style="font-family: Courier New, serif;">[Shape Data]<br> ShapeType 1D_PBC_Fourier<br> Box 20 10 20<br> WallRange 0 1 0 1<br> Density 3 1<br> Thickness 4<br> Mode 1.5 1 0<br> Mode 0.5 2 0<br> End</span>
-</p>
-</td>
+<tr class="odd">
+<td style="border: 1px solid #ddd; padding: 20px; background: #f9f9f9; width: 50%; vertical-align: top; position: relative"><button onclick="navigator.clipboard.writeText('Cylinder\n    Box 40 40 40\n    Density 2\n    Thickness 4\n    Radius 12\nEnd')" style="position: absolute; top: 10px; right: 10px; background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;">
+Copy
+</button>
+<u><strong>Cylinder</strong></u><br>
+<span style="font-family: monospace;"> &nbsp;&nbsp;&nbsp;&nbsp;Box 40 40 40<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Density 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Thickness 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Radius 12<br>
+End </span></td>
+<td style="border: 1px solid #ddd; padding: 20px; background: #f9f9f9; width: 50%; vertical-align: top; position: relative"><button onclick="navigator.clipboard.writeText('Flat\n    Box 40 40 40\n    Density 2 2\n    Thickness 4\n    WallRange 0 1 0 1\nEnd')" style="position: absolute; top: 10px; right: 10px; background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;">
+Copy
+</button>
+<u><strong>Flat</strong></u><br>
+<span style="font-family: monospace;"> &nbsp;&nbsp;&nbsp;&nbsp;Box 40 40 40<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Density 2 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Thickness 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WallRange 0 1 0 1<br>
+End </span></td>
 </tr>
-<tr valign="top">
-<td style="text-align: justify;">
-<p>
-<i><span style="text-decoration: underline;"><b>Sphere</b></span></i>
-</p>
-<p>
-<span style="font-family: Courier New, serif;">[Shape Data] <br>ShapeType Sphere<br> Box 40 40 40<br> Density 2<br> WallDensity 1 1<br>Thickness 4<br>DL 0.2<br>Radius 15<br> End</span>
-</p>
-</td>
-<td style="text-align: justify;">
-<p>
-<i><span style="text-decoration: underline;"><b>Flat</b></span></i>
-</p>
-<p>
-<span style="font-family: Courier New, serif;">[Shape Data] <br> ShapeType Flat<br> Box 40 40 40<br> Density 2 2<br> Thickness 4<br>WallRange 0 1 0 1<br> End</span>
-</p>
-</td>
+<tr class="even">
+<td style="border: 1px solid #ddd; padding: 20px; background: #f9f9f9; width: 50%; vertical-align: top; position: relative"><button onclick="navigator.clipboard.writeText('1D Fourier Shape\n    Box 20 10 20\n    WallRange 0 1 0 1\n    Density 3 1\n    Thickness 4\n    Mode 1.5 1 0\n    Mode 0.5 2 0\nEnd')" style="position: absolute; top: 10px; right: 10px; background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;">
+Copy
+</button>
+<u><strong>1D Fourier Shape</strong></u><br>
+<span style="font-family: monospace;"> &nbsp;&nbsp;&nbsp;&nbsp;Box 20 10 20<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WallRange 0 1 0 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Density 3 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Thickness 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Mode 1.5 1 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Mode 0.5 2 0<br>
+End </span></td>
+<td style="border: 1px solid #ddd; padding: 20px; background: #f9f9f9; width: 50%; vertical-align: top; position: relative"><button onclick="navigator.clipboard.writeText('Sphere\n    Box 40 40 40\n    Density 2\n    WallDensity 1 1\n    Thickness 4\n    DL 0.2\n    Radius 15\nEnd')" style="position: absolute; top: 10px; right: 10px; background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;">
+Copy
+</button>
+<u><strong>Sphere</strong></u><br>
+<span style="font-family: monospace;"> &nbsp;&nbsp;&nbsp;&nbsp;Box 40 40 40<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Density 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;WallDensity 1 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Thickness 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;DL 0.2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Radius 15<br>
+End </span></td>
 </tr>
 </tbody>
 </table>
-<center>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="fig9.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 9 | Curved lipid bilayer created with the analytic shape function of PCG.</figcaption>
-</figure>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</center>
-<section id="creating-the-wall" class="level5">
-<h5 class="anchored" data-anchor-id="creating-the-wall">Creating the Wall</h5>
-<hr>
-<p>To generate the wall beads, you need to add the following flags to the <code>PCG</code> command line:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-Wall</span> <span class="at">-WallBName</span> WL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note, it is all on you how to make the wall bead to interact with the bilayer for keeping the shape. However, the best option is to create a repulsive LJ interaction between the wall beads and lipid tail beads while the wall beads are invisible to other beads in the system. Example <code>.mdp</code> can be found in <code>files/mdp_wall</code>.</p>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The density parameters control the number of lipids per unit area. Higher densities create more tightly packed membranes, while lower densities may result in gaps.</p>
+</div>
+</div>
 </section>
-</section>
-</section>
-<section id="general-information-on-how-to-run-the-outputs-from-ts2cg" class="level3">
-<h3 class="anchored" data-anchor-id="general-information-on-how-to-run-the-outputs-from-ts2cg">General information on how to run the outputs from <code>TS2CG</code></h3>
-<hr>
-<ol type="1">
-<li>A short (100 steps) energy minimization with softcore potentials while restraining the lipid headgroups and protein backbones.</li>
-<li>Normal energy minimization without solvent.</li>
-<li>Short equilibration without solvent.</li>
-<li>Solvation (Note: Before solvation, always make sure the box size is what you need).</li>
-</ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./SOL</span> <span class="at">-in</span> input.gro <span class="at">-tem</span> water.gro <span class="at">-unsize</span> 3 <span class="at">-ion</span> 0 0 <span class="at">-o</span> solvated.gro <span class="at">-Rcutoff</span> 0.32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="5" type="1">
-<li>Energy minimization.</li>
-<li>Equilibration.</li>
-<li>Production run.</li>
-</ol>
-<section id="tsi-file-format" class="level4">
-<h4 class="anchored" data-anchor-id="tsi-file-format"><code>.tsi</code> file Format</h4>
-<hr>
-<p>The following shows a part of a <code>.tsi</code> file with all necessary keywords highlighted in bold. Every <code>.tsi</code> file starts with a line calling <strong>version 1.1</strong> of <code>TS2CG</code>. The next line defines the <strong>box</strong> size (x, y, and z) of the system in nm. The next three sections describe the TS mesh. Each section starts with a keyword (vertex, triangle and inclusion) and their corresponding number. Here, we have 130 vertices (the numbering starts from 0). Each <strong>vertex</strong> has an index and a position in x, y and z (in nm). Additionally, a vertex can have a domain id, e.g., vertices 1, 126 and 127 belong to domain 1. The default domain is 0. The 130 vertices are connected via 256 triangles. Again, every <strong>triangle</strong> has an index (starting from 0) and is defined by the vertices the triangle connects, i.e.&nbsp;triangle 0 connects vertices 11, 55 and 43. Furthermore, a <code>.tsi</code> file can have a (protein) <strong>inclusion</strong> section. Here, there are three inclusions from two different types. Again, each inclusion has an index. The index is followed by the inclusion type (here: type 1 for inclusions 0 and 1, type 2 for inclusion 2) and the corresponding vertex index. The last two (floating point) numbers describe a unit two dimensional vector (sum of both numbers must be one!) which defines the orientation of the inclusion with respect to the bilayer normal.</p>
-<blockquote class="blockquote">
-<p><strong>version 1.1</strong> <br> <strong>box</strong>   50.0000000000   50.0000000000   50.0000000000 <br> <strong>vertex</strong>   130 <br> 0   21.1606233083   25.4394806652   25.5960855271 <br> 1   27.0284995400   23.2012757654   21.6715285158   1 <br> 2   26.9921761232   25.5136587223   28.0195776981 <br> 3   23.3273229896   26.2315165676   28.0075875808   2 <br> 4   26.2722773116   26.3271061222   28.1420707299 <br> 5   22.0396876425   23.6080597437   26.8858740866   2 <br> . <br> . <br> . <br> 125   21.5556280860   25.5595098219   26.5363425272 <br> 126   23.2182025326   26.8060871266   21.5195141902   1 <br> 127   25.3199303865   24.3519379911   20.6752314764   1 <br> 128   28.0093200458   22.6356946990   23.4685318698 <br> 129   21.4000741257   26.5841316766   25.2761757772 <br> <strong>triangle</strong> 256 <br> 0   11   55   43 <br> 1   94   75   14 <br> 2   64   3   &nbsp; 91 <br> 3   59   52   40 <br> . <br> . <br> . <br> 253   33   109   44 <br> 254   53   69   &nbsp; 47 <br> 255   85   6   &nbsp; &nbsp; 74 <br> <strong>inclusion</strong>   3 <br> 0   1   22   0   1 <br> 1   1   &nbsp; 5   0   1 <br> 2   2   30   0   1 <br></p>
-</blockquote>
-</section>
-</section>
-<section id="visualizing-.tsi-or-.q-files" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-.tsi-or-.q-files">Visualizing <code>.tsi</code> or <code>.q</code> files</h3>
-<hr>
-<p>From the <code>files</code> folder in the tutorial folder copy a <code>.tsi</code> file in your working folder. These files can be visualized using <code>pymol</code>, <code>vmd</code> or <code>paraview</code>.</p>
-<section id="pymol" class="level5">
-<h5 class="anchored" data-anchor-id="pymol"><code>Pymol</code></h5>
-<p>You need <code>PyMOL2q.py</code> from the <code>TS2CG</code> folder then do the following steps:</p>
-<ol type="1">
-<li>Load <code>Pymol</code>.</li>
-<li>On <code>pymol</code> window, execute <code>“run PyMOL2q.py”</code></li>
-<li>Then execute <code>“loadq Your_TS_File.tsi”</code></li>
-</ol>
-</section>
-<section id="paraview-or-vmd-visualization-of-the-generated-points" class="level5">
-<h5 class="anchored" data-anchor-id="paraview-or-vmd-visualization-of-the-generated-points"><code>paraview</code> or <code>vmd</code> visualization of the generated points</h5>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Your_TS_File <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then in <code>pointvisualization_data</code> folder, you can find several files and it is the gro file which can be used for visualization.</p>
-</section>
-</section>
-<section id="how-to-obtain-a-ts-file" class="level3">
-<h3 class="anchored" data-anchor-id="how-to-obtain-a-ts-file">How to obtain a TS file</h3>
-<hr>
-<p>TS files can be obtained from different sources. 1) Form DTS simulations or 2) by converting density points to mashes for example using <code>Blender</code>, <code>Geogram</code> and <code>GAMer</code>. When using <code>Blender</code> you can import any <code>.stl</code> file or other 3D file and use <code>blender_mesh2tsi.py</code> which can be found in the files folder.</p>
-</section>
-<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
-<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
-<hr>
+<section id="adding-shape-preserving-walls" class="level3">
+<h3 class="anchored" data-anchor-id="adding-shape-preserving-walls">Adding Shape-Preserving Walls</h3>
+<p>Membranes can deform during MD simulation as the system equilibrates, potentially losing the precise geometry and curvature that may be essential for studies such as lipid sorting or curvature-dependent protein behavior. Wall beads provide a solution by constraining the membrane to maintain its desired shape throughout the simulation.</p>
+<p>To maintain membrane curvature during simulation, add wall generation:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wall generation flags</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-function</span> analytical_shape <span class="at">-Wall</span> <span class="at">-WallH</span> 0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Parameters explained:</strong></p>
 <ul>
-<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
-<li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
-<li><p><code>TS2CG</code> (<a href="https://github.com/marrink-lab/TS2CG1.1">https://github.com/marrink-lab/TS2CG1.1</a>)</p></li>
+<li><code>-Wall</code>: Generate wall beads (WL)</li>
+<li><code>-WallH 0.1</code>: Place wall beads 0.1 nm above the lipid headgroup.</li>
 </ul>
+<p>When using the <code>-Wall</code>, PCG generates a <code>Wall.itp</code> file containing wall bead parameters. The wall beads interact repulsively with lipid tail beads (C1 and C4h) while being invisible to headgroups. Include <code>Wall.itp</code> in your topology file along with the Martini force field files.</p>
+<p>The wall beads act as a scaffold that preserves the membrane shape while allowing normal lipid dynamics within the constrained geometry, enabling controlled studies of curvature-dependent membrane properties.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Simulating wall-constrained membranes requires careful attention to the simulation protocol. Wall parameters must be chosen to maintain membrane shape while allowing normal lipid diffusion. For detailed protocols, see <a href="https://doi.org/10.1016/bs.mie.2024.03.010">this book chapter</a>.</p>
+</div>
+</div>
 </section>
-<section id="references" class="level3">
-<h3 class="anchored" data-anchor-id="references">References</h3>
+<section id="visualization-4" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-4">Visualization</h3>
+<p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>A continuous 1D fourier sinusoidal membrane</li>
+<li>Wall beads around the bilayer</li>
+</ul>
+<p><img src="image_6.png" class="img-fluid"> <strong>Figure 7: Analytical sinusoidal membrane shape.</strong> a) Analytically generated sinusoidal 1D Fourier membrane membranes with a 90% POPC (green) and 10% CDL2 (cyan) composition. b) The same membrane system now also showing the wall beads (gray spheres) positioned around the bilayer to the defined curvature during simulation. —</p>
+</section>
+</section>
+<section id="chapter-6-curvature-based-lipid-placement" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-6-curvature-based-lipid-placement">Chapter 6: Curvature-Based Lipid Placement</h2>
+<section id="overview-5" class="level3">
+<h3 class="anchored" data-anchor-id="overview-5">Overview</h3>
+<p>This chapter introduces <em>TS2CG’s</em> experimental DOP (Distribution-based Optimized Placement) tool, which enables curvature-informed lipid placement in membranes. While this approach represents a step toward building more realistic starting configurations of large membranes, it should be considered a research tool requiring careful parameter selection and validation.</p>
+<p>Different lipid geometries have distinct curvature preferences in biological membranes. The critical packing parameter (CPP) is a dimensionless number used to predict the self-assembled structure of surfactant molecules in solution. It’s defined by the ratio of a surfactant’s hydrophobic tail volume and the product of its head group area and tail length. The CPP value helps determine whether a surfactant will form micelles, bilayers, or other aggregate structures. Cone-shaped lipids tend to favor negative curvature regions, while inverted cone-shaped lipids prefer positive curvature. The DOP tool leverages this principle to create non-random lipid distributions that may reduce equilibration times and provide more realistic starting configurations.</p>
+</section>
+<section id="the-lipid-placement-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="the-lipid-placement-algorithm">The Lipid Placement Algorithm</h3>
+<p>The curvature-dependent lipid placement probability is calculated using a Boltzmann-weighted function:</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(l) ∝ e^{-k(2H-C_0)2}
+\end{aligned}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><strong><span class="math inline">\(P(l)\)</span></strong>: Placement probability for lipid type <em>l</em></li>
+<li><strong><span class="math inline">\(H\)</span></strong>: Local mean curvature at the membrane point</li>
+<li><strong><span class="math inline">\(C_0\)</span></strong>: Intrinsic curvature preference of the lipid type</li>
+<li><strong><span class="math inline">\(k\)</span></strong>: User-defined scaling factor controlling domain sharpness</li>
+</ul>
+<p>This probability function guides the stochastic lipid assignment at each membrane point. The algorithm iterates over each point in random order to prevent systematic bias, calculating placement probabilities for all lipid types and normalizing them to preserve the specified overall lipid composition.</p>
+</section>
+<section id="create-initial-point-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="create-initial-point-distribution">Create Initial Point Distribution</h3>
+<p>Using the sinusoidal membrane configuration from Chapter 5, first generate the point folder:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate point folder (required for DOP)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-function</span> analytical_shape <span class="at">-WPointDir</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>-WPointDir</code> flag tells PCG to only generate the point folder containing <code>InnerBM.dat</code> and <code>OuterBM.dat</code> files with geometric information needed for curvature calculations, including local coordinate frames and curvature tensors at each point.</p>
+</section>
+<section id="define-curvature-preferences" class="level3">
+<h3 class="anchored" data-anchor-id="define-curvature-preferences">Define Curvature Preferences</h3>
+<p>Create <code>domain_input.txt</code> to specify lipid types and their curvature preferences:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">lipid_domain</span> lipid_type percentage c0 APL</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> CDL2 0.3 <span class="at">-0.1</span> 0.94</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> POPC 0.7  0.0 0.64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Format explanation:</strong></p>
+<ul>
+<li><code>0 CDL2 0.3 -0.1 0.94</code>:
+<ul>
+<li><code>Lipid domain</code>: Assign a unique lipid domain to each lipid type</li>
+<li><code>Lipid type</code>: Define the used lipid type</li>
+<li><code>Lipid ratio</code>: Fraction of membrane occupied by the lipid type</li>
+<li><code>Preferred curvature:</code> Assign a curvature bias for each lipid type (<span class="math inline">\(nm^{-1}\)</span>)</li>
+<li><code>Area per lipid</code>: Surface area of a single lipid (<span class="math inline">\(nm^{2}\)</span>)</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Curvature preferences (C₀) are not well-defined physical constants and depend heavily on membrane composition, temperature, and local environment. The values used here should be considered adjustable parameters rather than fundamental lipid properties. Users should experiment with different C₀ values and validate results against experimental data when available.</p>
+</div>
+</div>
+</section>
+<section id="optimize-lipid-placement-with-dop" class="level3">
+<h3 class="anchored" data-anchor-id="optimize-lipid-placement-with-dop">Optimize Lipid Placement with DOP</h3>
+<p>Now use DOP to apply the curvature-informed assignment of lipids on the point distribution:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run curvature optimization</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> DOP <span class="at">-p</span> point <span class="at">-i</span> domain_input.txt <span class="at">-ni</span> optimized_input.str <span class="at">-k</span> 250</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>DOP Parameters:</strong></p>
+<ul>
+<li><code>-p, --point-dir</code>: Path to point folder</li>
+<li><code>-s, --lipid-specs</code>: Domain input file with curvature preferences</li>
+<li><code>-ni,--new-input</code>: Output structure file name</li>
+<li><code>-k, --k-factor</code>: Curvature sensitivity (higher = more selective)</li>
+<li><code>-o, --output-dir</code>: Output directory (default: overwrite input with backup)</li>
+</ul>
+<p>This generates a modified point folder with curvature-optimized lipid assignments and an updated <code>optimized_input.str</code> file.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The k parameter controls the strength of curvature biasing. Low values create weak preferences, while high values may produce unrealistic segregation. Start with moderate values and adjust based on your system. Remember that the parameters depend on both the lipid composition and curvature distribution of the membrane.</p>
+</div>
+</div>
+</section>
+<section id="build-curvature-informed-membrane" class="level3">
+<h3 class="anchored" data-anchor-id="build-curvature-informed-membrane">Build Curvature-Informed Membrane</h3>
+<p>Build the final membrane using the optimized point assignments:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build final membrane using optimized points</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-dts</span> point <span class="at">-str</span> optimized_input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="visualization-and-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-and-analysis">Visualization and Analysis</h3>
+<p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result should be similar to the snapshot shown below, you can observe:</p>
+<ul>
+<li>A continuous 1D fourier sinusoidal membrane</li>
+<li>CDL2 (cardiolipin) concentrated in negatively curved regions</li>
+<li>POPC distributed more uniformly with slight preference for less curved areas</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While the DOP tool provides a new method to create curvature-informed lipid distributions, more research is needed to validate the biological accuracy of the constructed models, though it is still a useful tool for controlling lateral lipid organization.</p>
+</div>
+</div>
+<p><img src="image_7.png" class="img-fluid"> <strong>Figure 8: Curvature-based lipid sorting.</strong> Analytically generated sinusoidal 1D Fourier membrane membranes showing curvature-dependent lipid placement. Cardiolipin (CDL2, cyan) preferentially located near negatively curved regions, while POPC (green) shows more uniform distribution.</p>
 <hr>
-<p>[1] Pezeshkian, W., König, M., Wassenaar, T.A. et al.&nbsp;Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020) (https://doi.org/10.1038/s41467-020-16094-y)</p>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ol type="1">
+<li>Schuhmann, F., Stevens, J., A., TS2CG as a membrane builder. BioRxiv (2025). <a href="https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1">https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1</a></li>
+<li>Pezeshkian, W. et al.&nbsp;Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020). <a href="https://doi.org/10.1038/s41467-020-16094-y">https://doi.org/10.1038/s41467-020-16094-y</a></li>
+<li>Pezeshkian, W. et al.&nbsp;Mesoscale simulation of biomembranes with FreeDTS. Nat Commun 15, 548 (2024). <a href="https://doi.org/10.1038/s41467-024-44819-w">https://doi.org/10.1038/s41467-024-44819-w</a></li>
+<li>Brown, C.M. <em>et al.</em> An integrative modelling approach to the mitochondrial cristae. <em>Commun Biol</em> 8, 972 (2025). <a href="https://doi.org/10.1038/s42003-025-08381-">https://doi.org/10.1038/s42003-025-08381-</a></li>
+<li>Souza, P.C.T. et al.&nbsp;Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18, 382-388 (2021). <a href="https://doi.org/10.1038/s41592-021-01098-3">https://doi.org/10.1038/s41592-021-01098-3</a></li>
+</ol>
+<p><em>This tutorial was partially based on the original TS2CG tutorial by M. König and W. Pezeshkian.</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This tutorial builds upon the original TS2CG tutorial by M. König and W. Pezeshkian, updating it for TS2CG 2.0.</p>
+</div>
+</div>
 <hr>
+<p>For additional support, examples, and updates, visit the <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0">TS2CG GitHub repository</a> or check the <a href="https://weria-pezeshkian.github.io/TS2CG_python_documentation/">TS2CG documentation</a>.</p>
 
 
 </section>
