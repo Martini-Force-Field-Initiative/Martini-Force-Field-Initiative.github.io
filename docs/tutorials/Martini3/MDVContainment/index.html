@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a>
   <ul class="collapse">
-  <li><a href="#assignment-1-define-a-lipid-vescile" id="toc-assignment-1-define-a-lipid-vescile" class="nav-link" data-scroll-target="#assignment-1-define-a-lipid-vescile">Assignment 1: Define a Lipid Vescile</a></li>
+  <li><a href="#assignment-1-define-a-lipid-vesicle" id="toc-assignment-1-define-a-lipid-vesicle" class="nav-link" data-scroll-target="#assignment-1-define-a-lipid-vesicle">Assignment 1: Define a Lipid Vesicle</a></li>
   <li><a href="#assignment-2-define-the-leaflets-of-a-lipid-vesicle" id="toc-assignment-2-define-the-leaflets-of-a-lipid-vesicle" class="nav-link" data-scroll-target="#assignment-2-define-the-leaflets-of-a-lipid-vesicle">Assignment 2: Define the Leaflets of a Lipid Vesicle</a></li>
   <li><a href="#assignment-3-be-creative-and-change-the-solvent" id="toc-assignment-3-be-creative-and-change-the-solvent" class="nav-link" data-scroll-target="#assignment-3-be-creative-and-change-the-solvent">Assignment 3: Be Creative and Change the Solvent</a></li>
   </ul></li>
@@ -762,10 +762,10 @@ Question 6
 </section>
 <section id="surface-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="surface-analysis">Surface Analysis</h2>
-<p>Although containment is a volumetric analysis, nothing is stopping us from converting our volume to a (set of) surfaces. The advantage is that certain observables like surface area are not converging nicely for voxels as the voxel volume decreases – like volume does. Another thing to keep in mind is that a volume has no genus, but. a surface does, therefore for certain topological analysis it might be important to work with explicit surfaces instead!</p>
+<p>Although containment is a volumetric analysis, nothing is stopping us from converting our volume to a (set of) surfaces. The advantage is that certain observables like surface area are not converging nicely for voxels as the voxel volume decreases – like volume does. Another thing to keep in mind is that a volume has no genus, but a surface does, therefore for certain topological analysis it might be important to work with explicit surfaces instead!</p>
 <section id="marching-cubes" class="level3">
 <h3 class="anchored" data-anchor-id="marching-cubes">Marching cubes</h3>
-<p>We can use the marching cubes agorithm to transform our density into (a) surfaces.</p>
+<p>We can use the marching cubes algorithm to transform our density into (a) surfaces.</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>active_components <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>combined_grid <span class="op">=</span> containment.voxel_containment.get_voxel_mask([active_components])</span>
@@ -975,14 +975,14 @@ Question 8
 </section>
 <section id="assignments" class="level1">
 <h1>Assignments</h1>
-<section id="assignment-1-define-a-lipid-vescile" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-1-define-a-lipid-vescile">Assignment 1: Define a Lipid Vescile</h2>
+<section id="assignment-1-define-a-lipid-vesicle" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-1-define-a-lipid-vesicle">Assignment 1: Define a Lipid Vesicle</h2>
 <p>Using component acquisition and composition analysis, define what it means to be a vesicle and only return what the vesicle coat is made of and what it contains.</p>
-<p>Keep the following complications in mind: * What would happen if there are no components satisfying your constraints? * What if there are multiple vesicle? * What about nested vesicles? * Check out tutorial 2 to see if you definition hols up :D</p>
+<p>Keep the following complications in mind: * What would happen if there are no components satisfying your constraints? * What if there are multiple vesicles? * What about nested vesicles? * Check out tutorial 2 to see if you definition holds up :D</p>
 </section>
 <section id="assignment-2-define-the-leaflets-of-a-lipid-vesicle" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-2-define-the-leaflets-of-a-lipid-vesicle">Assignment 2: Define the Leaflets of a Lipid Vesicle</h2>
-<p>Use your definition of the lipid vesicle to find the compostions of its leaflets.</p>
+<p>Use your definition of the lipid vesicle to find the compositions of its leaflets.</p>
 <p>Keep the following in mind:</p>
 <ul>
 <li>Remember one can obtain the atomgroups and use them with MDAnalysis distance queries.</li>
@@ -990,7 +990,7 @@ Question 8
 <li>It can be useful to select the whole molecule if a single atom falls in your definition.</li>
 <li>Use the MDAnalysis help.</li>
 <li>Perform the growth in the voxel grid using scipy.ndimage.binary_dilation(mode=‘wrap’) is another way to go.</li>
-<li>Check out tutorial 2 to see if you definition hols up :D</li>
+<li>Check out tutorial 2 to see if you definition holds up :D</li>
 </ul>
 </section>
 <section id="assignment-3-be-creative-and-change-the-solvent" class="level2">
