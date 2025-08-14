@@ -10,15 +10,15 @@ format: html
 
 ## Table of Contents
 
-- [Introduction](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#introduction)
-- [Installation and Setup](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#installation-and-setup)
-- [Chapter 1: Basic Uniform Vesicle](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-1-basic-uniform-vesicle)
-- [Chapter](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-1-basic-uniform-vesicle) [2: Lipid Mixtures](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-2-lipid-mixtures)
-- [Chapter](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-1-basic-uniform-vesicle) [3: Membrane Proteins](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-3-membrane-proteins)
-- [Chapter](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-1-basic-uniform-vesicle) [4: Lipid Domains Around Proteins](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-4-lipid-domains-around-proteins)
-- [Chapter](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-1-basic-uniform-vesicle) [5: Analytical Shapes](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-5-analytical-shapes)
-- [Chapter](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-1-basic-uniform-vesicle) [6: Curvature-Based Lipid Placement](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#tutorial-6-curvature-based-lipid-placement)
-- [References](https://docs.google.com/document/d/10xkEayCJUY0aOHoQFXlX39KOe8JYem4AOKlgjxaXwlA/edit#references)
+- [Introduction](#introduction)
+- [Installation and Setup](#installation-and-setup)
+- [Chapter 1: Basic Uniform Vesicle](#chapter-1-basic-vesicle)
+- [Chapter 2: Lipid Mixtures](#chapter-2-lipid-mixtures)
+- [Chapter 3: Membrane Proteins](#chapter-3-membrane-proteins)
+- [Chapter 4: Lipid Domains Around Proteins](#chapter-4-lipid-domains-around-proteins)
+- [Chapter 5: Analytical Shapes](#chapter-5-analytical-shapes)
+- [Chapter 6: Curvature-Based Lipid Placement](#chapter-6-curvature-based-lipid-placement)
+- [References](#references)
 
 ---
 
@@ -75,7 +75,7 @@ TS2CG is being developed on [GitHub](https://github.com/weria-pezeshkian/TS2CG-v
 
 ### Download Tutorial Files
 
-Before starting the tutorials, download the required structure and parameter files [**here**](https://drive.google.com/file/d/1umO3ZEI4xBSgTYGNORKYEYxgHqapmvar/view?usp=drive_link). Extract the files:
+Before starting the tutorials, download the required structure and parameter files [**here**](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/TS2CG/tutorial_files.tar.gz). Extract the files:
 
 ```bash
 tar -xzf tutorial_files.tar.gz
