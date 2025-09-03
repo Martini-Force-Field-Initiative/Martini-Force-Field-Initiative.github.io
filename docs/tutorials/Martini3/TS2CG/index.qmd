@@ -379,8 +379,8 @@ Define Domain-Specific Composition
 Now we have to define the composition of the newly created lipid domains in the membrane by modifying `input.str`:
 
 ```bash
-include Proteins/protein_1.gro
-include Proteins/protein_2.gro
+include structures/protein_1.gro
+include structures/protein_2.gro
 
 [Lipids List]
 Domain 0
