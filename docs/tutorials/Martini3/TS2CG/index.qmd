@@ -379,8 +379,8 @@ Define Domain-Specific Composition
 Now we have to define the composition of the newly created lipid domains in the membrane by modifying `input.str`:
 
 ```bash
-include Proteins/protein_1.gro
-include Proteins/protein_2.gro
+include structures/protein_1.gro
+include structures/protein_2.gro
 
 [Lipids List]
 Domain 0
@@ -708,13 +708,11 @@ While the DOP tool provides a new method to create curvature-informed lipid dist
 
 ## References
 
-1. Schuhmann, F., Stevens, J., A., TS2CG as a membrane builder. BioRxiv (2025). [https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1](https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1)
+1. Schuhmann, F., Stevens, J., A., TS2CG as a membrane builder. JCTC (2025). [https://doi.org/10.1021/acs.jctc.5c00833](https://doi.org/10.1021/acs.jctc.5c00833)
 2. Pezeshkian, W. et al. Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020). [https://doi.org/10.1038/s41467-020-16094-y](https://doi.org/10.1038/s41467-020-16094-y)
 3. Pezeshkian, W. et al. Mesoscale simulation of biomembranes with FreeDTS. Nat Commun 15, 548 (2024). [https://doi.org/10.1038/s41467-024-44819-w](https://doi.org/10.1038/s41467-024-44819-w)
 4. Brown, C.M. *et al.* An integrative modelling approach to the mitochondrial cristae. *Commun Biol* 8, 972 (2025). [https://doi.org/10.1038/s42003-025-08381-](https://doi.org/10.1038/s42003-025-08381-)
 5. Souza, P.C.T. et al. Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18, 382-388 (2021). [https://doi.org/10.1038/s41592-021-01098-3](https://doi.org/10.1038/s41592-021-01098-3)
-
-*This tutorial was partially based on the original TS2CG tutorial by M. König and W. Pezeshkian.*
 
 :::{.callout-note}
 This tutorial builds upon the original TS2CG tutorial by M. König and W. Pezeshkian, updating it for TS2CG 2.0.
