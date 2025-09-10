@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.7.34">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-094f87d8d1cb9068919611e167c728e2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -746,8 +746,8 @@ Warning
 </ul>
 <p>All proteins of the specified type are automatically identified and a circular domain is created around them. If circular domains overlap, the later command overwrites the domain specification of the earlier one. Consider this when designing systems with multiple protein types or high protein densities.</p>
 <p>Define Domain-Specific Composition Now we have to define the composition of the newly created lipid domains in the membrane by modifying <code>input.str</code>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> Proteins/protein_1.gro</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> Proteins/protein_2.gro</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_1.gro</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_2.gro</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
@@ -1094,13 +1094,12 @@ Warning
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ol type="1">
-<li>Schuhmann, F., Stevens, J., A., TS2CG as a membrane builder. BioRxiv (2025). <a href="https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1">https://www.biorxiv.org/content/10.1101/2025.04.16.649160v1</a></li>
+<li>Schuhmann, F., Stevens, J., A., TS2CG as a membrane builder. JCTC (2025). <a href="https://doi.org/10.1021/acs.jctc.5c00833">https://doi.org/10.1021/acs.jctc.5c00833</a></li>
 <li>Pezeshkian, W. et al.&nbsp;Backmapping triangulated surfaces to coarse-grained membrane models. Nat Commun 11, 2296 (2020). <a href="https://doi.org/10.1038/s41467-020-16094-y">https://doi.org/10.1038/s41467-020-16094-y</a></li>
 <li>Pezeshkian, W. et al.&nbsp;Mesoscale simulation of biomembranes with FreeDTS. Nat Commun 15, 548 (2024). <a href="https://doi.org/10.1038/s41467-024-44819-w">https://doi.org/10.1038/s41467-024-44819-w</a></li>
 <li>Brown, C.M. <em>et al.</em> An integrative modelling approach to the mitochondrial cristae. <em>Commun Biol</em> 8, 972 (2025). <a href="https://doi.org/10.1038/s42003-025-08381-">https://doi.org/10.1038/s42003-025-08381-</a></li>
 <li>Souza, P.C.T. et al.&nbsp;Martini 3: a general purpose force field for coarse-grained molecular dynamics. Nat Methods 18, 382-388 (2021). <a href="https://doi.org/10.1038/s41592-021-01098-3">https://doi.org/10.1038/s41592-021-01098-3</a></li>
 </ol>
-<p><em>This tutorial was partially based on the original TS2CG tutorial by M. König and W. Pezeshkian.</em></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
