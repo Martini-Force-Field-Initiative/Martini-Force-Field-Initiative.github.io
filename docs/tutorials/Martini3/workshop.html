@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Polyply: generating input parameters and coordinates – Martini Force Field Initiative</title>
+<title>Martini Workshop 2025 – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +23,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<link href="../../../../images/favicon.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
-<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../docs/tutorials/Martini3/lectures.html" rel="next">
+<link href="../../../docs/tutorials/index.html" rel="prev">
+<link href="../../../images/favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,6 +71,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FDF7F4;
+      }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -95,30 +103,26 @@ ul.task-list li input[type="checkbox"] {
 </script>
 
 
-<link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Polyply: generating input parameters and coordinates – Martini Force Field Initiative">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Polyply/fig1.png">
+<link rel="stylesheet" href="../../../styles.css">
+<meta property="og:title" content="Martini Workshop 2025 – Martini Force Field Initiative">
+<meta property="og:description" content="Collection of lectures from the Martini Workshop 2025 in Groningen">
+<meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta property="og:image:height" content="1025">
-<meta property="og:image:width" content="1853">
-<meta name="twitter:title" content="Polyply: generating input parameters and coordinates – Martini Force Field Initiative">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/Polyply/fig1.png">
-<meta name="twitter:image-height" content="1025">
-<meta name="twitter:image-width" content="1853">
+<meta name="twitter:title" content="Martini Workshop 2025 – Martini Force Field Initiative">
+<meta name="twitter:description" content="Collection of lectures from the Martini Workshop 2025 in Groningen">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
 <body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -128,31 +132,31 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link" href="../../../index.html"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link active" href="../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
+    <a class="nav-link" href="../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
 </i> 
 <span class="menu-text">Downloads</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
+    <a class="nav-link" href="../../../docs/publications/index.html"> <i class="bi bi-newspaper" role="img">
 </i> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/announcements/index.html"> 
+    <a class="nav-link" href="../../../docs/announcements/index.html"> 
 <span class="menu-text"><i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i> Announcements</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/contact/index.html"> 
+    <a class="nav-link" href="../../../docs/contact/index.html"> 
 <span class="menu-text"><i class="fa-regular fa-address-book" aria-label="address-book"></i> Contact</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -171,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Report an Issue</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
+    <a class="dropdown-item" href="../../../docs/faq/index.html"><i class="bi bi-question-circle" role="img">
 </i> 
  <span class="dropdown-text">FAQs</span></a>
   </li>  
@@ -190,45 +194,62 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Polyply: generating input parameters and coordinates</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/tutorials/Martini3/workshop.html">📚 Workshop 2025</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-right">
+      <h1 class="title">Martini Workshop 2025</h1>
+            <p class="subtitle lead">Collection of lectures from the Martini Workshop 2025 in Groningen</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-right">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/tutorials/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><b>Summary</b></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/tutorials/Martini3/workshop.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/tutorials/Martini3/workshop.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">📚 Workshop 2025</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/tutorials/Martini3/lectures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🎓 Martini Lectures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/tutorials/Martini3/tutorials.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🛠️ Hands-on Tutorials</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/tutorials/Legacy/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">🕸️ Legacy Material</span></a>
   </div>
 </li>
@@ -237,102 +258,149 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#part-1-melts-and-blends" id="toc-part-1-melts-and-blends" class="nav-link" data-scroll-target="#part-1-melts-and-blends">Part 1: Melts and Blends</a></li>
-  <li><a href="#part-2-pegylated-lipid-bilayers" id="toc-part-2-pegylated-lipid-bilayers" class="nav-link" data-scroll-target="#part-2-pegylated-lipid-bilayers">Part 2: PEGylated lipid bilayers</a></li>
-  <li><a href="#part-3-early-life-in-a-vesicle" id="toc-part-3-early-life-in-a-vesicle" class="nav-link" data-scroll-target="#part-3-early-life-in-a-vesicle">Part 3: Early life in a Vesicle</a></li>
-  <li><a href="#tools-and-scripts-used-in-this-tutorial" id="toc-tools-and-scripts-used-in-this-tutorial" class="nav-link" data-scroll-target="#tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Polyply: generating input parameters and coordinates</h1>
+
+
+
+
+
+  <style>
+    :root {
+      --primary-color: #4B2E4C;
+      --secondary-color: #A89CB0;
+      --accent-color: #e74c3c;
+      --text-color: #2c3e50;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
+    }
+    .btn-rounded-primary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+
+    @media (max-width: 754px) {
+        /* Make the buttons smaller on mobile */
+        .btn-rounded-primary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .lecture-item {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+
+<div class="lecture-grid">
+<div class="lecture-item">
+<p><strong>• Introduction to the Martini model</strong></p>
+<p><strong>Author:</strong> <em>Siewert-Jan Marrink</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-11-IntroductionMartini_SJMarrink.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Lipid biophysics with the Martini model</strong></p>
+<p><strong>Author:</strong> <em>Helgi Ingólfsson</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-11-Lipid+biophysics+and+Martini+-+Ingolfsson.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Building your system</strong></p>
+<p><strong>Author:</strong> <em>Tsjerk A. Wassenaar</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-11-BuildingSystems-Wassenaar.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Introduction to the protein models in Martini 3</strong></p>
+<p><strong>Author:</strong> <em>Sebastian Thallmair</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12_IntroProteinModels-SThallmair.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• GoMartini3: Sampling of Conformational Changes and Protein Complexes</strong></p>
+<p><strong>Author:</strong> <em>Adolfo Poma Bernaola</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12+GoMartini3_Protein+Complexes+-+Poma.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• IDPs, Martinize2, Vermouth</strong></p>
+<p><strong>Author:</strong> <em>Chris Brasnett</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12-IDPs_Martinize_Brasnett.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• ProLint2: Analyzing lipid-protein interactions in MD simulations</strong></p>
+<p><strong>Author:</strong> <em>Daniel P. Ramirez-Echemendia</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12_Prolint2_Ramirez.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Small molecule parametrization</strong></p>
+<p><strong>Author:</strong> <em>Riccardo Alessandri</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-13_SmallMoleculeParametrization_Alessandri.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Cholesterol and related molecules</strong></p>
+<p><strong>Author:</strong> <em>Manuel N. Melo</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-13-Cholesterol+and+related+molecules+-+Melo.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• TS2CG: Backmapping tool or input builder?</strong></p>
+<p><strong>Author:</strong> <em>Weria Pezeshkian</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-14-TS2CG-Pezeshkian.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• Using integrative modelling to build a representative membrane</strong></p>
+<p><strong>Author:</strong> <em>Chelsea M. Brown</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-14_Complex_systems_CBrown.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
+</div>
+<div class="lecture-item">
+<p><strong>• The Martini Recipe for Whole-Cell Simulations</strong></p>
+<p><strong>Author:</strong> <em>Jan A. Stevens</em></p>
+<div class="lecture-buttons">
+<p><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-14-JStevens-Cell.pdf" class="btn btn-primary btn-rounded-primary">Slides</a></p>
+</div>
 </div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<hr>
-In case of issues, please contact <a href="mailto:%20f.grunewald@rug.nl">f.grunewald@rug.nl</a>.
-<hr>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
-<ul>
-<li><a href="#introduction"><code>Introduction</code></a></li>
-<li><a href="#part-1-melts-and-blends"><code>Part 1: Melts and Blends</code></a></li>
-<li><a href="#part-2-pegylated-lipid-bilayers"><code>Part 2: PEGylated lipid bilayers</code></a></li>
-<li><a href="#part-3-early-life-in-a-vesicle"><code>Part 3: Early life in a Vesicle</code></a></li>
-<li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
-<li><a href="#references"><code>References</code></a></li>
-</ul>
-</section>
-<section id="introduction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<hr>
-<p>This tutorial has three independent parts. It is recommended to start with part 1. However, people familiar with Martini can also go to part 2/3 independently. The tutorials cover applications and usage of <code>Polyply</code>, a python suite for facilitating simulations of (bio-)macromolecules and nanomaterials<sup><a href="#references">[1]</a></sup>.</p>
-</section>
-<section id="part-1-melts-and-blends" class="level3">
-<h3 class="anchored" data-anchor-id="part-1-melts-and-blends">Part 1: Melts and Blends</h3>
-<hr>
-<p>In this tutorial you will learn how to generate simple polymer melts and blends with <code>polyply</code> using Martini3. It takes about 10min to complete the Tutorial and covers the basic functionality of <code>polyply</code> <code>.itp</code> file generation and coordinate generation. No prior knowledge is required to start this tutorial, but it is useful as background for the other two tutorials. Follow the link to get to the tutorial:</p>
-<ul>
-<li><a href="https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-martini-polymer-melts">https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-martini-polymer-melts</a></li>
-</ul>
-<p><img src="fig1.png" class="img-fluid"></p>
-</section>
-<section id="part-2-pegylated-lipid-bilayers" class="level3">
-<h3 class="anchored" data-anchor-id="part-2-pegylated-lipid-bilayers">Part 2: PEGylated lipid bilayers</h3>
-<hr>
-<p>In this tutorial you will learn how to generate PEGylated lipid bilayers. It serves as an example tp explains how to connect a biomolecule to a polymer, build brushes, use pre-build coordinates from other programs. Follow the link to get to the tutorial:</p>
-<ul>
-<li><a href="https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-PEGylated-lipid-bilayers">https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-PEGylated-lipid-bilayers</a></li>
-</ul>
-<p><img src="fig2.png" class="img-fluid"></p>
-</section>
-<section id="part-3-early-life-in-a-vesicle" class="level3">
-<h3 class="anchored" data-anchor-id="part-3-early-life-in-a-vesicle">Part 3: Early life in a Vesicle</h3>
-<hr>
-<p>In this tutorial you will generate a model system for early life. In particular you will fill a vesicle with a phase separated mixture of PEO and Dextran (a carbohydrate polymer). This tutorial covers how to build phase separated systems, use pre-build coordinates from other programs, generate <code>.itp</code> files for branched molecules, generate statistical distributions of polymers. The Tutorial comes in the form of a jupyter notebook (<a href="https://jupyter.org/">https://jupyter.org/</a>). Make sure to have <code>polyply</code> installed before opening it. If you work within a virtual environment you will need to add the jupyter kernel before running the notebook. Instructions can be found in the notebook <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Polyply/tutorial.zip">here</a>.</p>
-<p><img src="fig3.png" class="img-fluid"></p>
-</section>
-<section id="tools-and-scripts-used-in-this-tutorial" class="level3">
-<h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
-<hr>
-<ul>
-<li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/">http://www.gromacs.org/</a>)</p></li>
-<li><p><code>Polyply</code> (<a href="https://github.com/marrink-lab/polyply_1.0">https://github.com/marrink-lab/polyply_1.0</a>)</p></li>
-</ul>
-</section>
-<section id="references" class="level3">
-<h3 class="anchored" data-anchor-id="references">References</h3>
-<hr>
-<p>[1] Grünewald, F., Alessandri, R., Kroon, P. C., Monticelli, L., Souza, P. C., &amp; Marrink, S. J. (2021). Polyply: a python suite for facilitating simulations of (bio-) macromolecules and nanomaterials. arXiv preprint arXiv:2105.05890.</p>
-<hr>
-
-
-</section>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -734,6 +802,18 @@ In case of issues, please contact <a href="mailto:%20f.grunewald@rug.nl">f.grune
     }
   });
   </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../../../docs/tutorials/index.html" class="pagination-link" aria-label="<b>Summary</b><hr>">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><b>Summary</b></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../../docs/tutorials/Martini3/lectures.html" class="pagination-link" aria-label="🎓 Martini Lectures">
+        <span class="nav-page-text">🎓 Martini Lectures</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -751,7 +831,7 @@ In case of issues, please contact <a href="mailto:%20f.grunewald@rug.nl">f.grune
     </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/faq/index.html">
+    <a class="nav-link" href="../../../docs/faq/index.html">
 <p><iconify-icon inline="true" role="img" icon="hugeicons:help-circle" style="font-size: 1.25em;" aria-label="FAQs" title="FAQs"></iconify-icon></p>
 </a>
   </li>  
@@ -794,7 +874,7 @@ In case of issues, please contact <a href="mailto:%20f.grunewald@rug.nl">f.grune
       }
     });
 </script>
-<script src="../../../../js/sidebar-close.js"></script> 
+<script src="../../../js/sidebar-close.js"></script> 
 
 
 
