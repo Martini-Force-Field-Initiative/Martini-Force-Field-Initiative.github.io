@@ -1,0 +1,187 @@
+---
+title: Martini Workshop 2025
+subtitle: "Collection of lectures from the Martini Workshop 2025 in Groningen"
+page-layout: full
+title-block-banner: "#FDF7F4"
+---
+
+```{=HTML}
+<head>
+  <style>
+    :root {
+      --primary-color: #4B2E4C;
+      --secondary-color: #A89CB0;
+      --accent-color: #e74c3c;
+      --text-color: #2c3e50;
+      --light-bg: #f8f9fa;
+      --white: #ffffff;
+      --gradient-1: linear-gradient(135deg, #7A5C85, #4B2E4C);
+      --gradient-2: linear-gradient(135deg, #4B2E4C, #A89CB0);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --card-height: calc(80vh - 8rem);
+      --card-min-height: 420px;
+      --card-max-height: 800px;
+    }
+    .btn-rounded-primary {
+        margin-right: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        background-color: var(--primary-color);
+        color: var(--white);
+    }
+
+    @media (max-width: 754px) {
+        /* Make the buttons smaller on mobile */
+        .btn-rounded-primary {
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 0.8rem;
+            margin-right: 0;
+            margin-left: 0;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .lecture-item {
+            grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+```
+
+::: lecture-grid
+
+::: lecture-item
+**&#x2022;  Introduction to the Martini model**
+
+**Author:** *Siewert-Jan Marrink*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-11-IntroductionMartini_SJMarrink.pdf){.btn .btn-primary .btn-rounded-primary}
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Lipid biophysics with the Martini model** 
+
+**Author:** *Helgi Ingólfsson*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-11-Lipid+biophysics+and+Martini+-+Ingolfsson.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Building your system** 
+
+**Author:** *Tsjerk A. Wassenaar*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-11-BuildingSystems-Wassenaar.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Introduction to the protein models in Martini 3** 
+
+**Author:** *Sebastian Thallmair*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12_IntroProteinModels-SThallmair.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  GoMartini3: Sampling of Conformational Changes and Protein Complexes** 
+
+**Author:** *Adolfo Poma Bernaola*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12+GoMartini3_Protein+Complexes+-+Poma.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  IDPs, Martinize2, Vermouth** 
+
+**Author:** *Chris Brasnett*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12-IDPs_Martinize_Brasnett.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  ProLint2: Analyzing lipid-protein interactions in MD simulations** 
+
+**Author:** *Daniel P. Ramirez-Echemendia*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-12_Prolint2_Ramirez.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Small molecule parametrization** 
+
+**Author:** *Riccardo Alessandri*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-13_SmallMoleculeParametrization_Alessandri.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Cholesterol and related molecules** 
+
+**Author:** *Manuel N. Melo*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-13-Cholesterol+and+related+molecules+-+Melo.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  TS2CG: Backmapping tool or input builder?** 
+
+**Author:** *Weria Pezeshkian*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-14-TS2CG-Pezeshkian.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  Using integrative modelling to build a representative membrane** 
+
+**Author:** *Chelsea M. Brown*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-14_Complex_systems_CBrown.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
+
+::: lecture-item
+**&#x2022;  The Martini Recipe for Whole-Cell Simulations** 
+
+**Author:** *Jan A. Stevens*
+
+::: lecture-buttons
+[Slides](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/workshop_2025/2025-08-14-JStevens-Cell.pdf){.btn .btn-primary .btn-rounded-primary}
+
+:::
+:::
