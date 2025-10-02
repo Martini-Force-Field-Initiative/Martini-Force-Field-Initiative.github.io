@@ -4,6 +4,14 @@ format: html
 ---
 
 ::: software-card
+### MartiniGlass
+
+`MartiniGlass` uses [[vermouth]](https://github.com/marrink-lab/vermouth-martinize) to stably rewrite your input topology files as ones that can be used for visualization in VMD. Although much of the functionality is focused on proteins, and the program has a particular focus on being able to visualize protein secondary/tertiary structure networks, MartiniGlass can in fact be used to reconstruct bonded networks of any Martini molecule!
+
+Documentation for `MartiniGlass` is available on the [[readthedocs]](https://martiniglass.readthedocs.io/en/latest) site. The documentation covers multiple use cases and runs through the tutorials in the [[examples]](https://github.com/Martini-Force-Field-Initiative/MartiniGlass/blob/main/examples) folder step by step.
+:::
+
+::: software-card
 ### ProLint
 
 `Prolint2` is an optimized tool for analyzing and visualizing lipid-protein interactions from molecular dynamics trajectories at coarse-grained or atomistic resolution.
