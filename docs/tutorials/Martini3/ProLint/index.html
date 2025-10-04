@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -343,9 +349,9 @@ In case of issues, please contact <a href="mailto:%20daniel.ramirezecheme@ucalga
 <h3 class="anchored" data-anchor-id="recommended-installation">Recommended Installation</h3>
 <hr>
 <p>To avoid conflicts with other Python packages, we recommend creating a dedicated environment for <code>ProLint2</code> using <code>conda</code>. You can do this by running the following commands in your terminal:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> prolint2 python=3.10 jupyter</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> prolint2 python=3.10 jupyter</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate prolint2</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install prolint2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install prolint2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -399,30 +405,30 @@ Note
 <h3 class="anchored" data-anchor-id="creating-a-universe-and-analyzing-system-composition">Creating a Universe and analyzing system composition</h3>
 <hr>
 <p>We will start by creating a <code>ProLint2</code> Universe, using the GIRK sample dataset already included in the library:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2 <span class="im">import</span> Universe</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2 <span class="im">import</span> Universe</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.sampledata <span class="im">import</span> GIRKDataSample</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>GIRK <span class="op">=</span> GIRKDataSample()</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>pl_u <span class="op">=</span> Universe(GIRK.coordinates, GIRK.trajectory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>pl_u <span class="op">=</span> Universe(GIRK.coordinates, GIRK.trajectory)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This sample data consist of the last 5 us of a 40-us-long Martini simulation of the GIRK system described in the <a href="#introduction">introduction</a>. For purposes of keeping the dataset light enough for the tutorial, snapshots were saved every 4 nanoseconds so that we had a total of only 1250 frames in our trajectory:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Trajectory data for GIRK starting at </span><span class="sc">{</span>pl_u<span class="sc">.</span>trajectory[<span class="dv">0</span>]<span class="sc">.</span>time<span class="op">/</span><span class="dv">1000000</span><span class="sc">:.0f}</span><span class="ss"> us and ending at </span><span class="sc">{</span>pl_u<span class="sc">.</span>trajectory[<span class="op">-</span><span class="dv">1</span>]<span class="sc">.</span>time<span class="op">/</span><span class="dv">1000000</span><span class="sc">:.0f}</span><span class="ss"> us, sampled every </span><span class="sc">{</span>pl_u<span class="sc">.</span>trajectory<span class="sc">.</span>dt<span class="op">/</span><span class="dv">1000</span><span class="sc">:.0f}</span><span class="ss"> ns."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Trajectory data for GIRK starting at </span><span class="sc">{</span>pl_u<span class="sc">.</span>trajectory[<span class="dv">0</span>]<span class="sc">.</span>time<span class="op">/</span><span class="dv">1000000</span><span class="sc">:.0f}</span><span class="ss"> us and ending at </span><span class="sc">{</span>pl_u<span class="sc">.</span>trajectory[<span class="op">-</span><span class="dv">1</span>]<span class="sc">.</span>time<span class="op">/</span><span class="dv">1000000</span><span class="sc">:.0f}</span><span class="ss"> us, sampled every </span><span class="sc">{</span>pl_u<span class="sc">.</span>trajectory<span class="sc">.</span>dt<span class="op">/</span><span class="dv">1000</span><span class="sc">:.0f}</span><span class="ss"> ns."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Trajectory data for GIRK starting at 35 us and ending at 40 us, sampled every 4 ns.</code></pre>
 <p>When the system was loaded, <code>Prolint2</code> automatically identified the protein and lipid components in the system, which can be accessed as:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pl_u.query, pl_u.database</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pl_u.query, pl_u.database</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>(&lt;ProLint Wrapper for &lt;AtomGroup with 2956 atoms&gt;&gt;,
  &lt;ProLint Wrapper for &lt;AtomGroup with 20864 atoms&gt;&gt;)</code></pre>
 <p>Notice how both the <code>query</code> and <code>database</code> are ProLint wrappers around the <code>MDAnalysis</code> AtomGroups. This means that you get to keep all the functionalities of <code>MDAnalysis</code> AtomGroups, but you can also use additional <code>ProLint2</code>-specific functions, such as making changes to the <code>query</code> and <code>database</code> AtomGroups or accessing information to simplify the exploration of the system composition, as follows:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Membrane lipid composition is </span><span class="sc">{</span><span class="bu">dict</span>(pl_u.database.resname_counts)<span class="sc">}</span><span class="ss">."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Membrane lipid composition is </span><span class="sc">{</span><span class="bu">dict</span>(pl_u.database.resname_counts)<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Membrane lipid composition is {'POPE': 652, 'POPS': 652, 'CHOL': 652}.</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First five residues of the protein are: </span><span class="sc">{</span>pl_u<span class="sc">.</span>query<span class="sc">.</span>get_resnames([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>], out<span class="op">=</span><span class="bu">dict</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"First five residues of the protein are: </span><span class="sc">{</span>pl_u<span class="sc">.</span>query<span class="sc">.</span>get_resnames([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>], out<span class="op">=</span><span class="bu">dict</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>First five residues of the protein are: {1: 'ARG', 2: 'GLN', 3: 'ARG', 4: 'TYR', 5: 'MET'}</code></pre>
 <section id="modifying-the-query-and-database-atomgroups" class="level4">
 <h4 class="anchored" data-anchor-id="modifying-the-query-and-database-atomgroups">Modifying the query and database AtomGroups</h4>
 <hr>
 <p><code>ProLint2</code>’s automation for identifying protein and lipid components in the system relies entirely on residue names. For the query group (proteins), it automatically detects all standard and modified amino acids using the same criteria as in <code>MDAnalysis.Universe.select_atoms("protein")</code>. For the database group (membrane), it identifies lipid molecules based on their residue names, provided these names are part of a list of the most common lipid types defined by default in the <code>ProLint2</code> configuration. However, if your system uses different residue names or if you wish to focus your analysis on specific residues, you can easily adjust the query and database groups accordingly.</p>
 <p>To add a custom lipid type to the database group, you can use the <code>add()</code> method and reassign the database group as follows:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pl_u.database <span class="op">=</span> pl_u.database.add(<span class="st">"LIPX"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pl_u.database <span class="op">=</span> pl_u.database.add(<span class="st">"LIPX"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -437,12 +443,12 @@ Warning
 </div>
 </div>
 <p>To remove a residue from the query group, you can use the <code>remove()</code> method and reassign the query group as follows:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pl_u.query <span class="op">=</span> pl_u.query.remove(<span class="st">"ARG"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of arginine residues: </span><span class="sc">{</span>pl_u<span class="sc">.</span>query<span class="sc">.</span>resname_counts[<span class="st">'ARG'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pl_u.query <span class="op">=</span> pl_u.query.remove(<span class="st">"ARG"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of arginine residues: </span><span class="sc">{</span>pl_u<span class="sc">.</span>query<span class="sc">.</span>resname_counts[<span class="st">'ARG'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Number of arginine residues: 0</code></pre>
 <p>To add the ARG residues back to the query group in this case, we can use the <code>add()</code> method:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pl_u.query <span class="op">=</span> pl_u.query.add(<span class="st">"ARG"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of arginine residues: </span><span class="sc">{</span>pl_u<span class="sc">.</span>query<span class="sc">.</span>resname_counts[<span class="st">'ARG'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pl_u.query <span class="op">=</span> pl_u.query.add(<span class="st">"ARG"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Number of arginine residues: </span><span class="sc">{</span>pl_u<span class="sc">.</span>query<span class="sc">.</span>resname_counts[<span class="st">'ARG'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>Number of arginine residues: 64</code></pre>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -462,7 +468,7 @@ Warning
 <h4 class="anchored" data-anchor-id="prolint2s-units-and-normalizers">ProLint2’s units and normalizers</h4>
 <hr>
 <p>ProLint2 offers a set of time units and normalizers to facilitate the interpretation of the results. There parameters can be set at the Universe level, as follows:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pl_u.params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pl_u.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>{'units': 'us',
  'normalizer': 'time_fraction',
  'unit_conversion_factor': 1e-06,
@@ -480,15 +486,15 @@ Warning
 <li><code>norm_factor</code>: this is the normalization factor that is updated based on the normalization type. For example, if the normalization type is <code>time_fraction</code>, then this factor is <code>dt / totaltime</code>.</li>
 </ul>
 <p>These parameters can be modified by setting the <code>Universe.units</code> and <code>Universe.normalizer</code> attributes, as follows:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pl_u.units <span class="op">=</span> <span class="st">"ns"</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pl_u.params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pl_u.units <span class="op">=</span> <span class="st">"ns"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pl_u.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>{'units': 'ns',
  'normalizer': 'time_fraction',
  'unit_conversion_factor': 0.001,
  'norm_factor': 0.0008
 }</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pl_u.normalize_by <span class="op">=</span> <span class="st">"actual_time"</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pl_u.params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pl_u.normalize_by <span class="op">=</span> <span class="st">"actual_time"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>pl_u.params</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>{'units': 'ns',
  'normalizer': 'actual_time',
  'unit_conversion_factor': 0.001,
@@ -500,9 +506,9 @@ Warning
 <h3 class="anchored" data-anchor-id="contact-based-metrics">Contact-based metrics</h3>
 <hr>
 <p>Computing the contacts is the cornerstone in the <code>ProLint2</code> workflow, as it provides the basis for all subsequent analyses. To create a Contacts instance, you can use the <code>compute_contacts()</code> method included in the Universe. You can define any distance cutoff for defining contacts, otherwise it will use 7 Angstroms by default. Here is how to create a Contacts instance for the GIRK system:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pl_c <span class="op">=</span> pl_u.compute_contacts(cutoff<span class="op">=</span><span class="fl">7.0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pl_c <span class="op">=</span> pl_u.compute_contacts(cutoff<span class="op">=</span><span class="fl">7.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Contacts information is stored in two main attributes: <code>pl_c.contacts</code> and <code>pl_c.contact_frames</code>, with structures: <code>{Query_ResID: {Database_ResType: [Contact_Windows]}}</code> and <code>{Query_ResID: {Database_ResID: [Frame_Numbers]}}</code> respectively. The contact windows are defined as the time intervals in which a contact is established between a lipid and a protein residue, while the frame numbers are the corresponding frame numbers in the trajectory. The output of these attributes is shown below for demonstration purposes, but <code>ProLint2</code> is designed to help you explore this information in a more user-friendly way, as we will see in the next sections.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pl_c.contacts[<span class="dv">14</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pl_c.contacts[<span class="dv">14</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>defaultdict(list,
             {'POPE': [np.float64(4.0),
               np.float64(4.0),
@@ -535,7 +541,7 @@ Warning
               np.float64(4.0),
               np.float64(4.0)]})</code></pre>
 <p>The output above can be interpreted as follows: for residue 14, there are several contact windows with POPE lipids, each lasting 4 ns, 4 ns, 8 ns, and so on. In contrast, it has only two contact windows with POPS lipids, both lasting 4 ns (equivalent to 1 frame in the trajectory). This information is provided for all protein residues in the system that have at least one contact with any lipid type.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pl_c.contact_frames[<span class="dv">14</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>pl_c.contact_frames[<span class="dv">14</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="output"><code>defaultdict(list,
             {np.int64(2527): [0,
               15,
@@ -575,11 +581,11 @@ Warning
 <li><strong>SumMetric</strong>: This metric counts the sum over all the contact windows between each residue and each lipid type. The interpretation of this metric can only be done in the context of the membrane lipid composition, as the more representative the lipid type is in the system, the more likely it is that the interaction happens by chance. For example, if a residue has a high SumMetric with a lipid type that is very abundant in the system, it is likely that the interaction is not specific, but rather a consequence of the high concentration of that lipid type in the system. On the other hand, if a residue has a high SumMetric with a lipid type that is not abundant in the system, it is likely that the interaction is specific. In addition, the SumMetric results can be contaminated by the fact that more than one lipid of the same type can be in contact with the same residue simultaneously, which can lead to values that are higher than the total simulation length.</li>
 </ul>
 <p>To use the default metrics, you can use the <code>compute_metrics()</code> method included in the Contacts objects:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.metrics.metrics <span class="im">import</span> Metric, MeanMetric, SumMetric, MaxMetric</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.metrics.metrics <span class="im">import</span> Metric, MeanMetric, SumMetric, MaxMetric</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>metric_instances_list <span class="op">=</span> [MeanMetric(), SumMetric(), MaxMetric()]</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>metric_instance <span class="op">=</span> Metric(pl_c, metric_instances_list) </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>contacts_out <span class="op">=</span> metric_instance.compute() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>contacts_out <span class="op">=</span> metric_instance.compute() </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="visualization" class="level3">
 <h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
@@ -590,10 +596,10 @@ Warning
 <section id="exploratory-point-distribution-plotter" class="level4">
 <h4 class="anchored" data-anchor-id="exploratory-point-distribution-plotter">Exploratory Point Distribution Plotter</h4>
 <hr>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting.multiples <span class="im">import</span> MultiplePointDistribution</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting.multiples <span class="im">import</span> MultiplePointDistribution</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>MPD <span class="op">=</span> MultiplePointDistribution(pl_u, contacts_out)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>MPD.create_plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>MPD.create_plot()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fig4.png" class="img-fluid figure-img"></p>
@@ -605,19 +611,19 @@ Warning
 <section id="normalized-lipid-density-plotter" class="level4">
 <h4 class="anchored" data-anchor-id="normalized-lipid-density-plotter">Normalized Lipid Density Plotter</h4>
 <hr>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> DensityMap</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> DensityMap</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Dens <span class="op">=</span> DensityMap(pl_u, fig_size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Dens.create_plot(lipid_type<span class="op">=</span><span class="st">'POPS'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>Dens.create_plot(lipid_type<span class="op">=</span><span class="st">'POPS'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig5.png" class="img-fluid"></p>
 </section>
 <section id="sequence-logo-plotter" class="level4">
 <h4 class="anchored" data-anchor-id="sequence-logo-plotter">Sequence Logo Plotter</h4>
 <hr>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> LogoResidues</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> LogoResidues</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>LR <span class="op">=</span> LogoResidues(pl_u, contacts_out)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>LR.create_plot(lipid_type<span class="op">=</span><span class="st">'POPS'</span>, metric_name<span class="op">=</span><span class="st">'MeanMetric'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>LR.create_plot(lipid_type<span class="op">=</span><span class="st">'POPS'</span>, metric_name<span class="op">=</span><span class="st">'MeanMetric'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig6.png" class="img-fluid"></p>
 <p>From this, we can identify three residues with high MeanMetric values with POPS: Val354, Lys461, and Lys467. The figure below illustrates that these residues are closely situated within the protein structure, forming a potential binding site for POPS.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -627,25 +633,25 @@ Warning
 </figure>
 </div>
 <p>The specificity of this interaction is anticipated due to the positively charged lysine side chain, which can engage in electrostatic interactions with the negatively charged headgroup of POPS. To further investigate this interaction, we can use an Interaction Heatmap Plotter to visualize the contact pattern at the atom-atom level of detail. For these analyses, we must first identify the POPS molecule that most frequently interacts with one of these residues, let’s choose Lys461. We can get this information by using the get_lipid_contact_durations() function, which provides a dataframe listing the lipid molecule IDs sorted by their total contact frequencies.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting.utils <span class="im">import</span> get_lipid_contact_durations</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting.utils <span class="im">import</span> get_lipid_contact_durations</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>get_lipid_contact_durations(pl_u, pl_c, <span class="st">'POPS'</span>, residue_id<span class="op">=</span><span class="dv">461</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>get_lipid_contact_durations(pl_u, pl_c, <span class="st">'POPS'</span>, residue_id<span class="op">=</span><span class="dv">461</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig8.png" class="img-fluid"></p>
 </section>
 <section id="interaction-heatmap-plotter" class="level4">
 <h4 class="anchored" data-anchor-id="interaction-heatmap-plotter">Interaction Heatmap Plotter</h4>
 <hr>
 <p>From this, we can identify a POPS molecule with ID 2329 that exhibits the highest contact frequency with residue 461. With this information, we can now create an Interaction Heatmap Plotter, as follows:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> InteractionHeatMap</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> InteractionHeatMap</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>IHM <span class="op">=</span> InteractionHeatMap(pl_u, pl_c)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>IHM.create_plot(residue_id<span class="op">=</span><span class="dv">461</span>, lipid_id<span class="op">=</span><span class="dv">2622</span>, palette<span class="op">=</span><span class="st">'Reds'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>IHM.create_plot(residue_id<span class="op">=</span><span class="dv">461</span>, lipid_id<span class="op">=</span><span class="dv">2622</span>, palette<span class="op">=</span><span class="st">'Reds'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig9.png" class="img-fluid"></p>
 <p>As expected, the interaction occurs mostly between the headgroup of POPS and the positively charged second bead of the lysine side chain. To look deeper at the evolution of this specific interaction as a function of time, we can use the TwoPointDistanceEvolution Plotter:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> TwoPointDistanceEvolution</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolint2.plotting <span class="im">import</span> TwoPointDistanceEvolution</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>TPD <span class="op">=</span> TwoPointDistanceEvolution(pl_u)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>TPD.create_plot(lipid_id <span class="op">=</span> <span class="dv">2622</span>, lipid_atomname<span class="op">=</span><span class="st">'PO4'</span>, residue_id <span class="op">=</span> <span class="dv">461</span>, residue_atomname<span class="op">=</span><span class="st">'SC2'</span>, unit <span class="op">=</span> <span class="st">'frame'</span>, smooth_line <span class="op">=</span> <span class="va">True</span>, n_points <span class="op">=</span> <span class="dv">250</span>, useOffset <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>TPD.create_plot(lipid_id <span class="op">=</span> <span class="dv">2622</span>, lipid_atomname<span class="op">=</span><span class="st">'PO4'</span>, residue_id <span class="op">=</span> <span class="dv">461</span>, residue_atomname<span class="op">=</span><span class="st">'SC2'</span>, unit <span class="op">=</span> <span class="st">'frame'</span>, smooth_line <span class="op">=</span> <span class="va">True</span>, n_points <span class="op">=</span> <span class="dv">250</span>, useOffset <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig10.png" class="img-fluid"></p>
 <p>This plots confirms the expected short distance (below the 7-Angstrom cutoff) between the phosphate bead of POPS 2622 and the second bead of the side chain of Lys461 throughout the entire simulation.</p>
 </section>
@@ -730,13 +736,14 @@ Warning
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

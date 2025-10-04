@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -182,7 +183,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -192,12 +194,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -264,6 +266,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -442,7 +448,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="installing-ts2cg">Installing TS2CG</h3>
 <p><em>TS2CG</em> combines high-performance C++ algorithms with a user-friendly Python API. The C++ core provides computational efficiency, while the Python interface streamlines installation and enables easy integration with existing workflows.</p>
 <p>Install <em>TS2CG</em> directly via <code>pip</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/weria-pezeshkian/TS2CG-v2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/weria-pezeshkian/TS2CG-v2.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -460,8 +466,8 @@ Note
 <section id="download-tutorial-files" class="level3">
 <h3 class="anchored" data-anchor-id="download-tutorial-files">Download Tutorial Files</h3>
 <p>Before starting the tutorials, download the required structure and parameter files <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/TS2CG/tutorial_files.tar.gz"><strong>here</strong></a>. Extract the files:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This archive contains:</p>
 <ul>
 <li><strong>structures/:</strong> Molecular structures: proteins (<code>protein.gro</code>), solvent (<code>water.gro</code>), and triangulated meshes (<code>sphere.tsi</code>)</li>
@@ -489,8 +495,8 @@ Note
 <h3 class="anchored" data-anchor-id="generate-point-folder-with-plm">Generate Point Folder with PLM</h3>
 <p>The workflow starts by converting the provided spherical triangulated surface (<code>sphere.tsi</code>) into a point distribution using pointillism (PLM), the process of transforming a mesh into discrete points that will guide membrane construction. The <code>.tsi</code> file format contains vertex coordinates and triangle connectivity. For detailed specifications, see the <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0"><em>TS2CG</em> documentation</a>.</p>
 <p>Execute the pointillism operation with the following command:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the point folder</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PLM <span class="at">-TSfile</span> structures/sphere.tsi <span class="at">-bilayerThickness</span> 3 <span class="at">-rescalefactor</span> 5 5 5 <span class="at">-Mashno</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the point folder</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PLM <span class="at">-TSfile</span> structures/sphere.tsi <span class="at">-bilayerThickness</span> 3 <span class="at">-rescalefactor</span> 5 5 5 <span class="at">-Mashno</span> 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>PLM parameters:</strong></p>
 <ul>
 <li><code>-TSfile</code>: Input triangulated surface file</li>
@@ -499,16 +505,16 @@ Note
 <li><code>-Mashno</code>: Pointillism iterations to increase mesh resolution (recommended: 1-4 iterations)</li>
 </ul>
 <p>This creates a <code>point/</code> folder with the bilayer point distributions, an <code>extended.tsi</code> with increased resolution, and a <code>pcg.log</code> file. The <code>pointvisualization_data/</code> folder contains visualization files to inspect the generated structure:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-m</span> pointvisualization_data/Upper.gro pointvisualization_data/Lower.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-m</span> pointvisualization_data/Upper.gro pointvisualization_data/Lower.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should observe two leaflets of points that represent the bilayer where lipids will be placed. Each point has an associated coordinate frame defining the local membrane normal and tangent directions. The pointvisualization files are useful for understanding your membrane geometry before proceeding. Take time to examine how the points are distributed before continuing.</p>
 </section>
 <section id="create-lipid-composition-file" class="level3">
 <h3 class="anchored" data-anchor-id="create-lipid-composition-file">Create Lipid Composition File</h3>
 <p>Define the membrane composition by creating a file named <code>input.str</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 1 1 0.64</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Format explanation:</strong></p>
 <ul>
 <li><code>Domain 0</code>: Default domain for all lipids</li>
@@ -524,7 +530,7 @@ Note
 <section id="build-the-membrane-using-pcg" class="level3">
 <h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg">Build the Membrane using PCG</h3>
 <p>Place lipids on the point distribution to create the final membrane structure:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-dts</span> point <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-dts</span> point <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> output</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>PCG parameters:</strong></p>
 <ul>
 <li><code>-dts</code>: Folder containing point distributions from PLM</li>
@@ -551,8 +557,8 @@ Tip
 <section id="visualization" class="level3">
 <h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
 <p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>A complete bilayer vesicle</li>
@@ -571,18 +577,18 @@ Tip
 <section id="create-mixed-composition" class="level3">
 <h3 class="anchored" data-anchor-id="create-mixed-composition">Create Mixed Composition</h3>
 <p>Define a membrane with multiple lipid types by modifying the <code>input.str</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 0.5 0.5 0.64</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">DOPC</span> 0.5 0.5 0.67</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Adding a second lipid definition, creating a 50:50 mixture of POPC and DOPC lipids. Note that DOPC has a slightly larger APL (0.67 nm²) compared to POPC (0.64 nm²). When working with lipid mixtures, ensure that the APL values are realistic for your lipid types. The values should be based on experimental data and your chosen force field.</p>
 </section>
 <section id="build-the-membrane-using-pcg-1" class="level3">
 <h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg-1">Build the Membrane using PCG</h3>
 <p>Place the mixed lipid composition on the existing point distribution:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build mixed membrane using the same point folder from Chapter 1</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build mixed membrane using the same point folder from Chapter 1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The algorithm randomly distributes the two lipid types over the point distribution.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -601,8 +607,8 @@ Warning
 <section id="visualization-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-1">Visualization</h3>
 <p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>A complete bilayer vesicle</li>
@@ -622,7 +628,7 @@ Warning
 <section id="adding-a-protein-to-the-membrane" class="level3">
 <h3 class="anchored" data-anchor-id="adding-a-protein-to-the-membrane">Adding a Protein to the Membrane</h3>
 <p>Define the membrane composition including membrane proteins by modifying <code>input.str</code> to include a protein section:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_1.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_1.gro</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_2.gro</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
@@ -635,7 +641,7 @@ Warning
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span><span class="ex">proteinname</span> type     i       j     k    shift</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1</span>     1     0.01     0     0     <span class="at">-2</span></span>
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2</span>     2     0.01     0     0     <span class="at">-2</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span> Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span> Protein</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Format explanation:</strong></p>
 <ul>
 <li><code>protein 1 0.01 0 0 -2</code>:
@@ -664,9 +670,9 @@ Tip
 <section id="place-proteins-using-inu" class="level3">
 <h3 class="anchored" data-anchor-id="place-proteins-using-inu">Place Proteins using INU</h3>
 <p>Use the INU (Inclusion Utility) tool to randomly place proteins in the membrane:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the membrane proteins</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the membrane proteins</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> INU <span class="at">--protein-type</span> 1 <span class="at">--radius</span> 5 <span class="at">--num-proteins</span> 5</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> INU <span class="at">--protein-type</span> 2 <span class="at">--radius</span> 10 <span class="at">--num-proteins</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> INU <span class="at">--protein-type</span> 2 <span class="at">--radius</span> 10 <span class="at">--num-proteins</span> 5</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>INU Parameters:</strong></p>
 <ul>
 <li><code>-p, --point-dir</code>: Input point directory from PLM</li>
@@ -680,8 +686,8 @@ Tip
 <section id="build-the-membrane-using-pcg-2" class="level3">
 <h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg-2">Build the Membrane using PCG</h3>
 <p>Place the lipids and proteins using the modified point directory:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build complete model</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-incdirtype</span> Local <span class="at">-Rcutoff</span> .65</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build complete model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-incdirtype</span> Local <span class="at">-Rcutoff</span> .65</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>PCG parameters:</strong></p>
 <ul>
 <li><code>-incdirtype</code>: Use local reference frames for proteins placed by INU (required when using INU)</li>
@@ -704,8 +710,8 @@ Note
 <section id="visualization-2" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-2">Visualization</h3>
 <p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>A complete bilayer vesicle with embedded proteins</li>
@@ -739,8 +745,8 @@ Warning
 <section id="create-circular-domains-using-dai" class="level3">
 <h3 class="anchored" data-anchor-id="create-circular-domains-using-dai">Create Circular Domains Using DAI</h3>
 <p>Use the DAI tool to create circular lipid domains around the proteins in the existing point folder from Chapter 3:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create domain 1 (radius 5 nm) around proteins of type 1</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> DAI <span class="at">--point-dir</span> point <span class="at">--protein-type</span> 1 <span class="at">--radius</span> 7 <span class="at">--domain</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create domain 1 (radius 5 nm) around proteins of type 1</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> DAI <span class="at">--point-dir</span> point <span class="at">--protein-type</span> 1 <span class="at">--radius</span> 7 <span class="at">--domain</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>DAI Parameters:</strong></p>
 <ul>
 <li><code>-p, --point-dir</code>: Path to point folder</li>
@@ -752,7 +758,7 @@ Warning
 </ul>
 <p>All proteins of the specified type are automatically identified and a circular domain is created around them. If circular domains overlap, the later command overwrites the domain specification of the earlier one. Consider this when designing systems with multiple protein types or high protein densities.</p>
 <p>Define Domain-Specific Composition Now we have to define the composition of the newly created lipid domains in the membrane by modifying <code>input.str</code>:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_1.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_1.gro</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">include</span> structures/protein_2.gro</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
@@ -767,7 +773,7 @@ Warning
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span><span class="ex">proteinname</span> type     i       j     k    shift</span>
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_1</span>     1     0.01     0     0     <span class="at">-2</span></span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="ex">protein_2</span>     2     0.01     0     0     <span class="at">-2</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span> Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span> Protein</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This configuration creates two distinct lipid environments: POPC in the bulk membrane (Domain 0) and DOPC around proteins (Domain 1).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -786,15 +792,15 @@ Tip
 <section id="build-the-membrane-using-pcg-3" class="level3">
 <h3 class="anchored" data-anchor-id="build-the-membrane-using-pcg-3">Build the Membrane using PCG</h3>
 <p>Build the membrane with domain-specific compositions:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build with domain-specific compositions</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-incdirtype</span> Local <span class="at">-Rcutoff</span> .65</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build with domain-specific compositions</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-incdirtype</span> Local <span class="at">-Rcutoff</span> .65</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The PCG algorithm respects the domain assignments created by DAI and places the appropriate lipid types in each region, creating a heterogeneous membrane with protein-specific lipid environments.</p>
 </section>
 <section id="visualization-3" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-3">Visualization</h3>
 <p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>A complete bilayer vesicle with embedded proteins</li>
@@ -832,7 +838,7 @@ Tip
 <section id="sinusoidal-membrane-1d-fourier" class="level3">
 <h3 class="anchored" data-anchor-id="sinusoidal-membrane-1d-fourier">Sinusoidal Membrane (1D Fourier)</h3>
 <p>Create a curved membrane using Fourier modes by defining <code>input.str</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Lipids</span> List]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Domain</span> 0</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">CDL2</span> 0.1 0.1 0.94</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span> 0.9 0.9 0.64</span>
@@ -846,9 +852,9 @@ Tip
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Thickness</span> 4</span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span> 1.5 1 0</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="ex">Mode</span> 2.5 2 0</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="ex">End</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Build the sinusoidal membrane directly with PCG:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-function</span> analytical_shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-function</span> analytical_shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The sinusoidal membrane provides controlled curvature variation for studying membrane curvature effects. The Fourier modes allow precise control over wavelength and amplitude of membrane undulations.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -867,7 +873,7 @@ Tip
 <section id="other-analytical-shapes" class="level3">
 <h3 class="anchored" data-anchor-id="other-analytical-shapes">Other Analytical Shapes</h3>
 <p>Multiple different analytical shapes are supported and can be built using the same PCG command with the <code>-function analytical_shape</code> flag.</p>
-<table class="caption-top table" data-quarto-postprocess="true">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -937,8 +943,8 @@ Note
 <h3 class="anchored" data-anchor-id="adding-shape-preserving-walls">Adding Shape-Preserving Walls</h3>
 <p>Membranes can deform during MD simulation as the system equilibrates, potentially losing the precise geometry and curvature that may be essential for studies such as lipid sorting or curvature-dependent protein behavior. Wall beads provide a solution by constraining the membrane to maintain its desired shape throughout the simulation.</p>
 <p>To maintain membrane curvature during simulation, add wall generation:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wall generation flags</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-function</span> analytical_shape <span class="at">-Wall</span> <span class="at">-WallH</span> 0.1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wall generation flags</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-function</span> analytical_shape <span class="at">-Wall</span> <span class="at">-WallH</span> 0.1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Parameters explained:</strong></p>
 <ul>
 <li><code>-Wall</code>: Generate wall beads (WL)</li>
@@ -963,8 +969,8 @@ Warning
 <section id="visualization-4" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-4">Visualization</h3>
 <p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>A continuous 1D fourier sinusoidal membrane</li>
@@ -1000,16 +1006,16 @@ P(l) ∝ e^{-k(2H-C_0)2}
 <section id="create-initial-point-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="create-initial-point-distribution">Create Initial Point Distribution</h3>
 <p>Using the sinusoidal membrane configuration from Chapter 5, first generate the point folder:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate point folder (required for DOP)</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-function</span> analytical_shape <span class="at">-WPointDir</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate point folder (required for DOP)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-function</span> analytical_shape <span class="at">-WPointDir</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>-WPointDir</code> flag tells PCG to only generate the point folder containing <code>InnerBM.dat</code> and <code>OuterBM.dat</code> files with geometric information needed for curvature calculations, including local coordinate frames and curvature tensors at each point.</p>
 </section>
 <section id="define-curvature-preferences" class="level3">
 <h3 class="anchored" data-anchor-id="define-curvature-preferences">Define Curvature Preferences</h3>
 <p>Create <code>domain_input.txt</code> to specify lipid types and their curvature preferences:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">lipid_domain</span> lipid_type percentage c0 APL</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">lipid_domain</span> lipid_type percentage c0 APL</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">0</span> CDL2 0.3 <span class="at">-0.1</span> 0.94</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> POPC 0.7  0.0 0.64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> POPC 0.7  0.0 0.64</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Format explanation:</strong></p>
 <ul>
 <li><code>0 CDL2 0.3 -0.1 0.94</code>:
@@ -1038,8 +1044,8 @@ Note
 <section id="optimize-lipid-placement-with-dop" class="level3">
 <h3 class="anchored" data-anchor-id="optimize-lipid-placement-with-dop">Optimize Lipid Placement with DOP</h3>
 <p>Now use DOP to apply the curvature-informed assignment of lipids on the point distribution:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run curvature optimization</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> DOP <span class="at">-p</span> point <span class="at">-i</span> domain_input.txt <span class="at">-ni</span> optimized_input.str <span class="at">-k</span> 250</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run curvature optimization</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> DOP <span class="at">-p</span> point <span class="at">-i</span> domain_input.txt <span class="at">-ni</span> optimized_input.str <span class="at">-k</span> 250</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>DOP Parameters:</strong></p>
 <ul>
 <li><code>-p, --point-dir</code>: Path to point folder</li>
@@ -1066,14 +1072,14 @@ Tip
 <section id="build-curvature-informed-membrane" class="level3">
 <h3 class="anchored" data-anchor-id="build-curvature-informed-membrane">Build Curvature-Informed Membrane</h3>
 <p>Build the final membrane using the optimized point assignments:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build final membrane using optimized points</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-dts</span> point <span class="at">-str</span> optimized_input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build final membrane using optimized points</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-dts</span> point <span class="at">-str</span> optimized_input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="visualization-and-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-and-analysis">Visualization and Analysis</h3>
 <p>Open the system with <code>VMD</code> to inspect the generated membrane:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the model</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> output.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>A continuous 1D fourier sinusoidal membrane</li>
@@ -1177,13 +1183,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

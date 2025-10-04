@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -182,7 +183,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -192,12 +194,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -264,6 +266,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -359,8 +365,8 @@ In case of issues, please contact <a href="mailto:duve@fias.uni-frankfurt.de">du
 <p>In particular, we will calculate the partition coefficient of a CG bead in water and hexadecane using free sampling, umbrella sampling and thermodynamic integration. These methodologies have a number of practical applications, e.g.&nbsp;the parametrization of small molecules, to study free energies of solvation/hydration, free energies of binding of a small molecule (e.g.&nbsp;a drug molecule) to a receptor (e.g.&nbsp;a protein), and the free energy cost of point mutations.</p>
 <p>All files needed for this part of the tutorial can be found in the FreeEnergyTechniques folder in <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Free_Energy_Techniques/FreeEnergyTechniques.zip">FreeEnergyTechniques.zip</a>. Each part of this tutorial has its own directory which itself contains a folder called files_DIY. There you can find the necessary files to follow the tutorial. For the second and the third part (umbrella sampling and thermodynamic integration) we also provide a worked version in the folder files_worked.</p>
 <p>Open a terminal, download the .zip file, and unpack it:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/FreeEnergyTechniques.zip</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> FreeEnergyTechniques.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/FreeEnergyTechniques.zip</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> FreeEnergyTechniques.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="free-sampling" class="level3">
 <h3 class="anchored" data-anchor-id="free-sampling">Free sampling</h3>
@@ -393,26 +399,26 @@ In case of issues, please contact <a href="mailto:duve@fias.uni-frankfurt.de">du
 <li><p>martini_v3.0.0.itp: general forcefield description</p></li>
 </ul>
 <p>Enter the 1.0.parameters folder and modify the bead_template.itp file. Change the bead type to N5a for acetone. Do not forget to save after you have made your changes.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 1_FreeSampling/files_DIY/1.0.parameters</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> bead_template.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 1_FreeSampling/files_DIY/1.0.parameters</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> bead_template.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now we are ready to prepare our simulation. Enter the 1.1.simulation directory.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../1.1.simulation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../1.1.simulation</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There you will find hexadecane_w.gro which defines the initial state of our system. In this case, the simulation box is equally divided between water and hexadecane. Additionally, 21 acetone molecules are places randomly in the box. This allows the beads to explore both solvent phases in an unbiased manner.</p>
 <p>We can now run the minimization of the system using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../1.0.parameters/martini_em.mdp <span class="at">-c</span> hexadecane_w.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 1-min.tpr</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> 1-min <span class="at">-v</span> <span class="at">-rdd</span> 2.0 <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../1.0.parameters/martini_em.mdp <span class="at">-c</span> hexadecane_w.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 1-min.tpr</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> 1-min <span class="at">-v</span> <span class="at">-rdd</span> 2.0 <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After the simulation has finished successfully, we can perform some equilibration steps. Note that we need to supress a gromacs warning due to the use of the Berendsen thermostat using <code>-maxwarn 1</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../1.0.parameters/martini_eq.mdp <span class="at">-c</span> 1-min.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 2-eq.tpr <span class="at">-maxwarn</span> 1</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> 2-eq <span class="at">-v</span> <span class="at">-rdd</span> 2.0 <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../1.0.parameters/martini_eq.mdp <span class="at">-c</span> 1-min.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 2-eq.tpr <span class="at">-maxwarn</span> 1</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> 2-eq <span class="at">-v</span> <span class="at">-rdd</span> 2.0 <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And finally we can run the production:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../1.0.parameters/martini_run.mdp <span class="at">-c</span> 2-eq.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 3-run.tpr</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> 3-run <span class="at">-v</span> <span class="at">-rdd</span> 2.0 <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../1.0.parameters/martini_run.mdp <span class="at">-c</span> 2-eq.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 3-run.tpr</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> 3-run <span class="at">-v</span> <span class="at">-rdd</span> 2.0 <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After that the simulation has finished, you can examine the distribution of the acetone beads qualitatively, using a visualization software for example VMD. Additionally, we perform a quantitative analysis. Create an analysis folder and perform a density analysis along the z dimension. To do so we will use gmx density:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> analysis</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> analysis</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> analysis</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> density <span class="at">-f</span> ../3-run.xtc <span class="at">-s</span> ../3-run.tpr <span class="at">-center</span> <span class="at">-symm</span> <span class="at">-ng</span> 3 <span class="at">-o</span> density.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> density <span class="at">-f</span> ../3-run.xtc <span class="at">-s</span> ../3-run.tpr <span class="at">-center</span> <span class="at">-symm</span> <span class="at">-ng</span> 3 <span class="at">-o</span> density.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will be prompted to select the group for centering, selecting either the group representing W or HD should do. Then we would like to obtain the density for the W, HD and B seperately. Therefore select each one once (by typing the according number) followed by pressing return. After you have specified three groups the analysis will be performed. This should be finished within a matter of seconds. After the analysis has finished you can open the density.xvg file with xmgrace – a graphing program.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> density.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> density.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Though all the information is there, it is easier to look at after normalization. To do so you need to click at Data/Transformations/Evaluate Expression… in the main menu. In the popped up menu select all three sets on the left and all three sets on the right by dragging with your mouse. Now all sets on the left and right should have a black background. Next type <code>y = y/max(y)</code> in the Formula field and click Accept at the bottom center in the menu. All lines are now between 0 and 1, however our y-scale is still way too bloated. To quickly fix this you need to click the AS (auto scale) button in the general menu on the left (the second button on the right). Now find the y-value for B line in both the bulk W and HD.</p>
 <p>You can calculate the <span class="math inline">\(P_{hexadecane-water}\)</span> for acetone by dividing the HD-bulk population by the W-bulk population. Another option is to divide the mass density of acetone in the HD phase by the mass density in the water phase. To aquire the <span class="math inline">\(log(P_{hexadecane-water})\)</span>, you the have to calculate the logarithm. By plugging in your acquired ratio for P in equation 1, you can obtain the free energy difference between the two states. Compare your value to the value for a N5a bead published in Table 17 of the SI of the Martini 3 paper [1].</p>
 </section>
@@ -441,18 +447,18 @@ In case of issues, please contact <a href="mailto:duve@fias.uni-frankfurt.de">du
 <hr>
 <p>To generate the initial configurations for each window, we need to perform a sequence of pulling, energy minimization and equilibration simulations. This protocol has been established based on trial-and-error to obtain a reasonable distribution of configurations. In other systems, it may be necessary to save configurations more often or even to apply a different minimization/equilibration procedure. The idea is to capture enough equilibrated configurations along the RC to obtain a regular spacing of the US windows (in terms of the N5a distance position on the z-axis from hexadecane to water).</p>
 <p>Enter in the initial configuration folder and look at the files inside.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 2_UmbrellaSampling/files_DIY/2.1.initial_configurations/</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 2_UmbrellaSampling/files_DIY/2.1.initial_configurations/</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will find a bash script (that will be commented on later), a .gro file and also some templates for the .mdp files. Theses files will be used to generate the initial conditions for each window of your RC. The start.gro file contains a CG model of hexadecane-water simulation box and 1 N5a bead. You may want to take a look in the system using vmd.</p>
 <p>The .mdp files are basically sequential steps of pulling, minimization and equilibration simulations. They were designed to smoothly put the N5a bead in a specific position of your box (the windows along your RC). The position of N5a is defined in the pulling parameters of the .mdp files. You can take a look at them (all parameters staring with pull) in one of the .mdp files using vim.</p>
 <p>You can find what these parameters control in the <a href="http://manual.gromacs.org/online/mdp_opt.html">GROMACS manual</a>. However, save this task for later, when you have started the production simulations. Now, create the folder for the first window and copy the .mdp files to this folder:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 0.0/</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="pp">*</span>.mdp 0.0/        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> 0.0/</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="pp">*</span>.mdp 0.0/        </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Enter the 0.0 folder and modify in each .mdp file the pull-coord1-init parameter by replacing POS1 with 0.0:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 0.0/</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> <span class="op">&lt;</span>file<span class="op">&gt;</span>.mdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 0.0/</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> <span class="op">&lt;</span>file<span class="op">&gt;</span>.mdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then generate the .tpr files and run the pulling, energy minimization and equilibration steps:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> 1-pull.mdp <span class="at">-c</span> ../start.gro <span class="at">-p</span> ../../2.0.parameters/topol.top <span class="at">-o</span> 1-pull.tpr <span class="at">-maxwarn</span> 1</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> 1-pull.mdp <span class="at">-c</span> ../start.gro <span class="at">-p</span> ../../2.0.parameters/topol.top <span class="at">-o</span> 1-pull.tpr <span class="at">-maxwarn</span> 1</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> 1-pull <span class="at">-v</span> <span class="op">&amp;&gt;</span> 1-pullrun.log</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> 2-em1.mdp <span class="at">-c</span> 1-pull.gro <span class="at">-p</span> ../../2.0.parameters/topol.top  <span class="at">-o</span> 2-em1.tpr</span>
@@ -462,31 +468,31 @@ In case of issues, please contact <a href="mailto:duve@fias.uni-frankfurt.de">du
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> 3-em2 <span class="at">-v</span> <span class="op">&amp;&gt;</span> 3-em2run.log</span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> 4-eq.mdp <span class="at">-c</span> 3-em2.gro <span class="at">-p</span> ../../2.0.parameters/topol.top  <span class="at">-o</span> 4-eq.tpr <span class="at">-maxwarn</span> 1</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> 4-eq <span class="at">-v</span> <span class="at">-px</span> 4-eq_x <span class="at">-pf</span> 4-eq_f <span class="op">&amp;&gt;</span> 4-eqrun.log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-nt</span> 1 <span class="at">-deffnm</span> 4-eq <span class="at">-v</span> <span class="at">-px</span> 4-eq_x <span class="at">-pf</span> 4-eq_f <span class="op">&amp;&gt;</span> 4-eqrun.log</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once this is successful, we need to repeat the procedure for each other window, from 0.1 to 3.9, with spacing of 0.1 nanometer. As you already know how the whole procedure works, you can use a bash script to automatically generate all other 39 windows. Come back to the parent folder and then run the script.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> initial_configurations.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> initial_configurations.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="running-the-production-simulations-for-each-window" class="level5">
 <h5 class="anchored" data-anchor-id="running-the-production-simulations-for-each-window"><strong>Running the production simulations for each window</strong></h5>
 <p>Now, we are ready to run the US simulations. Enter in the production folder and look at the files inside. As in the previous step, you should now generate folders for each window and perform longer production simulations. We separate this task with two scripts, to run two sets of simulations in parallel.(The &amp; sign is to cast the process to the background. nohup makes sure that even when you close the current terminal, the process remains active.)</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2.2.production/</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2.2.production/</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> ./umbrella1.sh <span class="kw">&amp;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> ./umbrella2.sh <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nohup</span> ./umbrella2.sh <span class="kw">&amp;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This step should take a maximum of 30 minutes. In the mean time, take a look at the <a href="http://manual.gromacs.org/online/mdp_opt.html">GROMACS manual</a> to find the meaning of the pulling parameters used in the .mdp files. You can also take a look at the recommended reference about US.</p>
 </section>
 <section id="data-analysis" class="level5">
 <h5 class="anchored" data-anchor-id="data-analysis"><strong>Data analysis</strong></h5>
 <p>The most common analysis conducted for US simulations is the extraction of the PMF, which will yield the hexadecane-water partition ΔG for the N5a bead. ΔG is simply the difference between the water and hexadecane energy values of the PMF curve. A common method for extracting PMF is the WHAM, included in Gromacs as the wham utility. Its input consists of two files, one lists the names of the production .tpr files of each window, and the other that lists the names of either the pullf.xvg or pullx.xvg files from each window. First, enter the data analysis folder and generate the files containing the list of production .tpr and pullx.xvg files:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2.3.analysis/</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2.3.analysis/</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-d</span> ../2.2.production/<span class="pp">*</span>/md.tpr <span class="op">&gt;</span> tpr-files.dat</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-d</span> ../2.2.production/<span class="pp">*</span>/md_x.xvg <span class="op">&gt;</span> pullx-files.dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-d</span> ../2.2.production/<span class="pp">*</span>/md_x.xvg <span class="op">&gt;</span> pullx-files.dat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, run the gromacs tool wham:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> wham <span class="at">-ix</span> pullx-files.dat <span class="at">-it</span> tpr-files.dat <span class="at">-bsres</span> <span class="at">-bins</span> 200 <span class="at">-temp</span> 300 <span class="at">-unit</span> kJ <span class="at">-b</span> 100 <span class="at">-nBootstrap</span> 100 <span class="at">-zprof0</span> 3.5 <span class="at">-min</span> 0 <span class="at">-max</span> 3.9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> wham <span class="at">-ix</span> pullx-files.dat <span class="at">-it</span> tpr-files.dat <span class="at">-bsres</span> <span class="at">-bins</span> 200 <span class="at">-temp</span> 300 <span class="at">-unit</span> kJ <span class="at">-b</span> 100 <span class="at">-nBootstrap</span> 100 <span class="at">-zprof0</span> 3.5 <span class="at">-min</span> 0 <span class="at">-max</span> 3.9</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The WHAM utility will open each of the umbrella.tpr and pullx.xvg files sequentially and run the WHAM analysis on them. Take a look in the meaning of the other input parameters used to run gmx wham using its help option (gmx wham -h). For example, the -unit kJ option indicates that the output will be in [kJ/mol], but you can also get results in [kcal/mol] or [<span class="math inline">\(k_BT\)</span>]. After running gmx wham, you should end up with a profile.xvg file that looks similar to Figure 3A, except it does not show the error bars. You can open the result using xmgrace.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> profile.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> profile.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you want to see the error bars (and this is recommended!) inspect the file bsResult.xvg. All individual profiles from the bootstrapping are in the file bsProfs.xvg. One of the other outputs of the wham command will be a file called histo.xvg, which contains the histograms of the configurations within the US windows. These histograms will determine whether or not there is sufficient overlap between adjacent windows. For the types of simulations conducted as part of this tutorial, you may obtain something like Figure 3B. The histograms have to show reasonable overlap between the sampled windows.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> histo.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> histo.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 <center>
 <div class="quarto-figure quarto-figure-center">
@@ -517,41 +523,41 @@ In case of issues, please contact <a href="mailto:duve@fias.uni-frankfurt.de">du
 <section id="setting-up-the-solvated-system-of-a-n5a-bead-in-water" class="level5">
 <h5 class="anchored" data-anchor-id="setting-up-the-solvated-system-of-a-n5a-bead-in-water"><strong>Setting up the solvated system of a N5a bead in water</strong></h5>
 <p>First we will calculate the solvation energy of acetone in water. In order to perform the simulation, the system and the simulation conditions need to be specified. Change to the directory 3.1.Water and solvate the N5a bead in water using the provided water box and the following command:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 3.1.Water</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> acetone.gro <span class="at">-cs</span> solvent.gro <span class="at">-o</span> solvated.gro <span class="at">-box</span> 5.5 5.5 5.5 <span class="at">-maxsol</span> 1280</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> 3.1.Water</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> acetone.gro <span class="at">-cs</span> solvent.gro <span class="at">-o</span> solvated.gro <span class="at">-box</span> 5.5 5.5 5.5 <span class="at">-maxsol</span> 1280</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We then run a minimization of the solvated system:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> topol.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> ../3.0.parameters/martini_em.mdp <span class="at">-o</span> min <span class="at">-maxwarn</span> 2</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> min  <span class="op">&gt;&gt;</span> min.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> topol.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> ../3.0.parameters/martini_em.mdp <span class="at">-o</span> min <span class="at">-maxwarn</span> 2</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> min  <span class="op">&gt;&gt;</span> min.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If all is well, you should now have produced a good starting structure for the calculation of derivative of the energy at the single λ point.</p>
 </section>
 <section id="running-a-perturbation-simulation-at-a-particular-value-of-the-coupling-parameter-λ" class="level5">
 <h5 class="anchored" data-anchor-id="running-a-perturbation-simulation-at-a-particular-value-of-the-coupling-parameter-λ"><strong>Running a perturbation simulation at a particular value of the coupling parameter λ</strong></h5>
 <p>Create a directory for a single production run, go there and copy the TI_run.mdp file:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> production</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> production</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> production</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../../3.0.parameters/TI_run.mdp .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../../3.0.parameters/TI_run.mdp .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Open the file TI_run.mdp in an editor. Note the following settings in the free energy parameters section:</p>
 <p>First of all, we specify free-energy = yes to ensure calculation of dH/dλ. The value of λ is given by init-lambda and should be different for each lambda point. In the this case replace ‘sedstate’ with 0.</p>
 <p>When switching on/off non-bonded interactions, atoms can be quite close to each other, much closer than in fully interacting systems. To avoid large forces or dH/dλ values, soft core potentials are used instead of the LJ potential. Soft core potentials have the property that their value is finite at distance 0. For the MARTINI force field, values of sc-alpha = 0.5 usually perform well.</p>
 <p>The parameter sc-power controls the rate at which the coupling varies with λ. With sc-power = 1 the change in interaction is linear in λ, sc-power = 2 specifies quadratic change. The paramter couple-moltype defines the name of the molecule to alchemically transform. Ensure that this is set to ‘ACE’ for acetone in our case.</p>
 <p>All is now in place to run a simulation. Therefore, now execute the following commands</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> ../topol.top <span class="at">-c</span> ../min.gro <span class="at">-f</span> TI_run.mdp <span class="at">-o</span> run</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> run <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> ../topol.top <span class="at">-c</span> ../min.gro <span class="at">-f</span> TI_run.mdp <span class="at">-o</span> run</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> run <span class="op">&gt;&gt;</span> mdrun.log <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If all is well, you should now be producing data to give you an estimate of the dH/dλ at the λ point. The next task is to compute the change in free energy by integrating the entire dH/dλ curve as a function of λ. Check that sensible data are produced (i.e.&nbsp;numbers, not inf or nan) by looking at the file run.xvg. NOTE that it may take a while before the first data appear in run.xvg.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> run.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> run.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="running-all-λ-points" class="level5">
 <h5 class="anchored" data-anchor-id="running-all-λ-points"><strong>Running all λ points</strong></h5>
 <p>In order to quickly run all simulations for each value of λ points, we have made a bash script available which performs the steps discussed in the previous section for each λ point. Go to the previous directory and have a look at the script TI. If you are understood the commands, proceed to executing the script:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> TI.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> TI.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The script will create directories with relevant values of init_lambda_state inserted to the TI_run.mdp file and will proceed to execute TI calculation for each state. This means that for each value of λ the production simulation will be performed in separate directories. To analyze the data, GROMACS bar module will be used to conduct Bennett acceptance ratio (BAR) method and compute free energy of solvation. The bar module will collect all the .xvg files that were generated (for each value of λ) and produce three output files; bar.xvg, barint.xvg and histogram.xvg. The value of solvation free energy will be printed in final.dat.</p>
 </section>
 <section id="setting-up-the-solvated-system-of-a-na-bead-in-hexadecane" class="level5">
 <h5 class="anchored" data-anchor-id="setting-up-the-solvated-system-of-a-na-bead-in-hexadecane"><strong>Setting up the solvated system of a Na bead in hexadecane</strong></h5>
 <p>To get the difference in the free energy of solvation, we need to perform the same procedure in hexadecane. The directory 3_ThermodynamicIntegration/files_DIY/3.2.HD contains the required files. Enter that directory and solvate the N5a bead in HD. Note that we need to change the number of solvent molecules, as hexadecane contains four beads opposed to the single bead water model.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../3.2.HD </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> acetone.gro <span class="at">-cs</span> solvent.gro <span class="at">-o</span> solvated.gro <span class="at">-box</span> 5.5 5.5 5.5 <span class="at">-maxsol</span> 320</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../3.2.HD </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> acetone.gro <span class="at">-cs</span> solvent.gro <span class="at">-o</span> solvated.gro <span class="at">-box</span> 5.5 5.5 5.5 <span class="at">-maxsol</span> 320</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Again we first run a minimization, followed by production runs for each value of λ using the TI.sh script. The result will be printed to final.dat.</p>
 <p>Using the difference between the free energy values of water and hexane we can calculate the <span class="math inline">\(log(P_{hexadecane-water})\)</span> of acetone, as discussed in the previous section.</p>
 </section>
@@ -626,13 +632,14 @@ In case of issues, please contact <a href="mailto:duve@fias.uni-frankfurt.de">du
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

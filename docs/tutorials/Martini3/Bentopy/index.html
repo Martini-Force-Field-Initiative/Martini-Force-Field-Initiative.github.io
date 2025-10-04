@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -348,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installing-bentopy" class="level4">
 <h4 class="anchored" data-anchor-id="installing-bentopy">Installing <em>bentopy</em></h4>
 <p><strong>Prerequisites</strong>: <em>Bentopy</em> is written in Rust, so a Rust compiler is required during installation. Check if Rust is present:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If not present, <a href="https://www.rust-lang.org/learn/get-started">install Rust</a> through <a href="https://rustup.rs/">Rustup</a>.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -361,19 +367,19 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <p>After installing Rust via rustup, you may need to reload your bash environment for the Rust tools (cargo, etc.) to be available in your PATH. Either restart your terminal or run:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc    <span class="co"># For bash</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc     <span class="co"># For zsh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc    <span class="co"># For bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.zshrc     <span class="co"># For zsh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can verify the installation worked by running `cargo --version`.</p>
 </div>
 </div>
 <p>Now you can install <em>bentopy</em> directly via <code>pip</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/marrink-lab/bentopy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install git+https://github.com/marrink-lab/bentopy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="download-tutorial-files" class="level4">
 <h4 class="anchored" data-anchor-id="download-tutorial-files">Download tutorial files</h4>
 <p>Before starting the tutorial, download the required structure and parameter files. You download the tutorial files <strong><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Bentopy/tutorial_files.tar.gz">here</a>.</strong> Extract the files:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This archive contains:</p>
 <ul>
 <li><code>structures/</code> - Provided structure files: proteins (<code>lysozyme.pdb</code>, <code>ubiquitin.pdb</code>), membranes (<code>membrane.gro</code>, <code>double\_membrane.gro</code>) and solvent (<code>water.gro</code>)</li>
@@ -406,7 +412,7 @@ Warning
 <summary>
 Click to show the complete recipe file
 </summary>
-<div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"space"</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"size"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"resolution"</span><span class="fu">:</span> <span class="fl">0.5</span><span class="fu">,</span></span>
@@ -434,7 +440,7 @@ Click to show the complete recipe file
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"system"</span><span class="ot">]</span></span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p><strong>Note</strong> the key parts in this <em>bentopy</em> recipe:</p>
 <p><strong>Space section</strong>: Defines a 40×40×40 nm³ simulation box with 0.5 nm voxel resolution. The <code>"shape": "cuboid"</code> creates an analytical mask filling the entire box.</p>
@@ -444,13 +450,13 @@ Click to show the complete recipe file
 <section id="pack-the-system" class="level4">
 <h4 class="anchored" data-anchor-id="pack-the-system">Pack the system</h4>
 <p>Perform the packing step with a fixed random seed for reproducibility:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 simple_packing.json placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 simple_packing.json placements.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The output <code>placements.json</code> contains all placement information in a lightweight instanced file format.</p>
 </section>
 <section id="render-the-structure" class="level4">
 <h4 class="anchored" data-anchor-id="render-the-structure">Render the structure</h4>
 <p>Convert the placement list to a Gromacs coordinate file:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">-t</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This creates <code>system.gro</code> with all protein coordinates and <code>topol.top</code> with the simulation topology.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -469,8 +475,8 @@ Note
 <section id="solvation" class="level4">
 <h4 class="anchored" data-anchor-id="solvation">Solvation</h4>
 <p>Add water and ions to complete the system preparation:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 5440 <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 5440 <span class="at">-t</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Key solvation options used:</p>
 <ul>
 <li><code>-s NA:0.15M -s CL:0.15M</code>: Add 150 mM NaCl concentration</li>
@@ -495,7 +501,7 @@ Note
 <section id="visualization-and-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="visualization-and-analysis">Visualization and analysis</h4>
 <p>Open the system with <code>VMD</code> to inspect the packing:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>The lysozyme proteins are distributed uniformly throughout the simulation box.</li>
@@ -508,7 +514,7 @@ Note
 <section id="extra-try-a-different-analytical-mask" class="level4">
 <h4 class="anchored" data-anchor-id="extra-try-a-different-analytical-mask">EXTRA: Try a different analytical mask</h4>
 <p>Before moving to the next tutorial, you can experiment a bit by trying a different analytical compartment shape. Simply replace the compartment definition in your <code>simple_packing.json</code> file to pack proteins inside a sphere instead of a cube like:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="er">"compartments":</span> <span class="ot">[</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="er">"compartments":</span> <span class="ot">[</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"system"</span><span class="fu">,</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"analytical"</span><span class="fu">:</span> <span class="fu">{</span></span>
@@ -517,7 +523,7 @@ Note
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"center"</span><span class="fu">:</span> <span class="ot">[</span><span class="fl">20.0</span><span class="ot">,</span> <span class="fl">20.0</span><span class="ot">,</span> <span class="fl">20.0</span><span class="ot">]</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -531,7 +537,7 @@ Warning
 <p>Note that the available space to pack proteins got smaller, so not all the requested proteins were placed. Bentopy indicated this with the remark ‘&lt;’ in the packing summary that gets printed to your terminal. It’s advised to save this summary to a file as it contains all the relevant packing information for your project.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> up compartments...</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Setting</span> up compartments...</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Loading</span> segment structures...</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rearranging</span> segments according to the MomentOfInertia method... Done.</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span>  <span class="ex">1/1</span><span class="kw">)</span> <span class="ex">Attempting</span> to pack 650 instances instances of segment <span class="st">'LYZ'</span>.</span>
@@ -540,7 +546,7 @@ Warning
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ex">----</span>  <span class="at">----------</span>  <span class="at">------</span>  <span class="at">------</span>  <span class="at">------</span>  <span class="at">--------</span>  <span class="at">------</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>   <span class="ex">0</span>  LYZ          50.5%     650     328      0.13  <span class="op">&lt;</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                   <span class="ex">50.5%</span>     650     328      0.13  <span class="op">&lt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> placement list to <span class="st">"placements.json"</span>... Done in 0.353 s.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Writing</span> placement list to <span class="st">"placements.json"</span>... Done in 0.353 s.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="Tut2" class="level3">
@@ -558,9 +564,9 @@ Warning
 <section id="inspect-the-mask-compartments" class="level4">
 <h4 class="anchored" data-anchor-id="inspect-the-mask-compartments">Inspect the mask compartments</h4>
 <p>Before creating masks, it’s essential to understand what compartments <em>bentopy</em> identifies in your system. First, generate a visualisation file to inspect the compartments identified in the voxel representation:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro <span class="at">-b</span> labels.gro <span class="at">--autofill</span> <span class="at">--no-interactive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro <span class="at">-b</span> labels.gro <span class="at">--autofill</span> <span class="at">--no-interactive</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This automatically generates the debug file <code>labels.gro</code>. Visualise the voxel representation of our membrane system by opening the file with VMD:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> labels.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> labels.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here you can use the following atom selections to visualise the identified compartments:</p>
 <ul>
 <li><strong>Solvent regions</strong> (available for packing): <code>name “-1”</code></li>
@@ -571,10 +577,10 @@ Warning
 <section id="create-the-masks" class="level4">
 <h4 class="anchored" data-anchor-id="create-the-masks">Create the masks</h4>
 <p>Now that you understand the compartments, we will create the masks to guide our protein placement. First, run the masking command and follow the interactive prompts:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro solvent_mask.npz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro solvent_mask.npz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When running the masking command, you’ll encounter several interactive prompts during the process. For most prompts (such as debug file outputs), you can simply press Enter to skip and continue. The important prompt is the compartment selection where you’ll see options [-1 1], here you should select -1 to choose the solvent regions where proteins can be placed. This creates <code>solvent_mask.npz</code>, a compressed voxel representation of the available space for protein packing.</p>
 <p>Next, we need a separate mask representing the membrane itself. This will be used for proximity rules to place proteins near the membrane surface. Run the masking command again with a different output filename:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro membrane_mask.npz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/membrane.gro membrane_mask.npz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When prompted with the compartment options <code>[-1 1]</code>, select <code>1</code> to choose the membrane region. This creates <code>membrane_mask.npz</code>. Having both masks allows us to exclude proteins from the membrane (using the solvent mask) while simultaneously attracting certain proteins toward the membrane surface (using the membrane mask for proximity rules).</p>
 </section>
 <section id="update-the-recipe" class="level4">
@@ -584,7 +590,7 @@ Warning
 <summary>
 Click to show the complete configuration file
 </summary>
-<div class="sourceCode" id="cb16"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"space"</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"size"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"resolution"</span><span class="fu">:</span> <span class="fl">0.5</span><span class="fu">,</span></span>
@@ -637,7 +643,7 @@ Click to show the complete configuration file
 <span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
 <span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
 <span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p><strong>Note</strong> the key changes in this <em>bentopy</em> recipe:</p>
 <ul>
@@ -662,7 +668,7 @@ Warning
 <section id="pack-the-system-1" class="level4">
 <h4 class="anchored" data-anchor-id="pack-the-system-1">Pack the system</h4>
 <p>Perform the packing step with a fixed random seed for reproducibility:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 <span class="at">--rearrange</span> moment-of-inertia membrane_packing.json placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 <span class="at">--rearrange</span> moment-of-inertia membrane_packing.json placements.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>--rearrange</code> flag optimizes the placement order of the segments using a heuristic for packing difficulty. Here we use the moment of inertia to determine the order in which the segments should be placed, this dramatically improves the packing densities that can be reached with bentopy.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -688,24 +694,24 @@ Note
 <section id="render-and-merge" class="level4">
 <h4 class="anchored" data-anchor-id="render-and-merge">Render and merge</h4>
 <p>Convert the placement list to a Gromacs coordinate file and combine the packed proteins with the membrane structure.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json packed_proteins.gro <span class="at">-t</span> topol.top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json packed_proteins.gro <span class="at">-t</span> topol.top</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge proteins with membrane structure</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> packed_proteins.gro structures/membrane.gro <span class="at">-o</span> system.gro</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"POPC    5408"</span> <span class="op">&gt;&gt;</span> topol.top  <span class="co"># Add lipid molecules to the topology file.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"POPC    5408"</span> <span class="op">&gt;&gt;</span> topol.top  <span class="co"># Add lipid molecules to the topology file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>merge</code> command combines the original membrane with packed proteins.</p>
 </section>
 <section id="solvation-1" class="level4">
 <h4 class="anchored" data-anchor-id="solvation-1">Solvation</h4>
 <p>Add water and ions to complete the system preparation:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 2400 <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 2400 <span class="at">-t</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="visualization-and-analysis-1" class="level4">
 <h4 class="anchored" data-anchor-id="visualization-and-analysis-1">Visualization and analysis</h4>
 <p>Open the system with <code>VMD</code> to inspect the packing:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize in VMD</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize in VMD</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -743,15 +749,15 @@ Tip
 <section id="inspect-the-double-membrane-structure" class="level4">
 <h4 class="anchored" data-anchor-id="inspect-the-double-membrane-structure">Inspect the double membrane structure</h4>
 <p>First, let’s examine the double membrane structure we’ll be working with:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> structures/double_membrane.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> structures/double_membrane.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice how this system has two lipid bilayers, creating three distinct regions: the space between the membranes (inner compartment), the space outside the membranes (outer compartment), and the membrane regions themselves. This structure represents a compartmentalised space similar to a vesicle or double-layer cell wall.</p>
 </section>
 <section id="create-compartment-specific-masks" class="level4">
 <h4 class="anchored" data-anchor-id="create-compartment-specific-masks">Create compartment-specific masks</h4>
 <p>Generate masks for the different compartments created by the double membrane:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro mask.npz <span class="at">--inspect-labels-path</span> compartment_labels.gro  <span class="at">--autofill</span> <span class="at">--no-interactive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro mask.npz <span class="at">--inspect-labels-path</span> compartment_labels.gro  <span class="at">--autofill</span> <span class="at">--no-interactive</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Visualise the voxel representation of our membrane system by opening the file with VMD:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> compartment_labels.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> compartment_labels.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now also double-check the different spatial compartments identified by the containment algorithm:</p>
 <ul>
 <li>Outer compartment (outside the membrane system): <code>name “-1”</code></li>
@@ -762,13 +768,13 @@ Tip
 <section id="create-separate-masks-for-each-compartment" class="level4">
 <h4 class="anchored" data-anchor-id="create-separate-masks-for-each-compartment">Create separate masks for each compartment</h4>
 <p>Create individual masks for precise control:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for outer compartment: label -1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for outer compartment: label -1</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro outer_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> <span class="at">-1</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for inner compartment: label -2</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro inner_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> <span class="at">-2</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive mask creation for the membranes: labels 1 2</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro memb_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> 1,2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-mask</span> structures/double_membrane.gro memb_mask.npz <span class="at">--no-interactive</span> <span class="at">--labels</span> 1,2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Since we’re now using the <code>--no-interactive</code> flag of <code>bentopy-mask</code>, we will not be prompted by the interactive selection. The requested labels selection is written to the specified mask .npz file.</p>
 </section>
 <section id="update-the-configuration-with-compartments" class="level4">
@@ -778,7 +784,7 @@ Tip
 <summary>
 Click to show the complete configuration file
 </summary>
-<div class="sourceCode" id="cb25"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"space"</span><span class="fu">:</span> <span class="fu">{</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"size"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"resolution"</span><span class="fu">:</span> <span class="fl">0.5</span><span class="fu">,</span></span>
@@ -837,7 +843,7 @@ Click to show the complete configuration file
 <span id="cb25-57"><a href="#cb25-57" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
 <span id="cb25-58"><a href="#cb25-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
 <span id="cb25-59"><a href="#cb25-59" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-60"><a href="#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <p><strong>Note</strong> the key changes in this <em>bentopy</em> recipe:</p>
 <ul>
@@ -849,27 +855,27 @@ Click to show the complete configuration file
 <section id="pack-the-system-2" class="level4">
 <h4 class="anchored" data-anchor-id="pack-the-system-2">Pack the system</h4>
 <p>Perform the packing step with a fixed random seed for reproducibility:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 <span class="at">--rearrange</span> moment-of-inertia compartment_packing.json placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-pack</span> <span class="at">--seed</span> 5172 <span class="at">--rearrange</span> moment-of-inertia compartment_packing.json placements.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="render-and-merge-1" class="level4">
 <h4 class="anchored" data-anchor-id="render-and-merge-1">Render and merge</h4>
 <p>Convert the placement list to a Gromacs coordinate file and combine the packed proteins with the membrane structure.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json packed_proteins.gro <span class="at">-t</span> topol.top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json packed_proteins.gro <span class="at">-t</span> topol.top</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge proteins with membrane structure</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> packed_proteins.gro structures/double_membrane.gro <span class="at">-o</span> system.gro</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"POPC    10816"</span> <span class="op">&gt;&gt;</span> topol.top  <span class="co"># Add lipid molecules to the topology file.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"POPC    10816"</span> <span class="op">&gt;&gt;</span> topol.top  <span class="co"># Add lipid molecules to the topology file.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="solvation-2" class="level4">
 <h4 class="anchored" data-anchor-id="solvation-2">Solvation</h4>
 <p>Add water and ions to complete the system preparation:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 1600 <span class="at">-t</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> structures/water.gro <span class="at">-o</span> solvated_system.gro <span class="dt">\</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>-s NA:0.15M <span class="at">-s</span> CL:0.15M <span class="at">--charge</span> 1600 <span class="at">-t</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="visualization-and-final-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="visualization-and-final-analysis">Visualization and final analysis</h4>
 <p>Open the system with <code>VMD</code> to inspect the packing:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> solvated_system.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The result should be similar to the snapshot shown below, you can observe:</p>
 <ul>
 <li>The lysozyme proteins are distributed throughout the outer compartment.</li>
@@ -882,7 +888,7 @@ Click to show the complete configuration file
 <section id="run-a-simulation" class="level4">
 <h4 class="anchored" data-anchor-id="run-a-simulation">Run a simulation</h4>
 <p>With the complete solvated system, you can now run a MD simulations using the provided input files:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Energy minimization</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Energy minimization</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> mdp_files/em.mdp <span class="at">-c</span> solvated_system.gro <span class="at">-p</span> topol.top <span class="at">-o</span> em.tpr</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> em</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -900,7 +906,7 @@ Click to show the complete configuration file
 <span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Production run</span></span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> mdp_files/md.mdp <span class="at">-c</span> eq.gro <span class="at">-p</span> topol.top <span class="at">-o</span> md.tpr <span class="at">-n</span> index.ndx</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You’ve now learned the complete <em>bentopy</em> workflow from simple packing to a complex MD mode!</p>
 <p>Through these three tutorials, you’ve learned how <em>bentopy</em> can help you build complex molecular models with a well-structured workflow. This scalable approach enables researchers to construct everything from crowded cytoplasm to whole-cell models with multiple compartments. The strength of <em>bentopy</em> lies in its ability to handle this complexity efficiently, making large-scale modeling accessible without sacrificing the molecular detail needed for accurate biological representation.</p>
 <p><img src="figure6.png" class="img-fluid"></p>
@@ -915,20 +921,20 @@ Click to show the complete configuration file
 <p><em>Bentopy</em> includes <code>bentopy-solvate</code>, a solvation tool optimized for large-scale systems. For the complete documentation, see the <code>bentopy-solvate</code> <a href="https://github.com/marrink-lab/bentopy/blob/main/src/solvate/README.md">README</a>.</p>
 <section id="ion-substitutions-with-different-quantities" class="level5">
 <h5 class="anchored" data-anchor-id="ion-substitutions-with-different-quantities">Ion substitutions with different quantities</h5>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Molarity: 150 mM NaCl</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Molarity: 150 mM NaCl</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:0.15M <span class="at">-s</span> CL:0.15M</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed number: exactly 100 Na+ and 100 Cl- ions</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:100 <span class="at">-s</span> CL:100</span>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ratio: replace 1% of water with Na+ ions</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:0.01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-s</span> NA:0.01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="set-custom-cutoff-distances" class="level5">
 <h5 class="anchored" data-anchor-id="set-custom-cutoff-distances">Set custom cutoff distances</h5>
 <p>For models with compartments, fine-tuning the number of water beads in the compartments is crucial for achieving a well solvated model. The <code>--cutoff</code> flag controls the minimum distance between solvent and structure beads, allowing you to adjust the water bead placement. Increasing the cutoff creates more space around solutes (fewer water molecules), while decreasing it allows tighter packing (more water molecules).</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="dt">\</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>--cutoff 0.5 <span class="at">--solvent-cutoff</span> 0.25</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-solvate</span> <span class="at">-i</span> system.gro <span class="at">-w</span> water.gro <span class="at">-o</span> solvated.gro <span class="dt">\</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>--cutoff 0.5 <span class="at">--solvent-cutoff</span> 0.25</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="render-options-for-large-systems" class="level4">
@@ -937,23 +943,23 @@ Click to show the complete configuration file
 <section id="limiting-render-regions" class="level5">
 <h5 class="anchored" data-anchor-id="limiting-render-regions">Limiting render regions</h5>
 <p>Render only a specific region using <code>--limits</code> (format: <code>minx,maxx,miny,maxy,minz,maxz</code>):</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a 10×10×10 nm cube from (40,40,40) to (50,50,50)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a 10×10×10 nm cube from (40,40,40) to (50,50,50)</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json small_region.gro <span class="at">--limits</span> 40,50,40,50,40,50</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a thin slice in z-direction only</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json slice.gro <span class="at">--limits</span> none,none,none,none,45,55</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json slice.gro <span class="at">--limits</span> none,none,none,none,45,55</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="reduced-atom-rendering" class="level5">
 <h5 class="anchored" data-anchor-id="reduced-atom-rendering">Reduced atom rendering</h5>
 <p>Use <code>--mode</code> to render fewer atoms for easier visualization:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render only alpha carbons</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Render only alpha carbons</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json alpha_only.gro <span class="at">--mode</span> alpha</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render one bead per residue</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json residue_beads.gro <span class="at">--mode</span> residue</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Render one bead per protein instance</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json instance_beads.gro <span class="at">--mode</span> instance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json instance_beads.gro <span class="at">--mode</span> instance</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -971,18 +977,18 @@ Note
 <section id="residue-numbering-control" class="level5">
 <h5 class="anchored" data-anchor-id="residue-numbering-control">Residue numbering control</h5>
 <p>Control how residue numbers are assigned using <code>--resnum-mode</code>:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Each protein instance gets unique residue number</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Each protein instance gets unique residue number</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">--resnum-mode</span> instance</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># All instances of same protein type get same residue number</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">--resnum-mode</span> segment</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-render</span> placements.json system.gro <span class="at">--resnum-mode</span> segment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="residue-name-relabeling" class="level5">
 <h5 class="anchored" data-anchor-id="residue-name-relabeling">Residue name relabeling</h5>
 <p>Assign custom residue names when merging files for better organization and visualization:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign custom residue names using colon syntax</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign custom residue names using colon syntax</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">betopy-merge</span> membrane.gro:MEM packed_proteins.gro:PROT <span class="at">-o</span> complete_system.gro# Multiple components with descriptive labels</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> membrane.gro:MEM cytosol.gro:CYT chromosome.gro:CHR <span class="at">-o</span> cell.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bentopy-merge</span> membrane.gro:MEM cytosol.gro:CYT chromosome.gro:CHR <span class="at">-o</span> cell.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This allows easy selection and visualization of different system components in molecular viewers.</p>
 </section>
 </section>
@@ -991,19 +997,19 @@ Note
 <section id="using-concentrations-instead-of-fixed-numbers" class="level5">
 <h5 class="anchored" data-anchor-id="using-concentrations-instead-of-fixed-numbers">Using concentrations instead of fixed numbers</h5>
 <p>Specify physiological concentrations (in mol/L) instead of absolute copy numbers:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="er">"segments":</span> <span class="ot">[</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="er">"segments":</span> <span class="ot">[</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"concentration"</span><span class="fu">:</span> <span class="fl">5.0</span><span class="fu">,</span></span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"system"</span><span class="ot">]</span></span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="controlling-protein-rotations" class="level5">
 <h5 class="anchored" data-anchor-id="controlling-protein-rotations">Controlling protein rotations</h5>
 <p>Constrain or set initial rotations for more realistic placement:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="er">"segments":</span> <span class="ot">[</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="er">"segments":</span> <span class="ot">[</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"LYZ"</span><span class="fu">,</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"structures/lysozyme.pdb"</span><span class="fu">,</span></span>
@@ -1011,7 +1017,7 @@ Note
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"compartments"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"system"</span><span class="ot">]</span><span class="fu">,</span></span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"rotation_axes"</span><span class="fu">:</span> <span class="st">"z"</span></span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>rotation_axes</code>: Limit random rotations to specific axes (e.g., <code>"z"</code>, <code>"xy"</code>, <code>"xyz"</code>)</li>
 </ul>
@@ -1019,7 +1025,7 @@ Note
 <section id="compartment-combinations" class="level5">
 <h5 class="anchored" data-anchor-id="compartment-combinations">Compartment combinations</h5>
 <p>Create complex spaces using boolean operations on preexisting compartments:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="er">"compartments":</span> <span class="ot">[</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="er">"compartments":</span> <span class="ot">[</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="dt">"id"</span><span class="fu">:</span> <span class="st">"a"</span><span class="fu">,</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"analytical"</span><span class="fu">:</span> <span class="fu">{</span></span>
@@ -1044,7 +1050,7 @@ Note
 <span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"d"</span><span class="fu">,</span></span>
 <span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"combination"</span><span class="fu">:</span> <span class="st">"!c"</span></span>
 <span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="command-line-tips" class="level4">
@@ -1052,7 +1058,7 @@ Note
 <section id="inspect-placement-lists" class="level5">
 <h5 class="anchored" data-anchor-id="inspect-placement-lists">Inspect placement lists:</h5>
 <p>Use <code>jq</code> to view placement files in readable format:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> . placements.json</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jq</span> . placements.json</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="troubleshooting-common-issues" class="level4">
@@ -1145,13 +1151,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -178,7 +179,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -188,12 +190,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -260,6 +262,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -357,7 +363,7 @@ window.Quarto = {
 <p><em>The text output of these steps was minimized so as not to overcrowd the notebook. Feel free to take out the <code>-q</code> flags or add the <code>-v</code> flag to <code>tar</code> if you want full output or for debugging purposes.</em></p>
 <hr>
 <div id="cell-4" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We install `gromacs` and `dssp` binaries, pre-built for the colab runtime. Moreover, we install some Python packages, and import the ones we'll need:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We install `gromacs` and `dssp` binaries, pre-built for the colab runtime. Moreover, we install some Python packages, and import the ones we'll need:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. The `vermouth` (provides the `martinize2` script) and `insane` packages from the Martini team</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. The `MDAnalysis` package</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. The `nglview` molecular viewer (requires enabling custom notebook widgets, which we also do below)</span></span>
@@ -370,20 +376,20 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">!</span>pip install <span class="op">-</span>q ipywidgets<span class="op">==</span><span class="fl">7.7.2</span> nglview</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Needed for nglview to work in colab</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="im">from</span> google.colab <span class="im">import</span> output</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  output.enable_custom_widget_manager()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  output.enable_custom_widget_manager()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-5" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nglview <span class="im">as</span> nv</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> MDAnalysis <span class="im">as</span> mda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nglview <span class="im">as</span> nv</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> MDAnalysis <span class="im">as</span> mda</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We download and unpack the tutorial’s material.</p>
 <div id="cell-7" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>zenodo.org<span class="op">/</span>records<span class="op">/</span><span class="dv">13760505</span><span class="op">/</span>files<span class="op">/</span><span class="dv">1</span><span class="op">-</span>Tutorial_CER<span class="op">-</span>VDAC1.<span class="bu">zip</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>unzip <span class="dv">1</span><span class="op">-</span>Tutorial_CER<span class="op">-</span>VDAC1.<span class="bu">zip</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>zenodo.org<span class="op">/</span>records<span class="op">/</span><span class="dv">13760505</span><span class="op">/</span>files<span class="op">/</span><span class="dv">1</span><span class="op">-</span>Tutorial_CER<span class="op">-</span>VDAC1.<span class="bu">zip</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>unzip <span class="dv">1</span><span class="op">-</span>Tutorial_CER<span class="op">-</span>VDAC1.<span class="bu">zip</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We will start in subdirectory <code>minimal</code>, but feel free to change to <code>worked</code>.</p>
 <div id="cell-9" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd minimal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd minimal</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="step-1---introduction" class="level2">
@@ -402,9 +408,9 @@ window.Quarto = {
 <p>In your directories you’ll find the 4c69.pdb file, containing the X-ray structure of the murine VDAC1 protein. As it is a beta-barrel, it should be clear how it orients in a membrane.</p>
 <p>Before coarse graining anything we visualize our starting protein structure using nglview. Other viewers, such as pymol or VMD are also great, if you run this workflow outside Colab.</p>
 <div id="cell-13" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> nv.NGLWidget()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>view <span class="op">=</span> nv.NGLWidget()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>at <span class="op">=</span> view.add_component(nv.FileStructure(<span class="st">'4c69.pdb'</span>))</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>view</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>view</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="coarse-graining-with-martinize2" class="level3">
 <h3 class="anchored" data-anchor-id="coarse-graining-with-martinize2">Coarse-graining with <code>martinize2</code></h3>
@@ -413,13 +419,13 @@ window.Quarto = {
 <p>Run <code>martinize2</code> with the <code>-h</code> flag for help deciding how to run it. You’ll need to: * specify <code>4c69.pdb</code> as the input structure; * specify an output CG structure (let’s call it <code>VDAC1_cg.pdb</code>); * specify an output <code>.top</code> topology master file (let’s call it <code>topol.top</code>); * specify the target forcefield. Martini 3 has code <code>martini3001</code>; * ask for an elastic network to be set, restraining secondary/tertiary structure; * ask for any disulfide bridges to be automatically detected; * specify where <code>martinize2</code> can find a DSSP executable, so that secondary structure per residue can be determined (in the current install it is in your path, under the name <code>mkdssp</code>); * ask for some non-protein residues that are present in the pdb structure to be ignored (since <code>4c69.pdb</code> is being used without any prior cleaning, several extra molecules are present, namely <code>HOH</code>, <code>ATP</code>, <code>MC3</code>, and <code>LDA</code>).</p>
 <p>Additionally, if needed, you can ask <code>martinize2</code> to ignore some occurring warnings: you can expect several about multiple conformations in <code>4c69.pdb</code>, and one about the version of DSSP being used.</p>
 <div id="cell-15" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!martinize2 -f ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!martinize2 -f ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-16" class="cell" data-cellview="form">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>martinize2 <span class="op">-</span>f <span class="dv">4</span><span class="er">c69</span>.pdb <span class="op">\</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>x VDAC1_cg.pdb <span class="op">\</span></span>
@@ -430,14 +436,14 @@ window.Quarto = {
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>cys auto <span class="op">\</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>dssp mkdssp <span class="op">\</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>ignore HOH ATP MC3 LDA <span class="op">\</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>maxwarn <span class="dv">42</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a> <span class="op">-</span>maxwarn <span class="dv">42</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Have a look at the produced files with and editor or a molecular structure visualizer. Observe the atomic structure and the CG beads overlaid (in white and yellow spheres).</p>
 <div id="cell-18" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>view.remove_component(at)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>view.remove_component(at)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>aa <span class="op">=</span> nv.FileStructure(<span class="st">'4c69.pdb'</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>aa <span class="op">=</span> nv.FileStructure(<span class="st">'4c69.pdb'</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>cg <span class="op">=</span> nv.FileStructure(<span class="st">'VDAC1_cg.pdb'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>view.add_component(aa, default<span class="op">=</span><span class="va">False</span>)</span>
@@ -450,7 +456,7 @@ window.Quarto = {
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>view.add_ball_and_stick(aspectRatio<span class="op">=</span><span class="fl">7.5</span>, opacity<span class="op">=</span><span class="fl">0.45</span>, component<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>view.center()</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>view</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>view</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="embedding-a-protein-in-a-membrane-using-insane" class="level3">
@@ -459,13 +465,13 @@ window.Quarto = {
 <hr>
 <p>Run <code>insane</code> with the <code>-h</code> flag for help deciding how to run it. You’ll need to: * specify <code>VDAC1_cg.pdb</code> as the input protein to embed; * specify an output <code>.top</code> topology master file (let’s call it <code>membrane.top</code>); * specify an output structure (let’s call it <code>membrane_prot.gro</code>); * specify lipid proportions (95:5 POPC:ceramide) with <code>-l</code>; * specify the dimensions of the simulation box (x=12, y=12 and z=10) with the <code>-x</code>, <code>-y</code> and <code>-z</code> flags; * ask for centering the protein in the vertical axis; * ask for orienting the protein tilt in the membrane; * add waters (<code>-sol W</code>) as solute.; * ask for an ionic strength of 0.15 M; * neturalize the system with additional counterions.</p>
 <div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!insane -f ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!insane -f ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-22" class="cell" data-cellview="form">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>insane <span class="op">-</span>f VDAC1_cg.pdb <span class="op">\</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>l POPC:<span class="dv">95</span> <span class="op">-</span>l DPCE:<span class="dv">5</span> <span class="op">\</span></span>
@@ -476,16 +482,16 @@ window.Quarto = {
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>orient <span class="op">\</span></span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>sol W <span class="op">\</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>salt <span class="fl">0.15</span> <span class="op">\</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>charge auto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>charge auto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You should obtain a protein–membrane structure. Open it with a molecular visualizator. Here, you can see the protein in the membrane, with the POPC lipids in grey and the ceramide in green. Note that, for clarity, water and ions were not displayed.</p>
 <div id="cell-24" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>view_membrane_prot <span class="op">=</span> nv.NGLWidget()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>view_membrane_prot <span class="op">=</span> nv.NGLWidget()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_component(nv.FileStructure(<span class="st">'membrane_prot.gro'</span>))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_representation(<span class="st">'licorice'</span>, selection<span class="op">=</span><span class="st">'protein'</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_representation(<span class="st">'surface'</span>, selection<span class="op">=</span><span class="st">'POPC'</span>, color<span class="op">=</span><span class="st">'grey'</span>)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>view_membrane_prot.add_representation(<span class="st">'surface'</span>, selection<span class="op">=</span><span class="st">'DPCE'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>view_membrane_prot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>view_membrane_prot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You may notice that despite the use of the -orient flag, insane was not able to completely align VDAC’s axis with the membrane normal. This is ok, again because the robustness of CG will allow the system to quickly evolve into the correct orientation.</p>
 </section>
@@ -496,10 +502,10 @@ window.Quarto = {
 <li>Martinize2 gives not very informative default names to files and molecules. Rename <code>molecule_0.itp</code> to <code>VDAC1.itp</code>. Inside it, also change the molecule name from <code>molecule_0</code> to <code>VDAC1</code>:</li>
 </ol>
 <div id="cell-28" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp molecule_0.itp VDAC1.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp molecule_0.itp VDAC1.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-29" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/molecule_0/, "VDAC1"); print}'</span> VDAC1.itp <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp VDAC1.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/molecule_0/, "VDAC1"); print}'</span> VDAC1.itp <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp VDAC1.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="1">
 <li>In <code>topol.top</code>:</li>
@@ -508,43 +514,43 @@ window.Quarto = {
 <li>See how the file looks:</li>
 </ul>
 <div id="cell-31" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Add the last 7 lines from membrane.top. These are the number of molecules of each type created by insane:</li>
 </ul>
 <div id="cell-33" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>tail <span class="op">-</span>n <span class="dv">7</span> membrane.top <span class="op">&gt;&gt;</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>tail <span class="op">-</span>n <span class="dv">7</span> membrane.top <span class="op">&gt;&gt;</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Change the molecule reference from <code>molecule_0</code> to <code>VDAC1</code> in the molecules section:</li>
 </ul>
 <div id="cell-35" class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/molecule_0/, "VDAC1"); print}'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/molecule_0/, "VDAC1"); print}'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>At the top, change the #include statement so it points to <code>martini_v3.0.0.itp</code> (this .itp must always be the first one to include):</li>
 </ul>
 <div id="cell-37" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/include "martini</span><span class="er">\</span><span class="st">.itp"/, "include </span><span class="ch">\"</span><span class="st">martini_v3.0.0.itp</span><span class="ch">\"</span><span class="st">"); print}'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/include "martini</span><span class="er">\</span><span class="st">.itp"/, "include </span><span class="ch">\"</span><span class="st">martini_v3.0.0.itp</span><span class="ch">\"</span><span class="st">"); print}'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Add extra <code>.itp</code> files for the lipid, ceramide, water and ions:</li>
 </ul>
 <div id="cell-39" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'NR==4 {print "#include </span><span class="ch">\"</span><span class="st">martini_v3.0.0_phospholipids_v1.itp</span><span class="ch">\"</span><span class="st">"; print "#include </span><span class="ch">\"</span><span class="st">DPCE.itp</span><span class="ch">\"</span><span class="st">"; print "#include </span><span class="ch">\"</span><span class="st">martini_v3.0.0_solvents_v1.itp</span><span class="ch">\"</span><span class="st">"; print "#include </span><span class="ch">\"</span><span class="st">martini_v3.0.0_ions_v1.itp</span><span class="ch">\"</span><span class="st">"} 1'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'NR==4 {print "#include </span><span class="ch">\"</span><span class="st">martini_v3.0.0_phospholipids_v1.itp</span><span class="ch">\"</span><span class="st">"; print "#include </span><span class="ch">\"</span><span class="st">DPCE.itp</span><span class="ch">\"</span><span class="st">"; print "#include </span><span class="ch">\"</span><span class="st">martini_v3.0.0_solvents_v1.itp</span><span class="ch">\"</span><span class="st">"; print "#include </span><span class="ch">\"</span><span class="st">martini_v3.0.0_ions_v1.itp</span><span class="ch">\"</span><span class="st">"} 1'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Change the ion names from NA+/CL- to Na and CL, respectively (insane uses older Martini 2 nomenclature):</li>
 </ul>
 <div id="cell-41" class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/NA</span><span class="er">\</span><span class="st">+/, "Na "); gsub(/CL-/, "CL "); print}'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>awk <span class="st">'{gsub(/NA</span><span class="er">\</span><span class="st">+/, "Na "); gsub(/CL-/, "CL "); print}'</span> topol.top <span class="op">&gt;</span> temp <span class="op">&amp;&amp;</span> mv temp topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>See how <code>topol.top</code> looks now and compare it with before:</li>
 </ul>
 <div id="cell-43" class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cat topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -555,25 +561,25 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="energy-minimization">Energy minimization</h3>
 <p>The <code>em.mdp</code> file has the instructions for the energy minimization. Create a <code>.tpr</code> file (let’s call it <code>em.tpr</code>) for performing it. Use the flag <code>-h</code> if you need help. Use the flag <code>maxwarn 1</code> to ignore a warning that crops up because of unimportant mismatches in the way insane names atoms and how they’re defined in topologies.</p>
 <div id="cell-48" class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-49" class="cell" data-cellview="form">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f em.mdp <span class="op">-</span>p topol.top <span class="op">-</span>c membrane_prot.gro <span class="op">-</span>o em.tpr <span class="op">-</span>maxwarn <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f em.mdp <span class="op">-</span>p topol.top <span class="op">-</span>c membrane_prot.gro <span class="op">-</span>o em.tpr <span class="op">-</span>maxwarn <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Run now the minimization with:</p>
 <div id="cell-51" class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>deffnm em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>deffnm em</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="equilibration" class="level3">
 <h3 class="anchored" data-anchor-id="equilibration">Equilibration</h3>
 <p>The equilibration step makes use of the <code>eq.mdp</code> runfile. Prior to using it with <code>grompp</code>, you’ll have to create an index file defining the beads that are part of the protein/membrane and those that are part of the solvent. This is needed because the temperature of the two phases will be thermostatted independently and we need to tell grompp which atoms get temperature-coupled together. To make the index run:</p>
 <div id="cell-54" class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>gmx make_ndx <span class="op">-</span>f em.tpr <span class="op">&lt;&lt;</span>EOF</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">"W"</span> <span class="op">|</span> <span class="st">"ION"</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>name <span class="dv">17</span> Solvent</span>
@@ -581,43 +587,43 @@ window.Quarto = {
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>name <span class="dv">18</span> Bilayer</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>a BB</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>q</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>EOF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>EOF</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Armed with this index and the minimized structure, you can use <code>grompp</code> and the file <code>eq.mdp</code> for genereting the <code>.tpr</code> file to perform the equilibration. Use the flat <code>-n</code> to provide the <code>index.ndx</code> file.</p>
 <div id="cell-56" class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-57" class="cell" data-cellview="form">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f eq.mdp <span class="op">-</span>p topol.top <span class="op">-</span>c em.gro <span class="op">-</span>n index.ndx <span class="op">-</span>o eq.tpr <span class="op">-</span>maxwarn <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f eq.mdp <span class="op">-</span>p topol.top <span class="op">-</span>c em.gro <span class="op">-</span>n index.ndx <span class="op">-</span>o eq.tpr <span class="op">-</span>maxwarn <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Run now the equilibration:</p>
 <div id="cell-59" class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>v <span class="op">-</span>deffnm eq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mdrun <span class="op">-</span>v <span class="op">-</span>deffnm eq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="production" class="level3">
 <h3 class="anchored" data-anchor-id="production">Production</h3>
 <p>Finally, we can create the <code>.tpr</code> and run the production using the <code>md.mdp</code> file.</p>
 <div id="cell-62" class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#!gmx grompp ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-63" class="cell" data-cellview="form">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f md.mdp <span class="op">-</span>p topol.top <span class="op">-</span>c eq.gro <span class="op">-</span>n index.ndx <span class="op">-</span>o md.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx grompp <span class="op">-</span>f md.mdp <span class="op">-</span>p topol.top <span class="op">-</span>c eq.gro <span class="op">-</span>n index.ndx <span class="op">-</span>o md.tpr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Since this step is quite computationally expensive, we’ll take the trajectory file (<code>md.xtc</code>) from the <code>worked</code> directory (also, some additional files to avoid incompatibilities).</p>
 <div id="cell-65" class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp ..<span class="op">/</span>worked<span class="op">/</span>md.xtc .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp ..<span class="op">/</span>worked<span class="op">/</span>md.xtc .</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp ..<span class="op">/</span>worked<span class="op">/</span>index.ndx .</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp ..<span class="op">/</span>worked<span class="op">/</span>eq.gro .</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp ..<span class="op">/</span>worked<span class="op">/</span>md.tpr .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cp ..<span class="op">/</span>worked<span class="op">/</span>md.tpr .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -627,25 +633,25 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="trajectory-fitting">Trajectory fitting</h3>
 <p>It is useful — mostly for visualization — to have all the protein in all simulation frames centered and fit, so that all observed movement is relative to it, rather than to the box. At the same time, we will output only the lipids/protein to make the resulting trajectories lighter. This can be done with the following series of commands:</p>
 <div id="cell-69" class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Protein'</span> <span class="st">'Bilayer'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md.xtc <span class="op">-</span>s md.tpr <span class="op">-</span>center <span class="op">-</span>pbc mol <span class="op">-</span>o md_pbc.xtc <span class="op">-</span>n index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Protein'</span> <span class="st">'Bilayer'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md.xtc <span class="op">-</span>s md.tpr <span class="op">-</span>center <span class="op">-</span>pbc mol <span class="op">-</span>o md_pbc.xtc <span class="op">-</span>n index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With the previous command we are centering on the <code>Protein</code> and only inlcuding the group <code>Bilayer</code> (Lipids+Protein, without water and ions) in the output. The flag <code>-pbc mol</code> will make molecules whole.</p>
 <p>Let’s do the same as above but only on the starting structure of the production, producing one centered structure (useful later for use with VMD).</p>
 <div id="cell-72" class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Protein'</span> <span class="st">'Bilayer'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f eq.gro <span class="op">-</span>s md.tpr <span class="op">-</span>center <span class="op">-</span>pbc mol <span class="op">-</span>o md_pbc.gro <span class="op">-</span>n index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Protein'</span> <span class="st">'Bilayer'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f eq.gro <span class="op">-</span>s md.tpr <span class="op">-</span>center <span class="op">-</span>pbc mol <span class="op">-</span>o md_pbc.gro <span class="op">-</span>n index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s convert the production tpr file into another with fewer atoms compatibl with our centered trajectory (since we now ignore the solvent).</p>
 <div id="cell-74" class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer'</span> <span class="op">|</span> gmx convert<span class="op">-</span>tpr <span class="op">-</span>s md.tpr <span class="op">-</span>n index.ndx <span class="op">-</span>o fit.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'Bilayer'</span> <span class="op">|</span> gmx convert<span class="op">-</span>tpr <span class="op">-</span>s md.tpr <span class="op">-</span>n index.ndx <span class="op">-</span>o fit.tpr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now, fits each frame’s protein to the conformation in <code>fit.tpr</code>, by aligning backbone beads.</p>
 <div id="cell-76" class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'BB'</span> <span class="st">'Bilayer'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md_pbc.xtc <span class="op">-</span>s fit.tpr <span class="op">-</span>fit rotxy<span class="op">+</span>transxy <span class="op">-</span>o md_fit.xtc <span class="op">-</span>n index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>bash</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>echo <span class="st">'BB'</span> <span class="st">'Bilayer'</span> <span class="op">|</span> gmx trjconv <span class="op">-</span>f md_pbc.xtc <span class="op">-</span>s fit.tpr <span class="op">-</span>fit rotxy<span class="op">+</span>transxy <span class="op">-</span>o md_fit.xtc <span class="op">-</span>n index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Download <code>md_pbc.gro</code> and <code>md_fit.xtc</code> and take a look at the resulting trajectory with VMD — possibly showing only VDAC1 and the ceramides — and see how trajectory fitting highlights protein–ceramide interactions (see section 4.3 for visualization tips and advanced analyses using VMD)</p>
 </section>
@@ -653,33 +659,33 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="ceramide-contact-counting">Ceramide contact counting</h3>
 <p>To count contacts we first get a list of closest distances between any ceramide and each residue of the protein, over time, using <code>gmx mindist</code>. Display first the help options with the <code>-h</code> flag.</p>
 <div id="cell-80" class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mindist <span class="op">-</span>h</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>gmx mindist <span class="op">-</span>h</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Try now to calculate the contacts using gmx mindist. You will need to select the groups <code>Protein</code> and <code>DPCE</code>.</p>
 <div id="cell-82" class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Try yourself!</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Uncomment to run</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#%%bash</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co">#echo 'Protein' 'DPCE' | gmx mindist ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co">#echo 'Protein' 'DPCE' | gmx mindist ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-83" class="cell" data-cellview="form">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Solution</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>echo <span class="st">'Protein'</span> <span class="st">'DPCE'</span> <span class="op">|</span> gmx mindist <span class="op">-</span>respertime <span class="op">-</span>s fit.tpr <span class="op">-</span>f md_fit.xtc <span class="op">-</span><span class="kw">or</span> res_dists.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>echo <span class="st">'Protein'</span> <span class="st">'DPCE'</span> <span class="op">|</span> gmx mindist <span class="op">-</span>respertime <span class="op">-</span>s fit.tpr <span class="op">-</span>f md_fit.xtc <span class="op">-</span><span class="kw">or</span> res_dists.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The included script <code>contact_fraction.py</code> converts these distances into contacts, and represents them as the fraction of the total trajectory time during which a given residue was in contact with a ceramide. It assumes a 6 Å cutoff for considering contacts. Run it like this:</p>
 <div id="cell-85" class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 contact_fraction.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>python3 contact_fraction.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="cell-86" class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>mindists <span class="op">=</span> np.loadtxt(<span class="st">'res_dists.xvg'</span>, comments<span class="op">=</span>(<span class="st">'@'</span>, <span class="st">'#'</span>))</span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>contacts <span class="op">=</span> mindists[:,<span class="dv">1</span>:] <span class="op">&lt;=</span> <span class="fl">0.6</span></span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>avg_contact_fraction <span class="op">=</span> contacts.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(avg_contact_fraction) <span class="op">+</span> <span class="dv">1</span>), avg_contact_fraction)</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The script’s output already shows some regions of preferred contact, but it is not so clear among all the contacts whether there is a binding site (ceramides do seem to also bind on the region around Glu73, which is encouraging). In the next section we perform a more visual contact analysis.</p>
 </section>
@@ -745,13 +751,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

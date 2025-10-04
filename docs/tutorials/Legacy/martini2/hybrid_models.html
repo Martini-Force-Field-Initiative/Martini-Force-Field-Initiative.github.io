@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -149,7 +150,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -159,12 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -231,6 +233,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -342,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As atomistic model we will use the OPLS-AA/L force field.<sup>[1]</sup> Here, we will have a peptide interacting internally through this force field. The standard atomistic model can be built using the GROMACS tool pdb2gmx. Here, we will use a small tripeptide, TYR-VAL-TYR, with methylated terminal ends. A Protein Data Bank (PDB) file can be built very simply using e.g.&nbsp;the builder of pymol, or by finding an existing protein in the PDB with this sequence of residues and cutting those out. We wish to use neutral methylated end-groups, normally known in the PDB as ACE for the C-terminal end and NMA for the N-terminal end. To make this work with the standard library file for OPLS-AA/L in GROMACS, the residue name of the N-terminal end must be changed manually from NMA to NAC.</p>
 <p><strong>Hands-on</strong></p>
 <p>Go to the directory OPLSAA. The file YVY.pdb (Tyr-Val-Tyr), built using pymol, is available for you, and it incorporates the naming of the N-terminal end (NAC instead of NME, done by manual editing) to comply with the GROMACS implementation of the OPLS-AA/L force field. Build the atomistic topology file:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">pdb2gmx</span> <span class="at">-f</span> YVY.pdb <span class="at">-ter</span> <span class="at">-ignh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">pdb2gmx</span> <span class="at">-f</span> YVY.pdb <span class="at">-ter</span> <span class="at">-ignh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This command generates an <code>OPLS-AA</code> peptide topology, <code>topol.top</code>, after ENTERING the correct numbers (which may depend on the exact GROMACS version) for the options <code>OPLS-AA/L</code> force field, <code>TIP3P</code> for the water model, and None for both terminal ends. Check that the file <code>topol.top</code> produced makes sense.</p>
 </section>
 <section id="b.-coarse-grained-solvent-model-martini" class="level4">
@@ -360,9 +366,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The hybrid topology for the peptide makes use of VIRTUAL SITES. These are described in the GROMACS manual in Section 4.7. In the present implementation, the virtual sites are defined as the centers of mass of a number of atoms. The virtual sites themselves are also particles belonging to the molecule. Thus, two entries need to be ADDED to the atomistic topology. The first extension is either an extension of the <code>[ atoms ]</code> directive containing the atomistic particles or a second <code>[ atoms ]</code> directive placed somewhere below the first one. In both cases, the atom numbering must be consecutive to the atoms already defined. The second extension is a <code>[ virtual_sitesn ]</code> directive, which defines how the added virtual sites are related to the normal atoms of the molecule. The additional virtual sites and the mapping can be added by hand, but a script is also available to do this for you. The <code>conf.gro</code> file of the peptide generated by pdb2gmx can be used to generate a Martini topology using an adapted <code>martinize.py</code> script (available in <code>HYBRIDTOPOLOGY</code> — the original script is downloadable from the Martini web-site) after slight modification of the terminal methylated groups. The standard Martini model does not implement the neutral methylated terminal ends. To distinguish them properly in the <code>martinize.py</code> script, a name change of the methyl carbon is required.</p>
 <p><strong>Hands-on</strong></p>
 <p>Go to the directory <code>HYBRIDTOPOLOGY</code>. Copy the standard <code>pdb2gmx</code> output file <code>conf.gro</code> produced in Section 1 to <code>conf-martini.gro</code> and edit the CH3 of the ACE residue to be named CTJ and the CH3 of the NAC residue to be named <code>CTB</code>. This change is for the benefit of making the adapted <code>martinize-ter.py</code> script recognize these neutral methylated termini.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/conf.gro</span> ./conf-martini.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/conf.gro</span> ./conf-martini.gro</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> conf-martini.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> conf-martini.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Edit the conf-martini.gro to look like this:</p>
 <pre class="text"><code>Gallium Rubidium Oxygen Manganese Argon Carbon Silicon
    70
@@ -381,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     5NAC   HH33   60   0.094  -0.001   0.068
    1.42700   0.79900   0.81020</code></pre>
 <p>Now, execute the <code>martinize-ter.py</code> script (this is the adapted version):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">martinize-ter.py</span> <span class="at">-f</span> conf-martini.gro <span class="at">-ff</span> martini22 <span class="at">-multi</span> all <span class="at">-nt</span> <span class="at">-o</span> martini.top <span class="at">-x</span> hybrid.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">martinize-ter.py</span> <span class="at">-f</span> conf-martini.gro <span class="at">-ff</span> martini22 <span class="at">-multi</span> all <span class="at">-nt</span> <span class="at">-o</span> martini.top <span class="at">-x</span> hybrid.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This generates an extension to the molecule definition of the tri-peptide, defining 12 new atom entries that are defined as virtual sites. The flag <code>-ff</code> selects the Martini force field version, the flag <code>-multi all</code> produces a topology extension for hybrid AA-CG simulations (omitting this flag, you get a topology for pure Martini CG simulations), the flag <code>-nt</code> ensures neutral termini, and the <code>-x</code> flag produces a starting structure including the virtual sites. The topology extension is written to the standard file <code>Protein_A.itp</code>, which should look like the text shown below:</p>
 <pre class="text"><code>; MARTINI (martini22) Multiscale virtual sites topology section for "Protein_A"
 
@@ -421,9 +427,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    82     2   65   66   67   68   69   70</code></pre>
 <p>Each virtual site is defined as the center of mass of a number of atoms of the tri-peptide. The virtual sites are given first, under the <code>[ atoms ]</code> directive, and are numbered starting from 71; the all-atom model tri-peptide has 70 atoms. The atom types given to the virtual sites are those of the Martini model for proteins and peptides, with a prefix v (e.g., the standard back-bone bead for a coil residue in Martini is P5; therefore the bead-type for the back-bone beads 72, 76, and 78 are vP5). The mapping is defined in the directive <code>[ mapping ]</code>, which is made to be interpreted by grompp as a directive <code>[ virtual_sitesn ]</code>. The first number is the index number of the virtual site, the second number (2 for all sites) specifies the type of virtual site (center of mass), and the other numbers are the indices of the atoms that define the virtual site. You may cross-check the mapping with the atom definition given in the atomistic topology.</p>
 <p>To weave the two models together, copy the <code>topol.top</code> obtained from the atomistic model to <code>hybrid.top</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/topol.top</span> ./hybrid.top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/topol.top</span> ./hybrid.top</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use an editor to add the Martini addition in <code>Protein_A.itp</code> at the appropriate place, which is just after the definition of the peptide ends. Excerpts of the file <code>hybrid.top</code> are shown below:</p>
 <pre class="text"><code>;     Command line:
 ;     gmx pdb2gmx -f YVY.pdb -ter -ignh
@@ -487,9 +493,9 @@ Protein             1</code></pre>
 <li><p>Also, interactions must be defined between the sets of the two different force fields: either they must be set to zero, or defined explicitly if required. In GROMACS, standard files for interactions are provided for a number of force fields in libraries, provided in directories, see the GROMACS manual, Section 5.8. The OPLS-AA/L force field definitions can be found in the directory <code>YOUR-PATH-TO-GROMACS/share/gromacs/top/oplsaa.ff</code>. We will need to adapt the file <code>ffnonbonded.itp</code> in this directory. Since we may not have administrative privileges, we will copy the entire directory to a place that is under our control, effect the required changes there and make sure those files are used in our simulations.</p></li>
 </ol>
 <p><strong>Hands-on</strong> Go to the directory FORCEFIELDS, and copy the standard library directory (or use the one already copied for you there):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> YOUR-PATH-TO-GROMACS/share/gromacs/top/oplsaa.ff .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> YOUR-PATH-TO-GROMACS/share/gromacs/top/oplsaa.ff .</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cd <span class="ex">oplsaa.ff</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cd <span class="ex">oplsaa.ff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Valid atom-types for any force field are defined in the file <code>ffnonbonded.itp</code> under the directive <code>[ atomtypes ]</code>. In the GROMACS implementation of the OPLS-AA/L force field there is a long list of atom types. For each atom type, the Lennard-Jones sigma and epsilon values are given in the 7th and 8th column of each entry. An excerpt of the file <code>ffnonbonded.itp</code> is given below to illustrate the point.</p>
 <pre class="text"><code>[ atomtypes ]
 ; full atom descriptions are available in ffoplsaa.atp
@@ -503,16 +509,16 @@ opls_002   O   8     15.99940    -0.500   A   2.96000e-01 8.78640e-01 ; SIG
 <p>Just adding the Martini types used for the virtual sites as valid OPLS-AA atom types (make sure you define them as type V, not A) with standard LJ parameters 0 and 0, allows you to do a simulation in vacuum with the virtual sites present, but not interacting with anything. You may attempt to add the virtual site types yourself by hand (you will need vN0, vP5, vSC4, vSP1, and vAC2), or copy the pre-prepared force field files in which this edit has been done for you.</p>
 <p><strong>Hands-on</strong></p>
 <p>Go to the VACUUM directory and either copy the given files:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> ../FORCEFIELDS/hyb-vac.ff oplsaa.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> ../FORCEFIELDS/hyb-vac.ff oplsaa.ff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or copy the standard files and edit the file ffnonbonded.itp to include the atom types for the virtual sites as described in the text above:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> gromacs_path/share/gromacs/top/oplsaa.ff .</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> gromacs_path/share/gromacs/top/oplsaa.ff .</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, copy your hybrid starting structure and edited topology there, and you should be able to run a vacuum simulation using the provided set-up file sd.mdp (using straight cut-off Coulomb interactions instead of PME and without pressure correction):</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../HYBRIDTOPOLOGY/hybrid.pdb .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../HYBRIDTOPOLOGY/hybrid.pdb .</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../HYBRIDTOPOLOGY/hybrid.top .</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> hybrid.top <span class="at">-c</span> hybrid.pdb <span class="at">-f</span> sd.mdp <span class="at">-maxwarn</span> 1</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-e</span> viz-sdrun.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="at">-e</span> viz-sdrun.vmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When visualizing with vmd, using the .vmd file, you will see the virtual sites, the positions of the Martini beads as green spheres. Due to the standard settings of vmd drawing bonds on the basis of distances, bonds will be drawn between the virtual sites and nearby atoms.</p>
 <p>END OPTIONAL</p>
 </blockquote>
@@ -522,9 +528,9 @@ opls_002   O   8     15.99940    -0.500   A   2.96000e-01 8.78640e-01 ; SIG
 <p>OPTIONAL (defining the set of CG and virtual particle interactions)</p>
 <p><strong>Hands-on</strong></p>
 <p>Go to the FORCEFIELDS directory and make a copy of the OPLS/AA force field files:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> oplsaa.ff myhybrid.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-R</span> oplsaa.ff myhybrid.ff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Open the file <code>myhybrid.ff/ffnonbonded.itp</code> and add the Martini types used for the coarse-grained system and for the virtual sites as valid OPLS-AA atom types (make sure you define the ones for the virtual sites as type V, not A) with standard LJ parameters 0 and 0 (you will need P4, BP4, vN0, vP5, vSC4, vSP1, and vAC2). If you have gone through the previous OPTIONAL HANDS-ON, you will already have defined the virtual site atom types and you can use that again.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[gedit/vi]</span> myhybrid.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[gedit/vi]</span> myhybrid.ff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, while still in the editor, add a directive <code>[ nonbond_params ]</code> and specify explicitly the non-bonded interaction matrix for interactions that should be non-zero. If a pair is not specified in the <code>[ nonbond_params ]</code> directive, standard combination rules will be used; thus by defining a particle type with LJ parameters 0 and 0 this type will always have no LJ interaction with any other particle type if the pair interaction is not explicitly defined in the <code>[ nonbond_params ]</code> directive. An example of a <code>[ nonbond_params ]</code> directive entry is shown below.</p>
 <pre class="text"><code>[ nonbond_params ]
 ; type1 type2  flag  sigma     epsilon
@@ -544,21 +550,21 @@ P4   P4   1        0.47e-00 0.50e+01 ; supra atrractive Martini interaction</cod
 <p>First, a starting structure must be prepared in which the peptide is solvated. GROMACS has a standard tool to solvate systems, <code>gmx solvate</code>. One can either use an equilibrated solvent box to fill an existing system containing a solute, or insert individual molecules one by one. After one or more molecules are inserted, a check for close contacts is made and new molecules that are too close to existing molecules are removed.</p>
 <p><strong>Hands-on</strong></p>
 <p>Go to the <code>HYBRID</code> directory. Take the hybrid solute co-ordinates, center them in the box and define a box-size of 3.5x3.5x3.5 nm, and fill this with Martini water beads. A co-ordinate file containing 400 equilibrated Martini waters (water.gro) is available from the Martini web-site, and is also provided for you in the <code>SOLVENT</code> directory.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../SOLVENT/water.gro</span> .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../SOLVENT/water.gro</span> .</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">editconf</span> <span class="at">-f</span> ../HYBRIDTOPOLOGY/hybrid.pdb <span class="at">-center</span> 1 1 1 <span class="at">-box</span> 3.5 3.5 3.5</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">solvate</span> <span class="at">-cp</span> out.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> solvated.gro <span class="at">-radius</span> 0.2</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRIDTOPOLOGY/hybrid.top</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRIDTOPOLOGY/hybrid.top</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Edit the topology file (<code>hybrid.top</code>) to include the definition of the Martini water bead (define a <code>moleculetype</code> or use a <code>#include</code>; the file <code>SOLVENT/MartiniWater.itp</code> contains it) and specify the number of water beads just added to your system (right at the bottom in the <code>[ molecules ]</code> directive; the Martini water bead is called W). The number of water beads added should be clear from the output of the <code>gmx solvate</code> command.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, either copy the directory with pre-edited OPLS-AA/L force field files:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> ../FORCEFIELDS/hybrid.ff oplsaa.ff</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> ../FORCEFIELDS/hybrid.ff oplsaa.ff</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or copy the directory with the standard OPLS-AA/L force field files and edit them to include the Martini-bead definitions (see the OPTIONAL hands-on section just prior to this section):</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> gromacs_path/share/gromacs/top/oplsaa.ff .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> gromacs_path/share/gromacs/top/oplsaa.ff .</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>OPTIONAL (intermediate stage)</p>
 <p>The system thus defined will run; you can test this (in an energy minimization run) by running:</p>
@@ -602,7 +608,7 @@ P4   P4   1        0.47e-00 0.50e+01 ; supra atrractive Martini interaction</cod
 <blockquote class="blockquote">
 <p>OPTIONAL Hands-on</p>
 <p>Go to the FORCEFIELDS directory. The tabulated potentials can be viewed using xmgrace, for example:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> table_CG_CG.xvg <span class="at">-p</span> xmgr.par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> <span class="at">-nxy</span> table_CG_CG.xvg <span class="at">-p</span> xmgr.par</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Return to the HYBRID directory.</p>
 <p>END OPTIONAL</p>
 </blockquote>
@@ -653,9 +659,9 @@ vdwtype = user</code></pre>
 <p>tells grompp to look for table_AA_AA.xvg (first pair of arguments, AA AA) and <code>table_CG_CG.xvg</code> (second pair of arguments, CG CG) that define the interactions between the energy groups AA with AA and CG with CG, respectively. For all other interactions the data in the file <code>table.xvg</code> will be used.</p>
 <p>The separate treatment of interactions is taken care of by defining energy groups as explained above. The energy groups must be known to the program and you must provide an index file to that end, because the energy groups needed are not standard groups known to GROMACS. You can use the conformation with added water beads to build the index file. The sequence shown below does that for you (lines preceded by &gt; are commands within <code>make_ndx</code>; the numbering used in this sequence presumes that the standard groups that are defined number up to 13, where 13 are the W beads, and the group <code>Protein</code> is group number 1):</p>
 <p><strong>Hands-on</strong> (make sure you are in the HYBRID directory)</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">make_ndx</span> <span class="at">-f</span> solvated.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">make_ndx</span> <span class="at">-f</span> solvated.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(the next series of commands is typed within make_ndx)</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> a <span class="ex">v*</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> a <span class="ex">v*</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> 13 <span class="kw">|</span> <span class="ex">14</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -665,19 +671,19 @@ vdwtype = user</code></pre>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">16</span> AA</span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(quits make_ndx and puts you back on the Linux command line)</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="ex">index.ndx</span> run.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="ex">index.ndx</span> run.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The next sequence copies the tables files, does a minimization and short MD run in the OPLS-AA/L-Martini hybrid set-up.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../FORCEFIELDS/table*</span> .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../FORCEFIELDS/table*</span> .</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> min.mdp <span class="at">-n</span> run.ndx <span class="at">-maxwarn</span> 3</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-min.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-min.vmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>At room temperature, Martini water may freeze, which may cause problems. Water may be prevented from freezing by treating around 10% of the water beads as so-called “anti-freeze water”. You may do this quite simply by editing the topology file, <code>hybrid.top</code>. Add a line after the water beads, specifying WF nnn, where nnn is about 10% of the number of W beads. Reduce the number of W beads accordingly. You do not need to change the coordinates file. You must make sure the particle type BP4 is specified in the force field file <code>ffnonbonded.itp</code>.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> oplsaa.ff/ffnonbonded.itp</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -687,7 +693,7 @@ vdwtype = user</code></pre>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">trjconv</span> <span class="at">-center</span> <span class="at">-pbc</span> mol <span class="at">-o</span> viz.xtc <span class="op">&lt;</span> convin</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-run.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-run.vmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hopefully by now, the system is stable enough to run for a longer period of time and you can start production. OPLS-AA/L uses PME by default, and a possible set-up is given in pme.mdp. In my own experience, using constraints leads to problems, and the time-step is fairly limited. Still, there is a substantial reduction in the number of solvent particles, and the overall efficiency in sampling the peptide degrees of freedom is higher than with, say, the TIP3P model as solvent. As a reminder, these types of simulations are at an early stage of development and it is still very much open to debate what methodology is the best one to yield optimal reliability and efficiency. Feel free to try different integrators, settings for temperature and pressure coupling and changes to the topology. Treating the H-atoms as virtual sites and/or make them heavy may enhance the numerical stability of the system.</p>
 <p>To my knowledge, the combination of OPLS-AA/L and Martini models has not been reported in the literature. Our group in Groningen has published on combining GROMOS united-atom models with Martini models.[5, 6] It is clear from that work, that the combination of different resolutions is not without artifacts, and especially the treatment of electrostatics needs careful attention. An attempt to incorporate this is discussed in <a href="#an-assembly-of-peptides-including-charged-side-chains-and-ions">Section 5</a>.</p>
 </section>
@@ -705,40 +711,40 @@ vdwtype = user</code></pre>
 <ol type="i">
 <li>make two copies of a hybrid snapshot</li>
 </ol>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRID/confout.gro</span> W.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRID/confout.gro</span> W.gro</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRID/confout.gro</span> peptide.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRID/confout.gro</span> peptide.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="i">
 <li>remove all non-water (i.e.&nbsp;those that are not W or not WF) beads from the file W.gro, and edit the second line of the file to correctly state the number of atoms/beads in the file (number of waters added in section 3A minus 82). Make sure that if there is anti-freeze water, the bead is renamed from WF to W. You can do this within the editor, or after the edit as shown here. Alternatively, implement the backmapping of anti-freeze water in backward, where it is hard-coded.</li>
 </ol>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> W.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> W.gro</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/WF/W /g'</span> W.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/WF/W /g'</span> W.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="i">
 <li>apply the back-mapping script backward.py to the edited file</li>
 </ol>
-<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">backward.py</span> <span class="at">-f</span> W.gro <span class="at">-sol</span> <span class="at">-kick</span> 0.2 <span class="at">-o</span> fgW.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">backward.py</span> <span class="at">-f</span> W.gro <span class="at">-sol</span> <span class="at">-kick</span> 0.2 <span class="at">-o</span> fgW.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The flag -sol tells the script to convert W beads into (standard 3-particle water) solvent atoms (four molecules for one bead), and the flag -kick 0.2 applies random displacements to the initially placed atoms, reducing the strong orientational correlations of the initial placement.</p>
 <ol start="4" type="i">
 <li>remove the header (first two lines) and all virtual sites and <code>W</code> and <code>WF</code> beads and the last line from the file <code>peptide.gro</code>; this file now only contains the real atoms of the peptide</li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> peptide.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> peptide.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="22" type="a">
 <li>insert the peptide atoms in the file containing the atomistic water, fgW.gro; you should add them near the top of the .gro file, just after the line stating the number of atoms in the file and before the solvent molecules. Also edit the number of atoms in the file (add 70, this is the number of atoms in the peptide).</li>
 </ol>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">fgW.gro</span> fg.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">fgW.gro</span> fg.gro</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> fg.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> fg.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="6" type="i">
 <li>copy the atomistic topology file and edit it to add a <code>SOL</code> entry in the <code>[ molecules ]</code> directive. The number of <code>SOL</code> molecules is 4 times the number of <code>W</code> beads you had in the hybrid set-up.</li>
 </ol>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/topol.top</span> .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../OPLSAA/topol.top</span> .</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="7" type="i">
 <li>minimize the back-mapped structure and run a short relaxation/equilibration</li>
 </ol>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> topol.top <span class="at">-c</span> fg.gro <span class="at">-f</span> min.mdp <span class="at">-o</span> min</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> topol.top <span class="at">-c</span> fg.gro <span class="at">-f</span> min.mdp <span class="at">-o</span> min</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-deffnm</span> min</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -748,7 +754,7 @@ vdwtype = user</code></pre>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">trjconv</span> <span class="at">-center</span> <span class="at">-pbc</span> mol <span class="at">-s</span> md.tpr <span class="at">-f</span> md.xtc <span class="at">-o</span> viz.xtc <span class="op">&lt;</span> convin</span>
 <span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-run.vmd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> vmd <span class="ex">-e</span> viz-run.vmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now you are all set to run production at fully fine-grained level.</p>
 </section>
 </section>
@@ -764,19 +770,19 @@ vdwtype = user</code></pre>
 <blockquote class="blockquote">
 <p>OPTIONAL Hands-on: preparing hybrid topology</p>
 <p>Go to the directory HYBRID-YEY-AGG/HYBRIDTOPOLOGY. Use a structure editor, e.g.&nbsp;pymol to generate a pdb structure of a protected Ace-YEY-NMA peptide. Save as a PDB-file under the name YEY.pdb, edit it to remove the line “TER TYR”, change the residue name NME to NAC (see Hands-on in Section 1A) and from it, generate an OPLS-AA/L model for the peptide:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> YEY.pdb</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pdb2gmx</span> <span class="at">-f</span> YEY.pdb <span class="at">-ter</span> <span class="at">-ignh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pdb2gmx</span> <span class="at">-f</span> YEY.pdb <span class="at">-ter</span> <span class="at">-ignh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Edit the conf.gro file to comply with the naming of terminal methyl groups in the adapted martinize-ter.py script (see Section 2A), and use the script to generate the definitions of the virtual sites:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> conf.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> conf.gro</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize-ter.py <span class="at">-f</span> conf.gro <span class="at">-ff</span> martini22 <span class="at">-multi</span> all <span class="at">-nt</span> <span class="at">-o</span> martini.top <span class="at">-x</span> hybrid.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize-ter.py <span class="at">-f</span> conf.gro <span class="at">-ff</span> martini22 <span class="at">-multi</span> all <span class="at">-nt</span> <span class="at">-o</span> martini.top <span class="at">-x</span> hybrid.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Copy the AA topology and add the information for the virtual sites in Protein_A.itp to the AA topology.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> topol.top myhybrid.top</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> topol.top myhybrid.top</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> myhybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[vi/gedit]</span> myhybrid.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>END OPTIONAL</p>
 </blockquote>
 </section>
@@ -787,25 +793,25 @@ vdwtype = user</code></pre>
 <ol type="i">
 <li>convert the W beads in the fully CG snapshot provided to polarizable Martini water (each bead generates three particles). The result is written to the file <code>TYR-GLU-TYR_eq_PW.gro</code>:</li>
 </ol>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">triple_w.py</span> TYR-GLU-TYR_eq.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">triple_w.py</span> TYR-GLU-TYR_eq.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="i">
 <li>edit the CG snapshot with polarizable water beads to change residue names 1TYR to 1TYN and 3TYR to 3TYC. You can do this conveniently using two sed commands:</li>
 </ol>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">TYR-GLU-TYR_eq_PW.gro</span> tobackmap.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">TYR-GLU-TYR_eq_PW.gro</span> tobackmap.gro</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/1TYR/1TYN/g'</span> tobackmap.gro</span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/3TYR/3TYC/g'</span> tobackmap.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sed <span class="ex">-i</span> <span class="st">'s/3TYR/3TYC/g'</span> tobackmap.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="i">
 <li>apply the back-mapping script <code>backward.py</code> to the edited file</li>
 </ol>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">backward.py</span> <span class="at">-f</span> tobackmap.gro <span class="at">-from</span> martini <span class="at">-to</span> oplsaa <span class="at">-nt</span> <span class="at">-o</span> YEY-backmapped.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> python <span class="ex">backward.py</span> <span class="at">-f</span> tobackmap.gro <span class="at">-from</span> martini <span class="at">-to</span> oplsaa <span class="at">-nt</span> <span class="at">-o</span> YEY-backmapped.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The file YEY-backmapped.gro should now contain atomistic coordinates for the 100 YEY peptides and coordinates for the Na-ions. The polarizable water beads present have not been backmapped to atomistic water and also they have not been kept or copied into the backmapped result. We must add them to the backmapped file to arrive at a system containing both the atomistic peptides and the coarse-grained water and ions. To this end, extract the polarizable water beads from the file <code>TYR-GLU-TYR_eq_PW.gro</code>.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> awk <span class="st">'{if (substr($2,1,1) == "W") print $0 }'</span> <span class="op">&lt;</span> TYR-GLU-TYR_eq_PW.gro <span class="op">&gt;</span> W.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> awk <span class="st">'{if (substr($2,1,1) == "W") print $0 }'</span> <span class="op">&lt;</span> TYR-GLU-TYR_eq_PW.gro <span class="op">&gt;</span> W.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="i">
 <li>edit the file YEY-backmapped.gro. Add the polarizable water beads below the Na-ions, and make sure the number of particles in the file is correctly stated on the second line of the file.</li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> YEY-backmapped.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> YEY-backmapped.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For comparison, the file <code>PartialBackmap.gro</code> is provided for you.</p>
 </section>
 <section id="c.-setting-up-the-hybrid-simulation" class="level4">
@@ -815,17 +821,17 @@ vdwtype = user</code></pre>
 <ol type="i">
 <li>get the partially back-mapped CG structure</li>
 </ol>
-<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../PARTIALBACKMAP/YEY-backmapped.gro</span> system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../PARTIALBACKMAP/YEY-backmapped.gro</span> system.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="i">
 <li>copy and edit the file <code>hybrid.top</code> (you can use your own if you prepared <code>myhybrid.top</code> in the OPTIONAL part earlier on) to reflect the number and order of molecules (100 Protein molecules, 100 NA+ beads and 2,936 polarizable water molecules (<code>PW</code>). Put in #include statements to the Martini polarizable water (<code>../../SOLVENT/PolMartiniWater.itp</code>) and ion topologies (<code>../../SOLVENT/MartiniSodium.itp</code>).</li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRIDTOPOLOGY/hybrid.top</span> .</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../HYBRIDTOPOLOGY/hybrid.top</span> .</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> hybrid.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="i">
 <li>make sure that all the CG and virtual site types and their interactions are defined properly in the force field files and that the user-defined potentials (tables) are present</li>
 </ol>
-<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> ../../FORCEFIELDS/hybrid-charged.ff oplsaa.ff</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">-R</span> ../../FORCEFIELDS/hybrid-charged.ff oplsaa.ff</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/table*</span> .</span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -835,23 +841,23 @@ vdwtype = user</code></pre>
 <span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/mar-table_CG_CG.xvg</span> table_CG_CG.xvg</span>
 <span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/mar-table_CG_VS.xvg</span> table_CG_VS.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">../../FORCEFIELDS/mar-table_CG_VS.xvg</span> table_CG_VS.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="i">
 <li>minimize the hybrid system using an improper hybrid forcefield (have a look at the settings for the coulomb and vdw interactions). This will hopefully easily heal the sometimes rather haphazardly placed atoms; you may try to improve on this by writing a better mapping file, see the backmapping tutorial. (Note that the virtual sites are put on the centers of mass before anything else is done by GROMACS itself, therefore their placement in the starting structure is not important as long as they are in the file!) Here, we use the soft-core potentials via the free-energy code to deal with atoms that are placed very close to each other and cause problems when all interactions are immediately switched on. Using the free-energy code slows down the calculations considerably, but we usually need only a few thousand steps to get a decent structure.</li>
 </ol>
-<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> system.gro <span class="at">-f</span> em-sc.mdp <span class="at">-o</span> em-sc.tpr <span class="at">-maxwarn</span> 2</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> system.gro <span class="at">-f</span> em-sc.mdp <span class="at">-o</span> em-sc.tpr <span class="at">-maxwarn</span> 2</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-deffnm</span> em-sc <span class="at">-v</span></span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-c</span> em-sc.gro <span class="at">-f</span> sd-sc.mdp <span class="at">-o</span> sd-sc.tpr <span class="at">-maxwarn</span> 2</span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-deffnm</span> sd-sc <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-deffnm</span> sd-sc <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="22" type="a">
 <li>make the index file including the definitions of AA, CG, and virtual site (VS) subsystems for the chosen treatment of the interactions (see Appendix D). Here, we assume that the standard groups run up to and including number 14 (PW is the final group, and the ions are group 13)</li>
 </ol>
-<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">make_ndx</span> <span class="at">-f</span> sd-sc.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">make_ndx</span> <span class="at">-f</span> sd-sc.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(the next series of commands is typed within <code>make_ndx</code>)</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> a <span class="ex">v*</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> a <span class="ex">v*</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">15</span> VS</span>
 <span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -863,13 +869,13 @@ vdwtype = user</code></pre>
 <span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> name <span class="ex">17</span> CG</span>
 <span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> q</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(you have now quit the <code>make_ndx</code> tool and your index file is saved as <code>index.ndx</code>)</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="ex">index.ndx</span> run.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mv <span class="ex">index.ndx</span> run.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="6" type="i">
 <li>minimize again, now using the proper hybrid force field (have a look at the settings for the coulomb and vdw interactions and what table files are expected). If you are lucky, the following sequence will work. If not, you need to look at the details and try to find out what may cause problems. This may require quite a bit of grit, patience, and determination…</li>
 </ol>
-<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> sd-sc.gro <span class="at">-f</span> min.mdp <span class="at">-maxwarn</span> 1</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> sd-sc.gro <span class="at">-f</span> min.mdp <span class="at">-maxwarn</span> 1</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> min.gro</span>
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -883,7 +889,7 @@ vdwtype = user</code></pre>
 <span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">grompp</span> <span class="at">-p</span> hybrid.top <span class="at">-n</span> run.ndx <span class="at">-c</span> sd2.gro <span class="at">-f</span> md1.mdp <span class="at">-maxwarn</span> 1</span>
 <span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> md1.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-o</span> md1.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that it is inconvenient here to use the <code>-deffnm</code> option on mdrun because the <code>table</code> files should then have names corresponding to the name of the <code>-deffnm option</code>. If you want to keep the trajectories under specific names, move <code>traj.xtc</code> after each step to your name of choice.</p>
 </section>
 </section>
@@ -895,18 +901,18 @@ vdwtype = user</code></pre>
 <p>In the chosen hybrid set-up, all virtual sites are added after all atoms of the peptide. If we make a mapping file for the terminal resdue (here a Tyrosine), we can simply define as many extra atoms as we need virtual sites, and add them at the end of the normal (standard) atoms. In the mapping assignment, we can assign them all to the back-bone bead. They will all be placed near this bead in the backmapped structure but this should be no problem at all. The virtual sites are put on the centers of mass by GROMACS itself before anything else is done, e.g.&nbsp;energy minimization or the first dynamics step. All that is required is then to copy the mapping file for an existing amino acid and give a unique residue name to the terminal residue. Here, we chose TYC (for Tyrosine, C-terminal). In this new mapping file, we can also easily add atoms to account for the neutral terminal we created, here the C=O(Me) group. In this case, the Martini model did not use an extra bead for the extra atoms, but assumes these part of the final backbone bead (BB). Thus, before the extra atoms for the virtual sites, modify and add atoms for the methylated terminus.</p>
 <p><strong>Hands-on</strong></p>
 <p>Go to the directory <code>HYBRID-YEY-AGG/PARTIALBACKMAP/Mapping</code>. Copy the standard file for a tyrosine residue from martini to CHARMM to a new file that is to implement the special C-terminus. If you do not wish to override the file provided, choose a different name. Note that CHARMM and OPLS/AA use the same names but not the same numbering (sequence) of the atoms in amino acid residues.</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">tyr.charmm36.map</span> tyc.oplsaa.map</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">tyr.charmm36.map</span> tyc.oplsaa.map</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> tyc.oplsaa.map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> tyc.oplsaa.map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the editor, change the residue name from TYR to TYC. Change the entry in the <code>[ mapping]</code> directive to <code>oplsaa</code>. Change the order of the atoms according to the definition in the <code>HYBRID-YEY-AGG/HYBRIDTOPOLOGY/hybrid.top</code> file. At the end of the atom list, add extra atoms for the terminal methyl group (<code>CH3</code>, <code>HH31</code>, <code>HH32</code>, and <code>HH33</code>) first, then add atom definitions for all virtual sites of the entire peptide (think of suitable names yourself, or take them from the <code>hybrid.top</code> file). Assign all the new atoms and virtual sites to the BB bead in the mapping. You should have a total of 37 atoms for this residue.</p>
 <p>The first residue, in our case also a tyrosine, is also extended with a methylated terminal end. This means, we now have to place atoms at the start of the amino acid. This then requires a renumbering of the other atoms. Copy the tyrosine residue mapping file once more, make edits to change the name of the residue to TYN, change the force field name, and change the order of the atoms in the aromatic ring and add the required atoms at the beginning of the <code>[ atoms ]</code> directive (<code>CH3</code>, <code>HH31</code>, <code>HH32</code>, <code>HH33</code>, and <code>C1</code>). The remaining (original) atoms must now be renumbered and you should end up with 27 atoms.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">tyr.charmm36.map</span> tyn.oplsaa.map</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">tyr.charmm36.map</span> tyn.oplsaa.map</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> tyn.oplsaa.map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> tyn.oplsaa.map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Finally, you will need a copy of the glutamate residue mapping file. Copy the one from charmm and change the name of the force field. The charmm mapping file has the acid group protonated. Here we want a charged side group. Delete the H-atom on the acid group and renumber the remaining atoms.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">glu.charmm36.map</span> glu.oplsaa.map</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> cp <span class="ex">glu.charmm36.map</span> glu.oplsaa.map</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> glu.oplsaa.map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="ex">[vi/gedit]</span> glu.oplsaa.map</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you have downloaded the backward package, you will also need to adapt the backward.py script. The downloaded version does not accept mapping to OPLS/AA, and it does not recognize the methylated termini. Compare the two scripts to see how these changes were implemented.</p>
 </section>
 <section id="appendix-setting-up-hybrid-electrostatics" class="level3">
@@ -940,7 +946,7 @@ opls_135   Qd   1     -1.00e-01 0.25e+05 ; C6 = 0, C12 = 10E-07</code></pre>
 <p>NOTE that the different dielectric constants (1 for AA-AA, 1.45 for AA-CG, 2.5 for CG-CG) are implemented in the tabulated potentials. Therefore, the value of the epsilon_r setting is 1. There is no other way to differentiate amongst the screening of the electrostatic interactions.</p>
 <p>The tabulated potentials must be prepared by you. In the <code>FORCEFIELDS</code> directory, you can find the FORTRAN programs used to prepare the tables files of this tutorial. You can compile them if you need to (use <code>gfortran</code>, but the binaries might work anyway), or modify them to implement other potentials. The input to the programs are also given. I trust that in future, multi-purpose, well-documented python tools will become available.</p>
 <p>The tabulated potentials can be viewed using xmgrace, for example, when you are in the <code>FORCEFIELDS</code> directory:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> xmgrace <span class="ex">-nxy</span> mar-table_CG_CG.xvg <span class="at">-p</span> xmgr.par</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> xmgrace <span class="ex">-nxy</span> mar-table_CG_CG.xvg <span class="at">-p</span> xmgr.par</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tools-and-scripts-used-in-this-tutorial" class="level3">
 <h3 class="anchored" data-anchor-id="tools-and-scripts-used-in-this-tutorial">Tools and scripts used in this tutorial</h3>
@@ -1017,13 +1023,14 @@ opls_135   Qd   1     -1.00e-01 0.25e+05 ; C6 = 0, C12 = 10E-07</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

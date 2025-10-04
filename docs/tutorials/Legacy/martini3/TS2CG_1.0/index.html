@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -367,7 +373,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 </ul>
 <p>For compiling, <code>gcc</code> version 8.3.0 or above is needed.</p>
 <p>In the source code folder, execute the script <code>compile.sh</code> as:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./compile.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./compile.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this folder, two binary files will be generated: PLM and PCG (and a SOL script for adding solvent to the systems). PLM performs pointillism (Step 1 and 2) and PCG performs Membrane builder (Step 3 and 4).</p>
 </section>
 </section>
@@ -381,17 +387,17 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <p>In this tutorial we will use a simple TS file (sphere) to create a vesicle. We choose this shape because it is small and can be run on your local machines. However, the same scheme can be used for any other TS files.</p>
 <p>From the files folder select the <code>Sphere.tsi</code> file. Use a text editor to open this and familiarize yourself with the structure. See <code>.tsi</code> file format at the end of this document for more information about the file format. You can also use <code>pymol</code> or <code>paraview</code> to visualize the structure (see Visualizing <code>.tsi</code> or <code>.q</code> files).</p>
 <p>The first step in backmapping any TS file to a CG structure is to increase the number of vertices using a pointillism operation (done by PLM). In the same step we also generate the two monolayers.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4 </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the <code>pointvisualization_data</code> folder, you will find <code>gromacs</code> compatible structure files (<code>.gro</code>) for the upper and lower monolayer including a topology file (<code>.top</code>) each as well as <code>paraview</code> compatible <code>.vtu</code> files for both monolayers. You can have a look at the created points using <code>vmd</code> or <code>paraview</code>.</p>
 <p>The second step to create a vesicle is two place lipids on the generated points using PCG. For this you need to write a <code>.str</code> file defining the lipid composition of both monolayers. Using any text editor, create an <code>input.str</code> file and write the following text in it:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This implies that your system should contain only one lipid domain with POPC in both monolayers using an area per lipid (APL) for POPC of 0.64. To know more about the <code>.str</code> file format and other options see the <a href="https://github.com/marrink-lab/TS2CG1.1">User Manual</a>.</p>
 <p>The other thing we need is a lipid structure file (<code>.LIB</code>). This file simply defines the lipid connectivity for placing the lipid beads on the previously generated points. Making this file is easy but might be time consuming for many different lipids. (See the <a href="https://github.com/marrink-lab/TS2CG1.1">User Manual</a> for the exact file format). Luckily, we already have a file that contains all Martini3 lipids called <code>Martini3.LIB</code>, you can find it in the files folder.</p>
 <p>Using these two files now you can execute <code>PCG</code>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The outputs are <code>system.gro</code> and <code>system.top</code>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -399,7 +405,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <figcaption>Figure 3 | Snapshot of the simple POPC vesicle made with <code>vmd</code> (left) and the corresponding topology file (right).</figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
@@ -407,18 +413,18 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>POPC 6256</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>POPC 3876</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>POPC 3876</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Creating vesicles like shown above is straightforward however running them is not so simple. Here we used the assumption that POPC has the same area per lipid in both leaflets which is unfortunately not true for small vesicles due to the highly curved nature of the leaflets. To account for the curvature effect we have to allow the vesicle to equilibrate both water content and number of lipids in each leaflet. The easiest way to do this is by creating water pores for equilibration and closing theses pores in a step-wise manner. You can find a script called <code>run_vesicle.sh</code> in the files folder, which will create a POPC vesicle with 4 nm pores along each dimension. The vesicle will also be filled with water, energy minimized and equilibrated, thereby gradually closing the water pores. Note: We use MDAnalysis to create a position restraints file which is need to keep the lipid tails out of the pores.</p>
 </section>
 <section id="creating-lipid-mixture" class="level4">
 <h4 class="anchored" data-anchor-id="creating-lipid-mixture">2: Creating lipid Mixture</h4>
 <hr>
 <p>Repeating the previous tutorial but with the <code>.str</code> file shown below, you will create a 50/50 mixture of POPC and DOPC in both monolayers.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>POPC      0.5     0.5     0.64</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>DOPC      0.5     0.5     0.67</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Executing PCG will generate two output files system.gro and <code>system.top</code>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -426,7 +432,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <figcaption>Figure 4 | Snapshot of the mixed POPC (blue) / DOPC (orange) vesicle made with vmd (left) and the corresponding topology file (right).</figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> molecules </span><span class="co">]</span></span>
@@ -436,17 +442,17 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>DOPC 3056</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer POPC 1893</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>DOPC 1893</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>DOPC 1893</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="membrane-domains" class="level4">
 <h4 class="anchored" data-anchor-id="membrane-domains">3: Membrane domains</h4>
 <hr>
 <p>To make a membrane containing two or more different lipid domains, we need to modify the <code>.tsi</code> file. These changes can be made manually or by using a script. Here we only try it manually.</p>
 <p>First use the command below to obtain a <code>.gro</code> file containing all the vertices:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This time, we reduced the size of the <code>original .tsi</code> file (using <code>-rescalefactor 0.2 0.2 0.2</code>) and kept the initial number of vertices (using <code>-Mashno 0</code>). This allows for an easier selection of points when done manually. Now, open the file <code>Upper.gro</code> from the <code>pointvisualization_data</code> folder using <code>vmd</code>. You will see all the vertices of the triangulated surface. Find a few beads for which you want to create a new domain of lipids (e.g.&nbsp;select beads in <code>vmd</code> using <code>Mouse &gt; Label &gt; Atoms</code>). I selected vertices [113, 117, 124, 48, 112] for domain number 1 and [74, 82, 81, 45] for domain number 2 and the rest remains as domain 0.</p>
 <p>Next, open <code>Sphere.tsi</code> using a text editor and find the line of selected vertices. Add the domain ID to the end of the line (here: add a 1 for vertices with index 113, 117, 124, 48, 112 and a 2 for vertices with index 74, 82, 81, 45). Note: Lines that do not have any domain ID belong to domain 0 per default. After doing so, you need to modify the <code>input.str</code> file to define the lipid composition of each domain:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>End</span>
@@ -455,17 +461,17 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>End</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Domain       2</span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>POPE     1     1     0.64</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then execute <code>PLM</code> and <code>PCG</code> using the commands below (as done in the previous tutorials). This will generate a vesicle with three lipid domains.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 4 4 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fig5.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 5 | Snapshot of vertices from Upper.gro after defining three different domains made with <code>vmd</code> (left) and the corresponding topology file (right).</figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>;This file was generated by TS Back Mapping</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot"> system </span><span class="co">]</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Expect a large membrane</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>; domain 0</span>
@@ -485,31 +491,31 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>POPE 160</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>; domain 2</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>; in the lower monolayer</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>POPE 99</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>POPE 99</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="adding-proteins-to-a-membrane" class="level4">
 <h4 class="anchored" data-anchor-id="adding-proteins-to-a-membrane">4: Adding proteins to a membrane</h4>
 <hr>
 <p>In this tutorial we are going to add two types of proteins to a vesicle containing POPC lipids. These proteins are named <code>P1.gro</code> and <code>P2.gro</code>, which will be called protein1 and protein2 in the rest of this tutorial. First, we need to select vertices for the protein placmenent in the <code>.tsi</code> file. Afterwards, we match their corresponding names in the <code>.gro</code> file with the ones in the <code>.str</code> file. Therefore, we need to perform some tricks on the <code>.tsi</code> and <code>.str</code> file. These changes can be made manually or by using a script. Here we only try it manually.</p>
 <p>First, use the below command to obtain a <code>.gro</code> file of vertices positions of our vesicle:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 0.2 0.2 0.2 <span class="at">-Mashno</span> 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then in the <code>pointvisualization_data</code> folder, open <code>Upper.gro</code> using <code>vmd</code>. You will see all the vertices of the triangulated surface. Find some vertices at which you would like to place the proteins. We selected vertices 22 and 5 to place two copies of protein1 and vertex 30 to place one copy of protein2. Using a text editor, open the <code>Sphere.tsi</code> file and go to the bottom of the file to the inclusion section. As we want to add 3 proteins, change the zero to 3 and then in the next line, add the protein information. For each protein, you need 3 integer numbers and 2 float numbers. The first number is the protein index that should start from 0. The second number is the protein type id, which is 1 for potein1 and 2 protein2 (it can be any number but the type id must match the one in <code>input.str</code>, see below). The third number is the index of the vertex that the protein will be placed on. The last two numbers are the orientation of the protein in the local coordinate frame of the vertex, these should be a unit two-dimensional vector. The inclusion section of <code>Sphere.tsi</code> file should look like this:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>0     1     22     0     1</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>1     1      5     0     1</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, open <code>P1.gro</code> and <code>P2.gro</code> from the files folder and change the first line to the name of the proteins (protein1 and protein2). These files should be included on top of your <code>input.str</code> file as:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>include P1.gro</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>include P2.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>include P1.gro</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>include P2.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The last step is to define the proteins in the <code>input.str</code> file. In addition to including the protein <code>.gro</code> file names in the header, there should be some information about the protein placement:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Protein List</span><span class="co">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Protein List</span><span class="co">]</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>protein1     1     0.01     0     0     -3.7</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>protein2     2     0.01     0     0     -2.4</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>End Protein</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>End Protein</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first and the last line are keywords indicating that we want to define proteins. The lines in between the first and the last depend on the number of unique proteins you want to include. Here we got two, therefore we only have two lines in between. The first entry is the protein name in the <code>.gro</code> file. The second entry indicates the protein type ID (this ID was used in the <code>.tsi</code> file in the inclusion section). The last entry indicates how much we should move the proteins in the normal direction of the membrane surface. The remaining three numbers are not being used in the current approach.</p>
 <p>Finally, you can execute <code>PLM</code> and <code>PCG</code> using the commands below (or as previous tutorials). The result should be a POPC membrane with three proteins.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 3 3 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 3 3 3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fig6.png" class="img-fluid figure-img"></p>
@@ -521,7 +527,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <h4 class="anchored" data-anchor-id="proteins-with-a-specific-domain">5: Proteins with a specific domain</h4>
 <hr>
 <p>In this tutorial we are going to combine Tutorials 3 and 4 to define a specific lipid domain for each protein copy. So let’s change the domain ID of vertices 22, 5, 30 that are supposed to be the location of the proteins in <code>Sphere.tsi</code> as demonstrated in Tutorial 3. We set 22 and 5 to domain 1 and 30 to domain 2. We also change the lipid section in <code>input.str</code> to:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Lipids List</span><span class="co">]</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Domain      0</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>POPC     1     1     0.64</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>End</span>
@@ -530,10 +536,10 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>End</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>Domain       2</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>POPE     1     1     0.64</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>End</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now perform <code>PLM</code> and <code>PCG</code> again:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 6 6 6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 3.8 <span class="at">-rescalefactor</span> 6 6 6</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fig7.png" class="img-fluid figure-img"></p>
@@ -542,20 +548,20 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 </div>
 <p>You may not be happy about the lipid domain around the proteins. Since the resolution of the <code>.tsi</code> file is low, the shape of the lipid domain around the proteins gets strongly affected by the discretization. This can be improved with a little bit of effort.</p>
 <p>Use <code>Sphere.tsi</code> from the files folder and add the same inclusion section as before but without adding the lipid domains. The end of your <code>.tsi</code> file should look like this:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>inclusion      3</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>0     1     22     0     1</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>1     1      5     0     1</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>2     2     30     0     1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now we are adding the lipid domains around each protein copy using a small script. But first we need to increase the number of the triangles and global size of the system without affecting the shape of the <code>.tsi</code> file:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 8 8 8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere.tsi <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 8 8 8</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The output <code>.tsi</code> file is called <code>extended.tsi</code>. Change the name of this file to <code>Sphere_2.tsi</code>.</p>
 <p>Next, compile <code>tsi_format.cpp</code>, which can be found in the files, for creating the lipid domains using <code>c++</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-o</span> domain tsi_change.cpp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">g++</span> <span class="at">-o</span> domain tsi_change.cpp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and then execute following command to create lipid domains with diameter of 8 nm around each protein copy:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./domain</span> Sphere_2.tsi Sphere_domain.tsi 8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./domain</span> Sphere_2.tsi Sphere_domain.tsi 8</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>Sphere_domain.tsi</code> file is the new <code>.tsi</code> file which contains the <code>Sphere_2.tsi</code> surface and protein information. The domain ids around each protein match the protein ids. Next, we are going to perform <code>PLM</code> and <code>PCG</code> using <code>Sphere_2.tsi</code>. This time we ask <code>PLM</code> to not to extend the surface and just create the two monolayer.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere_domain.tsi <span class="at">-bilayerThickness</span> 4 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Sphere_domain.tsi <span class="at">-bilayerThickness</span> 4 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0 </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should get an output as shown below figure.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -568,7 +574,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <h4 class="anchored" data-anchor-id="fixed-shapes">6: Fixed shapes</h4>
 <hr>
 <p>Without a need for a <code>.tsi</code> file, <code>PCG</code> also allows for creating membranes with certain fixed shapes such as flat bilayers, spheres, cylinders and other periodic shapes that can be written as a sum of fourier 1D modes. This is a new feature of <code>PCG</code> and therefore some limitations exist. There is also a wall option that allows you to keep the shape during both the equilibration and production run.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system <span class="at">-function</span> analytical_shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PCG</span> <span class="at">-str</span> input.str <span class="at">-Bondlength</span> 0.2 <span class="at">-LLIB</span> Martini3.LIB <span class="at">-defout</span> system <span class="at">-function</span> analytical_shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the <code>.str</code> file the shape information is defined as below for creating different shapes.</p>
 <p>Note: Not all the options need to be specified in the <code>.str</code> file. The shape type option is needed but you could use the default values for the rest.</p>
 <table style="border: none; border-collapse: collapse;" border="0" cellspacing="0" cellpadding="7">
@@ -627,7 +633,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <h5 class="anchored" data-anchor-id="creating-the-wall">Creating the Wall</h5>
 <hr>
 <p>To generate the wall beads, you need to add the following flags to the <code>PCG</code> command line:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-Wall</span> <span class="at">-WallBName</span> WL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-Wall</span> <span class="at">-WallBName</span> WL</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note, it is all on you how to make the wall bead to interact with the bilayer for keeping the shape. However, the best option is to create a repulsive LJ interaction between the wall beads and lipid tail beads while the wall beads are invisible to other beads in the system. Example <code>.mdp</code> can be found in <code>files/mdp_wall</code>.</p>
 </section>
 </section>
@@ -641,7 +647,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 <li>Short equilibration without solvent.</li>
 <li>Solvation (Note: Before solvation, always make sure the box size is what you need).</li>
 </ol>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./SOL</span> <span class="at">-in</span> input.gro <span class="at">-tem</span> water.gro <span class="at">-unsize</span> 3 <span class="at">-ion</span> 0 0 <span class="at">-o</span> solvated.gro <span class="at">-Rcutoff</span> 0.32</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./SOL</span> <span class="at">-in</span> input.gro <span class="at">-tem</span> water.gro <span class="at">-unsize</span> 3 <span class="at">-ion</span> 0 0 <span class="at">-o</span> solvated.gro <span class="at">-Rcutoff</span> 0.32</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="5" type="1">
 <li>Energy minimization.</li>
 <li>Equilibration.</li>
@@ -671,7 +677,7 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
 </section>
 <section id="paraview-or-vmd-visualization-of-the-generated-points" class="level5">
 <h5 class="anchored" data-anchor-id="paraview-or-vmd-visualization-of-the-generated-points"><code>paraview</code> or <code>vmd</code> visualization of the generated points</h5>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Your_TS_File <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Path_to_TS2CG/PLM</span> <span class="at">-TSfile</span> Your_TS_File <span class="at">-bilayerThickness</span> 0 <span class="at">-rescalefactor</span> 1 1 1 <span class="at">-Mashno</span> 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then in <code>pointvisualization_data</code> folder, you can find several files and it is the gro file which can be used for visualization.</p>
 </section>
 </section>
@@ -750,13 +756,14 @@ In case of issues, please contact <a href="mailto:%20w.pezeshkian@rug.nl">w.peze
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

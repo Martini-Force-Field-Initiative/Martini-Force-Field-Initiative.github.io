@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -348,31 +354,31 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <ul>
 <li>Method 1:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install prolintpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install prolintpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Method 2:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ProLint/prolintpy.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> prolintpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate prolint</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ProLint/prolintpy.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> prolintpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate prolint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Method 3:</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ProLint/prolintpy.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> prolintpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> setup.py install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ProLint/prolintpy.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> prolintpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> setup.py install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Method 4 (if MDTraj causes problem):</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> prolint python=3.7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate prolint</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge mdtraj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install prolintpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">--name</span> prolint python=3.7</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate prolint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge mdtraj</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install prolintpy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>prolintpy</code> relies on <code>MDTraj</code> to read input data files, as such, it is the only module that has to be imported alongside <code>prolintpy</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mdtraj <span class="im">as</span> md</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> prolintpy <span class="im">as</span> pl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> prolintpy <span class="im">as</span> pl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="loading-data-and-topology-description" class="level3">
 <h3 class="anchored" data-anchor-id="loading-data-and-topology-description">Loading data and topology description</h3>
@@ -386,39 +392,39 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <figcaption>Figure 1 | Test data for the tutorial. The protein is shown with magenta, lipids are colored with blue (POPS), orange (POPE), and green (CHOL).</figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MDTraj v1.9.6 seems to have a bug when reading Martini coordinate files.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MDTraj v1.9.6 seems to have a bug when reading Martini coordinate files.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># That is why prolintpy currently forces the installation of v1.9.5</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> md.load(<span class="st">'test_data_1.xtc'</span>, top<span class="op">=</span><span class="st">'test_data_1.gro'</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>t</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>&lt;mdtraj.Trajectory with 17 frames, 23820 atoms, 3240 residues, and unitcells at 0x7fe268532a10&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>&lt;mdtraj.Trajectory with 17 frames, 23820 atoms, 3240 residues, and unitcells at 0x7fe268532a10&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="load-the-data-to-prolintpy-and-define-the-protein-and-lipid-topology" class="level4">
 <h4 class="anchored" data-anchor-id="load-the-data-to-prolintpy-and-define-the-protein-and-lipid-topology">Load the data to prolintpy and define the protein and lipid topology</h4>
 <hr>
 <p>We first specify the resolution of the input data and indicate if we want to combine the proteins (only applicable if there are more than one protein in the system). Combining proteins will result in the calculated metrics being averages of all copies. In our system we only have one protein so we do not need it.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="st">"martini"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="st">"martini"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>combine_proteins <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>lipids <span class="op">=</span> pl.Lipids(t.topology, resolution<span class="op">=</span>resolution)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>proteins <span class="op">=</span> pl.Proteins(t.topology, resolution<span class="op">=</span>resolution).system_proteins(merge<span class="op">=</span>combine_proteins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>proteins <span class="op">=</span> pl.Proteins(t.topology, resolution<span class="op">=</span>resolution).system_proteins(merge<span class="op">=</span>combine_proteins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="extracting-information-from-the-input-system" class="level4">
 <h4 class="anchored" data-anchor-id="extracting-information-from-the-input-system">Extracting information from the input system</h4>
 <hr>
 <p>Get all the lipid residues in the system:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lipids.lipid_names()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lipids.lipid_names()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>array(['POPE', 'POPS', 'CHOL'], dtype=object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>array(['POPE', 'POPS', 'CHOL'], dtype=object)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Get the names of the different lipids as well as their count:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lipids.lipid_count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lipids.lipid_count()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>{'POPE': 652, 'POPS': 652, 'CHOL': 652}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>{'POPE': 652, 'POPS': 652, 'CHOL': 652}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Get a pandas DataFrame for the defined systems:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lipids.ldf.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lipids.ldf.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>serial name element resSeq resName chainID segmentID</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -430,10 +436,10 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>2959 2960 GL2 VS 1285 POPE 0</span>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>2960 2961 C1A C 1285 POPE 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>2960 2961 C1A C 1285 POPE 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Retrieve the residue IDs of all cholesterol lipids:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lipids.ldf[lipids.ldf.resName <span class="op">==</span> <span class="st">"CHOL"</span>].resSeq.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lipids.ldf[lipids.ldf.resName <span class="op">==</span> <span class="st">"CHOL"</span>].resSeq.unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>array([1937, 1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947,</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957, 1958,</span>
@@ -494,40 +500,40 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a>3205, 3206, 3207, 3208, 3209, 3210, 3211, 3212, 3213, 3214, 3215,</span>
 <span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a>3216, 3217, 3218, 3219, 3220, 3221, 3222, 3223, 3224, 3225, 3226,</span>
 <span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>3227, 3228, 3229, 3230, 3231, 3232, 3233, 3234, 3235, 3236, 3237,</span>
-<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>3238, 3239, 3240])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a>3238, 3239, 3240])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>List the proteins found in the system and store the first one (the only one here) in a variable. <code>prolintpy</code> derives topology information for proteins from the input coordinate file. Two proteins will be considered the same if they are entirely identical (same number of residues, completely identical order and type of atoms/beads).</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>proteins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>proteins</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>[&lt;prolintpy.Protein containing 1 replicate(s) of Protein0 and 1284 beads each&gt;]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>[&lt;prolintpy.Protein containing 1 replicate(s) of Protein0 and 1284 beads each&gt;]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Get information about the protein:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>protein.name <span class="op">=</span> <span class="st">"MyProtein"</span> <span class="co"># Give the protein a new name</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>protein.name <span class="op">=</span> <span class="st">"MyProtein"</span> <span class="co"># Give the protein a new name</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>protein.n_residues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>protein.n_residues</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>1284</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (protein.first_residue, protein.last_residue)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>1284</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (protein.first_residue, protein.last_residue)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>1 1284</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>protein.counter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>1 1284</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>protein.counter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Get the indices for residues 50, 60, and 70:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>protein.get_indices([<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb34"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>protein.get_indices([<span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>Using the available dataframe</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>[array([124, 125]), array([155, 156, 157, 158, 159]), array([179, 180])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>[array([124, 125]), array([155, 156, 157, 158, 159]), array([179, 180])]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="why-prolintpy-is-easy-to-scale-up" class="level4">
 <h4 class="anchored" data-anchor-id="why-prolintpy-is-easy-to-scale-up">Why prolintpy is easy to scale-up</h4>
 <hr>
 <p>If the input system contains only one copy of only one protein type (as in this example) then proteins will be a list of only one element. This entails a little bit extra work to get the protein out of the list, but provides much more flexibility in handling more complex system setups. You can use the <code>counter</code> option alongside the length of the proteins list to extract information about proteins in the system dynamically.</p>
 <p>For instance, to get a <code>DataFrame</code> representation for each protein in the system dynamically (that is without knowing anything about the composition of the input system), we can do that very easily One way of doing that is the following syntax:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_dataframes(proteins):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_dataframes(proteins):</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Takes as input a prolintpy.Protein object and returns a list of DataFrame elements</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">    for each copy of each protein in the system.</span></span>
@@ -536,8 +542,8 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dataframe_list</span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co"># returns a list of DataFrame elements</span></span>
-<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>get_dataframes(proteins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>get_dataframes(proteins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>[ serial name element resSeq resName chainID segmentID</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>0 1 BB B 1 ARG 0</span>
@@ -602,28 +608,28 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>2954 2955 BB B 1284 MET 0</span>
 <span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>2955 2956 SC1 S 1284 MET 0</span>
 <span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>[2956 rows x 7 columns]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a>[2956 rows x 7 columns]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="contact-based-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="contact-based-metrics">Contact-based metrics</h3>
 <hr>
 <p>Redefine topologies, but now we’ll only select CHOL and POPS lipids:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="st">"martini"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="st">"martini"</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>combine_proteins <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>lipids <span class="op">=</span> pl.Lipids(t.topology, resolution<span class="op">=</span>resolution, lipid_names<span class="op">=</span>[<span class="st">"CHOL"</span>, <span class="st">"POPS"</span>])</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>proteins <span class="op">=</span> pl.Proteins(t.topology, resolution<span class="op">=</span>resolution).system_proteins(merge<span class="op">=</span>combine_proteins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>proteins <span class="op">=</span> pl.Proteins(t.topology, resolution<span class="op">=</span>resolution).system_proteins(merge<span class="op">=</span>combine_proteins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="build-a-prolintpy.computecontacts-object" class="level4">
 <h4 class="anchored" data-anchor-id="build-a-prolintpy.computecontacts-object">Build a prolintpy.ComputeContacts object</h4>
 <hr>
 <p>We use this object for all contact calculations:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>contacts <span class="op">=</span> pl.ComputeContacts(t, proteins, lipids)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>contacts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>contacts <span class="op">=</span> pl.ComputeContacts(t, proteins, lipids)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>contacts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>&lt;prolintpy.core.computecontacts.ComputeContacts at 0x7fe2683e6a90&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>&lt;prolintpy.core.computecontacts.ComputeContacts at 0x7fe2683e6a90&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Given a list of residues and a cutoff distance, calculate all neighboring lipids:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>residues <span class="op">=</span> [<span class="op">*</span><span class="bu">range</span>(<span class="dv">85</span>, <span class="dv">130</span>)]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>residues <span class="op">=</span> [<span class="op">*</span><span class="bu">range</span>(<span class="dv">85</span>, <span class="dv">130</span>)]</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cutoff <span class="op">=</span> <span class="fl">0.5</span> <span class="co"># nm</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We will calculate contacts with the list of residues defined above and store them in the result variable.</span></span>
@@ -631,10 +637,10 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> contacts.compute_neighbors(t, residues<span class="op">=</span>residues, cutoff<span class="op">=</span>cutoff, grouped<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The command below will calcualte contacts with all residues, but it may take a while longer to finish.</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> contacts.compute_neighbors(t, cutoff<span class="op">=</span>cutoff, grouped<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> contacts.compute_neighbors(t, cutoff<span class="op">=</span>cutoff, grouped<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>results</code> is a nested dictionary, encoding the following information hierarchy: <code>protein name &gt; protein copy &gt; residue ID &gt; prolintpy.LPContacts object</code>:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>{'Protein0': {0: {85: &lt;prolintpy.LPContacts for residue 85&gt;,</span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>86: &lt;prolintpy.LPContacts for residue 86&gt;,</span>
@@ -680,36 +686,36 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>126: &lt;prolintpy.LPContacts for residue 126&gt;,</span>
 <span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>127: &lt;prolintpy.LPContacts for residue 127&gt;,</span>
 <span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>128: &lt;prolintpy.LPContacts for residue 128&gt;,</span>
-<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>129: &lt;prolintpy.LPContacts for residue 129&gt;}}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>129: &lt;prolintpy.LPContacts for residue 129&gt;}}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Extract contact data for a particular residue:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proteins are named ProteinN, where N is 0, 1, 2, ..., number of copies in the system.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proteins are named ProteinN, where N is 0, 1, 2, ..., number of copies in the system.</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In our system we only have one copy of one protein, so the default name given is: Protein0</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>results[<span class="st">'Protein0'</span>][<span class="dv">0</span>][<span class="dv">85</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>results[<span class="st">'Protein0'</span>][<span class="dv">0</span>][<span class="dv">85</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>&lt;prolintpy.LPContacts for residue 85&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>contact_r88 <span class="op">=</span> results[<span class="st">'Protein0'</span>][<span class="dv">0</span>][<span class="dv">88</span>]</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>contact_r88</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>&lt;prolintpy.LPContacts for residue 85&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>contact_r88 <span class="op">=</span> results[<span class="st">'Protein0'</span>][<span class="dv">0</span>][<span class="dv">88</span>]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>contact_r88</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>&lt;prolintpy.LPContacts for residue 88&gt;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>&lt;prolintpy.LPContacts for residue 88&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Not all interactions are equal! Residue 88 interacts with only one cholesterol lipid during the length of the input trajectory. However, it forms several interactions with POPS lipids, even though the input test trajectory is quite short. The output is a dictionary with lipids as keys and the contact duration as dictionary values. The time units here are the same as <code>MDTraj</code>.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>contact_r88.contacts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>contact_r88.contacts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>{'POPS': [300000.0, 900000.0, 300000.0, 600000.0, 1200000.0, 300000.0],</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>'CHOL': [3900000.0]}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>'CHOL': [3900000.0]}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can also retrieve the residue id of the lipids that form the interactions above. This is very useful if we want to build custom metrics or just in general customize the workflow:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>contact_r88.lipids</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>contact_r88.lipids</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>{'POPS': array([1677, 1773, 1817, 1888, 1889, 1934]), 'CHOL': array([2951])}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>{'POPS': array([1677, 1773, 1817, 1888, 1889, 1934]), 'CHOL': array([2951])}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Occupancy is a binary measure so we need to retrieve it separately:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>contact_r88.occupancy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>contact_r88.occupancy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>{'POPS': array([1., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1.]),</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>'CHOL': array([1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0.])}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>'CHOL': array([1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0.])}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="customizability" class="level4">
 <h4 class="anchored" data-anchor-id="customizability">Customizability</h4>
@@ -722,51 +728,51 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <hr>
 <p>Helper functions allow you to efficiently get data from the <code>results</code> dictionary defined above.</p>
 <p>For instance, retrieve contact information for a residue with all lipids in the system:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts(results, <span class="dv">88</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts(results, <span class="dv">88</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>defaultdict(list,</span>
 <span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>{'POPS': [array([ 300000., 900000., 300000., 600000., 1200000., 300000.])],</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>'CHOL': [array([3900000.])]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If we want to retrieve occupancy values we can indicate that:</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts(results, <span class="dv">88</span>, contacts<span class="op">=</span><span class="st">'occupancy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>'CHOL': [array([3900000.])]})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If we want to retrieve occupancy values we can indicate that:</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts(results, <span class="dv">88</span>, contacts<span class="op">=</span><span class="st">'occupancy'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>defaultdict(list,</span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>{'POPS': [array([1., 1., 1., 1., 0., 0., 1., 0., 1., 1., 1., 0., 1., 1., 1., 1.])],</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>'CHOL': [array([1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0.])]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>'CHOL': [array([1., 1., 0., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 0., 0.])]})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Retrieve contact information for a specific residue-lipid pair:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts_flat(results, <span class="dv">88</span>, lipid<span class="op">=</span><span class="st">"CHOL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts_flat(results, <span class="dv">88</span>, lipid<span class="op">=</span><span class="st">"CHOL"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>array([3900000.])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts_flat(results, <span class="dv">88</span>, lipid<span class="op">=</span><span class="st">'POPS'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb60"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>array([3900000.])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>pl.retrieve_contacts_flat(results, <span class="dv">88</span>, lipid<span class="op">=</span><span class="st">'POPS'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>array([ 300000., 900000., 300000., 600000., 1200000., 300000.])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>array([ 300000., 900000., 300000., 600000., 1200000., 300000.])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="build-a-pandas-dataframe" class="level4">
 <h4 class="anchored" data-anchor-id="build-a-pandas-dataframe">Build a pandas DataFrame</h4>
 <hr>
 <p><code>pandas DataFrames</code> are the most convenient way to manipulate contact information. Building a <code>DataFrame</code> using <code>prolintpy</code> is a straightforward process.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.contacts_dataframe(results, proteins, t, radius<span class="op">=</span>cutoff)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.contacts_dataframe(results, proteins, t, radius<span class="op">=</span>cutoff)</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb62"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>Output:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>Output:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig2.png" class="img-fluid"></p>
 <p>Sort by the most interacting residues in terms of the <code>Longest_Duration</code> metric:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">'Longest_Duration'</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>Output:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">'Longest_Duration'</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>Output:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig3.png" class="img-fluid"></p>
 <p>Get the residue ids and indices of the top 5 residues interacting with cholesterol as measured by the <code>Longest_Duration</code> metric:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>top_residues <span class="op">=</span> df[df.Lipids <span class="op">==</span> <span class="st">"CHOL"</span>].sort_values(<span class="st">'Longest_Duration'</span>, ascending<span class="op">=</span><span class="va">False</span>).ResID.to_list()[:<span class="dv">10</span>]</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Most interacting residues are: "</span>, top_residues, end<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">'~'</span> <span class="op">*</span> <span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb66"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>top_residues <span class="op">=</span> df[df.Lipids <span class="op">==</span> <span class="st">"CHOL"</span>].sort_values(<span class="st">'Longest_Duration'</span>, ascending<span class="op">=</span><span class="va">False</span>).ResID.to_list()[:<span class="dv">10</span>]</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> (<span class="st">"Most interacting residues are: "</span>, top_residues, end<span class="op">=</span><span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">'~'</span> <span class="op">*</span> <span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>Most interacting residues are: [91, 88, 128, 121, 125, 124, 117, 118, 122, 114]</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>[<span class="ss">f'Residue </span><span class="sc">{</span>res<span class="sc">}</span><span class="ss"> with indices: </span><span class="sc">{</span>proteins[<span class="dv">0</span>]<span class="sc">.</span>get_indices([res], suppress<span class="op">=</span><span class="va">True</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> res <span class="kw">in</span> top_residues]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb68"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>[<span class="ss">f'Residue </span><span class="sc">{</span>res<span class="sc">}</span><span class="ss"> with indices: </span><span class="sc">{</span>proteins[<span class="dv">0</span>]<span class="sc">.</span>get_indices([res], suppress<span class="op">=</span><span class="va">True</span>)[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> res <span class="kw">in</span> top_residues]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Output:</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>['Residue 91 with indices: [225 226 227 228]',</span>
 <span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>'Residue 88 with indices: [220 221]',</span>
@@ -777,16 +783,16 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a>'Residue 117 with indices: [284 285]',</span>
 <span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>'Residue 118 with indices: [286 287]',</span>
 <span id="cb68-11"><a href="#cb68-11" aria-hidden="true" tabindex="-1"></a>'Residue 122 with indices: [294 295]',</span>
-<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>'Residue 114 with indices: [279 280]']</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb68-12"><a href="#cb68-12" aria-hidden="true" tabindex="-1"></a>'Residue 114 with indices: [279 280]']</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="visualization" class="level3">
 <h3 class="anchored" data-anchor-id="visualization">Visualization</h3>
 <hr>
-<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bokeh.io <span class="im">import</span> output_notebook</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bokeh.io <span class="im">import</span> output_notebook</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>output_notebook()</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>BokehJS <span class="fl">1.4.0</span> successfully loaded.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>BokehJS <span class="fl">1.4.0</span> successfully loaded.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>Make sure you run these commands within the JupyerLab environment!</p>
 </blockquote>
@@ -794,7 +800,7 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <h4 class="anchored" data-anchor-id="scatter-plot">Scatter Plot</h4>
 <hr>
 <p>Once you have build a pandas <code>DataFrame</code> from the calculated contacts (by, for instance, running the <code>contacts_dataframe()</code> function), you can provide it as input to the appropriate <code>prolintpy</code> visualization apps:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>pl.show_points(df, size<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>pl.show_points(df, size<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig4.png" class="img-fluid"></p>
 </section>
 <section id="distance-calculations-visualization" class="level4">
@@ -802,9 +808,9 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 <hr>
 <p>A very important (perhaps the most important?) calculation that is commonly done in lipid-protein interaction studies is measuring the distance between a residue and a lipid as a function of simulation time. This gives you a clear idea if the lipid is interacting preferentially with a residue or not. <code>prolintpy</code> provides two different ways to get distance information on lipid-protein interactions. The first method, presented in this section, is automated and relies on the prior calculation of contact-based metrics.</p>
 <p>The way it works is that it goes through the calculated metrics, sorts them, and gets the top-ranking residues and lipids. It then goes over each residue and lipid combination and gets the best/strongest contact (that is, the contact that is maintained most strongly between the specific residue and lipid).</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> contacts.compute_distances(t, proteins[<span class="dv">0</span>], [<span class="op">*</span><span class="bu">range</span>(<span class="dv">85</span>, <span class="dv">91</span>)], <span class="st">'POPS'</span>, <span class="st">'PO4'</span>, percentile_co<span class="op">=</span><span class="fl">0.05</span>, distance_co<span class="op">=</span><span class="fl">0.7</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> contacts.compute_distances(t, proteins[<span class="dv">0</span>], [<span class="op">*</span><span class="bu">range</span>(<span class="dv">85</span>, <span class="dv">91</span>)], <span class="st">'POPS'</span>, <span class="st">'PO4'</span>, percentile_co<span class="op">=</span><span class="fl">0.05</span>, distance_co<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>pl.show_distances(dist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>pl.show_distances(dist)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig5.png" class="img-fluid"></p>
 <p>The second way <code>prolintpy</code> calculates and visualizes distances is by not relying on any prior calcualted metrics. Instead, you simply supply the protein and list of residues along with threshold arguments, and <code>prolintpy</code> will then calculate distance measurements.</p>
 <p>Given a list of input residues, this function will loop through all the lipids in the system and display distances with best ranking lipids. Ranking is decided based on the following parameters:</p>
@@ -836,26 +842,26 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
 </tbody>
 </table>
 <p>Here is an example application:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolintpy.core.computecontacts <span class="im">import</span> retrieve_distances</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prolintpy.core.computecontacts <span class="im">import</span> retrieve_distances</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We first build a dictionary of lipids and residues that are interacting preferably and then we compute the distances between them. You can use the <code>top_nr</code> argument to indicate how many top ranking results you want to consider.</p>
 <p>This application is more computationally expensive since it requires the prior calculation of contact-based metrics, but it is much better in extracting good contacts. It also does not require any threshold definitions or manual input of lipid and residue ids.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>distances_dict, SYSTEM_LIPIDS, lipids_found <span class="op">=</span> retrieve_distances(df, group_lipids<span class="op">=</span><span class="va">False</span>, resolution<span class="op">=</span>resolution, lipids<span class="op">=</span>lipids, top_nr<span class="op">=</span><span class="dv">30</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>distances_dict, SYSTEM_LIPIDS, lipids_found <span class="op">=</span> retrieve_distances(df, group_lipids<span class="op">=</span><span class="va">False</span>, resolution<span class="op">=</span>resolution, lipids<span class="op">=</span>lipids, top_nr<span class="op">=</span><span class="dv">30</span>)</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>distances <span class="op">=</span> contacts.compute_lipid_distances(t, proteins[<span class="dv">0</span>], distances_dict, SYSTEM_LIPIDS, lipids_found)</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>pl.show_metric_distances(distances)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>pl.show_metric_distances(distances)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig6.png" class="img-fluid"></p>
 </section>
 <section id="contact-projection" class="level4">
 <h4 class="anchored" data-anchor-id="contact-projection">Contact Projection</h4>
 <hr>
 <p>May need to execute: <code>jupyter-nbextension enable nglview --py --sys-prefix</code> if visualization does not show:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you have multiple cutoffs then you also need to filter the dataframe using one of the cutoffs.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you have multiple cutoffs then you also need to filter the dataframe using one of the cutoffs.</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>contact_values <span class="op">=</span> df[df.Lipids <span class="op">==</span> <span class="st">"CHOL"</span>].Longest_Duration.to_list()</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="co"># residue_list is only required when working with a subset of protein residues.</span></span>
 <span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>residues <span class="op">=</span> df[df.Lipids <span class="op">==</span> <span class="st">"CHOL"</span>].ResID.to_list()</span>
 <span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>pl.show_contact_projection(t, bf<span class="op">=</span>contact_values, protein<span class="op">=</span>proteins[<span class="dv">0</span>], residue_list<span class="op">=</span>residues, ngl_repr<span class="op">=</span><span class="st">'spacefill'</span>, cmap<span class="op">=</span><span class="st">"Reds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>pl.show_contact_projection(t, bf<span class="op">=</span>contact_values, protein<span class="op">=</span>proteins[<span class="dv">0</span>], residue_list<span class="op">=</span>residues, ngl_repr<span class="op">=</span><span class="st">'spacefill'</span>, cmap<span class="op">=</span><span class="st">"Reds"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="fig7.png" class="img-fluid"></p>
 </section>
 </section>
@@ -928,13 +934,14 @@ In case of issues, please contact <a href="mailto:%20besian.sejdiu@stjude.org">b
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

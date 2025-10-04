@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -178,7 +179,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -188,12 +190,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -260,6 +262,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -336,53 +342,53 @@ window.Quarto = {
 <ol type="1">
 <li>Unpack the tutorial files you downloaded (it expands to na-tutorials).</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-xvzf</span> na-tutorials_20170815.tar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-xvzf</span> na-tutorials_20170815.tar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>Go to the folder <code>na-tutorials/rna-tutorial/dsRNA-setup</code>. Martinize works now also for RNA molecules. As for DNA, martinize-nucleotide.py for RNA works best with cleaned up .gro files so you should first remove other atoms from the .pdb file and convert it to a .gro file. You will find the .pdb file for the <a href="http://www.rcsb.org/pdb/explore.do?structureId=1rna">1RNA</a> pdb code. NOTE that a download from the PDB website can give you a file called 1rna.pdb. The file 1RNA.pdb (NOTE CAPIIALS) is provided in the archive, so you do not need to download.</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-v</span> HETATM 1RNA.pdb <span class="op">&gt;</span> aa-1rna.pdb</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> aa-1rna.pdb <span class="at">-o</span> aa-1rna.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="at">-v</span> HETATM 1RNA.pdb <span class="op">&gt;</span> aa-1rna.pdb</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> aa-1rna.pdb <span class="at">-o</span> aa-1rna.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>Next we can use the script martinize-nucleotide.py (supplied for you in the current directory) to create a Martini RNA topology for 1RNA.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python martinize-nucleotide.py <span class="at">-type</span> ds-stiff <span class="at">-f</span> aa-1rna.gro <span class="at">-o</span> cg-1rna.top <span class="at">-x</span> cg-1rna.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python martinize-nucleotide.py <span class="at">-type</span> ds-stiff <span class="at">-f</span> aa-1rna.gro <span class="at">-o</span> cg-1rna.top <span class="at">-x</span> cg-1rna.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will create the coarse-grained model of the 1RNA molecule (coordinates in cg-1rna.pdb) and the topology file (cg-1rna.top, which refers to Nucleic_A+Nucleic_B.itp). Next, you need to change the .top file to include the correct .itp files. This can be done with your favorite text editor but scriptable options are given below. Note: there are two sets of commands here, the first for Mac OSX, the second for Linux. In both cases, the backslashes (\) need to be typed as indicated.</p>
 <p>OSX</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> .bak <span class="st">'s/#include "martini.itp"/#include "martini_v2.1-dna.itp"\</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">#include "martini_v2.0_ions.itp"/'</span> cg-1rna.top </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> .bak <span class="st">'s/#include "martini.itp"/#include "martini_v2.1-dna.itp"\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">#include "martini_v2.0_ions.itp"/'</span> cg-1rna.top </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and Linux</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp cg-1rna.top cg-1rna.top.bak </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> <span class="st">'s/#include "martini.itp"/#include "martini_v2.1-dna.itp"\n#include "martini_v2.0_ions.itp"/'</span> cg-1rna.top </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp cg-1rna.top cg-1rna.top.bak </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> <span class="st">'s/#include "martini.itp"/#include "martini_v2.1-dna.itp"\n#include "martini_v2.0_ions.itp"/'</span> cg-1rna.top </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
 <li>You can now visualize the mapping of the 1RNA molecule by opening both the atomistic and coarse-grained structures in VMD. (The visualization is clearer if you show the CG structure as small VDW spheres.)</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> aa-1rna.pdb cg-1rna.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> aa-1rna.pdb cg-1rna.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="5" type="1">
 <li>Next you need to create a simulation box for the RNA molecule and solvate it as well as add counterions. You will find a pre-equilibrated coarse-grained water box in the downloaded folder. You can also download it from <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/water.gro">here</a>.</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> cg-1rna.pdb <span class="at">-d</span> 1.2 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> box.gro</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> box.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> bw.gro <span class="at">-radius</span> 0.22 <span class="at">-maxsol</span> 1250</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> cg-1rna.pdb <span class="at">-d</span> 1.2 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> box.gro</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> box.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> bw.gro <span class="at">-radius</span> 0.22 <span class="at">-maxsol</span> 1250</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can replace water with ions in .top file without using genion at the same time as we add waters there. Note: the next line assumes that exactly 1226 water beads were added to the DNA by the genbox tool; the first 1100 added beads are designated as normal water beads, the next 100 beads are designated as anti-freeze water beads, and the final 26 beads are designated as sodium ions.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> printf <span class="st">"\nW         1100\nWF         100\nNA          26\n"</span> <span class="op">&gt;&gt;</span> cg-1rna.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> printf <span class="st">"\nW         1100\nWF         100\nNA          26\n"</span> <span class="op">&gt;&gt;</span> cg-1rna.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="6" type="1">
 <li>Use the <code>em.mdp</code> provided in the directory to run an energy minimization (integrator = steep, nsteps = 100).</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> em.mdp <span class="at">-c</span> bw.gro <span class="at">-p</span> cg-1rna.top <span class="at">-o</span> 01-em <span class="at">-maxwarn</span> 1</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 01-em </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> em.mdp <span class="at">-c</span> bw.gro <span class="at">-p</span> cg-1rna.top <span class="at">-o</span> 01-em <span class="at">-maxwarn</span> 1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 01-em </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="7" type="1">
 <li>Next, you can run a short equilibration of 1 ns. Note, a smaller time step might be needed for initial equilibration (10 fs).</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> equil.mdp <span class="at">-c</span> 01-em.gro <span class="at">-p</span> cg-1rna.top <span class="at">-o</span> 02-eq</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 02-eq <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> equil.mdp <span class="at">-c</span> 01-em.gro <span class="at">-p</span> cg-1rna.top <span class="at">-o</span> 02-eq</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 02-eq <span class="at">-rdd</span> 2.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="8" type="1">
 <li>Now you are ready to start your first RNA simulation. Use the <code>mdrun.mdp</code> file to produce a longer simulation. This time we will be running a 10 ns production run. Note that with the elastic network the domain cell size needs to be kept fairly large (option -rdd 2.0).</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> mdrun.mdp <span class="at">-c</span> 02-eq.gro <span class="at">-p</span> cg-1rna.top <span class="at">-o</span> 03-run</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 03-run <span class="at">-rdd</span> 2.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> mdrun.mdp <span class="at">-c</span> 02-eq.gro <span class="at">-p</span> cg-1rna.top <span class="at">-o</span> 03-run</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 03-run <span class="at">-rdd</span> 2.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="9" type="1">
 <li>You can visualize the movements of the RNA, ions and waters using VMD while your simulation is still running (you will need to open a new terminal). Note that bonds in Martini are longer than bonds normally shown in VMD. Please consult <a href="../../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">the VMD tutorial</a> to get better visualization. It may be advisable to convert your trajectory so that molecules are not split over the periodic boundaries (using gmx trjconv -pbc whole) before viewing. It needs a bit more trickery to ensure that both RNA strands are shown close to each other, see the description in the <a href="../../../../docs/tutorials/Legacy/martini2/proteins.html">protein tutorial</a>.</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd 02-eq.gro 03-run.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd 02-eq.gro 03-run.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="rna-and-backward" class="level4">
 <h4 class="anchored" data-anchor-id="rna-and-backward"><strong>RNA and Backward</strong></h4>
@@ -390,27 +396,27 @@ window.Quarto = {
 <ol type="1">
 <li>Got to the <code>na-tutorials/rna-tutorial/backmapping</code> directory and cleanup and convert the given RNA structure 1RNA.pdb to a gro file in a reasonable simulation box.</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> ../dsRNA-setup/1RNA.pdb <span class="at">-d</span> 1.4 <span class="at">-o</span> aa-1rna.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> ../dsRNA-setup/1RNA.pdb <span class="at">-d</span> 1.4 <span class="at">-o</span> aa-1rna.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>Create a CG structure using martinize-dna.py.</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python ../dsRNA-setup/martinize-nucleotide.py <span class="at">-f</span> aa-1rna.gro <span class="at">-type</span> ds-stiff <span class="at">-p</span> cg-1rna.top <span class="at">-x</span> cg-1rna.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python ../dsRNA-setup/martinize-nucleotide.py <span class="at">-f</span> aa-1rna.gro <span class="at">-type</span> ds-stiff <span class="at">-p</span> cg-1rna.top <span class="at">-x</span> cg-1rna.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>Solvate the CG structure.</li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> cg-1rna.pdb <span class="at">-cs</span> ../dsRNA-setup/water.gro <span class="at">-radius</span> 0.22 <span class="at">-o</span> cg-1rna-water.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> cg-1rna.pdb <span class="at">-cs</span> ../dsRNA-setup/water.gro <span class="at">-radius</span> 0.22 <span class="at">-o</span> cg-1rna-water.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
 <li>Create an atomistic topology file for the system. Choose charmm27 and tip3p when prompted.</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx pdb2gmx <span class="at">-f</span> ../dsRNA-setup/aa-1rna.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx pdb2gmx <span class="at">-f</span> ../dsRNA-setup/aa-1rna.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="5" type="1">
 <li>Edit the file <code>topol.top</code> to point explicitly to the <code>tip3p.itp</code> file provided for you (it will not recognize it in the standard path unfortunately). Thus, replace the line <code>#include "charmm27/tip3p.itp"</code> near the end of the file by <code>#include "./tip3p.itp"</code>. Run the initram.sh script to perform the backmapping. Initram goes through a number of energy minimization and short MD runs (with positions restraints), have a look inside the script!</li>
 </ol>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./initram.sh <span class="at">-f</span> cg-1rna-water.gro <span class="at">-o</span> aa-charmm.gro <span class="at">-to</span> charmm36 <span class="at">-p</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./initram.sh <span class="at">-f</span> cg-1rna-water.gro <span class="at">-o</span> aa-charmm.gro <span class="at">-to</span> charmm36 <span class="at">-p</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="6" type="1">
 <li>Compare the initial structure to the backmapped structure.</li>
 </ol>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> cg-1rna.gro aa-charmm.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd <span class="at">-m</span> cg-1rna.gro aa-charmm.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 
 
@@ -468,13 +474,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

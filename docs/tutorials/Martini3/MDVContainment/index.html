@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -463,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Bicelle Vesicle Containment</h1>
 <section id="imports" class="level2">
 <h2 class="anchored" data-anchor-id="imports">Imports</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Containment</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Containment</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mdvcontainment <span class="im">as</span> mdv</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> mdvcontainment.composition_logic <span class="im">as</span> cl</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mdvcontainment.containment_main <span class="im">import</span> VoxelContainment</span>
@@ -488,29 +494,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Turning off warnings for MDA as it tends to complain a lot with CG data</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress all warnings from a specific package</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, module<span class="op">=</span><span class="st">"MDAnalysis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>, module<span class="op">=</span><span class="st">"MDAnalysis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="loading-the-md-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-the-md-data">Loading the MD Data</h2>
 <p>MDVContainment is made so it works nicely with MDAnalysis for its structure file support (PDB, GRO, XTC, etc.). Start with creating an MDAnalysis universe from your structure file. We will make a copy of the wrapped and unwrapped structure (using <code>mdvwhole</code>) so we can use those for comparison if we want.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The path to the desired structure file</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>current_structure_path <span class="op">=</span> <span class="st">'bicelle.gro'</span> <span class="co"># Change me to point to a structure!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This GRO file is already made whole but lets wrap it up</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The path to the desired structure file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>current_structure_path <span class="op">=</span> <span class="st">'bicelle.gro'</span> <span class="co"># Change me to point to a structure!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This GRO file is already made whole but lets wrap it up</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> mda.Universe(current_structure_path)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>u.atoms.wrap() <span class="co"># Wrap everything in the PBC box so no points lie outside the dimensions</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>u.atoms.write(<span class="st">'wrapped.pdb'</span>) <span class="co"># Write the atomgroup after its wrapped in the box</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>wrapped_positions <span class="op">=</span> np.copy(u.atoms.positions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's make the structure whole so we can play a bit and see if it matters</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>wrapped_positions <span class="op">=</span> np.copy(u.atoms.positions)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's make the structure whole so we can play a bit and see if it matters</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>atomgroup_selection <span class="op">=</span> u.select_atoms(<span class="st">'not resname W WF ION'</span>) <span class="co"># The selection to make whole</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="fl">0.5</span> <span class="co"># Sets the voxel size for the resolution</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>closing <span class="op">=</span> <span class="va">True</span> <span class="co"># Uses binary dilaten and then erosion to close small gaps</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>whole_universe <span class="op">=</span> whole.Whole(atomgroup_selection, <span class="fl">0.5</span>, closing,).voxels.atomgroup.universe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the wrapping and unwrapping worked out</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>whole_universe <span class="op">=</span> whole.Whole(atomgroup_selection, <span class="fl">0.5</span>, closing,).voxels.atomgroup.universe</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the wrapping and unwrapping worked out</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Wrapped positions and unwrapped positions are idential (False is good): </span><span class="op">\</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>np<span class="sc">.</span><span class="bu">all</span>(whole_universe.atoms.positions <span class="op">==</span> wrapped_positions)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span>np<span class="sc">.</span><span class="bu">all</span>(whole_universe.atoms.positions <span class="op">==</span> wrapped_positions)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>Wrapped positions and unwrapped positions are idential (False is good): False</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the atomgroup after it has been made whole</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>whole_universe.atoms.write(<span class="st">'whole.pdb'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the atomgroup after it has been made whole</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>whole_universe.atoms.write(<span class="st">'whole.pdb'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <center>
 <img src="bicelle.png" width="600">
 </center>
@@ -527,14 +533,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="running-the-containment-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="running-the-containment-analysis">Running the Containment Analysis</h2>
 <p>Running a containment analysis requires very little from the user, it requires an atomgroup, a resolution for the voxel size (nm), and weather or not you want to close single voxel holes using binary closing. The resolution should never be smaller than the first neighbor distance of the condensed phase you are studying. For Martini CG systems this is about 0.5 nm, with closing to fill small holes. For atomistic data a smaller resolution could be used, although usually a resolution of 0.5 with or without closing works pretty good. In general a smaller value for the resolution results in an increase in computational load, both for memory and compute.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting all tail beads (see what happens if you exclude the first tail bead as well!)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#selection_atomgroup = u.select_atoms('name [CD][12345][AB]') </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A slightly more conservative selection for the lipid densities</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting all tail beads (see what happens if you exclude the first tail bead as well!)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#selection_atomgroup = u.select_atoms('name [CD][12345][AB]') </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A slightly more conservative selection for the lipid densities</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>selection_atomgroup <span class="op">=</span> u.select_atoms(<span class="st">'name [CD][2345][AB]'</span>) </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>resolution <span class="op">=</span> <span class="fl">0.5</span> <span class="co"># The voxel size in nanometers</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>closing <span class="op">=</span> <span class="va">True</span> <span class="co"># Uses binary dilation and erosion to close tiny holes</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>containment <span class="op">=</span> mdv.Containment(selection_atomgroup, resolution, closing)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(containment) <span class="co"># Shows the containment hierarchy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(containment) <span class="co"># Shows the containment hierarchy</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>WARNING: beta/tempfactors already set in the universe, and will be overwritten with the component ids.
 Containment Graph with 3 components (component: nvoxels):
 └── [-2: 59600]
@@ -546,7 +552,7 @@ Containment Graph with 3 components (component: nvoxels):
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 1
+<span class="screen-reader-only">Tip</span>Question 1
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -556,27 +562,27 @@ Question 1
 <section id="contact-graph" class="level3">
 <h3 class="anchored" data-anchor-id="contact-graph">Contact graph</h3>
 <p>The contact graph annotates every components contacts where a component is considered in contact if they share on of their 26 voxel neighbors (they share a vertex of their voxel simplices). The contact graph is always strongly connected.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The contacts graph</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The contacts graph</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>contact_graph <span class="op">=</span> containment.voxel_containment.component_contact_graph</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx(contact_graph)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="output_21_0.png" class="img-fluid figure-img"></p>
 <figcaption>png</figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the contact graph is indeed strongly connected </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The amount of connected components in the contact graph: </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(nx.connected_components(contact_graph)))<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the contact graph is indeed strongly connected </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The amount of connected components in the contact graph: </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(nx.connected_components(contact_graph)))<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The amount of connected components in the contact graph: 1</code></pre>
 </section>
 <section id="containment-graph" class="level3">
 <h3 class="anchored" data-anchor-id="containment-graph">Containment graph</h3>
 <p>The containment graph annotates containment with a directed edge pointing from the container to the content. Their might be multiple outsides in a system (like in the case of a periodic bilayer), meaning the containment graph might be disconnected. This is due to the fact that the directed edges in the containment graph are a subset of the undirected edges in the contact graph.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the containment graph</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw the containment graph</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>containment_graph <span class="op">=</span> containment.voxel_containment.containment_graph</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>nx.draw_networkx(containment_graph)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="output_24_0.png" class="img-fluid figure-img"></p>
@@ -589,24 +595,24 @@ Question 1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 2
+<span class="screen-reader-only">Tip</span>Question 2
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Which component is contained by component 1?</p>
 </div>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the containment graph is strongly connected</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The amount of connected components in the containment graph: </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(nx.connected_components(contact_graph)))<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the containment graph is strongly connected</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The amount of connected components in the containment graph: </span><span class="sc">{</span><span class="bu">len</span>(<span class="bu">list</span>(nx.connected_components(contact_graph)))<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The amount of connected components in the containment graph: 1</code></pre>
 <p>The containment graph is also strongly connected, meaning the whole box can be described as a single recursive containment branch (there is only one absolute outside).</p>
 </section>
 <section id="rank" class="level3">
 <h3 class="anchored" data-anchor-id="rank">Rank</h3>
 <p>The rank of a component is the amount of orthogonal dimensions in which is spans the PBC. In other words, how intrinsically periodic is a component.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The rank (percolation number) per component</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The rank (percolation number) per component</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ranks <span class="op">=</span> containment.voxel_containment.component_ranks</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> [<span class="bu">print</span>(<span class="ss">f'The rank for component </span><span class="sc">{</span><span class="bu">int</span>(key)<span class="sc">}</span><span class="ss"> is: </span><span class="sc">{</span><span class="bu">int</span>(value)<span class="sc">}</span><span class="ss">'</span>) <span class="cf">for</span> key, value <span class="kw">in</span> ranks.items()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> [<span class="bu">print</span>(<span class="ss">f'The rank for component </span><span class="sc">{</span><span class="bu">int</span>(key)<span class="sc">}</span><span class="ss"> is: </span><span class="sc">{</span><span class="bu">int</span>(value)<span class="sc">}</span><span class="ss">'</span>) <span class="cf">for</span> key, value <span class="kw">in</span> ranks.items()]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The rank for component 1 is: 0
 The rank for component -1 is: 0
 The rank for component -2 is: 3</code></pre>
@@ -616,7 +622,7 @@ The rank for component -2 is: 3</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 3
+<span class="screen-reader-only">Tip</span>Question 3
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -627,10 +633,10 @@ Question 3
 <section id="grids" class="level3">
 <h3 class="anchored" data-anchor-id="grids">Grids</h3>
 <p>The boolean grid used for the segmentation and the integer labeling grid are both exposed in <code>containment.voxel_containment</code></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The selection grid</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The selection grid</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>boolean_grid <span class="op">=</span> containment.voxel_containment.grid</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The boolean grid has the following dimensions: </span><span class="sc">{</span>boolean_grid<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The boolean grid contains the following unique values: </span><span class="sc">{</span>np<span class="sc">.</span>unique(boolean_grid)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The boolean grid contains the following unique values: </span><span class="sc">{</span>np<span class="sc">.</span>unique(boolean_grid)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The boolean grid has the following dimensions: (40, 40, 40)
 The boolean grid contains the following unique values: [False  True]</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -639,19 +645,19 @@ The boolean grid contains the following unique values: [False  True]</code></pre
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 4
+<span class="screen-reader-only">Tip</span>Question 4
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>How many voxels are there in total?</p>
 </div>
 </div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 26 neighbors connected component labeling grid, </span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The 26 neighbors connected component labeling grid, </span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  True grid values have positive labels and False grid values have </span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  negative labels (taking PBC into account).</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>labeled_grid <span class="op">=</span> containment.voxel_containment.components_grid</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The labeling grid has the same dimensions as the boolean grid: </span><span class="sc">{</span>boolean_grid<span class="sc">.</span>shape <span class="op">==</span> labeled_grid<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The labeled grid contains the following unique values: </span><span class="sc">{</span>np<span class="sc">.</span>unique(labeled_grid)<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The labeled grid contains the following unique values: </span><span class="sc">{</span>np<span class="sc">.</span>unique(labeled_grid)<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The labeling grid has the same dimensions as the boolean grid: True
 The labeled grid contains the following unique values: [-2 -1  1]</code></pre>
 <div class="alert alert-block alert-info">
@@ -680,45 +686,45 @@ The labeled grid contains the following unique values: [-2 -1  1]</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 5
+<span class="screen-reader-only">Tip</span>Question 5
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Can a root node be a leaf node?</p>
 </div>
 </div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We convert the data types to a simple int for nicer printing</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>all_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.nodes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All nodes with no parents</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>root_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.root_nodes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All nodes with no children</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>leaf_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.leaf_nodes) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform some selection to filter contained and uncontained nodes</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We convert the data types to a simple int for nicer printing</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>all_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.nodes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All nodes with no parents</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>root_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.root_nodes) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All nodes with no children</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>leaf_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.leaf_nodes) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform some selection to filter contained and uncontained nodes</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>contained_nodes <span class="op">=</span> all_nodes <span class="op">-</span> root_nodes</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>not_contained_nodes <span class="op">=</span> all_nodes <span class="op">-</span> contained_nodes</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The following nodes are not contained: </span><span class="sc">{</span>not_contained_nodes<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The following nodes are contained: </span><span class="sc">{</span>contained_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The following nodes are contained: </span><span class="sc">{</span>contained_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The following nodes are not contained: {-2}
 The following nodes are contained: {1, -1}</code></pre>
 </section>
 <section id="relative-component-acquisition" class="level3">
 <h3 class="anchored" data-anchor-id="relative-component-acquisition">Relative component acquisition</h3>
 <p>Using a list of component ids for relative component querying, traveling up and down the DAG of containment.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the children of nodes (we turned it into a set so we convert it to list)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the children of nodes (we turned it into a set so we convert it to list)</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>child_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.get_child_nodes(<span class="bu">list</span>(root_nodes))) </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The root nodes: </span><span class="sc">{</span>root_nodes<span class="sc">}</span><span class="ss"> have the following child nodes: </span><span class="sc">{</span>child_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The root nodes: </span><span class="sc">{</span>root_nodes<span class="sc">}</span><span class="ss"> have the following child nodes: </span><span class="sc">{</span>child_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The root nodes: {-2} have the following child nodes: {1}</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the parents of nodes</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the parents of nodes</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>parent_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.get_parent_nodes(<span class="bu">list</span>(leaf_nodes))) <span class="co"># Again we should use a list here</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The leaf nodes: </span><span class="sc">{</span>leaf_nodes<span class="sc">}</span><span class="ss"> have the following parent nodes: </span><span class="sc">{</span>parent_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The leaf nodes: </span><span class="sc">{</span>leaf_nodes<span class="sc">}</span><span class="ss"> have the following parent nodes: </span><span class="sc">{</span>parent_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The leaf nodes: {-1} have the following parent nodes: {1}</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all downstream nodes (includes self)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all downstream nodes (includes self)</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>downstream_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.get_downstream_nodes(<span class="bu">list</span>(root_nodes)))</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The root nodes: </span><span class="sc">{</span>root_nodes<span class="sc">}</span><span class="ss"> have the following downstream nodes: </span><span class="sc">{</span>downstream_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The root nodes: </span><span class="sc">{</span>root_nodes<span class="sc">}</span><span class="ss"> have the following downstream nodes: </span><span class="sc">{</span>downstream_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The root nodes: {-2} have the following downstream nodes: {1, -2, -1}</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all upstream nodes (includes self)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all upstream nodes (includes self)</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>upstream_nodes <span class="op">=</span> <span class="bu">set</span>(<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> containment.voxel_containment.get_upstream_nodes(<span class="bu">list</span>(leaf_nodes)))</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The leaf nodes: </span><span class="sc">{</span>leaf_nodes<span class="sc">}</span><span class="ss"> have the following upstream nodes: </span><span class="sc">{</span>upstream_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The leaf nodes: </span><span class="sc">{</span>leaf_nodes<span class="sc">}</span><span class="ss"> have the following upstream nodes: </span><span class="sc">{</span>upstream_nodes<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The leaf nodes: {-1} have the following upstream nodes: {1, -2, -1}</code></pre>
 </section>
 </section>
@@ -726,31 +732,31 @@ The following nodes are contained: {1, -1}</code></pre>
 <h2 class="anchored" data-anchor-id="volumetric-analysis">Volumetric Analysis</h2>
 <p>The volume of the components is indicated by the voxel count per component in the containment graph and is stored in <code>.voxel_containment.voxel_counts</code>.</p>
 <p>If we want to be precise about the exact volume we should not naively assume that our target voxel volume (resolution^3) is perfectly matching the resulting voxel volume. This is due to the fact that MDVContainment has to pick the resolution such that it perfectly tiles the unit cell. Therefore MDVContainment needs to adjust the requested resolution slightly to satisfy this constraint. Thus to obtain the exact volumes we need to query the voxel counts in each component and multiply it by our exact single voxel volume.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determining the single voxel volume</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determining the single voxel volume</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>nvoxels <span class="op">=</span> np.prod(containment.voxel_containment.grid.shape)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>box_volume <span class="op">=</span> mda.lib.mdamath.box_volume(u.dimensions) <span class="op">/</span> <span class="dv">1000</span>  <span class="co"># We need to correct that MDA is A^3 instead of nm^3.</span></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>voxel_volume <span class="op">=</span> box_volume <span class="op">/</span> nvoxels</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'A single voxel has a volume of </span><span class="sc">{</span>voxel_volume<span class="sc">:.3f}</span><span class="ss"> nm^3, which is </span><span class="sc">{</span><span class="bu">abs</span>(resolution<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> voxel_volume)<span class="sc">:.3f}</span><span class="op">\</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ss">nm^3 off from the target resolution (</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss"> nm) with a volume of </span><span class="sc">{</span>resolution<span class="op">**</span><span class="dv">3</span><span class="sc">}</span><span class="ss"> nm^3.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="ss">nm^3 off from the target resolution (</span><span class="sc">{</span>resolution<span class="sc">}</span><span class="ss"> nm) with a volume of </span><span class="sc">{</span>resolution<span class="op">**</span><span class="dv">3</span><span class="sc">}</span><span class="ss"> nm^3.'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>A single voxel has a volume of 0.123 nm^3, which is 0.002nm^3 off from the target resolution (0.5 nm) with a volume of 0.125 nm^3.</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the nodes in the containment graph</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the nodes in the containment graph</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>component_ids <span class="op">=</span> [<span class="bu">int</span>(<span class="bu">id</span>) <span class="cf">for</span> <span class="bu">id</span> <span class="kw">in</span> containment.voxel_containment.nodes] </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(component_ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(component_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>[-2, -1, 1]</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtaining the formatted counts</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtaining the formatted counts</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>voxel_counts <span class="op">=</span> {<span class="bu">int</span>(<span class="bu">id</span>):<span class="bu">float</span>(count) <span class="cf">for</span> <span class="bu">id</span>, count <span class="kw">in</span> containment.voxel_containment.voxel_counts.items()}</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voxel_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voxel_counts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>{-2: 59600.0, -1: 532.0, 1: 3868.0}</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moving from counting voxels to quantitative volume determination</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Moving from counting voxels to quantitative volume determination</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>volumes <span class="op">=</span> {<span class="bu">int</span>(<span class="bu">id</span>):<span class="bu">float</span>(count<span class="op">*</span>voxel_volume) <span class="cf">for</span> <span class="bu">id</span>, count <span class="kw">in</span> voxel_counts.items()} <span class="co"># Some additional formatting for nice printing</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(volumes) <span class="co"># The component volumes in nm^3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(volumes) <span class="co"># The component volumes in nm^3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>{-2: 7350.741135707312, -1: 65.61399805698474, 1: 477.05816632409204}</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determining the total volume of the bicelle vesicle and its content combined</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determining the total volume of the bicelle vesicle and its content combined</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>active_components <span class="op">=</span> containment.voxel_containment.get_downstream_nodes([<span class="dv">1</span>]) <span class="co"># Includes the lipid density as well!</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>combined_volume <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> component <span class="kw">in</span> active_components:</span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    combined_volume <span class="op">+=</span> volumes[component]</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The volume of the lipid component and its content is: </span><span class="sc">{</span>combined_volume<span class="sc">:.02f}</span><span class="ss"> nm^3'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The volume of the lipid component and its content is: </span><span class="sc">{</span>combined_volume<span class="sc">:.02f}</span><span class="ss"> nm^3'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The volume of the lipid component and its content is: 542.67 nm^3</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -758,7 +764,7 @@ The following nodes are contained: {1, -1}</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 6
+<span class="screen-reader-only">Tip</span>Question 6
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -772,17 +778,17 @@ Question 6
 <section id="marching-cubes" class="level3">
 <h3 class="anchored" data-anchor-id="marching-cubes">Marching cubes</h3>
 <p>We can use the marching cubes algorithm to transform our density into (a) surfaces.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>active_components <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>combined_grid <span class="op">=</span> containment.voxel_containment.get_voxel_mask([active_components])</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>vertices, faces, normals, values <span class="op">=</span> measure.marching_cubes(combined_grid.astype(<span class="bu">float</span>), level<span class="op">=</span><span class="fl">0.5</span>, spacing<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>vertices, faces, normals, values <span class="op">=</span> measure.marching_cubes(combined_grid.astype(<span class="bu">float</span>), level<span class="op">=</span><span class="fl">0.5</span>, spacing<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 7
+<span class="screen-reader-only">Tip</span>Question 7
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -792,7 +798,7 @@ Question 7
 </section>
 <section id="process-mesh-in-open3d" class="level3">
 <h3 class="anchored" data-anchor-id="process-mesh-in-open3d">Process mesh in open3d</h3>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>):</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns an open3d mesh object and writes the mesh to the given path for a ply file (example.ply) if write specifies a path.</span></span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
@@ -814,15 +820,15 @@ Question 7
 <span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Save</span></span>
 <span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>        o3d.io.write_triangle_mesh(<span class="st">'bicelle_with_content.ply'</span>, mesh)</span>
 <span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mesh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the obtained vertices and triangles to create a open3d mesh object</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>mesh <span class="op">=</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>) <span class="co"># Set visualize to True to see the mesh!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mesh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the obtained vertices and triangles to create a open3d mesh object</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>mesh <span class="op">=</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>) <span class="co"># Set visualize to True to see the mesh!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="calculate-total-surface-area" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-total-surface-area">Calculate total surface area</h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined area can be easily obtained using the .get_surface_area() method of the mesh</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined area can be easily obtained using the .get_surface_area() method of the mesh</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>total_area <span class="op">=</span> mesh.get_surface_area() <span class="op">/</span> <span class="dv">100</span> <span class="co"># We need to convert from A^2 to nm^2</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The total area of the combined mesh(es) is: </span><span class="sc">{</span>total_area<span class="sc">:.02f}</span><span class="ss"> nm^2'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The total area of the combined mesh(es) is: </span><span class="sc">{</span>total_area<span class="sc">:.02f}</span><span class="ss"> nm^2'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The total area of the combined mesh(es) is: 22.29 nm^2</code></pre>
 </section>
 <section id="split-surface-area-between-inner-and-outer-surfaces" class="level3">
@@ -830,37 +836,37 @@ Question 7
 <p>For simplicity we simply split inner and outer, even though there might be multiple inner surfaces.</p>
 <section id="individual-areas-outer-first" class="level4">
 <h4 class="anchored" data-anchor-id="individual-areas-outer-first">Individual areas (outer first)</h4>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Containment for the bicelle with all its content</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Containment for the bicelle with all its content</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>inner_outer_area <span class="op">=</span> {}</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>bicelle_component <span class="op">=</span> <span class="dv">1</span> <span class="co"># hard coded, but could we do something more clever?</span></span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>bicelle_container_components <span class="op">=</span> containment.voxel_containment.get_downstream_nodes([bicelle_component])</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>bicelle_container_grid <span class="op">=</span> containment.voxel_containment.get_voxel_mask(bicelle_container_components)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>vertices, faces, normals, values <span class="op">=</span> measure.marching_cubes(bicelle_container_grid.astype(<span class="bu">float</span>), level<span class="op">=</span><span class="fl">0.5</span>, spacing<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mesh and set vertices and triangles during initialization</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mesh <span class="op">=</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the area for the outer mesh</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>inner_outer_area[<span class="st">'outer'</span>] <span class="op">=</span> mesh.get_surface_area() <span class="op">/</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>bicelle_container_grid <span class="op">=</span> containment.voxel_containment.get_voxel_mask(bicelle_container_components)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>vertices, faces, normals, values <span class="op">=</span> measure.marching_cubes(bicelle_container_grid.astype(<span class="bu">float</span>), level<span class="op">=</span><span class="fl">0.5</span>, spacing<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mesh and set vertices and triangles during initialization</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mesh <span class="op">=</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the area for the outer mesh</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>inner_outer_area[<span class="st">'outer'</span>] <span class="op">=</span> mesh.get_surface_area() <span class="op">/</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="now-lets-work-on-the-inner-part" class="level4">
 <h4 class="anchored" data-anchor-id="now-lets-work-on-the-inner-part">Now lets work on the inner part</h4>
-<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start with subtracting self from the bicelle container</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start with subtracting self from the bicelle container</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>bicelle_container_components <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(containment.voxel_containment.get_downstream_nodes([bicelle_component])) <span class="op">-</span> <span class="bu">set</span>([bicelle_component]))</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>bicelle_container_grid <span class="op">=</span> containment.voxel_containment.get_voxel_mask(bicelle_container_components)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>vertices, faces, normals, values <span class="op">=</span> measure.marching_cubes(bicelle_container_grid.astype(<span class="bu">float</span>), level<span class="op">=</span><span class="fl">0.5</span>, spacing<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mesh and set vertices and triangles during initialization</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>mesh <span class="op">=</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate area for the inner meshes</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>inner_outer_area[<span class="st">'inner'</span>] <span class="op">=</span> mesh.get_surface_area() <span class="op">/</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>bicelle_container_grid <span class="op">=</span> containment.voxel_containment.get_voxel_mask(bicelle_container_components)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use marching cubes to obtain the contour surfaces</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>vertices, faces, normals, values <span class="op">=</span> measure.marching_cubes(bicelle_container_grid.astype(<span class="bu">float</span>), level<span class="op">=</span><span class="fl">0.5</span>, spacing<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mesh and set vertices and triangles during initialization</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>mesh <span class="op">=</span> create_mesh_from_arrays(vertices, faces, visualize<span class="op">=</span><span class="va">False</span>, write<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate area for the inner meshes</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>inner_outer_area[<span class="st">'inner'</span>] <span class="op">=</span> mesh.get_surface_area() <span class="op">/</span> <span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="final-results" class="level4">
 <h4 class="anchored" data-anchor-id="final-results">Final results</h4>
-<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the results of calculating the areas and compare to previous result</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the results of calculating the areas and compare to previous result</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The inner and outer surface areas are respectively: </span><span class="sc">{</span>inner_outer_area[<span class="st">'inner'</span>]<span class="sc">:.02f}</span><span class="ss"> and </span><span class="sc">{</span>inner_outer_area[<span class="st">'outer'</span>]<span class="sc">:.02f}</span><span class="ss"> nm^2'</span>)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Take floating point accuracy into account!</span></span>
 <span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'The sum of innner and outer area is equal to the combined area calculated previously: </span><span class="op">\</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span><span class="bu">abs</span>(total_area <span class="op">-</span> np.<span class="bu">sum</span>(<span class="bu">list</span>(inner_outer_area.values()))) <span class="op">&lt;</span> <span class="fl">0.000001</span><span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="sc">{</span><span class="bu">abs</span>(total_area <span class="op">-</span> np.<span class="bu">sum</span>(<span class="bu">list</span>(inner_outer_area.values()))) <span class="op">&lt;</span> <span class="fl">0.000001</span><span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>The inner and outer surface areas are respectively: 4.74 and 17.55 nm^2
 The sum of innner and outer area is equal to the combined area calculated previously: True</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -869,7 +875,7 @@ The sum of innner and outer area is equal to the combined area calculated previo
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Question 8
+<span class="screen-reader-only">Tip</span>Question 8
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -882,10 +888,10 @@ Question 8
 <section id="composition-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="composition-analysis">Composition Analysis</h2>
 <p>To obtain the composition, a few composition analysis helper functions have been added to MDVContainment. However, to nicely visualize the result some additional matplotlib plotting functions were made specifically for this tutorial. In general this plotting should work reasonably well, but it is near impossible to create a single way of visualizing the compositions which works for all systems. In the end making good data visualization is an art!</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the target nodes to investigate to all nodes in the containment</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>component_ids <span class="op">=</span> containment.voxel_containment.nodes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the containment one more time so we do not forget the structure of our data</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(containment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the target nodes to investigate to all nodes in the containment</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>component_ids <span class="op">=</span> containment.voxel_containment.nodes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the containment one more time so we do not forget the structure of our data</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(containment)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>Containment Graph with 3 components (component: nvoxels):
 └── [-2: 59600]
     └── [1: 3868]
@@ -897,9 +903,9 @@ Question 8
 <h3 class="anchored" data-anchor-id="obtain-the-compositions">Obtain the compositions</h3>
 <section id="make-the-pie-chart-plots-counting-the-names-of-the-atoms" class="level4">
 <h4 class="anchored" data-anchor-id="make-the-pie-chart-plots-counting-the-names-of-the-atoms">Make the pie chart plots counting the names of the atoms</h4>
-<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">'names'</span> <span class="co"># 'resnames, names or molar'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">'names'</span> <span class="co"># 'resnames, names or molar'</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>compositions_names <span class="op">=</span> cl.get_compositions(containment, component_ids, mode)</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>compositions, fig, axs <span class="op">=</span> analyse_composition(u, containment, compositions_names, mode, min_label_percent<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>compositions, fig, axs <span class="op">=</span> analyse_composition(u, containment, compositions_names, mode, min_label_percent<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="output_84_0.png" class="img-fluid figure-img"></p>
@@ -909,9 +915,9 @@ Question 8
 </section>
 <section id="make-the-pie-chart-plots-counting-the-resnames-of-the-atoms" class="level4">
 <h4 class="anchored" data-anchor-id="make-the-pie-chart-plots-counting-the-resnames-of-the-atoms">Make the pie chart plots counting the resnames of the atoms</h4>
-<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">'resnames'</span> <span class="co"># 'resnames, names or molar'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">'resnames'</span> <span class="co"># 'resnames, names or molar'</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>compositions_resnames <span class="op">=</span> cl.get_compositions(containment, component_ids, mode)</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>compositions, fig, axs <span class="op">=</span> analyse_composition(u, containment, compositions_resnames, mode, min_label_percent<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>compositions, fig, axs <span class="op">=</span> analyse_composition(u, containment, compositions_resnames, mode, min_label_percent<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="output_86_0.png" class="img-fluid figure-img"></p>
@@ -921,9 +927,9 @@ Question 8
 </section>
 <section id="make-the-pie-chart-plots-counting-the-resnames-of-the-involved-molecules-only-count-each-molecule-once" class="level4">
 <h4 class="anchored" data-anchor-id="make-the-pie-chart-plots-counting-the-resnames-of-the-involved-molecules-only-count-each-molecule-once">Make the pie chart plots counting the resnames of the involved molecules (only count each molecule once)</h4>
-<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">'molar'</span> <span class="co"># 'resnames, names or molar'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>mode <span class="op">=</span> <span class="st">'molar'</span> <span class="co"># 'resnames, names or molar'</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>compositions_molar <span class="op">=</span> cl.get_compositions(containment, component_ids, mode)</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>compositions, fig, axs <span class="op">=</span> analyse_composition(u, containment, compositions_molar, mode, min_label_percent<span class="op">=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>compositions, fig, axs <span class="op">=</span> analyse_composition(u, containment, compositions_molar, mode, min_label_percent<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="output_88_0.png" class="img-fluid figure-img"></p>
@@ -939,17 +945,17 @@ Question 8
 <section id="atomgroup-from-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="atomgroup-from-nodes">Atomgroup from nodes</h3>
 <p>This is probably the most useful method to know. It can turn a selection of component_ids in the containment graph into an MDAnalysis atomgroup.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># The atomgroup containing the inside of the bicelle</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a> <span class="co"># The atomgroup containing the inside of the bicelle</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>atomgroup_from_nodes <span class="op">=</span> containment.get_atomgroup_from_nodes(<span class="bu">list</span>(leaf_nodes))</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(atomgroup_from_nodes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(atomgroup_from_nodes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>&lt;AtomGroup [&lt;Atom 11: COO of type C of resname OA-1, resid 3 and segid SYSTEM&gt;, &lt;Atom 12: C1A of type C of resname OA-1, resid 3 and segid SYSTEM&gt;, &lt;Atom 21: COO of type C of resname OA-1, resid 5 and segid SYSTEM&gt;, ..., &lt;Atom 66210: C1A of type C of resname OAOH, resid 61465 and segid SYSTEM&gt;, &lt;Atom 66259: COOH of type C of resname OAOH, resid 61475 and segid SYSTEM&gt;, &lt;Atom 66260: C1A of type C of resname OAOH, resid 61475 and segid SYSTEM&gt;]&gt;</code></pre>
 </section>
 <section id="voxels-positions-from-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="voxels-positions-from-nodes">Voxels positions from nodes</h3>
 <p>For more advanced analysis using voxel operations, one could prefer to work on the voxel grid itself.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the positions in the contaiment.voxel_containment.components_grid for the outer solvent phase</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All the positions in the contaiment.voxel_containment.components_grid for the outer solvent phase</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>voxel_positions_from_atomgroup <span class="op">=</span> containment.voxel_containment.get_voxel_positions(<span class="bu">list</span>(root_nodes)) </span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voxel_positions_from_atomgroup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voxel_positions_from_atomgroup)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>[[ 0  0  0]
  [ 0  0  1]
  [ 0  0  2]
@@ -961,21 +967,21 @@ Question 8
 <section id="atomgroup-from-voxel-positions" class="level3">
 <h3 class="anchored" data-anchor-id="atomgroup-from-voxel-positions">Atomgroup from voxel positions</h3>
 <p>Why stick to converting components into atomgroups, any voxel selection can be converted into an atomgroup!</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify custom voxels to convert to an atomgroup</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify custom voxels to convert to an atomgroup</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>atomgroup_from_voxels <span class="op">=</span> containment.get_atomgroup_from_voxel_positions(voxel_positions_from_atomgroup)</span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(atomgroup_from_voxels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(atomgroup_from_voxels)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>&lt;AtomGroup [&lt;Atom 1: COO of type C of resname OA-1, resid 1 and segid SYSTEM&gt;, &lt;Atom 2: C1A of type C of resname OA-1, resid 1 and segid SYSTEM&gt;, &lt;Atom 6: COO of type C of resname OA-1, resid 2 and segid SYSTEM&gt;, ..., &lt;Atom 66254: COOH of type C of resname OAOH, resid 61474 and segid SYSTEM&gt;, &lt;Atom 66264: COOH of type C of resname OAOH, resid 61476 and segid SYSTEM&gt;, &lt;Atom 66265: C1A of type C of resname OAOH, resid 61476 and segid SYSTEM&gt;]&gt;</code></pre>
 </section>
 <section id="writing-the-containment-atomgroup-with-annotated-components" class="level3">
 <h3 class="anchored" data-anchor-id="writing-the-containment-atomgroup-with-annotated-components">Writing the containment atomgroup with annotated components</h3>
 <p>We can ignore all the MDAnalysis warnings with respect to missing information as we simply want to write the atoms/residues/positions and labeling. The labeling of the components is written to the beta factor. This means the labeled components are not present if one writes a GRO file, as GRO files don’t have a beta factor field.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>u.atoms.write(<span class="st">'containment.pdb'</span>) <span class="co"># beta fields are changed in place as indicated!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>u.atoms.write(<span class="st">'containment.pdb'</span>) <span class="co"># beta fields are changed in place as indicated!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Uncomment these following lines and update the path, if you have VMD installed and want to look at the labeled structure file.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change me to point to the result of "which vmd" in your terminal</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change me to point to the result of "which vmd" in your terminal</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="co">#vmd_path = '/Applications/VMD\ 1.9.4a57-arm64-Rev12.app/Contents/MacOS/startup.command.csh' </span></span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="co"># VMD usage E.g. in atomselect 'beta "-3"' would show the outside water volume, do not forget the quotes around negative numbers!</span></span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="co">#!$vmd_path containment.pdb </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="co">#!$vmd_path containment.pdb </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 </section>
@@ -1019,14 +1025,14 @@ A static teaser of what the advanced plotting looks like.
 <div class="alert alert-block alert-info">
 <p><b>Tip:</b> You can hover over the composition bars to inspect the specifics of that segment.</p>
 </div>
-<div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>compositions_names <span class="op">=</span> cl.get_compositions(containment, mode<span class="op">=</span><span class="st">'names'</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>show_containment_with_composition(u, containment.voxel_containment, compositions_names, mode<span class="op">=</span><span class="st">'names'</span>, max_display_items<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>compositions_names <span class="op">=</span> cl.get_compositions(containment, mode<span class="op">=</span><span class="st">'names'</span>)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>show_containment_with_composition(u, containment.voxel_containment, compositions_names, mode<span class="op">=</span><span class="st">'names'</span>, max_display_items<span class="op">=</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>VBox(children=(VBox(children=(HBox(children=(HTML(value="&lt;b&gt;Comp. -2&lt;/b&gt; &amp;nbsp;&amp;nbsp;&lt;span style='color:gray'&gt;…</code></pre>
-<div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>compositions_resnames <span class="op">=</span> cl.get_compositions(containment, mode<span class="op">=</span><span class="st">'resnames'</span>)</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>show_containment_with_composition(u, containment.voxel_containment, compositions_resnames, <span class="st">'resnames'</span>, max_display_items<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>compositions_resnames <span class="op">=</span> cl.get_compositions(containment, mode<span class="op">=</span><span class="st">'resnames'</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>show_containment_with_composition(u, containment.voxel_containment, compositions_resnames, <span class="st">'resnames'</span>, max_display_items<span class="op">=</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>VBox(children=(VBox(children=(HBox(children=(HTML(value="&lt;b&gt;Comp. -2&lt;/b&gt; &amp;nbsp;&amp;nbsp;&lt;span style='color:gray'&gt;…</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>compositions_molar <span class="op">=</span> cl.get_compositions(containment, mode<span class="op">=</span><span class="st">'molar'</span>)</span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>show_containment_with_composition(u, containment.voxel_containment, compositions_molar, mode<span class="op">=</span><span class="st">'molar'</span>, max_display_items<span class="op">=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>compositions_molar <span class="op">=</span> cl.get_compositions(containment, mode<span class="op">=</span><span class="st">'molar'</span>)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>show_containment_with_composition(u, containment.voxel_containment, compositions_molar, mode<span class="op">=</span><span class="st">'molar'</span>, max_display_items<span class="op">=</span><span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>VBox(children=(VBox(children=(HBox(children=(HTML(value="&lt;b&gt;Comp. -2&lt;/b&gt; &amp;nbsp;&amp;nbsp;&lt;span style='color:gray'&gt;…</code></pre>
 </section>
 <section id="conclusion-1" class="level1">
@@ -1109,13 +1115,14 @@ https://doi.org/10.1101/2025.08.06.668936</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

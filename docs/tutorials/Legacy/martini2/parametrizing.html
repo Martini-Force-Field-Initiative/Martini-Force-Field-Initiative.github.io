@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -358,8 +364,8 @@ DPGS               1
 </p>
 <p>The choice of solvent is of importance: The molecule might behave differently in aqueous or apolar solvents and the CG model might not be able capture both equally well. Choose a solvent comparable to the environment where the molecule will spend most of its time. If both environments are important, you may choose to compromise and get the best of two worlds.</p>
 <p>For toluene you can run the simulations using (click on the files to download):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> gromos.mdp <span class="at">-c</span> gromos.gro <span class="at">-p</span> gromos.top <span class="at">-o</span> gromos</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> gromos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> gromos.mdp <span class="at">-c</span> gromos.gro <span class="at">-p</span> gromos.top <span class="at">-o</span> gromos</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> gromos</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/gromos.mdp">gromos.mdp</a></li>
 <li><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/gromos.gro">gromos.gro</a></li>
@@ -375,10 +381,10 @@ DPGS               1
 <li><p>Respect the symmetry of the molecule, and use the same beads for the same chemical groups within one molecule.</p></li>
 </ul>
 <p><strong>3) Generate coarse-grain mapped trajectory from the atomistic simulation.</strong> Using your just created mapping, transform the simulation you did at 1) to CG resolution. There are many ways to do this: you can use the transformation tool backward.py; an alternative and in some cases simple method is to create a Gromacs index file where every index group stands for a bead and contains the mapped atom numbers. Before you do that, you should realize that the molecule you are interested may be split by the periodic boundary conditions in one or more frames in the trajectory file (here gromos.xtc). To remedy this, you should first convert your atomistic trajectory to make molecules whole and then do the mapping. In this case, we are interested only in toluene and can reduce disk usage by only writing out the toluene coordinates, selecting only toluene as output. Put the mapped trajectory in a separate directory, for example MAPPED. For toluene run:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> MAPPED</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> MAPPED</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> 2 <span class="kw">|</span> <span class="ex">gmx</span> trjconv <span class="at">-s</span> gromos.tpr <span class="at">-f</span> gromos.xtc <span class="at">-pbc</span> whole <span class="at">-o</span> whole.xtc </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 2 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> whole.xtc <span class="at">-s</span> gromos.tpr <span class="at">-oxt</span> MAPPED/mapped.xtc <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 3</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">where</span> 3 is the number of CG beads in your molecule and the <span class="st">'seq 0 2'</span> avoids having to type all index groups. Inspect the file mapping.ndx to see how the atoms of toluene are grouped into the CG beads.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">where</span> 3 is the number of CG beads in your molecule and the <span class="st">'seq 0 2'</span> avoids having to type all index groups. Inspect the file mapping.ndx to see how the atoms of toluene are grouped into the CG beads.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/mapping.ndx">mapping.ndx</a></li>
 </ul>
@@ -390,24 +396,24 @@ DPGS               1
 <li><code>[ constraints ]</code>, <code>[ angles ]</code>, <code>[ dihedrals ]</code>, see the gromacs manual for the right format.</li>
 </ul>
 <p><strong>5) Create CG tpr file.</strong> Extract one frame from your trajectory (mapping it of course) and use it to create a tpr file for your molecule(s) of interest. We need this .tpr file to generate the distributions of the bonds, angles, and dihedrals from the mapped trajectory. Create a top file (include the general martini itp files and the newly created molecule itp and add the right number of molecules (just one toluene in this case)). Create or download a Martini mdp file (see examples on the website). Put the cg.top, minimization.mdp, and martini files in a separate directory (the MAPPED directory already created):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 2 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> whole.xtc <span class="at">-s</span> gromos.tpr <span class="at">-oxt</span> MAPPED/toluene.gro <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 3 <span class="at">-e</span> 0</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 2 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> whole.xtc <span class="at">-s</span> gromos.tpr <span class="at">-oxt</span> MAPPED/toluene.gro <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 3 <span class="at">-e</span> 0</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> MAPPED</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># [define your own cg.top defining the toluene molecule or including it as an itp . </span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># You also need an general martini force field file, e.g. martini_v2.0.itp (here version 2.0 is used), and an mdp file]</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> toluene.gro <span class="at">-p</span> cg.top <span class="at">-o</span> cg.tpr <span class="at">-maxwarn</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> toluene.gro <span class="at">-p</span> cg.top <span class="at">-o</span> cg.tpr <span class="at">-maxwarn</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>6) Generate target CG distributions from the CG mapped trajectory.</strong> Go back to the drawing table and identify between which beads there should be bonded interactions (bonds, constraints, angles, proper and improper dihedrals). Measure the length/angle of these interactions in you mapped-to-CG atomistic simulations from step 3 (mapped.xtc). To do this, create index files for bonds with a directive for “[bonds]” containing (multiple) pairs of CG beads; for angles, “[angles]” containing triples; and for dihedrals, “[dihedrals]” with quartets. Write scripts that generate distributions for all bonds, angles, and dihedrals you are interested in. For toluene, there are three bonds and three angles (around the triangle). The index files <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/bonds.ndx">bonds.ndx</a> and <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/angles.ndx">angles.ndx</a> as well as a bash script <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/DOBONDEDANALYSIS.sh">DOBONDEDANALYSIS.sh</a> to generate all distributions are available as an example of how to do this. You may of course use your favorite scripting tool (e.g.&nbsp;python) . Finally, you can also do it by hand, just one example:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> 0 <span class="kw">|</span> <span class="ex">gmx</span> distance <span class="at">-s</span> cg.tpr <span class="at">-f</span> mapped.xtc <span class="at">-n</span> bonds.ndx <span class="at">-oall</span> bond_0.xvg</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> 0 <span class="kw">|</span> <span class="ex">gmx</span> distance <span class="at">-s</span> cg.tpr <span class="at">-f</span> mapped.xtc <span class="at">-n</span> bonds.ndx <span class="at">-oall</span> bond_0.xvg</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> bond_0.xvg <span class="at">-dist</span> distr-bond_0.xvg <span class="at">-bw</span> 0.001</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> angle <span class="at">-f</span> mapped.xtc <span class="at">-n</span> angles.ndx <span class="at">-ov</span> angle_0.xvg <span class="at">-type</span> angle</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> angle_0.xvg <span class="at">-dist</span> distr-angle_0.xvg <span class="at">-bw</span> 1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> angle_0.xvg <span class="at">-dist</span> distr-angle_0.xvg <span class="at">-bw</span> 1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To do all analysis by the script type:</p>
 <ul>
 <li><p><code>./DOBONDEDANALYSIS.sh</code> In some cases it might be sufficient to calculate the average and standard deviation for all the distributions, however the distributions might be bimodal and it is always wise to inspect the distributions! If you used the script, you now have the target distributions in the directory BONDDISTRIBUTIONS and the angles in the directory ANGLEDISTRIBUTIONS. Using xmgrace for the angle distributions, type:</p></li>
 <li><p><code>xmgrace ANGLEDISTRIBUTIONS/dist*.xvg</code> These are the distributions you want to reproduce as well as you can. If they are nicely unimodal, you can take the average value as the parameter for the bond distance and bond angle, respectively, in your first martini topology, with some reasonable guess for the force constants.</p></li>
 </ul>
 <p><strong>7) Create CG simulation.</strong> Extract one frame from your mapped trajectory and solvate it in the same solvent as the atomistic simulation. Create a top file (include the general martini itp files and the newly created molecule itp and add the right number of molecules (solute and solvent)). Create a Martini mdp file (see examples on the website). Simulate the initial form of the CG molecule (you probably will have to energy minimize and maybe relax for a few thousand steps at a smaller timestep, e.g.&nbsp;5fs). [You can prepare files yourself and gather them from the Martini site, or you can download the itp files <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martini_v2.0.itp">martini_v2.0.itp</a>, <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martini_v2.0_solvents.itp">martini_v2.0_solvents.itp</a> and <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martini_toluene.itp">martini_toluene.itp</a>, and take it from there.] It may be wise to create a separate directory for the CG system, for example take1.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> take1</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> take1</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[prepare/collect</span> your files here]</span>
@@ -416,13 +422,13 @@ DPGS               1
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> relax.mdp <span class="at">-c</span> minimization.gro <span class="at">-p</span> martini.top <span class="at">-o</span> relax</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-deffnm</span> relax</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> md.mdp <span class="at">-c</span> relax.gro <span class="at">-p</span> martini.top <span class="at">-o</span> md</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-deffnm</span> md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-deffnm</span> md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this simulation measure the bonded interactions similar to what you did in step 6 for the mapped trajectory. You can use the same index file and script. As it stands, you also need to copy the bond and angle index files. You may be able to think of more economical ways to use the script.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../MAPPED/DOBONDEDANALYSIS.sh</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../MAPPED/DOBONDEDANALYSIS.sh</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../MAPPED/bonds.ndx .</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../MAPPED/angles.ndx .</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> 2 <span class="kw">|</span> <span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-s</span> md.tpr <span class="at">-pbc</span> whole <span class="at">-o</span> mapped.xtc</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./DOBONDEDANALYSIS.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">./DOBONDEDANALYSIS.sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>8) Optimize CG bonded parameters.</strong> In step 7 two things might happen: The simulation finishes and you obtain distributions or the simulation crashes. In the first case, you can compare the distributions to the ones obtained in step 6 and repeat step 7 after adjusting the parameters in the itp to obtain better distributions. It may be wise to make a fresh directory for each attempt (e.g.&nbsp;take2, take3, etc.). Too wide distributions mean you’ll need higher force constants, averages being off means you need to shift, etc. If the simulation crashes you will also have to go back, now with the aim to make the molecule more stable. This often means lowering force constants, removing uncessesary dihedrals or changing constraints to bonds or vice versa. Some common source of instability are:</p>
 <ul>
 <li>If a (proper) dihedral is defined over 4 atoms and the angle between 3 atoms is very wide (close to 180 degrees) this may lead to heavy fluctuations and crashes. You’ll might have to remove the dihedral or use special types of dihedrals.</li>
@@ -488,13 +494,14 @@ DPGS               1
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

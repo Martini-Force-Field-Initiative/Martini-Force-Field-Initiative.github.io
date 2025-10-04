@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -182,7 +183,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -192,12 +194,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -264,6 +266,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -419,7 +425,7 @@ oplsaa
 </ul>
 <p>The <code>initram.sh</code> script uses the gromacs package so a proper version needs to be sourced, i.e.&nbsp;a version of initram.sh that is compatible with the gromacs version you are using.</p>
 <p>Run the script using the following command:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./initram-v5.sh <span class="at">-f</span> CG_posre.gro <span class="at">-o</span> aa_charmm.gro <span class="at">-to</span> charmm36 <span class="at">-p</span> topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./initram-v5.sh <span class="at">-f</span> CG_posre.gro <span class="at">-o</span> aa_charmm.gro <span class="at">-to</span> charmm36 <span class="at">-p</span> topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After successful backmapping the <code>aa_charmm.gro</code> file will contain POPC membrane embedded aquaporin 1 as well as the solvent at fully atomistic resolution according to the CHARMM36 force field. Figure 2 illustrates the backmapping of a few POPC molecules. When running the backmapping script please keep in mind that <code>initram.sh</code> generates a significant number of temporary files so backmapping in a separate directory can be a good idea and that <code>backward.py</code> used random kicks to initially displace the atoms so rerunning the same command can give different results (and even though some runs might results in an error others may not).</p>
 <hr>
 <div class="quarto-figure quarto-figure-center">
@@ -440,7 +446,7 @@ oplsaa
 <ol type="1">
 <li>Create a new gro file:</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python triple-w.py dppc_bilayer.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> python triple-w.py dppc_bilayer.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The python-script <code>triple-w.py</code> adds positive and negative sites at a small distance to every central water bead in a <code>.gro</code> file.</p>
 <ol start="2" type="1">
 <li><p>Adapt the <code>.top</code> file. Make sure the polarizable version of the particle definition file <code>[martini_v2.2refP.itp](../../../downloads/force-field-parameters/martini2/particle-definitions.qmd)</code> is included if you want to use the <a href="http://dx.doi.org/10.1063/1.4974833">refined polarizable water model</a>, otherwise include the older version. An example of an <code>.mdp</code> file can be downloaded here. Make sure your .mdp is compatible with the polarizable water version; this one use the reaction-field electrostatics, but the refined polarizable model is particularly suitable for long-range electrostatics (coulomb_type = PME). The <code>.itp</code> files for the lipids and possibly other molecules do not have to be changed.</p></li>
@@ -448,7 +454,7 @@ oplsaa
 <li><p>Minimize the system. For polarizable water to minimize without problems, it is SOMETIMES necessarry to change the constraints to stiff bonds. Using the ifdef-statement in the <code>.itp</code> file, this can be set using a define value in the <code>.mdp</code> file (have a look at the bottom of <code>martini_v2.P.itp</code> to see how it works).</p></li>
 <li><p>Generate the input files for the minimization run:</p></li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> martini_v2P.x_new-rf-em.mdp <span class="at">-c</span> dppc_bilayer_PW.gro <span class="at">-p</span> dppc_bilayer.top <span class="at">-o</span> em <span class="at">-maxwarn</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> martini_v2P.x_new-rf-em.mdp <span class="at">-c</span> dppc_bilayer_PW.gro <span class="at">-p</span> dppc_bilayer.top <span class="at">-o</span> em <span class="at">-maxwarn</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="6" type="1">
 <li>Proceed with equilibration (e.g.&nbsp;using <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martini_v2P.x_new-rf-eq.mdp">martini_v2P.x_new-rf-eq.mdp</a>) and production (e.g.&nbsp;using <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martini_v2P.x_new-rf-md.mdp">martini_v2P.x_new-rf-md.mdp</a>) runs. Note, the mdp files linked to here have not been tested extensively (August 2017). They appear to give a stable simulation of the DPPC bilayer in polarizable water, but the scope of these parameters has not been validated systematically in the systems described in the original paper.</li>
 </ol>
@@ -471,9 +477,9 @@ oplsaa
 <li><p>Note, the vesicle equilibrium runs require <code>gromacs</code> version 5.1 or greater. In the equilibrium runs pores through the vesicle bilayer are held open to allow lipids to flop-flop and equilibrate between the inside/outside leaflets. The potentials used to keep those pores open are only supported in <code>gromacs</code> version 5.1 or greater. Pores are kept open using so-called flat-bottomed position restraints. These are described in the Version 5 manual in section 4.3.2. The pores are activated/controlled by setting the <code>define = -DVESICLE_LIPIDTAIL_R=1</code> in the <code>.mdp</code> file. This flag activates position restraints set in the <code>.itp</code> of all the lipids and the provided restraint coordinates file <code>lipidtail_posres.pdb</code>.</p></li>
 <li><p>Note, the initial energy minimization normally requires a double precision installation of <code>gromacs</code>. The reason is that some beads may be very close to each other in the initial structure, leading to very high forces; in the single-precision installation, these forces may be interpreted as infinite and therefore cause the minimization to fail. There is a workaround that problem, however. By using soft-core potentials in the first minization steps, forces will not be infinite and the double precision version is not required. The script equivalent to the <code>README</code> file containing the protocol and the setting <code>.itp</code> files for the dry DPPC vesicle of this tutorial are available <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/soft-core-minimization.tar">here</a>. Note that for other systems, you may need edits. After download, place the <code>soft-core-minimization.tgz</code> file in the folder <code>charmm-gui/gromacs/</code>. Unpack and run the protocol.</p></li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-xzvf</span> soft-core-minimization.tgz</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> tar <span class="at">-xzvf</span> soft-core-minimization.tgz</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./minimization-equilibration.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./minimization-equilibration.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>A word of WARNING! Proper equilibration of lipids between the leaflets, even with the open pores can take quite long, and will vary depending on vesicle size and lipids composition. The default time for the equilibrium runs is set to 500 ns which will take very long (days) if run on your desktop machine. Also, the time-step may be too large in some cases, so keep an eye on the simulations.</li>
 </ul>
@@ -551,13 +557,14 @@ oplsaa
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

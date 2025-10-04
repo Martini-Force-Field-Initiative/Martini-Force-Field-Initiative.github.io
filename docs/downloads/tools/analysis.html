@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -69,14 +34,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -151,7 +117,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -161,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -171,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Tutorials</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../docs/downloads/index.html" aria-current="page"> <i class="bi bi-download" role="img">
+    <a class="nav-link" href="../../../docs/downloads/index.html"> <i class="bi bi-download" role="img">
 </i> 
 <span class="menu-text">Downloads</span></a>
   </li>  
@@ -233,6 +200,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -526,9 +497,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#prolint" id="toc-prolint" class="nav-link active" data-scroll-target="#prolint">ProLint</a></li>
+  <li><a href="#martiniglass" id="toc-martiniglass" class="nav-link active" data-scroll-target="#martiniglass">MartiniGlass</a></li>
+  <li><a href="#prolint" id="toc-prolint" class="nav-link" data-scroll-target="#prolint">ProLint</a></li>
   <li><a href="#mdvoxelsegmentation" id="toc-mdvoxelsegmentation" class="nav-link" data-scroll-target="#mdvoxelsegmentation">MDVoxelSegmentation</a></li>
-  <li><a href="#rendering-cg-bonds-constraints-with-vmd" id="toc-rendering-cg-bonds-constraints-with-vmd" class="nav-link" data-scroll-target="#rendering-cg-bonds-constraints-with-vmd">Rendering CG bonds &amp; constraints with VMD</a></li>
   </ul>
 </nav>
     </div>
@@ -554,6 +525,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="martiniglass" class="level3 software-card">
+<h3 class="anchored" data-anchor-id="martiniglass">MartiniGlass</h3>
+<p><code>MartiniGlass</code> uses <a href="https://github.com/marrink-lab/vermouth-martinize">[vermouth]</a> to stably rewrite your input topology files as ones that can be used for visualization in VMD. Although much of the functionality is focused on proteins, and the program has a particular focus on being able to visualize protein secondary/tertiary structure networks, MartiniGlass can in fact be used to reconstruct bonded networks of any Martini molecule!</p>
+<p>Documentation for <code>MartiniGlass</code> is available on the <a href="https://martiniglass.readthedocs.io/en/latest">[readthedocs]</a> site. The documentation covers multiple use cases and runs through the tutorials in the <a href="https://github.com/Martini-Force-Field-Initiative/MartiniGlass/blob/main/examples">[examples]</a> folder step by step.</p>
+</section>
 <section id="prolint" class="level3 software-card">
 <h3 class="anchored" data-anchor-id="prolint">ProLint</h3>
 <p><code>Prolint2</code> is an optimized tool for analyzing and visualizing lipid-protein interactions from molecular dynamics trajectories at coarse-grained or atomistic resolution.</p>
@@ -563,116 +539,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="mdvoxelsegmentation">MDVoxelSegmentation</h3>
 <p>When working with large systems containing multiple bilayers or other dynamic macroscopic objects, it tends to come more natural to give these aggregates an identity of their own. This is exactly what <code>MDAVoxelSegmentation</code> does for amphipathic Martini systems. It not only detects bilayers/leaflets or other aggregates using a voxel based architecture, but it also keeps track of such entities over time.</p>
 <p>For more details and to download the latest version, visit the <a href="https://github.com/marrink-lab/MDVoxelSegmentation">[GitHub repository]</a>.</p>
-</section>
-<section id="rendering-cg-bonds-constraints-with-vmd" class="level3 software-card">
-<h3 class="anchored" data-anchor-id="rendering-cg-bonds-constraints-with-vmd">Rendering CG bonds &amp; constraints with VMD</h3>
-<p><code>cg_bonds-v5.tcl</code> is a Tcl script to read and draw Martini bonds and constraints in <code>VMD</code>. The bonds of the elastic networks can be drawn as well. The script for use with gromacs 5 can be found <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds-v5.tcl">[here]</a>.</p>
-<section id="usage" class="level4">
-<h4 class="anchored" data-anchor-id="usage"><span style="color:blue"><strong>Usage</strong></span></h4>
-<p>The script is invoked from the <code>VMD</code> command line. After sourcing it (<code>source /path/to/cg_bonds.tcl</code>, or <code>/path/to/cg_bonds-v5.tcl</code>), simply type <code>cg_bonds</code> (options and default values listed below). You can summon an “how to” at any moment by calling the <code>cg_bonds_usage</code> command.</p>
-<p>This script uses the <code>gmxdump</code> executable compiled with <code>gromacs</code>. By default, it looks for it in the <code>/usr/bin</code> directory; you can specify another path with a specific option (see below). The script can now parse <code>.top</code> and <code>.itp</code> files, via the <code>-top</code> option.</p>
-</section>
-<section id="cg_bonds" class="level4">
-<h4 class="anchored" data-anchor-id="cg_bonds"><span style="color:blue"><strong>cg_bonds</strong></span></h4>
-<p>Options and default values (slightly different from the previous version!):</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 33%">
-<col style="width: 41%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>-molid</td>
-<td>“<code>top</code>”</td>
-<td><code>VMD</code>-defined ID of the molecule to process</td>
-</tr>
-<tr class="even">
-<td>-gmx</td>
-<td><code>/usr/bin/gmxdump</code></td>
-<td>absolute path to <code>gmxdump</code> executable (for version 5, this should point to the gmx executable, default <code>/usr/bin/gmx</code>)</td>
-</tr>
-<tr class="odd">
-<td>-tpr</td>
-<td><code>topol.tpr</code></td>
-<td>absolute path to the simulation file (<code>.tpr</code>)</td>
-</tr>
-<tr class="even">
-<td>-top</td>
-<td><code>topol.top</code></td>
-<td>absolute path to the system topology files (<code>.top</code> linking to <code>.itp</code>)</td>
-</tr>
-<tr class="odd">
-<td>-topoltype</td>
-<td>“<code>martini</code>”</td>
-<td>protein topology type: “<code>martini</code>”, “<code>elastic</code>” or “<code>elnedyn</code>”</td>
-</tr>
-<tr class="even">
-<td>-net</td>
-<td>“<code>martini</code>”</td>
-<td>network to draw: “<code>martini</code>”, “<code>elastic</code>” or “<code>both</code>”</td>
-</tr>
-<tr class="odd">
-<td>-bndrcnstr</td>
-<td>“<code>both</code>”</td>
-<td>draw bonds AND/OR constraints “<code>bonds</code>”, “<code>constraints</code>” or “<code>both</code>”</td>
-</tr>
-<tr class="even">
-<td>-cutoff</td>
-<td>7.0</td>
-<td>cutoff for bonds (angstroms)</td>
-</tr>
-<tr class="odd">
-<td>-color</td>
-<td>“<code>red</code>”</td>
-<td>color (color name or <code>VMD</code>-defined ID) of elastic bonds</td>
-</tr>
-<tr class="even">
-<td>-mat</td>
-<td>“<code>Opaque</code>”</td>
-<td>material for elnedyn bonds</td>
-</tr>
-<tr class="odd">
-<td>-rad</td>
-<td>0.2</td>
-<td>radius of elastic bonds</td>
-</tr>
-<tr class="even">
-<td>-res</td>
-<td>6</td>
-<td>resolution of elastic bonds</td>
-</tr>
-</tbody>
-</table>
-<p>In most of the cases, if a “classical” cut-off is used for the elastic network (0.9nm), more than 12 bonds per atom are defined and <code>VMD</code> refuses to draw them. BUT this script replaces bonds by cylinders, and is able to draw the entire elastic network. Note that you have to modify the default cutoff value to see all the links defined by the elastic network.</p>
-<p>Then you can remove Martini bonds with the <code>cg_delete_martini_bonds</code>; and the cylinders with the <code>cg_delete_elastic_bonds</code>. The only option for the previous three commands is the VMD-defined ID of the molecule to process (via <code>-molid</code>, default is “<code>top</code>”).</p>
-</section>
-<section id="known-issues" class="level4">
-<h4 class="anchored" data-anchor-id="known-issues"><span style="color:blue"><strong>Known issues</strong></span></h4>
-<ul>
-<li>Bonds drawn for the elastic network don’t follow the dynamic of the protein; the 12-bonds-limitation of VMD obliges to draw them using cylinders, not regular bonds. <strong>Please drop a mail if you have a solution to fix that…</strong></li>
-<li>Version of VMD should be superior to <code>1.8.5</code> (excluded) to run this script properly.</li>
-<li><code>Tcl</code> needs an empty line at the end of the files it reads (<code>.top</code> and <code>.itp</code>)!</li>
-<li>On the same level, <code>Tcl</code> seems to understand differently the simple and double quotes… Please check that before shouting.</li>
-</ul>
-</section>
-<section id="example" class="level4">
-<h4 class="anchored" data-anchor-id="example"><span style="color:blue"><strong>Example</strong></span></h4>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">user@machine</span> $ vmd protein.gro</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> source /home/user/scripts/cg_bonds.tcl</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_bonds <span class="at">-top</span> system.top <span class="at">-topoltype</span> <span class="st">"elastic"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_bonds <span class="at">-gmx</span> /home/user/bin/gmx-4.5.4/bin/gmxdump <span class="at">-tpr</span> dyn.tpr <span class="at">-net</span> <span class="st">"elastic"</span> <span class="at">-cutoff</span> 12.0 <span class="at">-color</span> <span class="st">"orange"</span> <span class="at">-mat</span> <span class="st">"AOChalky"</span> <span class="at">-res</span> 12 <span class="at">-rad</span> 0.1 <span class="at">-topoltype</span> <span class="st">"elastic"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> <span class="op">&gt;</span> cg_delete_elastic_bonds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The few lines above will:</p>
-<ol type="1">
-<li>load the protein.gro structure,</li>
-<li>source the cg_bonds.tcl script,</li>
-<li>draw the martini bonds (using the .top file specified in the command line) extracted from a .top containingelastic network bonds,</li>
-<li>draw the elastic network with the options (cutoff, color, material, resolution and radius) specified by extracting the bonds from the .tpr file,</li>
-<li>delete the elastic network bonds previously drawn.</li>
-</ol>
-<p>All these line will be applied to the molecule with the <code>VMD</code>-defined ID 0 (or “<code>top</code>”).</p>
-</section>
 </section>
 
 
@@ -729,13 +595,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

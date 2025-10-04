@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -371,16 +377,16 @@ Tip
 </div>
 </div>
 <p>Start by feeding the SMILES string for <em>1-ethylnaphthalene</em> (namely, <code>CCc1cccc2ccccc21</code>) to the SwissParam server. After submitting the molecule, the server will generate input parameters for several molecular dynamics (MD) packages. Download the resulting zip file. You can now unzip the zip archive provided:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> files-m3-parametrize_new_small_molecule.zip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> files-m3-parametrize_new_small_molecule.zip</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which contains a folder called <code>ENAP-in-water</code> that contains some template folders and useful scripts. We will assume that you will be carrying out the tutorial using this folder structure and scripts. Note that the archive contains also a folder called <code>ENAP-worked</code> where you will find a worked version of the tutorial (trajectories not included). This might be useful to use as reference to compare your files (e.g., to compare the <code>ENAP_LigParGen.itp</code> you obtained with the one you find in <code>ENAP-worked/1_AA-reference</code>).</p>
 <p>We can now move to the first subfolder, <code>1_AA-reference</code>, and copy over the files you just obtained from the LigParGen server:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ENAP-in-water/1_AA-reference</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ENAP-in-water/1_AA-reference</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>[move here the obtained zip file from the SwissParam server.]</p>
 </blockquote>
 <p>Input files obtained from <code>SwissParam</code> come with a default residue name of <code>LIG</code>. For now, this does not particularly matter, but it may be useful to change it for record keeping or future reference.</p>
 <p>Now launch the AA MD simulation:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> generate_atomistic_reference.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> generate_atomistic_reference.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The last command will run an energy-minimization, followed by an NPT equilibration of 250 ps, and by an MD run of 10 ns (inspect the script and the various <code>.mdp</code> files to know more). Note that 10 ns is a rather short simulation time, selected for speeding up the current tutorial. You should rather use at least 50 ns, or an even longer running time in case of more complex molecules (you can try to experiment with the simulation time yourself!). In this case, the solvent used is water; however, the script can be adapted to run with any other solvent, provided that you input also an equilibrated solvent box. You should choose a solvent that represents the environment where the molecule will spend most of its time. Finally, a solvent-free trajectory is generated to use for mapping purposes later.</p>
 </section>
 <section id="atom-to-bead-mapping" class="level3">
@@ -403,16 +409,16 @@ Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.
 <p>Using the mapping you just created, you will now transform the simulation you did at <a href="#generate-atomistic-reference-data">section 1</a> to CG resolution using a file in the <code>.map</code> format.</p>
 <p>The <a href="https://jbarnoud.github.io/cgbuilder/">CGbuilder tool</a> can generate such a file, as it did with the index-based approach in the previous tutorial <sup><a href="#references">[4]</a></sup>. Load the <code>lig.gro</code> generated in the previous step, and assign each of the atoms to its corresponding bead in the viewer.</p>
 <p>You can now try to map the trajectory using a <code>.map</code> file from <code>CGBuilder</code>. Once done, download the <code>cgbuilder.map</code> file that <code>CGbuilder</code> creates to the <code>2_mapping</code> folder.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2_mapping/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../2_mapping/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p>download cgbuilder.map and move it to the current folder, i.e., ‘2_mapping’</p>
 </blockquote>
 <p>The header of <code>CGbuilder</code> .map files doesn’t quite align with what we exactly need for <code>fast_forward</code>. Make sure the first two lines of the file read as:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecule <span class="bu">]</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">LIG</span> ENAP</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecule <span class="bu">]</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">LIG</span> ENAP</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These lines define the name of the molecule at atomistic (<code>LIG</code>) and CG (<code>ENAP</code>) resolution.</p>
 <p>You can now run the script:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 2_mapping.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> 2_mapping.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which will:</p>
 <ol type="1">
 <li>Make a python virtual environment and install the fast forward package in it.</li>
@@ -434,7 +440,7 @@ Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.
 <li>Bonds may be left as bonds only, <code>ff_inter</code> will automatically convert high force constants to constraints.</li>
 </ol>
 <p>The first interactions directive of the file can then look something like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[bonds]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[bonds]</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">i</span> j funct length kb</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> 2 1 0.300 5000 <span class="kw">;</span> <span class="ex">C1_R1</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> 4 1 0.300 5000 <span class="kw">;</span> <span class="ex">C1_R4</span></span>
@@ -443,12 +449,12 @@ Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> dihedrals <span class="bu">]</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">i</span> j k l func ref.angle force_const</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a> <span class="ex">1</span> 3 6 5 2 0 10 <span class="kw">;</span> <span class="ex">C1_R3_R6_R5</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">…</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note as well that the initial guesses here are completely arbitrary. Any interaction will be analysed <em>ab initio</em> with new parameters calculated.</p>
 <p>To run <code>ff_inter</code> we also need a reference <code>.tpr</code> file for the molecule on its own:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> initial.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> ../2_mapping/mapped.gro <span class="at">-o</span> mapped.tpr <span class="at">-maxwarn</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> initial.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> ../2_mapping/mapped.gro <span class="at">-o</span> mapped.tpr <span class="at">-maxwarn</span> 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>ff_inter</code> program can then be invoked with the following command:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ff_inter</span> <span class="at">-f</span> ../2_mapping/mapped.xtc <span class="at">-s</span> mapped.tpr <span class="at">-i</span> ENAP_initial.itp <span class="at">-dists</span> <span class="at">-plots</span> <span class="at">-itp-only</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ff_inter</span> <span class="at">-f</span> ../2_mapping/mapped.xtc <span class="at">-s</span> mapped.tpr <span class="at">-i</span> ENAP_initial.itp <span class="at">-dists</span> <span class="at">-plots</span> <span class="at">-itp-only</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here, the mapped trajectory and associated topology (<code>mapped.xtc</code> and <code>mapped.tpr</code> respectively) are analysed using the interactions notated in the input molecule topology file (<code>ENAP_initial.itp</code>). Using the <code>-dists</code> flag writes out time series and histogram data for each of the interactions. The histograms are all also plotted in a figure using the <code>-plots</code> flag: a file called <code>distribution_plots.png</code> is written. For each interaction, the histogram of the interaction data is plotted along with the fit the program has made. Finally, the <code>-itp-only</code> flag indicates that strictly <em>only</em> the interactions notated in the input file should be determined. Otherwise, <code>ff_inter</code> will attempt to generate all possible angles and dihedrals for the molecule from its bonded structure, a feature of the program which may be useful for slightly larger or more flexible molecules.</p>
 <p>The program will generate a new itp file based on the molecule name (i.e.&nbsp;<code>ENAP.itp</code>). Compare the input and the output file. The output file should now contain both bonds and constraints, with some bonds separated by an <code>#ifdef</code> statement for energy minimisation purposes, and written in the constraints directive with the inverse statement. The bond lengths and force constants should now be more ‘optimised’ for an initial simulation, with respect to the distributions calculated and shown in the figure generated.</p>
 </section>
@@ -456,16 +462,16 @@ Figure 2 | Atom-to-bead mapping of the 1-ethylnaphthalene.
 <h3 class="anchored" data-anchor-id="create-the-cg-simulation">5. Create the CG simulation</h3>
 <hr>
 <p>We can now finalize the first take on the CG model, <code>ENAP_take1.itp</code>, where we can use the info contained in the <code>data_bonds.txt</code> and <code>data_dihedrals.txt</code> files to come up with better guesses for the bonded parameters:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../4_CG_sim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../3_initial_CG/ENAP.itp .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> run_CG.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../4_CG_sim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../3_initial_CG/ENAP.itp .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> run_CG.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where the command will run an energy-minimization, followed by an NPT equilibration, and by an MD run of 100 ns (inspect the script and the various <code>.mdp</code> files to know more) for the Martini system in water. Finally, a ligand-only trajectory and topology are generated for comparison to the mapped ones made earlier.</p>
 </section>
 <section id="optimize-cg-bonded-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="optimize-cg-bonded-parameters">6. Optimize CG bonded parameters</h3>
 <hr>
 <p>You can now compare the simulated distributions to the reference ones using the final program of the fast_forward package, <code>ff_assess</code>. Use the following command:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ff_assess</span> <span class="at">-f</span> prod/lig_CG.xtc <span class="at">-s</span> prod/lig_CG.tpr <span class="at">-i</span> ENAP.itp <span class="at">-d</span> ../3_initial_CG/ <span class="at">-plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ff_assess</span> <span class="at">-f</span> prod/lig_CG.xtc <span class="at">-s</span> prod/lig_CG.tpr <span class="at">-i</span> ENAP.itp <span class="at">-d</span> ../3_initial_CG/ <span class="at">-plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>ff_assess</code> program simply uses the annotated topology of the molecule to calculate the interactions actually obtained during the CG simulation, and plots them against the reference distributions previously generated by <code>ff_inter</code> (given in a file path to the <code>-d</code> flag). Finally, a score is generated using the <a href="https://en.wikipedia.org/wiki/Hellinger_distance">Hellinger distance</a> comparing the simulated and mapped distributions.</p>
 <p>The plot produced should look like this:</p>
 <!-- insert figure with html to modify width -->
@@ -568,13 +574,14 @@ Figure 3 | CG simulation vs.&nbsp;mapped bonded distributions.
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

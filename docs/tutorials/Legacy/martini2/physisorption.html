@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -149,7 +150,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -159,12 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -231,6 +233,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -313,12 +319,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setting-up-the-system" class="level5">
 <h5 class="anchored" data-anchor-id="setting-up-the-system"><strong>0. Setting up the system</strong></h5>
 <p>Download the zip file, and unzip it. It expands to a directory or folder called Tutorial. Go into the folder of the tutorial. For purposes of this tutorial this will be our working directory:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd Tutorial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd Tutorial</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Make an empty directory in which you will test the simulation protocol:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir testSA</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd testSA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir testSA</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd testSA</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>First copy a sample topology file:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp ../topology/sample_topol.top topol.top</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp ../topology/sample_topol.top topol.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The topology file consist of references to parameters of force-fields and number of molecules in the system. Here is the <code>sample_topol.top</code> file:</p>
 <pre class="text"><code>#include "../FF/martini_v2.15.itp"
 
@@ -341,39 +347,39 @@ AM25   50
 PHEO  300</code></pre>
 <p>The first four lines describe where parameters of force-field can be found (in subdirectory “Tutorial/FF”), then there is [ system ] with a title of simulation, and then [ molecules ], after which there are types and numbers of molecules of each type used in the simulation. For this tutorial, we use 1600 beads of graphite, 50 molecules of AM25, and 300 molecules of solvent PHEO. The subfolder “Tutorial/topology” also contains other topologies used in publication [2].</p>
 <p>Copy the coordinate file of a small graphite flake from the “Tutorial/gro” folder (to learn how to make a graphite flake yourself look at the end of this tutorial page). This box contains 1600 graphite beads in four layers, arranged in a hexagonal pattern. The beads are located inside the box, making sure there is space between the periodic images in all directions. This is why it is called a “flake”, as opposed to a “surface”. In many modeling applications, surfaces (of solids) are modeled as periodic entities, with a number of unit cells explicitly described and connected across the periodic boundaries. Here, this is NOT the case.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp ../gro/small_graphite.gro 0_box.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp ../gro/small_graphite.gro 0_box.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Insert adsorbent molecules into this box using the “gmx insert-molecules” command: the coordinate file for single molecules of adsorbents are in the “Tutorial/gro” subdirectory. Here, we insert 50 adsorbent molecules of the AM25 kind:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx insert-molecules <span class="at">-f</span> 0_box.gro <span class="at">-ci</span> ../gro/AM25.gro <span class="at">-o</span> 0_box_ad.gro <span class="at">-nmol</span> 50</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx insert-molecules <span class="at">-f</span> 0_box.gro <span class="at">-ci</span> ../gro/AM25.gro <span class="at">-o</span> 0_box_ad.gro <span class="at">-nmol</span> 50</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Add solvent molecules using the “gmx solvate” command: here we use the -maxsol option to limit the number of molecules to 300 (however, you don’t have to use it, but you have to then make an appropriate change of the number of molecules in topol.top file):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> 0_box_ad.gro <span class="at">-cs</span> ../gro/phenyloctane.gro <span class="at">-o</span> 0_box_sol.gro <span class="at">-p</span> topol.top <span class="at">-maxsol</span> 300</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx solvate <span class="at">-cp</span> 0_box_ad.gro <span class="at">-cs</span> ../gro/phenyloctane.gro <span class="at">-o</span> 0_box_sol.gro <span class="at">-p</span> topol.top <span class="at">-maxsol</span> 300</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The subfolder “pictures” includes snapshots of different stages of the processes filling the box.</p>
 <p>Now it is time to perform simulations with the system prepared.</p>
 </section>
 <section id="energy-minimization" class="level5">
 <h5 class="anchored" data-anchor-id="energy-minimization"><strong>1.Energy minimization</strong></h5>
 <p>After our system is set up, perform energy minimization, to remove all bad contacts (which could result in numerical instability and an explosion of the system). All parameter files for the simulation engine are in the “Tutorial/mdp” folder. All *.mdp files are similar to one present on other tutorials of Martini except lines in which we specify that graphite beads are frozen (freezegrps = GRAP and freezedim= Y Y Y). The graphite beads do not move during the course of simulation (but they do interact with adsorbent and solvent molecules). This is a choice that is usually made to limit the computational effort. The graphite surface when run without the “freezegrps” option is stable at small time-steps, but defects might occur over time.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/1_em.mdp <span class="at">-c</span> 0_box_sol.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 1_em.tpr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/1_em.mdp <span class="at">-c</span> 0_box_sol.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 1_em.tpr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that you may have to ignore WARNINGS. This can be done by adding the -maxwarn option to the gmx grompp command, e.g.&nbsp;if you need to ignore 1 warning:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/1_em.mdp <span class="at">-c</span> 0_box_sol.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 1_em.tpr <span class="at">-maxwarn</span> 1</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 1_em</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/1_em.mdp <span class="at">-c</span> 0_box_sol.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 1_em.tpr <span class="at">-maxwarn</span> 1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 1_em</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that here you may have to limit the number of threads because the system is quite small, and may be too small for the domain decomposition over the available number of nodes. To use 4 threads, for example:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 1_em <span class="at">-nt</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 1_em <span class="at">-nt</span> 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Energy minimization will produce an local energy minimized structure in the 1_em.gro file, which we use for further simulations.</p>
 </section>
 <section id="equilibration" class="level5">
 <h5 class="anchored" data-anchor-id="equilibration"><strong>2.Equilibration</strong></h5>
 <p>We perform the equilibration in two stages: first we equilibrate at constant volume and temperature (NVT ensemble) and then at constant pressure and temperature (NPT ensemble).</p>
 <p>Equilibrate the system in the NVT ensemble:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/2_nvt.mdp <span class="at">-c</span> 1_em.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 2_nvt.tpr <span class="at">-maxwarn</span> 1</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 2_nvt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/2_nvt.mdp <span class="at">-c</span> 1_em.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 2_nvt.tpr <span class="at">-maxwarn</span> 1</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 2_nvt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We use the option “-maxwarn 1” to ignore one warning:</p>
 <pre class="text"><code>WARNING 1 [file ../mdp/2_nvt.mdp]:
 
   For proper integration of the Berendsen thermostat, tau-t (0.3) should be at least 5 times larger than nsttcouple*dt (0.3)</code></pre>
 <p>which we ignore because we are performing this step to get a reasonable starting structure for production simulations and are not too concerned that the statistical ensemble or integration is not exact.</p>
 <p>Equilibrate system in the NPT ensemble:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> mdp/2_npt.mdp <span class="at">-c</span> 2_nvt.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 2_npt.tpr <span class="at">-maxwarn</span> 2</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 2_npt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> mdp/2_npt.mdp <span class="at">-c</span> 2_nvt.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 2_npt.tpr <span class="at">-maxwarn</span> 2</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 2_npt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this case, we use “-maxwarn 2” to ignore two warnings:</p>
 <pre class="text"><code>WARNING 1 [file ../mdp/2_npt.mdp, line 65]:
 
@@ -386,27 +392,27 @@ PHEO  300</code></pre>
 <section id="run-simulationn" class="level5">
 <h5 class="anchored" data-anchor-id="run-simulationn"><strong>3.Run simulationn</strong></h5>
 <p>After the temperature and pressure of the system are equilibrated, it is a time to perform a production simulation:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/3_run.mdp <span class="at">-c</span> 2_npt.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 3_run.tpr <span class="at">-maxwarn</span> 2</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 3_run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx grompp <span class="at">-f</span> ../mdp/3_run.mdp <span class="at">-c</span> 2_npt.gro <span class="at">-p</span> topol.top <span class="at">-o</span> 3_run.tpr <span class="at">-maxwarn</span> 2</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx mdrun <span class="at">-v</span> <span class="at">-deffnm</span> 3_run</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This command will produce several files, from which final structure is in 3_run.gro and trajectory in 3_run.xtc file. Such a simulation on a PC (CPU Intel(R) Core(TM) i7-5600U CPU @ 2.60GHz) takes about 2h.</p>
 <p>You can visualize this trajectory and structure using visualization program such as VMD (<a href="http://www.ks.uiuc.edu/Research/vmd/">http://www.ks.uiuc.edu/Research/vmd/</a>). A quick impression of the system can be gotten with “gmx view” if you have installed it (not standard!):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx view <span class="at">-s</span> 3_run.tpr <span class="at">-f</span> 3_run.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx view <span class="at">-s</span> 3_run.tpr <span class="at">-f</span> 3_run.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Select which molecules you want to see, and find the “Display/Animate” tab to click through the trajectory. If you are happy, you can spend more time on better visualization, for example using VMD. It is recommended that you first convert your trajectory, (1) to avoid long bonds appearing between beads that are on the other side of the periodic box (“-pbc whole”), and (2) to make VMD draw bonds between beads that have much longer bond-lengths than the standard cut-off of VMD (“-o 3_run.tng”; the .tng format knows which bonds to draw and makes the plug-in “cg_bonds.tcl” largely obsolete).</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx trjconv <span class="at">-f</span> 3_run.xtc <span class="at">-pbc</span> whole <span class="at">-o</span> 3_run.tng</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd 3_run.tng </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx trjconv <span class="at">-f</span> 3_run.xtc <span class="at">-pbc</span> whole <span class="at">-o</span> 3_run.tng</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> vmd 3_run.tng </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This concludes the tutorial on the set-up of a small system for 2D self-assembly on graphite from solution. In this tutorial, you were given a small graphite flake in a simulation box. Here is how you can make your own!</p>
 </section>
 <section id="custom-size-of-graphite-flake" class="level5">
 <h5 class="anchored" data-anchor-id="custom-size-of-graphite-flake"><strong>4.Custom size of graphite flake</strong></h5>
 <p><em>NOTE</em> that the following procedure can be used to create any regular arrangement of beads given a unit cell!</p>
 <p>In the main directory Tutorial, make a new folder for testing:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir testFlakeSetup</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd testFlakeSetup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir testFlakeSetup</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd testFlakeSetup</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can make a custom size of the graphite flake from the unit cell given in the “Tutorial/gro” subfolder file “cell.gro”; this cell contains just two beads from which a graphite flake can be produced using the command:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx genconf <span class="at">-f</span> ../gro/cell.gro <span class="at">-nbox</span> 20 20 2 <span class="at">-o</span> 0_out.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx genconf <span class="at">-f</span> ../gro/cell.gro <span class="at">-nbox</span> 20 20 2 <span class="at">-o</span> 0_out.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This creates rhombic graphite flake of 20x20 unit cells in the x- and y-directions and two unit cells (four layers) in the z direction (the cell contains two beads in the z-direction). Subfolder “Tutorial/gro” also contains a coordinate file (graphite_paper.gro) of the graphite flake used in publication [2].</p>
 <p>Next, create a simulation box with a given size:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> 0_out.gro <span class="at">-o</span> 0_box.gro <span class="at">-box</span> 7 7 7  <span class="at">-angles</span> 90 90 60</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> gmx editconf <span class="at">-f</span> 0_out.gro <span class="at">-o</span> 0_box.gro <span class="at">-box</span> 7 7 7  <span class="at">-angles</span> 90 90 60</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The “-angles” option causes the simulation box to be hexagonally shaped in the x-y dimension (as is the flake), and with right angles to the z-direction. It is essential that the simulation box is larger than the graphite flake (the periodically connected graphite surface causes packing artefacts).</p>
 <p>Having created your own box, you can use it to fill with adsorbents and solvent, or do other cool things you might think of…</p>
 </section>
@@ -414,8 +420,8 @@ PHEO  300</code></pre>
 <h5 class="anchored" data-anchor-id="custom-size-of-graphite-flake-1"><strong>4.Custom size of graphite flake</strong></h5>
 <p>Since some of the parameters for simulation engine reference to a specific group of molecules, to simulate different molecules, you need to make appropriate changes in mdp files. For example, if you would like to simulate AL1 molecules, you can do it using one simple command. You may want to keep the existing mdp files, so…</p>
 <p>In the main directory Tutorial, make a new folder for testing:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp <span class="at">-R</span> mdp mdp-AL1</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> <span class="st">'s/AM25/AL1/g'</span>  mdp-AL1/<span class="pp">*</span>mdp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cp <span class="at">-R</span> mdp mdp-AL1</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="at">-i</span> <span class="st">'s/AM25/AL1/g'</span>  mdp-AL1/<span class="pp">*</span>mdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which changes all the names of molecules AM25 to AL1 in mdp files.</p>
 <p>The coordinate files for the different adsorbents are in “Tutorial/gro” subfolder.</p>
 </section>
@@ -483,13 +489,14 @@ PHEO  300</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

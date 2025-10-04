@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -329,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="system-and-file-preparation">System and file preparation</h3>
 <hr>
 <p>First things first, we need to build a system with the molecules we are interested in. You can download all the files you need to create a cubic box with water and two naphthalene molecules <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/files.tar">here</a> (you will also find all scripts needed for the analysis). To run a simulation with Gromacs, you also need topology files and MD parameters (top, itp and mdp) that you can found in the same directory. The following commands will do the trick.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download and extract all files to your working directory</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download and extract all files to your working directory</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> tar <span class="ex">-zxvf</span> files.tar.gz</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -343,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># add water inside the empty box</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx_mpi <span class="ex">solvate</span> <span class="at">-cp</span> naph_2.gro <span class="at">-cs</span> wat.gro <span class="at">-o</span> system.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx_mpi <span class="ex">solvate</span> <span class="at">-cp</span> naph_2.gro <span class="at">-cs</span> wat.gro <span class="at">-o</span> system.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now, we have the initial coordinates of our system and all the files we need to start a simulation. Almost all. In order to run any simulation/analysis with plumed, we need a plumed.dat file (of course you can use different names), where all variables/arguments have to be defined. A plumed.dat file for Metadynamics should look more or less like this:</p>
 <pre class="text"><code># treat each molecule as whole
 
@@ -392,7 +398,7 @@ GRID_BIN: the bin size</code></pre>
 <hr>
 <p>Before starting a Metadynamics simulation, it is always a good idea to run an unbiased simulation. In this way, you will have an idea of the fluctuations of the CV of interest. You might need to try different values of bias width to avoid losing any information or running extremely long trajectories. In this tutorial, we will run one simulation, evaluate the free energy landscape in terms of convergence and reweight the energy profile in more than one CVs. Then, we will compare the performance of this set of parameters with different parameter values and methods.</p>
 <p>You can start the simulation with the following command:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a minimization step</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run a minimization step</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx_mpi <span class="ex">grompp</span> <span class="at">-p</span> system.top <span class="at">-f</span> min.mdp <span class="at">-c</span> system.gro</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -408,7 +414,7 @@ GRID_BIN: the bin size</code></pre>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx_mpi <span class="ex">grompp</span> <span class="at">-p</span> system.top <span class="at">-f</span> run.mdp <span class="at">-c</span> confout-md-short.gro</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx_mpi <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-c</span> confout-md-prod.gro <span class="at">-plumed</span> plumed.dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> gmx_mpi <span class="ex">mdrun</span> <span class="at">-v</span> <span class="at">-c</span> confout-md-prod.gro <span class="at">-plumed</span> plumed.dat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Several files will be generated. We are mainly interested in COLVAR (the file where time, distance and bias are deposited) and HILLS (the file where the free energy surface as a function of the CV is deposited)</p>
 </section>
 <section id="convergence" class="level3">
@@ -420,16 +426,16 @@ GRID_BIN: the bin size</code></pre>
 <li><p>The free energy should not change significantly along the trajectory. Initially the free energy profile will deviate from the free energy landscape, but progressively the deviations should vanish (check HILLS).</p></li>
 </ol>
 <p>Use your favorite plotting tool to open the COLVAR and HILLS files.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use xmgrace to plot the distance vs time</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use xmgrace to plot the distance vs time</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> COLVAR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> COLVAR</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figure_2_dist-time.png" class="img-fluid figure-img"></p>
 <figcaption>Figure 2. Distance vs Time.</figcaption>
 </figure>
 </div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the free energy per 10000 steps (--stride) and save it fes.*.dat</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the free energy per 10000 steps (--stride) and save it fes.*.dat</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>plumed <span class="ex">sum_hills</span> <span class="at">--hills</span> HILLS <span class="at">--stride</span> 10000 <span class="at">--mintozero</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -439,7 +445,7 @@ GRID_BIN: the bin size</code></pre>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># use xmgrace to plot the free energy for each step</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>xmgrace <span class="ex">fes*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>xmgrace <span class="ex">fes*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figure_3_energy_hills.png" class="img-fluid figure-img"></p>
@@ -455,9 +461,9 @@ GRID_BIN: the bin size</code></pre>
 <p>Our main goal is to calculate a free energy landscape for the dimerization reaction, show that the errors of the free energy calculations are independent of the block size and get a reasonable error estimate for the CV we are measuring.</p>
 <p>In order to obtain the unbiased free-energy landscape, we are going to weight the sampled conformations by using a <a href="https://pubs.acs.org/doi/abs/10.1021/ct3002464">reweighting factor</a>. The basic idea is that since we know the bias potential that has been deposited in the system, we can use the biased sampled distribution to obtain the unbiased distribution that we really need.</p>
 <p>We need to tell plumed to read the trajectory and the file where the bias potential is stored and produce a file with the values of interest.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the trajectory (traj_comp.xtc) and the biased that has been imposed on each frame (HILLS)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the trajectory (traj_comp.xtc) and the biased that has been imposed on each frame (HILLS)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>plumed <span class="ex">driver</span> <span class="at">--plumed</span> plumed.dat <span class="at">--mf_xtc</span> ../traj_comp.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>plumed <span class="ex">driver</span> <span class="at">--plumed</span> plumed.dat <span class="at">--mf_xtc</span> ../traj_comp.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this case, the input for plumed will be slightly different.</p>
 <pre class="text"><code># read the Gaussians deposited on HILLS file
 
@@ -471,11 +477,11 @@ metad: METAD ARG=dist PACE=100000000 HEIGHT=0.2 SIGMA=0.05 FILE=HILLS BIASFACTOR
 
 PRINT STRIDE=1 ARG=dist,metad.bias FILE=COLVAR # change stride to 1</code></pre>
 <p>The final step is to calculate unbiased free-energy landscape and perform our error analysis. script.py will find the maximum bias for weighting, produce a file with the weights as a function of distance (dist.weight). It will then call do_block_fes.py which will calculate the free-energy landscapes while performing block-analysis (fes.*.dat) and calculate the average errors associated with each block (errors.block).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run script.py (found in files directory)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run script.py (found in files directory)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ./script.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ./script.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Check the errors for each block. If everything went well, the errors should initially increase and then be constant regardless of the block size.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use xmgrace to plot the free energy landscape when the errors have converged (e.g. block size:901) after accounting for the entropic corrections. (nc-1)*kB*T*log(x), where nc the number of degrees of freedom</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use xmgrace to plot the free energy landscape when the errors have converged (e.g. block size:901) after accounting for the entropic corrections. (nc-1)*kB*T*log(x), where nc the number of degrees of freedom</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> awk <span class="st">'{print $1"\t"$2+2*2.49*log($1)"\t"$3}'</span> fes.901.dat <span class="op">&gt;</span> fes_final.dat</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -483,7 +489,7 @@ PRINT STRIDE=1 ARG=dist,metad.bias FILE=COLVAR # change stride to 1</code></pre>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use xmgrace to plot the distance vs time</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> xmgrace <span class="ex">errors.block</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> xmgrace <span class="ex">errors.block</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <center>
 <p><img src="figure_4a.png" class="img-fluid"></p>
 <div class="quarto-figure quarto-figure-center">
@@ -513,13 +519,13 @@ PRINT STRIDE=1 ARG=dist,metad.bias FILE=COLVAR # change stride to 1</code></pre>
 <h3 class="anchored" data-anchor-id="reweighting-on-more-cvs">Reweighting on more CVs</h3>
 <hr>
 <p>Since we have obtained the unbiased free energy landscape, we can know project the results on different CVs. Make a new directory to avoid overwriting files. We will call it analysis_2. We need to tell plumed to read the trajectory and the file where the bias energy is stored and produce a file with the CV that we biased plus one more CV that we are interested in. We can start with the torsional angle defined by the central bead and one of the outer naphthalene beads.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the trajectory (traj_comp.xtc) and the biased that has been imposed on each frame (HILLS)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read the trajectory (traj_comp.xtc) and the biased that has been imposed on each frame (HILLS)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> plumed <span class="ex">driver</span> <span class="at">--plumed</span> plumed.dat <span class="at">--mf_xtc</span> ../traj_comp.xtc</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># run script.py</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ./script_2.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ./script_2.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Plumed.dat and script_2.py will be slightly modified to take into account the second CV.</p>
 <pre class="text"><code>#### plumed.dat
 
@@ -535,7 +541,7 @@ metad: METAD ARG=dist PACE=100000000 HEIGHT=0.05 SIGMA=0.05 FILE=HILLS BIASFACTO
 
 PRINT STRIDE=1 ARG=dist,dih,metad.bias FILE=COLVAR</code></pre>
 <p>We will get rid of variables or empty lines that may be present in our free energy landscape and may crush our script, translate the profile so that the plateau is around zero and then plot the results.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> grep <span class="ex">-v</span> <span class="st">"Infinity"</span> fes.1.dat <span class="op">&gt;</span> fes.1_2.dat</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> grep <span class="ex">-v</span> <span class="st">"Infinity"</span> fes.1.dat <span class="op">&gt;</span> fes.1_2.dat</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> max=<span class="va">$(</span><span class="fu">awk</span> <span class="st">'BEGIN{a= 0}{if ($3&gt;a) a=$3} END{print a}'</span> fes.1_2.dat<span class="va">)</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -547,11 +553,11 @@ PRINT STRIDE=1 ARG=dist,dih,metad.bias FILE=COLVAR</code></pre>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mean=<span class="va">$(</span><span class="fu">awk</span> <span class="st">'{ if ($1 &gt;= 1.0) {sum += $3; n++} } END { if (n &gt; 0); print sum / n }'</span> fes.1_2.dat<span class="va">)</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> awk <span class="st">'{ if ($1!=0) {print $1"\t"$2"\t"($3-mean)+2*2.49*log($1)"\t"$4}}'</span> mean=<span class="va">$mean</span> fes.1_2.dat <span class="op">&gt;</span> final_fes.dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> awk <span class="st">'{ if ($1!=0) {print $1"\t"$2"\t"($3-mean)+2*2.49*log($1)"\t"$4}}'</span> mean=<span class="va">$mean</span> fes.1_2.dat <span class="op">&gt;</span> final_fes.dat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We will use a python script to create a 2d-heat map of the free energy landscape based on the distance torsion angle.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run plot_fes.py</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run plot_fes.py</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ./plot_fes.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ./plot_fes.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <center>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -618,13 +624,14 @@ PRINT STRIDE=1 ARG=dist,dih,metad.bias FILE=COLVAR</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

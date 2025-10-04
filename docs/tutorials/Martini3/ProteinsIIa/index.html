@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -182,7 +183,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -192,12 +194,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -264,6 +266,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -390,7 +396,7 @@ window.Quarto = {
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">2. Setting up your protein model</h2>
 <p>The coarse-grained structure and topology of KALP can be easily generated from an all-atom structure using <code>martinize2</code>, as explored in the previous protein tutorials. Move to the <code>peptide_martinize</code> directory and run the following <code>martinize2</code> command:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> ../kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-ss</span> CCHHHHHHHHHHHHHHHHHHHCC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> ../kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-ss</span> CCHHHHHHHHHHHHHHHHHHHCC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In simulations involving peptides, it is important to carefully define the secondary structure. Since peptides can be highly flexible, your structural assumptions must be well justified. For transmembrane (TM) peptides like KALP, which typically contain 20 to 30 residues (23 residues in the example used in this tutorial), the terminal regions are expected to be relatively disordered, while the hydrophobic TM core should adopt a stable helical conformation. For other TM peptides, it may be useful to include longer terminal regions or apply terminal capping, depending on the system under study. As such, we will assign the secondary structure string using the <code>-ss</code> flag in <code>martinize2</code>, for example: <code>-ss CCHHHHHHHHHHHHHHHHHHHC</code>.</p>
 <p>Elastic network <sup><a href="#references">[4]</a></sup>, Gō <sup><a href="#references">[5]</a></sup> or OLIVES models <sup><a href="#references">[6]</a></sup> are not necessary in this case, as the bonded parameters in the Martini model are usually sufficient to maintain the structural integrity of simple helices.</p>
 <section id="waterbias" class="level3">
@@ -401,7 +407,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-⚠️ Warning: Use biasing with caution.
+<span class="screen-reader-only">Note</span>⚠️ Warning: Use biasing with caution.
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -411,21 +417,21 @@ window.Quarto = {
 <p>Small peptides, particularly those with uncharged terminal regions, may fail to insert properly into lipid bilayers in Martini 3 and instead become adsorbed at the membrane surface or even get ejected during the simulation<sup><a href="#references">[7]</a></sup>.</p>
 <p>To enhance the insertion of peptides into lipid bilayers, a water bias can be applied to reduce the strength of protein-water interactions in selected regions of the peptide. This is particularly useful for transmembrane peptides or small transmembrane proteins that may otherwise remain adsorbed at the membrane interface. The bias is implemented via virtual backbone sites<sup><a href="#references">[5]</a></sup> which allow tuning of Lennard-Jones interactions with water beads without altering bonded interactions.</p>
 <p>In <code>martinize2</code>, this is done using the <code>-water-bias</code> flag along with <code>-water-bias-eps</code>, specifying a bias for each secondary structure category. In the <code>water_bias</code> directory, generate a new version of the peptide parameters, complete with water biasing, using the following command:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> ../kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-ss</span> CCHHHHHHHHHHHHHHHHHHHCC <span class="dt">\</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>-water-bias <span class="at">-water-bias-eps</span> E:-.5 C:1.0 H:-1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> ../kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-ss</span> CCHHHHHHHHHHHHHHHHHHHCC <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>-water-bias <span class="at">-water-bias-eps</span> E:-.5 C:1.0 H:-1.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This applies a -0.5, 1.0 and -1.0 kJ/mol water bias to extended, coil, and helical residues respectively. These are the recommended default settings. In our case, decreasing the backbone interactions with water in the helical regions helps promote membrane insertion by reducing the tendency of the peptide to remain at the membrane surface.</p>
 <p>Adding this bias generates additional files, <code>virtual_sites_atomtypes.itp</code> and <code>virtual_sites_nonbond_params.itp</code> which include the definition of the virtual sites. Have a look at these files and familiarize yourself with their format. <strong>Do not rename these files</strong>, as their names are referenced explicitly in the conditional <code>#include</code> statements used in the topology. <strong>Renaming them may cause errors or missing parameters during preprocessing.</strong></p>
 <p>To use them, you must modify the <code>martini_v3.0.0.itp</code> file provided to include their content conditionally. This can be done by inserting the following lines between the <code>[ atomtypes ]</code> and <code>[ nonbond_params ]</code> sections (line 858).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ifdef WBIAS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ifdef WBIAS</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#include "virtual_sites_atomtypes.itp"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#include "virtual_sites_nonbond_params.itp"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#endif</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can do this manually using a text editor, or programmatically using the following <code>sed</code> command, which inserts the lines after line 858 (adjust the number if needed):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'858i\</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">#ifdef WBIAS\n#include "virtual_sites_atomtypes.itp"\n#include "virtual_sites_nonbond_params.itp"\n#endif'</span> martini_v3.0.0.itp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">'858i\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">#ifdef WBIAS\n#include "virtual_sites_atomtypes.itp"\n#include "virtual_sites_nonbond_params.itp"\n#endif'</span> martini_v3.0.0.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Important: Run this command only once, or you will introduce duplicate blocks into your file.</strong></p>
 <p>Finally, activate the bias by adding the following line to the top of your <code>system.top</code> file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#define WBIAS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#define WBIAS</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="proteins-in-membrane-environment" class="level2">
@@ -435,7 +441,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="self-assembly-approach">3.1. Self-assembly approach</h3>
 <hr>
 <p>A bilayer self-assembly simulation, as introduced in the first module of the as introduced in the first module of the <a href="../../../../docs/tutorials/Martini3/LipidsI/index.html">lipid tutorial part I</a>, will lead to the spontaneous insertion of the KALP peptide into the the bilayer (Fig. 1). The first step is to create a simulation box containing your coarse-grained KALP model, POPC lipids, water, and ions, all randomly distributed. This sets up the initial conditions for bilayer self-assembly. You can generate this system using the following commands in the <code>self_assembly</code> directory:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> ../water_bias/kalp.pdb <span class="at">-o</span> kalp.gro <span class="at">-d</span> 1.5</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> ../water_bias/kalp.pdb <span class="at">-o</span> kalp.gro <span class="at">-d</span> 1.5</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inserts 156 POPC molecules around KALP in a 7 × 7 × 6 nm box.</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> insert-molecules <span class="at">-f</span> kalp.gro <span class="at">-ci</span> POPC.gro <span class="at">-nmol</span> 156 <span class="at">-box</span> 7 7 6 <span class="at">-try</span> 500 <span class="at">-o</span> system_no-solvent.gro</span>
@@ -444,7 +450,7 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> system_no-solvent.gro <span class="at">-o</span> system_no-solvent.gro <span class="at">-c</span> <span class="at">-box</span> 7 7 10</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds water beads to the system, avoiding overlaps within a 0.21 nm radius.</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> system_no-solvent.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> system_solvated.gro <span class="at">-radius</span> 0.21</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> system_no-solvent.gro <span class="at">-cs</span> water.gro <span class="at">-o</span> system_solvated.gro <span class="at">-radius</span> 0.21</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="fig1.png" class="img-fluid figure-img"></p>
@@ -452,7 +458,7 @@ window.Quarto = {
 </figure>
 </div>
 <p>The <code>.top</code> file must be updated to include the necessary Martini 3 <code>.itp</code> files. Begin by copying <code>system.top</code> from <code>../water_bias/</code>, and editing it to look something like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="cf">if</span> <span class="ex">you</span> use water biasing add the following define.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="cf">if</span> <span class="ex">you</span> use water biasing add the following define.</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#define WBIAS</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">here</span> you include all the .itps</span>
@@ -470,13 +476,13 @@ window.Quarto = {
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="kw">;</span> <span class="ex">name</span>  number</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ex">molecule_0</span>        1</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">POPC</span>            <span class="op">&lt;</span>NLIPIDS<span class="op">&gt;</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">W</span>               <span class="op">&lt;</span>NWATERS<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">W</span>               <span class="op">&lt;</span>NWATERS<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can easily find the number of waters and lipids in your system using grep to correctly finalize your <code>.top</code> file. The following command will print two numbers corresponding to the number of lipids and waters in the system respectively. Fill them in in your copy of <code>system.top</code> above:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">NLIPIDS</span><span class="op">=</span><span class="va">$(($(</span><span class="fu">grep</span> <span class="at">-c</span> POPC system_solvated.gro<span class="va">)</span><span class="op">/</span><span class="dv">12</span><span class="va">))</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$NLIPIDS</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">NWATERS</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-c</span> W system_solvated.gro<span class="va">)</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$NWATERS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">NLIPIDS</span><span class="op">=</span><span class="va">$(($(</span><span class="fu">grep</span> <span class="at">-c</span> POPC system_solvated.gro<span class="va">)</span><span class="op">/</span><span class="dv">12</span><span class="va">))</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$NLIPIDS</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">NWATERS</span><span class="op">=</span><span class="va">$(</span><span class="fu">grep</span> <span class="at">-c</span> W system_solvated.gro<span class="va">)</span><span class="kw">;</span> <span class="bu">echo</span> <span class="va">$NWATERS</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once the system is solvated and the topology is constructed, the system requires counter ions for the charge of the peptide. This can be easily achieved using the <code>gmx genion</code> tool:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-p</span> system.top <span class="at">-c</span> system_solvated.gro <span class="at">-r</span> system_solvated.gro <span class="at">-o</span> ions.tpr</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> W <span class="kw">|</span> <span class="ex">gmx</span> genion <span class="at">-s</span> ions.tpr <span class="at">-p</span> system.top <span class="at">-neutral</span> <span class="at">-o</span> ions.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-p</span> system.top <span class="at">-c</span> system_solvated.gro <span class="at">-r</span> system_solvated.gro <span class="at">-o</span> ions.tpr</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> W <span class="kw">|</span> <span class="ex">gmx</span> genion <span class="at">-s</span> ions.tpr <span class="at">-p</span> system.top <span class="at">-neutral</span> <span class="at">-o</span> ions.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On inspecting <code>system.top</code> again, you should see that 4 W beads have been replaced with 4 CL ions to counter the +4 charge on the single KALP peptide. The system is now ready for minimization:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -491,9 +497,9 @@ Note
 <p><strong>Note 1:</strong> During the minimization and equilibration steps, if position restraints are applied, the coordinates provided via <code>-c</code> (in this case, <code>minimization.gro</code>) will be used as the reference positions for the restraints with flag <code>-r</code>. Make sure the structure used as input is consistent with what you intend to restrain.</p>
 </div>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimization</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimization</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-c</span> ions.gro <span class="at">-r</span> ions.gro —p system.top <span class="at">-o</span> minimization.tpr </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Once energy minimized, we can proceed with a short equilibration simulation:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -509,13 +515,13 @@ Note
 <p><strong>Note 3:</strong> Depending on the machine used, the <code>-nt</code> and <code>-pin</code> flags of <code>gmx mdrun</code> may be useful additions to the commands below</p>
 </div>
 </div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equilibraton</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equilibraton</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> equilibration.mdp <span class="at">-c</span> minimization.gro <span class="at">-p</span> system.top <span class="at">-o</span> equilibration.tpr <span class="at">-r</span> minimization.gro</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And finish with a production run:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Production</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Production</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> dynamic.mdp <span class="at">-c</span> equilibration.gro <span class="at">-p</span> system.top <span class="at">-o</span> dynamic.tpr </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="Prebuilt-approach" class="level3">
 <h3 class="anchored" data-anchor-id="Prebuilt-approach">3.2. Pre-built approach</h3>
@@ -538,43 +544,43 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Installing insane</strong>: Details for insane are listed on the <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">Downloads</a> page. It is recommended that you install insane in a new virtual python environment, from which you can simply install insane with:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install insane</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install insane</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <p>Let’s see a practical example, using the <code>kalp.gro</code> that we generated during the self assembly method. First move to the folder containing some input files for insane, (i.e.&nbsp;<code>cd ../insane</code>), and copy <code>kalp.gro</code> (i.e.&nbsp;<code>cp ../self_assembly/kalp.gro .</code>) here. Then we can generate a membrane with our inserted peptide using <code>insane</code> with the following command:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">insane</span> <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> POPC <span class="at">-u</span> POPC <span class="at">-center</span> <span class="at">-sol</span> W <span class="at">-salt</span> 0.01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">insane</span> <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> POPC <span class="at">-u</span> POPC <span class="at">-center</span> <span class="at">-sol</span> W <span class="at">-salt</span> 0.01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The previous command line will set up a complete system, containing a squared POPC bilayer of <span class="math inline">\(7×7 nm^2\)</span>, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neutralize the +4 charge of KALP.</p>
 <p><code>insane</code> provides a prototype system.top file. However, you should always double-check that all <code>#include</code> statements match the components in your system and point to the correct <code>.itp</code> files. Certain versions of <code>insane.py</code> may also name ions as <code>NA+</code> and <code>CL-</code> by default. You must rename them to <code>NA</code> and <code>CL</code> in both the <code>.gro</code> and <code>.top</code> files to match the standard Martini 3 ion definitions and avoid issues during preprocessing. For simplicity of referring to the same set of topology files as before, the header of the new <code>system.top</code> could look along the lines of this:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0.itp"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#include "martini_v3.0.0.itp"</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#include "../peptide_martinize/molecule_0.itp"</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#include "../self_assembly/martini_v3.0.0_phospholipids_v1.itp"</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#include "../self_assembly/martini_v3.0.0_solvents_v1.itp"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#include "../self_assembly/martini_v3.0.0_ions_v1.itp"…</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#include "../self_assembly/martini_v3.0.0_ions_v1.itp"…</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More on the <code>insane</code> tool can be found in separate tutorials, notably setting up a complex bilayer (<a href="../../../../docs/tutorials/Martini3/LipidsII/index.html">lipid tutorial part II</a>).</p>
 <p>With the system generated and topology corrected, we can run a short minimization simulation:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-p</span> system.top <span class="at">-c</span> system.gro <span class="at">-o</span> minimization.tpr <span class="at">-maxwarn</span> 1</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> minimization.mdp <span class="at">-p</span> system.top <span class="at">-c</span> system.gro <span class="at">-o</span> minimization.tpr <span class="at">-maxwarn</span> 1</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With the bilayer pre-made complete with the peptide inside, we can use semi-isotropic pressure coupling with multiple temperature groups already. This requires making an index file with groups for <code>Protein_POPC</code> and <code>W_ION</code>, as indicated in the <code>tc_grps</code> entry in both <code>equilibration.mdp</code> and <code>dynamic.mdp</code>. We can make it easily either through manual selection in <code>gmx make_ndx</code>, or by using the following command:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> minimization.gro <span class="op">&lt;&lt; EOD</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> minimization.gro <span class="op">&lt;&lt; EOD</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">1|13</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">14|15</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">q</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOD</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">EOD</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With the index file generated, we can now proceed with an equilibration simulation, using the index file in the <code>-n</code> flag of <code>gmx grompp</code>:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> equilibration.mdp <span class="at">-p</span> system.top <span class="at">-c</span> minimization.gro <span class="at">-r</span> minimization.gro <span class="at">-n</span> index.ndx <span class="at">-o</span> equilibration.tpr</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> equilibration.mdp <span class="at">-p</span> system.top <span class="at">-c</span> minimization.gro <span class="at">-r</span> minimization.gro <span class="at">-n</span> index.ndx <span class="at">-o</span> equilibration.tpr</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And finally a production simulation:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> dynamic.mdp <span class="at">-p</span> system.top <span class="at">-c</span> equilibration.gro <span class="at">-n</span> index.ndx <span class="at">-o</span> dynamic.tpr</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> dynamic.mdp <span class="at">-p</span> system.top <span class="at">-c</span> equilibration.gro <span class="at">-n</span> index.ndx <span class="at">-o</span> dynamic.tpr</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 <section id="coby" class="level4">
 <h4 class="anchored" data-anchor-id="coby">Option 2: <code>COBY</code></h4>
 <p>An alternative to insane.py is COBY <sup><a href="#references">[9]</a></sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on <a href="https://github.com/MikkelDA/COBY">GitHub</a>.</p>
 <p>COBY is a python package which can be easily installed using <code>pip</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install COBY</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install COBY</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It can be run both within a Python script, Jupyter notebook or as a terminal command-line, and uses a single command to specify all the system requirements. Let’s look at a practical example:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> COBY</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> COBY</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>COBY.COBY(</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">### Def. box size (xyz, nm) and type.</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>box <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">7</span>, <span class="dv">9</span>],</span>
@@ -595,7 +601,7 @@ Tip
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">### Designates the system name</span></span>
 <span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>sn <span class="op">=</span> <span class="st">"SimpleMembrane"</span>,</span>
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">### File writing</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>out_sys <span class="op">=</span> <span class="st">"system.gro"</span>, out_top <span class="op">=</span> <span class="st">"system.top"</span>, out_log <span class="op">=</span> <span class="st">"log.log"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>out_sys <span class="op">=</span> <span class="st">"system.gro"</span>, out_top <span class="op">=</span> <span class="st">"system.top"</span>, out_log <span class="op">=</span> <span class="st">"log.log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This short Python script creates a POPC bilayer of size 7 × 7 nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a <code>system.top</code> file and includes relevant <code>#include</code> statements. However, as always, you should carefully check that all entries are consistent with your system and that required <code>.itp</code> files are present and correctly referenced.</p>
 <hr>
 <p>You can now proceed as before and set up the production run. To recap, this involves the following steps:</p>
@@ -613,16 +619,16 @@ Tip
 <p>Once your simulation has completed, a useful quantity to analyze is the tilt angle of the transmembrane helix with respect to the bilayer normal (typically the z-axis). This gives insight into how the peptide aligns within the membrane and how this orientation might change depending on lipid composition or bilayer thickness.</p>
 <p>One way to compute the tilt angle is using <code>gmx gangle</code>. This tool calculates the angle between two vectors over time — in our case, between the peptide axis and the z-axis (bilayer normal).</p>
 <p>First, you need to create an <code>index.ndx</code> file that defines the atoms (or beads) used to construct the peptide vector. A common choice is the backbone beads along the transmembrane region of the peptide, for example, the vector between residues 3 and 21 in KALP. In a new folder, <code>analysis</code>, we can look at the two trajectories in turn.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> ../insane/dynamic.tpr <span class="at">-o</span> insane_index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> ../insane/dynamic.tpr <span class="at">-o</span> insane_index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Inside the interactive prompt, enter:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">a</span> 7 43</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">q</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">a</span> 7 43</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This creates a group called <code>a_7_43</code> corresponding to the backbone beads in the helical region.</p>
 <p>Next, compute the tilt angle with:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> gangle <span class="at">-f</span> ../insane/dynamic.xtc <span class="at">-s</span> ../insane/dynamic.tpr <span class="at">-g1</span> vector <span class="at">-group1</span> a_7_43 <span class="at">-g2</span> z <span class="at">-n</span> insane_index.ndx <span class="at">-oall</span> angles.xvg <span class="at">-rmpbc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> gangle <span class="at">-f</span> ../insane/dynamic.xtc <span class="at">-s</span> ../insane/dynamic.tpr <span class="at">-g1</span> vector <span class="at">-group1</span> a_7_43 <span class="at">-g2</span> z <span class="at">-n</span> insane_index.ndx <span class="at">-oall</span> angles.xvg <span class="at">-rmpbc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will output the angle (in degrees) between the peptide vector and the z-axis over the course of the simulation (<code>angles.xvg</code>). You can visualize this data to assess whether the helix remains vertical, adopts a tilted orientation, or fluctuates dynamically.</p>
 <p>To plot the data you can, for example, use xmgrace:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> angles.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> angles.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Take a moment to reflect on the tilt angle values — what do they tell you about how the peptide interacts with the membrane? Can you relate the observed behavior to membrane thickness, peptide length, or hydrophobic mismatch?</p>
 <p>Repeat the above steps for the COBY trajectory. What, if any, are the differences between the two simulations?</p>
 </section>
@@ -650,7 +656,7 @@ Tip
 <ol type="A">
 <li>Use gmx genconf to double the previous system in one dimension (e.g., the x-axis), creating a box with two peptides placed side-by-side (see code below). Alternatively, use <code>COBY</code> or <code>insane</code> to generate a larger base system containing 2 or more peptides.</li>
 </ol>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> genconf <span class="at">-f</span> system_solvated.gro <span class="at">-o</span> system_dimer.gro <span class="at">-nbox</span> 2 1 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> genconf <span class="at">-f</span> system_solvated.gro <span class="at">-o</span> system_dimer.gro <span class="at">-nbox</span> 2 1 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="A">
 <li><p>Update the topology file (<code>system.top</code>) accordingly by doubling the number of KALP molecules and adjusting the <code>[ molecules ]</code> section.</p></li>
 <li><p>Rerun the minimization, equilibration, and production simulations.</p></li>
@@ -662,7 +668,7 @@ Tip
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note:
+<span class="screen-reader-only">Note</span>Note:
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -750,13 +756,14 @@ Note:
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

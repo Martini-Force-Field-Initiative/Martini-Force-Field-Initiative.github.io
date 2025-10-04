@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -315,8 +321,8 @@ If you would like to refer to information of this tutorial, please cite <a href=
 <h2 class="anchored" data-anchor-id="i.iii.1-adding-a-water-bias">I.III.1 Adding a Water Bias</h2>
 <p>One way to improve the performance of Martini 3 when simulating IDRs is to modify the strength of the protein-water interactions for the IDR only. This technique utilizes the BB virtual sites, which are also used in the GōMartini model to implement the structural bias, to modify the LJ potential depth between the BB and water beads. Since these virtual sites overlap with the BB bead, the non-bonded interactions between BB and water beads can be effectively adjusted by introducing an additional potential between the virtual site and water beads [13].</p>
 <p>In this approach to set up the multi-domain protein model, we use the full length CK1δ atomistic structure as Martinize2 input. As the IDR structure is typically not present in experimental structures, AlphaFold or SWISS-MODEL can be used to generate the full length atomistic protein structure (<code>CK1d_IDR.pdb</code>)[23, 24]. The structure is available in AlphaFold as entry <a href="https://alphafold.ebi.ac.uk/entry/Q9DC28">Q9DC28</a> In Martinize2, the water bias can be added via the <code>-water-bias</code> flag. The residues of the IDR are defined via <code>-id-regions 293:415</code>, and the strength of the water-bias is set to a value of 0.5 kJ/mol here by <code>-water-bias-eps idr:0.5</code> [13]. The corrected bonded parameters for IDRs are applied with the <code>-idr-tune</code> flag. For the secondary structure, the regions indicated as disordered by the <code>-id-regions</code> flag are automatically assigned as coil from Martinize v0.14.0 onwards. The water bias can be combined with the GōMartini model for the structured region, although any of the protein structure models discussed previously are also compatible. Here we add a Gō-like network for the folded domain using <code>-go</code>. When disordered regions are additionally specified, Martinize2 ensures that Gō bonds initially found between folded and disordered domains are removed.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-f</span> CK1d_IDR.pdb <span class="at">-x</span> CK1d_cg.pdb <span class="at">-o</span> CK1d_only.top <span class="at">-ff</span> martini3001 <span class="dt">\</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>-p backbone <span class="at">-dssp</span> <span class="at">-go</span> <span class="at">-water-bias</span> <span class="at">-water-bias-eps</span> idr:0.5 <span class="at">-id-regions</span> 293:415 <span class="at">-idr-tune</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-f</span> CK1d_IDR.pdb <span class="at">-x</span> CK1d_cg.pdb <span class="at">-o</span> CK1d_only.top <span class="at">-ff</span> martini3001 <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>-p backbone <span class="at">-dssp</span> <span class="at">-go</span> <span class="at">-water-bias</span> <span class="at">-water-bias-eps</span> idr:0.5 <span class="at">-id-regions</span> 293:415 <span class="at">-idr-tune</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In addition to the CG protein structure and topology, Martinize2 returns two files: <code>go_atomtypes.itp</code>, and <code>go_nbparams.itp</code>, which need to be added to the Martini 3 topology file, as described in <a href="../../../../docs/tutorials/Martini3/ProteinsI/Tut1.html">Section I.I.3.3</a>. Inspect the <code>go_nbparams.itp</code> file: you should note that it contains first a set of site-specific non-bonded potentials between backbone virtual sites in the folded domain of the protein, followed by a set of interactions between backbone virtual sites in the disordered domain and water, to effectively increase the strength of the interaction.</p>
 </section>
 <section id="i.iii.2-martini3-idp" class="level2">
@@ -324,8 +330,8 @@ If you would like to refer to information of this tutorial, please cite <a href=
 <p>Another way to improve the performance of IDRs in Martini 3 is offered by the recently developed Martini 3 disordered protein force field (Martini3-IDP)[38], which is well integrated into the current Martini 3 framework.</p>
 <p>Proteins using the Martini3-IDP model can be generated in two ways. For pure IDPs, <a href="https://github.com/marrink-lab/polyply_1.0/wiki/Tutorial:-Martini-3-IDPs---proteins">Polyply</a> can be used to generated both parameters and coordinates. For proteins with both folded and disordered domains, Martinize2 can be used as described above.</p>
 <p>The command used to martinize the protein is similar to Section 4.1, but the force field used is changed using the <code>-ff</code> flag. Additionally, an EN is applied to the folded region only instead of a Gō model, using the <code>-eunit</code> flag, demonstrating how different secondary structure biases can be combined with annotations for IDRs in a protein:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-f</span> CK1d_IDR.pdb <span class="at">-x</span> CK1d_cg.pdb <span class="at">-o</span> CK1d_only.top <span class="at">-ff</span> martini3IDP <span class="dt">\</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>-p backbone <span class="at">-dssp</span> <span class="at">-elastic</span> <span class="at">-el</span> 0 <span class="at">-eu</span> 0.85 <span class="at">-eunit</span> 1:292 <span class="at">-id-regions</span> 293:415 <span class="at">-idr-tune</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-f</span> CK1d_IDR.pdb <span class="at">-x</span> CK1d_cg.pdb <span class="at">-o</span> CK1d_only.top <span class="at">-ff</span> martini3IDP <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>-p backbone <span class="at">-dssp</span> <span class="at">-elastic</span> <span class="at">-el</span> 0 <span class="at">-eu</span> 0.85 <span class="at">-eunit</span> 1:292 <span class="at">-id-regions</span> 293:415 <span class="at">-idr-tune</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="i.iii.3-simulation-of-the-multi-domain-ck1δ-model" class="level2">
 <h2 class="anchored" data-anchor-id="i.iii.3-simulation-of-the-multi-domain-ck1δ-model">I.III.3 Simulation of the Multi-Domain CK1δ Model</h2>
@@ -336,7 +342,7 @@ If you would like to refer to information of this tutorial, please cite <a href=
 </figure>
 </div>
 <p>As described in <a href="../../../../docs/tutorials/Martini3/ProteinsI/Tut1.html">Section I.I.4</a>, the system can be solvated using insane with the following command.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">insane</span> <span class="at">-f</span> CK1d_cg.pdb <span class="at">-o</span> CG.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> cubic <span class="at">-box</span> 35,35,35 <span class="at">-salt</span> 0.15 <span class="at">-sol</span> W <span class="at">-d</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">insane</span> <span class="at">-f</span> CK1d_cg.pdb <span class="at">-o</span> CG.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> cubic <span class="at">-box</span> 35,35,35 <span class="at">-salt</span> 0.15 <span class="at">-sol</span> W <span class="at">-d</span> 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When simulating a protein with an IDR, it is especially important to use an appropriately sized box, to prevent the extended IDR from interacting with its mirror image. We therefore use an edge length of 35 nm here. The simulation of the system follows the protocol outlined in <a href="../../../../docs/tutorials/Martini3/ProteinsI/Tut1.html">Section I.I.4</a>.</p>
 <p>An example of the conformational ensemble sampled during the simulations is shown in Figure 10.</p>
 <hr>
@@ -397,13 +403,14 @@ If you would like to refer to information of this tutorial, please cite <a href=
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

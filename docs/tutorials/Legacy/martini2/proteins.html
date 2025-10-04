@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -182,7 +183,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -192,12 +194,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -264,6 +266,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -360,8 +366,8 @@ window.Quarto = {
 <ol type="1">
 <li>Download 1UBQ.pdb from the Protein Data Bank.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> http://www.rcsb.org/pdb/files/1UBQ.pdb.gz</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> 1UBQ.pdb.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> http://www.rcsb.org/pdb/files/1UBQ.pdb.gz</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> 1UBQ.pdb.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>The pdb-structure can be used directly as input for the martinize.py script (download available <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py">here</a>), to generate both a structure and a topology file. Have a look at the help function (i.e.&nbsp;run <code>python martinize.py -h</code>) for the available options. Hint, valid for any system simulated with Martini: during equilibration it might be useful to have (backbone) position restraints to relax the side chains and their interaction with the solvent; we are anticipating doing this by asking martinize.py to generate the list of atoms involved. The final command might look a bit like this:</li>
 </ol>
@@ -388,26 +394,26 @@ python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -ss &lt;YOUR FI
 <ol start="4" type="1">
 <li>Do a short (ca. 10-100 steps is enough!) minimization in vacuum. Before you can generate the input files with grompp, you will need to check that the topology file (<code>.top</code>) includes the correct martini parameter file (<code>.itp</code>). If this is not the case, change the include statement. Also, you may have to generate a box, specifing the dimensions of the system, for example using gmx editconf. You want to make sure, the box dimensions are large enough to avoid close contacts between periodic images of the protein, but also to be considerably larger than twice the cut-off distance used in simulations. Try allowing for a minimum distance of 1 nm from the protein to any box edge. Then, copy the example parameter file, and change the relevant settings to do a minimization run. Now you are ready to do the preprocessing and minimization run:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> 1UBQ-CG.pdb <span class="at">-d</span> 1.0 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> 1UBQ-CG.gro</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> 1UBQ-CG.pdb <span class="at">-d</span> 1.0 <span class="at">-bt</span> dodecahedron <span class="at">-o</span> 1UBQ-CG.gro</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> single-ubq.top <span class="at">-f</span> minimization.mdp <span class="at">-c</span> 1UBQ-CG.gro <span class="at">-o</span> minimization-vac.tpr</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization-vac <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization-vac <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="5" type="1">
 <li>Solvate the system with <code>gmx solvate</code> (an equilibrated water box can be downloaded <a href="../../../../docs/downloads/index.html">here</a>; it is called <code>water.gro</code>). Make sure the box size is large enough (i.e.&nbsp;there is enough water around the molecule to avoid periodic boundaries artifacts) and remember to use a larger van der Waals distance when solvating to avoid clashes, e.g.:</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> minimization-vac.gro <span class="at">-cs</span> water.gro <span class="at">-radius</span> 0.21 <span class="at">-o</span> solvated.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> solvate <span class="at">-cp</span> minimization-vac.gro <span class="at">-cs</span> water.gro <span class="at">-radius</span> 0.21 <span class="at">-o</span> solvated.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="6" type="1">
 <li>You need to update the topology to reflect the water added. Here, this is done by copying the topology for the single ubiquitin to system.top and editing that to add a line with the number of water beads. You will then do a short energy minimization and position-restrained (NPT) equilibration of the solvated system. Since the martinize.py script already generated position restraints (thanks to the <code>-p</code> flag), all you have to do is specify <code>define = -DPOSRES</code> in your parameter file (<code>.mdp</code>). At this point you must also add the appropriate number of water beads to your system topology (<code>.top</code>); the total number added by gmx solvate can be seen in the output of the command; alternatively try <code>grep -c W system-solvated.gro</code> (where W is the name of a water bead).</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> minimization.mdp <span class="at">-o</span> minimization.tpr</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> solvated.gro <span class="at">-f</span> minimization.mdp <span class="at">-o</span> minimization.tpr</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> minimization <span class="at">-v</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> minimization.gro <span class="at">-f</span> equilibration.mdp <span class="at">-o</span> equilibration.tpr</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> equilibration <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="7" type="1">
 <li>Start production run (without position restraints!); if your simulation crashes, some more equilibration steps might be needed. NOTE that you will get a warning about simultaneous use of Parrinello-Rahman barostat and newly generated velocties. This can be ignored by the -maxwarn 1 option. A sample trajectory is shown in Figure 2.</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> equilibration.gro <span class="at">-f</span> dynamic.mdp <span class="at">-o</span> dynamic.tpr <span class="at">-maxwarn</span> 1</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> system.top <span class="at">-c</span> equilibration.gro <span class="at">-f</span> dynamic.mdp <span class="at">-o</span> dynamic.tpr <span class="at">-maxwarn</span> 1</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> dynamic <span class="at">-v</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 <center>
 <div class="quarto-figure quarto-figure-center">
@@ -421,11 +427,11 @@ python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -ss &lt;YOUR FI
 <ol start="8" type="1">
 <li>PROFIT! What sort of analysis can be done on this molecule? Start by having a look at the protein with <code>vmd</code>. (see <a href="../../../../docs/tutorials/Legacy/martini2/visualizing_martini.html">tutorial</a>, use the script <a href="../../../../docs/downloads/tools/analysis.html">cg_bonds-v5.tcl</a> to show the ubiquitin with the bonds as defined in the topology) or pymol. It is often convenient to convert the trajectory so that translation and rotation of ubiquitin is removed. (NOTE, however, that the water is also rotated and this may create some unwanted effects when viewing. It is up to you, really. One thing that does make sense is to make sure beads that belong to the protein are not split across periodic boundary conditions, see the section on elastic network below for explicit instructions how to do this with gromacs tools.) Be aware that the .gro file given to VMD must contain the same (number of) atoms as the .xtc file. Therefore, if you choose to write only the protein to the .xtc file, also prepare a .gro file with only the protein (minimization-vac.gro will do).</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.xtc</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> equilibration.gro viz.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.xtc</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> equilibration.gro viz.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To view with <code>pymol</code>, the trajectory must also be converted to <code>.pdb</code> format. This gives the opportunity to add bond information, which helps in viewing the molecule. Be aware that this file may be very large: you may want to reduce the number of frames. You can also reduce the size by only writing out the protein coordinates (but you may want to visualize the solvent as well, so it is up to you).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.pdb <span class="at">-conect</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span> viz.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> dynamic.xtc <span class="at">-s</span> dynamic.tpr <span class="at">-fit</span> rot+trans <span class="at">-o</span> viz.pdb <span class="at">-conect</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pymol</span> viz.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Standard analysis for proteins includes RMSD, RMSF, radius of gyration. Refer to tutorials for atomistic models, for example by <a href="http://md.chem.rug.nl/~mdcourse">Tsjerk Wassenaar</a> or <a href="http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/lysozyme/index.html">Justin Lemkul</a>. For the impatient, o if you just need a quick reminder: RMSD and RMSF can be calculated using <code>gromacs</code> tools <code>gmx rms</code> and <code>gmx rmsf</code>, respectively.</p>
 </section>
 <section id="soluble-protein-the-elastic-network-approach" class="level5">
@@ -455,7 +461,7 @@ python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -ss &lt;YOUR FI
 <ol type="1">
 <li>Use the <code>martinize.py</code> script to generate the coarse-grained structure and topology as above. For the elastic network, use the extra following flags:</li>
 </ol>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize.py <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span> <span class="at">-elastic</span> <span class="at">-ef</span> 500 <span class="at">-el</span> 0.5 <span class="at">-eu</span> 0.9 <span class="at">-ea</span> 0 <span class="at">-ep</span> 0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize.py <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span> <span class="at">-elastic</span> <span class="at">-ef</span> 500 <span class="at">-el</span> 0.5 <span class="at">-eu</span> 0.9 <span class="at">-ea</span> 0 <span class="at">-ep</span> 0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 This turns on the elastic network (<code>-elastic</code>), sets the elastic bond force constant to <span class="math inline">\(500 kJ mol^{-1} nm^{-2}\)</span> (<code>-ef 500</code>), the lower and upper elastic bond cut-off to 0.5 and 0.9 nm, respectively (<code>-el 0.5</code> and <code>-eu 0.9</code>), and makes the bond strengths independent of the bond length (elastic bond decay factor and decay power, <code>-ea 0</code> and <code>-ep 0</code>, respectively; these are default). The elastic network is defined in the <code>.itp</code> file by an <code>#ifdef</code> statement, and is switched on by default (<code>#define NO_RUBBER_BANDS</code> in the <code>.top</code> or <code>.itp</code> file switches it off). Note that martinize.py does not generate elastic bonds between i → i+1 and i → i+2 backbone bonds, as those are already connected by bonds and angles (cf.&nbsp;Fig. 3). Also, elastic bonds are only added between beads that belong to the same subunit.
 <hr>
 <center>
@@ -477,7 +483,7 @@ This turns on the elastic network (<code>-elastic</code>), sets the elastic bond
 <ol type="1">
 <li>Use the martinize.py script to generate the coarse-grained structure and topology as above. The following flag will switch martinize.py to the ElNeDyn default representation:</li>
 </ol>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize.py <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span> <span class="at">-ff</span> elnedyn22</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> martinize.py <span class="pp">[</span><span class="ss">...</span><span class="pp">]</span> <span class="at">-ff</span> elnedyn22</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
 <li>Proceed as before and start a production run.</li>
 </ol>
@@ -522,7 +528,7 @@ This turns on the elastic network (<code>-elastic</code>), sets the elastic bond
 <ol type="1">
 <li>The syntax of the <code>insane.py</code> scripts is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (As with other scripts, updates appear regularly. If you want to be sure you use the same version as used in the example files provided, download the file linked to in the command line below. Otherwise, get the latest from Github via the Tools pages on Downloads.) Let’s see a practical example:</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> insane.py <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> DPPC <span class="at">-u</span> DPPC <span class="at">-center</span> <span class="at">-sol</span> W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> insane.py <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> DPPC <span class="at">-u</span> DPPC <span class="at">-center</span> <span class="at">-sol</span> W</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The previous command line will set up a complete system, containing a squared DPPC bilayer of 7 nm, insert the KALP peptide centered in this bilayer and solvate the whole thing in standard coarse-grained water. More on the <code>insane.py</code> tool can be found in separate tutorials, notably <a href="../../../../docs/tutorials/Legacy/martini2/lipids_and_lipidome.html">setting up a complex bilayer</a>.</p>
 <ol start="2" type="1">
 <li><p>Proceed as before and start a production run. To remind you, this involves (1) editing the system.top file to reflect the version of Martini you want to use (the <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/kalp.itp">KALP topology provided</a> is version 2.1) and providing include statements for the topology files; (2) <a href="../../../../docs/downloads/example-input-files/general-topology.html">downloading</a> or copying definitions of Martini version you want and the DPPC lipid topology file from <a href="../../../../docs/downloads/force-field-parameters/martini2/lipidome.html">the lipidome</a>; (3) using the correct names of the molecules involved; (4) downloading or copying set-up <code>.mdp</code> files for minimization, equilibration, and production runs and if necessary, editing them (bilayer simulations are best done using semi-isotropic pressure coupling and you may want to separately couple different groups to the thermostat(s)); (5) running the minimization and equilibration runs.</p></li>
@@ -604,13 +610,14 @@ This turns on the elastic network (<code>-elastic</code>), sets the elastic bond
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

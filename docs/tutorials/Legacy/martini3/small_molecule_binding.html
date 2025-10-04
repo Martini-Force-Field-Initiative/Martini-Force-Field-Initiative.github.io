@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -153,7 +154,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -163,12 +165,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -235,6 +237,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -324,21 +330,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="a.-download-the-crystal-structure-of-the-t4-lysozyme-from-the-protein-data-bank-pdb" class="level4">
 <h4 class="anchored" data-anchor-id="a.-download-the-crystal-structure-of-the-t4-lysozyme-from-the-protein-data-bank-pdb">1A. Download the crystal structure of the T4 lysozyme from the Protein Data Bank (PDB)</h4>
 <hr>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> http://www.rcsb.org/pdb/files/181L.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> http://www.rcsb.org/pdb/files/181L.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Alternatively, you can visit the PDB website (<a href="https://www.rcsb.org/">https://www.rcsb.org/</a>), search for the structure, and click on Download Files.</p>
 </section>
 <section id="b.-generate-martini-topology-and-coordinates" class="level4">
 <h4 class="anchored" data-anchor-id="b.-generate-martini-topology-and-coordinates">1B. Generate Martini topology and coordinates</h4>
 <hr>
 <p>The atomistic structure of T4 lysozyme (PDB: 181L) can be used directly as input for martinize.py to produce both the coordinates (CG.pdb) and topology (CG.top) of the CG model. Have a look at the help function to list the available options by running martinize -h. Please be carefull and use the version or martinize distributed with the Martini 3 open-beta version. The martini303v.partition file should be in the same folder where you are executing the command.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./martinize</span> <span class="at">-f</span> 181L.pdb <span class="at">-ff</span> martini303v.partition <span class="at">-x</span> CG.pdb <span class="at">-o</span> topol.top <span class="at">-dssp</span> dssp <span class="at">-elastic</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./martinize</span> <span class="at">-f</span> 181L.pdb <span class="at">-ff</span> martini303v.partition <span class="at">-x</span> CG.pdb <span class="at">-o</span> topol.top <span class="at">-dssp</span> dssp <span class="at">-elastic</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here we are using the version 3.0 of the Martini force field (<code>-ff</code>). The secondary structure of Martini proteins should be explicitly defined. This can be achieved by adding a set of long harmonic bonds (<code>-elastic</code>). The magnitude of the elastic force constant can be specified with <code>-ef</code>. A force constant of 500–750 kJ/(mol nm2) is suitable in most of the cases. An easy way of determining the secondary structure of each residue in the protein is by using the DSSP program. When using the <code>-dssp</code> option, a path to the binary file must be provided. You can download the binary file from the CMBI website (<a href="https://swift.cmbi.umcn.nl/gv/dssp/">https://swift.cmbi.umcn.nl/gv/dssp/</a>). Note that the downloaded PDB file contains not only protein residues but also three additional molecules: water (<code>HOH</code>), benzene (<code>BNZ</code>), and 2-hydroxyethyl disulfide (<code>HED</code>). You can delete them prior to generating the CG structure, or leave them in the file. <code>HETATM</code> atom types are ignored by <code>martinize</code>.</p>
 </section>
 <section id="c.-add-dihedral-corrections-to-martini-topology" class="level4">
 <h4 class="anchored" data-anchor-id="c.-add-dihedral-corrections-to-martini-topology">1C. Add dihedral corrections to Martini topology</h4>
 <hr>
 <p>If all went well, the previous step should have generated three files: <code>CG.pdb</code>, <code>protein_A.itp</code>, and <code>chain_A.ssd</code>. Take a look into the <code>*.ssd</code> file, the secondary structure each residue belongs to is specified under <code>STRUCTURE</code>. The <code>*.itp</code> file contains almost all bonded parameters required to define the behavior of the protein. We just need to add some dihedral corrections to describe <code>SC-BB-BB-SC</code> interactions. You should make a backup copy of <code>Protein_A.itp</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./bbsc.sh</span> Protein_A.itp 181L.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./bbsc.sh</span> Protein_A.itp 181L.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This step will have appended additional angle (<code>SC-BB-BB-SC</code>) and dihedral (<code>SC-BB-BB and BB-BB-SC</code>) parameters to the <code>.itp</code> file. Note that <code>bbsc.sh</code> is only there to call the actual <code>VMD</code> script (<code>addDihedral.tcl</code>) handing it over the <code>Protein_A.itp</code> and <code>CG.pdb</code> as arguments.</p>
 </section>
 </section>
@@ -348,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="a.-solvate-the-protein">2A. Solvate the protein</h4>
 <hr>
 <p>Since we now have both the coordinates and topology of the Martini 3 protein, we can put the protein in a simulation cell, and add water and ions.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/python2.7</span> insane.py <span class="at">-f</span> CG.pdb <span class="at">-o</span> CG.gro <span class="at">-pbc</span> cubic <span class="at">-box</span> 10,10,10 <span class="at">-salt</span> 0.15 <span class="at">-charge</span> auto <span class="at">-sol</span> W</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/python2.7</span> insane.py <span class="at">-f</span> CG.pdb <span class="at">-o</span> CG.gro <span class="at">-pbc</span> cubic <span class="at">-box</span> 10,10,10 <span class="at">-salt</span> 0.15 <span class="at">-charge</span> auto <span class="at">-sol</span> W</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can look for more details about the insane.py script <a href="../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>. The output file (<code>CG.gro</code>) contains <code>NA+</code>, <code>CL-</code>, and <code>W</code> residues. Check how many and add specify it in the <code>CG.top</code> file.</p>
 <pre class="text"><code>[ molecules ] 
 ; name         number
@@ -380,30 +386,30 @@ BENZ            1</code></pre>
 <section id="c.-start-the-simulation" class="level4">
 <h4 class="anchored" data-anchor-id="c.-start-the-simulation">2C. Start the simulation</h4>
 <hr>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> CG.top <span class="at">-f</span> min.mdp <span class="at">-c</span> CG_benzene.gro <span class="at">-maxwarn</span> 10</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> CG.top <span class="at">-f</span> min.mdp <span class="at">-c</span> CG_benzene.gro <span class="at">-maxwarn</span> 10</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-c</span> CG-em.gro</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> CG.top <span class="at">-f</span> eq.mdp <span class="at">-c</span> CG-em.gro <span class="at">-maxwarn</span> 5 <span class="at">-n</span> index.ndx </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-c</span> CG-eq.gro <span class="at">-x</span> traj_comp-eq.xtc</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-p</span> CG.top <span class="at">-f</span> md.mdp <span class="at">-c</span> CG-eq.gro <span class="at">-maxwarn</span> 5 <span class="at">-n</span> index.ndx</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-c</span> CG-md.gro <span class="at">-x</span> traj_comp.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-c</span> CG-md.gro <span class="at">-x</span> traj_comp.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="analysis" class="level3">
 <h3 class="anchored" data-anchor-id="analysis">3. Analysis</h3>
 <hr>
 <p>Once the simulation has finished, a trajectory (<code>traj_comp.xtc</code>) should have been generated. An RMS alignment of the protein will take care of the rotational and translational motion.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-pbc</span> mol <span class="at">-center</span> <span class="at">-ur</span> compact <span class="at">-s</span> topol.tpr <span class="at">-f</span> traj_comp.xtc <span class="at">-o</span> temp.xtc</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-fit</span> rot+trans <span class="at">-s</span> topol.tpr <span class="at">-f</span> temp.xtc <span class="at">-o</span> trajfitted.xtc <span class="at">-n</span> index.ndx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-pbc</span> mol <span class="at">-center</span> <span class="at">-ur</span> compact <span class="at">-s</span> topol.tpr <span class="at">-f</span> traj_comp.xtc <span class="at">-o</span> temp.xtc</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-fit</span> rot+trans <span class="at">-s</span> topol.tpr <span class="at">-f</span> temp.xtc <span class="at">-o</span> trajfitted.xtc <span class="at">-n</span> index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To do the alignment, an index file containing the list of backbone atoms (BB) must be provided. It can be generated with:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> CG-eq.gro <span class="at">-n</span> index.ndx <span class="op">&lt;&lt; EOF</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> CG-eq.gro <span class="at">-n</span> index.ndx <span class="op">&lt;&lt; EOF</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">a BB</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">q</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can visualize the trajectory in VMD. More information on visualizing CG Martini simulations is provided here.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> CG-eq.gro trajfitted.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> CG-eq.gro trajfitted.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Do you see any binding events taking place? Additionally, the occupancy of the benzene molecule across the trajectory can be calculated by issuing the following commands in VMD:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> set <span class="ex">sel0</span> [atomselect 0 <span class="st">"resname BNZ"</span>]</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> volmap <span class="ex">occupancy</span> atomselect0 <span class="at">-res</span> 1.0 <span class="at">-allframes</span> <span class="at">-combine</span> avg <span class="at">-o</span> volmap_out.dx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> set <span class="ex">sel0</span> [atomselect 0 <span class="st">"resname BNZ"</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;</span> volmap <span class="ex">occupancy</span> atomselect0 <span class="at">-res</span> 1.0 <span class="at">-allframes</span> <span class="at">-combine</span> avg <span class="at">-o</span> volmap_out.dx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Load the generated file (volmap_out.dx) in VMD, and select the isosurface representation. The “isovalue” control allows you to adjust the occupancy threshold. What regions of the protein have the highest occupancy? Is the binding site / binding tunnel among them?</p>
 <p>For this particular system we obtained around 2-9 binding events per 30 μs of simulation time. If you run the simulation long enough that several binding events are observed, the kon of benzene – T4 lysozyme can be calculated as follows:</p>
 <p><img src="kon_expression.png" class="img-fluid"></p>
@@ -464,13 +470,14 @@ BENZ            1</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

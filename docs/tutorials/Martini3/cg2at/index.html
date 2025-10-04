@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -149,7 +150,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -159,12 +161,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -231,6 +233,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -345,11 +351,11 @@ In case of issues, please contact <a href="mailto:c.m.brown@rug.nl">c.m.brown@ru
 </ul>
 </blockquote>
 <p><code>CG2AT</code> does not require compilation and can be downloaded from <a href="https://github.com/pstansfeld/cg2at">GitHub</a> or <a href="https://zenodo.org/records/5076091">Zenodo</a>, which is ready to use. However, it can also be installed via the command line. This can be achieved using:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install cg2at</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install cg2at</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> stansfeld_rg cg2at</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> stansfeld_rg cg2at</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The addition of <code>CG2AT</code> to the system PATH will make using the programme easier. To do this, in either your .profile, .bashrc or .zshrc file, you can add the following line:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"path_to_CG2AT2:</span><span class="va">$PATH</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"path_to_CG2AT2:</span><span class="va">$PATH</span><span class="st">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where <code>path_to_CG2AT2</code> is replaced with the installation path for CG2AT. This will enable you to run the commands as shown in the tutorial.</p>
 </section>
 <section id="tutorial" class="level3">
@@ -357,12 +363,12 @@ In case of issues, please contact <a href="mailto:c.m.brown@rug.nl">c.m.brown@ru
 <hr>
 <p>In theory, <code>CG2AT</code> can convert between a large range of force fields and their iterations (see the <a href="https://github.com/pstansfeld/cg2at">GitHub</a> page and publication<sup>[1]</sup> for more information) to others, but in this tutorial, the focus will be on the charmm36m atomistic force field and Martini 3.</p>
 <p>The outputs from the <a href="../../../../docs/tutorials/Martini3/ProteinsIIa/index.html">Proteins IIa</a> KALP tutorial will be used, and all of the files for this tutorial can be downloaded <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/cg2at/tutorial_files.tar.gz">here</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzf</span> tutorial_files.tar.gz</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> tutorial_files</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To make the conversion from CG to AT (assuming that the fragments are present within <code>CG2AT</code>), all that is needed as input is the CG coordinate file. An additional file of the AT protein structure can be provided to obtain an aligned file (see <strong>Figure 1</strong>).</p>
 <p>From the downloaded files, we will use the final frame of the simulation, <code>dynamic.gro</code> and the initial KALP structure, <code>kalp-AA.pdb</code>. We are then ready to perform the <code>CG2AT</code> conversion using the following command:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cg2at</span> <span class="at">-c</span> dynamic.gro <span class="at">-a</span> kalp-AA.pdb <span class="at">-ff</span> charmm36-jul2020-updated <span class="dt">\</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="at">-fg</span> martini_3-0_charmm36 <span class="at">-w</span> tip3p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cg2at</span> <span class="at">-c</span> dynamic.gro <span class="at">-a</span> kalp-AA.pdb <span class="at">-ff</span> charmm36-jul2020-updated <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="at">-fg</span> martini_3-0_charmm36 <span class="at">-w</span> tip3p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>-c</code> flag is for the CG coordinates, <code>-a</code> is for the AT protein structure, <code>-ff</code> will select the atomistic force field to map to, <code>-fg</code> will select the coarse-grained forcefield the supplied file is in and <code>-w</code> will select the water model to use in the AT system.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -375,7 +381,7 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>The command used can be simplified to</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cg2at</span> <span class="at">-c</span> dynamic.gro </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cg2at</span> <span class="at">-c</span> dynamic.gro </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which will prompt selection of the force fields and water model, and only provide the <em>de novo</em> protein structure.</p>
 </div>
 </div>
@@ -404,12 +410,12 @@ Note
 </div>
 </div>
 <p>The folder of the most interest is the <code>FINAL</code> folder, which contains the <code>final_cg2at_aligned.pdb</code> (and the <em>de novo</em> version), the <code>.ff</code> folder, relevant <code>.itp</code> files (including position restraint files) and the topology file <code>topol_final.top</code>. Additionally, within this folder, the <code>script_timings.dat</code> will provide information about how long each step takes. We can look at the final structure:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CG2AT_date_time/FINAL/</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> final_cg2at_aligned.pdb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CG2AT_date_time/FINAL/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> final_cg2at_aligned.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The system should look like that on the right in <strong>Figure 2</strong> after adjusting the visualisation selections. <br></p>
 <p><br> <img src="figure2.jpg" class="img-fluid"> <strong>Figure 2: Visualisation of the CG and AT systems.</strong> The left shows a cut-through of the CG KALP system embedded in a POPC bilayer, with the protein shown as the grey surface, lipids as spheres and solvent as a transparent blue surface. The right shows the AT conversion, with the protein shown as a cartoon, lipids and sticks (with hydrogens hidden for clarity) and solvent as a transparent blue surface. <br></p>
 <p><br> The atomistic system is now ready to simulate. Still working within the <code>FINAL</code> folder, we can perform an energy minimisation, an equilibration with position restraints and finally a short production run. The <code>.mdp</code> files are modified from <a href="http://www.mdtutorials.com/gmx/">Justin Lemkul’s gromacs tutorials</a><sup>[2]</sup>, which are a fantastic resource for an introduction to atomistic molecular dynamics simulations. For our system, we can run:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First energy minimisation</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First energy minimisation</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../../mdp_files/em.mdp <span class="at">-c</span> final_cg2at_aligned.pdb <span class="at">-p</span> topol_final.top <span class="at">-o</span> em.tpr</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> em <span class="at">-v</span> <span class="at">-nt</span> 4</span>
@@ -422,7 +428,7 @@ Note
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#A short production run</span></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../../mdp_files/md.mdp <span class="at">-c</span> eq.gro <span class="at">-p</span> topol_final.top <span class="at">-o</span> md.tpr</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> md <span class="at">-v</span> <span class="at">-nt</span> 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-deffnm</span> md <span class="at">-v</span> <span class="at">-nt</span> 4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -437,11 +443,11 @@ Warning
 </div>
 </div>
 <p>On a decent workstation, this simulation will take ~15 minutes to run, but it is for illustration purposes only. The simulation time can be shortened by reducing the number of steps in the <code>md.mdp</code> file. The simulation can be visualised using:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> md.gro md.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> md.gro md.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To improve visualisation, the perodic issues can be fixed using the following commands (for example, but there are many ways to do this):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-s</span> md.tpr <span class="at">-pbc</span> whole <span class="at">-center</span> <span class="at">-o</span> md_whole.xtc <span class="co"># then select protein</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-s</span> md.tpr <span class="at">-pbc</span> whole <span class="at">-center</span> <span class="at">-o</span> md_whole.xtc <span class="co"># then select protein</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> md.gro md_whole.xtc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">vmd</span> md.gro md_whole.xtc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hope you enjoy converting your CG systems!</p>
 </section>
 <section id="troubleshooting" class="level3">
@@ -465,7 +471,7 @@ Fragment is not in the database
 <li><code>FRAG.top</code> <em>optional</em> (contains the information about grouping, connectivity and chirality). A small example can be seen in <strong>Figure 1B</strong>.</li>
 </ul>
 <p>The supplied <code>.pdb</code> file contains information about which atoms belong to which particles, and the atomistic relative position in space. The format for the atomistic part is a standard <code>.pdb</code> style. For example, this small molecule called 4HPA, which you can see below. This shows that atoms 1,2 and 18 belong to the <code>BB</code> bead etc. It is important <strong>all</strong> atoms are listed, including hydrogens.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">BB</span> <span class="ot">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span> <span class="er">BB</span> <span class="ot">]</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">1</span>  <span class="er">OA1</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.810</span>  <span class="er">-2.200</span>   <span class="er">1.420</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>      <span class="er">2</span>  <span class="er">CA</span>  <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">0.610</span>  <span class="er">-2.080</span>   <span class="er">1.130</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">18</span>  <span class="er">OA2</span> <span class="er">4HPA</span>    <span class="er">1</span>       <span class="er">1.440</span>  <span class="er">-2.790</span>   <span class="er">2.170</span>  <span class="er">1.00</span>  <span class="er">0.00</span></span>
@@ -487,7 +493,7 @@ Fragment is not in the database
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">14</span>  <span class="er">CD2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.650</span>   <span class="er">1.160</span>   <span class="er">0.410</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">15</span>  <span class="er">HD2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-0.950</span>   <span class="er">1.200</span>   <span class="er">1.360</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">16</span>  <span class="er">CE2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-1.260</span>   <span class="er">1.970</span>  <span class="er">-0.550</span>  <span class="er">1.00</span>  <span class="er">0.00</span>            </span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">17</span>  <span class="er">HE2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-2.010</span>   <span class="er">2.580</span>  <span class="er">-0.280</span>  <span class="er">1.00</span>  <span class="er">0.00</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="er">ATOM</span>     <span class="er">17</span>  <span class="er">HE2</span> <span class="er">4HPA</span>    <span class="er">1</span>      <span class="er">-2.010</span>   <span class="er">2.580</span>  <span class="er">-0.280</span>  <span class="er">1.00</span>  <span class="er">0.00</span>  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These files would then be added to a folder with the name of your fragment (i.e.&nbsp;FRAG) in the <code>cg2at/database/fragments/martini_3-0_charmm36/non_protein</code> folder. When you run <code>CG2AT</code> again, the warning should be gone.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -578,13 +584,14 @@ Occasionally, you could get something similar to a CUDA error. The flag <code>-n
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

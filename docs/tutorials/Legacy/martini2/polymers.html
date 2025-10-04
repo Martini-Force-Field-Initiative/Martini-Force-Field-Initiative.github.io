@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-bb9c9eaff0dd1107ef27868524499f12.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-5bdfcfc43d5b74b085d09162bedc61ce.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -143,7 +144,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -182,7 +183,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo light-content">
+    <img src="../../../../images/martini.gif" alt="martini logo" class="navbar-logo dark-content">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -192,12 +194,12 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> <i class="bi bi-house-fill" role="img">
+    <a class="nav-link active" href="../../../../index.html" aria-current="page"> <i class="bi bi-house-fill" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/tutorials/index.html" aria-current="page"> <i class="bi bi-mortarboard-fill" role="img">
+    <a class="nav-link" href="../../../../docs/tutorials/index.html"> <i class="bi bi-mortarboard-fill" role="img">
 </i> 
 <span class="menu-text">Tutorials</span></a>
   </li>  
@@ -264,6 +266,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../../../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -402,11 +408,11 @@ window.Quarto = {
 <hr>
 <p>Using the chosen mapping we can proceed to transform sets of atomistic coordinates into CG ones simply by finding the center of mass of each group of atoms in a CG bead. There are different ways to proceed with this so-called “forward mapping”.</p>
 <p>The first method uses the <code>GROMACS</code> tool <code>gmx traj</code> to output centers of mass of arbitrary selections as a function of time in trajectory format. This requires that an index file be created containing one group per bead, each group listing the respective atomistic atoms. As you can imagine for a system such as ours this index file requires a bit of scripting to prepare as there’ll be 2000 groups (or as many CG beads as your mapping yields). The script indexer.py will do this for you, but edit it to understand its workings and to ensure its parameters are correct for the mapping you chose.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> indexer.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> indexer.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should now have produced the index file <code>mapping.ndx</code>. To use the index file with gmx traj, ask for 2000 groups, set the <code>-com</code> flag, and point it to the PBC-treated AA trajectory, the compiled topology, and the index we just prepared:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 1999 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> AA/trajpbc.xtc <span class="at">-s</span> AA/topol.tpr <span class="at">-oxt</span> traj_cg.xtc <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 2000 <span class="at">-b</span> 20000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 1999 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> AA/trajpbc.xtc <span class="at">-s</span> AA/topol.tpr <span class="at">-oxt</span> traj_cg.xtc <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 2000 <span class="at">-b</span> 20000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>gmx traj</code> will prompt you for which index groups correspond to the 2000 that were asked for with the <code>-ng</code> flag. By piping the output of <code>seq 0 1999</code> into it we automate the process and ensure they are output in the correct sequence. Here we also used the <code>-b</code> flag to discard the first 20ns as equilibration time. <code>gmx traj</code> yields an <code>.xtc</code> trajectory file, <code>traj_cg.xtc</code>. The trajectory <code>traj_cg.xtc</code> contains the mapped atomistic data and reflects the coarse-grained behavior of the atomistic model. To serve as a starting point for CG simulations later, and also for visualization and analysis purposes, it is useful to also have a <code>.gro</code> file; the same <code>gmx traj</code> command can be adapted to that end, by setting <code>-b 100000</code> to only pick the last frame and choosing an output filename with the appropriate extension:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 1999 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> AA/trajpbc.xtc <span class="at">-s</span> AA/topol.tpr <span class="at">-oxt</span> cg.gro <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 2000 <span class="at">-b</span> 100000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> 0 1999 <span class="kw">|</span> <span class="ex">gmx</span> traj <span class="at">-f</span> AA/trajpbc.xtc <span class="at">-s</span> AA/topol.tpr <span class="at">-oxt</span> cg.gro <span class="at">-n</span> mapping.ndx <span class="at">-com</span> <span class="at">-ng</span> 2000 <span class="at">-b</span> 100000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The second forward mapping method, which we won’t cover in detail here, makes use of the <code>backward</code> tool. This script was developed to automate the backmapping of CG structures to atomistic, but can also perform forward mapping. It uses mapping files to decide which atoms to calculate centers of mass from, and is therefore more flexible than the approach above. It is of particular interest when dealing with polymers with arbitrary sequences of different residues, for which the scripting of the indexation is not as straightforward.</p>
 <hr>
 <div class="quarto-figure quarto-figure-center">
@@ -421,11 +427,11 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="extraction-of-properties-and-bonded-distributions-atomistic">Extraction of properties and bonded distributions (atomistic)</h3>
 <hr>
 <p>Armed with mapped <code>.xtc</code> and <code>.gro</code> files you can now use <code>gmx distance</code> and <code>gmx angle</code> to extract the relevant bonded distributions of the beads. To this end index files will have to be generated specifying which bonds/angles/dihedrals to measure (see the <code>-h</code> flag of each command). Again, the generation of thousands of atom pairs (for bonds), triplets (for angles), or quadruplets (for dihedrals) requires some scripting, and the <code>gen_indices.py</code> script is there for you. If you inspect the code you’ll notice that the indices will be split between <code>_core</code> and <code>_term</code> groups. These groups separate bonded interactions involving the termini from those that only contain core beads. This might be desirable because a) the termini were mapped differently than the rest of the molecule, and b) even if they were mapped just as the core beads, termini often explore different or more extreme bonded configurations. (Also note that the core groups are split in two. This has the practical reason that the gromacs tool <code>gmx distance</code> apparently has a bug when too many pairs are specified. You can use this to your advantage by now having two samples of the bond distriburtions for the core bonds…)</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gen_indices.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> gen_indices.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now invoke each analysis tools on each index group; remember to change the output filename when selecting the termini and the core groups, in order not to clobber results:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> distance <span class="at">-f</span> traj_cg.xtc <span class="at">-len</span> 0.35 <span class="at">-tol</span> 0.8 <span class="at">-n</span> bonds.ndx <span class="at">-oh</span> bonds-1.xvg</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> distance <span class="at">-f</span> traj_cg.xtc <span class="at">-len</span> 0.35 <span class="at">-tol</span> 0.8 <span class="at">-n</span> bonds.ndx <span class="at">-oh</span> bonds-1.xvg</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> angle <span class="at">-n</span> angles.ndx <span class="at">-f</span> traj_cg.xtc <span class="at">-od</span> angdist.xvg</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> angle <span class="at">-type</span> dihedral <span class="at">-n</span> dihedrals.ndx <span class="at">-f</span> traj_cg.xtc <span class="at">-od</span> dihdist.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> angle <span class="at">-type</span> dihedral <span class="at">-n</span> dihedrals.ndx <span class="at">-f</span> traj_cg.xtc <span class="at">-od</span> dihdist.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You’ll be repeatedly running these same commands later when attempting to reproduce these distributions. The bash script <code>calc_dists.sh</code> does that for you; just be sure to adapt file names and locations.</p>
 <p>Now view the distributions you obtained. Compare the termini with the core ones and decide which will warrant different potentials and which can be treated as the same. You can also at this point predict the distributions that can be problematic to reproduce:</p>
 <ul>
@@ -434,9 +440,9 @@ window.Quarto = {
 <li><p>and the dihedrals that span bond angles that can extend to 180 degrees.</p></li>
 </ul>
 <p>At this point it is also a good idea to calculate the density of the atomistic system, as we’ll be wanting to match it as well (you can instead try to match the known experimental density, if you have it). If an <code>.edr</code> file is available one can use the <code>gmx energy</code> tool to this end. However, in the absence of an <code>.edr</code> file one can simply use</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> traj <span class="at">-f</span> traj_cg.xtc <span class="at">-ob</span> box.xvg <span class="at">-s</span> cg.gro</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> traj <span class="at">-f</span> traj_cg.xtc <span class="at">-ob</span> box.xvg <span class="at">-s</span> cg.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which will extract the box vectors as a function of time. These can then be averaged using <code>gmx analyze</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> box.xvg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> analyze <span class="at">-f</span> box.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The average volume can be calculated from the first three averages (which correspond to the average X, Y, and Z box sizes, respectively, in nm). From the average volume you can readily calculate the average system density.</p>
 <p>As an additional parametrization target we’ll be aiming to reproduce the radius of gyration of the atomistic PEG molecule. You can use the <code>gmx polystat</code> tool to calculate it, but it requires a <code>.tpr</code> file to know the number of atoms per molecule. The best is to leave this for now and calculate it later when you get a <code>.tpr</code> for the CG runs, which will have appropriate molecule information.</p>
 </section>
@@ -470,18 +476,18 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="energy-minimization-and-simulation-of-the-system">Energy minimization and simulation of the system</h3>
 <hr>
 <p>The first step is to generate a CG configuration stable enough to start a simulation from. Use the supplied <code>min.mdp</code> together with the just-created <code>.top</code> file and the <code>cg.gro</code> you forward-mapped earlier:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../min.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> cg.gro <span class="at">-o</span> min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../min.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> cg.gro <span class="at">-o</span> min</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You will likely receive a warning that your atom names do not match. This is ok to ignore as long as you understand why that difference arises (and you do, right?). Just rerun the <code>grompp</code> command with the <code>-maxwarn 1</code> flag, and minimize the structure with:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> min <span class="at">-rdd</span> 1.4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-deffnm</span> min <span class="at">-rdd</span> 1.4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>After finishing <code>mdrun</code> will dump the minimized coordinates as the <code>min.gro</code> file. Note the use of <code>-rdd 1.4</code>. This tells <code>GROMACS</code>, when parallelizing, to search a bit further into neighboring cells for bonded partners. This might not be required in your case, and there is a performance penalty associated with it. If however it is needed and you leave it out, you’ll get spurious error messages complaining about “missing interactions”.</p>
 <p>At this point it is instructive to read <code>min.mdp</code> and see the options required for Martini. In this particular case the electrostatic treatment is not necessary as we don’t have charges in our system. Also note that the typical smoothness of Martini potentials lets us use the straightforward steepest descents minimization (<code>integrator = steep</code> in the <code>.mdp</code>) without fear of letting the system get trapped too far away from the energy minimum.</p>
 <p>From this point, prepare an MD run for equilibration with:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../eq.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> min.gro <span class="at">-o</span> eq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../eq.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> min.gro <span class="at">-o</span> eq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should get no further warnings about atom names, since they are sorted out in <code>min.gro</code>. You might, though, be warned that your timestep is too large for the predicted frequencies generated by some of your bonded potentials. If this is your first try, do lower the force constants in question. If you got to these warnings after having to use a high force constant to match bond distributions, it might be a good idea to replace them by constraints. You might also get warnings about the not-so-weak coupling nature of the thermo- and barostats if you decrease their time constants. These are usually safe to ignore with Martini, although it will be up to you to demonstrate that pressure and temperature behavior is adequate.</p>
 <p>Run the equilibration and (finally!) follow it up by a production MD simulation of your parametrized PEG!</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-rdd</span> 1.4 <span class="at">-deffnm</span> eq</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-rdd</span> 1.4 <span class="at">-deffnm</span> eq</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> grompp <span class="at">-f</span> ../md.mdp <span class="at">-p</span> topol.top <span class="at">-c</span> eq.gro <span class="at">-o</span> md</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-rdd</span> 1.4 <span class="at">-deffnm</span> md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> mdrun <span class="at">-v</span> <span class="at">-rdd</span> 1.4 <span class="at">-deffnm</span> md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Take the time of your simulation to read the <code>.mdp</code> file and understand its thermostatting and barostatting options. Martini has traditionally been coupled to the berendsen thermo- and barostats, although other scheme combinations can be used, in this case v-rescale temperature coupling and parrinello-rahman pressure coupling. The robustness of Martini and of the berendsen schemes allows one to skip, for most simple cases, any NVT pre-equilibration.</p>
 <p>If you get errors at this point there can be multiple causes, and <code>GROMACS</code> is not always able to exit cleanly and in an informative way. The most frequent cases are:</p>
 <ul>
@@ -496,7 +502,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="extraction-of-properties-and-bonded-distributions-cg">Extraction of properties and bonded distributions (CG)</h3>
 <hr>
 <p>At this step you will simply rerun the analysis tools on the CG trajectory. Very importantly, prior to analysis you must make your molecules whole across the PBC:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-pbc</span> mol <span class="at">-o</span> trajpbc.xtc <span class="at">-b</span> 1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> trjconv <span class="at">-f</span> md.xtc <span class="at">-pbc</span> mol <span class="at">-o</span> trajpbc.xtc <span class="at">-b</span> 1000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>-b</code> flag discards the first 1 ns as equilibration time. You can now use the <code>calc_dists.sh</code> script but be sure to adapt it for file locations.</p>
 <p>Also calculate the system density. Unless you used tailored bead masses, <code>gmx energy</code> won’t be able to report it correctly. Get the average volume by simply running <code>gmx energy</code> on the output <code>md.edr</code> file, and compute the density using the known system mass.</p>
 <p>Finally, use <code>gmx polystat</code> to calculate the average radius of gyration of the polymer chains. With the <code>.tpr</code> from this run you can now also calculate the radius of gyration of the mapped atomistic trajectory, if you haven’t already done so.</p>
@@ -527,13 +533,13 @@ window.Quarto = {
 <h5 class="anchored" data-anchor-id="system-initialization"><strong>System initialization</strong></h5>
 <p>You can use a .gro file from the end of your parameterization as a starting point to calculate the solvation energy of PEG9 into its own melt. However, we need to tell GROMACS we want to decouple one molecule from all the others.</p>
 <p>GROMACS has several ways of specifying a switching between coupled and decoupled states. Here we do it by passing the name of the molecule to decouple to the <code>couple_moltype</code> option in the .mdp. However, in the case of a melt this would mean all molecules would become decoupled simultaneously. The workaround for this is to copy your PEG .itp file to another name, and in there change the molecule name (let’s say PEG9X). This will allow you to specify in your .top file the two “different” molecules separately:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">PEG9X</span>     1</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">PEG9</span>    199</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">PEG9</span>    199</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For the water system you need to create a .gro file with a solvated PEG9 chain. An easy shortcut is to use the same .gro file as for the step above but changing the .top to become:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">PEG9</span>      1</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">W</span>      1990</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">W</span>      1990</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will tell GROMACS to interpret any atoms after the first PEG as water beads. You will then need to equilibrate this system for a short period before using it for TI (use the provided eq.mdp file).</p>
 </section>
 <section id="simulation-setup" class="level5">
@@ -545,9 +551,9 @@ window.Quarto = {
 <section id="integration-with-mbar" class="level5">
 <h5 class="anchored" data-anchor-id="integration-with-mbar"><strong>Integration with MBAR</strong></h5>
 <p>We’ll be using the MBAR integration and error-estimation method (see a detailed description of the method, and the used analysis scripts at the <a href="http://www.alchemistry.org/wiki/Multistate_Bennett_Acceptance_Ratio">AlchemistryWiki</a>). You will need to install the pymbar package. If it’s not yet installed can do so with</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pip install pymbar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pip install pymbar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(if you don’t have sudo privilege in your workstation you can install pymbar locally to your home directory by also passing the <code>--user</code> flag). You will also need to install <code>alchemical-analysis</code> (from <a href="https://github.com/MobleyLab/alchemical-analysis">https://github.com/MobleyLab/alchemical-analysis</a>). If that is all-set, run the <code>alchemical-analysis</code> program, telling it the output filename prefix (<code>-p</code> flag) the temperature (<code>-t</code> flag) and how many ps to leave out as equilibration time (<code>-s</code> flag; 1000 ps was deemed enough):</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">alchemical-analysis</span> <span class="at">-p</span> dhdl <span class="at">-t</span> 300 <span class="at">-s</span> 1000</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">alchemical-analysis</span> <span class="at">-p</span> dhdl <span class="at">-t</span> 300 <span class="at">-s</span> 1000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The results will provide calculations using different methods. You should use the ones from MBAR. The script output files will also let you see the individual free-energy changes between steps, and identify areas where more lambda points should be run to lower the estimate error (but beware that because of the need to evaluate energies at all the steps’ Hamiltonians if you add more lambda points all steps will have to be rerun). An alternative <a href="http://www.bevanlab.biochem.vt.edu/Pages/Personal/justin/gmx-tutorials/free_energy/01_theory.html">tutorial</a> with a set-up for free energy of solvation calculation by TI using only gromacs tools (gmx bar) is provided by Justin Lemkul.</p>
 </section>
 </section>
@@ -572,7 +578,7 @@ window.Quarto = {
 <p>The last rule means you can leave out of the <code>.map</code> file atoms specific to the termini, as this will simplify the list.</p>
 <p>After the <code>[ atoms ]</code> directive you have the option to add further information as to the relative placement of atoms within beads. This is unnecessary in our case. It would be required if dealing with atomistic topologies that might minimize to the wrong conformers, such as when chiral center might get inverted.</p>
 <p>Once this is done the <code>.map</code> file must be placed in the <code>Mapping</code> directory (and actually have a <code>.map</code> extension). It is then only a matter of running the following command (adapting for the correct <code>.gro</code> and <code>.top</code> filenames, and you may need to edit the <code>initram.sh</code> script - downloading <code>initram-v5.sh</code> may save you some of that - for the settings of energy groups and energy group exclusions, which by default are Protein, Membrane and Solvent, which are not relevant here and actually lead to gromacs aborting):</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./initram.sh</span> <span class="at">-f</span> cg.gro <span class="at">-p</span> topol.top <span class="at">-to</span> gromos54a7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./initram.sh</span> <span class="at">-f</span> cg.gro <span class="at">-p</span> topol.top <span class="at">-to</span> gromos54a7</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This shell script automates the invocation of backward.py to generate the starting atomistic structure, and the running of an appropriate set of minimization and restrained equilibration steps; both <code>initram.sh</code> and <code>backward.py</code> accept the <code>-h</code> flag to list available options to the process.</p>
 <p>Once <code>initram.sh</code> finishes you have your atomistic system ready! Judge the quality of the conversion by visualizing both CG and atomistic <code>.gro</code> files superimposed. Or take the generated structure for a test run using an approriate <code>.mdp</code> file, which you can find in the <code>AA</code> directory.</p>
 <p>If the process exits with errors during the minimization/equilibration you can just try rerunning it: the atom assignment to the bead space is done randomly and bad luck can cause a botched backmapping.</p>
@@ -633,13 +639,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
