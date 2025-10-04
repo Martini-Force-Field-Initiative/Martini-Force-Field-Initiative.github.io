@@ -4,6 +4,14 @@ format: html
 ---
 
 ::: software-card
+### MartiniGlass
+
+`MartiniGlass` uses [[vermouth]](https://github.com/marrink-lab/vermouth-martinize) to stably rewrite your input topology files as ones that can be used for visualization in VMD. Although much of the functionality is focused on proteins, and the program has a particular focus on being able to visualize protein secondary/tertiary structure networks, MartiniGlass can in fact be used to reconstruct bonded networks of any Martini molecule!
+
+Documentation for `MartiniGlass` is available on the [[readthedocs]](https://martiniglass.readthedocs.io/en/latest) site. The documentation covers multiple use cases and runs through the tutorials in the [[examples]](https://github.com/Martini-Force-Field-Initiative/MartiniGlass/blob/main/examples) folder step by step.
+:::
+
+::: software-card
 ### ProLint
 
 `Prolint2` is an optimized tool for analyzing and visualizing lipid-protein interactions from molecular dynamics trajectories at coarse-grained or atomistic resolution.
@@ -17,66 +25,4 @@ For more details and to download the latest version, visit the [[GitHub reposito
 When working with large systems containing multiple bilayers or other dynamic macroscopic objects, it tends to come more natural to give these aggregates an identity of their own. This is exactly what `MDAVoxelSegmentation` does for amphipathic Martini systems. It not only detects bilayers/leaflets or other aggregates using a voxel based architecture, but it also keeps track of such entities over time. 
 
 For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/marrink-lab/MDVoxelSegmentation).
-:::
-
-::: software-card
-### Rendering CG bonds & constraints with VMD
-
-`cg_bonds-v5.tcl` is a Tcl script to read and draw Martini bonds and constraints in `VMD`. The bonds of the elastic networks can be drawn as well. The script for use with gromacs 5 can be found [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/visualization/cg_bonds-v5.tcl).
-
-#### [**Usage**]{style="color:blue"}
-
-The script is invoked from the `VMD` command line. After sourcing it (`source /path/to/cg_bonds.tcl`, or `/path/to/cg_bonds-v5.tcl`), simply type `cg_bonds` (options and default values listed below). You can summon an "how to" at any moment by calling the `cg_bonds_usage` command.
-
-This script uses the `gmxdump` executable compiled with `gromacs`. By default, it looks for it in the `/usr/bin` directory; you can specify another path with a specific option (see below). The script can now parse `.top` and `.itp` files, via the `-top` option.
-
-#### [**cg_bonds**]{style="color:blue"}
-
-Options and default values (slightly different from the previous version!):
-
-|  |  |  |
-|------------------|------------------------|------------------------------|
-| -molid | "`top`" | `VMD`-defined ID of the molecule to process |
-| -gmx | `/usr/bin/gmxdump` | absolute path to `gmxdump` executable (for version 5, this should point to the gmx executable, default `/usr/bin/gmx`) |
-| -tpr | `topol.tpr` | absolute path to the simulation file (`.tpr`) |
-| -top | `topol.top` | absolute path to the system topology files (`.top` linking to `.itp`) |
-| -topoltype | "`martini`" | protein topology type: "`martini`", "`elastic`" or "`elnedyn`" |
-| -net | "`martini`" | network to draw: "`martini`", "`elastic`" or "`both`" |
-| -bndrcnstr | "`both`" | draw bonds AND/OR constraints "`bonds`", "`constraints`" or "`both`" |
-| -cutoff | 7.0 | cutoff for bonds (angstroms) |
-| -color | "`red`" | color (color name or `VMD`-defined ID) of elastic bonds |
-| -mat | "`Opaque`" | material for elnedyn bonds |
-| -rad | 0.2 | radius of elastic bonds |
-| -res | 6 | resolution of elastic bonds |
-
-In most of the cases, if a "classical" cut-off is used for the elastic network (0.9nm), more than 12 bonds per atom are defined and `VMD` refuses to draw them. BUT this script replaces bonds by cylinders, and is able to draw the entire elastic network. Note that you have to modify the default cutoff value to see all the links defined by the elastic network.
-
-Then you can remove Martini bonds with the `cg_delete_martini_bonds`; and the cylinders with the `cg_delete_elastic_bonds`. The only option for the previous three commands is the VMD-defined ID of the molecule to process (via `-molid`, default is "`top`").
-
-#### [**Known issues**]{style="color:blue"}
-
--   Bonds drawn for the elastic network don't follow the dynamic of the protein; the 12-bonds-limitation of VMD obliges to draw them using cylinders, not regular bonds. **Please drop a mail if you have a solution to fix that...**
--   Version of VMD should be superior to `1.8.5` (excluded) to run this script properly. 
--   `Tcl` needs an empty line at the end of the files it reads (`.top` and `.itp`)!
--   On the same level, `Tcl` seems to understand differently the simple and double quotes... Please check that before shouting.
-
-#### [**Example**]{style="color:blue"}
-
-``` bash
-user@machine $ vmd protein.gro
-vmd > source /home/user/scripts/cg_bonds.tcl
-vmd > cg_bonds -top system.top -topoltype "elastic"
-vmd > cg_bonds -gmx /home/user/bin/gmx-4.5.4/bin/gmxdump -tpr dyn.tpr -net "elastic" -cutoff 12.0 -color "orange" -mat "AOChalky" -res 12 -rad 0.1 -topoltype "elastic"
-vmd > cg_delete_elastic_bonds
-```
-
-The few lines above will:
-
-1.  load the protein.gro structure,
-2.  source the cg_bonds.tcl script,
-3.  draw the martini bonds (using the .top file specified in the command line) extracted from a .top containingelastic network bonds,
-4.  draw the elastic network with the options (cutoff, color, material, resolution and radius) specified by extracting the bonds from the .tpr file,
-5.  delete the elastic network bonds previously drawn.
-
-All these line will be applied to the molecule with the `VMD`-defined ID 0 (or "`top`").
 :::
