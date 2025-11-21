@@ -8,7 +8,12 @@ page-layout: full
 <div class="team-grid two-columns">
 ::: team-card
 ::: team-info
-Dr. Luis Borges-Araujo (ENS de Lyon, CNRS) <br> 
+Luis Borges-Araujo (ENS de Lyon, CNRS) 
+<div class="contact-footer">
+  <a href="https://alessandri-group.github.io"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:riccardo.alessandri@kuleuven.be"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
 `Contribution:` Protein and Lipid models.
 :::
 
@@ -19,7 +24,7 @@ Dr. Luis Borges-Araujo (ENS de Lyon, CNRS) <br>
 
 ::: team-card
 ::: team-info
-Dr. Valentina Corradi (University of Calgary) <br>
+Valentina Corradi (University of Calgary) <br>
 `Contribution:` Protein and Lipid models.
 :::
 
@@ -30,7 +35,7 @@ Dr. Valentina Corradi (University of Calgary) <br>
 
 ::: team-card
 ::: team-info
-Dr. Hanif Khan (University of Calgary) <br>
+Hanif Khan (University of Calgary) <br>
 `Contribution:` Protein and Lipid models.
 :::
 
@@ -41,7 +46,7 @@ Dr. Hanif Khan (University of Calgary) <br>
 
 ::: team-card
 ::: team-info
-Dr. Guillaume Launay (ENS de Lyon, CNRS) <br>
+Guillaume Launay (ENS de Lyon, CNRS) <br>
 `Contribution:` MAD.
 :::
 
@@ -52,67 +57,88 @@ Dr. Guillaume Launay (ENS de Lyon, CNRS) <br>
 
 ::: team-card
 ::: team-info
-Dr. Weria Pezeshkian (University of Copenhagen) <br>
-`Contribution:` TS2CG.
+Weria Pezeshkian (University of Copenhagen) 
+<div class="contact-footer">
+  <a href="https://weria-pezeshkian.github.io"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:weria.pezeshkian@nbi.ku.dk"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Developer of TS2CG tool.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/weria.png){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Daniel Ramirez (University of Calgary) <br>
-`Contribution:` Lipid models and Web Portal.
+Daniel Ramirez (University of Calgary)
+<div class="contact-footer">
+  <a href="mailto:daniel.ramirezecheme@ucalgary.ca"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Development of Martini lipid models and Martini Web Portal.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/daniel.png){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Kasper S. Pedersen (Aarhus University) <br>
-`Contribution:` Lipid models and Olives model for Proteins.
+Kasper B. Pedersen (Raven biosciences) 
+<div class="contact-footer">
+  <a href="mailto:kasperbuskpedersen@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Development of Martini 3 lipid parameters and the OLIVES Go-like model for Martini 3 proteins.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/kasper.png){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Adolfo Poma	 (Polish Academy of Sciences) <br>
-`Contribution:` GoMartini for Proteins.
-:::
-
-::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
-:::
-:::
-
-::: team-card
-::: team-info
-Dr. Raul Mera-Adasme (University of Tarapacá) <br>
-`Contribution:` Lipid models and Web Portal.
-:::
-
-::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
-:::
-:::
-
-::: team-card
-::: team-info
-Dr. Chris Brasnett (University of Groningen) <br>
+Chris Brasnett (University of Groningen) <br>
 `Contribution:` Martinize2 and MartiniGlass	tools.
 :::
 
 ::: team-image-container-two
 ![](all_contributors/placeholder.jpg){.team-image}
+:::
+:::
+
+::: team-card
+::: team-info
+Adolfo Poma	 (Institute of Fundamental Technological Research, Polish Academy of Sciences) 
+<div class="contact-footer">
+  <a href="http://pomalab.ippt.pan.pl/web/"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:apoma@ippt.pan.pl"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Developer of the GōMartini model focusing on understanding proteins in action.
+:::
+
+::: team-image-container-two
+![](all_contributors/poma.jpeg){.team-image}
+:::
+:::
+
+::: team-card
+::: team-info
+Raul Mera-Adasme (Universidad de Tarapacá) <br>
+<div class="contact-footer">
+  <a href="https://github.com/rmera"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:rmeraa@academicos.uta.cl"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Development of the Bartender program (automated bonded-term generation for small molecules).
+:::
+
+::: team-image-container-two
+![](all_contributors/rmera.jpeg){.team-image}
 :::
 :::
 
@@ -151,7 +177,7 @@ Linus Grunewald (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Jonathan Barnoud (University of Groningen) <br>
+Jonathan Barnoud (University of Groningen) <br>
 `Contribution:` martinize2 tool and martini 3 for field.
 :::
 
@@ -162,7 +188,7 @@ Dr. Jonathan Barnoud (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Peter Kroon (University of Groningen) <br>
+Peter Kroon (University of Groningen) <br>
 `Contribution:` martinize2 and polyply tools.
 :::
 
@@ -173,7 +199,7 @@ Dr. Peter Kroon (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Tsjerk Wassenaar (University of Groningen) <br>
+Tsjerk Wassenaar (University of Groningen) <br>
 `Contribution:` Insane and Backwards tools.
 :::
 
@@ -184,7 +210,7 @@ Dr. Tsjerk Wassenaar (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Alex de Vries (University of Groningen) <br>
+Alex de Vries (University of Groningen) <br>
 `Contribution:` Nanomaterials.
 :::
 
@@ -195,7 +221,7 @@ Dr. Alex de Vries (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Herre Jelger Risselada (University of Groningen) <br>
+Herre Jelger Risselada (University of Groningen) <br>
 `Contribution:` CGCompiler tool.
 :::
 
@@ -206,7 +232,7 @@ Dr. Herre Jelger Risselada (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Cesar Lopez (University of Groningen) <br>
+Cesar Lopez (University of Groningen) <br>
 `Contribution:` Sugar and glycolipid models.
 :::
 
@@ -217,51 +243,85 @@ Dr. Cesar Lopez (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Giovanni M. Pavan (University of Applied Sciences and Arts of Southern Switzerland) <br>
-`Contribution:` SwarmCG tool.
+Giovanni M. Pavan (Politecnico di Torino) 
+<div class="contact-footer">
+  <a href="www.gmpavanlab.polito.it"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:giovanni.pavan@polito.it"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Parametrization of CG models for self-assembling systems, automatic optimization of CG models.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/pavan.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Wonpil Im (Lehigh University) <br>
-`Contribution:` Martini-CHARMM-GUI tool.
+Charly Empereur-mot (University of Applied Sciences and Arts of Southern Switzerland) 
+<div class="contact-footer">
+  <a href="mailto:charly.empereur-mot@supsi.ch"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Automatic optimization of CG models.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/charly.jpeg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Giulia Rossi (University of Genoa) <br>
-`Contribution:` Polymer models.
+Wonpil Im (Lehigh University) <br>
+<div class="contact-footer">
+  <a href="https://compbio.lehigh.edu/"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:wonpil@lehigh.edu"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` CHARMM-GUI Martini Maker. Martini Models for mycobacterial membranes.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/wonpil.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Tristan Bereau (Heidelberg University) <br>
-`Contribution:` automartini tool.
+Giulia Rossi (University of Genoa) 
+<div class="contact-footer">
+  <a href="www.nanobiocomp.com"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:giulia.rossi@unige.it"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Development of Martini models of polymers, hybrid organic/inorganic nanoparticles, nanoporous materials and liquid/solid interfaces.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/giulia.png){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Phillip Stansfeld (University of Warwick) <br>
+Tristan Bereau (Heidelberg University) 
+<div class="contact-footer">
+  <a href="https://tristanbereau.com/"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:bereau@uni-heidelberg.de"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` High-throughput screening, molecular design, and automated parametrization for small molecules.
+:::
+
+::: team-image-container-two
+![](all_contributors/tristan.jpg){.team-image}
+:::
+:::
+
+::: team-card
+::: team-info
+Phillip Stansfeld (University of Warwick) <br>
 `Contribution:` CG2AT tool, protein-lipid interactions.
 :::
 
@@ -272,7 +332,7 @@ Dr. Phillip Stansfeld (University of Warwick) <br>
 
 ::: team-card
 ::: team-info
-Dr. Syma Khalid (University of Oxford) <br>
+Syma Khalid (University of Oxford) <br>
 `Contribution:` LPS and sugar models.
 :::
 
@@ -283,7 +343,7 @@ Dr. Syma Khalid (University of Oxford) <br>
 
 ::: team-card
 ::: team-info
-Dr. Mathieu Chavent (CNRS researcher, LMGM, CBI) <br>
+Mathieu Chavent (CNRS researcher, LMGM, CBI) <br>
 `Contribution:` automartini tool and lipid models.
 :::
 
@@ -294,7 +354,7 @@ Dr. Mathieu Chavent (CNRS researcher, LMGM, CBI) <br>
 
 ::: team-card
 ::: team-info
-Dr. Bart Mh Bruininks (University of Groningen) <br>
+Bart Mh Bruininks (University of Groningen) <br>
 `Contribution:` Oligomers and analysis tools.
 :::
 
@@ -305,7 +365,7 @@ Dr. Bart Mh Bruininks (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Chelsea Brown (University of Groningen) <br>
+Chelsea Brown (University of Groningen) <br>
 `Contribution:` Bentopy tool and Web Portal.
 :::
 
@@ -316,18 +376,21 @@ Dr. Chelsea Brown (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Petteri Vainikka (Lund University) <br>
-`Contribution:` Ionic liquids.
+Petteri Vainikka (Lund University) 
+<div class="contact-footer">
+  <a href="mailto:petteri.vainikka@chem.lu.se"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Deep Eutectic Solvents and Molecular Machines.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/vainikka.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Ilias Patmanidis (University of Groningen) <br>
+Ilias Patmanidis (University of Groningen) <br>
 `Contribution:` Proteins and Nanomaterial models.
 :::
 
@@ -338,18 +401,23 @@ Dr. Ilias Patmanidis (University of Groningen) <br>
 
 ::: team-card
 ::: team-info
-Dr. Balázs Fabian (Max Planck Institute of Biophysics) <br>
-`Contribution:` Lipid models.
+Balázs Fabian (Max Planck Institute of Biophysics) 
+<div class="contact-footer">
+  <a href="https://www.biophys.mpg.de/theoretical-biophysics"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:balazs.fabian@biophys.mpg.de"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Simulation methodology and lipid model development.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/balazs.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Thilo Duve (Frankfurt Institute for Advanced Studies) <br>
+Thilo Duve (Frankfurt Institute for Advanced Studies) <br>
 `Contribution:` Fast-forward tool and protein models.
 :::
 
@@ -360,7 +428,7 @@ Dr. Thilo Duve (Frankfurt Institute for Advanced Studies) <br>
 
 ::: team-card
 ::: team-info
-Dr. Robin Corey (University of Bristol) <br>
+Robin Corey (University of Bristol) <br>
 `Contribution:` Lipid-protein interactions.
 :::
 
@@ -371,18 +439,23 @@ Dr. Robin Corey (University of Bristol) <br>
 
 ::: team-card
 ::: team-info
-Dr. Alexandre Bonvin (Utrecht University) <br>
-`Contribution:` Haddock Martini tool.
+Alexandre Bonvin (Utrecht University) 
+<div class="contact-footer">
+  <a href="bonvinlab.org"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:a.m.j.j.bonvin@uu.nl"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Martini implementation into the HADDOCK integrative modelling software.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/bonvin.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Kai Stroh (Technische Universität Dortmund) <br>
+Kai Stroh (Technische Universität Dortmund) <br>
 `Contribution:` CGCompiler tool.
 :::
 
@@ -393,18 +466,21 @@ Dr. Kai Stroh (Technische Universität Dortmund) <br>
 
 ::: team-card
 ::: team-info
-Dr. Kresten Lindorff-Larsen (University of Copenhagen) <br>
-`Contribution:` IDP protein models.
+Kresten Lindorff-Larsen (University of Copenhagen) 
+<div class="contact-footer">
+  <a href="https://github.com/KULL-Centre/"><i class="fa-solid fa-globe"></i> Website</a>
+</div>
+`Contribution:` Experimental benchmarks to examine Martini accuracy on flexible proteins with multiple folded domains and disordered proteins.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/kresten.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Ganapathy Ayappa (Indian Institute of Science) <br>
+Ganapathy Ayappa (Indian Institute of Science) <br>
 `Contribution:` LPS models.
 :::
 
@@ -415,7 +491,7 @@ Dr. Ganapathy Ayappa (Indian Institute of Science) <br>
 
 ::: team-card
 ::: team-info
-Dr. Drew Bennett (Lawrence Livermore National Lab) <br>
+Drew Bennett (Lawrence Livermore National Lab) <br>
 `Contribution:` ezalign, azperm.
 :::
 
@@ -426,7 +502,7 @@ Dr. Drew Bennett (Lawrence Livermore National Lab) <br>
 
 ::: team-card
 ::: team-info
-Dr. Siyoung Kim (D.E. Shaw Research) <br>
+Siyoung Kim (D.E. Shaw Research) <br>
 `Contribution:` mstool.
 :::
 
@@ -437,18 +513,23 @@ Dr. Siyoung Kim (D.E. Shaw Research) <br>
 
 ::: team-card
 ::: team-info
-Mikkel Andreasen (Aarhus University) <br>
-`Contribution:` COBY tool.
+Mikkel Andreasen (Aarhus University) 
+<div class="contact-footer">
+  <a href="https://github.com/MikkelDA"><i class="fa-solid fa-globe"></i> Website</a>
+  <span class="sep"></span>
+  <a href="mailto:mda@chem.au.dk"><i class="fa-solid fa-envelope"></i> Email</a>
+</div>
+`Contribution:` Main developer of COBY, a tool that can build complex CG systems.
 :::
 
 ::: team-image-container-two
-![](all_contributors/placeholder.jpg){.team-image}
+![](all_contributors/mikkel.jpg){.team-image}
 :::
 :::
 
 ::: team-card
 ::: team-info
-Dr. Elio Cino (University of Calgary) <br>
+Elio Cino (University of Calgary) <br>
 `Contribution:` Lipid models.
 :::
 
