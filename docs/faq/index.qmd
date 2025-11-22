@@ -1,9 +1,15 @@
 ---
-title: "Frequently Asked Questions <hr>"
+title: Frequently Asked Questions
+subtitle: Quick answers to help you get started smoothly
+page-layout: article
+title-block-banner: "#FDF7F4"
+title-block-banner-color: body
+format:
+  html:
+    toc: true
+    toc-location: right
 ---
 
-
-# 🌍 General
 ## Can I mix Martini 2.x and Martini 3.x models?
 No! Mixing Martini 2.x and Martini 3.x models are not compatible due to differences in their force fields and parametrization. The Martini 3.x force field represents a significant update from Martini 2.x, with changes in bead types, interaction parameters, and overall philosophy of modeling. These updates can lead to inconsistencies if you try to mix models from the two versions in the same simulation.
 
@@ -21,8 +27,6 @@ Several resolution conversion tools are available to go from CG to AA. [Backward
 ## Is Martini supported by other sofware packages apart from Gromacs?
 Yes, it is implemented also in NAMD, GROMOS, and current efforts are porting it to CHARMM. A reduced version of Martini is also available through the Material Studio commercial software. Note that, for each of these software packages, the Martini implementation might differ - to an unknown extent - with that of the GROMACS implementation, so you should be careful when using Martini 'abroad'.
 
-
-# 💻 Input parameters
 ## Which mdp options should I use?
 We provide recommended GROMACS mdp parameter files for both [Martini 2](../downloads/example-input-files/md-parameters.qmd#martini-2) and [Martini 3](../downloads/example-input-files/md-parameters.qmd#martini-3).
 
@@ -43,8 +47,6 @@ As always, it's essential to verify that your results are not biased by the choi
 ## Can I do free energy calculations with Martini?
 Yes you can! Some examples can be found in our [tutorials](../tutorials/Martini3/tutorials.qmd).
 
-
-# ⚙️ Topologies
 ## How do I create a topology for a new molecule?
 You can find in-depth step-by-step guides on how to parameterize new molecules in our tutorial sections. Available for both Martini 2 and Martini 3.
 
@@ -64,8 +66,6 @@ How? Easy, use the special martini_v2.P.itp file in which the polarizable water 
 
 When? We first note that the polarizable Martini water model is not meant to replace the standard Martini water model, but should be viewed as an alternative with improved properties in some, but similar behaviour at reduced efficiency in other applications. It is 2 to 3 times more expensive than standard Martini because the polarizable water bead has three particles. In combination with PME, which you can do with the polairzable model, it is even slower. However, for systems or processes in which charges or polar particles are present in a low-dielectric medium (e.g., inside a bilayer, or protein), the polarizable water model is much more realistic as it captures the dielectric inhomogeneity of the system. Furthermore, the effect of electrostatic fields (both external and internal) is modeled more realistically. In fact you may even simulate cool phenomena like electroporation.
 
-
-# 🛠 Frequent problems
 ## My simulation keeps crashing, what can I do?
 The following is a list of suggestions that might help you stabilize your system:
  - Reduce the time step somewhat, some applications require 20 fs rather than 30-40 fs. If you need to go below 20 fs something else is likely to be wrong.
@@ -94,4 +94,4 @@ In Martini 3 this issue is not as common anymore. However, it can still happen, 
 Time to use an elastic network or Go Model in combination with your Martini protein. See our [Tutorials](../tutorials/Martini3/tutorials.qmd) page.
 
 ## Who can I contact with further questions?
-Check our [contact us](../contact/contact.qmd) page!
+Check our [contact us](../contact/index.qmd) page!
