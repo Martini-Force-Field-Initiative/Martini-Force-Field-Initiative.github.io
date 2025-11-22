@@ -21,15 +21,15 @@ website:
     background: "#fdfffc"
     left: <div class="footer-left"></div>
     center:
-      - icon: twitter
-        href: https://x.com/cg_martini
-        aria-label: Martini Twitter
-      - text: "{{< iconify hugeicons:help-circle size=lg title=FAQs label=FAQs >}}"
-        href: docs/faq/index.qmd
-        aria-label: FAQs
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         aria-label: Martini GitHub
+      - text: "{{< iconify hugeicons:help-circle size=lg title=FAQs label=FAQs >}}"
+        href: docs/faq/index.qmd
+        aria-label: FAQs
+      - icon: twitter-x
+        href: https://x.com/cg_martini
+        aria-label: Martini Twitter
     right: <div class="footer-right">© 2025 Martini Force Field Initiative <img src="https://cgmartini-library.s3.ca-central-1.amazonaws.com/icon.png" alt="Icon"> </div>
    
 
@@ -76,12 +76,12 @@ website:
             href: docs/faq/index.qmd
     
     tools:
-      - icon: twitter
-        href: https://x.com/cg_martini
-        text: Martini Twitter
       - icon: github
         href: https://github.com/Martini-Force-Field-Initiative
         text: Martini GitHub
+      - icon: twitter-x
+        href: https://x.com/cg_martini
+        text: Martini Twitter
 
   sidebar:
 
