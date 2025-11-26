@@ -1,0 +1,35 @@
+---
+title: "Efficient Protein-Ligand Binding Free Energy Estimation with Coarse-Grained Funnel Metadynamics"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Andrea Grazzi, Chelsea M Brown, Maurizio Sironi, Siewert J Marrink, and Stefano Pieraccini"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "chemRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.26434/chemrxiv-2025-tnz77"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Proteins
+  - Methods
+  - Enhanced sampling
+  - Small molecules
+  - Multi-scale
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Grazzi, A., Brown, C. M., Sironi, M., Marrink, S. J., & Pieraccini, S. (2025). Efficient Protein-Ligand Binding Free Energy Estimation with Coarse-Grained Funnel Metadynamics.
+
+## Abstract
+
+Despite considerable advances in computational chemistry, bridging the gap between the accuracy of all-atom molecular dynamics (AA-MD) and the high-throughput capabilities of docking remains an unsolved problem in protein-ligand binding free energy predictions. In this work, we propose to address this challenge through coarse-grained funnel metadynamics (CG-FMD) with the Martini 3 forcefield. This approach combines the reduced computational cost of a CG representation with state-of-the-art enhanced sampling techniques and the interpretability of a physics-based forcefield. Specifically, the binding of colchicine to two different protein targets was modeled at both AA and CG resolutions, and the corresponding ΔGbind predictions were compared with experimental references. Additionally, the robustness of CG-FMD-based ΔGbind predictions was evaluated with respect to various aspects of the simulation setup by collecting more than 7 milliseconds of CG-FMD simulations. The results demonstrate that CGFMD yields ΔGbind estimates comparable to experimental values while requiring only a fraction of the computational cost of AA-MD simulations. Moreover, the extensive sampling achievable with CG-FMD reduces statistical uncertainty in the final predictions, effectively compensating for the simplified system representation. Future work should build upon these methodological insights to broaden the scope of ligands and targets explored.
