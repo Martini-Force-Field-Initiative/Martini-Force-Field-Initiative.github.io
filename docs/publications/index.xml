@@ -14,8 +14,45 @@
 <title>Martini Force Field Initiative</title>
 <link>https://cgmartini.nl/docs/publications/</link>
 </image>
-<generator>quarto-1.8.25</generator>
-<lastBuildDate>Sat, 04 Oct 2025 09:19:29 GMT</lastBuildDate>
+<generator>quarto-1.8.26</generator>
+<lastBuildDate>Thu, 04 Dec 2025 16:07:43 GMT</lastBuildDate>
+<item>
+  <title>A Comparative Nanomechanical Study of Antibody and Nanobody Binding to SARS-CoV-2 Variants</title>
+  <dc:creator>Luis F Cofas-Vargas, Gustavo E Olivos-Ramirez, Siewert-Jan Marrink, and Adolfo B Poma</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/CofasVargas2025_AntibodyBinding.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Cofas-Vargas, L. F., Olivos-Ramirez, G. E., Marrink, S. J., &amp; Poma, A. B. (2025). A Comparative Nanomechanical Study of Antibody and Nanobody Binding to SARS-CoV-2 Variants. bioRxiv, 2025-09.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The receptor-binding domain of the SARS-CoV-2 spike protein is the principal target of neutralizing antibodies (Abs) and nanobodies (Nbs). Although their thermodynamic binding properties have been extensively characterized, their stability under mechanical force remains less understood. Here, we perform a comparative nanomechanical analysis of three Abs (PDI-231, S2X259, and R1-32) and three Nbs (R14, C1, and n3113.1) bound to the RBD from the WT strain and the Omicron BA.4 and JN.1 variants. Using coarse-grained steered molecular dynamics within the GōMartini 3 framework, we identified distinct force–response behaviors shaped by epitope topology, binding architecture, and variant-specific mutations. Ab/RBD dissociation was characterized by asymmetric rupture events, variant-dependent unfolding of RBD segments, and occasional deformation of antibody constant domains. Analysis of single-chain systems revealed that the heavy chain acts as the main load-bearing element, while the light chain sustains a consistent but weaker mechanical response. For the two-chain Ab system, the cooperative action of both chains enhances stability, enabling complexes to withstand rupture forces in the range of 500 pN. By contrast, Nb/RBD complexes dissociated primarily through rigid-body mechanisms, transmitting force more directly to the RBD interface with minimal structural disruption. Together, these results demonstrate that mechanical resilience emerges from immune complex topology and inter-chain cooperation, providing complementary insights beyond affinity into the design of therapeutics resilient to viral evolution.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Proteins</category>
+  <category>Enhanced sampling</category>
+  <category>Drug design</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/CofasVargas2025_AntibodyBinding.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
 <item>
   <title>A systematic approach to parameterization of disaccharides for the Martini 3 coarse-grained force-field</title>
   <dc:creator>Astrid F Brandner, Iain PS Smith, Siewert J Marrink, Paulo CT Souza, and Syma Khalid</dc:creator>
@@ -51,7 +88,42 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Parametrization</category>
   <category>Small molecules</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Brandner2025_Disaccharides.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>Allosteric pathway connects Zn (II) loss from SOD1 to known pathogenic mechanisms</title>
+  <dc:creator>Rocío Araya-Osorio, Moisés Dominguez, Sebastian Thallmair, Siewert J Marrink, Paulo CT Souza, and Raúl Mera-Adasme</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/ArayaOsorio2025_SOD1.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Araya-Osorio, R., Dominguez, M., Thallmair, S., Marrink, S. J., Souza, P. C., &amp; Mera-Adasme, R. (2025). Allosteric pathway connects Zn (II) loss from SOD1 to known pathogenic mechanisms. International Journal of Biological Macromolecules, 148349.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Cu,Zn superoxide dismutase (SOD1) is one of the proteins with mutations linked to hereditary forms of the amyotrophic lateral sclerosis neurodegenerative disorder. The protein is known for its enzymatic activity, but it has been shown to also have regulatory functions, which could be related to its pathogenic potential. Seemingly unrelated to its regulatory roles, the most important hypothesis on SOD1 pathogenicity is related to misfolding of the protein, specifically centered on the region corresponding to its residues 28–38. The present work explores the structural and dynamical effect of Zn(II) removal from SOD1, which is known to influence its regulatory roles, with coarse-grained simulations of 450 µs per system. In agreement with experiment, we see an increased solvent exposure of the regulatory region (residues 5–18). We also see an increased solvent exposure of the misfolding-critical 28–38 region. We unveil the mechanism and interactions connecting Zn(II) loss, and solvent exposure of both regions. The present work allows for an unified understanding of two different pathogenic mechanisms of SOD1.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Proteins</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/ArayaOsorio2025_SOD1.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>An integrative modelling approach to the mitochondrial cristae</title>
@@ -88,7 +160,83 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Brown2025_Cristae.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies</title>
+  <dc:creator>Gustavo Enrique Ramirez-Olivos, Luis Fernando Cofas-Vargas, Siewert-Jan Marrink, and Adolfo Poma</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/RamirezOlivos2025_GoContactMap.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Ramirez-Olivos, G. E., Cofas-Vargas, L. F., Marrink, S. J., &amp; Poma, A. (2025). An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies. bioRxiv, 2025-11.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Advances in structural biology, particularly cryo-electron microscopy, have enabled high-resolution characterization of complex biomolecular assemblies. These developments emphasize the need for computational approaches capable of describing biologically relevant conformational changes over extended timescales. GōMartini 3 is a coarse-grained approach that demonstrates computational efficiency and versatility across several systems, from protein-binding membranes and soluble proteins to intrinsically disordered proteins, while preserving key physicochemical features. In this work, we introduce an optimized approach that integrates dynamic contact information from AA-MD simulations to refine the contact map in GōMartini simulations. Specifically, we define high-frequency contacts (HFC), which reduce the number of original Gō contacts set by ≈20–30%, thereby improving the representation of conformational states beyond the original approach. Benchmarking different contact-selection criteria revealed that including intra- and interchain HFC captures structural flexibility and domain dynamics. The method was tested on three small soluble proteins and on the SARS-CoV-2 spike protein. Overall, the optimized contact map improves sampling efficiency and expands the accessible conformational landscape relative to the original GōMartini 3 implementation. The full framework is available as an open-source resource for large-scale simulations of biomolecular assemblies.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Proteins</category>
+  <category>Methods</category>
+  <category>Forcefield</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/RamirezOlivos2025_GoContactMap.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>Efficient Protein-Ligand Binding Free Energy Estimation with Coarse-Grained Funnel Metadynamics</title>
+  <dc:creator>Andrea Grazzi, Chelsea M Brown, Maurizio Sironi, Siewert J Marrink, and Stefano Pieraccini</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/Grazzi2025_LigandBindingEnergy.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Grazzi, A., Brown, C. M., Sironi, M., Marrink, S. J., &amp; Pieraccini, S. (2025). Efficient Protein-Ligand Binding Free Energy Estimation with Coarse-Grained Funnel Metadynamics.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Despite considerable advances in computational chemistry, bridging the gap between the accuracy of all-atom molecular dynamics (AA-MD) and the high-throughput capabilities of docking remains an unsolved problem in protein-ligand binding free energy predictions. In this work, we propose to address this challenge through coarse-grained funnel metadynamics (CG-FMD) with the Martini 3 forcefield. This approach combines the reduced computational cost of a CG representation with state-of-the-art enhanced sampling techniques and the interpretability of a physics-based forcefield. Specifically, the binding of colchicine to two different protein targets was modeled at both AA and CG resolutions, and the corresponding ΔGbind predictions were compared with experimental references. Additionally, the robustness of CG-FMD-based ΔGbind predictions was evaluated with respect to various aspects of the simulation setup by collecting more than 7 milliseconds of CG-FMD simulations. The results demonstrate that CGFMD yields ΔGbind estimates comparable to experimental values while requiring only a fraction of the computational cost of AA-MD simulations. Moreover, the extensive sampling achievable with CG-FMD reduces statistical uncertainty in the final predictions, effectively compensating for the simplified system representation. Future work should build upon these methodological insights to broaden the scope of ligands and targets explored.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Proteins</category>
+  <category>Methods</category>
+  <category>Enhanced sampling</category>
+  <category>Small molecules</category>
+  <category>Multi-scale</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/Grazzi2025_LigandBindingEnergy.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>GōMartini 3: From large conformational changes in proteins to environmental bias corrections</title>
@@ -125,7 +273,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Proteins</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Souza2025_GoMartini.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>Hexokinase-I directly binds to a charged membrane-buried glutamate of mitochondrial VDAC1 and VDAC2</title>
@@ -162,7 +310,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>pH</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Bieker2025_Hexokinase1VDAC.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>Insight into the Self-Assembly Behaviors of Per-and Polyfluoroalkyl Substances Using a Computational Microscope</title>
@@ -201,7 +349,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Small molecules</category>
   <category>Nanoparticles</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Yan2025_Polyfloroalkyl.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>Martini 3 Protein Models - A Practical Introduction to Different Structure Bias Models and their Comparison</title>
@@ -238,7 +386,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Protocol</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Duve2025_Martini3ProteinModels.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>Martini 3 building blocks for Lipid Nanoparticle design</title>
@@ -276,7 +424,46 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Parametrization</category>
   <category>Vesicles</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Kjølbye2025_Nanoparticles.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>Martini 3 coarse-grained models for carbon nanomaterials</title>
+  <dc:creator>Roshan Shrestha, Riccardo Alessandri, Martin Vögele, Paulo CT Souza, Siewert-Jan Marrink, and Luca Monticelli</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/Shrestha2025_Nanomaterials.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Shrestha, R., Alessandri, R., Vögele, M., Hilpert, C., Souza, P. C., Marrink, S. J., &amp; Monticelli, L. (2025). Martini 3 coarse-grained models for carbon nanomaterials. Journal of Chemical Theory and Computation, 21(18), 9035-9053.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>The Martini model is a coarse-grained force field allowing simulations of biomolecular systems as well as a range of materials including different types of nanomaterials of technological interest. Recently, a new version of the force field (version 3) has been released that includes new parameters for lipids, proteins, carbohydrates, and a number of small molecules, but not yet carbon nanomaterials. Here, we present new Martini models for three major types of carbon nanomaterials: fullerene, carbon nanotubes, and graphene. The new models were parametrized within the Martini 3 framework, and reproduce semiquantitatively a range of properties for each material. In particular, the model of fullerene yields excellent solid-state properties and good properties in solution, including correct trends in partitioning between different solvents and realistic translocation across lipid membranes. The models of carbon nanotubes reproduce the atomistic behavior of nanotube porins spanning lipid bilayers. The model of graphene reproduces structural and elastic properties, as well as trends in experimental adsorption enthalpies of organic molecules. All new models can be used in large-scale simulations to study the interaction with the wide variety of molecules already available in the Martini 3 force field, including biomolecular and synthetic systems.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Nanoparticles</category>
+  <category>Parametrization</category>
+  <category>Materials science</category>
+  <category>Lipid membranes</category>
+  <category>Small molecules</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/Shrestha2025_Nanomaterials.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>Martini3-IDP: improved Martini 3 force field for disordered proteins</title>
@@ -315,7 +502,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Biomolecular condensates</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Wang2025_IDP.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>MartiniGlass: a Tool for Enabling Visualization of Coarse-Grained Martini Topologies</title>
@@ -351,7 +538,43 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Methods</category>
   <category>Visualization</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Brasnett2025_MartiniGlass.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>Molecular Dynamics Simulation of Fatty Acid Extraction Using a Type V Deep Eutectic Solvent with Tunable Hydrophobicity</title>
+  <dc:creator>Petteri A Vainikka, Matthijs J Tadema, and Siewert J Marrink</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/Vainikka2025_FattyAcidExtraction.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Vainikka, P. A., Tadema, M. J., &amp; Marrink, S. J. (2025). Molecular Dynamics Simulation of Fatty Acid Extraction Using a Type V Deep Eutectic Solvent with Tunable Hydrophobicity. The Journal of Physical Chemistry B, 129(34), 8754-8763.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Deep eutectic solvents (DESs) are often promoted as a more environmentally friendly alternative for ionic liquids and other ionic solvents. Like ionic liquids, DESs can be designed for specific tasks in various chemical environments, but their usage in extraction processes is often significantly hampered by difficulties in recovering the extraction product. To remedy this, various tactics are being employed, which often decrease or completely remove the recyclability of the solvent. An experimental study from 2021 proposed a strategy to counter this issue, demonstrating how a hexanoic acid─imidazole (IMID) DES with “tunable hydrophobicity” can be used to extract fatty acids. This protocol did not involve the introduction of additional chemical species, thus better preserving the recyclability of the solvent. In this work, we reproduce the experimentally reported fatty acid extraction and recovery process using the coarse-grained Martini 3 force field. We demonstrate that our HexA-IMID DES simulations are capable of accurately reproducing the phase separation and extraction phenomena and yielding molecular level insights into the process. Additionally, we studied the effect of IL formation on these properties. Our study opens the way to rational design of new extraction protocols with DESs and further establishes the potential role CG MD can have in the screening of new DESs and their properties with comparatively little computational cost. Finally, we demonstrate that when combined with the Martini 3 IL models, we can efficiently study how different extents of reaction toward IL formation affect the system properties, as well as extraction properties.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Solvents</category>
+  <category>Small molecules</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/Vainikka2025_FattyAcidExtraction.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>Nanopore-Functionalized Hybrid Lipid-Block Copolymer Membranes Allow Efficient Single-Molecule Sampling and Stable Sensing of Human Serum</title>
@@ -388,7 +611,82 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Polymers</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Vreeker2025_Nanopore.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>Peptide Electrostatic Modulation Directs Human Neural Cell Fate</title>
+  <dc:creator>Laura Perez-Chirinos, Xavier Barceló, M Gabriella Chiariello, Irene Sanz, Amaia Iturrospe, Arantxa Arbe, J Alberto Ortega, Siewert J Marrink, Aitziber L Cortajarena, Zaida Álvarez, and Ivan R Sasselli</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/PerezChirinos2025_PeptideModulation.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Perez‐Chirinos, L., Barceló, X., Chiariello, M. G., Sanz, I., Iturrospe, A., Arbe, A., … &amp; Sasselli, I. R. (2025). Peptide Electrostatic Modulation Directs Human Neural Cell Fate. Advanced Science, e07946.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Supramolecular self-assembled systems have emerged as versatile platforms for engineering biomimetic environments that precisely regulate cellular behavior. These materials have tunable properties such as stiffness, hydrophobicity, and molecular composition, allowing for customization of their structure and function. Despite significant advances, the specific role of electrostatic properties in modulating cellular responses within supramolecular assemblies remains poorly understood. Here, a peptide library with diverse electrostatic profiles is designed to systematically investigate their influence on the bioactivity of supramolecular assemblies for neural regeneration. Combining computational and experimental methods, the self-assembly conditions of these peptides are optimized to create stable, biologically relevant architectures. Using human neural progenitor cell (hNPC) cultures, it is demonstrated that negatively charged environments enhance cell survival and promote neuronal differentiation. Specifically, high negative charges activate critical signaling pathways, including the mitogen-activated protein kinase (MAPK) cascade and cell adhesion mechanisms, leading to neuronal lineage commitment. This study establishes a novel framework for the design of supramolecular systems, offering an unprecedented ability to analyze specific parameters in cell behavior. By achieving control beyond conventional biomaterials, this work provides valuable insights into the complex interplay of biophysical and biochemical cues in the native neural microenvironment, with implications for regenerative medicine and biomaterial design.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Proteins</category>
+  <category>Self-assembly</category>
+  <category>Lipid membranes</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/PerezChirinos2025_PeptideModulation.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
+</item>
+<item>
+  <title>Phase separation of protein kinase A regulatory subunits is driven by similar inter- and intra-molecular interactions involving the inhibitory segment</title>
+  <dc:creator>Malyasree Giri, Christopher S Brasnett, Kubra F Eroglu, Julie Maiboll Kaasen, Alain AM Andre, Siewert-Jan Marrink, Frans AA Mulder, and Magnus Kjaergaard</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2025/Giri2025_ProteinKinaseA.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Giri, M., Brasnett, C. S., Eroglu, K. F., Kaasen, J. M., Andre, A. A., Marrink, S. J., … &amp; Kjaergaard, M. (2025). Phase separation of protein kinase A regulatory subunits is driven by similar inter-and intra-molecular interactions involving the inhibitory segment. bioRxiv, 2025-08.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Phase separation of biological macromolecules has emerged as a widespread mechanism for cellular organization, governing the spatiotemporal regulation of biochemical processes including signaling pathways. The regulatory subunit of the cAMP-dependent protein kinase A (PKA) RIα phase separates following cAMP-induced kinase activation, thereby restricting and enhancing PKA activity in space and time. The N-terminal dimerization/docking (D/D) domain and the linker region of RIα have been identified as necessary and sufficient for phase separation, but their interactions at atomic resolution have remained elusive. We report here a structural investigation of the minimal phase-separating region of RIα by nuclear magnetic resonance spectroscopy (NMR) and molecular dynamics (MD) simulations. The intrinsically disordered regions of RIα cause broadening of NMR signals throughout the protein indicative of widespread dynamic interactions. Mutation of arginine residues in the RIα inhibitory sequence leads to a reduction in signal broadening accompanied by loss of phase separation. Independently, binding of RIα to an A-kinase anchoring protein (AKAP) leads to spectral changes that are indicative of a loss of interactions between the D/D domain and the linker region, suggestive of a competition between intramolecular interactions and partner binding. Corroborating the experimental observations, multiscale MD simulations detect pervasive interactions of the folded D/D domain of RIα with the intrinsically disordered linker, and the intermolecular interactions in the condensate mirror those found internally in RIα dimers. Our results support the view that for PKA RIα, homotypic phase separation is underpinned by intermolecular interactions that are similar to intramolecular interactions.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Pre-print</category>
+  <category>Biomolecular condensates</category>
+  <category>Coacervate</category>
+  <category>Multi-scale</category>
+  <category>Proteins</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2025/Giri2025_ProteinKinaseA.html</guid>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>TS2CG as a membrane builder</title>
@@ -409,24 +707,24 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
 <section id="citation-apa-7" class="level2">
 <h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
 <blockquote class="blockquote">
-<p>Schuhmann, F., Stevens, J. A., Rahmani, N., Lindahl, I., Brown, C. M., Brasnett, C., … &amp; Pezeshkian, W. (2025). TS2CG as a membrane builder. bioRxiv, 2025-04.</p>
+<p>Schuhmann, F., Stevens, J. A., Rahmani, N., Lindahl, I., Brown, C. M., Brasnett, C., … &amp; Pezeshkian, W. (2025). TS2CG as a membrane builder. Journal of Chemical Theory and Computation, 21(18), 9136-9146.</p>
 </blockquote>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Molecular dynamics (MD) simulations excel at capturing biological processes at the molecular scale but rely on a well-defined initial structure. As MD simulations now extend to whole-cell-level modeling, new tools are needed to efficiently build initial structures. Here, we introduce TS2CG version 2, designed to construct coarse-grained membrane structures with any desired shape and lateral organization. This version enables precise placement of lipids and proteins based on curvature preference, facilitating the creation of large, near-equilibrium membranes. Additional features include controlled pore generation and the placement of specific lipids at membrane edges for stabilization. Moreover, a Python interface allows users to extend functionality while maintaining the high performance of the C++ core. To demonstrate its capabilities, we showcase challenging simulations, including a Möbius strip membrane, a vesicle with lipid domain as continental plates (Martini globe), and entire mitochondrial membranes exhibiting lipid heterogeneity due to curvature, along with a comprehensive set of tutorials.</p>
+<p>Molecular dynamics (MD) simulations excel at capturing biological processes at the molecular scale but rely on a well-defined initial structure. As MD simulations now extend to whole-cell-level modeling, new tools are needed to efficiently build initial structures. Here, we introduce TS2CG version 2, designed to construct coarse-grained membrane structures with any desired shape and lateral organization. This version enables precise placement of lipids and proteins based on curvature preference, facilitating the creation of large, near-equilibrium membranes. Additional features include controlled pore generation and the placement of specific lipids at membrane edges for stabilization. Moreover, a Python interface allows users to extend functionality while maintaining the high performance of the C++ core. To demonstrate its capabilities, we showcase challenging simulations, including a Möbius strip membrane, a vesicle with lipid domains as continental plates (Martini globe), and entire mitochondrial membranes exhibiting lipid heterogeneity due to curvature, along with a comprehensive set of tutorials.</p>
 
 
 </section>
 
  ]]></description>
-  <category>Pre-print</category>
+  <category>Journal article</category>
   <category>Methods</category>
   <category>Multi-scale</category>
   <category>Lipid membranes</category>
   <category>Vesicles</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Schuhmann2025_TS2CG.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 <item>
   <title>The Martini 3 lipidome: expanded and refined parameters improve lipid phase behavior</title>
@@ -464,303 +762,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Phopholipids</category>
   <category>!🍸Core papers</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Pedersen2025_Lipidome.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics</title>
-  <dc:creator>Gilberto P Pereira, Riccardo Alessandri, Moisés Domínguez, Rocío Araya-Osorio, Linus Grünewald, Luís Borges-Araújo, Sangwook Wu, Siewert J Marrink, Paulo Cesar Telles de Souza, and Raul Mera-Adasme</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Pereira2024_Bartender.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Pereira, G. P., Alessandri, R., Domínguez, M., Araya-Osorio, R., Grünewald, L., Borges-Araújo, L., … &amp; Mera-Adasme, R. (2024). Bartender: Martini 3 Bonded Terms via Quantum Mechanics-based Molecular Dynamics.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Coarse-grained (CG) molecular dynamics (MD) simulations have grown in applicability over the years. The recently released version of the Martini CG force field (Martini 3) has been successfully applied to simulate many processes, including protein-ligand binding. However, the current ligand parameterization scheme is manual and requires an a priori reference all-atom (AA) simulation for benchmarking. For systems with suboptimal AA parameters, which are often unknown, this translates into a CG model which does not reproduce the true dynamical behavior of the underlying molecule. Here we present Bartender, a quantum mechanics (QM)/MD-based parameterization tool written in Go. Bartender harnesses the power of QM simulations and produces reasonable bonded terms for Martini 3 CG models of small molecules in an efficient and user-friendly manner. For small, ring-like molecules, Bartender generates models whose properties are indistinguishable from the human-made models. For more complex, drug-like ligands, it is able to fit functional forms beyond simple harmonic dihedrals, and thus better captures their dynamical behavior. Bartender has the power to both increase the efficiency and the accuracy of Martini 3-based high-throughput applications by producing stable and physically realistic CG models.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Methods</category>
-  <category>Parametrization</category>
-  <category>Multi-scale</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Pereira2024_Bartender.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Benchmarking coarse-grained simulation methods for investigation of transport tunnels in enzymes</title>
-  <dc:creator>Nishita Mandal, Jan A. Stevens, Adolfo B. Poma, Bartlomiej Surpeta, Carlos Sequeiros-Borja, Aravind Selvaram Thirunavukarasu, Siewert-Jan Marrink, and Jan Brezovsky.</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Mandal2024_TunnelEnzyme.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Mandal, N., Stevens, J. A., Poma, A. B., Surpeta, B., Sequeiros-Borja, C., Thirunavukarasu, A. S., … &amp; Brezovsky, J. (2024). Benchmarking coarse-grained simulation methods for investigation of transport tunnels in enzymes. bioRxiv, 2024-09.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Enzymes are pivotal to numerous biological processes, often featuring buried active sites linked to the surrounding solvent through intricate and dynamic tunnels. These tunnels are vital for facilitating substrate access, enabling product release, and regulating solvent exchange, which collectively influence enzymatic function and efficiency. Consequently, knowledge of tunnels is key for a holistic understanding of the effect of mutations as well as predicting drug residence times. Unfortunately, most transport tunnels are transient, i.e., equipped by molecular gates, rendering their opening a rare event that is often notoriously hard to study with conventional molecular dynamics simulations. To overcome the sampling limitation of such simulations, this study investigated the efficacy of three different coarse-grained (CG) molecular dynamics simulation methods for inferring enzyme tunnel structure and dynamics. Here, we covered the Martini and SIRAH models with different restraint protocols providing stability to CG proteins while to some extent biasing the sampling towards a reference structure. By contrasting CG results with all-atom simulations, we benchmarked the ability of CG methods to replicate ensemble characteristics of complex tunnel networks in haloalkane dehalogenase LinB and two of its mutants with engineered tunnel networks. The assessed tunnel parameters are essential for prioritizing functionally relevant tunnels and delineating the effect of mutations on transport tunnels. Our findings reveal that while CG methods significantly enhance the efficiency of tunnel analyses, some of them, like Martini with Elastic network restraints, were limited in recapitulating all-atom tunnel dynamics due to the structural bias applied. In contrast, the Martini Gō model even captured the intricate details of mutation perturbing tunnel dynamics. All studied CG methods performed well in capturing the geometry of tunnel ensembles in line with all-atom simulations. Additionally, the wider applicability of CG methods was verified by analyzing tunnel networks of nine enzymes from different combinations of structural and functional classes, demonstrating their potential to uncover new tunnel phenomena and validate their utility in broader biological and functional contexts. This comprehensive evaluation underscores the strengths and constraints of CG simulations in capturing enzyme tunnels and benefiting from their computational speed for studying huge datasets of enzymes. These insights are valuable for enzyme engineering, drug design, and understanding enzyme function while benefitting from the efficiency of coarse-grained models.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Proteins</category>
-  <category>Multi-scale</category>
-  <category>Drug design</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Mandal2024_TunnelEnzyme.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Building complex membranes with Martini 3</title>
-  <dc:creator>Tugba Nur Ozturk, Melanie König, Timothy S Carpenter, Kasper B Pedersen, Tsjerk A Wassenaar, Helgi I Ingólfsson, and Siewert J Marrink</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Ozturk2024_ComplexMembranes.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Ozturk, T. N., König, M., Carpenter, T. S., Pedersen, K. B., Wassenaar, T. A., Ingólfsson, H. I., &amp; Marrink, S. J. (2024). Building complex membranes with Martini 3. Methods in Enzymology.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>The Martini model is a popular force field for coarse-grained simulations. Membranes have always been at the center of its development, with the latest version, Martini 3, showing great promise in capturing more and more realistic behavior. In this chapter we provide a step-by-step tutorial on how to construct starting configurations, run initial simulations and perform dedicated analysis for membrane-based systems of increasing complexity, including leaflet asymmetry, curvature gradients and embedding of membrane proteins.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Book chapter</category>
-  <category>Protocol</category>
-  <category>Lipid membranes</category>
-  <category>Proteins</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Ozturk2024_ComplexMembranes.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Capturing chemical reactions inside biomolecular condensates with reactive Martini simulations</title>
-  <dc:creator>Christopher Brasnett, Armin Kiani, Selim Sami, Sijbren Otto &amp; Siewert J. Marrink</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Brasnett2024_ReactionCondensates.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Brasnett, C., Kiani, A., Sami, S. &amp; Marrink, S. J. (2024). Capturing chemical reactions inside biomolecular condensates with reactive Martini simulations. Commun Chem 7, 151.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Biomolecular condensates are phase separated systems that play an important role in the spatio-temporal organisation of cells. Their distinct physico-chemical nature offers a unique environment for chemical reactions to occur. The compartmentalisation of chemical reactions is also believed to be central to the development of early life. To demonstrate how molecular dynamics may be used to capture chemical reactions in condensates, here we perform reactive molecular dynamics simulations using the coarse-grained Martini forcefield. We focus on the formation of rings of benzene-1,3-dithiol inside a synthetic peptide-based condensate, and find that the ring size distribution shifts to larger macrocycles compared to when the reaction takes place in an aqueous environment. Moreover, reaction rates are noticeably increased when the peptides simultaneously undergo phase separation, hinting that condensates may act as chaperones in recruiting molecules to reaction hubs.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Biomolecular condensates</category>
-  <category>Small molecules</category>
-  <category>Reactive</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Brasnett2024_ReactionCondensates.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Exploring the Ligand Binding and Conformational Dynamics of the Substrate-Binding Domain 1 of the ABC Transporter GlnPQ</title>
-  <dc:creator>Mariia Nemchinova, Gea K. Schuurman-Wolters, Jacob J. Whittaker, Valentina Arkhipova, Siewert J. Marrink, Bert Poolman, and Albert Guskov</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Nemchinova2024_GlnPQ.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Nemchinova, M., Schuurman-Wolters, G. K., Whittaker, J. J., Arkhipova, V., Marrink, S. J., Poolman, B., &amp; Guskov, A. (2024). Exploring the Ligand Binding and Conformational Dynamics of the Substrate-Binding Domain 1 of the ABC Transporter GlnPQ. The Journal of Physical Chemistry B, 128(32), 7822-7832.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>The adenosine triphosphate (ATP)-binding cassette (ABC) importer GlnPQ from Lactococcus lactis has two sequential covalently linked substrate-binding domains (SBDs), which capture the substrates and deliver them to the translocon. The two SBDs differ in their ligand specificities, binding affinities and the distance to the transmembrane domain; interestingly, both SBDs can bind their ligands simultaneously without affecting each other. In this work, we studied the binding of ligands to both SBDs using X-ray crystallography and molecular dynamics simulations. We report three high-resolution structures of SBD1, namely, the wild-type SBD1 with bound asparagine or arginine, and E184D SBD1 with glutamine bound. Molecular dynamics (MD) simulations provide a detailed insight into the dynamics associated with open-closed transitions of the SBDs.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Proteins</category>
-  <category>Small molecules</category>
-  <category>Metabolites</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Nemchinova2024_GlnPQ.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum</title>
-  <dc:creator>Edo Vreeker, Fabian Grunewald, Nieck van der Heide, Siewert-Jan Marrink, Katarzyna Tych, and Giovanni Maglia</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Vreeker2024_Nanopores.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Vreeker, E., Grunewald, F., van der Heide, N., Marrink, S. J., Tych, K., &amp; Maglia, G. (2024). Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum. bioRxiv, 2024-05.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Biological nanopores are powerful tools for detecting biomolecules at the single-molecule level, making them appealing as sensors for biological samples. However, the lipid membranes in which nanopores reside can be unstable in the presence of biological fluids. Here, membranes formed with the amphiphilic polymers PMOXA-PDMS-PMOXA and PBD-PEO are tested as potential alternatives for nanopore sensing. We demonstrate that polymer membranes can possess increased stability towards applied potentials and high concentrations of human serum, but that the stable insertion of a wide range of biological nanopores is most often compromised. Alternatively, hybrid polymer-lipid membranes comprising a 1:1 w/w mixture of PBD11PEO8 and DPhPC showed high electrical and biochemical stability while creating a suitable environment for all tested nanopores. Analytes such as proteins, DNA and sugars were efficiently sampled, indicating that in hybrid membranes nanopores showed native-like properties. Molecular dynamics simulations revealed that lipids form ∼12 nm domains interspersed by a polymer matrix. Nanopores partitioned into these lipid nanodomains and sequestered lipids possibly offering the same binding strength as in a native bilayer. This work shows that single-molecule analysis with nanopores in [PBD11PEO8 + DPhPC] membranes is feasible and present stable recordings in the presence of human serum. These results pave the way towards novel nanopore-based biosensors.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Pre-print</category>
-  <category>Polymers</category>
-  <category>Lipid membranes</category>
-  <category>Proteins</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Vreeker2024_Nanopores.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Martini 3 Coarse-Grained Model for the Cofactors Involved in Photosynthesis</title>
-  <dc:creator>Maria Gabriella Chiariello, Rubi Zarmiento-Garcia and Siewert-Jan Marrink</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Chiariello2024_CofactorsPhotosynthesis.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Chiariello, M. G., Zarmiento-Garcia, R., &amp; Marrink, S. J. (2024). Martini 3 Coarse-Grained Model for the Cofactors Involved in Photosynthesis. International Journal of Molecular Sciences, 25(14), 7947.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>As a critical step in advancing the simulation of photosynthetic complexes, we present the Martini 3 coarse-grained (CG) models of key cofactors associated with light harvesting (LHCII) proteins and the photosystem II (PSII) core complex. Our work focuses on the parametrization of beta-carotene, plastoquinone/quinol, violaxanthin, lutein, neoxanthin, chlorophyll A, chlorophyll B, and heme. We derived the CG parameters to match the all-atom reference simulations, while structural and thermodynamic properties of the cofactors were compared to experimental values when available. To further assess the reliability of the parameterization, we tested the behavior of these cofactors within their physiological environments, specifically in a lipid bilayer and bound to photosynthetic complexes. The results demonstrate that our CG models maintain the essential features required for realistic simulations. This work lays the groundwork for detailed simulations of the PSII-LHCII super-complex, providing a robust parameter set for future studies.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Parametrization</category>
-  <category>Metabolites</category>
-  <category>Cofactors</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Chiariello2024_CofactorsPhotosynthesis.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
-</item>
-<item>
-  <title>Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS</title>
-  <dc:creator>Ksenia Korshunova, Julius Kiuru, Juho Liekkinen, Giray Enkavi, Ilpo Vattulainen and Bart M. H. Bruininks</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2024/Korshunova2024_OliGomers.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Korshunova, K., Kiuru, J., Liekkinen, J., Enkavi, G., Vattulainen, I., &amp; Bruininks, B. M. (2024). Martini 3 OliGo̅mers: A Scalable Approach for Multimers and Fibrils in GROMACS. Journal of Chemical Theory and Computation.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Martini 3 is a widely used coarse-grained simulation method for large-scale biomolecular simulations. It can be combined with a Go̅ model to realistically describe higher-order protein structures while allowing the folding and unfolding events. However, as of today, this method has largely been used only for individual monomers. In this article, we describe how the Go̅ model can be implemented within the framework of Martini 3 for a multimer system, taking into account both intramolecular and intermolecular interactions in an oligomeric protein system. We demonstrate the method by showing how it can be applied to both structural stability maintenance and assembly/disassembly of protein oligomers, using aquaporin tetramer, insulin dimer, and amyloid-β fibril as examples. We find that addition of intermolecular Go̅ potentials stabilizes the quaternary structure of proteins. The strength of the Go̅ potentials can be tuned so that the internal fluctuations of proteins match the behavior of atomistic simulation models, however, the results also show that the use of too strong intermolecular Go̅ potentials weakens the chemical specificity of oligomerization. The Martini-Go̅ model presented here enables the use of Go̅ potentials in oligomeric molecular systems in a computationally efficient and parallelizable manner, especially in the case of homopolymers, where the number of identical protein monomers is high. This paves the way for coarse-grained simulations of large protein complexes, such as viral protein capsids and prion fibrils, in complex biological environments.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Journal article</category>
-  <category>Forcefield</category>
-  <category>Proteins</category>
-  <category>Self-assembly</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2024/Korshunova2024_OliGomers.html</guid>
-  <pubDate>Sat, 04 Oct 2025 09:19:29 GMT</pubDate>
+  <pubDate>Thu, 04 Dec 2025 16:07:43 GMT</pubDate>
 </item>
 </channel>
 </rss>
