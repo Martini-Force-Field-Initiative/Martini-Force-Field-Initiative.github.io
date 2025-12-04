@@ -1,0 +1,35 @@
+---
+title: "Martini 3 coarse-grained models for carbon nanomaterials"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Roshan Shrestha, Riccardo Alessandri, Martin Vögele, Paulo CT Souza, Siewert-Jan Marrink, and Luca Monticelli"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: "https://doi.org/10.26434/chemrxiv-2024-6s1wj-v3"       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.5c00923"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/suppl/10.1021/acs.jctc.5c00923/suppl_file/ct5c00923_si_001.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Nanoparticles
+  - Parametrization
+  - Materials science
+  - Lipid membranes
+  - Small molecules
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Shrestha, R., Alessandri, R., Vögele, M., Hilpert, C., Souza, P. C., Marrink, S. J., & Monticelli, L. (2025). Martini 3 coarse-grained models for carbon nanomaterials. Journal of Chemical Theory and Computation, 21(18), 9035-9053.
+
+## Abstract
+
+The Martini model is a coarse-grained force field allowing simulations of biomolecular systems as well as a range of materials including different types of nanomaterials of technological interest. Recently, a new version of the force field (version 3) has been released that includes new parameters for lipids, proteins, carbohydrates, and a number of small molecules, but not yet carbon nanomaterials. Here, we present new Martini models for three major types of carbon nanomaterials: fullerene, carbon nanotubes, and graphene. The new models were parametrized within the Martini 3 framework, and reproduce semiquantitatively a range of properties for each material. In particular, the model of fullerene yields excellent solid-state properties and good properties in solution, including correct trends in partitioning between different solvents and realistic translocation across lipid membranes. The models of carbon nanotubes reproduce the atomistic behavior of nanotube porins spanning lipid bilayers. The model of graphene reproduces structural and elastic properties, as well as trends in experimental adsorption enthalpies of organic molecules. All new models can be used in large-scale simulations to study the interaction with the wide variety of molecules already available in the Martini 3 force field, including biomolecular and synthetic systems.

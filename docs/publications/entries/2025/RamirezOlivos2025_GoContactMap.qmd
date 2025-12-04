@@ -1,0 +1,33 @@
+---
+title: "An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Gustavo Enrique Ramirez-Olivos, Luis Fernando Cofas-Vargas, Siewert-Jan Marrink, and Adolfo Poma"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "bioRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1101/2025.11.14.688437"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Proteins
+  - Methods
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Ramirez-Olivos, G. E., Cofas-Vargas, L. F., Marrink, S. J., & Poma, A. (2025). An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies. bioRxiv, 2025-11.
+
+## Abstract
+
+Advances in structural biology, particularly cryo-electron microscopy, have enabled high-resolution characterization of complex biomolecular assemblies. These developments emphasize the need for computational approaches capable of describing biologically relevant conformational changes over extended timescales. GōMartini 3 is a coarse-grained approach that demonstrates computational efficiency and versatility across several systems, from protein-binding membranes and soluble proteins to intrinsically disordered proteins, while preserving key physicochemical features. In this work, we introduce an optimized approach that integrates dynamic contact information from AA-MD simulations to refine the contact map in GōMartini simulations. Specifically, we define high-frequency contacts (HFC), which reduce the number of original Gō contacts set by ≈20–30%, thereby improving the representation of conformational states beyond the original approach. Benchmarking different contact-selection criteria revealed that including intra- and interchain HFC captures structural flexibility and domain dynamics. The method was tested on three small soluble proteins and on the SARS-CoV-2 spike protein. Overall, the optimized contact map improves sampling efficiency and expands the accessible conformational landscape relative to the original GōMartini 3 implementation. The full framework is available as an open-source resource for large-scale simulations of biomolecular assemblies.
