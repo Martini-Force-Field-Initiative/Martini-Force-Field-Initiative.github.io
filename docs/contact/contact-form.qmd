@@ -17,6 +17,33 @@ page-layout: full
   --background-light: #f8fafc;
   --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
+
+.btn-rounded-primary {
+    margin-right: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+@media (max-width: 754px) {
+    /* Make the buttons smaller on mobile */
+    .btn-rounded-primary {
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 0.8rem;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+
+p {
+  margin-bottom: 0.5rem;
+}
 </style>
 
 <script>
@@ -58,13 +85,13 @@ function submitForm() {
 ::: form-container
 <form onsubmit="submitForm(); return false;">
 
-<label class="form-label" for="name">Your Name:</label><br> <input class="form-input" type="text" id="name" name="name" required><br> <label class="form-label" for="email">Email Address:</label><br> <input class="form-input" type="email" id="email" name="email" required><br> <label class="form-label" for="institution">Current Institution:</label><br> <input class="form-input" type="text" id="institution" name="institution" required><br> <label class="form-label" for="subject">Subject:</label><br> <input class="form-input" type="text" id="subject" name="subject" required><br> <label class="form-label" for="message">Message:</label>
+<label class="form-label" for="name">Name:</label><br> <input class="form-input" type="text" id="name" name="name" required><br> <label class="form-label" for="email">Email Address:</label><br> <input class="form-input" type="email" id="email" name="email" required><br> <label class="form-label" for="institution">Current Affiliation:</label><br> <input class="form-input" type="text" id="institution" name="institution" required><br> <label class="form-label" for="subject">Subject:</label><br> <input class="form-input" type="text" id="subject" name="subject" required><br> <label class="form-label" for="message">Message:</label>
 
 <textarea class="form-input" id="message" name="message" rows="4" required></textarea>
 
 <br>
 
-<center><input class="form-submit" type="submit" value="Submit"></center>
+<center><input class="btn btn-primary btn-rounded-primary" type="submit" value="Submit"></center>
 
 </form>
 :::
