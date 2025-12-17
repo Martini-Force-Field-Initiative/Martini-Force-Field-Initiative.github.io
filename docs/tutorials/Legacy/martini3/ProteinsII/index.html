@@ -246,8 +246,8 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
     <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter-x"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -365,7 +365,7 @@ window.Quarto = {
 <section id="introduction" class="level3">
 <h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
 <hr>
-<p>In this last module of the Proteins tutorial, we will increase the complexity of our system by embedding the protein in a lipid bilayer (please take a look in the lipid tutorials, <a href="../LipidsI/index.qmd">part I</a> and <a href="../LipidsII/index.qmd">part II</a>,). We propose here to have a look at the processes of tilt and dimerization of KALP peptides <sup><a href="#references">[1,2]</a></sup> embedded in a POPC membrane. Eukaryotic plasma membranes (PM) are often approximated as a pure POPC bilayer (being the most common PM phospholipid) or a pure DOPC bilayer (were average bilayer properties can be closer to those of a PM, although DOPC itself is not prevalent in eukaryotic cells) <sup><a href="#references">[3]</a></sup>.</p>
+<p>In this last module of the Proteins tutorial, we will increase the complexity of our system by embedding the protein in a lipid bilayer (please take a look in the lipid tutorials, <a href="../../../../../docs/tutorials/Martini3/LipidsI/index.html">part I</a> and <a href="../../../../../docs/tutorials/Martini3/LipidsII/index.html">part II</a>,). We propose here to have a look at the processes of tilt and dimerization of KALP peptides <sup><a href="#references">[1,2]</a></sup> embedded in a POPC membrane. Eukaryotic plasma membranes (PM) are often approximated as a pure POPC bilayer (being the most common PM phospholipid) or a pure DOPC bilayer (were average bilayer properties can be closer to those of a PM, although DOPC itself is not prevalent in eukaryotic cells) <sup><a href="#references">[3]</a></sup>.</p>
 <p>The coarse-grained structure and topology of KALP can be simply generate by using <code>martinize2</code>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-ff</span> martini3001 <span class="at">-f</span> kalp-AA.pdb <span class="at">-x</span> kalp.pdb <span class="at">-p</span> backbone <span class="at">-o</span> system.top <span class="at">-scfix</span> <span class="at">-ss</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="an">Output:</span></span>
@@ -380,7 +380,7 @@ window.Quarto = {
 <section id="self-assembly-approach" class="level4">
 <h4 class="anchored" data-anchor-id="self-assembly-approach">Self-assembly approach</h4>
 <hr>
-<p>A bilayer self-assembly dynamics, as presented in the first module of the <a href="../LipidsI/index.qmd">lipid tutorial part I</a>, will result in the self-insertion of the KALP inside the bilayer (Fig. 1). <strong>The files required for this tutorial (including worked files) can be downloaded from <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip">here</a>.</strong></p>
+<p>A bilayer self-assembly dynamics, as presented in the first module of the <a href="../../../../../docs/tutorials/Martini3/LipidsI/index.html">lipid tutorial part I</a>, will result in the self-insertion of the KALP inside the bilayer (Fig. 1). <strong>The files required for this tutorial (including worked files) can be downloaded from <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/ProteinsII/M3_proteins_tutorial_part2.zip">here</a>.</strong></p>
 <ol type="1">
 <li>The first steps are to generate a simulations box containing KALP, POPC, water and ions. This can be done by the following commands:</li>
 </ol>
@@ -417,10 +417,10 @@ window.Quarto = {
 <hr>
 <p>This second method, being the easiest and the most straightforward, is the recommended one to build such systems. Here is the procedure:</p>
 <ol type="1">
-<li>The syntax of the <code>insane.py</code> <sup><a href="#references">[9]</a></sup> script is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (Get the latest from the <a href="../../../downloads/tools/topology-structure-generation.qmd#insane">Downloads</a> page.) Let’s see a practical example:</li>
+<li>The syntax of the <code>insane.py</code> <sup><a href="#references">[9]</a></sup> script is very similar to what was used so far; it can be invoked by running <code>insane.py -h</code>. (Get the latest from the <a href="../../../../../docs/downloads/tools/topology-structure-generation.html#insane">Downloads</a> page.) Let’s see a practical example:</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python2</span> insane.py <span class="at">-f</span> kalp.gro <span class="at">-o</span> system.gro <span class="at">-p</span> system.top <span class="at">-pbc</span> square <span class="at">-box</span> 7,7,9 <span class="at">-l</span> POPC <span class="at">-u</span> POPC <span class="at">-center</span> <span class="at">-sol</span> W <span class="at">-salt</span> 0.01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The previous command line will set up a complete system, containing a squared POPC bilayer of <span class="math inline">\(7×7 nm^2\)</span>, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. More on the <code>insane.py</code> tool can be found in separate tutorials, notably setting up a complex bilayer (<a href="../LipidsII/index.qmd">lipid tutorial part II</a>).</p>
+<p>The previous command line will set up a complete system, containing a squared POPC bilayer of <span class="math inline">\(7×7 nm^2\)</span>, with the KALP peptide inserted and centered in this bilayer. The whole system will be solvated in standard coarse-grained water. A small concentration of NaCl was added only to neuralize the +4 charge of KALP. More on the <code>insane.py</code> tool can be found in separate tutorials, notably setting up a complex bilayer (<a href="../../../../../docs/tutorials/Martini3/LipidsII/index.html">lipid tutorial part II</a>).</p>
 <ol start="2" type="1">
 <li><p>Proceed as before and start a production run. To remind you, this involves (A) editing the <code>system.top</code> file to reflect the version of Martini you want to use and providing include statements for the topology files; (B) downloading or copying definitions of Martini 3 <code>.itp</code> files, including <code>martini_v3.0.0_phospholipids_v1.itp</code>; (C) using the correct names of the molecules involved; (D) downloading or copying set-up <code>.mdp</code> files for minimization, equilibration, and production runs (you can also find them in the template folder of this module zip file) and if necessary, editing them (bilayer simulations are best done using semi-isotropic pressure coupling and you may want to separately couple different groups to the thermostat(s)); (E) running the minimization and equilibration runs.</p></li>
 <li><p>Generate a new system in which membrane thickness is reduced (different the lipid type, DLPC for instance). Observe how the thickness is affecting the tilt of the transmembrane helix; compare it to the previous simulation.</p></li>
@@ -434,7 +434,7 @@ window.Quarto = {
 <hr>
 <p>The aim of this second module is to see how application of elastic networks can be combined with the Martini model to conserve quaternary structures more faithfully without sacrificing realistic dynamics of a protein. As example, we will use HIV-1 protease, which is an essential enzyme for viral particle maturation and is a target in the fight against HIV-1 infection worldwide <sup><a href="#references">[10-12]</a></sup>. You should be aware that the HIV-1 protease structure used in this tutorial (pdb code <a href="https://www.rcsb.org/structure/1a8g">1A8G</a>) includes a ligand. For now, this ligand is not known as a building block to <code>martinize2</code> and need to be removed from the <code>.pdb</code>, which can be done using the command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"^ATOM"</span> 1A8G.pdb <span class="op">&gt;</span> 1A8G_clean.pdb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you want to study this or other ligand binding, you will need to build a Martini topology for the ligand yourself and then add to your simulation box, together with your protein CG model. We suggest you to take a look at tutorials <a href="../Small_Molecule_Parametrization/index.qmd">Parametrizing a new small molecule</a> and <a href="../Protein_Ligand_Binding/index.qmd">Protein - small molecule binding</a> in case you want to go in this direction.</p>
+<p>If you want to study this or other ligand binding, you will need to build a Martini topology for the ligand yourself and then add to your simulation box, together with your protein CG model. We suggest you to take a look at tutorials <a href="../../../../../docs/tutorials/Martini3/Small_Molecule_Parametrization/index.html">Parametrizing a new small molecule</a> and <a href="../../../../../docs/tutorials/Martini3/Protein_Ligand_Binding/index.html">Protein - small molecule binding</a> in case you want to go in this direction.</p>
 <p>Another point to be aware is that the protein is a dimer. By default, you will get a topology file with the two subunits being treated as individual molecules in <code>martinize2</code>. Overall, Martini 3 can deal well which such structures, however you may have potential packing problems, which can make Martini 3 models to form complexes not so stable. These problems are usually related with backbone (BB) bead interactions between different proteins in the complex. As the bead size for the BB beads is actually too big to well represent the BB-BB distances, you can create a packing problem that pushes the proteins apart, reducing their interactions. In these cases, you may need to consider using Elastic networks <sup><a href="#references">[4]</a></sup> or Gō models <sup><a href="#references">[5]</a></sup> between the chains. But first, let’s evaluate if this is the case in the HIV-1 protease dimer.</p>
 <section id="protein-complexes-with-independent-.itps-for-each-monomer" class="level4">
 <h4 class="anchored" data-anchor-id="protein-complexes-with-independent-.itps-for-each-monomer">Protein complexes with independent <code>.itp</code>s for each monomer</h4>
@@ -500,7 +500,7 @@ window.Quarto = {
 <li><p><code>GROMACS</code> (<a href="http://www.gromacs.org/" class="uri">http://www.gromacs.org/</a>)</p></li>
 <li><p><code>VMD</code> (<a href="https://www.ks.uiuc.edu/Research/vmd/" class="uri">https://www.ks.uiuc.edu/Research/vmd/</a>)</p></li>
 <li><p><code>martinize2</code> (<a href="https://github.com/marrink-lab/vermouth-martinize" class="uri">https://github.com/marrink-lab/vermouth-martinize</a>)</p></li>
-<li><p><code>insane</code> (downloadable <a href="../../../downloads/tools/topology-structure-generation.qmd#insane">here</a>)</p></li>
+<li><p><code>insane</code> (downloadable <a href="../../../../../docs/downloads/tools/topology-structure-generation.html#insane">here</a>)</p></li>
 </ul>
 </section>
 <section id="references" class="level3">
@@ -939,8 +939,8 @@ window.Quarto = {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
-    <a class="nav-link" href="https://x.com/cg_martini">
-      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
 </i> 
     </a>
   </li>  
@@ -950,8 +950,8 @@ window.Quarto = {
 </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
-      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter-x" role="img" aria-label="Martini Twitter">
 </i> 
     </a>
   </li>  

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Frequently Asked Questions  – Martini Force Field Initiative</title>
+<title>Frequently Asked Questions – Martini Force Field Initiative</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,6 +70,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #FDF7F4;
+      }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
       const quotes = [
@@ -97,11 +103,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Frequently Asked Questions">
+<meta property="og:title" content="Frequently Asked Questions – Martini Force Field Initiative">
+<meta property="og:description" content="Quick answers to help you get started smoothly">
 <meta property="og:image" content="https://cgmartini.nl/docs/faq/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Frequently Asked Questions">
+<meta name="twitter:title" content="Frequently Asked Questions – Martini Force Field Initiative">
+<meta name="twitter:description" content="Quick answers to help you get started smoothly">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/faq/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -109,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 <body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -177,77 +184,65 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
     <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter-x"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Frequently Asked Questions</h1>
+            <p class="subtitle lead">Quick answers to help you get started smoothly</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Frequently Asked Questions<br>
-<hr></h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-<nav id="TOC" role="doc-toc">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#general" id="toc-general">🌍 General</a>
-  <ul>
-  <li><a href="#can-i-mix-martini-2.x-and-martini-3.x-models" id="toc-can-i-mix-martini-2.x-and-martini-3.x-models">Can I mix Martini 2.x and Martini 3.x models?</a></li>
-  <li><a href="#can-i-use-martini-to-study-protein-folding" id="toc-can-i-use-martini-to-study-protein-folding">Can I use Martini to study protein folding?</a></li>
-  <li><a href="#how-should-i-interpret-the-time-scale" id="toc-how-should-i-interpret-the-time-scale">How should I interpret the time scale?</a></li>
-  <li><a href="#how-to-reintroduce-atomistic-detail-into-martini" id="toc-how-to-reintroduce-atomistic-detail-into-martini">How to reintroduce atomistic detail into Martini?</a></li>
-  <li><a href="#is-martini-supported-by-other-sofware-packages-apart-from-gromacs" id="toc-is-martini-supported-by-other-sofware-packages-apart-from-gromacs">Is Martini supported by other sofware packages apart from Gromacs?</a></li>
-  </ul></li>
-  <li><a href="#input-parameters" id="toc-input-parameters">💻 Input parameters</a>
-  <ul>
-  <li><a href="#which-mdp-options-should-i-use" id="toc-which-mdp-options-should-i-use">Which mdp options should I use?</a></li>
-  <li><a href="#how-large-can-the-time-step-be" id="toc-how-large-can-the-time-step-be">How large can the time step be?</a></li>
-  <li><a href="#can-i-do-free-energy-calculations-with-martini" id="toc-can-i-do-free-energy-calculations-with-martini">Can I do free energy calculations with Martini?</a></li>
-  </ul></li>
-  <li><a href="#topologies" id="toc-topologies">⚙️ Topologies</a>
-  <ul>
-  <li><a href="#how-do-i-create-a-topology-for-a-new-molecule" id="toc-how-do-i-create-a-topology-for-a-new-molecule">How do I create a topology for a new molecule?</a></li>
-  <li><a href="#how-to-set-up-a-protein-simulation" id="toc-how-to-set-up-a-protein-simulation">How to set-up a protein simulation?</a></li>
-  <li><a href="#are-nucleotides-available-in-martini-3" id="toc-are-nucleotides-available-in-martini-3">Are nucleotides available in Martini 3?</a></li>
-  <li><a href="#is-polarizable-water-available-in-martini-3" id="toc-is-polarizable-water-available-in-martini-3">Is polarizable water available in Martini 3?</a></li>
-  <li><a href="#how-do-i-use-the-martini-2-polarizable-water-model-and-when-should-i-use-it" id="toc-how-do-i-use-the-martini-2-polarizable-water-model-and-when-should-i-use-it">How do I use the Martini 2 polarizable water model and when should I use it?</a></li>
-  </ul></li>
-  <li><a href="#frequent-problems" id="toc-frequent-problems">🛠 Frequent problems</a>
-  <ul>
-  <li><a href="#my-simulation-keeps-crashing-what-can-i-do" id="toc-my-simulation-keeps-crashing-what-can-i-do">My simulation keeps crashing, what can I do?</a></li>
-  <li><a href="#my-water-is-freezing-help" id="toc-my-water-is-freezing-help">My water is freezing, help!</a></li>
-  <li><a href="#my-protein-starts-deforming-help" id="toc-my-protein-starts-deforming-help">My protein starts deforming, help!</a></li>
-  <li><a href="#who-can-i-contact-with-further-questions" id="toc-who-can-i-contact-with-further-questions">Who can I contact with further questions?</a></li>
-  </ul></li>
+  <li><a href="#can-i-mix-martini-2.x-and-martini-3.x-models" id="toc-can-i-mix-martini-2.x-and-martini-3.x-models" class="nav-link active" data-scroll-target="#can-i-mix-martini-2.x-and-martini-3.x-models">Can I mix Martini 2.x and Martini 3.x models?</a></li>
+  <li><a href="#can-i-use-martini-to-study-protein-folding" id="toc-can-i-use-martini-to-study-protein-folding" class="nav-link" data-scroll-target="#can-i-use-martini-to-study-protein-folding">Can I use Martini to study protein folding?</a></li>
+  <li><a href="#how-should-i-interpret-the-time-scale" id="toc-how-should-i-interpret-the-time-scale" class="nav-link" data-scroll-target="#how-should-i-interpret-the-time-scale">How should I interpret the time scale?</a></li>
+  <li><a href="#how-to-reintroduce-atomistic-detail-into-martini" id="toc-how-to-reintroduce-atomistic-detail-into-martini" class="nav-link" data-scroll-target="#how-to-reintroduce-atomistic-detail-into-martini">How to reintroduce atomistic detail into Martini?</a></li>
+  <li><a href="#is-martini-supported-by-other-sofware-packages-apart-from-gromacs" id="toc-is-martini-supported-by-other-sofware-packages-apart-from-gromacs" class="nav-link" data-scroll-target="#is-martini-supported-by-other-sofware-packages-apart-from-gromacs">Is Martini supported by other sofware packages apart from Gromacs?</a></li>
+  <li><a href="#which-mdp-options-should-i-use" id="toc-which-mdp-options-should-i-use" class="nav-link" data-scroll-target="#which-mdp-options-should-i-use">Which mdp options should I use?</a></li>
+  <li><a href="#how-large-can-the-time-step-be" id="toc-how-large-can-the-time-step-be" class="nav-link" data-scroll-target="#how-large-can-the-time-step-be">How large can the time step be?</a></li>
+  <li><a href="#can-i-do-free-energy-calculations-with-martini" id="toc-can-i-do-free-energy-calculations-with-martini" class="nav-link" data-scroll-target="#can-i-do-free-energy-calculations-with-martini">Can I do free energy calculations with Martini?</a></li>
+  <li><a href="#how-do-i-create-a-topology-for-a-new-molecule" id="toc-how-do-i-create-a-topology-for-a-new-molecule" class="nav-link" data-scroll-target="#how-do-i-create-a-topology-for-a-new-molecule">How do I create a topology for a new molecule?</a></li>
+  <li><a href="#how-to-set-up-a-protein-simulation" id="toc-how-to-set-up-a-protein-simulation" class="nav-link" data-scroll-target="#how-to-set-up-a-protein-simulation">How to set-up a protein simulation?</a></li>
+  <li><a href="#are-nucleotides-available-in-martini-3" id="toc-are-nucleotides-available-in-martini-3" class="nav-link" data-scroll-target="#are-nucleotides-available-in-martini-3">Are nucleotides available in Martini 3?</a></li>
+  <li><a href="#is-polarizable-water-available-in-martini-3" id="toc-is-polarizable-water-available-in-martini-3" class="nav-link" data-scroll-target="#is-polarizable-water-available-in-martini-3">Is polarizable water available in Martini 3?</a></li>
+  <li><a href="#how-do-i-use-the-martini-2-polarizable-water-model-and-when-should-i-use-it" id="toc-how-do-i-use-the-martini-2-polarizable-water-model-and-when-should-i-use-it" class="nav-link" data-scroll-target="#how-do-i-use-the-martini-2-polarizable-water-model-and-when-should-i-use-it">How do I use the Martini 2 polarizable water model and when should I use it?</a></li>
+  <li><a href="#my-simulation-keeps-crashing-what-can-i-do" id="toc-my-simulation-keeps-crashing-what-can-i-do" class="nav-link" data-scroll-target="#my-simulation-keeps-crashing-what-can-i-do">My simulation keeps crashing, what can I do?</a></li>
+  <li><a href="#my-water-is-freezing-help" id="toc-my-water-is-freezing-help" class="nav-link" data-scroll-target="#my-water-is-freezing-help">My water is freezing, help!</a></li>
+  <li><a href="#my-protein-starts-deforming-help" id="toc-my-protein-starts-deforming-help" class="nav-link" data-scroll-target="#my-protein-starts-deforming-help">My protein starts deforming, help!</a></li>
+  <li><a href="#who-can-i-contact-with-further-questions" id="toc-who-can-i-contact-with-further-questions" class="nav-link" data-scroll-target="#who-can-i-contact-with-further-questions">Who can I contact with further questions?</a></li>
   </ul>
 </nav>
-<section id="general" class="level1">
-<h1>🌍 General</h1>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
 <section id="can-i-mix-martini-2.x-and-martini-3.x-models" class="level2">
 <h2 class="anchored" data-anchor-id="can-i-mix-martini-2.x-and-martini-3.x-models">Can I mix Martini 2.x and Martini 3.x models?</h2>
 <p>No! Mixing Martini 2.x and Martini 3.x models are not compatible due to differences in their force fields and parametrization. The Martini 3.x force field represents a significant update from Martini 2.x, with changes in bead types, interaction parameters, and overall philosophy of modeling. These updates can lead to inconsistencies if you try to mix models from the two versions in the same simulation.</p>
@@ -269,9 +264,6 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="is-martini-supported-by-other-sofware-packages-apart-from-gromacs">Is Martini supported by other sofware packages apart from Gromacs?</h2>
 <p>Yes, it is implemented also in NAMD, GROMOS, and current efforts are porting it to CHARMM. A reduced version of Martini is also available through the Material Studio commercial software. Note that, for each of these software packages, the Martini implementation might differ - to an unknown extent - with that of the GROMACS implementation, so you should be careful when using Martini ‘abroad’.</p>
 </section>
-</section>
-<section id="input-parameters" class="level1">
-<h1>💻 Input parameters</h1>
 <section id="which-mdp-options-should-i-use" class="level2">
 <h2 class="anchored" data-anchor-id="which-mdp-options-should-i-use">Which mdp options should I use?</h2>
 <p>We provide recommended GROMACS mdp parameter files for both <a href="../../docs/downloads/example-input-files/md-parameters.html#martini-2">Martini 2</a> and <a href="../../docs/downloads/example-input-files/md-parameters.html#martini-3">Martini 3</a>.</p>
@@ -289,9 +281,6 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="can-i-do-free-energy-calculations-with-martini">Can I do free energy calculations with Martini?</h2>
 <p>Yes you can! Some examples can be found in our <a href="../../docs/tutorials/Martini3/tutorials.html">tutorials</a>.</p>
 </section>
-</section>
-<section id="topologies" class="level1">
-<h1>⚙️ Topologies</h1>
 <section id="how-do-i-create-a-topology-for-a-new-molecule" class="level2">
 <h2 class="anchored" data-anchor-id="how-do-i-create-a-topology-for-a-new-molecule">How do I create a topology for a new molecule?</h2>
 <p>You can find in-depth step-by-step guides on how to parameterize new molecules in our tutorial sections. Available for both Martini 2 and Martini 3.</p>
@@ -314,9 +303,6 @@ ul.task-list li input[type="checkbox"] {
 <p>[1] S.O. Yesylevskyy, L.V. Schafer, D. Sengupta, S.J. Marrink. Polarizable water model for the coarse-grained Martini force field. PLoS Comp. Biol, 6:e1000810, 2010. open access.</p>
 <p>When? We first note that the polarizable Martini water model is not meant to replace the standard Martini water model, but should be viewed as an alternative with improved properties in some, but similar behaviour at reduced efficiency in other applications. It is 2 to 3 times more expensive than standard Martini because the polarizable water bead has three particles. In combination with PME, which you can do with the polairzable model, it is even slower. However, for systems or processes in which charges or polar particles are present in a low-dielectric medium (e.g., inside a bilayer, or protein), the polarizable water model is much more realistic as it captures the dielectric inhomogeneity of the system. Furthermore, the effect of electrostatic fields (both external and internal) is modeled more realistically. In fact you may even simulate cool phenomena like electroporation.</p>
 </section>
-</section>
-<section id="frequent-problems" class="level1">
-<h1>🛠 Frequent problems</h1>
 <section id="my-simulation-keeps-crashing-what-can-i-do" class="level2">
 <h2 class="anchored" data-anchor-id="my-simulation-keeps-crashing-what-can-i-do">My simulation keeps crashing, what can I do?</h2>
 <p>The following is a list of suggestions that might help you stabilize your system: - Reduce the time step somewhat, some applications require 20 fs rather than 30-40 fs. If you need to go below 20 fs something else is likely to be wrong. - Increase the neighbourlist update frequency and/or neighborlist cutoff size. - Replace contraints by (stiff) bonds, recommended during minimization - Replace stiff bonds by constraints, this will increase stability and allow larger time steps. Stiff bonds are bonds with a force constant exceeding ~ 10000 kJ mol-1 nm-2. - For beta-strands, you might try using distance constraints, available as option in the itp-generating script. If proteins keep crashing in general, try adding an elastic network to your protein, using ELNEDYN. - Play with your topology, you might have conflicting bonded potentials. Also make sure you have the appropriate exclusions (nearest neighbours should alway be excluded, but sometimes 2nd or 3rd nearest neighbours as well. - When using dihedral potentials (i,j,k,l) make sure you have the i,j,k and j,k,l angle potentials defined, and that both are far away from 180 and/or 0 degrees.</p>
@@ -338,10 +324,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="who-can-i-contact-with-further-questions" class="level2">
 <h2 class="anchored" data-anchor-id="who-can-i-contact-with-further-questions">Who can I contact with further questions?</h2>
-<p>Check our <a href="../contact/contact.qmd">contact us</a> page!</p>
+<p>Check our <a href="../../docs/contact/index.html">contact us</a> page!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -756,8 +741,8 @@ ul.task-list li input[type="checkbox"] {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
-    <a class="nav-link" href="https://x.com/cg_martini">
-      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
 </i> 
     </a>
   </li>  
@@ -767,8 +752,8 @@ ul.task-list li input[type="checkbox"] {
 </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
-      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter-x" role="img" aria-label="Martini Twitter">
 </i> 
     </a>
   </li>  

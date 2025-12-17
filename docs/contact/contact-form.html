@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../docs/contact/index.html" rel="prev">
+<link href="../../docs/contact/all-contributors.html" rel="prev">
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -185,8 +185,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter"></i></a>
     <a href="https://github.com/Martini-Force-Field-Initiative" title="Martini GitHub" class="quarto-navigation-tool px-1" aria-label="Martini GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://x.com/cg_martini" title="Martini Twitter" class="quarto-navigation-tool px-1" aria-label="Martini Twitter"><i class="bi bi-twitter-x"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -227,7 +227,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/contact/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><i class="fa fa-users-gear"></i> <b>Developers Team</b></span></a>
+ <span class="menu-text"><i class="fa fa-users-gear"></i> <b>Lead Developers</b></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/contact/all-contributors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa fa-users"></i> <b>List of All Contributors</b></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -261,6 +267,33 @@ ul.task-list li input[type="checkbox"] {
   --text-secondary: #666;
   --background-light: #f8fafc;
   --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.btn-rounded-primary {
+    margin-right: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+@media (max-width: 754px) {
+    /* Make the buttons smaller on mobile */
+    .btn-rounded-primary {
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 0.8rem;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+}
+
+
+p {
+  margin-bottom: 0.5rem;
 }
 </style>
 
@@ -300,11 +333,11 @@ function submitForm() {
 </script>
 <div class="form-container">
 <form onsubmit="submitForm(); return false;">
-<p><label class="form-label" for="name">Your Name:</label><br> <input class="form-input" type="text" id="name" name="name" required=""><br> <label class="form-label" for="email">Email Address:</label><br> <input class="form-input" type="email" id="email" name="email" required=""><br> <label class="form-label" for="institution">Current Institution:</label><br> <input class="form-input" type="text" id="institution" name="institution" required=""><br> <label class="form-label" for="subject">Subject:</label><br> <input class="form-input" type="text" id="subject" name="subject" required=""><br> <label class="form-label" for="message">Message:</label></p>
+<p><label class="form-label" for="name">Name:</label><br> <input class="form-input" type="text" id="name" name="name" required=""><br> <label class="form-label" for="email">Email Address:</label><br> <input class="form-input" type="email" id="email" name="email" required=""><br> <label class="form-label" for="institution">Current Affiliation:</label><br> <input class="form-input" type="text" id="institution" name="institution" required=""><br> <label class="form-label" for="subject">Subject:</label><br> <input class="form-input" type="text" id="subject" name="subject" required=""><br> <label class="form-label" for="message">Message:</label></p>
 <textarea class="form-input" id="message" name="message" rows="4" required=""></textarea>
 <p><br></p>
 <center>
-<input class="form-submit" type="submit" value="Submit">
+<input class="btn btn-primary btn-rounded-primary" type="submit" value="Submit">
 </center>
 </form>
 </div>
@@ -714,8 +747,8 @@ function submitForm() {
   </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../../docs/contact/index.html" class="pagination-link" aria-label="<i class='fa fa-users-gear'></i> <b>Developers Team</b>">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><i class="fa fa-users-gear"></i> <b>Developers Team</b></span>
+      <a href="../../docs/contact/all-contributors.html" class="pagination-link" aria-label="<i class='fa fa-users'></i> <b>List of All Contributors</b>">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><i class="fa fa-users"></i> <b>List of All Contributors</b></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -732,8 +765,8 @@ function submitForm() {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">
-    <a class="nav-link" href="https://x.com/cg_martini">
-      <i class="bi bi-twitter" role="img" aria-label="Martini Twitter">
+    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
+      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
 </i> 
     </a>
   </li>  
@@ -743,8 +776,8 @@ function submitForm() {
 </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/Martini-Force-Field-Initiative">
-      <i class="bi bi-github" role="img" aria-label="Martini GitHub">
+    <a class="nav-link" href="https://x.com/cg_martini">
+      <i class="bi bi-twitter-x" role="img" aria-label="Martini Twitter">
 </i> 
     </a>
   </li>  
