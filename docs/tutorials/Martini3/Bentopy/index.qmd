@@ -62,7 +62,7 @@ source ~/.bashrc    # For bash
 source ~/.zshrc     # For zsh
 ```
 
-You can verify the installation worked by running \`cargo \--version\`.
+You can verify the installation worked by running `cargo --version`.
 :::
 
 Now you can install _bentopy_ directly via `pip`:
@@ -82,10 +82,10 @@ cd tutorial_files
 
 This archive contains:
 
-- `structures/` \- Provided structure files: proteins (`lysozyme.pdb`, `ubiquitin.pdb`),
+- `structures/` &mdash; Provided structure files: proteins (`lysozyme.pdb`, `ubiquitin.pdb`),
   membranes (`membrane.gro`, `double\_membrane.gro`) and solvent (`water.gro`)
-- `topology/` \- Martini force field files and protein topologies (`lysozyme.itp`, `ubiquitin.itp`)
-- `mdp_files/` \- Example GROMACS input files (`em.mdp`, `eq.mdp`, `md.mdp`)
+- `topology/` &mdash; Martini force field files and protein topologies (`lysozyme.itp`, `ubiquitin.itp`)
+- `mdp_files/` &mdash; Example GROMACS input files (`em.mdp`, `eq.mdp`, `md.mdp`)
 
 **Other tools:**
 
@@ -676,10 +676,10 @@ _Bentopy_ includes `bentopy-solvate`, a solvation tool optimized for large-scale
 # Molarity: 150 mM NaCl
 bentopy-solvate -i system.gro -w water.gro -o solvated.gro -s NA:0.15M -s CL:0.15M
 
-# Fixed number: exactly 100 Na+ and 100 Cl- ions
+# Fixed number: exactly 100 Na⁺ and 100 Cl⁻ ions
 bentopy-solvate -i system.gro -w water.gro -o solvated.gro -s NA:100 -s CL:100
 
-# Ratio: replace 1% of water with Na+ ions
+# Ratio: replace 1% of water with Na⁺ ions
 bentopy-solvate -i system.gro -w water.gro -o solvated.gro -s NA:0.01
 ```
 
@@ -858,9 +858,9 @@ jq . placements.json
 ### References
 <hr>
 
-[1] Westendorp, M.S.S, Stevens, J.A. et al. Bentopy: building molecular dynamics simulations with cellular complexity and scale. _In preparation_.
+1. Westendorp, M.S.S, Stevens, J.A. et al. Bentopy: building molecular dynamics simulations with cellular complexity and scale. _In preparation_.
 
-[2] Bruininks, B.M.H. et al. MDVcontainment: Robust characterization of inside and outside in periodic spaces. _In preparation_.
+2. Bruininks, B.M.H. et al. MDVcontainment: Robust characterization of inside and outside in periodic spaces. _In preparation_.
 
 <hr>
 
