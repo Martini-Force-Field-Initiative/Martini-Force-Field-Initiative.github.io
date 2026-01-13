@@ -5,11 +5,12 @@ format: html
 
 <hr>
 **Tutorial authors**: J.A. Stevens and M.S.S. Westendorp, with contributions from C.M. Brown and W.
-Nauta. <br>
-**In case of issues**: Please contact [j.a.stevens@rug.nl](mailto:j.a.stevens@rug.nl) or [ma3ke.cyber@gmail.com](mailto:ma3ke.cyber@gmail.com).
+Nauta.<br>
+**In case of issues**: Please contact <j.a.stevens@rug.nl> or <ma3ke.cyber@gmail.com>.
 <hr>
 
 ### Summary
+
 - [`Introduction`](#Introduction)
 - [`Programs`](#Programs)
 - [`Tutorial 1: Basic Packing in Empty Space`](#Tut1)
@@ -18,22 +19,22 @@ Nauta. <br>
 - [`Advanced Features and Tips`](#Advanced_Features_and_Tips)
 - [`References`](#references)
 
-### Introduction {#introduction}
+### Introduction {#Introduction}
 <hr>
 
 _**Bentopy**¹ is a tool for packing molecules in arbitrary volumes, designed specifically for setting up large-scale molecular dynamics (MD) simulations. Through an efficient packing algorithm, *bentopy* can assemble molecular structures into MD models with biological densities and cellular-scales._
 
 ![](figure1.png)
 
-_**Figure 1: Showcase models.** a) The bentopy logo, packed with bentopy. For those interested a thread on the making of this model can be found [here](https://hachyderm.io/@ma3ke/114081904829438250). b) Mitochondrial cytoplasm model, showing distinct compartments with compartment-specific molecular components._
+_**Figure 1: Showcase models.** a) The bentopy logo, packed with bentopy. Those interested in how this model was constructed may enjoy this [thread on the making of this model](https://hachyderm.io/@ma3ke/114081904829438250). b) Mitochondrial cytoplasm model, showing distinct compartments with compartment-specific molecular components._
 
-The tool was built to create cellular-scale models by integrating multiple structural components atphysiological concentrations while ensuring simulation compatibility. *bentopy* uses voxels to represent space as a regular 3D grid, providing computational efficiency for spatial operations like collision detection and informing molecule placement. For example, this voxel approach enables mdvcontainment to automatically identify compartments within molecular models for packing, which is a central feature of _bentopy_².
+_Bentopy_ was built to create cellular-scale models by integrating multiple structural components at physiological concentrations while ensuring simulation compatibility. *Bentopy* uses voxels to represent space as a regular 3D grid, providing computational efficiency for spatial operations like collision detection and informing molecule placement. For example, this voxel approach enables MDVContainment² to automatically identify compartments within molecular models for packing, which is a central feature of _bentopy_.
 
 In this tutorial, we will showcase _bentopy_'s capabilities through three progressively complex tutorials that build on each other:
 
-1. **Simple packing**: Learn the basic workflow by packing proteins in empty space
-2. **Packing around existing structures**: Add a membrane and pack proteins around it
-3. **Multi-compartment systems**: Add a second membrane creating distinct compartments for different proteins
+1. [**Simple packing**](#Tut1): Learn the basic workflow by packing proteins in empty space
+2. [**Packing around existing structures**](#Tut2): Add a membrane and pack proteins around it
+3. [**Multi-compartment systems**](#Tut3): Add a second membrane creating distinct compartments for different proteins
 
 Each tutorial builds on the previous one, showing how to evolve a simple system into a complex model while using the standard _bentopy_ workflow.
 
@@ -41,12 +42,20 @@ Each tutorial builds on the previous one, showing how to evolve a simple system 
 
 _**Figure 2: Bentopy workflow overview.** The workflow consists of multiple consecutive steps including mask preparation, packing configuration, structure rendering, merging, and solvation._
 
-### Programs {#Programs}
+### Programs and files {#Programs}
 <hr>
 
 #### Installing _bentopy_
 
-**Prerequisites**: _Bentopy_ is written in Rust, so a Rust compiler is required during installation. Check if Rust is present:
+_Bentopy_ is available through the PyPI. Pre-built binaries are available for some platforms. In most cases, you can use `pip` to install it without any prior steps.
+
+```bash
+pip install bentopy
+```
+
+If this installation fails at first, this may be because a pre-built binary is not available for your platform. To allow `pip` to build _bentopy_, `cargo` is required, which provides the Rust compiler.
+
+You can try to see if it is already present on your system.
 
 ```bash
 cargo --version
@@ -55,42 +64,35 @@ cargo --version
 If not present, [install Rust](https://www.rust-lang.org/learn/get-started) through [Rustup](https://rustup.rs/).
 
 :::{.callout-warning}
-After installing Rust via rustup, you may need to reload your bash environment for the Rust tools (cargo, etc.) to be available in your PATH. Either restart your terminal or run:
+After installing Rust via rustup, you may need to reload your shell environment for the Rust tools (`cargo`, etc.) to be available in your PATH. Though you can reload your shell configuration by sourcing e.g., `~/.bashrc`, opening a new terminal is most reliable.
 
-```bash
-source ~/.bashrc    # For bash
-source ~/.zshrc     # For zsh
-```
-
-You can verify the installation worked by running `cargo --version`.
+You can verify whether the installation was successful by running `cargo --version`.
 :::
 
-Now you can install _bentopy_ directly via `pip`:
-
-```bash
-pip3 install git+https://github.com/marrink-lab/bentopy
-```
+Now you can install _bentopy_ directly via `pip` as described earlier.
 
 #### Download tutorial files
 
-Before starting the tutorial, download the required structure and parameter files. You download the tutorial files **[here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Bentopy/tutorial_files.tar.gz).** Extract the files:
+Before starting the tutorial, download the required structure and parameter files. You download the [tutorial files](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Bentopy/tutorial_files.tar.gz) and extract them.
 
 ```bash
+wget 'https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/Bentopy/tutorial_files.tar.gz'
 tar -xzf tutorial_files.tar.gz
 cd tutorial_files
 ```
 
-This archive contains:
+This archive contains structures, force field parameters, and simulation files.
 
-- `structures/` &mdash; Provided structure files: proteins (`lysozyme.pdb`, `ubiquitin.pdb`),
-  membranes (`membrane.gro`, `double\_membrane.gro`) and solvent (`water.gro`)
-- `topology/` &mdash; Martini force field files and protein topologies (`lysozyme.itp`, `ubiquitin.itp`)
-- `mdp_files/` &mdash; Example GROMACS input files (`em.mdp`, `eq.mdp`, `md.mdp`)
+|               |                                                              |
+|---------------|--------------------------------------------------------------|
+| `structures/` | Provided structure files: proteins (`lysozyme.pdb`, `ubiquitin.pdb`) and membranes (`membrane.gro`, `double_membrane.gro`) |
+| `topology/`   | Martini force field files and protein topologies (`lysozyme.itp`, `ubiquitin.itp`) |
+| `mdp_files/`  | Example Gromacs input files (`em.mdp`, `eq.mdp`, `md.mdp`) |
 
-**Other tools:**
+#### Other tools
 
-- Standard command line tools
-- Visualisation software: **`VMD`**
+- Standard command line tools.
+- Visualization software: **`VMD`**.
 
 ### Tutorial 1: Basic Packing in Empty Space {#Tut1}
 <hr>
@@ -99,73 +101,71 @@ This archive contains:
 
 We begin with the basic _bentopy_ workflow by packing proteins into a simple cubic space. This tutorial introduces:
 
-- The JSON input file syntax
-- Analytical mask definitions
-- The `bentopy-pack`, `bentopy-render` and `bentopy-solvate` commands
+- The `.bent` input file.
+- Analytical mask definitions.
+- The `bentopy-pack`, `bentopy-render` and `bentopy-solvate` commands.
 
 #### Create the packing configuration
 
-_Bentopy_ uses recipe files to define packing parameters, they are stored in the JSON file format. Create a file called `simple_packing.json` and copy the contents from the dropdown below.
+_Bentopy_ uses input configuration files to define packing parameters, called `.bent` files. These input files act as recipes for building different systems. They have a format that may be familiar to Gromacs users, but is also designed to be approachable and readable. Create a file called `simple_packing.bent` with the following contents.
 
-<details>
-<summary>
-Click to show the complete recipe file
-</summary>
-```json
-{
-    "space": {
-        "size": [40, 40, 40],
-        "resolution": 0.5,
-        "compartments": [
-            {
-                "id": "system",
-                "shape": "cuboid"
-            }
-        ]
-    },
-    "output": {
-        "title": "simple_protein_system",
-        "topol_includes": [
-            "topology/martini_v3.0.0.itp",
-            "topology/martini_v3.0.0_ions_v1.itp",
-             "topology/martini_v3.0.0_solvents_v1.itp",
-            "topology/lysozyme.itp"
-        ]
-    },
-    "segments": [
-        {
-            "name": "LYS",
-            "path": "structures/lysozyme.pdb",
-            "number": 650,
-            "compartments": ["system"]
-        }
-    ]
-}
+```{.default filename="simple_packing.bent"}
+[ general ]
+title "Proteins in a box"
+seed 0
+
+[ space ]
+# All dimensions in bentopy are given in nanometers.
+dimensions 40, 40, 40
+resolution 0.5
+
+[ includes ]
+"topology/martini_v3.0.0.itp"
+"topology/martini_v3.0.0_ions_v1.itp"
+"topology/martini_v3.0.0_solvents_v1.itp"
+"topology/lysozyme.itp"
+
+[ compartments ]
+system is all
+
+[ segments ]
+LYZ 650 from "structures/lysozyme.pdb" in system
 ```
-</details>
 
-**Note** the key parts in this _bentopy_ recipe:
+Let's discuss the key parts in this _bentopy_ recipe.
 
-**Space section**: Defines a 40×40×40 nm³ simulation box with 0.5 nm voxel resolution. The `"shape": "cuboid"` creates an analytical mask filling the entire box.
+General section
+: Sets general information, such as the system and a random seed. 
+: In this case, we use a defined seed to make sure that the results are repeatable. When the seed is not set, a random seed will be used at runtime.
 
-**Output section**: Sets the system title and specifies topology files for GROMACS compatibility. These files will be included when we generate the final topology.
+Space section
+: Defines a 40×40×40 nm³ simulation box with 0.5 nm voxel resolution.
 
-**Segments section**: Defines 650 lysozyme proteins to be randomly placed with full rotational freedom in the "system" compartment.
+Includes section
+: Specifies topology files for Gromacs compatibility. These files will be included when we generate the final topology with `bentopy-render`.
 
+Compartments section
+: Defines the compartments that are available for placing segments.
+: In this case, declare a compartment called "system", which spans the entire space.
+
+Segments section
+: Defines what structures are to be packed into what compartments and at what quantities.
+: In this case, declare 650 lysozyme proteins to be randomly placed in the "system" compartment.
+: Note that the segment name "LYZ" refers to the name of the topology described in `topology/lysozyme.itp`.
 
 #### Pack the system
 
-Perform the packing step with a fixed random seed for reproducibility:
+Now we can pack this system.
 
 ```bash
-bentopy-pack --seed 5172 simple_packing.json placements.json
+bentopy-pack simple_packing.bent placements.json
 ```
 
-The output `placements.json` contains all placement information in a lightweight instanced file format.
+The output file `placements.json` contains all the placement information in a lightweight instance-based file format. We call this the _placement list_.
 
 #### Render the structure
 
-Convert the placement list to a Gromacs coordinate file:
+We can convert the placement list to a coordinate file.
 
 ```bash
 bentopy-render placements.json system.gro -t topol.top
@@ -174,33 +174,33 @@ bentopy-render placements.json system.gro -t topol.top
 This creates `system.gro` with all protein coordinates and `topol.top` with the simulation topology.
 
 :::{.callout-note}
-Splitting the computationally intensive packing step from the fast rendering process allows for more efficient workflows with large systems. This workflow also improves the shareability of models, as distributing the lightweight placement file is orders of magnitude more efficient than sharing the complete coordinate file.
+Splitting the computationally intensive packing step from the process of writing out the entire coordinate file allows for more efficient workflows with large systems. This workflow also improves the shareability of models, as distributing the lightweight placement file is orders of magnitude more efficient than sharing the complete coordinate file.
 :::
 
 #### Solvation
 
-Add water and ions to complete the system preparation:
+Finally, we add water and ions to complete the system preparation.
 
 ```bash
-bentopy-solvate -i system.gro -w structures/water.gro -o solvated_system.gro \
--s NA:0.15M -s CL:0.15M --charge 5440 -t topol.top
+bentopy-solvate -i system.gro -o solvated_system.gro \
+        -s NA:0.15M -s CL:0.15M                      \ # <1>
+        --charge 5440                                \ # <2>
+        -t topol.top                                   # <3>
 ```
 
-Key solvation options used:
-
-* `-s NA:0.15M -s CL:0.15M`: Add 150 mM NaCl concentration
-* `--charge 5440`: Neutralize the system charges due to the net positive charge of each lysozyme monomer (add/remove ions as needed)
-* `-t topol.top`: Append solvent information to topology file
+1. Add 150 mM NaCl by substituting accepted water placements.
+2. Neutralize the system net charge due to the net positive charge of each lysozyme monomer  by substituting additional ions.
+3. Append the solvent contents to the topology file.
 
 We have now created a fully solvated system with 150 mM NaCl concentration and neutralized the system charge, ready for MD simulation.
 
 :::{.callout-note}
-`Bentopy-solvate` is specifically designed and optimized for solvating large-scale models with millions or billions of particles, where traditional solvation tools become impractically slow. For this small system, you won't notice the performance benefits, but it works just as well.
+`bentopy-solvate` is specifically designed and optimized for solvating large-scale models with millions or billions of particles, where traditional solvation tools become impractically slow. Yet, it is easy to use for more modest systems like this one as well.
 :::
 
 #### Visualization and analysis
 
-Open the system with `VMD` to inspect the packing:
+Open the system with `VMD` to inspect our current model.
 
 ```bash
 vmd solvated_system.gro
@@ -210,44 +210,43 @@ The result should be similar to the snapshot shown below, you can observe:
 
 - The lysozyme proteins are distributed uniformly throughout the simulation box.
 - The lysozyme proteins are packed at cytoplasmic densities.
-- No proteins overlap
+- No overlap between proteins.
 
 ![](figure3.png)
 
 _**Figure 3: Basic protein packing.** Lysozyme proteins packed in a cubic box with water and ions with non-overlapping placements._
 
-#### EXTRA: Try a different analytical mask
+#### _EXTRA:_ Try a different analytical mask
 
-Before moving to the next tutorial, you can experiment a bit by trying a different analytical compartment shape. Simply replace the compartment definition in your `simple_packing.json` file to pack proteins inside a sphere instead of a cube like:
+Before moving to the next tutorial, you can experiment a bit by trying a different analytical compartment shape. Simply replace the compartment definition in your `simple_packing.bent` file to pack proteins inside a sphere instead of the entire space.
 
-```json
-"compartments": [
-    {
-        "id": "system",
-        "analytical": {
-            "shape": "spherical",
-            "radius": 20,
-            "center": [20.0, 20.0, 20.0]
-        }
-    }
-]
+```{.default filename="simple_packing.bent"}
+[ compartments ]
+system as sphere at center with radius 20
+```
+
+Similarly, you can declare a space as a smaller cuboid as well.
+
+```{.default filename="simple_packing.bent"}
+[ compartments ]
+system as cuboid from 10, 10, 10 to 30, 30, 30
 ```
 
 :::{.callout-warning}
-Note that the available space to pack proteins got smaller, so not all the requested proteins were placed. Bentopy indicated this with the remark ‘\<’ in the packing summary that gets printed to your terminal. It’s advised to save this summary to a file as it contains all the relevant packing information for your project.
+Note that the available space to pack proteins has become smaller, so not all the requested proteins were placed. _Bentopy_ indicated this with the remark ‘\<’ in the packing summary that gets printed to your terminal. It’s advised to save this summary to a file as it contains all the relevant packing information for your project.
 :::
 
-```bash
+```{.default filename="Output from bentopy-pack"}
 Setting up compartments...
 Loading segment structures...
-Rearranging segments according to the MomentOfInertia method... Done.
-(  1/1) Attempting to pack 650 instances instances of segment 'LYZ'.
-Packing process took 0.128 s.
-idx   name           ok%  target  placed  time (s)  remark
-----  ----------  ------  ------  ------  --------  ------
-   0  LYZ          50.5%     650     328      0.13  <
-                   50.5%     650     328      0.13  <
-Writing placement list to "placements.json"... Done in 0.353 s.
+Rearranging segments according to the Moment method... Done.
+(  1/1) Attempting to pack   650 instances of segment 'LYZ'.
+Packing process took 0.091 s.
+idx 	name      	   ok%	target	placed	time (s)	remark
+----	----------	------	------	------	--------	------
+   0	LYZ       	 50.8%	   650	   330	    0.09	<
+    	          	 50.8%	   650	   330	    0.09	<
+Writing placement list to "placements.json"... Done in 0.003 s.
 ```
 
 
@@ -256,170 +255,141 @@ Writing placement list to "placements.json"... Done in 0.353 s.
 
 #### Overview
 
-In this tutorial, we'll add a membrane that creates excluded volume, ensuring proteins are not placed within it. We'll also introduce packing rules to place specific proteins close to the membrane surface. This tutorial introduces:
+In this tutorial, we will add a membrane. We treat this membrane as excluded volume, ensuring proteins are not placed within it. We will also introduce packing rules to place specific proteins close to the membrane surface. This tutorial introduces:
 
-* Compartment definitions using voxel masks generated from existing structures
-* Proximity-based placement rules
-* The `bentopy-mask` and `bentopy-merge` commands
+- Compartment definitions using voxel masks generated from existing structures.
+- Proximity-based placement rules.
+- The `bentopy-mask` and `bentopy-merge` commands.
 
 #### Inspect the mask compartments
 
-Before creating masks, it's essential to understand what compartments _bentopy_ identifies in your system. First, generate a visualisation file to inspect the compartments identified in the voxel representation:
+Before creating masks, it's essential to understand what compartments _bentopy_ identifies in your system. First, generate a visualization file to inspect the compartments identified in the voxel representation:
 
 ```bash
 bentopy-mask structures/membrane.gro -b labels.gro --autofill --no-interactive
 ```
 
-This automatically generates the debug file `labels.gro`. Visualise the voxel representation of our membrane system by opening the file with VMD:
+This automatically generates the debug file `labels.gro`. Visualize the voxel representation of our membrane system by opening the file with VMD:
 
 ```bash
 vmd labels.gro
 ```
 
-Here you can use the following atom selections to visualise the identified compartments:
+Here you can use the following atom selections to visualize the identified compartments:
 
-- **Solvent regions** (available for packing): `name "-1"`
-- **membrane region** (excluded from packing): `name 1`
+- **Solvent regions** ("outside", available for packing): `name "-1"`.
+- **Membrane region** (excluded from packing): `name 1`.
 
 The negative label (-1) typically represents the outermost compartment (solvent), while positive labels (1) represent inner or solid structures (membrane). Understanding these labels is important for selecting the correct compartments for protein placement.
 
-#### Create the masks
+#### Create the mask
 
-Now that you understand the compartments, we will create the masks to guide our protein placement. First, run the masking command and follow the interactive prompts:
-
-```bash
-bentopy-mask structures/membrane.gro solvent_mask.npz
-```
-
-When running the masking command, you'll encounter several interactive prompts during the process. For most prompts (such as debug file outputs), you can simply press Enter to skip and continue. The important prompt is the compartment selection where you'll see options \[-1  1\], here you should select \-1 to choose the solvent regions where proteins can be placed. This creates `solvent_mask.npz`, a compressed voxel representation of the available space for protein packing.
-
-Next, we need a separate mask representing the membrane itself. This will be used for proximity rules to place proteins near the membrane surface. Run the masking command again with a different output filename:
+Now that you understand the compartments, we will create the mask to guide our protein placement. Run the masking command and follow the interactive prompts.
 
 ```bash
 bentopy-mask structures/membrane.gro membrane_mask.npz
 ```
 
-When prompted with the compartment options `[-1 1]`, select `1` to choose the membrane region. This creates `membrane_mask.npz`. Having both masks allows us to exclude proteins from the membrane (using the solvent mask) while simultaneously attracting certain proteins toward the membrane surface (using the membrane mask for proximity rules).
+When running the masking command, you'll encounter several interactive prompts during the process. For most prompts (such as debug file outputs), you can simply press Enter to skip and continue. The important prompt is the compartment selection where you'll see options `[-1  1]`. Compartment `-1` is the solvent region ("outside"), and compartment `1` represents the membrane. Select `1` to choose the membrane region where we want to exclude protein placement. This creates `membrane_mask.npz`, a compressed voxel representation of the space inhabited by the membrane.
 
-#### Update the recipe
+#### A new recipe
 
-Now modify your _bentopy_ recipe to use the aqueous mask and include proximity rules. Create `membrane_packing.json` and copy the contents from the dropdown below:
+Now we create a new _bentopy_ recipe to use the membrane mask and include proximity rule. Create `membrane_packing.bent` as follows.
 
-<details>
-<summary>
-Click to show the complete configuration file
-</summary>
-```json
-{
-  "space": {
-    "size": [40, 40, 40],
-    "resolution": 0.5,
-    "compartments": [
-      {
-        "id": "solvent",
-        "voxels": {
-          "path": "solvent_mask.npz"
-        }
-      },
-      {
-        "id": "membrane",
-        "voxels": {
-          "path": "membrane_mask.npz"
-        }
-      }
-    ]
-  },
-  "output": {
-    "title": "system_w_membrane",
-    "topol_includes": [
-      "topology/martini_v3.0.0.itp",
-      "topology/martini_v3.0.0_ions_v1.itp",
-      "topology/martini_v3.0.0_solvents_v1.itp",
-      "topology/martini_v3.0.0_phospholipids_v1.itp",
-      "topology/lysozyme.itp",
-      "topology/ubiquitin.itp"
-    ]
-  },
-  "segments": [
-    {
-      "name": "LYZ",
-      "path": "structures/lysozyme.pdb",
-      "number": 300,
-      "tag": "LYZ",
-      "compartments": [
-        "solvent"
-      ]
-    },
-    {
-      "name": "UBQ",
-      "path": "structures/ubiquitin.pdb",
-      "number": 100,
-      "tag": "UBQ",
-      "compartments": [
-        "solvent"
-      ],
-      "rules": [
-        "is_closer_to membrane 5.0"
-      ]
-    }
-  ]
-}
+```{.default filename="membrane_packing.bent"}
+[ general ]
+title "Proteins around a membrane"
+seed 0
+
+[ space ]
+dimensions 40, 40, 40
+resolution 0.5
+
+[ includes ]
+"topology/martini_v3.0.0.itp"
+"topology/martini_v3.0.0_ions_v1.itp"
+"topology/martini_v3.0.0_solvents_v1.itp"
+"topology/martini_v3.0.0_phospholipids_v1.itp"
+"topology/lysozyme.itp"
+"topology/ubiquitin.itp"
+
+[ compartments ]
+membrane from "membrane_mask.npz"                                     # <1>
+solvent combines not membrane                                         # <2>
+membrane-neighborhood within 5 of membrane                            # <3>
+close-to-membrane combines membrane-neighborhood and solvent          # <4>
+
+[ segments ]
+# The part after the segment name is the optional tag (<name>:<tag>). # <7>
+LYZ:lyz 300 from "structures/lysozyme.pdb" in solvent                 # <5>
+UBQ:ubq 100 from "structures/ubiquitin.pdb" in close-to-membrane      # <6>
 ```
-</details>
 
-**Note** the key changes in this _bentopy_ recipe:
-
-- Reduced total protein numbers (less available space due to membrane).
-- Added ubiquitin with a proximity rule to stay within 5 nm of the membrane surface. See the [Advanced Features section](#advanced-features-and-tips) for more information on packing rules.
-- Added the ‘tag’ option, which will overwrite the resnames in each segment for easier visualization.
+1. We load the mask from the file we created earlier.
+2. We define the "solvent" region as the inverse (`not`) of "membrane", using a _compartment combination_.
+3. To create a compartment for the region around the "membrane" compartment, we use the `within` rule. Note that this neighborhood compartment does include the membrane itself, since it is within 5 nm of itself.
+4. To get the region that is close to the membrane, we need to exclude the membrane from its neighborhood.
+5. Reduced total protein numbers (due to membrane, there is less accessible space).
+6. Added ubiquitin with a proximity rule to stay within 5 nm of the membrane surface. See the [Advanced Features section](#Advanced_Features_and_Tips) for more information on creating complex compartment combinations.
+7. Added a tag for each structure, which will override the resnames in each segment for easier visualization. These are particularly helpful in more complex models, where the same structure (same name) can be placed in different compartments at different quantities. Adding multiple segment definitions with different tags can be quite useful.
 
 :::{.callout-warning}
-Using tags will override the original residue names in the gro file that _bentopy_ outputs. While this makes visualization easier to inspect _bentopy_ output (e.g., selecting all lysozyme with \`resname LYZ\`), it may cause issues with analysis tools that expect standard residue names. Note that during MD simulation, GROMACS will automatically assign the correct chemical residue names based on the topology file, so simulation output will have proper residue naming.
+Using tags will override the original residue names in the gro file that _bentopy_ outputs. While this makes visualization easier to inspect _bentopy_ output (e.g., selecting all lysozyme with `resname lyz`), it may cause issues with analysis tools that expect standard residue names.
+
+To instruct `bentopy-render` to ignore tag names, you can use the `--ignore-tags` flag.
+
+Note that during MD simulation, Gromacs will automatically assign the correct chemical residue names based on the topology file, so simulation output will have proper residue naming.
 :::
 
 #### Pack the system
 
-Perform the packing step with a fixed random seed for reproducibility:
+Like before, we can now pack the system.
 
 ```bash
-bentopy-pack --seed 5172 --rearrange moment-of-inertia membrane_packing.json placements.json
+bentopy-pack membrane_packing.bent placements.json
 ```
 
-The `--rearrange` flag optimizes the placement order of the segments using a heuristic for packing difficulty. Here we use the moment of inertia to determine the order in which the segments should be placed, this dramatically improves the packing densities that can be reached with bentopy.
+##### Ordering segments during placement
 
-:::{.callout-note}
-Other heuristics are available to rearrange segments based on packing difficulty. The implemented
-options are:
+This is a short aside on how _bentopy_ orders segments during packing.
 
-* moment-of-inertia (orders by rotational inertia, used here)
-* volume (orders by molecular volume)
-* bounding-sphere (orders by bounding sphere radius)
-* None (takes the order from the user-specified .json input file).
+Now that we have introduced another structure, we can consider how _bentopy_ is supposed to order these. Generally, larger structures are harder to pack because they have fewer possible positions and orientations within the available space. Moreover, when small structures were already placed somewhere, they may obstruct the placement of a larger structure that could have been placed there, while the smaller structure could have been placed in many other locations.
 
-In our testing, moment-of-inertia worked best for most systems, but for specific use cases it may be worth experimenting with other options.
-:::
+By default, _bentopy_ uses a 'geometric moment' heuristic (moment of inertia, taking all particles to have a unit mass) to rank different structures by how tricky they are to pack. Larger structures will be placed before smaller structures.
+
+If desired, you can change this behavior to any of the available options. To do this, you can add a `rearrange <method>` line to the input file, or use the `--rearrange <method>` flag.
+
+The available rearrange methods and heuristics are
+
+- `moment`: orders by geometric moment, default,
+- `volume`: orders by molecular volume
+- `bounding-sphere`: orders by bounding sphere radius, and
+- `none`: keeps the order specified in the input file.
+
+In our testing, the `moment` method works best for most systems, but for specific use cases it may be worth experimenting with other options.
 
 #### Render and merge
 
-Convert the placement list to a Gromacs coordinate file and combine the packed proteins with the membrane structure.
+Convert the placement list to a coordinate file and combine the packed proteins with the membrane structure.
 
 ```bash
 bentopy-render placements.json packed_proteins.gro -t topol.top
 
-# Merge proteins with membrane structure
+# Concatenate proteins with membrane structure
 bentopy-merge packed_proteins.gro structures/membrane.gro -o system.gro
-echo "POPC    5408" >> topol.top  # Add lipid molecules to the topology file.
+# Add lipid molecules to the topology file.
+echo "POPC    5408" >> topol.top
 ```
 
-The `merge` command combines the original membrane with packed proteins.
+The `bentopy-merge` command appends the structure files for the original membrane to the packed proteins.
 
 #### Solvation
 
 Add water and ions to complete the system preparation:
 
 ```bash
-bentopy-solvate -i system.gro -w structures/water.gro -o solvated_system.gro \
--s NA:0.15M -s CL:0.15M --charge 2400 -t topol.top
+bentopy-solvate -i system.gro -o solvated_system.gro \
+        -s NA:0.15M -s CL:0.15M --charge 2400 -t topol.top
 ```
 
 #### Visualization and analysis
@@ -427,12 +397,11 @@ bentopy-solvate -i system.gro -w structures/water.gro -o solvated_system.gro \
 Open the system with `VMD` to inspect the packing:
 
 ```bash
-# Visualize in VMD
 vmd solvated_system.gro
 ```
 
 :::{.callout-tip}
-Since we used tags, you can now use the selections resname UBQ and resname LYZ in VMD to select the ubiquitin and lysozyme proteins respectively.
+Since we used tags, you can now use the selections `resname ubq` and `resname lyz` in VMD to select the ubiquitin and lysozyme proteins respectively.
 :::
 
 The result should be similar to the snapshot shown below, you can observe:
@@ -453,7 +422,7 @@ _**Figure 4: Membrane system with proximity rules.** The membrane (gray) creates
 
 Now we'll add even more complexity by creating a double membrane system that forms distinct compartments. Different proteins will be placed in different compartments. This tutorial demonstrates:
 
-- Compartment-specific protein placement
+- Compartment-specific protein placement.
 
 We'll use the provided double membrane to create distinct inner and outer compartments, then place different proteins in each compartment.
 
@@ -475,7 +444,7 @@ Generate masks for the different compartments created by the double membrane:
 bentopy-mask structures/double_membrane.gro mask.npz --inspect-labels-path compartment_labels.gro  --autofill --no-interactive
 ```
 
-Visualise the voxel representation of our membrane system by opening the file with VMD:
+Visualize the voxel representation of our membrane system by opening the file with VMD:
 
 ```bash
 vmd compartment_labels.gro
@@ -483,9 +452,9 @@ vmd compartment_labels.gro
 
 Now also double-check the different spatial compartments identified by the containment algorithm:
 
-- Outer compartment (outside the membrane system): `name “-1”`
-- Inner compartment (between the two membranes): `name “-2”`
-- membrane regions (excluded): `name 1 2`
+- **Outer compartment** (outside the membrane system): `name "-1"`.
+- **Inner compartment** (between the two membranes): `name "-2"`.
+- **Membrane regions** (excluded): `name 1 2`.
 
 #### Create separate masks for each compartment
 
@@ -493,105 +462,68 @@ Create individual masks for precise control:
 
 ```bash
 # Interactive mask creation for outer compartment: label -1
-bentopy-mask structures/double_membrane.gro outer_mask.npz --no-interactive --labels -1
+bentopy-mask structures/double_membrane.gro outer_mask.npz \
+        --no-interactive --labels -1
 # Interactive mask creation for inner compartment: label -2
-bentopy-mask structures/double_membrane.gro inner_mask.npz --no-interactive --labels -2
+bentopy-mask structures/double_membrane.gro inner_mask.npz \
+        --no-interactive --labels -2
 
 # Interactive mask creation for the membranes: labels 1 2
-bentopy-mask structures/double_membrane.gro memb_mask.npz --no-interactive --labels 1,2
+bentopy-mask structures/double_membrane.gro membrane_mask.npz \
+        --no-interactive --labels 1,2
 ```
 
 Since we’re now using the `--no-interactive` flag of `bentopy-mask`, we will not be prompted by the interactive selection. The requested labels selection is written to the specified mask .npz file.
 
 #### Update the configuration with compartments
 
-Create a new configuration file `compartment_packing.json` with multiple compartments and different protein compositions:
+Create a new configuration file `compartment_packing.bent` with multiple compartments and different protein compositions.
 
-<details>
-<summary>
-Click to show the complete configuration file
-</summary>
-```json
-{
-  "space": {
-    "size": [40, 40, 40],
-    "resolution": 0.5,
-    "compartments": [
-      {
-        "id": "inner_compartment",
-        "voxels": {
-          "path": "inner_mask.npz"
-        }
-      },
-      {
-        "id": "outer_compartment",
-        "voxels": {
-          "path": "outer_mask.npz"
-        }
-      },
-      {
-        "id": "membrane",
-        "voxels": {
-          "path": "memb_mask.npz"
-        }
-      }
-    ]
-  },
-  "output": {
-    "title": "compartmentalized_system",
-    "topol_includes": [
-      "topology/martini_v3.0.0.itp",
-      "topology/martini_v3.0.0_ions_v1.itp",
-      "topology/martini_v3.0.0_solvents_v1.itp",
-      "topology/martini_v3.0.0_phospholipids_v1.itp",
-      "topology/lysozyme.itp",
-      "topology/ubiquitin.itp"
-    ]
-  },
-  "segments": [
-    {
-      "name": "LYZ",
-      "path": "structures/lysozyme.pdb",
-      "number": 200,
-      "tag": "LYZ",
-      "compartments": [
-        "outer_compartment"
-      ]
-    },
-    {
-      "name": "UBQ",
-      "path": "structures/ubiquitin.pdb",
-      "number": 100,
-      "tag": "UBQ",
-      "compartments": [
-        "inner_compartment"
-      ],
-      "rules": [
-        "is_closer_to membrane 4.0"
-      ]
-    }
-  ]
-}
+```{.default filename="compartment_packing.bent" highlighted=1}
+[ general ]
+title "Proteins in different compartments"
+seed 0
+
+[ space ]
+dimensions 40, 40, 40
+resolution 0.5
+
+[ includes ]
+"topology/martini_v3.0.0.itp"
+"topology/martini_v3.0.0_ions_v1.itp"
+"topology/martini_v3.0.0_solvents_v1.itp"
+"topology/martini_v3.0.0_phospholipids_v1.itp"
+"topology/lysozyme.itp"
+"topology/ubiquitin.itp"
+
+[ compartments ]
+membrane from "membrane_mask.npz"                                         
+outer-compartment from "outer_mask.npz"                                        # <1>
+inner-compartment from "inner_mask.npz"
+membrane-neighborhood within 4 of membrane
+inner-close-to-membrane combines membrane-neighborhood and inner-compartment   # <2>
+
+[ segments ]
+LYZ:lyz 200 from "structures/lysozyme.pdb" in outer-compartment                # <3>
+UBQ:ubq 100 from "structures/ubiquitin.pdb" in inner-close-to-membrane         # <4>
 ```
-</details>
 
-**Note** the key changes in this _bentopy_ recipe:
-
-- Added multiple compartments (inner and outer)
-- Placed lysozyme only in the outer compartment
-- Placed ubiquitin only in the inner compartment
+1. Added multiple compartments (inner and outer).
+2. Created a compartment demonstrating how combinations can include boolean operations between previously defined compartments.
+3. Place lysozyme only in the outer compartment.
+4. Place ubiquitin only in the inner compartment _and_ close to the membrane.
 
 #### Pack the system
 
-Perform the packing step with a fixed random seed for reproducibility:
+Pack our multi-compartment system.
 
 ```bash
-bentopy-pack --seed 5172 --rearrange moment-of-inertia compartment_packing.json placements.json
+bentopy-pack compartment_packing.bent placements.json
 ```
 
 #### Render and merge
 
-Convert the placement list to a Gromacs coordinate file and combine the packed proteins with the membrane structure.
+Now we render and merge our structures like before.
 
 ```bash
 bentopy-render placements.json packed_proteins.gro -t topol.top
@@ -603,16 +535,16 @@ echo "POPC    10816" >> topol.top  # Add lipid molecules to the topology file.
 
 #### Solvation
 
-Add water and ions to complete the system preparation:
+Add water and ions to complete the system preparation.
 
 ```bash
-bentopy-solvate -i system.gro -w structures/water.gro -o solvated_system.gro \
--s NA:0.15M -s CL:0.15M --charge 1600 -t topol.top
+bentopy-solvate -i system.gro -o solvated_system.gro \
+        -s NA:0.15M -s CL:0.15M --charge 1600 -t topol.top
 ```
 
 #### Visualization and final analysis
 
-Open the system with `VMD` to inspect the packing:
+We can now inspect our final system.
 
 ```bash
 vmd solvated_system.gro
@@ -630,14 +562,14 @@ _**Figure 5: Multi-compartment double membrane system.** The double membrane cre
 
 #### Run a simulation
 
-With the complete solvated system, you can now run a MD simulations using the provided input files:
+With the complete solvated system, you can now run a molecular dynamics simulation using the provided input files.
 
 ```bash
 # Energy minimization
 gmx grompp -f mdp_files/em.mdp -c solvated_system.gro -p topol.top -o em.tpr
 gmx mdrun -v -deffnm em
 
-#Make index file
+# Make index file
 gmx make_ndx -f em.gro -o index.ndx << EOF
 name 13 Lipid
 r W | r ION
@@ -654,9 +586,9 @@ gmx grompp -f mdp_files/md.mdp -c eq.gro -p topol.top -o md.tpr -n index.ndx
 gmx mdrun -v -deffnm md
 ```
 
-You've now learned the complete _bentopy_ workflow from simple packing to a complex MD mode\!
+You've now walked through the complete _bentopy_ workflow from simple packing to a complex MD model!
 
-Through these three tutorials, you've learned how _bentopy_ can help you build complex molecular models with a well-structured workflow. This scalable approach enables researchers to construct everything from crowded cytoplasm to whole-cell models with multiple compartments. The strength of _bentopy_ lies in its ability to handle this complexity efficiently, making large-scale modeling accessible without sacrificing the molecular detail needed for accurate biological representation.
+Through these three tutorials, you've learned how _bentopy_ can help you build complex molecular models with a well-structured workflow. This approach enables researchers to construct everything from crowded cytoplasm to whole-cell models with multiple compartments. The strength of _bentopy_ lies in its ability to handle this complexity efficiently, making large-scale modeling accessible without sacrificing the molecular detail needed for accurate biological representation.
 
 ![](figure6.png)
 
@@ -666,33 +598,37 @@ _**Figure 6:** Tutorial progression from simple protein packing to complex multi
 ### Advanced Features and Tips {#Advanced_Features_and_Tips}
 <hr>
 
-#### Solvation Options
+#### Solvation options
 
 _Bentopy_ includes `bentopy-solvate`, a solvation tool optimized for large-scale systems. For the complete documentation, see the `bentopy-solvate` [README](https://github.com/marrink-lab/bentopy/blob/main/src/solvate/README.md).
 
 ##### Ion substitutions with different quantities
 
 ```bash
-# Molarity: 150 mM NaCl
-bentopy-solvate -i system.gro -w water.gro -o solvated.gro -s NA:0.15M -s CL:0.15M
+# Molarity: 150 mM NaCl.
+bentopy-solvate -i system.gro -o solvated.gro -s NA:0.15M -s CL:0.15M
 
-# Fixed number: exactly 100 Na⁺ and 100 Cl⁻ ions
-bentopy-solvate -i system.gro -w water.gro -o solvated.gro -s NA:100 -s CL:100
+# Fixed number: exactly 100 Na⁺ and 100 Cl⁻ ions.
+bentopy-solvate -i system.gro -o solvated.gro -s NA:100 -s CL:100
 
-# Ratio: replace 1% of water with Na⁺ ions
-bentopy-solvate -i system.gro -w water.gro -o solvated.gro -s NA:0.01
+# Ratio: replace 1% of water with Na⁺ ions.
+bentopy-solvate -i system.gro -o solvated.gro -s NA:0.01
 ```
 
 ##### Set custom cutoff distances
 
-For models with compartments, fine-tuning the number of water beads in the compartments is crucial for achieving a well solvated model. The `--cutoff` flag controls the minimum distance between solvent and structure beads, allowing you to adjust the water bead placement. Increasing the cutoff creates more space around solutes (fewer water molecules), while decreasing it allows tighter packing (more water molecules).
+For models with compartments, fine-tuning the number of water beads in the compartments is crucial for achieving a well-solvated model. The `--cutoff` flag controls the minimum distance between solvent and structure beads, allowing you to adjust the water bead placement. Increasing the cutoff creates more space around solutes (fewer water molecules), while decreasing it allows tighter packing (more water molecules). Additionally, the `--solvent-cutoff` flag is available to set the minimum allowable solvent–solvent distance over the periodic boundary conditions.
 
 ```bash
-bentopy-solvate -i system.gro -w water.gro -o solvated.gro \
---cutoff 0.5 --solvent-cutoff 0.25
+bentopy-solvate -i system.gro -o solvated.gro \
+        --cutoff 0.5 --solvent-cutoff 0.25
 ```
 
-#### Render Options for Large Systems
+##### All-atom waters
+
+Though we demonstrated the use of `bentopy-solvate` for setting up Martini systems, you can also use it to solvate atomistic models. For this, the `--water-type tip3p` option is available.
+
+#### Render options for large systems
 
 For large systems, `bentopy-render` provides several options to manage visualization and analysis:
 
@@ -724,7 +660,7 @@ bentopy-render placements.json instance_beads.gro --mode instance
 ```
 
 :::{.callout-note}
-Reduced rendering modes cannot generate topology files. Use \--mode full (default) when topology files are needed.
+Reduced rendering modes cannot generate topology files, since these are only intended for visualization and validation. Use `--mode full` (default) when topology files are needed.
 :::
 
 ##### Residue numbering control
@@ -744,116 +680,145 @@ bentopy-render placements.json system.gro --resnum-mode segment
 Assign custom residue names when merging files for better organization and visualization:
 
 ```bash
-# Assign custom residue names using colon syntax
-betopy-merge membrane.gro:MEM packed_proteins.gro:PROT -o complete_system.gro# Multiple components with descriptive labels
+# Assign custom residue names using the colon syntax.
+bentopy-merge membrane.gro:MEM packed_proteins.gro:PROT -o complete_system.gro
 bentopy-merge membrane.gro:MEM cytosol.gro:CYT chromosome.gro:CHR -o cell.gro
 ```
 
 This allows easy selection and visualization of different system components in molecular viewers.
 
-#### Alternative Configuration Options
+#### Configuration options
 
-##### Using concentrations instead of fixed numbers
+##### Example configuration for starting new projects
 
-Specify physiological concentrations (in mol/L) instead of absolute copy numbers:
+If you are starting a new project with _bentopy_, it may be helpful to have a jumping-off point for the configuration file. You can generate an example input file as follows.
 
-```json
-"segments": [
-    {
-        "name": "LYZ",
-        "path": "structures/lysozyme.pdb",
-        "concentration": 5.0,
-        "compartments": ["system"]
-    }
-]
+```bash
+bentopy-init example -o input.bent
+```
+
+This example lists and explains many of the available options with placeholders to be filled in with relevant values.
+
+##### Convert legacy (`.json`) input files to the new format (`.bent`)
+
+Early adopters of _bentopy_ may still have `.json` input files. These can be converted to `.bent` files using `bentopy-init`.
+
+```bash
+bentopy-init convert -i input.json -o output.bent
+```
+
+This command can also be used to convert from `.bent` to `.bent`, in essence functioning as a formatter. Note that this will strip any comments.
+
+##### Validate input files
+
+Input configuration files can be checked for errors and potential problems using the `validate` subcommand.
+
+```bash
+bentopy-init validate -i input.bent
+```
+
+##### Formatting `.bent` files
+
+The parser for the input files is very flexible, allowing almost arbitrary whitespace between the keywords in any declaration. This may sound inconsequential, but it allows for formatting input files in ways that suit readability concerns or preferences.
+
+For instance, long segment definitions can be neatly written over multiple lines.
+
+```default
+[ segments ]
+LYZ:lyz
+    0.5mM
+    from "long/structures/path/lysozyme.pdb"
+    in long, list, of, compartments
+    satisfies even, some, constraints
+```
+
+##### Using concentrations instead of fixed copy numbers
+
+Instead of absolute copy numbers, it is also possible to provide molar concentrations (in mol/L) instead of absolute copy numbers.
+
+```default
+[ segments ]
+LYZ 5.0mM from "structures/lysozyme.pdb" in system
 ```
 
 ##### Controlling protein rotations
 
-Constrain or set initial rotations for more realistic placement:
+Constrain or set initial rotations for more realistic placement.
 
-```json
-"segments": [
-    {
-        "name": "LYZ",
-        "path": "structures/lysozyme.pdb",
-        "number": 50,
-        "compartments": ["system"],
-        "rotation_axes": "z"
-    }
-]
+```default
+[ constraints ]
+# Only rotate over the z-axis.
+planar rotates z
+
+[ segments ]
+LYZ 50 from "structures/lysozyme.pdb" in system satisfies planar
 ```
 
-- `rotation_axes`: Limit random rotations to specific axes (e.g., `"z"`, `"xy"`, `"xyz"`)
+The `rotates` constraint takes a comma-separated list of axes along which random rotations may be applied between different placements.
 
 ##### Compartment combinations
 
-Create complex spaces using boolean operations on preexisting compartments:
+Create complex spaces using boolean operations on compartments.
 
-```json
-"compartments": [
-  {
-"id": "a",
-    "analytical": {
-    "shape": "spherical",
-    "radius": 7.5,
-    "center": [7.5, 10.0, 10.0]
-    }
-  },
-  {
-    "id": "b",
-    "analytical": {
-      "shape": "spherical",
-      "radius": 7.5,
-      "center": [12.5, 10.0, 10.0]
-    }
-  },
-  {
-    "id": "c",
-    "combination": "intersect(a b)"
-  },
-  {
-    "id": "d",
-    "combination": "!c"
-  }
-]
+```default
+[ compartments ]
+a as sphere at  7.5, 10, 10 with radius 7.5
+b as sphere at 12.5, 10, 10 with radius 7.5
+c combines a and b
+d combines not c
+e combines a or not (b or d)
 ```
 
-#### Command Line Tips
+These _combination expressions_ can be nested and combined again. The following syntax elements are available.
+
+`not <expr>`
+: Gives the inverse of `<expr>`.
+
+`<expr> and <expr>`
+: Gives the intersection between two expressions.
+
+`<expr> or <expr>`
+: Gives the union of two expressions.
+
+`( <expr> )`
+: Group expressions.
+
+#### Command line tips
 
 ##### Inspect placement lists:
 
-Use `jq` to view placement files in readable format:
+Use `jq` to view placement files in a pretty-printed, readable format.
+Placement lists are not meant to be inspected directly, but it may be interesting to take a look. The placement list stores the translations and rotations for all instances of each segment. Also note that any important settings for reproducing a placement list, such as its seed, rearrange-method, or max-tries-mult are also stored in its header.
 
 ```bash
 jq . placements.json
 ```
 
-#### Troubleshooting Common Issues
+#### Troubleshooting common issues
 
-**Packing failures**:
+##### Packing failures
 
-- Check _bentopy_'s packing summary output to see which segments failed
-- Use the `--verbose` flag of `bentopy-pack` for detailed information on the packing process
-- Double-check molecule counts/concentrations against available space
-- Use the `BENTOPY_TRIES=10000` environment variable to increase placement attempts
+- Check _bentopy_'s packing summary output to see which segments failed.
+- Use the `--verbose` flag of `bentopy-pack` for detailed information on the packing process.
+- Double-check molecule counts/concentrations against available space.
+- Use the `max-tries-mult <number>` declaration in the _general_ section of the `.bent` file to increase the number of placement attempts. The default value is 1000.
 
-**Mask problems**:
+##### Mask problems
 
-- Ensure mask dimensions match space size ÷ resolution
-- Use the `--inspect-labels-path` flag of `bentopy-mask,`  to output a visualization file for the voxel representation of the identified compartments.
-- Try different containment/mask resolutions if too many compartments are identified
+- Ensure mask dimensions match _space dimensions_ ÷ _resolution_.
+- Use the `--inspect-labels-path` flag of `bentopy-mask` to output a visualization file for the voxel representation of the identified compartments.
+- Try different _containment/mask resolutions_ if too many compartments are identified.
+- The `--closing` and `--morph` options can help to 'repair' holes undesirably connecting compartments, even at finer _containment resolutions_.
 
-**Rendering errors**:
+##### Rendering errors
 
-- Verify all structure paths in placement list are accessible
-- Check structure file formats (PDB/GRO supported)
+- Verify all structure paths in placement list are accessible. If you are rendering in a different location than where the packing took place, the `--root <path>` option may be helpful. It sets the location from where the input structure paths will be resolved.
+- Check structure file formats (`pdb` and `gro` files are supported for input structures).
 
-**Topology issues**:
+##### Topology issues
 
-- Ensure segment names in JSON match molecule names in .itp files
-- Verify all .itp files listed in `topol_includes` exist
-
+- Ensure segment names in the `.bent` file match molecule names in the `.itp` files. Use tags to distinguish different segments of the same structure.
+- Verify all `.itp` files listed in `topol_includes` exist and contain the expected topology information.
 
 ### References
 <hr>
