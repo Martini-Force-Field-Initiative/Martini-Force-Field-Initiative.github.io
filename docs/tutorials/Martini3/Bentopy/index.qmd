@@ -184,12 +184,12 @@ Finally, we add water and ions to complete the system preparation.
 ```bash
 bentopy-solvate -i system.gro -o solvated_system.gro \
         -s NA:0.15M -s CL:0.15M                      \ # <1>
-        --charge 5440                                \ # <2>
+        --charge 5200                                \ # <2>
         -t topol.top                                   # <3>
 ```
 
 1. Add 150 mM NaCl by substituting accepted water placements.
-2. Neutralize the system net charge due to the net positive charge of each lysozyme monomer  by substituting additional ions.
+2. Neutralize the system net charge due to the net +8 charge of each lysozyme monomer  by substituting additional ions.
 3. Append the solvent contents to the topology file.
 
 We have now created a fully solvated system with 150 mM NaCl concentration and neutralized the system charge, ready for MD simulation.
