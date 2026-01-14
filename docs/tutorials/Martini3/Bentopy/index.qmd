@@ -424,7 +424,7 @@ Now we'll add even more complexity by creating a double membrane system that for
 
 - Compartment-specific protein placement.
 
-We'll use the provided double membrane to create distinct inner and outer compartments, then place different proteins in each compartment.
+We'll use the provided double membrane to create two distinct open compartments, then place different proteins in each compartment.
 
 #### Inspect the double membrane structure
 
@@ -434,7 +434,7 @@ First, let's examine the double membrane structure we'll be working with:
 vmd structures/double_membrane.gro
 ```
 
-Notice how this system has two lipid bilayers, creating three distinct regions: the space between the membranes (inner compartment), the space outside the membranes (outer compartment), and the membrane regions themselves. This structure represents a compartmentalised space similar to a vesicle or double-layer cell wall.
+Notice how this system has two lipid bilayers, creating four distinct regions: two spaces between the two membranes, and the two membranes. We could conceive of one of the spaces between the membranes as being the "outside", and take the other to be the "inside". Under that view, this structure could represent a compartmentalised space similar to a vesicle or double-layer cell wall. However, the two inter-membrane spaces cannot be distinguished, due to the periodic nature of our box. Distinguishing outside and inside is therefore not entirely accurate. We'll call them compartment **A** and **B**.
 
 #### Create compartment-specific masks
 
@@ -452,20 +452,20 @@ vmd compartment_labels.gro
 
 Now also double-check the different spatial compartments identified by the containment algorithm:
 
-- **Outer compartment** (outside the membrane system): `name "-1"`.
-- **Inner compartment** (between the two membranes): `name "-2"`.
-- **Membrane regions** (excluded): `name 1 2`.
+- Compartment **A**: `name "-1"`.
+- Compartment **B**: `name "-2"`.
+- Membrane regions (excluded): `name 1 2`.
 
 #### Create separate masks for each compartment
 
 Create individual masks for precise control:
 
 ```bash
-# Interactive mask creation for outer compartment: label -1
-bentopy-mask structures/double_membrane.gro outer_mask.npz \
+# Interactive mask creation for compartment A: label -1
+bentopy-mask structures/double_membrane.gro A_mask.npz \
         --no-interactive --labels -1
-# Interactive mask creation for inner compartment: label -2
-bentopy-mask structures/double_membrane.gro inner_mask.npz \
+# Interactive mask creation for compartment B: label -2
+bentopy-mask structures/double_membrane.gro B_mask.npz \
         --no-interactive --labels -2
 
 # Interactive mask creation for the membranes: labels 1 2
@@ -497,21 +497,21 @@ resolution 0.5
 "topology/ubiquitin.itp"
 
 [ compartments ]
-membrane from "membrane_mask.npz"                                         
-outer-compartment from "outer_mask.npz"                                        # <1>
-inner-compartment from "inner_mask.npz"
+membrane from "membrane_mask.npz"
+A from "A_mask.npz"                                                       # <1>
+B from "B_mask.npz"
 membrane-neighborhood within 4 of membrane
-inner-close-to-membrane combines membrane-neighborhood and inner-compartment   # <2>
+B-close-to-membrane combines membrane-neighborhood and B                  # <2>
 
 [ segments ]
-LYZ:lyz 200 from "structures/lysozyme.pdb" in outer-compartment                # <3>
-UBQ:ubq 100 from "structures/ubiquitin.pdb" in inner-close-to-membrane         # <4>
+LYZ:lyz 200 from "structures/lysozyme.pdb" in A                           # <3>
+UBQ:ubq 100 from "structures/ubiquitin.pdb" in B-close-to-membrane        # <4>
 ```
 
-1. Added multiple compartments (inner and outer).
+1. Added the **A** and **B** compartments.
 2. Created a compartment demonstrating how combinations can include boolean operations between previously defined compartments.
-3. Place lysozyme only in the outer compartment.
-4. Place ubiquitin only in the inner compartment _and_ close to the membrane.
+3. Place lysozyme only in the **A** compartment.
+4. Place ubiquitin only in the **B** compartment _and_ close to the membrane.
 
 #### Pack the system
 
@@ -552,13 +552,13 @@ vmd solvated_system.gro
 
 The result should be similar to the snapshot shown below, you can observe:
 
-- The lysozyme proteins are distributed throughout the outer compartment.
-- The Ubiquitin proteins are concentrated near the membrane surfaces in the inner compartment.
+- The lysozyme proteins are distributed throughout compartment **A**.
+- The Ubiquitin proteins are concentrated near the membrane surfaces in compartment **B**.
 - No protein overlaps with the membrane structure.
 
 ![](figure5.png)
 
-_**Figure 5: Multi-compartment double membrane system.** The double membrane creates distinct inner and outer compartments. Ubiquitin (blue) is confined to the inner compartment between the membranes, while lysozyme (green) is placed only in the outer compartment._
+_**Figure 5: Multi-compartment double membrane system.** The double membrane creates two distinct open compartments. Ubiquitin (blue) is confined to one  compartment between the membranes (**A**), while lysozyme (green) is placed only in the other compartment (**B**)._
 
 #### Run a simulation
 
