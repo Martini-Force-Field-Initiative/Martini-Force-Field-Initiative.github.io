@@ -1,0 +1,32 @@
+---
+title: "Gradient-Based Optimization of Force Field Parameters for Martini Lipid Models"
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Daniel P. Ramirez-Echemendia, Ryan K. Krueger, D. Peter Tieleman, Megan C. Engel"
+year: "2025"           # Publication year (required)
+publication: "chemrxiv"    # Journal or similar (required)
+doi: "https://doi.org/10.26434/chemrxiv-2025-dtt4k"            # URL of DOI (required)  
+categories:       
+  - Methods
+  - Lipid membranes
+  - Phospholipids
+  - Pre-print
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Ramirez-Echemendia, D. P., Krueger, R. K., Tieleman, D. P., & Engel, M. C. (2025). Gradient-Based Optimization of Force Field Parameters for Martini Lipid Models. Chemistry. https://doi.org/10.26434/chemrxiv-2025-dtt4k
+
+
+## Abstract
+
+Physics-based coarse-grained (CG) models are widely used in (bio)molecular simulations, yet their parameterization remains challenging and labor-intensive. In this work, we demonstrate how recently developed gradient-based optimization methods can substantially accelerate the refinement of CG force field (FF) parameters within the Martini framework, a cornerstone of modern CG modeling. Using Martini lipid models as a testbed, we explore three increasingly challenging optimization problems. First, a single phosphatidylcholine (PC) lipid, where we optimize bonded parameters by fitting simultaneously to top-down membrane observables (area per lipid, bilayer thickness, and transition temperature) and bottom-up atomistic bond and angle distributions. We then scale the workflow to eight different PC lipids, demonstrating robust performance in a complex multi-system landscape and an order-of-magnitude reduction in computational cost relative to population-based heuristic schemes. Finally, to evaluate performance in higher-dimensional parameter spaces, we additionally optimize the non-bonded parameters of the solvent-free Dry Martini FF, demonstrating that the method scales effectively with increasing numbers of adjustable parameters. Collectively, these results suggest that the large, expert-coordinated workflows that have historically characterized the parameterization of community-driven CG models like Martini can be efficiently streamlined by fully automated, objective-driven gradient-based optimizations.
