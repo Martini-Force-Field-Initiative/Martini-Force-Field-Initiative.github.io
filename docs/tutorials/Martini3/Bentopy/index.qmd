@@ -342,14 +342,16 @@ tutorial introduces:
 
 Before creating masks, it's essential to understand what compartments _bentopy_
 identifies in your system. First, generate a visualization file to inspect the
-compartments identified in the voxel representation:
+compartments identified in the voxel representation.
 
 ```bash
-bentopy-mask structures/membrane.gro -b labels.gro --autofill --no-interactive
+bentopy-mask structures/membrane.gro --visualize-labels labels.gro
 ```
 
-This automatically generates the debug file `labels.gro`. Visualize the voxel
-representation of our membrane system by opening the file with VMD:
+This automatically generates a structure file called `labels.gro` that contains
+a bead at every voxel position. Each voxel bead is named after the compartment
+it resides in. Visualize the voxel representation of our membrane system by
+opening the file with VMD.
 
 ```bash
 vmd labels.gro
@@ -369,20 +371,12 @@ compartments for protein placement.
 #### Create the mask
 
 Now that you understand the compartments, we will create the mask to guide our
-protein placement. Run the masking command and follow the interactive prompts.
+protein placement. Here, we create a mask called `membrane_mask.npz` from
+compartment `1`.
 
 ```bash
-bentopy-mask structures/membrane.gro membrane_mask.npz
+bentopy-mask structures/membrane.gro -l 1:membrane_mask.npz
 ```
-
-When running the masking command, you'll encounter several interactive prompts
-during the process. For most prompts (such as debug file outputs), you can
-simply press Enter to skip and continue. The important prompt is the
-compartment selection where you'll see options `[-1  1]`. Compartment `-1` is
-the solvent region ("outside"), and compartment `1` represents the membrane.
-Select `1` to choose the membrane region where we want to exclude protein
-placement. This creates `membrane_mask.npz`, a compressed voxel representation
-of the space inhabited by the membrane.
 
 #### A new recipe
 
@@ -577,14 +571,16 @@ entirely accurate. We'll call them compartment **A** and **B**.
 
 #### Create compartment-specific masks
 
-Generate masks for the different compartments created by the double membrane:
+Generate masks for the different compartments created by the double membrane
+like before. (We use the `-b` flag here which is short for
+`--visualize-labels`).
 
 ```bash
-bentopy-mask structures/double_membrane.gro mask.npz --inspect-labels-path compartment_labels.gro  --autofill --no-interactive
+bentopy-mask structures/double_membrane.gro -b compartment_labels.gro
 ```
 
 Visualize the voxel representation of our membrane system by opening the file
-with VMD:
+with VMD.
 
 ```bash
 vmd compartment_labels.gro
@@ -599,24 +595,15 @@ containment algorithm:
 
 #### Create separate masks for each compartment
 
-Create individual masks for precise control:
-
 ```bash
-# Interactive mask creation for compartment A: label -1
-bentopy-mask structures/double_membrane.gro A_mask.npz \
-        --no-interactive --labels -1
-# Interactive mask creation for compartment B: label -2
-bentopy-mask structures/double_membrane.gro B_mask.npz \
-        --no-interactive --labels -2
-
-# Interactive mask creation for the membranes: labels 1 2
-bentopy-mask structures/double_membrane.gro membrane_mask.npz \
-        --no-interactive --labels 1,2
+bentopy-mask structures/double_membrane.gro \
+        -l  -1:A_mask.npz                   \
+        -l  -2:B_mask.npz                   \
+        -l 1,2:membrane_mask.npz
 ```
 
-Since we’re now using the `--no-interactive` flag of `bentopy-mask`, we will
-not be prompted by the interactive selection. The requested labels selection is
-written to the specified mask .npz file.
+By adding multiple `-l` entries, we can write out all necessary mask files at
+once.
 
 #### Update the configuration with compartments
 
@@ -993,12 +980,13 @@ jq . placements.json
 ##### Mask problems
 
 - Ensure mask dimensions match _space dimensions_ ÷ _resolution_.
-- Use the `--inspect-labels-path` flag of `bentopy-mask` to output a
-  visualization file for the voxel representation of the identified
-  compartments. Try different _containment/mask resolutions_ if too many
-  compartments are identified. The `--closing` and `--morph` options can help
-  to 'repair' holes undesirably connecting compartments, even at finer
-  _containment resolutions_.
+- Use the `-b` (or `--visualize-labels`) flag of `bentopy-mask` to output a
+  `gro` visualization file for the voxel representation of the identified
+  compartments.
+- Try different _containment/mask resolutions_ if too many compartments are
+  identified.
+- The `--closing` or `--morph` to 'repair' holes that might undesirably connect
+  seperate compartments, even at finer _containment resolutions_.
 
 ##### Rendering errors
 
