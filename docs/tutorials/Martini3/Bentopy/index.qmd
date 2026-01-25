@@ -1,13 +1,17 @@
 ---
 title: "Bentopy: from simple packing to building cellular models"
 format: html
+bibliography: bibliography.bib
+csl: apa-no-initials.csl
 ---
 
-<hr>
+---
+
 **Tutorial authors**: J.A. Stevens and M.S.S. Westendorp, with contributions from Bart M.H. Bruininks, C.M. Brown and W.J.
 Nauta.<br>
 **In case of issues**: Please contact <j.a.stevens@rug.nl> or <ma3ke.cyber@gmail.com>.
-<hr>
+
+---
 
 ### Summary
 
@@ -20,30 +24,32 @@ Nauta.<br>
 - [`References`](#references)
 
 ### Introduction {#Introduction}
-<hr>
 
-_**Bentopy**¹ is a tool for packing molecules in arbitrary volumes, designed specifically for setting up large-scale molecular dynamics (MD) simulations. Through an efficient packing algorithm, *bentopy* can assemble molecular structures into MD models with biological densities and cellular-scales._
+---
 
-![](figure1.png)
+![The bentopy logo, packed with bentopy. Those interested in how this model was constructed may enjoy this [thread on the making of this model](https://hachyderm.io/@ma3ke/114081904829438250).](logo_header.png){#fig-logo-header}
 
-_**Figure 1: Showcase models.** a) The bentopy logo, packed with bentopy. Those interested in how this model was constructed may enjoy this [thread on the making of this model](https://hachyderm.io/@ma3ke/114081904829438250). b) Mitochondrial cytoplasm model, showing distinct compartments with compartment-specific molecular components._
+_Bentopy_ is a tool for packing molecules in arbitrary volumes, designed specifically for setting up large-scale molecular dynamics (MD) simulations [@westendorp_bentopy_2026]. Through an efficient packing algorithm, _bentopy_ can assemble molecular structures into MD models with biological densities and cellular-scales.
 
-_Bentopy_ was built to create cellular-scale models by integrating multiple structural components at physiological concentrations while ensuring simulation compatibility. *Bentopy* uses voxels to represent space as a regular 3D grid, providing computational efficiency for spatial operations like collision detection and informing molecule placement. For example, this voxel approach enables MDVContainment² to automatically identify compartments within molecular models for packing, which is a central feature of _bentopy_.
+_Bentopy_ was built to create cellular-scale models by integrating multiple structural components at physiological concentrations while ensuring simulation compatibility (@fig-mito). _Bentopy_ uses voxels to represent space as a regular 3D grid, providing computational efficiency for spatial operations like collision detection and informing molecule placement. For example, this voxel approach enables MDVContainment [@bruininks_mdvcontainment_2025] to automatically identify compartments within molecular models for packing, which is a central feature of _bentopy_.
 
-In this tutorial, we will showcase _bentopy_'s capabilities through three progressively complex tutorials that build on each other:
+![Showcase models. Mitochondrial model, showing distinct compartments with compartment-specific molecular components. Reproduced from @westendorp_bentopy_2026.](figure_mito.png){#fig-mito}
 
-1. [**Simple packing**](#Tut1): Learn the basic workflow by packing proteins in empty space
-2. [**Packing around existing structures**](#Tut2): Add a membrane and pack proteins around it
-3. [**Multi-compartment systems**](#Tut3): Add a second membrane creating distinct compartments for different proteins
+In this tutorial, we will showcase _bentopy_'s capabilities through three progressively complex tutorials that build on each other (@fig-progression).
 
-Each tutorial builds on the previous one, showing how to evolve a simple system into a complex model while using the standard _bentopy_ workflow.
+1. [**Simple packing**](#Tut1): Learn the basic workflow by packing proteins in empty space.
+2. [**Packing around existing structures**](#Tut2): Add a membrane and pack proteins around it.
+3. [**Multi-compartment systems**](#Tut3): Add a second membrane creating distinct compartments for different proteins.
 
-![](figure2.png)
+![Tutorial progression from simple protein packing to complex multi-compartment systems.](figure_progression.png){#fig-progression}
 
-_**Figure 2: Bentopy workflow overview.** The workflow consists of multiple consecutive steps including mask preparation, packing configuration, structure rendering, merging, and solvation._
+Each tutorial builds on the previous one, showing how to evolve a simple system into a complex model while using the standard _bentopy_ workflow (@fig-workflow).
+
+![Bentopy workflow overview. Models are built in multiple consecutive steps including mask preparation, packing configuration, structure rendering, merging, and solvation.](figure_overview.png){#fig-workflow}
 
 ### Programs and files {#Programs}
-<hr>
+
+---
 
 #### Installing _bentopy_
 
@@ -95,7 +101,8 @@ This archive contains structures, force field parameters, and simulation files.
 - Visualization software: **`VMD`**.
 
 ### Tutorial 1: Basic Packing in Empty Space {#Tut1}
-<hr>
+
+---
 
 #### Overview
 
@@ -212,9 +219,7 @@ The result should be similar to the snapshot shown below, you can observe:
 - The lysozyme proteins are packed at cytoplasmic densities.
 - No overlap between proteins.
 
-![](figure3.png)
-
-_**Figure 3: Basic protein packing.** Lysozyme proteins packed in a cubic box with water and ions with non-overlapping placements._
+![Basic protein packing. Lysozyme proteins packed in a cubic box with water and ions with non-overlapping placements](figure_tutorial_1.png){#fig-tutorial-1}
 
 #### _EXTRA:_ Try a different analytical mask
 
@@ -251,7 +256,8 @@ Writing placement list to "placements.json"... Done in 0.003 s.
 
 
 ### Tutorial 2: Packing Around Existing Structures {#Tut2}
-<hr>
+
+---
 
 #### Overview
 
@@ -410,13 +416,11 @@ The result should be similar to the snapshot shown below, you can observe:
 - The ubiquitin proteins concentrated near the membrane surfaces due to the proximity rule.
 - No protein overlaps with the membrane structure.
 
-![](figure4.png)
-
-_**Figure 4: Membrane system with proximity rules.** The membrane (gray) creates excluded volume, with lysozyme proteins (green) distributed throughout the solvent region and ubiquitin proteins (blue) concentrated near the membrane surface._
-
+![Membrane system with proximity rules. The membrane (gray) creates excluded volume, with lysozyme proteins (green) distributed throughout the solvent region and ubiquitin proteins (blue) concentrated near the membrane surface.](figure_tutorial_2.png){#fig-tutorial-2}
 
 ### Tutorial 3: Multi-Compartment Systems with Placement Rules {#Tut3}
-<hr>
+
+---
 
 #### Overview
 
@@ -424,7 +428,7 @@ Now we'll add even more complexity by creating a double membrane system that for
 
 - Compartment-specific protein placement.
 
-We'll use the provided double membrane to create two distinct open compartments, then place different proteins in each compartment.
+We'll use the provided double membrane to create two distinct open compartments, then place different proteins in each compartment. @fig-workflow contains a visual overview of how this system is constructed using the _bentopy_ tools.
 
 #### Inspect the double membrane structure
 
@@ -556,9 +560,7 @@ The result should be similar to the snapshot shown below, you can observe:
 - The Ubiquitin proteins are concentrated near the membrane surfaces in compartment **B**.
 - No protein overlaps with the membrane structure.
 
-![](figure5.png)
-
-_**Figure 5: Multi-compartment double membrane system.** The double membrane creates two distinct open compartments. Ubiquitin (blue) is confined to one  compartment between the membranes (**A**), while lysozyme (green) is placed only in the other compartment (**B**)._
+![Multi-compartment double membrane system. The double membrane creates two distinct open compartments. Ubiquitin (blue) is confined to one  compartment between the membranes (**A**), while lysozyme (green) is placed only in the other compartment (**B**).](figure_tutorial_3.png){#fig-tutorial-3}
 
 #### Run a simulation
 
@@ -590,13 +592,9 @@ You've now walked through the complete _bentopy_ workflow from simple packing to
 
 Through these three tutorials, you've learned how _bentopy_ can help you build complex molecular models with a well-structured workflow. This approach enables researchers to construct everything from crowded cytoplasm to whole-cell models with multiple compartments. The strength of _bentopy_ lies in its ability to handle this complexity efficiently, making large-scale modeling accessible without sacrificing the molecular detail needed for accurate biological representation.
 
-![](figure6.png)
-
-_**Figure 6:** Tutorial progression from simple protein packing to complex multi-compartment systems._
-
-
 ### Advanced Features and Tips {#Advanced_Features_and_Tips}
-<hr>
+
+---
 
 #### Solvation options
 
@@ -819,14 +817,5 @@ jq . placements.json
 
 - Ensure segment names in the `.bent` file match molecule names in the `.itp` files. Use tags to distinguish different segments of the same structure.
 - Verify all `.itp` files listed in `topol_includes` exist and contain the expected topology information.
-
-### References
-<hr>
-
-1. Westendorp, M.S.S, Stevens, J.A. et al. Bentopy: building molecular dynamics simulations with cellular complexity and scale. _In preparation_.
-
-2. Bruininks, B.M.H. et al. MDVcontainment: Robust characterization of inside and outside in periodic spaces. _In preparation_.
-
-<hr>
 
 For additional support, examples, and updates, visit the [bentopy GitHub repository](https://github.com/marrink-lab/bentopy).
