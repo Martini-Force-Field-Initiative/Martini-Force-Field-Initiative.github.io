@@ -245,13 +245,14 @@ Finally, we add water and ions to complete the system preparation.
 ```bash
 bentopy-solvate -i system.gro -o solvated_system.gro \
         -s NA:0.15M -s CL:0.15M                      \ # <1>
-        --charge 5200                                \ # <2>
+        --charge auto                                \ # <2>
         -t topol.top                                   # <3>
 ```
 
 1. Add 150 mM NaCl by substituting accepted water placements.
 2. Neutralize the system net charge due to the net +8 charge of each lysozyme
-   monomer  by substituting additional ions.
+   monomer by substituting additional ions. With the `auto` option, the total
+   system charge is automatically determined if a topology file is provided.
 3. Append the solvent contents to the topology file.
 
 We have now created a fully solvated system with 150 mM NaCl concentration and
@@ -507,7 +508,7 @@ Add water and ions to complete the system preparation:
 
 ```bash
 bentopy-solvate -i system.gro -o solvated_system.gro \
-        -s NA:0.15M -s CL:0.15M --charge 2400 -t topol.top
+        -s NA:0.15M -s CL:0.15M --charge auto -t topol.top
 ```
 
 #### Visualization and analysis
@@ -671,7 +672,7 @@ Add water and ions to complete the system preparation.
 
 ```bash
 bentopy-solvate -i system.gro -o solvated_system.gro \
-        -s NA:0.15M -s CL:0.15M --charge 1600 -t topol.top
+        -s NA:0.15M -s CL:0.15M --charge auto -t topol.top
 ```
 
 #### Visualization and final analysis
@@ -739,8 +740,8 @@ representation.
 #### Solvation options
 
 _Bentopy_ includes `bentopy-solvate`, a solvation tool optimized for
-large-scale systems. For the complete documentation, see the `bentopy-solvate`
-[README](https://github.com/marrink-lab/bentopy/blob/main/src/solvate/README.md).
+large-scale systems. For the complete documentation, see the [`bentopy-solvate`
+README](https://github.com/marrink-lab/bentopy/blob/main/src/solvate/README.md).
 
 ##### Ion substitutions with different quantities
 
@@ -767,15 +768,14 @@ flag is available to set the minimum allowable solvent–solvent distance over
 the periodic boundary conditions.
 
 ```bash
-bentopy-solvate -i system.gro -o solvated.gro \
-        --cutoff 0.5 --solvent-cutoff 0.25
+bentopy-solvate -i system.gro -o solvated.gro --cutoff 0.5 --solvent-cutoff 0.25
 ```
 
 ##### All-atom waters
 
-Though we demonstrated the use of `bentopy-solvate` for setting up Martini
-systems, you can also use it to solvate atomistic models. For this, the
-`--water-type tip3p` option is available.
+You can also use `bentopy-solvate` for atomistic models by setting
+`--water-type tip3p`. When you switch water types, the default
+solvent–structure collision distance updated too.
 
 #### Render options for large systems
 
