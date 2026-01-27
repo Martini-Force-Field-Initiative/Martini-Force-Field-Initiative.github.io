@@ -68,10 +68,6 @@ Each tutorial builds on the previous one, showing how to evolve a simple system
 into a complex model while using the standard _bentopy_ workflow
 (@fig-workflow).
 
-![Bentopy workflow overview. Models are built in multiple consecutive steps
-including mask preparation, packing configuration, structure rendering,
-merging, and solvation.](figure_overview.png){#fig-workflow}
-
 ### Programs and files {#Programs}
 
 ---
@@ -732,6 +728,10 @@ with multiple compartments. The strength of _bentopy_ lies in its ability to
 handle this complexity efficiently, making large-scale modeling accessible
 without sacrificing the molecular detail needed for accurate biological
 representation.
+
+![Bentopy workflow overview. Models are built in multiple consecutive steps
+including mask preparation, packing configuration, structure rendering,
+merging, and solvation.](figure_overview.png){#fig-workflow}
 
 ### Advanced Features and Tips {#Advanced_Features_and_Tips}
 
