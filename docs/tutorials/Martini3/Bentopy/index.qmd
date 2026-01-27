@@ -241,7 +241,7 @@ Finally, we add water and ions to complete the system preparation.
 ```bash
 bentopy-solvate -i system.gro -o solvated_system.gro \
         -s NA:0.15M -s CL:0.15M                      \ # <1>
-        --charge auto                                \ # <2>
+        --charge neutral                             \ # <2>
         -t topol.top                                   # <3>
 ```
 
@@ -503,8 +503,8 @@ membrane to the packed proteins.
 Add water and ions to complete the system preparation:
 
 ```bash
-bentopy-solvate -i system.gro -o solvated_system.gro \
-        -s NA:0.15M -s CL:0.15M --charge auto -t topol.top
+bentopy-solvate -i system.gro -o solvated_system.gro -t topol.top \
+        -s NA:0.15M -s CL:0.15M --charge neutral
 ```
 
 #### Visualization and analysis
@@ -667,8 +667,8 @@ echo "POPC    10816" >> topol.top  # Add lipid molecules to the topology file.
 Add water and ions to complete the system preparation.
 
 ```bash
-bentopy-solvate -i system.gro -o solvated_system.gro \
-        -s NA:0.15M -s CL:0.15M --charge auto -t topol.top
+bentopy-solvate -i system.gro -o solvated_system.gro -t topol.top \
+        -s NA:0.15M -s CL:0.15M --charge neutral
 ```
 
 #### Visualization and final analysis
