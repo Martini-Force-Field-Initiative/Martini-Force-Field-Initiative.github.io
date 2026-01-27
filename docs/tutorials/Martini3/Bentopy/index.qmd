@@ -158,7 +158,7 @@ They have a format that may be familiar to Gromacs users, but is also designed
 to be approachable and readable. Create a file called `simple_packing.bent`
 with the following contents.
 
-```{.default filename="simple_packing.bent"}
+```{.ini filename="simple_packing.bent"}
 [ general ]
 title "Proteins in a box"
 seed 0
@@ -290,14 +290,14 @@ different analytical compartment shape. Simply replace the compartment
 definition in your `simple_packing.bent` file to pack proteins inside a sphere
 instead of the entire space.
 
-```{.default filename="simple_packing.bent"}
+```{.ini filename="simple_packing.bent"}
 [ compartments ]
 system as sphere at center with radius 20
 ```
 
 Similarly, you can declare a space as a smaller cuboid as well.
 
-```{.default filename="simple_packing.bent"}
+```{.ini filename="simple_packing.bent"}
 [ compartments ]
 system as cuboid from 10, 10, 10 to 30, 30, 30
 ```
@@ -384,7 +384,7 @@ bentopy-mask structures/membrane.gro -l 1:membrane_mask.npz
 Now we create a new _bentopy_ recipe to use the membrane mask and include
 proximity rule. Create `membrane_packing.bent` as follows.
 
-```{.default filename="membrane_packing.bent"}
+```{.ini filename="membrane_packing.bent"}
 [ general ]
 title "Proteins around a membrane"
 seed 0
@@ -611,7 +611,7 @@ once.
 Create a new configuration file `compartment_packing.bent` with multiple
 compartments and different protein compositions.
 
-```{.default filename="compartment_packing.bent" highlighted=1}
+```{.ini filename="compartment_packing.bent" highlighted=1}
 [ general ]
 title "Proteins in different compartments"
 seed 0
@@ -888,7 +888,7 @@ readability concerns or preferences.
 For instance, long segment definitions can be neatly written over multiple
 lines.
 
-```default
+```ini
 [ segments ]
 LYZ:lyz
     0.5mM
@@ -902,7 +902,7 @@ LYZ:lyz
 Instead of absolute copy numbers, it is also possible to provide molar
 concentrations (in mol/L) instead of absolute copy numbers.
 
-```default
+```ini
 [ segments ]
 LYZ 5.0mM from "structures/lysozyme.pdb" in system
 ```
@@ -911,7 +911,7 @@ LYZ 5.0mM from "structures/lysozyme.pdb" in system
 
 Constrain or set initial rotations for more realistic placement.
 
-```default
+```ini
 [ constraints ]
 # Only rotate over the z-axis.
 planar rotates z
@@ -927,7 +927,7 @@ random rotations may be applied between different placements.
 
 Create complex spaces using boolean operations on compartments.
 
-```default
+```ini
 [ compartments ]
 a as sphere at  7.5, 10, 10 with radius 7.5
 b as sphere at 12.5, 10, 10 with radius 7.5
