@@ -279,7 +279,13 @@ The result should be similar to the snapshot shown below, you can observe:
 ![Basic protein packing. Lysozyme proteins packed in a cubic box with water and
 ions with non-overlapping placements](figure_tutorial_1.png){#fig-tutorial-1}
 
-#### _EXTRA:_ Try a different analytical mask
+#### Try a different analytical mask
+
+<details>
+<summary>
+Learn how to use different shapes, such as spheres and cuboids, to construct
+compartments.
+</summary>
 
 Before moving to the next tutorial, you can experiment a bit by trying a
 different analytical compartment shape. Simply replace the compartment
@@ -318,6 +324,7 @@ idx 	name      	   ok%	target	placed	time (s)	remark
     	          	 50.8%	   650	   330	    0.09	<
 Writing placement list to "placements.json"... Done in 0.003 s.
 ```
+</details>
 
 
 ### Tutorial 2: Packing Around Existing Structures {#Tut2}
@@ -428,7 +435,7 @@ UBQ:ubq 100 from "structures/ubiquitin.pdb" in close-to-membrane      # <6>
    different compartments at different quantities. Adding multiple segment
    definitions with different tags can be quite useful.
 
-:::{.callout-warning}
+:::{.callout-note}
 Using tags will override the original residue names in the gro file that
 _bentopy_ outputs. While this makes visualization easier to inspect _bentopy_
 output (e.g., selecting all lysozyme with `resname lyz`), it may cause issues
