@@ -997,8 +997,13 @@ jq . placements.json
   compartments.
 - Try different _containment/mask resolutions_ if too many compartments are
   identified.
-- The `--closing` or `--morph` to 'repair' holes that might undesirably connect
-  seperate compartments, even at finer _containment resolutions_.
+- The `--morph` flag can be used to 'repair' holes that might undesirably
+  connect seperate compartments, even at finer _containment resolutions_.
+  By default, it has the value `de`, which means '**d**ilate then **e**rode'.
+  This is equilavent to a [morphological closing] operation.
+- Morphing can be disabled entirely using the `--no-morph` flag.
+
+[morphological closing]: https://en.wikipedia.org/wiki/Closing_(morphology)
 
 ##### Rendering errors
 
