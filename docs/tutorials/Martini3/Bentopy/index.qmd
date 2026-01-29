@@ -407,29 +407,26 @@ resolution 0.5
 [ compartments ]
 membrane from "membrane_mask.npz"                                     # <1>
 solvent combines not membrane                                         # <2>
-membrane-neighborhood within 5 of membrane                            # <3>
-close-to-membrane combines membrane-neighborhood and solvent          # <4>
+close-to-membrane around 5 of membrane                                # <3>
 
 [ segments ]
-# The part after the segment name is the optional tag (<name>:<tag>). # <7>
-LYZ:lyz 300 from "structures/lysozyme.pdb" in solvent                 # <5>
-UBQ:ubq 100 from "structures/ubiquitin.pdb" in close-to-membrane      # <6>
+LYZ:lyz 300 from "structures/lysozyme.pdb" in solvent                 # <4>
+UBQ:ubq 100 from "structures/ubiquitin.pdb" in close-to-membrane      # <5>
+# The part after the segment name is the optional tag (<name>:<tag>). # <6>
 ```
 
 1. We load the mask from the file we created earlier.
 2. We define the "solvent" region as the inverse (`not`) of "membrane", using a
    _compartment combination_.
 3. To create a compartment for the region around the "membrane" compartment, we
-   use the `within` rule. Note that this neighborhood compartment does include
-   the membrane itself, since it is within 5 nm of itself.
-4. To get the region that is close to the membrane, we need to exclude the
-   membrane from its neighborhood.
-5. Reduced total protein numbers (due to membrane, there is less accessible
+   use the `around` rule.
+4. Reduced total protein numbers (due to the membrane, there is less accessible
    space).
-6. Added ubiquitin with a proximity rule to stay within 5 nm of the membrane
-   surface. See the [Advanced Features section](#Advanced_Features_and_Tips)
-   for more information on creating complex compartment combinations.
-7. Added a tag for each structure, which will override the resnames in each
+5. Added ubiquitin with a proximity rule to stay within 5 nm of the membrane
+   surface, but not including the membrane itself. See the [Advanced Features
+   section](#Advanced_Features_and_Tips) for more information on creating
+   complex compartment combinations.
+6. Added a tag for each structure, which will override the resnames in each
    segment for easier visualization. These are particularly helpful in more
    complex models, where the same structure (same name) can be placed in
    different compartments at different quantities. Adding multiple segment
@@ -635,7 +632,7 @@ resolution 0.5
 membrane from "membrane_mask.npz"
 A from "A_mask.npz"                                                       # <1>
 B from "B_mask.npz"
-membrane-neighborhood within 4 of membrane
+membrane-neighborhood around 4 of membrane
 B-close-to-membrane combines membrane-neighborhood and B                  # <2>
 
 [ segments ]
