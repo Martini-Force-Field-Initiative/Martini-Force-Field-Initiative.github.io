@@ -82,6 +82,9 @@ prior steps.
 pip install bentopy
 ```
 
+> This version of the tutorial was written for _bentopy_ v1.0.0. If necessary,
+> you can pin the version using `pip install bentopy==1.0.0`.
+
 If this installation fails at first, this may be because a pre-built binary is
 not available for your platform. To allow `pip` to build _bentopy_, `cargo` is
 required, which provides the Rust compiler.
