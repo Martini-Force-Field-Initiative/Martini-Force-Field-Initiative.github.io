@@ -916,7 +916,7 @@ LYZ:lyz
 ##### Using concentrations instead of fixed copy numbers
 
 Instead of absolute copy numbers, it is also possible to provide molar
-concentrations (in mol/L) instead of absolute copy numbers.
+concentrations (in mol/L).
 
 ```ini
 [ segments ]
@@ -1004,7 +1004,7 @@ jq . placements.json
 - The `--morph` flag can be used to 'repair' holes that might undesirably
   connect seperate compartments, even at finer _containment resolutions_.
   By default, it has the value `de`, which means '**d**ilate then **e**rode'.
-  This is equilavent to a [morphological closing] operation.
+  This is equivalent to a [morphological closing] operation.
 - Morphing can be disabled entirely using the `--no-morph` flag.
 
 [morphological closing]: https://en.wikipedia.org/wiki/Closing_(morphology)
