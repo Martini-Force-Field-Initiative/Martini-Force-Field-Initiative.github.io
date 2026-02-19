@@ -9,8 +9,7 @@ csl: apa-no-initials.csl
 
 **Tutorial authors:** J.A. Stevens and M.S.S. Westendorp, with contributions
 from Bart M.H. Bruininks, C.M. Brown and W.J. Nauta. \
-**In case of issues:** Please contact <j.a.stevens@rug.nl> or
-<ma3ke.cyber@gmail.com>.
+**In case of issues:** Please contact  <m.s.s.westendorp@rug.nl> or <jaste@illinois.edu>.
 
 ---
 
@@ -23,6 +22,10 @@ from Bart M.H. Bruininks, C.M. Brown and W.J. Nauta. \
 - [`Tutorial 3: Multi-Compartment Systems with Placement Rules`](#Tut3)
 - [`Advanced Features and Tips`](#Advanced_Features_and_Tips)
 - [`References`](#references)
+
+_The following video is a walkthrough of this tutorial._
+
+{{< video https://www.youtube.com/embed/C4LYZokS_t4 >}}
 
 ### Introduction {#Introduction}
 
@@ -183,7 +186,7 @@ LYZ 650 from "structures/lysozyme.pdb" in system
 Let's discuss the key parts in this _bentopy_ recipe.
 
 General section
-: Sets general information, such as the system and a random seed. 
+: Sets general information, such as the system and a random seed.
 : In this case, we use a defined seed to make sure that the results are
   repeatable. When the seed is not set, a random seed will be used at runtime.
 
