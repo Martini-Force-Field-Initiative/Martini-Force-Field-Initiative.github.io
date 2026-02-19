@@ -1,7 +1,32 @@
 ---
-title: <i class="fas fa-layer-group"></i> Multiscaling 
+title: <i class="fas fa-layer-group"></i> Multiscaling
 format: html
 ---
+
+::: software-card
+### Bentopy
+
+_Bentopy_ is a workflow for building large-scale models ready for simulation. With _bentopy_
+existing structures and experimental evidence can be brought together and assembled to create
+starting states for large and complex simulations, even on modest workstations.
+
+_Bentopy_ is open-source software developed on our [[GitHub repository]](https://github.com/marrink-lab/bentopy)
+and distributed through [PyPI (pip)](https://pypi.org/project/bentopy).
+
+```sh
+pip install bentopy
+```
+
+To learn more, take a look at our [**detailed tutorial**](/docs/tutorials/Martini3/Bentopy) and the
+in-depth documentation on the [**_bentopy_ wiki**](https://github.com/marrink-lab/bentopy/wiki).
+
+When using this method, please cite:
+
+> Westendorp, M. S. S., Stevens, J. A., Brown, C. M., Dommer, A. C., Wassenaar, T. A., Bruininks, B.
+> M. H., & Marrink, S. J. (2026).
+> Compartment‐guided assembly of large‐scale molecular models with _Bentopy_.
+> _Protein Science_, _35_(3), e70480. <https://doi.org/10.1002/pro.70480>
+:::
 
 ::: software-card
 ### TS2CG: Triangulated Surfaces to Coarse-Grained
@@ -14,7 +39,7 @@ For more details and to download the latest version, visit the [[GitHub reposito
 ::: software-card
 ### Backward
 
-Backward is a tool to convert a coarse-grained system to united-atom or all-atom resolution. The mapping is done using a library of mapping definitions, which encode the geometric reconstruction. The tool consists of three scripts and a number of CG to fine-grained mapping definition files. 
+Backward is a tool to convert a coarse-grained system to united-atom or all-atom resolution. The mapping is done using a library of mapping definitions, which encode the geometric reconstruction. The tool consists of three scripts and a number of CG to fine-grained mapping definition files.
 
 For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/Tsjerk/Backward/tree/master).
 
@@ -30,4 +55,3 @@ More extensive information and a tutorial can be found [\[here\]](../../tutorial
 
 - The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip).
 :::
-
