@@ -1,0 +1,39 @@
+---
+title: "Compartment-guided assembly of large-scale molecular models with <i>Bentopy</i>"
+type: "article"
+sidebar: false
+toc: false
+author: "Marieke SS Westendorp, Jan A Stevens, Chelsea M Brown, Abigail C Dommer, Tsjerk A Wassenaar, Bart MH Bruininks, and Siewert-Jan Marrink"
+year: "2026"
+publication: "Protein Science"
+doi: "https://doi.org/10.1002/pro.70480"
+materials: "https://onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1002%2Fpro.70480&file=pro70480-sup-0001-supinfo.pdf"
+categories:
+  - Journal article
+  - Methods
+  - Multi-scale
+  - System construction
+---
+
+## Citation (APA 7)
+
+> Westendorp, M. S. S., Stevens, J. A., Brown, C. M., Dommer, A. C., Wassenaar, T. A., Bruininks, B.
+> M. H., & Marrink, S. J. (2026).
+> Compartment‐guided assembly of large‐scale molecular models with _Bentopy_.
+> _Protein Science_, _35_(3), e70480. <https://doi.org/10.1002/pro.70480>
+
+## Abstract
+
+Molecular dynamics simulations of whole cells and organelles aim to transform cell biology by
+providing a molecular view into the crowded cellular environment. However, constructing suitable
+starting configurations remains a major bottleneck due to their size and complexity. We present
+_bentopy_, a workflow for building cellular-scale models ready for simulation. _Bentopy_ uses a
+voxel-based spatial representation to efficiently pack molecules into arbitrarily complex
+compartments. The modular design facilitates the assembly of molecular models containing millions of
+molecules in minutes on standard workstations. We demonstrate _bentopy_ through three experimentally
+informed models spanning multiple biological scales. A JCVI-Syn3A whole-cell model combines existing
+membrane and chromosome structures with diverse cytosolic components. A mitochondrion model
+integrates cryo-electron tomography maps with spatially resolved proteomics and metabolomics data.
+An atomistic SARS-CoV-2 virion inside a respiratory aerosol demonstrates _bentopy_'s capability to
+pack at both atomistic and coarse-grained resolution. Together, these applications establish
+_bentopy_ as a workflow for constructing simulation-ready models at the cellular scale.
