@@ -312,6 +312,104 @@ out_sys = "system.gro", out_top = "system.top", out_log = "log.log")
 
 This short Python script creates a POPC bilayer of size 7 × 7  nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a `system.top` file and includes relevant `#include` statements. However, as always, you should carefully check that all entries are consistent with your system and that required `.itp` files are present and correctly referenced.
 
+
+## Option 3: `TS2CG`
+
+Another way to build a Martini membrane system is **TS2CG 2.0**, a tool for constructing coarse-grained membranes either from triangulated surfaces or from analytical shape definitions. The TS2CG 2.0 workflow is organized around three components: **PLM**, **PCG**, and **SOL**. For a simple flat bilayer, the relevant steps are **PCG** for membrane construction and **SOL** for solvation and ion addition. ([TS2CG 2.0](https://github.com/weria-pezeshkian/TS2CG-v2.0))
+
+We will build a **7 × 7 × 9 nm³** Martini 3 system containing:
+
+- a **POPC bilayer**,
+- a single **KALP peptide** embedded in the membrane,
+- water and salt,
+- and GROMACS-ready output files for simulation.
+
+TS2CG can be installed with `pip` directly from GitHub.
+
+```bash
+pip install git+https://github.com/weria-pezeshkian/TS2CG-v2.0
+```
+
+After installation, it is useful to inspect the command-line help:
+
+```bash
+TS2CG -h
+TS2CG PCG -h
+TS2CG SOL -h
+```
+
+### Building a flat POPC bilayer with an inserted peptide
+
+TS2CG uses an input description file. For the present system, the input must define three things:
+
+1. a **flat membrane shape** inside a **7 × 7 × 9 nm³ box**,
+2. a membrane composition of **100% POPC**,
+3. and a single peptide entry corresponding to **KALP**.
+
+A draft `input.str` file for this kind of setup is shown below:
+
+```text
+include kalp.gro
+
+[Lipids List]
+Domain      0
+POPC        1   1   0.64  
+End
+
+[Protein List]
+KALP 1   0.01   0   0   0
+End
+
+[Shape Data]
+ShapeType    Flat         
+Box    7    7    9
+Density      2     2
+Thickness    3.8  
+WallRange    0     1    0    1
+End       
+```
+
+First, it is specified which lipid types we want to build in which domain and for which leaflet. Here, we only have domain 0 and we want to populate it exclusively with POPC in both monolayers. We supply an area per lipid for building as well.
+
+Then, we want to add the protein. To add the protein, we include the gro file at the top and then specify in the protein list. Note that the name of the protein needs to match the name in the gro file. We can directly add multiple copies of the protein, we adjust the first value such that one protein will be placed. The other entrys describe the displacement of the protein. In most cases, only the last one is used to adjust the height of the protein in the membrane. As we require a .gro file, run `gmx editconf -f kalp.pdb -o kalp.gro` and set the name in the first line of the .gro file.
+
+Finally, we want to use an analytical shape to build the membrane, arbitrary shapes are possible from triangualted surfaces through the PLM module of TS2CG. We add the Shape Data for a flat membrane in a box size of 7x7x9 nm. More analytical shapes can be found [here](https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-5) and how to build arbitrary membrane shapes is explained [here](https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-1).
+
+With the membrane description in place, run **PCG** to construct the membrane system:
+
+```bash
+TS2CG PCG -str input.str -defout system -function analytical_shape
+```
+
+This step builds the membrane and writes a structure and topology for the unsolvated system. It is a sensible approach to minimize the system in vacuum before solvating.
+
+### Solvating the system
+
+Once the membrane-protein system has been generated, use **SOL** to add solvent.
+
+The command is given below. It takes a water template and populates the box. A cutoff can be specified how close water beads can be placed to an existing structure:
+
+```bash
+TS2CG SOL -in system.gro -o solvated.gro -tem water.gro
+```
+
+TS2CG SOL will provide a info.txt with the information of how many beads of what type were placed. Add these numbers to your topology file.
+
+At this stage, your main files are:
+
+- `solvated.gro` — solvated coordinates,
+- `system.top` — topology
+
+### Topology and Martini 3 files
+
+Before simulation, the include statements for a simulation in GROMACS need to be added to the topology file. In total, check that
+
+- all required Martini 3 `.itp` files are present,
+- the peptide molecule name matches between coordinate and topology files,
+- the number of lipids, solvent molecules, and ions is correct,
+- and any `#include` statements in `system.top` point to the correct files.
+
+
 <hr>
 
 You can now proceed as before and set up the production run. To recap, this involves the following steps:
