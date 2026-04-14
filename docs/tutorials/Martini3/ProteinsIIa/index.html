@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Proteins IIa: Setting Up Transmembrane Peptide Simulations with Martini – Martini Force Field Initiative</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -67,15 +70,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-9f0cf1623f84fc97d1f11599d85dd00d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-fedc3cdfbb96626151e1767064f4626c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -131,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -370,6 +372,7 @@ window.Quarto = {
 <ul>
 <li><a href="#insane"><code>Option 1: Insane</code></a></li>
 <li><a href="#coby"><code>Option 2: COBY</code></a></li>
+<li><a href="#ts2cg"><code>Option 3: TS2CG</code></a></li>
 </ul></li>
 </ul></li>
 <li><a href="#analysis-tilt"><code>4. Analyzing helix tilt angle</code></a></li>
@@ -572,7 +575,7 @@ Tip
 </section>
 <section id="coby" class="level4">
 <h4 class="anchored" data-anchor-id="coby">Option 2: <code>COBY</code></h4>
-<p>An alternative to insane.py is COBY <sup><a href="#references">[9]</a></sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on <a href="https://github.com/MikkelDA/COBY">GitHub</a>.</p>
+<p>An alternative to <code>insane.py</code> is COBY <sup><a href="#references">[9]</a></sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on <a href="https://github.com/MikkelDA/COBY">GitHub</a>.</p>
 <p>COBY is a python package which can be easily installed using <code>pip</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install COBY</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It can be run both within a Python script, Jupyter notebook or as a terminal command-line, and uses a single command to specify all the system requirements. Let’s look at a practical example:</p>
@@ -599,6 +602,78 @@ Tip
 <span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co">### File writing</span></span>
 <span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>out_sys <span class="op">=</span> <span class="st">"system.gro"</span>, out_top <span class="op">=</span> <span class="st">"system.top"</span>, out_log <span class="op">=</span> <span class="st">"log.log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This short Python script creates a POPC bilayer of size 7 × 7 nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a <code>system.top</code> file and includes relevant <code>#include</code> statements. However, as always, you should carefully check that all entries are consistent with your system and that required <code>.itp</code> files are present and correctly referenced.</p>
+</section>
+<section id="ts2cg" class="level4">
+<h4 class="anchored" data-anchor-id="ts2cg">Option 3: <code>TS2CG</code></h4>
+<p>Another way to build a Martini membrane system is with <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0"><strong>TS2CG 2.0</strong></a> <sup><a href="#references">[10,11]</a></sup>, a tool for constructing coarse-grained membranes either from triangulated surfaces or from analytical shape definitions. The TS2CG 2.0 workflow is organized around three components: <strong>PLM</strong>, <strong>PCG</strong>, and <strong>SOL</strong>. For a simple flat bilayer, the relevant steps are <strong>PCG</strong> for membrane construction and <strong>SOL</strong> for solvation and ion addition.</p>
+<p>We will build a <strong>7 × 7 × 9 nm³</strong> Martini 3 system containing:</p>
+<ul>
+<li>a <strong>POPC bilayer</strong>,</li>
+<li>a single <strong>KALP peptide</strong> embedded in the membrane,</li>
+<li>water and salt,</li>
+<li>and GROMACS-ready output files for simulation.</li>
+</ul>
+<p>TS2CG can be installed with <code>pip</code> directly from <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0">GitHub</a>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install git+https://github.com/weria-pezeshkian/TS2CG-v2.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After installation, it is useful to inspect the command-line help:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> <span class="at">-h</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-h</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> SOL <span class="at">-h</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="building-a-flat-popc-bilayer-with-an-inserted-peptide" class="level5">
+<h5 class="anchored" data-anchor-id="building-a-flat-popc-bilayer-with-an-inserted-peptide">Building a flat POPC bilayer with an inserted peptide</h5>
+<p>TS2CG uses an input description file. For the present system, the input must define three things:</p>
+<ol type="1">
+<li>a <strong>flat membrane shape</strong> inside a <strong>7 × 7 × 9 nm³ box</strong>,</li>
+<li>a membrane composition of <strong>100% POPC</strong>,</li>
+<li>and a single peptide entry corresponding to <strong>KALP</strong>.</li>
+</ol>
+<p>A draft <code>input.str</code> file for this kind of setup is shown below:</p>
+<pre class="text"><code>include kalp.gro
+
+[Lipids List]
+Domain      0
+POPC        1   1   0.64  
+End
+
+[Protein List]
+KALP 1   0.01   0   0   0
+End
+
+[Shape Data]
+ShapeType    Flat         
+Box    7    7    9
+Density      2     2
+Thickness    3.8  
+WallRange    0     1    0    1
+End       </code></pre>
+<p>First, it is specified which lipid types we want to build in which domain and for which leaflet. Here, we only have domain 0 and we want to populate it exclusively with POPC in both monolayers. We supply an area per lipid for building as well.</p>
+<p>Then, we want to add the protein. To add the protein, we include the gro file at the top and then specify in the protein list. Note that the name of the protein needs to match the name in the gro file. We can directly add multiple copies of the protein, we adjust the first value such that one protein will be placed. The other entrys describe the displacement of the protein. In most cases, only the last one is used to adjust the height of the protein in the membrane. As we require a .gro file, run <code>gmx editconf -f kalp.pdb -o kalp.gro</code> and set the name in the first line of the .gro file.</p>
+<p>Finally, we want to use an analytical shape to build the membrane, arbitrary shapes are possible from triangualted surfaces through the PLM module of TS2CG. We add the Shape Data for a flat membrane in a box size of 7x7x9 nm. More analytical shapes can be found <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-5">here</a> and how to build arbitrary membrane shapes is explained <a href="https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-1">here</a>.</p>
+<p>With the membrane description in place, run <strong>PCG</strong> to construct the membrane system:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> PCG <span class="at">-str</span> input.str <span class="at">-defout</span> system <span class="at">-function</span> analytical_shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This step builds the membrane and writes a structure and topology for the unsolvated system. It is a sensible approach to minimize the system in vacuum before solvating.</p>
+</section>
+<section id="solvating-the-system" class="level5">
+<h5 class="anchored" data-anchor-id="solvating-the-system">Solvating the system</h5>
+<p>Once the membrane-protein system has been generated, use <strong>SOL</strong> to add solvent.</p>
+<p>The command is given below. It takes a water template and populates the box. A cutoff can be specified how close water beads can be placed to an existing structure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TS2CG</span> SOL <span class="at">-in</span> system.gro <span class="at">-o</span> solvated.gro <span class="at">-tem</span> water.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>TS2CG SOL will provide a info.txt with the information of how many beads of what type were placed. Add these numbers to your topology file.</p>
+<p>At this stage, your main files are:</p>
+<ul>
+<li><code>solvated.gro</code> — solvated coordinates,</li>
+<li><code>system.top</code> — topology</li>
+</ul>
+</section>
+<section id="topology-and-martini-3-files" class="level5">
+<h5 class="anchored" data-anchor-id="topology-and-martini-3-files">Topology and Martini 3 files</h5>
+<p>Before simulation, the include statements for a simulation in GROMACS need to be added to the topology file. In total, check that</p>
+<ul>
+<li>all required Martini 3 <code>.itp</code> files are present,</li>
+<li>the peptide molecule name matches between coordinate and topology files,</li>
+<li>the number of lipids, solvent molecules, and ions is correct,</li>
+<li>and any <code>#include</code> statements in <code>system.top</code> point to the correct files.</li>
+</ul>
 <hr>
 <p>You can now proceed as before and set up the production run. To recap, this involves the following steps:</p>
 <ol type="A">
@@ -610,21 +685,22 @@ Tip
 </section>
 </section>
 </section>
+</section>
 <section id="analysis-tilt" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-tilt">4. Analyzing helix tilt angle</h2>
 <p>Once your simulation has completed, a useful quantity to analyze is the tilt angle of the transmembrane helix with respect to the bilayer normal (typically the z-axis). This gives insight into how the peptide aligns within the membrane and how this orientation might change depending on lipid composition or bilayer thickness.</p>
 <p>One way to compute the tilt angle is using <code>gmx gangle</code>. This tool calculates the angle between two vectors over time — in our case, between the peptide axis and the z-axis (bilayer normal).</p>
 <p>First, you need to create an <code>index.ndx</code> file that defines the atoms (or beads) used to construct the peptide vector. A common choice is the backbone beads along the transmembrane region of the peptide, for example, the vector between residues 3 and 21 in KALP. In a new folder, <code>analysis</code>, we can look at the two trajectories in turn.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> ../insane/dynamic.tpr <span class="at">-o</span> insane_index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> ../insane/dynamic.tpr <span class="at">-o</span> insane_index.ndx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Inside the interactive prompt, enter:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">a</span> 7 43</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">a</span> 7 43</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This creates a group called <code>a_7_43</code> corresponding to the backbone beads in the helical region.</p>
 <p>Next, compute the tilt angle with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> gangle <span class="at">-f</span> ../insane/dynamic.xtc <span class="at">-s</span> ../insane/dynamic.tpr <span class="at">-g1</span> vector <span class="at">-group1</span> a_7_43 <span class="at">-g2</span> z <span class="at">-n</span> insane_index.ndx <span class="at">-oall</span> angles.xvg <span class="at">-rmpbc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> gangle <span class="at">-f</span> ../insane/dynamic.xtc <span class="at">-s</span> ../insane/dynamic.tpr <span class="at">-g1</span> vector <span class="at">-group1</span> a_7_43 <span class="at">-g2</span> z <span class="at">-n</span> insane_index.ndx <span class="at">-oall</span> angles.xvg <span class="at">-rmpbc</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will output the angle (in degrees) between the peptide vector and the z-axis over the course of the simulation (<code>angles.xvg</code>). You can visualize this data to assess whether the helix remains vertical, adopts a tilted orientation, or fluctuates dynamically.</p>
 <p>To plot the data you can, for example, use xmgrace:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> angles.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmgrace</span> angles.xvg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Take a moment to reflect on the tilt angle values — what do they tell you about how the peptide interacts with the membrane? Can you relate the observed behavior to membrane thickness, peptide length, or hydrophobic mismatch?</p>
 <p>Repeat the above steps for the COBY trajectory. What, if any, are the differences between the two simulations?</p>
 </section>
@@ -652,7 +728,7 @@ Tip
 <ol type="A">
 <li>Use gmx genconf to double the previous system in one dimension (e.g., the x-axis), creating a box with two peptides placed side-by-side (see code below). Alternatively, use <code>COBY</code> or <code>insane</code> to generate a larger base system containing 2 or more peptides.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> genconf <span class="at">-f</span> system_solvated.gro <span class="at">-o</span> system_dimer.gro <span class="at">-nbox</span> 2 1 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> genconf <span class="at">-f</span> system_solvated.gro <span class="at">-o</span> system_dimer.gro <span class="at">-nbox</span> 2 1 1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="A">
 <li><p>Update the topology file (<code>system.top</code>) accordingly by doubling the number of KALP molecules and adjusting the <code>[ molecules ]</code> section.</p></li>
 <li><p>Rerun the minimization, equilibration, and production simulations.</p></li>
@@ -695,6 +771,8 @@ Tip
 <p>[7] Spinti, J.K, Nunes, F.N., Melo, M.N. Room for improvement in the initial martini 3 parameterization of peptide interactions, Chemical Physics Letters, Volume 819, 2023, 140436, 0009-2614, https://doi.org/10.1016/j.cplett.2023.140436.</p>
 <p>[8] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.</p>
 <p>[9] Andreasen, M.D., Souza, P.C.T., Schiøtt, B., and Zuzic, L. Creating Coarse-Grained Systems with COBY: Toward Higher Accuracy of Complex Biological Systems. Journal of Chemical Information and Modeling 2025 65 (10), 4760-4766 https://doi.org/10.1021/acs.jcim.5c00069</p>
+<p>[10] Pezeshkian, W., König, M., Wassenaar, T. A., &amp; Marrink, S. J. (2020). Backmapping triangulated surfaces to coarse-grained membrane models. Nature communications, 11(1), 2296. https://doi.org/10.1038/s41467-020-16094-y</p>
+<p>[11] Schuhmann, F., Stevens, J. A., Rahmani, N., Lindahl, I., Brown, C. M., Brasnett, C., … &amp; Pezeshkian, W. (2025). TS2CG as a membrane builder. Journal of Chemical Theory and Computation, 21(18), 9136-9146. https://doi.org/10.1021/acs.jctc.5c00833</p>
 
 
 </section>
