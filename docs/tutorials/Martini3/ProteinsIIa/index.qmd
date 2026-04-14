@@ -19,6 +19,7 @@ In case of issues, please contact [Luís Borges-Araújo](mailto:%20luis.borges@e
     -   [`3.2. Pre-built approach`](#pre-built-approach)
         -   [`Option 1: Insane`](#insane)
         -   [`Option 2: COBY`](#coby)
+        -   [`Option 3: TS2CG`](#ts2cg)
 -   [`4. Analyzing helix tilt angle`](#analysis-tilt)
 -   [`5. Going Further`](#GoingFurther)
     -   [`5.1. Studying the impact of lipid composition`](#insane)
@@ -28,9 +29,9 @@ In case of issues, please contact [Luís Borges-Araújo](mailto:%20luis.borges@e
 
 ## 1. Introduction {#introduction}
 
-In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a peptide in a lipid bilayer. For background on setting up membranes, please refer to the [Lipids part I](../LipidsI/index.qmd) and [Lipids part II](../LipidsII/index.qmd) tutorials. 
+In this module of the Proteins tutorial, we will increase the complexity of our system by embedding a peptide in a lipid bilayer. For background on setting up membranes, please refer to the [Lipids part I](../LipidsI/index.qmd) and [Lipids part II](../LipidsII/index.qmd) tutorials.
 
-The main goal here is to explore different strategies for building basic membrane-peptide systems using Martini. To do so, we will explore the tilt and dimerization of KALP peptides <sup>[\[1,2\]](#references)</sup> embedded in a POPC membrane. 
+The main goal here is to explore different strategies for building basic membrane-peptide systems using Martini. To do so, we will explore the tilt and dimerization of KALP peptides <sup>[\[1,2\]](#references)</sup> embedded in a POPC membrane.
 
 KALP peptides are synthetic model helices composed of alternating leucine and alanine residues, flanked by lysines. They are widely used to study generic properties of transmembrane helices, such as insertion, tilt, and dimerization, in simplified membrane environments. Eukaryotic plasma membranes (PM) are often approximated by a pure POPC bilayer, as POPC is one of the most abundant phospholipids in the PM. Alternatively, pure DOPC bilayers are sometimes used, as their average physical properties can resemble those of a PM, even though DOPC itself is not especially prevalent in eukaryotic cells <sup>[\[3\]](#references)</sup>.
 
@@ -54,7 +55,6 @@ Elastic network <sup>[\[4\]](#references)</sup>, Gō <sup>[\[5\]](#references)</
 ## ⚠️ Warning: Use biasing with caution.
 
 While we demonstrate the use of water biasing here for educational purposes, it should be treated as a last resort. Incorrectly applied biasing can distort and artifically drive the physical behavior of the system. This can compromise the interpretability and generalizability of your results. Always first try standard protocols before introducing bias. If you do use biasing, be explicit about it in your analysis and consider running controls without it.
-
 :::
 
 Small peptides, particularly those with uncharged terminal regions, may fail to insert properly into lipid bilayers in Martini 3 and instead become adsorbed at the membrane surface or even get ejected during the simulation<sup>[\[7\]](#references)</sup>.
@@ -63,7 +63,7 @@ To enhance the insertion of peptides into lipid bilayers, a water bias can be ap
 
 In `martinize2`, this is done using the `-water-bias` flag along with `-water-bias-eps`, specifying a bias for each secondary structure category. In the `water_bias` directory, generate a new version of the peptide parameters, complete with water biasing, using the following command:
 
-```bash
+``` bash
 martinize2 -ff martini3001 -f ../kalp-AA.pdb -x kalp.pdb -p backbone -o system.top -ss CCHHHHHHHHHHHHHHHHHHHCC \
 -water-bias -water-bias-eps E:-.5 C:1.0 H:-1.0
 ```
@@ -74,7 +74,7 @@ Adding this bias generates additional files, `virtual_sites_atomtypes.itp` and `
 
 To use them, you must modify the `martini_v3.0.0.itp` file provided to include their content conditionally. This can be done by inserting the following lines between the `[ atomtypes ]` and `[ nonbond_params ]` sections (line 858).
 
-```bash
+``` bash
 #ifdef WBIAS
 #include "virtual_sites_atomtypes.itp"
 #include "virtual_sites_nonbond_params.itp"
@@ -83,15 +83,16 @@ To use them, you must modify the `martini_v3.0.0.itp` file provided to include t
 
 You can do this manually using a text editor, or programmatically using the following `sed` command, which inserts the lines after line 858 (adjust the number if needed):
 
-```bash
+``` bash
 sed -i '858i\
 #ifdef WBIAS\n#include "virtual_sites_atomtypes.itp"\n#include "virtual_sites_nonbond_params.itp"\n#endif' martini_v3.0.0.itp
 ```
+
 **Important: Run this command only once, or you will introduce duplicate blocks into your file.**
 
 Finally, activate the bias by adding the following line to the top of your `system.top` file:
 
-```bash
+``` bash
 #define WBIAS
 ```
 
@@ -157,15 +158,12 @@ Once the system is solvated and the topology is constructed, the system requires
 gmx grompp -f minimization.mdp -p system.top -c system_solvated.gro -r system_solvated.gro -o ions.tpr
 echo W | gmx genion -s ions.tpr -p system.top -neutral -o ions.gro
 ```
+
 On inspecting `system.top` again, you should see that 4 W beads have been replaced with 4 CL ions to counter the +4 charge on the single KALP peptide. The system is now ready for minimization:
 
 ::: callout-note
-
 **Note 1:** During the minimization and equilibration steps, if position restraints are applied, the coordinates provided via `-c` (in this case, `minimization.gro`) will be used as the reference positions for the restraints with flag `-r`. Make sure the structure used as input is consistent with what you intend to restrain.
-
-
 :::
-
 
 ``` bash
 # Minimization
@@ -176,10 +174,9 @@ gmx mdrun -deffnm minimization -v
 Once energy minimized, we can proceed with a short equilibration simulation:
 
 ::: callout-note
-
 **Note 2:** During the self-assembly stage, we use isotropic pressure coupling to allow the system to equilibrate freely in all directions. Once the bilayer has formed and stabilized, you should switch to semi-isotropic pressure coupling to maintain realistic membrane structure and fluctuations. Additionally, consider applying separate thermostat coupling groups for the solvent and the membrane (and protein, if present). This helps maintain better thermal equilibration across different components of the system, especially when their dynamics differ significantly.
 
-**Note 3:** Depending on the machine used, the `-nt` and `-pin` flags of `gmx mdrun` may be useful additions to the commands below 
+**Note 3:** Depending on the machine used, the `-nt` and `-pin` flags of `gmx mdrun` may be useful additions to the commands below
 :::
 
 ``` bash
@@ -187,6 +184,7 @@ Once energy minimized, we can proceed with a short equilibration simulation:
 gmx grompp -f equilibration.mdp -c minimization.gro -p system.top -o equilibration.tpr -r minimization.gro
 gmx mdrun -deffnm equilibration -v
 ```
+
 And finish with a production run:
 
 ``` bash
@@ -194,7 +192,6 @@ And finish with a production run:
 gmx grompp -f dynamic.mdp -c equilibration.gro -p system.top -o dynamic.tpr 
 gmx mdrun -deffnm dynamic -v
 ```
-
 
 ### 3.2. Pre-built approach {#Prebuilt-approach}
 
@@ -210,15 +207,14 @@ These tools can automatically generate a pre-assembled bilayer with one or more 
 
 The basic procedure using `insane` is outlined below:
 
-The syntax of the `insane` <sup>[\[8\]](#references)</sup> package is very similar to what was used so far; it can be invoked by running `insane -h`. 
+The syntax of the `insane` <sup>[\[8\]](#references)</sup> package is very similar to what was used so far; it can be invoked by running `insane -h`.
 
-:::{.callout-tip}
-**Installing insane**: Details for insane are listed on the  [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page. It is recommended that you install insane in a new virtual python environment, from which you can simply install insane with:
+::: callout-tip
+**Installing insane**: Details for insane are listed on the [Downloads](../../../downloads/tools/topology-structure-generation.qmd#insane) page. It is recommended that you install insane in a new virtual python environment, from which you can simply install insane with:
 
 ``` bash
 pip install insane
 ```
-
 :::
 
 Let's see a practical example, using the `kalp.gro` that we generated during the self assembly method. First move to the folder containing some input files for insane, (i.e. `cd ../insane`), and copy `kalp.gro` (i.e. `cp ../self_assembly/kalp.gro .`) here. Then we can generate a membrane with our inserted peptide using `insane` with the following command:
@@ -276,16 +272,17 @@ gmx mdrun -deffnm dynamic -v
 
 #### Option 2: `COBY` {#coby}
 
-An alternative to insane.py is COBY <sup>[\[9\]](#references)</sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on [GitHub](https://github.com/MikkelDA/COBY).
+An alternative to `insane.py` is COBY <sup>[\[9\]](#references)</sup>, a membrane builder specifically designed to work with Martini 3. It offers greater control over protein placement, membrane composition and supports multicomponent and asymmetric bilayers. You can find out more about COBY and about what it can do on [GitHub](https://github.com/MikkelDA/COBY).
 
 COBY is a python package which can be easily installed using `pip`:
-```bash
+
+``` bash
 pip install COBY
 ```
 
 It can be run both within a Python script, Jupyter notebook or as a terminal command-line, and uses a single command to specify all the system requirements. Let’s look at a practical example:
 
-```python
+``` python
 import COBY
 COBY.COBY(
 ### Def. box size (xyz, nm) and type.
@@ -310,7 +307,103 @@ sn = "SimpleMembrane",
 out_sys = "system.gro", out_top = "system.top", out_log = "log.log")
 ```
 
-This short Python script creates a POPC bilayer of size 7 × 7  nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a `system.top` file and includes relevant `#include` statements. However, as always, you should carefully check that all entries are consistent with your system and that required `.itp` files are present and correctly referenced.
+This short Python script creates a POPC bilayer of size 7 × 7 nm² with the KALP peptide centered in the membrane. The system is then solvated with coarse-grained water and neutralized with NaCl. COBY automatically generates a `system.top` file and includes relevant `#include` statements. However, as always, you should carefully check that all entries are consistent with your system and that required `.itp` files are present and correctly referenced.
+
+#### Option 3: `TS2CG` {#ts2cg}
+
+Another way to build a Martini membrane system is with [**TS2CG 2.0**](https://github.com/weria-pezeshkian/TS2CG-v2.0) <sup>[\[10,11\]](#references)</sup>, a tool for constructing coarse-grained membranes either from triangulated surfaces or from analytical shape definitions. The TS2CG 2.0 workflow is organized around three components: **PLM**, **PCG**, and **SOL**. For a simple flat bilayer, the relevant steps are **PCG** for membrane construction and **SOL** for solvation and ion addition. 
+
+We will build a **7 × 7 × 9 nm³** Martini 3 system containing:
+
+-   a **POPC bilayer**,
+-   a single **KALP peptide** embedded in the membrane,
+-   water and salt,
+-   and GROMACS-ready output files for simulation.
+
+TS2CG can be installed with `pip` directly from [GitHub](https://github.com/weria-pezeshkian/TS2CG-v2.0).
+
+``` bash
+pip install git+https://github.com/weria-pezeshkian/TS2CG-v2.0
+```
+
+After installation, it is useful to inspect the command-line help:
+
+``` bash
+TS2CG -h
+TS2CG PCG -h
+TS2CG SOL -h
+```
+
+##### Building a flat POPC bilayer with an inserted peptide
+
+TS2CG uses an input description file. For the present system, the input must define three things:
+
+1.  a **flat membrane shape** inside a **7 × 7 × 9 nm³ box**,
+2.  a membrane composition of **100% POPC**,
+3.  and a single peptide entry corresponding to **KALP**.
+
+A draft `input.str` file for this kind of setup is shown below:
+
+``` text
+include kalp.gro
+
+[Lipids List]
+Domain      0
+POPC        1   1   0.64  
+End
+
+[Protein List]
+KALP 1   0.01   0   0   0
+End
+
+[Shape Data]
+ShapeType    Flat         
+Box    7    7    9
+Density      2     2
+Thickness    3.8  
+WallRange    0     1    0    1
+End       
+```
+
+First, it is specified which lipid types we want to build in which domain and for which leaflet. Here, we only have domain 0 and we want to populate it exclusively with POPC in both monolayers. We supply an area per lipid for building as well.
+
+Then, we want to add the protein. To add the protein, we include the gro file at the top and then specify in the protein list. Note that the name of the protein needs to match the name in the gro file. We can directly add multiple copies of the protein, we adjust the first value such that one protein will be placed. The other entrys describe the displacement of the protein. In most cases, only the last one is used to adjust the height of the protein in the membrane. As we require a .gro file, run `gmx editconf -f kalp.pdb -o kalp.gro` and set the name in the first line of the .gro file.
+
+Finally, we want to use an analytical shape to build the membrane, arbitrary shapes are possible from triangualted surfaces through the PLM module of TS2CG. We add the Shape Data for a flat membrane in a box size of 7x7x9 nm. More analytical shapes can be found [here](https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-5) and how to build arbitrary membrane shapes is explained [here](https://github.com/weria-pezeshkian/TS2CG-v2.0/wiki/Tutorial-1).
+
+With the membrane description in place, run **PCG** to construct the membrane system:
+
+``` bash
+TS2CG PCG -str input.str -defout system -function analytical_shape
+```
+
+This step builds the membrane and writes a structure and topology for the unsolvated system. It is a sensible approach to minimize the system in vacuum before solvating.
+
+##### Solvating the system
+
+Once the membrane-protein system has been generated, use **SOL** to add solvent.
+
+The command is given below. It takes a water template and populates the box. A cutoff can be specified how close water beads can be placed to an existing structure:
+
+``` bash
+TS2CG SOL -in system.gro -o solvated.gro -tem water.gro
+```
+
+TS2CG SOL will provide a info.txt with the information of how many beads of what type were placed. Add these numbers to your topology file.
+
+At this stage, your main files are:
+
+-   `solvated.gro` — solvated coordinates,
+-   `system.top` — topology
+
+##### Topology and Martini 3 files
+
+Before simulation, the include statements for a simulation in GROMACS need to be added to the topology file. In total, check that
+
+-   all required Martini 3 `.itp` files are present,
+-   the peptide molecule name matches between coordinate and topology files,
+-   the number of lipids, solvent molecules, and ions is correct,
+-   and any `#include` statements in `system.top` point to the correct files.
 
 <hr>
 
@@ -322,18 +415,20 @@ You can now proceed as before and set up the production run. To recap, this invo
 (D) Run the minimization and equilibration steps before launching the production simulation.
 
 ## 4. Analyzing helix tilt angle {#analysis-tilt}
+
 Once your simulation has completed, a useful quantity to analyze is the tilt angle of the transmembrane helix with respect to the bilayer normal (typically the z-axis). This gives insight into how the peptide aligns within the membrane and how this orientation might change depending on lipid composition or bilayer thickness.
 
 One way to compute the tilt angle is using `gmx gangle`. This tool calculates the angle between two vectors over time — in our case, between the peptide axis and the z-axis (bilayer normal).
 
 First, you need to create an `index.ndx` file that defines the atoms (or beads) used to construct the peptide vector. A common choice is the backbone beads along the transmembrane region of the peptide, for example, the vector between residues 3 and 21 in KALP. In a new folder, `analysis`, we can look at the two trajectories in turn.
 
-```bash
+``` bash
 gmx make_ndx -f ../insane/dynamic.tpr -o insane_index.ndx
 ```
+
 Inside the interactive prompt, enter:
 
-```bash
+``` bash
 a 7 43
 q
 ```
@@ -342,14 +437,15 @@ This creates a group called `a_7_43` corresponding to the backbone beads in the 
 
 Next, compute the tilt angle with:
 
-```bash
+``` bash
 gmx gangle -f ../insane/dynamic.xtc -s ../insane/dynamic.tpr -g1 vector -group1 a_7_43 -g2 z -n insane_index.ndx -oall angles.xvg -rmpbc
 ```
 
 This will output the angle (in degrees) between the peptide vector and the z-axis over the course of the simulation (`angles.xvg`). You can visualize this data to assess whether the helix remains vertical, adopts a tilted orientation, or fluctuates dynamically.
 
 To plot the data you can, for example, use xmgrace:
-```bash
+
+``` bash
 xmgrace angles.xvg
 ```
 
@@ -389,7 +485,7 @@ In this exercise, you will explore peptide dimerization by increasing the system
 
 (A) Use gmx genconf to double the previous system in one dimension (e.g., the x-axis), creating a box with two peptides placed side-by-side (see code below). Alternatively, use `COBY` or `insane` to generate a larger base system containing 2 or more peptides.
 
-```bash
+``` bash
 gmx genconf -f system_solvated.gro -o system_dimer.gro -nbox 2 1 1
 ```
 
@@ -403,9 +499,7 @@ gmx genconf -f system_solvated.gro -o system_dimer.gro -nbox 2 1 1
 ## Note:
 
 Due to the stochastic nature of dimer formation, more than one simulation or longer trajectories may be needed to observe both dimerization and its preferred orientation. Running multiple, long replicas with different initial velocities is strongly recommended.
-
 :::
-
 
 ### 6. Tools and scripts used in this tutorial {#tools-and-scripts-used-in-this-tutorial}
 
@@ -437,9 +531,12 @@ Due to the stochastic nature of dimer formation, more than one simulation or lon
 
 \[6\] Pedersen, K.B., Borges-Araújo, L., Stange, A.D., Souza, P.C.T., Marrink, S.J., and Schiøtt, B. OLIVES: A Go̅-like Model for Stabilizing Protein Structure via Hydrogen Bonding Native Contacts in the Martini 3 Coarse-Grained Force Field. Journal of Chemical Theory and Computation 2024 20 (18), 8049-8070 https://doi.org/10.1021/acs.jctc.4c00553
 
-\[7\] Spinti, J.K, Nunes, F.N., Melo, M.N. Room for improvement in the initial martini 3 parameterization of peptide interactions,
-Chemical Physics Letters, Volume 819, 2023, 140436, 0009-2614, https://doi.org/10.1016/j.cplett.2023.140436.
+\[7\] Spinti, J.K, Nunes, F.N., Melo, M.N. Room for improvement in the initial martini 3 parameterization of peptide interactions, Chemical Physics Letters, Volume 819, 2023, 140436, 0009-2614, https://doi.org/10.1016/j.cplett.2023.140436.
 
 \[8\] Wassenaar, T. A.; Ingólfsson, H. I.; Böckmann, R. A.; Tieleman, D. P.; Marrink, S. J. Computational Lipidomics with Insane : A Versatile Tool for Generating Custom Membranes for Molecular Simulations. J. Chem. Theory Comput. 2015, 11 (5), 2144–2155. https://doi.org/10.1021/acs.jctc.5b00209.
 
 \[9\] Andreasen, M.D., Souza, P.C.T., Schiøtt, B., and Zuzic, L. Creating Coarse-Grained Systems with COBY: Toward Higher Accuracy of Complex Biological Systems. Journal of Chemical Information and Modeling 2025 65 (10), 4760-4766 https://doi.org/10.1021/acs.jcim.5c00069
+
+\[10\] Pezeshkian, W., König, M., Wassenaar, T. A., & Marrink, S. J. (2020). Backmapping triangulated surfaces to coarse-grained membrane models. Nature communications, 11(1), 2296. https://doi.org/10.1038/s41467-020-16094-y
+
+\[11\] Schuhmann, F., Stevens, J. A., Rahmani, N., Lindahl, I., Brown, C. M., Brasnett, C., ... & Pezeshkian, W. (2025). TS2CG as a membrane builder. Journal of Chemical Theory and Computation, 21(18), 9136-9146. https://doi.org/10.1021/acs.jctc.5c00833 
