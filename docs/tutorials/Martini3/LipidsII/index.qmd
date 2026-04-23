@@ -26,13 +26,13 @@ In case of issues, please contact [Luís Borges-Araújo](mailto:%20luis.borges@e
 
 ------------------------------------------------------------------------
 
-When setting up large and/or complex bilayers it can be more convenient, or necessary, to start with a bilayer close to equilibrium rather than trying to get the bilayer to self-assemble. This can be done by concatenating (e.g., using `gmx genconf`) and/or altering previously formed bilayers, but an easier approach is to use a bilayer formation program such as `Insane`<sup>[\[1\]](#references)</sup> (available from the [Downloads -\> Tools](../../../downloads/tools/topology-structure-generation.qmd) section of the website, as `pip install --user insane`, or from its [GitHub repo](https://github.com/Tsjerk/Insane)).
+When setting up large and/or complex bilayers it can be more convenient, or necessary, to start with a bilayer close to equilibrium rather than trying to get the bilayer to self-assemble. This can be done by concatenating (e.g., using `gmx genconf`) and/or altering previously formed bilayers, but an easier approach is to use a bilayer formation program such as `Insane`<sup>[\[1\]](#references)</sup>.
 
 ------------------------------------------------------------------------
 
 > ***Note:*** Because very recent (as of writing) lipid parameters will be employed, the latest `Insane` version from the [GitHub repo](https://github.com/Tsjerk/Insane) will be used.
 
-> ***Note:*** This tutorial assumes you are familiar with running Martini 3 simulations with GROMACS, and with the organization of the particle and molecule topologies bundled with the Martini 3 release. For a lipid-centered primer on these topics you can run the Lipid Bilayers I tutorial. Additionally, depending on the version of `insane` you run, and on whether you run the supplied analyses, you will need to have installed the `numpy` and `MDAnalysis` Python packages. If needed, you can typically install them via `pip` by running `pip3 install --user numpy mdanalysis`.
+> ***Note:*** This tutorial assumes you are familiar with running Martini 3 simulations with GROMACS, and with the organization of the particle and molecule topologies bundled with the Martini 3 release. For a lipid-centered primer on these topics you can run the Lipid Bilayers I tutorial.
 
 ------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ As of writing, the PyPi `Insane` releases do not yet work with the updated Marti
 Start by installing the latest `Insane`, using `pip` from [its GitHub repo](https://github.com/Tsjerk/Insane):
 
 ``` bash
-pip install --force-reinstall --no-deps simopt git+https://github.com/Tsjerk/Insane.git
+pip install --force-reinstall git+https://github.com/Tsjerk/Insane
 ```
 
 Then download the Martini 3 particle definitions and solvent/ion topologies, as well as the required `.itp` files for the updated lipid parameters:
@@ -78,22 +78,35 @@ wget https://github.com/Martini-Force-Field-Initiative/M3-Lipid-Parameters/raw/r
 wget https://github.com/Martini-Force-Field-Initiative/M3-Lipid-Parameters/raw/refs/heads/main/ITPs/martini_v3.0.0_phospholipids_PC_v2.itp
 ```
 
-The custom `Insane` has settings for DBPC but not DLPC. It accepts a number of flags with which you can specify a new lipid (the `-al*` flags; read more with `-h`). Unfortunately, a [bug](https://github.com/Tsjerk/Insane/pull/95) causes `Insane` to mislabel tail bead names of added lipids. As an alternative way to correctly add a lipid definition to `Insane`, we will directly edit its database (this will be also be useful for the exercise ahead when we'll [add a new lipid type](#adding-a-new-lipid-headgroup-lysyl-pg)). First we must find the `Insane` installation directory by running:
+The custom `Insane` has settings for DBPC but not DLPC. We can supplement the database of lipid definitions that ships with `Insane` by creating a custom `lipid.dat` file with our definition for DLPC and referencing that using the `-dat` flag.
+Later, when we [add a new lipid type](#adding-a-new-lipid-headgroup-lysyl-pg), we will add that to our supplemental `lipids.dat` file.
+
+> `Insane` also accepts a number of flags with which you can specify a new lipid (the `-al*` flags; read more with `-h`). Unfortunately, a [bug](https://github.com/Tsjerk/Insane/pull/95) causes `Insane` to mislabel tail bead names of added lipids.
+
+Create a new file called `lipids.dat` with the following content.
 
 ``` bash
-python3 -c 'import insane; print(insane.__path__[0])'
-```
-
-In that directory look for the file `lipids.dat`. Edit it and find the section of `[ diacylglycerol ]`. Add the following line to that list of lipids (order won't matter, but it makes sense to put it next to other `PC` lipids):
-
-``` bash
+[ diacylglycerol ]
+;
+; PROTOLIPID (diacylglycerol), 18 beads
+;
+; 1-3-4-6-7--9-10-11-12-13-14
+;  \| |/  |
+;   2 5   8-15-16-17-18-19-20
+;
+           0  .5   0   0  .5   0   0  .5   0   0   0   0   0   0   1   1   1   1   1   1
+           0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+          10   9   9   8   8   7   6   6   5   4   3   2   1   0   5   4   3   2   1   0
+;          1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
 M3.DLPC   0   -   -   -  NC3  -  PO4 GL1 GL2 C1A D2A D3A C4A  -   -  C1B D2B D3B C4B  -   -
 ```
+
+This configuration structure will be discussed in greater detail when we [add a new lipid type](#adding-a-new-lipid-headgroup-lysyl-pg), later.
 
 You can then run `Insane` to build the starting membrane:
 
 ``` bash
-insane -salt 0.15 -x 20 -y 10 -z 10 -sol W -o membrane.gro -l DBPC:2 -l DLPC:1 -p topol.top
+insane -dat lipids.dat -salt 0.15 -x 20 -y 10 -z 10 -sol W -o membrane.gro -l DBPC:2 -l DLPC:1 -p topol.top
 ```
 
 This will generate an initial configuration for the system `membrane.gro` (Fig. 1A) and a starting point for a working topology `topol.top`, which you must complete and correct:
@@ -219,7 +232,7 @@ Having created a topology for lysyl-PG we now want to incorporate it in bilayers
 
 Lipids in `Insane` are defined schematically, based on templates. These templates roughly define the x,y,z pseudocoordinates for each of the CG beads. Adding a new template to `Insane` is as simple as defining the position of each of the lipid beads in this pseudocoordinate system. Due to its smooth energy landscape, Martini is quite robust and much more tolerant to distortions of the starting structures than, for example, atomistic simulations. This allows us to construct complex membranes from very simple lipid templates. (See the `Insane` publication for more details<sup>[\[1\]](#references)</sup>.) While different versions of `Insane` have slightly different template formatting, the overall approach is very similar.
 
-Use your text editor of choice to open the `lipids.dat` file under the `Insane` python installation directory (as done [above](#complex-mixtures-with-insane)). Look for the `[ diacylglycerol ]` template and the DPPC definition:
+Let's take a closer look at the supplemental `lipids.dat` we created [above](#complex-mixtures-with-insane)).
 
 ``` bash
 [ diacylglycerol ]
@@ -234,13 +247,10 @@ Use your text editor of choice to open the `lipids.dat` file under the `Insane` 
            0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
           10   9   9   8   8   7   6   6   5   4   3   2   1   0   5   4   3   2   1   0
 ;          1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20
-; Martini 3 types
-(...)
-M3.DPPC   0   -   -   -  NC3  -  PO4 GL1 GL2 C1A C2A C3A C4A  -   -  C1B C2B C3B C4B  -   -
-(...)
+M3.DLPC   0   -   -   -  NC3  -  PO4 GL1 GL2 C1A D2A D3A C4A  -   -  C1B D2B D3B C4B  -   -
 ```
 
-A lipid template is defined by setting the relative x,y,z pseudocoordinates for each of the particles in the pseudotemplate in `lipidsx`, `lipidsy` and `lipidsz`, respectively (these are the three non-comment lines immediately after `[ diacylglycerol ]`). Each lipid entry will then populate the particles in the template as required. If you scroll around `lipids.dat` you will notice that some families of lipids will have their own templates, such as glycolipids or cardiolipins.
+A lipid template is defined by setting the relative x,y,z pseudocoordinates for each of the particles in the pseudotemplate in `lipidsx`, `lipidsy` and `lipidsz`, respectively (these are the three non-comment lines immediately after `[ diacylglycerol ]`). Each lipid entry will then populate the particles in the template as required. In the built-in `lipids.dat` for Insane, some families of lipids will have their own templates, such as glycolipids or cardiolipins.
 
 The order in which the atoms are defined in the topology matters when defining the lipid template. While lipid atoms in Martini are typically roughly ordered from top to bottom (outermost headgroup bead to innermost acyl chain bead) this may not always be the case (e.g. phosphoinositol phosphates are defined after the headgroup sugar ring when they are typically the outermost beads). This is also the case with our lysyl-PG topology, where the backbone bead (`BB`) is defined before the most superficial `SC2` bead. While we could re-order and adapt our topology to fit one of the pre-existing templates, we will create our own template specific to lysyl-PG.
 
@@ -266,10 +276,10 @@ M3.POLPG   1   BB SC1 SC2 GL0 PO4 GL1 GL2 C1A D2A C3A C4A  -   -  C1B C2B C3B C4
 ; The numeric '1' field is the lipid's overall charge
 ```
 
-If you’ve correctly added this entry to `lipids.dat`, you should now be able to assemble membranes containing lysyl-PG. Try assembling a membrane composed of 5:1 POPG:POLPG using `Insane`:
+If you’ve correctly added this entry to your supplemental `lipids.dat`, you should now be able to assemble membranes containing lysyl-PG. Try assembling a membrane composed of 5:1 POPG:POLPG using `Insane`:
 
 ``` bash
-insane -salt 0.15 -l POPG:5 -l POLPG:1 -x 20 -y 10 -z 10 -sol W -charge auto -sol W -o membrane.gro -p topol.top
+insane -dat lipids.dat -salt 0.15 -l POPG:5 -l POLPG:1 -x 20 -y 10 -z 10 -sol W -charge auto -sol W -o membrane.gro -p topol.top
 ```
 
 Use it as a starting point to run a simulation with this membrane mixture, following the steps [above](#complex-mixtures-with-insane) (set the temperature to 300 K and total run time to 50 ns). Because we specify the lipid's charge in the `lipids.dat` database, we can use `Insane`’s `-salt` and `-charge` flags to set ionic strength and system neutralization in one go.
