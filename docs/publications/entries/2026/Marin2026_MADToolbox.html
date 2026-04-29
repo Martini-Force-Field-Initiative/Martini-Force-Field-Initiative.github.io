@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Edo Vreeker, Fabian Grunewald, Nieck van der Heide, Siewert-Jan Marrink, Katarzyna Tych, and Giovanni Maglia">
+<meta name="author" content="Romuald Marin, Cécile Hilpert, Fabian Grünewald, Mariana Valério, Luís Borges-Araújo, Stéphane Janczarski, Nicolas O. Rossini, Siewert J. Marrink, Paulo C. T. Souza, and Guillaume Launay">
 
-<title>Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum – Martini Force Field Initiative</title>
+<title>Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database – Martini Force Field Initiative</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-303f12b96bb6fff9f8ac4bf2b4dcaf59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/bootstrap/bootstrap-fedc3cdfbb96626151e1767064f4626c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -100,13 +100,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum – Martini Force Field Initiative">
+<meta property="og:title" content="Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database – Martini Force Field Initiative">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
+<meta property="og:image" content="https://cgmartini.nl/docs/publications/entries/2026/images/martini.gif">
 <meta property="og:site_name" content="Martini Force Field Initiative">
-<meta name="twitter:title" content="Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum – Martini Force Field Initiative">
+<meta name="twitter:title" content="Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database – Martini Force Field Initiative">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://cgmartini.nl/docs/publications/entries/2024/images/martini.gif">
+<meta name="twitter:image" content="https://cgmartini.nl/docs/publications/entries/2026/images/martini.gif">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -197,12 +197,15 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum</h1>
+<h1 class="title">Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Pre-print</div>
-    <div class="quarto-category">Polymers</div>
-    <div class="quarto-category">Lipid membranes</div>
+    <div class="quarto-category">System construction</div>
+    <div class="quarto-category">Small molecules</div>
+    <div class="quarto-category">Forcefield</div>
+    <div class="quarto-category">Parametrization</div>
     <div class="quarto-category">Proteins</div>
+    <div class="quarto-category">Polymers</div>
   </div>
   </div>
 
@@ -213,7 +216,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Edo Vreeker, Fabian Grunewald, Nieck van der Heide, Siewert-Jan Marrink, Katarzyna Tych, and Giovanni Maglia </p>
+             <p>Romuald Marin, Cécile Hilpert, Fabian Grünewald, Mariana Valério, Luís Borges-Araújo, Stéphane Janczarski, Nicolas O. Rossini, Siewert J. Marrink, Paulo C. T. Souza, and Guillaume Launay </p>
           </div>
   </div>
     
@@ -223,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="quarto-title-meta-heading">Doi</div>
     <div class="quarto-title-meta-contents">
       <p class="doi">
-        <a href="https://doi.org/https://doi.org/10.1101/2024.05.16.594548">https://doi.org/10.1101/2024.05.16.594548</a>
+        <a href="https://doi.org/https://doi.org/10.64898/2026.01.23.700524">https://doi.org/10.64898/2026.01.23.700524</a>
       </p>
     </div>
   </div>
@@ -244,12 +247,12 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
 <section id="citation-apa-7" class="level2">
 <h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
 <blockquote class="blockquote">
-<p>Vreeker, E., Grunewald, F., van der Heide, N., Marrink, S. J., Tych, K., &amp; Maglia, G. (2024). Hybrid lipid-block copolymer membranes enable stable reconstitution of a wide range of nanopores and robust sampling of serum. bioRxiv, 2024-05.</p>
+<p>Marin, R., Hilpert, C., Grünewald, F., Valério, M., Borges-Araúj, L., Janczarski, S., … &amp; Launay, G. (2026). Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database. BioRxiv, 2026-01.</p>
 </blockquote>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Biological nanopores are powerful tools for detecting biomolecules at the single-molecule level, making them appealing as sensors for biological samples. However, the lipid membranes in which nanopores reside can be unstable in the presence of biological fluids. Here, membranes formed with the amphiphilic polymers PMOXA-PDMS-PMOXA and PBD-PEO are tested as potential alternatives for nanopore sensing. We demonstrate that polymer membranes can possess increased stability towards applied potentials and high concentrations of human serum, but that the stable insertion of a wide range of biological nanopores is most often compromised. Alternatively, hybrid polymer-lipid membranes comprising a 1:1 w/w mixture of PBD11PEO8 and DPhPC showed high electrical and biochemical stability while creating a suitable environment for all tested nanopores. Analytes such as proteins, DNA and sugars were efficiently sampled, indicating that in hybrid membranes nanopores showed native-like properties. Molecular dynamics simulations revealed that lipids form ∼12 nm domains interspersed by a polymer matrix. Nanopores partitioned into these lipid nanodomains and sequestered lipids possibly offering the same binding strength as in a native bilayer. This work shows that single-molecule analysis with nanopores in [PBD11PEO8 + DPhPC] membranes is feasible and present stable recordings in the presence of human serum. These results pave the way towards novel nanopore-based biosensors.</p>
+<p>The MArtini Database (MAD) web server (https://mad.ens-lyon.fr/) has been updated with new tools, models, and capabilities to support a broader range of molecular systems for the Martini coarse-grained (CG) force field. The most notable addition is the MAD:Polymer Builder, enabling the automated construction of CG polymer models with varying architectures and complexities. The server now incorporates the latest developments in Martini 3, providing enhanced control within the MAD:Molecule Builder over the conversion of all-atom structures into CG representations, including the implementation of GōMartini 3 for protein complexes and water–protein interaction biases. The MAD:Polymer Builder and MAD:Molecule Builder are both adapted to work with intrinsically disordered proteins and domains. Substantial progress has been made in expanding the MAD:Database, making a growing library of Martini-ready compounds readily accessible across the entire MAD ecosystem. These advances position MAD as a comprehensive and evolving platform for the preparation of diverse systems in CG molecular simulations.</p>
 
 
 </section>
