@@ -1,0 +1,32 @@
+---
+title: "Community Web Portal for Open Collaboration in the Martini Force Field Initiative"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Daniel P. Ramirez-Echemendia, Luís Borges-Araújo, Chelsea M. Brown, Riccardo Alessandri, Siewert J. Marrink, Paulo C. T. Souza, D. Peter Tieleman"         # Paper authors (required)
+year: "2026"           # Publication year (required)
+publication: "bioRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.64898/2026.01.27.701988"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Protocol
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Ramirez-Echemendia, D. P., Borges-Araújo, L., Brown, C. M., Alessandri, R., Marrink, S. J., Souza, P. C., & Tieleman, D. P. (2026). Community Web Portal for Open Collaboration in the Martini Force Field Initiative. bioRxiv, 2026-01.
+
+## Abstract
+
+The Martini coarse-grained force field is widely used for biomolecular simulations by a large and rapidly expanding community worldwide. Over time, the development of Martini parameters, tools, and documentation has become increasingly dispersed across numerous research groups, leading to fragmentation and making it challenging for users and developers to keep track of the latest models, software, and best practices. Consequently, the development of Martini as a genuinely community-driven process has grown into a bottleneck. In response, the Martini Force Field Initiative (MFFI) has been established as an open-science effort to coordinate and support the collaborative development of all Martini resources. Here, we introduce the MFFI web portal, a platform designed around five core pillars: (i) avoiding reliance on a single group or local server; (ii) minimizing long-term maintenance overhead; (iii) reducing technical barriers for contributions; (iv) providing a unified home for parameters, tools, tutorials, example workflows, and research outputs; and (v) enabling timely dissemination of updates to the community. To achieve this, we use Quarto to generate a static website authored in Markdown, lowering the technical barrier to making contributions, and serverless architectures on Amazon Web Services for scalable, event-triggered backend operations. The source code is hosted in a public GitHub repository under an MIT license, with automated deployment via GitHub Actions and a contribution model based on pull requests for quality control. This design creates a sustainable, low-maintenance, and collaborative infrastructure that consolidates Martini resources and supports transparency. More broadly, our design exemplifies a transferable pattern for building open, community-oriented platforms for molecular modeling and computational science.

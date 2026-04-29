@@ -1,0 +1,34 @@
+---
+title: "Fast-Forward: Automatic Assignment and Assessment of Bonded Parameters for the Martini Force Field"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Christopher Brasnett, Maximilian Fidlin, Thilo Duve, Sebastian Thallmair, Siewert J. Marrink, and Fabian Grünewald"         # Paper authors (required)
+year: "2026"           # Publication year (required)
+publication: "chemRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.26434/chemrxiv.15001072/v1"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - Methods
+  - Parametrization
+  - Small molecules
+  - Forcefield
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Brasnett, C., Fidlin, M., Duve, T., Thallmair, S., Marrink, S. J., & Grünewald, F. (2026). Fast-Forward: Automatic Assignment and Assessment of Bonded Parameters for the Martini Force Field.
+
+## Abstract
+
+Coarse grained molecular dynamics simulations of bio-and macro-molecular systems offer a method of accessing otherwise unobtainable time and length scales, compared to atomistic simulation techniques. However, a limiting step is often the generation and validation of coarse grained models. Here, we describe a new software package, Fast-Forward, which aids parameterisation of models for the widely used Martini coarse grained force field. In comparison to other similar packages, Fast-Forward offers a system-agnostic suite of tools to parameterise molecules of any size, existing in any environment. It achieves this while maintaining ease of use, and the use of interoperable file formats from the Martini software ecosystem. Through its three subprograms, the package offers tools for trajectory mapping, parameter generation, and model validation. We demonstrate the potential of the package for several different use cases, from small biological molecules (glutathione and glutathione disulfide), to models of synthetic polymers (polymethylmethacrylate, PMMA).

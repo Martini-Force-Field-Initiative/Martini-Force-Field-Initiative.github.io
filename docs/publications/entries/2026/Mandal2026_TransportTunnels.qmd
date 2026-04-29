@@ -1,0 +1,33 @@
+---
+title: "Unlocking High-Throughput Investigation of Transport Tunnels in Enzymes Using Coarse-Grained Simulation Methods"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Nishita Mandal, Jan A. Stevens, Adolfo B. Poma, Bartlomiej Surpeta, Carlos Sequeiros-Borja, Aravind Selvaram Thirunavukarasu, Siewert J. Marrink and Jan Brezovsky"         # Paper authors (required)
+year: "2026"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.5c01727"            # URL of DOI (required)  
+materials: "https://pubs.acs.org/doi/suppl/10.1021/acs.jctc.5c01727/suppl_file/ct5c01727_si_001.pdf"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Proteins
+  - Drug design
+  - Multi-scale
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Mandal, N., Stevens, J. A., Poma, A. B., Surpeta, B., Sequeiros-Borja, C., Thirunavukarasu, A. S., ... & Brezovsky, J. (2026). Unlocking High-Throughput Investigation of Transport Tunnels in Enzymes Using Coarse-Grained Simulation Methods. Journal of Chemical Theory and Computation.
+
+## Abstract
+
+Transport tunnels in enzymes with buried active sites are critical gatekeepers of enzymatic function, controlling substrate access, product release, and catalytic efficiency. Despite their importance, the transient nature of these tunnels makes them difficult to study using conventional simulation methods. In this study, we systematically evaluate three coarse-grained (CG) molecular dynamics approaches─Martini with Elastic network restraints, Martini with Go̅-model restraints, and SIRAH─for their ability to characterize tunnel structure and dynamics across diverse enzyme classes. Using haloalkane dehalogenase LinB and its engineered variants as model systems, we show that CG methods accurately reproduce the geometry of tunnel ensembles observed in all-atom (AA) simulations while providing notable computational speedups. The Martini-Go̅ model performed particularly well, capturing subtle mutation-induced changes in tunnel dynamics, such as the closure of a main tunnel and the de novo opening of a transient auxiliary tunnel in LinB variants. In contrast, Martini with Elastic network restraints was limited in capturing tunnel dynamics due to the structural bias introduced by the restraints. We further validated these findings across nine enzymes from the oxidoreductase, transferase, and hydrolase classes with diverse structural folds. Although all CG methods reliably identified functionally relevant tunnels and provided fairly accurate estimates of their ensemble geometry and key bottleneck residues, they differed in their ability to replicate tunnel dynamics, with tunnel occurrences and ranking showing moderate to good correspondence with AA results. This comprehensive evaluation highlights the strengths and weaknesses of CG simulations, establishing them as powerful tools for high-throughput analysis of enzyme tunnels, which enables more efficient enzyme engineering and drug design efforts targeting these critical structural features.
