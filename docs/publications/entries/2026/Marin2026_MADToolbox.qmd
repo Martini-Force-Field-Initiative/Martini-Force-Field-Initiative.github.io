@@ -1,0 +1,36 @@
+---
+title: "Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Romuald Marin, Cécile Hilpert, Fabian Grünewald, Mariana Valério, Luís Borges-Araújo, Stéphane Janczarski, Nicolas O. Rossini, Siewert J. Marrink, Paulo C. T. Souza, and Guillaume Launay"         # Paper authors (required)
+year: "2026"           # Publication year (required)
+publication: "BioRxiv"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.64898/2026.01.23.700524"            # URL of DOI (required)  
+materials: ""      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Pre-print
+  - System construction
+  - Small molecules
+  - Forcefield
+  - Parametrization
+  - Proteins
+  - Polymers
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Marin, R., Hilpert, C., Grünewald, F., Valério, M., Borges-Araúj, L., Janczarski, S., ... & Launay, G. (2026). Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database. BioRxiv, 2026-01.
+
+## Abstract
+
+The MArtini Database (MAD) web server (https://mad.ens-lyon.fr/) has been updated with new tools, models, and capabilities to support a broader range of molecular systems for the Martini coarse-grained (CG) force field. The most notable addition is the MAD:Polymer Builder, enabling the automated construction of CG polymer models with varying architectures and complexities. The server now incorporates the latest developments in Martini 3, providing enhanced control within the MAD:Molecule Builder over the conversion of all-atom structures into CG representations, including the implementation of GōMartini 3 for protein complexes and water–protein interaction biases. The MAD:Polymer Builder and MAD:Molecule Builder are both adapted to work with intrinsically disordered proteins and domains. Substantial progress has been made in expanding the MAD:Database, making a growing library of Martini-ready compounds readily accessible across the entire MAD ecosystem. These advances position MAD as a comprehensive and evolving platform for the preparation of diverse systems in CG molecular simulations.
