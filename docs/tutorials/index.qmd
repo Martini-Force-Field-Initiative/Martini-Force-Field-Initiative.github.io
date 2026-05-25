@@ -5,7 +5,15 @@ page-layout: full
 title-block-banner: "#FDF7F4"
 ---
 
-The material offered here aims to help you familiarize yourself with some of the basic and more advanced aspects of performing Martini 3 coarse-grained simulations.  The material follows a historical track, starting with the MARTINI model for lipids. It goes on to describe how to set up simulations with proteins (and peptides), and then continues with more advanced topics, like backmapping (i.e. fine graining from a coarse-grained structure), parameterization of new molecules, and more. 
+The material offered here aims to help you familiarize yourself with some of the basic and more advanced aspects of performing Martini coarse-grained simulations.  The material follows a historical track, starting with the MARTINI model for lipids. It goes on to describe how to set up simulations with proteins (and peptides), and then continues with more advanced topics, like backmapping (i.e. fine graining from a coarse-grained structure), parameterization of new molecules, and more.
+
+::: callout-tip
+## New to Martini?
+
+If you are new to Martini and not sure where to begin, start with the [Getting Started](Martini3/getting-started.qmd) page. It guides you through the key choices for setting up your first Martini simulation, including force-field version, parameter set, tools, and a hands-on starter tutorial.
+
+We also recommend reading the [core Martini publications](../publications/index.qmd#category=!🍸Core%20papers) to better understand the principles and strengths of the force field.
+:::
 
 [Lectures](Martini3/lectures.qmd) by several Martini developers describing some of the most important model features and tools are available, alongside a set of [hands-on tutorials](Martini3/tutorials.qmd) showing users how to set up a variety of Martini systems.
 
@@ -18,6 +26,6 @@ Finally, a set of [legacy tutorials](Legacy/index.qmd) pertaining to older itera
 
 This material was originally written for the 2008 MARTINI winterschool in Helsinki, and has since been updated for numerous other workshops by several Martini developers (in no particular order): Lars Schäfer, Andrzej Rzepiela, Martti Louhivuori, Clement Arnarez, Alex de Vries, Djurre de Jong, Helgi Ingólfsson, Manuel Nuno Melo and Jaakko Uusitalo, Pim Frederix, Ignacio Faustino Paulo C. T. Souza, Siewert-Jan Marrink, Tsjerk Wassenaar, Luca Monticelli, Riccardo Alessandri, Raul Mera A., Sebastian Thallmair, Fabian Grünewald, Weria Pezeshkian, Peter Tieleman, Besian I. Sejdiu, Luís Borges-Araújo, Melanie König, Selim Sami, Liu Y., Daniel P. Ramirez-Echemendia, Chris Brasnett, Martin Calvelo.
 
-Last updated: October 2024
+Last updated: May 2025
 :::
 
