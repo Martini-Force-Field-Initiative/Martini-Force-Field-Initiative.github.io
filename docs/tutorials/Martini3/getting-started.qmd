@@ -5,7 +5,7 @@ page-layout: full
 title-block-banner: "#FDF7F4"
 ---
 
-If you want to run a coarse-grained simulation with the Martini force field (FF) but aren't sure where to start, the steps below guide you through the key decisions in order, with links into the rest of the portal.
+If you want to run a coarse-grained simulation with the Martini force field (FF) but aren't sure where to start, the steps below guide you through the key decisions in order, with links into the rest of the portal. If you are new to the FF, we also recommend starting with the [core Martini publications](../../publications/index.qmd#category=!🍸Core%20papers), which introduce its parametrization philosophy and best practices.
 
 If you already know what you need (e.g., a specific parameter set, tool or tutorial topic), skip ahead to [Hands-on Tutorials](tutorials.qmd) or [Downloads](../../downloads/index.qmd).
 
@@ -30,7 +30,7 @@ Only use another route when your system or reference experimental work requires 
 - Use **Titratable Martini** when pH-dependent protonation is part of the question. Start with the [Titratable Martini tutorial](Titratable_Martini/index.qmd).
 
 ::: callout-warning
-Never mix Martini versions in one setup unless the parameter source or tutorial explicitly says to do so.
+Never mix different Martini versions within the same setup. Martini versions are not mutually compatible, and combining them results in physically inconsistent and invalid simulations.
 :::
 
 ## Step 2 — Identify your system class
