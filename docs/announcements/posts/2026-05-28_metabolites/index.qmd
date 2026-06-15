@@ -1,0 +1,14 @@
+---
+title: "Martini 3 metabolome"       
+description: |  
+  Parameters are now avaiable for 186 metabolites found across bacteria and eukaryotes!            
+sideber: false  
+toc: false      
+author: "Chelsea M. Brown"    
+date: "05/28/2026"     
+image: "toc.png" 
+---
+
+Metabolites are ubiquitous in all living cells and are essential mediators of biochemical processes, serving either as substrates or as cofactors to enable reactions. Capturing this diversity in computational workflows is important for allowing realistic simulations of cytoplasm. Coarse-grained molecular dynamics enables the simulation of large-scale systems up to the level of whole cells but is limited by the availability of refined parameters for all possible components in the system. In this work, we describe the parametrization of 186 common metabolites found in bacteria and eukaryotes within the framework of the Martini 3 force field. To showcase the behavior of Martini metabolites in a biological setting, we report simulations of protein–ligand binding and membrane permeation. The establishment of a Martini metabolome enables high-throughput simulations of metabolites interacting with other biomolecules and opens the way for simulations of realistic cellular environments.
+
+Find the paper [here](https://pubs.acs.org/doi/10.1021/acs.jctc.6c00463) and download the parameters [here](https://github.com/Martini-Force-Field-Initiative/M3-Metabolome)
