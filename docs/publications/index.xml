@@ -14,8 +14,8 @@
 <title>Martini Force Field Initiative</title>
 <link>https://cgmartini.nl/docs/publications/</link>
 </image>
-<generator>quarto-1.9.37</generator>
-<lastBuildDate>Sat, 02 May 2026 09:30:00 GMT</lastBuildDate>
+<generator>quarto-1.9.38</generator>
+<lastBuildDate>Mon, 15 Jun 2026 08:28:41 GMT</lastBuildDate>
 <item>
   <title>A Comparative Nanomechanical Study of Antibody and Nanobody Binding to SARS-CoV-2 Variants</title>
   <dc:creator>Luis F. Cofas-Vargas, Gustavo E. Olivos-Ramirez, Siewert J. Marrink, and Adolfo B. Poma</dc:creator>
@@ -51,7 +51,44 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Enhanced sampling</category>
   <category>Drug design</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/CofasVargas2026_AntibodyBinding.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
+</item>
+<item>
+  <title>An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies</title>
+  <dc:creator>Gustavo Enrique Ramirez-Olivos, Luis Fernando Cofas-Vargas, Siewert-Jan Marrink, and Adolfo Poma</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2026/Ramirez-Olivos2026_GoMartini3.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Olivos-Ramirez, G. E., Cofas-Vargas, L. F., Marrink, S. J., &amp; Poma, A. B. (2025). An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies. bioRxiv, 2025-11.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Advances in structural biology, particularly cryo-electron microscopy, have enabled high-resolution characterization of complex protein assemblies. These developments underscore the need for computational approaches capable of describing biologically relevant conformational changes over extended timescales. GōMartini 3 is a coarse-grained approach that demonstrates computational efficiency and versatility across several systems, from membrane-binding proteins and soluble proteins to intrinsically disordered proteins, while preserving key physicochemical features. In this work, we introduce an optimized approach that integrates dynamic contact information from all-atom molecular dynamics (AA-MD) simulations to refine the contact map in GōMartini simulations and select the AA-MD structure consistent with the refined map. Specifically, we define high-frequency contacts, which reduce the number of original Gō contact set by ≈20%–30%, thereby improving the representation of conformational states beyond the original approach in Martini 3. Benchmarking different contact selection criteria revealed that including intra- and interchain high-frequency contacts in protein assemblies captures structural flexibility and domain dynamics. The method was tested on single-chain globular proteins and on the SARS-CoV-2 spike protein. Overall, the optimized contact map improves sampling efficiency and expands the accessible conformational landscape. The full framework is available as an open-source tool for large-scale simulations of protein assemblies.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Proteins</category>
+  <category>Methods</category>
+  <category>Forcefield</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2026/Ramirez-Olivos2026_GoMartini3.html</guid>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Community Web Portal for Open Collaboration in the Martini Force Field Initiative</title>
@@ -87,7 +124,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Protocol</category>
   <category>Forcefield</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Ramirez-Echemendia2026_WebPortal.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Compartment-guided assembly of large-scale molecular models with Bentopy</title>
@@ -117,7 +154,43 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Multi-scale</category>
   <category>System construction</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Westendorp2026_Bentopy.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
+</item>
+<item>
+  <title>Condensates as Conformation Editors of Disordered Client Proteins</title>
+  <dc:creator>Liguo Wang and Siewert J. Marrink</dc:creator>
+  <link>https://cgmartini.nl/docs/publications/entries/2026/Wang2026_CondensatesConformation.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+<section id="citation-apa-7" class="level2">
+<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
+<blockquote class="blockquote">
+<p>Wang, L., &amp; Marrink, S. J. (2026). Condensates as Conformation Editors of Disordered Client Proteins. Journal of the American Chemical Society.</p>
+</blockquote>
+</section>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Biomolecular condensates organize cellular biochemistry not only by passive concentration modulation of molecules but also by potentially remodeling client protein conformations. However, the systematic principles governing such conformational editing are unknown. Here, we use coarse-grained simulations to demonstrate that diverse condensate environments remodel disordered client proteins in a scaffold-specific manner. Additionally, we explore the factors of this remodeling, establishing that the linear patterning of scaffold interaction motifs along sequence (sticker clustering) plays an important role, whereas an increased scaffold chain length primarily slows client dynamics while leaving their sequence-specific intrachain contact patterns largely preserved. This conformational remodeling is mediated by varied and nonuniform client–condensate interaction maps that are not solely encoded by primary sequence grammar but are cooperatively shaped by the emergent condensate architecture. Our work reveals that condensates function as sophisticated regulators of recruited disordered client conformation, with broad implications for cellular regulation and therapeutic intervention.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Journal article</category>
+  <category>Biomolecular condensates</category>
+  <category>Proteins</category>
+  <guid>https://cgmartini.nl/docs/publications/entries/2026/Wang2026_CondensatesConformation.html</guid>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Efficient Protein-Ligand Binding Free Energy Estimation with Coarse-Grained Funnel Metadynamics</title>
@@ -156,7 +229,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Small molecules</category>
   <category>Multi-scale</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Grazzi2026_LigandBindingEnergy.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Extending the MAD Toolbox: New Polymer Builder and Enhanced Martini Database</title>
@@ -196,7 +269,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Proteins</category>
   <category>Polymers</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Marin2026_MADToolbox.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Fast-Forward: Automatic Assignment and Assessment of Bonded Parameters for the Martini Force Field</title>
@@ -234,7 +307,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Small molecules</category>
   <category>Forcefield</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Brasnett2026_FastForward.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Folded domains impose structural heterogeneity and attenuated dynamics in biomolecular condensates</title>
@@ -270,7 +343,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Biomolecular condensates</category>
   <category>Proteins</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Wang2026_FoldedCondensates.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Martini 3 Coarse-Grain Model For Linear Perfluoroalkyl Substances</title>
@@ -308,7 +381,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Multi-scale</category>
   <category>Micelles</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Calza2026_PFAs.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Molecular Mechanisms of KIT Receptor Dimerization and Oncogenic Activation Revealed by Multiscale Simulations</title>
@@ -345,7 +418,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Multi-scale</category>
   <category>Self-assembly</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Chiariello2026_KITDimerization.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Oxygen depletion in biomolecular condensates is dominated by macromolecular density</title>
@@ -382,7 +455,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Self-assembly</category>
   <category>Coacervate</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Garg2026_OxygenCondensates.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Peptide Electrostatic Modulation Directs Human Neural Cell Fate</title>
@@ -419,7 +492,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Self-assembly</category>
   <category>Lipid membranes</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Perez‐Chirinos2026_PeptideNeuralFate.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Structural and functional implications of phase separation of membrane protein LacY in Escherichia coli</title>
@@ -456,7 +529,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Biomolecular condensates</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Linnik2026_LacY.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>The Martini 3 Metabolome</title>
@@ -477,23 +550,23 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
 <section id="citation-apa-7" class="level2">
 <h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
 <blockquote class="blockquote">
-<p>Brasnett, C., Brown, C. M., Grünewald, L., Stevens, J. A., &amp; Marrink, S. J. (2026). The Martini 3 Metabolome. bioRxiv, 2026-03.</p>
+<p>Brasnett, C., Brown, C. M., Grünewald, L., Stevens, J. A., &amp; Marrink, S. J. (2026). The Martini 3 Metabolome. Journal of Chemical Theory and Computation.</p>
 </blockquote>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Metabolites are ubiquitous in all living cells and are essential mediators of biochemical processes, serving either as substrates or as cofactors to enable the reactions. Capturing this diversity in computational workflows is important for allowing realistic simulations of the cytoplasm. Coarse-grained molecular dynamics enables the simulation of large scale systems up to the level of whole-cells, but is limited by the availability of refined parameters for all possible components in the system. In this work, we describe the parameterization of 186 common metabolites found in bacteria and eukaryotes within the framework of the Martini 3 force field. To showcase the behavior of Martini metabolites in a biological setting, we report simulations of protein-ligand binding and membrane permeation. The establishment of a Martini metabolome enables high-throughput simulations of metabolites interacting with other biomolecules, and opens the way for simulations of realistic cellular environments.</p>
+<p>Metabolites are ubiquitous in all living cells and are essential mediators of biochemical processes, serving either as substrates or as cofactors to enable reactions. Capturing this diversity in computational workflows is important for allowing realistic simulations of cytoplasm. Coarse-grained molecular dynamics enables the simulation of large-scale systems up to the level of whole cells but is limited by the availability of refined parameters for all possible components in the system. In this work, we describe the parametrization of 186 common metabolites found in bacteria and eukaryotes within the framework of the Martini 3 force field. To showcase the behavior of Martini metabolites in a biological setting, we report simulations of protein–ligand binding and membrane permeation. The establishment of a Martini metabolome enables high-throughput simulations of metabolites interacting with other biomolecules and opens the way for simulations of realistic cellular environments.</p>
 
 
 </section>
 
  ]]></description>
-  <category>Pre-print</category>
+  <category>Journal article</category>
   <category>Metabolites</category>
   <category>Parametrization</category>
   <category>Small molecules</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Brasnett2026_Metabolome.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>The physicochemical design, structure and permeability of the JCVI-syn3A minimal cell membrane</title>
@@ -530,7 +603,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Phospholipids</category>
   <category>Vesicles</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Presutti2026_MinimalCellMembrane.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Unlocking High-Throughput Investigation of Transport Tunnels in Enzymes Using Coarse-Grained Simulation Methods</title>
@@ -567,7 +640,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Drug design</category>
   <category>Multi-scale</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2026/Mandal2026_TransportTunnels.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>A systematic approach to parameterization of disaccharides for the Martini 3 coarse-grained force-field</title>
@@ -604,7 +677,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Parametrization</category>
   <category>Small molecules</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Brandner2025_Disaccharides.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>Allosteric pathway connects Zn (II) loss from SOD1 to known pathogenic mechanisms</title>
@@ -639,7 +712,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Journal article</category>
   <category>Proteins</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/ArayaOsorio2025_SOD1.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 <item>
   <title>An integrative modelling approach to the mitochondrial cristae</title>
@@ -676,81 +749,7 @@ Please notice the `> ` symbol before the citation, it gives it additional stylin
   <category>Lipid membranes</category>
   <category>Methods</category>
   <guid>https://cgmartini.nl/docs/publications/entries/2025/Brown2025_Cristae.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
-</item>
-<item>
-  <title>An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies</title>
-  <dc:creator>Gustavo Enrique Ramirez-Olivos, Luis Fernando Cofas-Vargas, Siewert-Jan Marrink, and Adolfo Poma</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2025/RamirezOlivos2025_GoContactMap.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Ramirez-Olivos, G. E., Cofas-Vargas, L. F., Marrink, S. J., &amp; Poma, A. (2025). An optimized contact map for GōMartini 3 enabling conformational changes in protein assemblies. bioRxiv, 2025-11.</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Advances in structural biology, particularly cryo-electron microscopy, have enabled high-resolution characterization of complex biomolecular assemblies. These developments emphasize the need for computational approaches capable of describing biologically relevant conformational changes over extended timescales. GōMartini 3 is a coarse-grained approach that demonstrates computational efficiency and versatility across several systems, from protein-binding membranes and soluble proteins to intrinsically disordered proteins, while preserving key physicochemical features. In this work, we introduce an optimized approach that integrates dynamic contact information from AA-MD simulations to refine the contact map in GōMartini simulations. Specifically, we define high-frequency contacts (HFC), which reduce the number of original Gō contacts set by ≈20–30%, thereby improving the representation of conformational states beyond the original approach. Benchmarking different contact-selection criteria revealed that including intra- and interchain HFC captures structural flexibility and domain dynamics. The method was tested on three small soluble proteins and on the SARS-CoV-2 spike protein. Overall, the optimized contact map improves sampling efficiency and expands the accessible conformational landscape relative to the original GōMartini 3 implementation. The full framework is available as an open-source resource for large-scale simulations of biomolecular assemblies.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Pre-print</category>
-  <category>Proteins</category>
-  <category>Methods</category>
-  <category>Forcefield</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2025/RamirezOlivos2025_GoContactMap.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
-</item>
-<item>
-  <title>Gradient-Based Optimization of Force Field Parameters for Martini Lipid Models</title>
-  <dc:creator>Daniel P. Ramirez-Echemendia, Ryan K. Krueger, D. Peter Tieleman, Megan C. Engel</dc:creator>
-  <link>https://cgmartini.nl/docs/publications/entries/2025/Ramirez-Echemendia2025_JaxMartini.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<!-- 
-The info below is just an example. 
-
-Both fields are required and they have to be replaced with the respective info for each paper. 
-
-Please notice the `> ` symbol before the citation, it gives it additional styling.  
--->
-<section id="citation-apa-7" class="level2">
-<h2 class="anchored" data-anchor-id="citation-apa-7">Citation (APA 7)</h2>
-<blockquote class="blockquote">
-<p>Ramirez-Echemendia, D. P., Krueger, R. K., Tieleman, D. P., &amp; Engel, M. C. (2025). Gradient-Based Optimization of Force Field Parameters for Martini Lipid Models. Chemistry. https://doi.org/10.26434/chemrxiv-2025-dtt4k</p>
-</blockquote>
-</section>
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Physics-based coarse-grained (CG) models are widely used in (bio)molecular simulations, yet their parameterization remains challenging and labor-intensive. In this work, we demonstrate how recently developed gradient-based optimization methods can substantially accelerate the refinement of CG force field (FF) parameters within the Martini framework, a cornerstone of modern CG modeling. Using Martini lipid models as a testbed, we explore three increasingly challenging optimization problems. First, a single phosphatidylcholine (PC) lipid, where we optimize bonded parameters by fitting simultaneously to top-down membrane observables (area per lipid, bilayer thickness, and transition temperature) and bottom-up atomistic bond and angle distributions. We then scale the workflow to eight different PC lipids, demonstrating robust performance in a complex multi-system landscape and an order-of-magnitude reduction in computational cost relative to population-based heuristic schemes. Finally, to evaluate performance in higher-dimensional parameter spaces, we additionally optimize the non-bonded parameters of the solvent-free Dry Martini FF, demonstrating that the method scales effectively with increasing numbers of adjustable parameters. Collectively, these results suggest that the large, expert-coordinated workflows that have historically characterized the parameterization of community-driven CG models like Martini can be efficiently streamlined by fully automated, objective-driven gradient-based optimizations.</p>
-
-
-</section>
-
- ]]></description>
-  <category>Methods</category>
-  <category>Lipid membranes</category>
-  <category>Phospholipids</category>
-  <category>Pre-print</category>
-  <guid>https://cgmartini.nl/docs/publications/entries/2025/Ramirez-Echemendia2025_JaxMartini.html</guid>
-  <pubDate>Sat, 02 May 2026 09:30:00 GMT</pubDate>
+  <pubDate>Mon, 15 Jun 2026 08:28:41 GMT</pubDate>
 </item>
 </channel>
 </rss>
