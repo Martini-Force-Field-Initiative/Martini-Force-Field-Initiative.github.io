@@ -108,21 +108,19 @@ def main():
     # Write the metadata to a YAML file
     output_file = posts_dir / "_metadata.yml"
     with open(output_file, 'w', encoding='utf-8') as f:
-        # Custom YAML dumper to add newlines between announcements
+        # Custom YAML dumper to double quote every value
         class CustomDumper(yaml.Dumper):
-            def increase_indent(self, flow=False, indentless=False):
-                return super().increase_indent(flow, indentless)
-            
-            def represent_list(self, data):
-                # Add newline before each item in the list
-                return super().represent_list(data)
-            
             def represent_str(self, data):
-                # Remove quotes from strings
-                return self.represent_scalar('tag:yaml.org,2002:str', data, style='')
-        
+                # Double quotes: news-loader.js strips " when parsing this file
+                return self.represent_scalar('tag:yaml.org,2002:str', data, style='"')
+
+            def represent_mapping(self, tag, mapping, flow_style=None):
+                node = super().represent_mapping(tag, mapping, flow_style)
+                for key_node, _ in node.value:
+                    key_node.style = None  # keys stay unquoted
+                return node
+
         # Register the custom representer
-        CustomDumper.add_representer(list, CustomDumper.represent_list)
         CustomDumper.add_representer(str, CustomDumper.represent_str)
         
         # Dump with custom settings
