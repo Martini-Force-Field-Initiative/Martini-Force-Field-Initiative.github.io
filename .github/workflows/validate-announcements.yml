@@ -1,0 +1,48 @@
+name: Validate Announcements
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: main
+    paths:
+      - 'docs/announcements/posts/**'
+      - 'scripts/generate-announcements-metadata.py'
+      - '.github/workflows/validate-announcements.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    # Read-only, so this also runs for pull requests opened from forks
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      # Fails if any post has a date the generator cannot parse. 
+      - name: Validate announcement front matter
+        run: python scripts/generate-announcements-metadata.py
+
+      # Informational only. The deploy regenerates _metadata.yml from source,
+      # so a stale committed copy is not a merge blocker.
+      - name: Report metadata changes
+        run: |
+          if git diff --quiet -- docs/announcements/posts/_metadata.yml; then
+            echo 'No change: `_metadata.yml` is already up to date.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            {
+              echo '### `_metadata.yml` will be regenerated on deploy'
+              echo
+              echo '```diff'
+              git diff -- docs/announcements/posts/_metadata.yml
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi

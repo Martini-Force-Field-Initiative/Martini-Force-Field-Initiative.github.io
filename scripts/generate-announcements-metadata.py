@@ -4,11 +4,20 @@ import yaml
 from datetime import datetime
 from pathlib import Path
 
+DATE_FORMAT = "%m/%d/%Y"
+
 def clean_string(value):
     """Clean a string value by stripping whitespace and quotes."""
     if isinstance(value, str):
         return value.strip().strip('"\'')
     return value
+
+def parse_date(value):
+    """Parse a front matter date, returning None if it is missing or malformed."""
+    try:
+        return datetime.strptime(value, DATE_FORMAT)
+    except (TypeError, ValueError):
+        return None
 
 def extract_metadata_from_file(file_path):
     """Extract metadata from a Quarto markdown file."""
@@ -42,33 +51,48 @@ def get_image_path(image_value, post_dir):
     return f"/docs/announcements/posts/{post_dir}/{cleaned_image}"
 
 def main():
-    # Path to the posts directory
-    posts_dir = Path("../docs/announcements/posts")
-    
+    # Paths resolved relative to this script 
+    repo_root = Path(__file__).resolve().parent.parent
+    posts_dir = repo_root / "docs" / "announcements" / "posts"
+
     # List to store all announcements
     announcements = []
-    
-    # Process each post directory
-    for post_dir in posts_dir.iterdir():
+    # Front matter problems worth failing on, rather than silently skipping
+    errors = []
+
+    # Process each post directory (sorted, so equal dates break ties consistently)
+    for post_dir in sorted(posts_dir.iterdir()):
         if post_dir.is_dir() and not post_dir.name.startswith('_'):
             # Look for the main Quarto file in the directory
             qmd_file = next(post_dir.glob("*.qmd"), None)
             if qmd_file:
                 metadata = extract_metadata_from_file(qmd_file)
                 if metadata:
+                    date_value = clean_string(metadata.get("date", ""))
+                    if parse_date(date_value) is None:
+                        errors.append(f"{qmd_file.relative_to(repo_root)}: invalid date {date_value!r}")
+                        continue
                     # Extract required fields with defaults and clean strings
                     announcement = {
                         "title": clean_string(metadata.get("title", "Untitled")),
                         "description": clean_string(metadata.get("description", "")),
-                        "date": clean_string(metadata.get("date", "")),
+                        "date": date_value,
                         "image": get_image_path(metadata.get("image", ""), post_dir.name),
                         "url": generate_url(post_dir.name),
                         "author": clean_string(metadata.get("author", "Unknown Author"))
                     }
                     announcements.append(announcement)
-    
-    # Sort announcements by date (newest first)
-    announcements.sort(key=lambda x: datetime.strptime(x["date"], "%m/%d/%Y"), reverse=True)
+
+    # Report every bad post at once, so a contributor fixes them in one pass
+    if errors:
+        raise SystemExit(
+            "Invalid announcement front matter:\n"
+            + "\n".join(f"  {error}" for error in errors)
+            + "\n\nDates must use MM/DD/YYYY (e.g. \"02/12/2026\")."
+        )
+
+    # Sort announcements by date (newest first); every date parsed above
+    announcements.sort(key=lambda x: parse_date(x["date"]) or datetime.min, reverse=True)
     
     # Take only the three latest announcements
     latest_announcements = announcements[:4]
