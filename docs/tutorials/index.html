@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -32,7 +35,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../docs/tutorials/Martini3/workshop.html" rel="next">
+<link href="../../docs/tutorials/Martini3/getting-started.html" rel="next">
 <link href="../../images/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -40,10 +43,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ccca01f30b8e12670dc4c43c08319c97.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-c5a4a5046688c795a58cfb22511f0015.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
@@ -234,6 +237,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../docs/tutorials/Martini3/getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🚀 Getting Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../docs/tutorials/Martini3/workshop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">📚 Workshop 2025</span></a>
   </div>
@@ -271,7 +280,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>The material offered here aims to help you familiarize yourself with some of the basic and more advanced aspects of performing Martini 3 coarse-grained simulations. The material follows a historical track, starting with the MARTINI model for lipids. It goes on to describe how to set up simulations with proteins (and peptides), and then continues with more advanced topics, like backmapping (i.e.&nbsp;fine graining from a coarse-grained structure), parameterization of new molecules, and more.</p>
+<p>The material offered here aims to help you familiarize yourself with some of the basic and more advanced aspects of performing Martini coarse-grained simulations. The material follows a historical track, starting with the MARTINI model for lipids. It goes on to describe how to set up simulations with proteins (and peptides), and then continues with more advanced topics, like backmapping (i.e.&nbsp;fine graining from a coarse-grained structure), parameterization of new molecules, and more.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>New to Martini?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are new to Martini and not sure where to begin, start with the <a href="../../docs/tutorials/Martini3/getting-started.html">Getting Started</a> page. It guides you through the key choices for setting up your first Martini simulation, including force-field version, parameter set, tools, and a hands-on starter tutorial.</p>
+<p>We also recommend reading the <a href="../../docs/publications/index.html#category=!🍸Core papers">core Martini publications</a> to better understand the principles and strengths of the force field.</p>
+</div>
+</div>
 <p><a href="../../docs/tutorials/Martini3/lectures.html">Lectures</a> by several Martini developers describing some of the most important model features and tools are available, alongside a set of <a href="../../docs/tutorials/Martini3/tutorials.html">hands-on tutorials</a> showing users how to set up a variety of Martini systems.</p>
 <p>For the tutorials, familiarity with GROMACS is assumed; for an explanation of how to work with GROMACS and the specification of force field and run parameters we refer to the <a href="https://www.gromacs.org">GROMACS user manual</a>. There is also an excellent collection of GROMACS tutorials available <a href="http://www.mdtutorials.com/gmx/">here</a>. The material can be covered in as much time as you like, and the speed at which you go through this material depends on the computational facilities available, your GROMACS skills, and the time you take to consider what you’re doing. The set-up is modular, however, and depending on you particular interest, you may change the order of the exercises. You could either leave long runs overnight to return to them the next day, or use ”pre-prepared” intermediate and result files that will be provided.</p>
 <p>Finally, a set of <a href="../../docs/tutorials/Legacy/index.html">legacy tutorials</a> pertaining to older iterations of Martini is also available.</p>
@@ -286,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-body-container callout-body">
 <p>This material was originally written for the 2008 MARTINI winterschool in Helsinki, and has since been updated for numerous other workshops by several Martini developers (in no particular order): Lars Schäfer, Andrzej Rzepiela, Martti Louhivuori, Clement Arnarez, Alex de Vries, Djurre de Jong, Helgi Ingólfsson, Manuel Nuno Melo and Jaakko Uusitalo, Pim Frederix, Ignacio Faustino Paulo C. T. Souza, Siewert-Jan Marrink, Tsjerk Wassenaar, Luca Monticelli, Riccardo Alessandri, Raul Mera A., Sebastian Thallmair, Fabian Grünewald, Weria Pezeshkian, Peter Tieleman, Besian I. Sejdiu, Luís Borges-Araújo, Melanie König, Selim Sami, Liu Y., Daniel P. Ramirez-Echemendia, Chris Brasnett, Martin Calvelo.</p>
-<p>Last updated: October 2024</p>
+<p>Last updated: May 2025</p>
 </div>
 </div>
 
@@ -697,8 +720,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../docs/tutorials/Martini3/workshop.html" class="pagination-link" aria-label="📚 Workshop 2025">
-        <span class="nav-page-text">📚 Workshop 2025</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../docs/tutorials/Martini3/getting-started.html" class="pagination-link" aria-label="🚀 Getting Started">
+        <span class="nav-page-text">🚀 Getting Started</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
