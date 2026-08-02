@@ -1,0 +1,108 @@
+---
+title: Getting Started
+subtitle: "From a simulation idea to a first Martini setup"
+page-layout: full
+title-block-banner: "#FDF7F4"
+---
+
+If you want to run a coarse-grained simulation with the Martini force field (FF) but aren't sure where to start, the steps below guide you through the key decisions in order, with links into the rest of the portal. If you are new to the FF, we also recommend starting with the [core Martini publications](../../publications/index.qmd#category=!🍸Core%20papers), which introduce its parametrization philosophy and best practices.
+
+If you already know what you need (e.g., a specific parameter set, tool or tutorial topic), skip ahead to [Hands-on Tutorials](tutorials.qmd) or [Downloads](../../downloads/index.qmd).
+
+::: callout-tip
+## In a hurry?
+
+The recommended starting point for most practitioners is:
+
+1. **Use Martini 3** (the current generation of the force field).
+2. **Begin with a hands-on tutorial in your domain** — see Step 4 below for the suggested tutorials by system type.
+3. **Use the parameters listed under [Downloads / Force field parameters / Martini 3](../../downloads/index.qmd)** for your molecule class.
+
+Only use another route when your system or reference experimental work requires it.
+:::
+
+## Step 1 — Choose a Martini version
+
+**Most users should start with Martini 3**. The specific exceptions below explain when to deviate from this default:
+
+- Use **Martini 2** when you need to reproduce or extend published Martini 2 work, or when you must reuse a validated Martini 2 topology.
+- Use **Dry Martini** only when a Martini 2, implicit-solvent model is suitable. The Dry Martini FF available [here](../../../docs/downloads/force-field-parameters/martini2/dry-martini.qmd) is mainly a lipid-focused option.
+- Use **Titratable Martini** when pH-dependent protonation is part of the question. Start with the [Titratable Martini tutorial](Titratable_Martini/index.qmd).
+
+::: callout-warning
+Never mix different Martini versions within the same setup. Martini versions are not mutually compatible, and combining them results in physically inconsistent and invalid simulations.
+:::
+
+## Step 2 — Identify your system class
+
+The Martini parameter set is partitioned by molecule class. Identify which classes your system contains and follow the linked Downloads entry for each:
+
+- **Lipids** — [lipidome](../../downloads/force-field-parameters/martini3/lipidome.qmd)
+- **Proteins and peptides** — [amino acids](../../downloads/force-field-parameters/martini3/aminoacids.qmd)
+- **Nucleic acids** — [nucleic acids](../../downloads/force-field-parameters/martini3/nucleic_acids.qmd)
+- **Carbohydrates** — [carbohydrates](../../downloads/force-field-parameters/martini3/carbohydrates.qmd)
+- **Polymers** — [polymers](../../downloads/force-field-parameters/martini3/polymers.qmd)
+- **Solvents and ions** — [solvents](../../downloads/force-field-parameters/martini3/solvents.qmd), [ions](../../downloads/force-field-parameters/martini3/ions.qmd)
+- **Small molecules and drug-like compounds** — [small molecules](../../downloads/force-field-parameters/martini3/small_molecules.qmd)
+
+If your system contains a molecule class without an existing parameter set, see Step 3 for parametrization tools.
+
+## Step 3 — Pick the right tools
+
+| Need | More details | Common starting point |
+|---|---|---|
+| Build protein, membrane, polymer, or solvent coordinates | [Topology/Structure Generation](../../downloads/tools/topology-structure-generation.qmd) | `martinize2` for proteins; `polyply` for polymers; `insane` or `COBY` for membranes, solutes, and solvent-containing systems |
+| Build large systems, use multiscale workflows, or backmap to atomistic resolution | [Multiscaling](../../downloads/tools/multiscaling.qmd) | `Bentopy` for large-scale models; `TS2CG` for membrane surfaces; `Backward` for CG-to-atomistic reconstruction |
+| Analyze trajectories or prepare Martini systems for visualization | [Analysis](../../downloads/tools/analysis.qmd) | `ProLint2` for lipid--protein contacts; `MartiniGlass` for visualization-ready topology files; `MDVoxelSegmentation` for large amphipathic systems |
+| If your system contains a molecule for which no Martini parameters exist | [Classic parametrization](Small_Molecule_Parametrization/index.qmd), [FastForward](Small_Molecule_Parametrization_FastForward/index.qmd), or [Bartender](Small_Molecule_Parametrization_Bartender/index.qmd) | Start with the classic tutorial for a manual workflow; use FastForward or Bartender for faster (more automatic) workflows |
+
+## Step 4 — Run a tutorial first
+
+Even if you already have a Martini system in mind, we strongly recommend running the closest hands-on tutorial first. The tutorials surface the practical considerations (run GROMACS, MD parameters, sanity checks) that are not always obvious from parameter files alone.
+
+Suggested starting tutorials by system class:
+
+- **Lipid membranes** — [LipidsI](LipidsI/) and [LipidsII](LipidsII/)
+- **Proteins** — [ProteinsI](ProteinsI/) → [ProteinsIIa](ProteinsIIa/) → [ProteinsIIb](ProteinsIIb/)
+- **Protein–ligand binding** — [Protein_Ligand_Binding](Protein_Ligand_Binding/)
+- **Free-energy techniques** — [Free_Energy_Techniques](Free_Energy_Techniques/)
+- **Backmapping** — [Backward](Backward/) or [cg2at](cg2at/)
+- **Polymers** — [Polyply](Polyply/)
+- **Large mixed systems** — [Bentopy](Bentopy/)
+- **Dual-resolution membranes** — [Dual_Resolution_Membrane](Dual_Resolution_Membrane/)
+
+A full list is provided in the [Hands-on Tutorials](tutorials.qmd) page.
+
+## Step 5 — Validate your setup
+
+A Martini setup that runs is not necessarily trustworthy. Before production, verify that the setup is fit for your scientific question.
+
+Start with basic checks:
+
+- The topology, parameter files, and run settings use compatible/recommended Martini versions.
+- The system has the expected number of molecules, charge, box size, and solvent or ion content.
+- The structure is stable during minimization and equilibration.
+
+Then compare the result with the best available reference for your system:
+
+- **Atomistic simulations** — for local structure and conformational states.
+- **Experiments** — for measurable structural, thermodynamic, or kinetic observables relevant to your system.
+- **Published Martini studies** — for validated parameter combinations in a similar setup.
+
+Use the [Publications](../../publications/index.qmd) page to find relevant examples.
+
+## Step 6 — Get help
+
+If you get stuck:
+
+- Search the Frequently Asked Questions ([FAQ](../../faq/index.qmd)) page first.
+- Open a thread on the [Discussion Board](https://github.com/orgs/Martini-Force-Field-Initiative/discussions) for technical questions.
+- Open an issue on the [Issue Tracker](https://github.com/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/issues) for bugs and feature requests.
+
+The [Contact directory](../../contact/index.qmd) provides a full list of Martini developers and contributors with different domain expertise, useful for identifying the right person to ask for system-specific guidance.
+
+::: callout-note
+## Scope
+
+This page shows the usual path for a new user. Older versions, legacy tools, and specialized workflows are still available through the portal navigation and search.
+:::
