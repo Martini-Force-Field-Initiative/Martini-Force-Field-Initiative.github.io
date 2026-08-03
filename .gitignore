@@ -3,3 +3,11 @@
 /.luarc.json
 
 **/*.quarto_ipynb
+/.venv/
+__pycache__/
+*.pyc
+
+# Quarto in-place render output
+/site_libs/
+/docs/**/*_files/
+/docs/**/index-listing.json
