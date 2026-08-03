@@ -285,7 +285,7 @@ martinize2 -f 6ZH9_clean.pdb -o topol.top -x 6ZH9_CG.pdb -dssp /path/to/dssp -p 
 python OLIVES_v2.0.1_M3.0.0.py -c 6ZH9_CG.pdb -i molecule_0.itp
 ```
 
-Continue with [step 2](step-2-set-up-the-simulation-box). Then, run the following:
+Continue with [step 2](#step-2.-set-up-the-simulation-box). Then, run the following:
 
 ``` bash
 gmx make_ndx -f 6ZH9_CG.gro -o BB.ndx <<< 'del 0-19
