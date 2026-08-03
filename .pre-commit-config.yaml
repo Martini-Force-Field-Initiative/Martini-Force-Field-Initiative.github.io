@@ -1,0 +1,38 @@
+# Optional local checks. Install with:
+#     pip install pre-commit && pre-commit install
+#
+# Never required: CI runs the validator directly, so a contributor who skips
+# these is not penalised twice. They exist so problems surface before a push
+# rather than after.
+
+repos:
+  - repo: local
+    hooks:
+      - id: mffi-validate
+        name: Validate MFFI contributions
+        entry: python -m scripts.validate
+        language: python
+        additional_dependencies: [pyyaml]
+        pass_filenames: false
+        files: \.(qmd|yml|yaml|itp)$
+
+      - id: announcements-metadata
+        name: Homepage news feed is up to date
+        entry: python scripts/generate-announcements-metadata.py --check
+        language: python
+        additional_dependencies: [pyyaml]
+        pass_filenames: false
+        files: ^docs/announcements/posts/.*\.qmd$
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: \.(md|qmd)$      # trailing spaces are meaningful in markdown
+      - id: end-of-file-fixer
+      - id: check-yaml
+        # _quarto.yml profiles and the issue forms use constructs that the
+        # generic checker mis-reads.
+        exclude: ^(_quarto.*\.yml|\.github/ISSUE_TEMPLATE/.*)$
+      - id: check-merge-conflict
+      - id: check-case-conflict

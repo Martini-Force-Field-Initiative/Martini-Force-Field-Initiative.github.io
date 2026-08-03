@@ -1,0 +1,34 @@
+# Review routing for the MFFI portal.
+#
+# This file turns the editorial roles the project has informally into
+# something mechanical: a pull request touching lipid parameters requests
+# review from the lipid editors automatically, rather than waiting for
+# somebody to notice it.
+#
+# NOTE: these teams must exist in the Martini-Force-Field-Initiative
+# organisation. GitHub silently ignores CODEOWNERS entries naming a team 
+# that does not exist, so an unreviewed pull request looks identical to a
+# correctly-routed one. Create the teams before relying on this.
+
+# Fallback owner for anything not matched below.
+*                                           @Martini-Force-Field-Initiative/maintainers
+
+# Content, routed by domain.
+/docs/publications/                         @Martini-Force-Field-Initiative/publications-editors
+/docs/announcements/                        @Martini-Force-Field-Initiative/communications-editors
+/docs/tutorials/                            @Martini-Force-Field-Initiative/tutorials-editors
+/docs/downloads/tools/                      @Martini-Force-Field-Initiative/tools-editors
+/docs/downloads/force-field-parameters/     @Martini-Force-Field-Initiative/parameters-editors
+/docs/downloads/example-applications/       @Martini-Force-Field-Initiative/parameters-editors
+/docs/downloads/example-input-files/        @Martini-Force-Field-Initiative/parameters-editors
+/docs/faq/                                  @Martini-Force-Field-Initiative/maintainers
+/docs/contact/                              @Martini-Force-Field-Initiative/maintainers
+
+# Infrastructure. Changes here affect every contribution type.
+/_quarto.yml                                @Martini-Force-Field-Initiative/maintainers
+/scripts/                                   @Martini-Force-Field-Initiative/maintainers
+/.github/                                   @Martini-Force-Field-Initiative/maintainers
+/js/                                        @Martini-Force-Field-Initiative/maintainers
+/ejs/                                       @Martini-Force-Field-Initiative/maintainers
+/styles.css                                 @Martini-Force-Field-Initiative/maintainers
+/theme.scss                                 @Martini-Force-Field-Initiative/maintainers

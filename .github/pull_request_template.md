@@ -22,8 +22,9 @@
 
 <!-- If you are adding force-field parameters, also confirm: -->
 
-- [ ] The `.itp` file(s) are in `contrib/parameters/<slug>/` with a filled-in `manifest.yml`
-- [ ] The `manifest.yml` `validation:` field describes what the parameters were checked against
+- [ ] The `.itp` file(s) are shared with the parameters editors — link them here or in the linked issue
+- [ ] `make lint-itp FILES="..."` reports no errors on those files
+- [ ] I have described what the parameters were validated against (reference data, properties compared, agreement obtained)
 
 ## Anything reviewers should look at closely?
 

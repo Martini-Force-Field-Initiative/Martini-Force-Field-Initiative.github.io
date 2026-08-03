@@ -1,0 +1,126 @@
+name: PR Checks
+
+# `pull_request` (never `pull_request_target`) so pull requests opened from
+# forks run with a read-only token and no access to repository secrets.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate contributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Needed to diff against the base branch.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install pyyaml
+
+      # Deliberately NOT path-filtered at the job level. A required status
+      # check that is skipped by a path filter reports "pending" forever and
+      # blocks the pull request; this job is fast enough to always run.
+      - name: Validate all contribution types
+        run: |
+          python -m scripts.validate \
+            --format github \
+            --summary-file "$GITHUB_STEP_SUMMARY"
+
+      - name: Check the homepage feed is reproducible
+        run: python scripts/generate-announcements-metadata.py --check
+
+      - name: Run the validator's own tests
+        run: python -m unittest discover -s scripts/validate/tests -t .
+
+      # Only links added or changed by this pull request, and only in our own
+      # download library. The full sweep runs weekly in link-check.yml.
+      - name: Check download links added by this pull request
+        if: github.event_name == 'pull_request'
+        run: |
+          git diff --name-only --diff-filter=ACMR \
+            "${{ github.event.pull_request.base.sha }}...HEAD" > changed.txt
+          python -m scripts.validate_links \
+            --scope changed --changed-only changed.txt --format github
+
+  consumer-contracts:
+    name: Announcement consumer contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install pyyaml
+
+      # An announcement passes through three different parsers before it
+      # reaches a subscriber. This job runs the REAL shipped JavaScript --
+      # the email Lambda's extractor and the homepage feed parser -- against
+      # every real post, rather than a re-implementation that could drift.
+      - name: Run the real consumers against every announcement
+        run: node scripts/validate/consumers/check_consumers.mjs
+
+  render:
+    name: Quarto render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install pyyaml
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      # The site has no executable code cells today, so this is cheap and
+      # _freeze/ is effectively a no-op. Cached anyway as insurance for when
+      # executable content is added.
+      - name: Cache Quarto artefacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            .quarto
+            _freeze
+          key: quarto-${{ runner.os }}-${{ hashFiles('_quarto.yml', '**/*.qmd') }}
+          restore-keys: quarto-${{ runner.os }}-
+
+      - name: Regenerate the homepage feed
+        run: python scripts/generate-announcements-metadata.py
+
+      - name: Render the site
+        run: quarto render 2>&1 | tee render.log
+
+      # Quarto exits 0 on unresolved links and cross-references, so a bare
+      # `quarto render` would pass while shipping broken navigation. Turn
+      # those warnings into annotations.
+      - name: Report render warnings
+        run: python -m scripts.validate_render render.log
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rendered-site
+          path: _site
+          retention-days: 7
