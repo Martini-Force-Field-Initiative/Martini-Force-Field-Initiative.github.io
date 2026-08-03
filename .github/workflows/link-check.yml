@@ -1,0 +1,71 @@
+name: Link health
+
+# Not part of the pull-request gate. Roughly 1700 external URLs, many pointing
+# at publishers that block automated requests: a contributor must never be
+# blocked because a third-party site is having a bad day.
+on:
+  schedule:
+    - cron: '17 4 * * 1'      # Mondays, 04:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: link-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install pyyaml
+
+      - name: Check every link
+        id: check
+        continue-on-error: true
+        run: |
+          python -m scripts.validate_links --scope all > links.txt 2>&1
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+          {
+            echo '## Link health'
+            echo
+            echo '```'
+            cat links.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the tracking issue
+        if: steps.check.outputs.exit != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = 'Automated weekly link check.\n\n```\n'
+              + fs.readFileSync('links.txt', 'utf8').slice(0, 60000)
+              + '\n```\n\nLinks under `cgmartini-library` are errors: the '
+              + 'portal advertises a download the library does not serve. '
+              + 'Other hosts are informational.';
+            const title = 'Link health report';
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'link-health',
+            });
+            if (existing.data.length) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ['link-health'],
+              });
+            }

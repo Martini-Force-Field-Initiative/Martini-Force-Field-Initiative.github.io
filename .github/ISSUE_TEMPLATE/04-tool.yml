@@ -1,0 +1,103 @@
+name: Tool
+description: Propose a tool for the Tools page
+title: "[Tool] "
+labels: ["tools", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Automated checks verify that a listing is well-formed and that its
+        links resolve. They cannot tell whether a tool is maintained, whether
+        it installs, or whether it still works with a current Martini release.
+        That judgement is the reviewers', and this form collects what they need
+        to make it.
+
+  - type: input
+    id: tool_name
+    attributes:
+      label: Name
+      description: >-
+        Exactly as it should be listed. It becomes the card heading, so it has
+        to be distinct from the tools already on the page.
+      placeholder: "e.g. Insane"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: page
+    attributes:
+      label: Which Tools page?
+      description: Determines where the tool will be listed.
+      options:
+        - Analysis
+        - Multiscaling
+        - Topology and structure generation
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Source repository or homepage
+      description: >-
+        A public URL where the code can be obtained. Every listing carries at
+        least one link, and this is it.
+      placeholder: "e.g. https://github.com/..."
+    validations:
+      required: true
+
+  - type: input
+    id: documentation
+    attributes:
+      label: Documentation
+      description: >-
+        Where a new user learns how to run it, if that is not the repository
+        README.
+
+  - type: input
+    id: reference
+    attributes:
+      label: Publication or preprint DOI
+      description: Where the tool and its method are described, if one exists.
+      placeholder: "e.g. https://doi.org/10.1021/..."
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description for the listing
+      description: >-
+        Two to four sentences, written for someone deciding whether this is the
+        tool they need. Say what it does and what it works on. Markdown links
+        are fine.
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Practical details
+      description: >-
+        What a reviewer checks before adding a tool that other people will rely
+        on.
+      value: |
+        **How it is installed** (pip, conda, from source):
+
+        **Martini versions it supports**:
+
+        **Who maintains it, and where problems should be reported**:
+
+        **Licence**:
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: The repository is public and the tool installs from it following its own instructions
+          required: true
+        - label: It works with a currently supported Martini version
+          required: true
+        - label: This tool is not already listed on any of the Tools pages
+          required: true

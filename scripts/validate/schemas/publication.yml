@@ -1,0 +1,130 @@
+# Contract for a publication entry.
+#
+# Consumers of these fields:
+#   - docs/publications/index.qmd  (Quarto listing: sort/filter on
+#     title, author, publication, year; categories become filter tags)
+#   - ejs/article.ejs              (renders the DOI / Preprint / Materials
+#     buttons, each only when the field is non-empty)
+#
+# To add a field: add it here and to docs/publications/entry_template.qmd.
+# The template.matches-schema rule fails if the two drift apart.
+
+id: publication
+label: "Publication entry"
+
+applies_to:
+  - "docs/publications/entries/*/*.qmd"
+exclude:
+  - "docs/publications/entry_template.qmd"
+
+frontmatter:
+  required: error
+  duplicate_keys: error
+  unknown_fields: warning
+
+  fields:
+    title:
+      required: error
+      type: str
+      non_empty: true
+
+    type:
+      required: error
+      const: "article"
+      hint: 'Leave this as type: "article".'
+
+    sidebar:
+      required: error
+      const: false
+      hint: "Leave this as sidebar: false."
+
+    toc:
+      required: error
+      const: false
+      hint: "Leave this as toc: false."
+
+    author:
+      required: error
+      type: str
+      non_empty: true
+      hint: 'All authors on one line, e.g. author: "Marrink, S. J. and Tieleman, D. P."'
+
+    year:
+      required: error
+      type: str
+      pattern: '^(19|20)\d{2}$'
+      pattern_message: "The year must be a quoted four-digit year."
+      hint: 'Quote it, e.g. year: "2024". The listing sorts on this as text.'
+
+    publication:
+      required: error
+      type: str
+      non_empty: true
+      hint: "The journal, book, or preprint server name."
+
+    doi:
+      required: error
+      type: url
+      pattern: '^https://(dx\.)?doi\.org/10\.\S+$'
+      pattern_message: "The doi field must be a bare https://doi.org/ URL."
+      hint: >-
+        Write the resolver URL only, with no "DOI " prefix and no leading
+        space, e.g. doi: "https://doi.org/10.1021/ja036138+". If the work has
+        no DOI, use the publisher landing page and note it in review.
+
+    preprint:
+      required: warning
+      type: url
+      allow_empty: true
+      hint: 'Leave as preprint: "" if there is no preprint.'
+
+    materials:
+      required: warning
+      type: url
+      allow_empty: true
+      hint: 'Leave as materials: "" if there is no supplementary material.'
+
+    categories:
+      required: error
+      type: list_of_str
+      min_items: 1
+      vocabulary: vocab/publication-categories.yml
+      vocabulary_severity: warning
+      suggest_close_matches: true
+      hint: >-
+        Categories become the filter tags on the Publications page. Reuse an
+        established term where one fits; genuinely new terms should be added
+        to scripts/validate/schemas/vocab/publication-categories.yml in the
+        same pull request.
+
+body:
+  required_headings:
+    - pattern: '^##\s+Citation \(APA 7\)'
+      severity: error
+      hint: 'Add a "## Citation (APA 7)" section containing the formatted citation.'
+    - pattern: '^##\s+Abstract'
+      severity: error
+      hint: 'Add an "## Abstract" section containing the paper abstract.'
+
+  section_content:
+    - after: '^##\s+Citation \(APA 7\)'
+      must_match: '^>\s+\S'
+      severity: error
+      hint: >-
+        Prefix the citation with "> ". The leading blockquote marker is what
+        gives the citation its styling on the rendered page.
+    - after: '^##\s+Abstract'
+      must_match: '\S'
+      severity: error
+
+  forbidden_patterns:
+    - pattern: 'keyword 1|Use as many as you think appropiate|And try to use consistency accross'
+      severity: error
+      message: "Template placeholder text was left in the entry."
+      hint: "Replace the example categories with the real ones."
+
+rules:
+  - publication.year_matches_directory
+  - publication.not_in_entries_root
+  - publication.filename_hygiene
+  - publication.duplicate_doi

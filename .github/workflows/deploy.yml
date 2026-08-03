@@ -5,6 +5,10 @@ on:
 
 name: Martini CG Deploy
 
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -12,7 +16,26 @@ jobs:
       contents: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      # Nothing unvalidated should reach the live site. This is the same
+      # check that runs on the pull request.
+      - name: Validate content
+        run: python -m scripts.validate
+
+      # The homepage news feed is generated from the announcement posts, so
+      # the deployed copy is always consistent with them even if the committed
+      # one has drifted.
+      - name: Regenerate the homepage news feed
+        run: python scripts/generate-announcements-metadata.py
 
       - name: Set up Python
         uses: actions/setup-python@v5

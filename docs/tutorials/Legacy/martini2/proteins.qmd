@@ -43,7 +43,7 @@ gunzip 1UBQ.pdb.gz
 
 2. The pdb-structure can be used directly as input for the martinize.py script (download available [here](https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/legacy_material/martini2/martinize.py)), to generate both a structure and a topology file. Have a look at the help function (i.e. run `python martinize.py -h`) for the available options. Hint, valid for any system simulated with Martini: during equilibration it might be useful to have (backbone) position restraints to relax the side chains and their interaction with the solvent; we are anticipating doing this by asking martinize.py to generate the list of atoms involved. The final command might look a bit like this:
 
-`` bash
+``` bash
 python martinize.py -f 1UBQ.pdb -o single-ubq.top -x 1UBQ-CG.pdb -dssp /path/to/dssp -p backbone -ff martini22
 ```
 

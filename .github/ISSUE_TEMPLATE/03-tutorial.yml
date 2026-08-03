@@ -1,0 +1,86 @@
+name: Tutorial
+description: Propose a new or updated tutorial
+title: "[Tutorial] "
+labels: ["tutorials", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Automated checks verify that a tutorial page exists, is registered, and
+        that its link resolves. They cannot tell whether someone who has never
+        run Martini could follow it to the end. That judgement is the
+        reviewers', and this form collects what they need to make it.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: New tutorial or an update?
+      options:
+        - New tutorial
+        - Update to an existing tutorial
+    validations:
+      required: true
+
+  - type: input
+    id: existing_page
+    attributes:
+      label: Which tutorial does this update?
+      description: Only for updates — the name or URL of the existing tutorial.
+
+  - type: input
+    id: tutorial_title
+    attributes:
+      label: Title
+      description: As it should appear in the list of tutorials.
+      placeholder: "e.g. Lipid bilayers - Part I: Self-assembly"
+    validations:
+      required: true
+
+  - type: input
+    id: description
+    attributes:
+      label: One-line description
+      description: The single line shown under the title in the listing.
+      placeholder: "e.g. Basic tutorial on lipid bilayer self-assembly"
+    validations:
+      required: true
+
+  - type: input
+    id: materials
+    attributes:
+      label: Where is the tutorial?
+      description: >-
+        A link to the written material and the input files: a repository, a
+        shared location, or a draft page.
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: What does the tutorial teach, and to whom?
+      description: >-
+        The substance of the review. Be concrete about the starting point, not
+        just the destination.
+      value: |
+        **What the reader will be able to do afterwards**:
+
+        **Assumed prior knowledge** (Martini experience, MD experience, command line):
+
+        **Martini version and software used** (including GROMACS version, and any tools such as martinize2, insane, Polyply):
+
+        **Input files provided, and where they come from**:
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have run the tutorial start to finish with the software versions listed above
+          required: true
+        - label: Everything needed to follow it is available at the link above
+          required: true
+        - label: This tutorial does not duplicate one already listed
+          required: true

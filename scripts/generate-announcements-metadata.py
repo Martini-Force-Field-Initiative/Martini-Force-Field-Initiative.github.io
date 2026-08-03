@@ -1,140 +1,249 @@
 #!/usr/bin/env python3
-import os
-import yaml
+"""Generate docs/announcements/posts/_metadata.yml from the announcement posts.
+
+That file serves two purposes at once:
+
+  * Quarto directory metadata applied to every post in the folder
+    (title-block-banner and friends), and
+  * the data source for the homepage news feed, fetched at runtime by
+    js/news-loader.js.
+
+Usage
+-----
+    python scripts/generate-announcements-metadata.py          # write the file
+    python scripts/generate-announcements-metadata.py --check  # verify only
+
+``--check`` writes nothing and exits non-zero when the committed file differs
+from what the sources imply. It is what CI runs.
+
+The functions here are importable so the validator can reuse the same parsing
+logic. One implementation, two callers: if the generator can read a post, the
+announcement contract is satisfied by construction.
+"""
+
+from __future__ import annotations
+
+import argparse
+import difflib
+import sys
 from datetime import datetime
 from pathlib import Path
 
+import yaml
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+POSTS_DIR = REPO_ROOT / "docs" / "announcements" / "posts"
+OUTPUT_FILE = POSTS_DIR / "_metadata.yml"
+
 DATE_FORMAT = "%m/%d/%Y"
+FEED_LENGTH = 4
+DEFAULT_IMAGE = "/images/cell1.jpg"
+
+BANNER = {
+    "title-block-banner": "#FDF7F4",
+    "title-block-banner-color": "body",
+    "search": False,
+}
+
+
+class PostError(Exception):
+    """A post that cannot be turned into a feed entry."""
+
+    def __init__(self, path: Path, message: str):
+        self.path = path
+        self.message = message
+        super().__init__(f"{path}: {message}")
+
 
 def clean_string(value):
-    """Clean a string value by stripping whitespace and quotes."""
     if isinstance(value, str):
-        return value.strip().strip('"\'')
+        return value.strip().strip("\"'")
     return value
 
-def parse_date(value):
-    """Parse a front matter date, returning None if it is missing or malformed."""
+
+def read_front_matter(path: Path) -> dict:
+    """Parse the YAML front matter of a .qmd file.
+
+    Front matter exists only if the first line is exactly ``---``; the block
+    ends at the next such line. Splitting on ``---`` anywhere in the file (the
+    previous approach) silently mis-parses any post whose body contains a
+    horizontal rule.
+    """
+    text = path.read_text(encoding="utf-8").lstrip("﻿")
+    lines = text.splitlines()
+
+    if not lines or lines[0].strip() != "---":
+        raise PostError(path, "file does not start with a '---' front-matter block")
+
+    end = next(
+        (i for i in range(1, len(lines)) if lines[i].strip() in ("---", "...")),
+        None,
+    )
+    if end is None:
+        raise PostError(path, "front matter is opened but never closed")
+
     try:
-        return datetime.strptime(value, DATE_FORMAT)
+        data = yaml.safe_load("\n".join(lines[1:end]))
+    except yaml.YAMLError as exc:
+        raise PostError(path, f"front matter is not valid YAML: {exc}") from None
+
+    if data is None:
+        raise PostError(path, "front matter is empty")
+    if not isinstance(data, dict):
+        raise PostError(path, "front matter must be a mapping of key: value pairs")
+    return data
+
+
+def parse_date(value, path: Path) -> datetime:
+    text = clean_string(value)
+    if not text:
+        raise PostError(path, "front matter has no 'date' field")
+    try:
+        return datetime.strptime(text, DATE_FORMAT)
     except (TypeError, ValueError):
-        return None
+        raise PostError(
+            path,
+            f"date {text!r} is not in MM/DD/YYYY format "
+            f'(for example date: "02/12/2026")',
+        ) from None
 
-def extract_metadata_from_file(file_path):
-    """Extract metadata from a Quarto markdown file."""
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-    
-    # Split the content to get the YAML front matter
-    parts = content.split('---', 2)
-    if len(parts) < 3:
-        return None
-    
-    try:
-        metadata = yaml.safe_load(parts[1])
-        # Clean all string values in the metadata
-        if metadata:
-            metadata = {k: clean_string(v) for k, v in metadata.items()}
-        return metadata
-    except yaml.YAMLError:
-        return None
 
-def generate_url(post_dir):
-    """Generate the URL for a post."""
-    return f"/docs/announcements/posts/{post_dir}/"
+def image_path(value, post_dir: str) -> str:
+    name = clean_string(value)
+    if not name:
+        return DEFAULT_IMAGE
+    return f"/docs/announcements/posts/{post_dir}/{name}"
 
-def get_image_path(image_value, post_dir):
-    """Get the image path, using default if empty or prepending post directory if specified."""
-    cleaned_image = clean_string(image_value)
-    if not cleaned_image:
-        return "/images/cell1.jpg"
-    # If image path is specified, prepend the post directory
-    return f"/docs/announcements/posts/{post_dir}/{cleaned_image}"
 
-def main():
-    # Paths resolved relative to this script 
-    repo_root = Path(__file__).resolve().parent.parent
-    posts_dir = repo_root / "docs" / "announcements" / "posts"
+def load_announcements(posts_dir: Path = POSTS_DIR) -> list[dict]:
+    """Read every post, newest first.
 
-    # List to store all announcements
-    announcements = []
-    # Front matter problems worth failing on, rather than silently skipping
-    errors = []
+    Every failing post is reported, not just the first: a contributor fixing a
+    batch of posts should see the whole list in one CI run.
+    """
+    announcements: list[dict] = []
+    errors: list[PostError] = []
 
-    # Process each post directory (sorted, so equal dates break ties consistently)
     for post_dir in sorted(posts_dir.iterdir()):
-        if post_dir.is_dir() and not post_dir.name.startswith('_'):
-            # Look for the main Quarto file in the directory
-            qmd_file = next(post_dir.glob("*.qmd"), None)
-            if qmd_file:
-                metadata = extract_metadata_from_file(qmd_file)
-                if metadata:
-                    date_value = clean_string(metadata.get("date", ""))
-                    if parse_date(date_value) is None:
-                        errors.append(f"{qmd_file.relative_to(repo_root)}: invalid date {date_value!r}")
-                        continue
-                    # Extract required fields with defaults and clean strings
-                    announcement = {
-                        "title": clean_string(metadata.get("title", "Untitled")),
-                        "description": clean_string(metadata.get("description", "")),
-                        "date": date_value,
-                        "image": get_image_path(metadata.get("image", ""), post_dir.name),
-                        "url": generate_url(post_dir.name),
-                        "author": clean_string(metadata.get("author", "Unknown Author"))
-                    }
-                    announcements.append(announcement)
+        if not post_dir.is_dir() or post_dir.name.startswith("_"):
+            continue
 
-    # Report every bad post at once, so a contributor fixes them in one pass
+        qmd_files = sorted(post_dir.glob("*.qmd"))
+        if not qmd_files:
+            continue
+        qmd_file = qmd_files[0]
+
+        try:
+            metadata = read_front_matter(qmd_file)
+            when = parse_date(metadata.get("date"), qmd_file)
+            announcements.append({
+                "_sort_key": when,
+                "title": clean_string(metadata.get("title", "Untitled")),
+                "description": clean_string(metadata.get("description", "")),
+                "date": clean_string(metadata.get("date", "")),
+                "image": image_path(metadata.get("image", ""), post_dir.name),
+                "url": f"/docs/announcements/posts/{post_dir.name}/",
+                "author": clean_string(metadata.get("author", "Unknown Author")),
+            })
+        except PostError as exc:
+            errors.append(exc)
+
     if errors:
         raise SystemExit(
-            "Invalid announcement front matter:\n"
-            + "\n".join(f"  {error}" for error in errors)
-            + "\n\nDates must use MM/DD/YYYY (e.g. \"02/12/2026\")."
+            "Cannot generate announcement metadata:\n"
+            + "\n".join(f"  - {e}" for e in errors)
         )
 
-    # Sort announcements by date (newest first); every date parsed above
-    announcements.sort(key=lambda x: parse_date(x["date"]) or datetime.min, reverse=True)
-    
-    # Take only the three latest announcements
-    latest_announcements = announcements[:4]
-    
-    # Create the metadata structure
-    metadata = {
-        "title-block-banner": "#FDF7F4",
-        "title-block-banner-color": "body",
-        "search": False,
-        "announcements": latest_announcements
-    }
-    
-    # Write the metadata to a YAML file
-    output_file = posts_dir / "_metadata.yml"
-    with open(output_file, 'w', encoding='utf-8') as f:
-        # Custom YAML dumper to double quote every value
-        class CustomDumper(yaml.Dumper):
-            def represent_str(self, data):
-                # Double quotes: news-loader.js strips " when parsing this file
-                return self.represent_scalar('tag:yaml.org,2002:str', data, style='"')
+    announcements.sort(key=lambda a: a["_sort_key"], reverse=True)
+    for entry in announcements:
+        del entry["_sort_key"]
+    return announcements
 
-            def represent_mapping(self, tag, mapping, flow_style=None):
-                node = super().represent_mapping(tag, mapping, flow_style)
-                for key_node, _ in node.value:
-                    key_node.style = None  # keys stay unquoted
-                return node
 
-        # Register the custom representer
-        CustomDumper.add_representer(str, CustomDumper.represent_str)
-        
-        # Dump with custom settings
-        yaml.dump(
-            metadata,
-            f,
-            Dumper=CustomDumper,
-            default_flow_style=False,
-            sort_keys=False,
-            allow_unicode=True,
-            width=1000,  # Prevent line wrapping
-            indent=2,    # Consistent indentation
-            default_style=None  # Use block style for better readability
+class _QuotingDumper(yaml.Dumper):
+    """Double-quote every scalar *value*, but leave keys plain.
+
+    Values are quoted because js/news-loader.js strips one layer of
+    surrounding quotes; quoting keeps values containing ':' or '#' intact
+    through that parser and through Quarto's own YAML reader.
+
+    Keys are deliberately left unquoted: the feed parser recognises the start
+    of the list by matching the literal line ``announcements:``, so a quoted
+    key would make the whole feed invisible.
+    """
+
+    def increase_indent(self, flow=False, indentless=False):
+        return super().increase_indent(flow, indentless=False)
+
+    def represent_mapping(self, tag, mapping, flow_style=None):
+        node = super().represent_mapping(tag, mapping, flow_style)
+        for key_node, _ in node.value:
+            if isinstance(key_node, yaml.ScalarNode):
+                key_node.style = ""
+        return node
+
+
+def _represent_quoted_str(dumper, data):
+    return dumper.represent_scalar("tag:yaml.org,2002:str", data, style='"')
+
+
+_QuotingDumper.add_representer(str, _represent_quoted_str)
+
+
+def render_metadata(announcements: list[dict]) -> str:
+    document = dict(BANNER)
+    document["announcements"] = announcements[:FEED_LENGTH]
+    return yaml.dump(
+        document,
+        Dumper=_QuotingDumper,
+        default_flow_style=False,
+        sort_keys=False,
+        allow_unicode=True,
+        width=4096,
+        indent=2,
+    )
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    parser.add_argument(
+        "--check", action="store_true",
+        help="Verify the committed file matches the sources; write nothing.",
+    )
+    parser.add_argument(
+        "--output", type=Path, default=OUTPUT_FILE,
+        help="Where to write (default: the announcements posts directory).",
+    )
+    args = parser.parse_args(argv)
+
+    rendered = render_metadata(load_announcements())
+
+    if args.check:
+        existing = (
+            args.output.read_text(encoding="utf-8")
+            if args.output.exists() else ""
         )
+        if existing == rendered:
+            print(f"{args.output.relative_to(REPO_ROOT)} is up to date.")
+            return 0
+        diff = difflib.unified_diff(
+            existing.splitlines(keepends=True),
+            rendered.splitlines(keepends=True),
+            fromfile="committed",
+            tofile="regenerated",
+        )
+        sys.stdout.writelines(diff)
+        print(
+            "\n_metadata.yml is out of date. Run:\n"
+            "    python scripts/generate-announcements-metadata.py",
+            file=sys.stderr,
+        )
+        return 1
+
+    args.output.write_text(rendered, encoding="utf-8")
+    print(f"Wrote {args.output.relative_to(REPO_ROOT)}")
+    return 0
+
 
 if __name__ == "__main__":
-    main() 
+    raise SystemExit(main())

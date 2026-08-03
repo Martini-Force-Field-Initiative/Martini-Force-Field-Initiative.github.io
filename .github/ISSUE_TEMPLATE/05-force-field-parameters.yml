@@ -1,0 +1,102 @@
+name: Force-field parameters
+description: Propose a new or updated Martini parameter set
+title: "[Parameters] "
+labels: ["parameters", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Automated checks verify that a topology is syntactically valid,
+        internally consistent, and uses bead types that exist. They cannot
+        tell whether the parameters reproduce reality. That judgement is the
+        reviewers', and this form collects what they need to make it.
+
+  - type: input
+    id: molecules
+    attributes:
+      label: Molecule(s)
+      description: Names, and the `[ moleculetype ]` names used in the .itp file.
+      placeholder: e.g. "POPC, POPE"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: Martini version
+      options: ["Martini 3", "Martini 2", "Dry Martini"]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: molecular_class
+    attributes:
+      label: Molecular class
+      description: Determines which Downloads page will list these parameters.
+      options:
+        - Lipids
+        - Proteins / amino acids
+        - Nucleic acids
+        - Carbohydrates
+        - Polymers
+        - Solvents
+        - Ions
+        - Small molecules
+        - Metabolites
+        - Nanomaterials
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: reference
+    attributes:
+      label: Publication or preprint DOI
+      description: Where the parametrisation and its validation are described.
+      placeholder: "e.g. https://doi.org/10.1021/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: validation
+    attributes:
+      label: How were these parameters validated?
+      description: >-
+        The substance of the review. Be specific about what was compared and
+        against what.
+      value: |
+        **Reference data used** (atomistic simulations, experimental values, published data for similar molecules):
+
+        **Properties compared** (density, partitioning free energy, Solvent accessibility, ...):
+
+        **Agreement obtained**:
+
+        **Known limitations or conditions where the model should not be used**:
+    validations:
+      required: true
+
+  - type: input
+    id: files
+    attributes:
+      label: Where are the .itp files?
+      description: >-
+        A link to a shared location with the .itp files, or
+        to a repository where they can be reviewed. The files are not added to
+        this repository: on approval the editors publish them to the Martini
+        download library.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: The topology runs through `grompp` without errors
+          required: true
+        - label: >-
+            I ran the topology linter over the files
+            (`make lint-itp FILES="path/to/file.itp"`) and it reports no errors
+          required: false
+        - label: I have read the contribution guide in README.md
+          required: true

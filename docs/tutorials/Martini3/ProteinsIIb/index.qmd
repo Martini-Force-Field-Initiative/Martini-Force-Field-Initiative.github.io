@@ -12,24 +12,26 @@ In case of issues, please contact [fcofas\@comunidad.unam.mx](mailto:%20fcofas@c
 
 ### Summary
 
--   [`Part I. Protein complexes at equilibrium`](#part-I.-Protein-complexes-at-equilibrium)
+-   [`Part I. Protein complexes at equilibrium`](#part-i.-protein-complexes-at-equilibrium)
     -   [`Protein complex preparation`](#protein-complex-preparation)
     -   [`Protein complex without a structural bias`](#protein-complex-without-a-structural-bias)
-        -   [`Step 1. Generate coarse grained topology`](#step-1-generate-coarse-grained-topology)
-        -   [`Step 2. Set up the simulation box`](#step-2-set-up-the-simulation-box)
-        -   [`Step 3. Solvate the system`](#step-3-solvate-the-system)
-        -   [`Step 4. Add ions`](#step-4-add-ions)
-        -   [`Step 5. Energy minimization`](#step-5-energy-minimization)
-        -   [`Step 6. Equilibration under NPT conditions`](#step-6-equilibration-under-npt-conditions)
-        -   [`Step 7. Production simulation`](#step-7-production-simulation)
+        -   [`Step 1. Generate coarse grained topology`](#step-1.-generate-coarse-grained-topology)
+        -   [`Step 2. Set up the simulation box`](#step-2.-set-up-the-simulation-box)
+        -   [`Step 3. Solvate the system`](#step-3.-solvate-the-system)
+        -   [`Step 4. Add ions`](#step-4.-add-ions)
+        -   [`Step 5. Energy minimization`](#step-5.-energy-minimization)
+        -   [`Step 6. Equilibration under NPT conditions`](#step-6.-equilibration-under-npt-conditions)
+        -   [`Step 7. Production simulation`](#step-7.-production-simulation)
     -   [`Protein complex with elastic network`](#protein-complex-with-elastic-network)
-    -   [`Protein complex with OLIVES`](#protein-complex-with-OLIVES)
-    -   [`Protein complex with GōMartini 3`](#protein-complex-with-GōMartini3)
-    -   [`Comparison between Martini 3 protein complex models`](#comparison-between-Martini-3-protein-complex-models)
--   [`Part II. Protein complex under conformational changes: A nanomechanical study`](#part-ii-protein-complex-under-conformational-changes-a-nanomechanical-study)
-    -   [`AFM-SMFS modelled by SMD`](#AFM-SMFS-modelled-by-SMD)
-    -   [`SMD with GōMartini 3`](#SMD-with-GōMartini3)
-    -   [`SMD with optimized GōMartini 3`](#SMD-with-optimized-GōMartini-3)
+    -   [`Protein complex with OLIVES`](#protein-complex-with-olives)
+    -   [`Protein complex with GōMartini 3`](#protein-complex-with-gōmartini-3)
+    -   [`Comparison between Martini 3 protein complex models`](#comparison-between-martini-3-protein-complex-models)
+-   [`Part II. Protein complex under conformational changes: A nanomechanical study`](#part-ii.-protein-complex-under-conformational-changes-a-nanomechanical-study)
+    -   [`AFM-SMFS captured by Steered Molecular Dynamics (SMD) simulation`](#afm-smfs-captured-by-steered-molecular-dynamics-smd-simulation)
+        -   [`Protein alignment along the Z-axis`](#protein-alignment-along-the-z-axis)
+        -   [`Step 2. Set up the simulation with a large box`](#step-2.-set-up-the-simulation-with-a-large-box)
+        -   [`Run the production simulation`](#run-the-production-simulation)
+    -   [`Protein complex with optimized GōMartini 3`](#protein-complex-with-optimized-gōmartini-3)
 -   [`Tools and scripts used in this tutorial`](#tools-and-scripts-used-in-this-tutorial)
 -   [`References`](#references)
 
@@ -39,7 +41,7 @@ In case of issues, please contact [fcofas\@comunidad.unam.mx](mailto:%20fcofas@c
 
 The global spread of SARS-CoV-2 has made clear the need to characterize spike protein dynamics and binding stability at scale. Understanding how mutations affect both overall fold and specific receptor or nanobody interfaces under near-physiological conditions is essential for predicting variant infectivity and guiding therapeutic design. In this tutorial, we'll implement and compare equilibrium coarse-grained (CG) strategies using the Martini 3 force field <sup>[\[1\]](#references)</sup> to extend sampling to microsecond time scales without sacrificing key structural features. We then benchmark these approaches against full atomistic simulations to assess which approximation most faithfully reproduces protein flexibility at binding interfaces. We'll need a GROMACS version \>= 2023.5 <sup>[\[2\]](#references)</sup>.
 
-This section is not intended to capture large conformational changes. If you plan to to do so, please go to [Part II - Protein complex under conformational changes: A nanomechanical study](#part-II.-Protein-complexes-under-conformational-changes:-A-nanomechanical-study)
+This section is not intended to capture large conformational changes. If you plan to to do so, please go to [Part II - Protein complex under conformational changes: A nanomechanical study](#part-ii.-protein-complex-under-conformational-changes-a-nanomechanical-study)
 
 ## Protein complex preparation {#protein-complex-preparation}
 
@@ -265,7 +267,7 @@ martinize2 -f 6ZH9_clean.pdb -o topol.top -x 6ZH9_CG.pdb -dssp /path/to/dssp -p 
 
 Overwrite or modify the topology as stated above. Also modify the POSRES_FC place holder with the `sed` command previously stated.
 
-Proceed with [steps 2 to 7](#step-2-set-up-the-simulation-box) as described in the *Protein complex without a structure bias* section. These include box setup, solvation, ion addition, energy minimization, NPT equilibration, production run, trajectory alignment, and topology preparation for visualization.
+Proceed with [steps 2 to 7](#step-2.-set-up-the-simulation-box) as described in the *Protein complex without a structure bias* section. These include box setup, solvation, ion addition, energy minimization, NPT equilibration, production run, trajectory alignment, and topology preparation for visualization.
 
 ![alt text](EN_crystal.gif "Title") Figure 2. Licorice representation of the RBD/H11-H4 backbone showing the elastic network model. Intra-chain harmonic restraints are depicted in black, and inter-chain restraints in green. Figure generated with ChimeraX <sup>[\[11\]](#references)</sup>.
 
@@ -285,7 +287,7 @@ martinize2 -f 6ZH9_clean.pdb -o topol.top -x 6ZH9_CG.pdb -dssp /path/to/dssp -p 
 python OLIVES_v2.0.1_M3.0.0.py -c 6ZH9_CG.pdb -i molecule_0.itp
 ```
 
-Continue with [step 2](step-2-set-up-the-simulation-box). Then, run the following:
+Continue with [step 2](#step-2.-set-up-the-simulation-box). Then, run the following:
 
 ``` bash
 gmx make_ndx -f 6ZH9_CG.gro -o BB.ndx <<< 'del 0-19
@@ -298,7 +300,7 @@ q
 gmx genrestr -f 6ZH9_CG.gro -n BB.ndx -o posre_BB.itp
 ```
 
-Edit the topology as stated in [step1](#step-1-generate-coarse-grained-topology). Also modify the POSRES_FC with the command `sed` stated in the same step.
+Edit the topology as stated in [step1](#step-1.-generate-coarse-grained-topology). Also modify the POSRES_FC with the command `sed` stated in the same step.
 
 Create a copy of the topology
 
@@ -306,7 +308,7 @@ Create a copy of the topology
 cp topol.top system.top
 ```
 
-Proceed with [steps 3 to 7](#step-3-solvate-the-system) as described in the *Protein complex without a structure bias* section.
+Proceed with [steps 3 to 7](#step-3.-solvate-the-system) as described in the *Protein complex without a structure bias* section.
 
 ![alt text](OLIVES_crystal.gif "Title") Figure 3. Licorice representation of the RBD/H11-H4 backbone showing the OLIVES model. Intra-chain harmonic restraints are depicted in black, and inter-chain restraints in green. Figure generated with ChimeraX <sup>[\[11\]](#references)</sup>.
 
@@ -379,7 +381,7 @@ molecule_0    1
 
 This will ensure that the virtual site definitions and Gō-like nonbonded interactions are properly included in the simulation.
 
-Proceed with [steps 2 to 7](#step-2-setup-the-simulation-box) as described in the *Protein complex without a structural bias* section.
+Proceed with [steps 2 to 7](#step-2.-set-up-the-simulation-box) as described in the *Protein complex without a structural bias* section.
 
 ![alt text](Go_crystal.gif "Title") Figure 4. Licorice representation of the RBD/H11-H4 backbone illustrating the GōMartini 3 model. Intra-chain native contacts are shown in black, while inter-chain contacts are shown in green. Figure generated with ChimeraX<sup>[\[11\]](#references)</sup>.
 
@@ -425,7 +427,7 @@ python align_pdb_.py 6ZH9_clean.pdb 6ZH9_aligned.pdb E 195 F 128 --axis Z
 
 This reads 6ZH9_clean.pdb, locates the two CA atoms you specified, computes the rotation that brings their connecting line onto the Z‑axis, applies that transform to every atom, and writes the result to 6ZH9_aligned.pdb.
 
-To generate the Martini 3/GoMartini 3 model, please follow the instructions in the [Protein complex with GōMartini 3](#protein-complex-with-GōMartini3) section using the `6ZH9_aligned.pdb` file. From `martinize2` you'll get the new `6ZH9_CG.pdb` file.
+To generate the Martini 3/GoMartini 3 model, please follow the instructions in the [Protein complex with GōMartini 3](#protein-complex-with-gōmartini-3) section using the `6ZH9_aligned.pdb` file. From `martinize2` you'll get the new `6ZH9_CG.pdb` file.
 
 ### Step 2. Set up the simulation with a large box
 
@@ -441,7 +443,7 @@ Copy the topology and rename it as system.top
 cp topol.top system.top
 ```
 
-Proceed with [steps 3 to 6](#3-solvate-the-system) as described in the *Protein complex without a structural bias* section.
+Proceed with [steps 3 to 6](#step-3.-solvate-the-system) as described in the *Protein complex without a structural bias* section.
 
 After step 6, we need to create an index file to apply the freeze protocol and to perform the CG-SDM:
 
@@ -508,7 +510,7 @@ In this case, the file with the most contacts was frame_0095. Then, we need to a
 python align_pdb.py frame_0095_CG.pdb frame_0095_CG_aligned.pdb A 195 B 323 --axis Z
 ```
 
-Procees with Step 2. Set up the simulation with a large box as described above. Then proceed with [steps 3 to 6](#3-solvate-the-system) as described in the *Protein complex without a structural bias* section. After that, run step 7 as stated above.
+Procees with Step 2. Set up the simulation with a large box as described above. Then proceed with [steps 3 to 6](#step-3.-solvate-the-system) as described in the *Protein complex without a structural bias* section. After that, run step 7 as stated above.
 
 ![alt text](SMD.gif "Title") Figure 7. Licorice representation of the RBD/H11-H4 complex during pulling under constant velocity. Figure generated with ChimeraX <sup>[\[11\]](#references)</sup>.
 
