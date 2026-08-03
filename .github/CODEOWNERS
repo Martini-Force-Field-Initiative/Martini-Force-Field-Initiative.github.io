@@ -5,30 +5,42 @@
 # review from the lipid editors automatically, rather than waiting for
 # somebody to notice it.
 #
-# NOTE: these teams must exist in the Martini-Force-Field-Initiative
-# organisation. GitHub silently ignores CODEOWNERS entries naming a team 
-# that does not exist, so an unreviewed pull request looks identical to a
-# correctly-routed one. Create the teams before relying on this.
+# Owners are individual GitHub handles rather than organisation teams, on
+# purpose. A team must exist in the organisation AND be granted access to this
+# repository; a repository admin can do neither, and GitHub silently ignores a
+# CODEOWNERS line naming a team that fails either condition -- an unrouted
+# pull request looks identical to a correctly routed one. Every team entry in
+# the previous version of this file had been inert since it was written.
+#
+# To move back to teams later, an organisation owner must first create them and
+# grant this repository write access; then swap the handles below for
+# @Martini-Force-Field-Initiative/<slug>. Check the result with:
+#     gh api repos/Martini-Force-Field-Initiative/Martini-Force-Field-Initiative.github.io/codeowners/errors
+#
+# The main-branch ruleset has "Require review from Code Owners" enabled, so
+# these lines gate merges rather than merely suggesting reviewers: a pull
+# request needs an approving review from an owner of every path it touches.
+# Repository admins can still bypass the ruleset.
 
 # Fallback owner for anything not matched below.
-*                                           @Martini-Force-Field-Initiative/maintainers
+*                                           @ricalessandri @paulocts @danielpastor97
 
 # Content, routed by domain.
-/docs/publications/                         @Martini-Force-Field-Initiative/publications-editors
-/docs/announcements/                        @Martini-Force-Field-Initiative/communications-editors
-/docs/tutorials/                            @Martini-Force-Field-Initiative/tutorials-editors
-/docs/downloads/tools/                      @Martini-Force-Field-Initiative/tools-editors
-/docs/downloads/force-field-parameters/     @Martini-Force-Field-Initiative/parameters-editors
-/docs/downloads/example-applications/       @Martini-Force-Field-Initiative/parameters-editors
-/docs/downloads/example-input-files/        @Martini-Force-Field-Initiative/parameters-editors
-/docs/faq/                                  @Martini-Force-Field-Initiative/maintainers
-/docs/contact/                              @Martini-Force-Field-Initiative/maintainers
+/docs/publications/                         @chelsea-brown @danielpastor97 
+/docs/announcements/                        @chelsea-brown @danielpastor97 
+/docs/tutorials/                            @ricalessandri @paulocts @danielpastor97
+/docs/downloads/tools/                      @ricalessandri @paulocts @danielpastor97
+/docs/downloads/force-field-parameters/     @ricalessandri @paulocts @danielpastor97
+/docs/downloads/example-applications/       @ricalessandri @paulocts @danielpastor97
+/docs/downloads/example-input-files/        @ricalessandri @paulocts @danielpastor97
+/docs/faq/                                  @ricalessandri @paulocts @danielpastor97
+/docs/contact/                              @ricalessandri @paulocts @danielpastor97
 
 # Infrastructure. Changes here affect every contribution type.
-/_quarto.yml                                @Martini-Force-Field-Initiative/maintainers
-/scripts/                                   @Martini-Force-Field-Initiative/maintainers
-/.github/                                   @Martini-Force-Field-Initiative/maintainers
-/js/                                        @Martini-Force-Field-Initiative/maintainers
-/ejs/                                       @Martini-Force-Field-Initiative/maintainers
-/styles.css                                 @Martini-Force-Field-Initiative/maintainers
-/theme.scss                                 @Martini-Force-Field-Initiative/maintainers
+/_quarto.yml                                @danielpastor97
+/scripts/                                   @danielpastor97
+/.github/                                   @danielpastor97
+/js/                                        @danielpastor97
+/ejs/                                       @danielpastor97
+/styles.css                                 @danielpastor97
+/theme.scss                                 @danielpastor97

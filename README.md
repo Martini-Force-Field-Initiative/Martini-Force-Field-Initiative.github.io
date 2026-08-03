@@ -258,7 +258,7 @@ Once your changes are ready and `make validate` is clean:
 
 ### 5. Reviewing and Merging
 
-Reviewers are requested automatically based on what you touched — publications, announcements, tutorials, tools, and parameters each have their own editors, as set out in [`.github/CODEOWNERS`](.github/CODEOWNERS). We may request or suggest additional changes, or approve directly. Once approved, your changes are merged into `main`, and the website is re-validated, rebuilt, and deployed automatically by a GitHub Action.
+Reviewers are requested automatically based on what you touched — publications, announcements, tutorials, tools, and parameters each have their own editors, as set out in [`.github/CODEOWNERS`](.github/CODEOWNERS). Approval from one of the editors for each area you touched is required before the pull request can be merged. We may request or suggest additional changes, or approve directly. Once approved, your changes are merged into `main`, and the website is re-validated, rebuilt, and deployed automatically by a GitHub Action.
 
 ### 6. Additional Resources
 
