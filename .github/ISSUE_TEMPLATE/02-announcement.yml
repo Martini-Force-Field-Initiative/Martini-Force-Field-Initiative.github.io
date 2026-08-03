@@ -1,0 +1,85 @@
+name: Announcement
+description: Propose a community announcement
+title: "[Announcement] "
+labels: ["announcements", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Publishing an announcement does two things: it posts to the site, and
+        it emails every subscriber. The title becomes the email subject line
+        and the description becomes the body of that email, so both are worth
+        writing carefully.
+
+  - type: input
+    id: announcement_title
+    attributes:
+      label: Title
+      description: >-
+        A short headline, at most 120 characters. Avoid colons, since the homepage
+        feed splits each line on the first one, and everything after it is lost.
+      placeholder: "e.g. Parameters for ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: >-
+        One or two sentences, at most 300 characters. This is both the card
+        summary on the site and the body of the notification email, so it has
+        to stand on its own. 
+      placeholder: >-
+        e.g. Parameters are now available for ...!
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Written out normally, not in capitals.
+      placeholder: "e.g. Martini User"
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Publication date
+      description: >-
+        Month first, zero-padded, as MM/DD/YYYY. Different formats will
+        break both the homepage feed and the metadata generator.
+      placeholder: "e.g. 05/28/2026"
+    validations:
+      required: true
+
+  - type: input
+    id: image
+    attributes:
+      label: Image
+      description: >-
+        Optional. Attach the image to this issue by dragging it into any text
+        box, then paste the resulting link here. Leave blank to use the default
+        announcement image.
+
+  - type: textarea
+    id: body
+    attributes:
+      label: Announcement text
+      description: >-
+        The full post as it should appear on the site, in Markdown. Links,
+        emphasis, and references to the relevant papers are all welcome here.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: The description reads correctly on its own, as an email to subscribers
+          required: true
+        - label: The date above is when this should be published, not today's date
+          required: true

@@ -1,0 +1,157 @@
+name: Publication
+description: Add a paper that uses the Martini force field
+title: "[Publication] "
+labels: ["publications", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Each paper becomes one file under `docs/publications/entries/<year>/`.
+        The fields below are that file's front matter, so the more precisely
+        they are filled in, the less there is to chase up in review. 
+
+  - type: input
+    id: paper_title
+    attributes:
+      label: Paper title
+      description: As published, including any subtitle.
+    validations:
+      required: true
+
+  - type: input
+    id: authors
+    attributes:
+      label: Authors
+      description: All authors on one line, in the order they appear on the paper.
+      placeholder: "e.g. Last, First1; Last, First2 (...)"
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Year
+      description: Four digits. The publications listing sorts on this.
+      placeholder: "e.g. 2024"
+    validations:
+      required: true
+
+  - type: input
+    id: publication
+    attributes:
+      label: Journal, book, or preprint server
+      placeholder: "e.g. Journal of Chemical Theory and Computation"
+    validations:
+      required: true
+
+  - type: input
+    id: doi
+    attributes:
+      label: DOI
+      description: >-
+        The bare resolver URL, with no "DOI " prefix. If the work has no DOI,
+        give the publisher landing page and say so below.
+      placeholder: "e.g. https://doi.org/10.1021/jp071097f"
+    validations:
+      required: true
+
+  - type: input
+    id: preprint
+    attributes:
+      label: Preprint URL
+      description: Leave blank if there is no preprint.
+
+  - type: input
+    id: materials
+    attributes:
+      label: Supplementary material URL
+      description: >-
+        Supporting information, datasets, or code accompanying the paper.
+        Leave blank if there is none.
+
+  - type: dropdown
+    id: categories
+    attributes:
+      label: Categories
+      description: >-
+        These become the filter tags on the Publications page. Pick every term
+        that genuinely applies, and reuse an established one wherever it fits.
+      multiple: true
+      options:
+        - Journal article
+        - Lipid membranes
+        - Proteins
+        - Phospholipids
+        - Multi-scale
+        - Methods
+        - Parametrization
+        - Small molecules
+        - Sterols
+        - Forcefield
+        - Vesicles
+        - Solvents
+        - Polymers
+        - Self-assembly
+        - Review
+        - Enhanced sampling
+        - Biomolecular condensates
+        - Materials science
+        - Drug design
+        - DNA
+        - Glycans
+        - Nanoparticles
+        - Pre-print
+        - Protocol
+        - Cofactors
+        - Book chapter
+        - Micelles
+        - Coacervate
+        - Metabolites
+        - RNA
+        - System construction
+        - pH
+        - Post-translational modifications
+        - Reactive
+        - Visualization
+    validations:
+      required: true
+
+  - type: input
+    id: new_category
+    attributes:
+      label: A category that is missing from the list
+      description: >-
+        Only if none of the above fits. Say which term you want and why an
+        existing one will not do — an ad-hoc synonym makes the filter worse for
+        everyone, so new terms are added deliberately.
+
+  - type: textarea
+    id: citation
+    attributes:
+      label: Citation (APA 7)
+      description: The formatted citation, ending in the DOI.
+      placeholder: >-
+        e.g. Siewert J. Marrink, H. Jelger Risselada, Serge Yefimov, D. Peter Tieleman, Alex H. de Vries; 
+        The MARTINI Force Field:  Coarse Grained Model for Biomolecular Simulations. 
+        J. Phys. Chem. B 12 July 2007; 111 (27): 7812–7824. 
+        https://doi.org/10.1021/jp071097f
+    validations:
+      required: true
+
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Abstract
+      description: The published abstract, pasted as-is.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: This paper is not already listed on the Publications page
+          required: true
+        - label: The DOI resolves, and it resolves to this paper
+          required: true
