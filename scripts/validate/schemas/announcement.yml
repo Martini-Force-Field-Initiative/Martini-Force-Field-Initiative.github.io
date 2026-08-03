@@ -1,0 +1,94 @@
+# Contract for an announcement post.
+#
+# This is the strictest schema in the framework because an announcement has
+# THREE independent consumers, each parsing the same front matter differently
+# and each stricter than the last:
+#
+#   (a) the Quarto listing in docs/announcements/index.qmd
+#       - sorts on `date`, so the format must be machine-sortable
+#
+#   (b) scripts/generate-announcements-metadata.py -> _metadata.yml
+#       -> js/news-loader.js, whose parseYAML() splits each line on the FIRST
+#          colon. A colon in a title or description truncates it on the
+#          homepage.
+#
+#   (c) docs/announcements/backend/lambda/sendAnnouncement.js, which is
+#       triggered by the S3 upload and emails every subscriber. It parses with
+#       regular expressions, THROWS if `title` or `description` is missing
+#       (silently sending no email at all), and is comment-naive: a trailing
+#       "# ..." comment is delivered to subscribers as part of the message.
+#
+# The rules below are the intersection of all three contracts.
+
+id: announcement
+label: "Announcement post"
+
+applies_to:
+  - "docs/announcements/posts/*/*.qmd"
+
+frontmatter:
+  required: error
+  duplicate_keys: error
+  unknown_fields: warning
+  trailing_comments: error
+
+  fields:
+    title:
+      required: error
+      type: str
+      non_empty: true
+      max_len: 120
+      hint: "A short headline. It becomes the card title and the email subject line."
+
+    description:
+      required: error
+      type: str
+      non_empty: true
+      max_len: 300
+      hint: >-
+        One or two sentences. This text is both the card summary on the site
+        and the body of the notification email sent to every subscriber.
+
+    sidebar:
+      required: error
+      const: false
+      hint: >-
+        Note the spelling: "sidebar", not "sideber". The misspelling was in
+        the entry template for a long time and silently does nothing.
+
+    toc:
+      required: error
+      const: false
+
+    author:
+      required: error
+      type: str
+      non_empty: true
+      hint: 'Written out normally, e.g. author: "Chelsea M. Brown" (not all caps).'
+
+    date:
+      required: error
+      type: str
+      pattern: '^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/(19|20)\d{2}$'
+      pattern_message: "The date must be in MM/DD/YYYY format."
+      hint: >-
+        Month first, zero-padded, quoted, e.g. date: "02/12/2026". ISO dates
+        such as "2026-02-12" break both the homepage feed and the metadata
+        generator.
+
+    image:
+      required: false
+      type: relative_filename
+      allow_empty: true
+      forbid: ["/", ".."]
+      hint: >-
+        Just the file name of an image sitting next to index.qmd, e.g.
+        image: "toc.png". Leave empty to use the default announcement image.
+
+rules:
+  - announcement.date_is_real
+  - announcement.image_exists
+  - announcement.directory_layout
+  - announcement.description_html_safe
+  - announcement.lambda_contract
+  - announcement.metadata_in_sync

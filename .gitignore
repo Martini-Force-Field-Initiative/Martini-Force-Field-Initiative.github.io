@@ -11,3 +11,8 @@ __pycache__/
 /site_libs/
 /docs/**/*_files/
 /docs/**/index-listing.json
+
+# Scratch lists of changed paths, written by `make validate-changed` and by the
+# pull-request workflow. An interrupted run can still strand one.
+/.changed-files
+/changed.txt

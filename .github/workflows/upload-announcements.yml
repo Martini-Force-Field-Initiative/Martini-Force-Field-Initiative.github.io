@@ -2,24 +2,94 @@ name: Upload Announcements to S3 Bucket
 
 on:
   workflow_dispatch:
+    inputs:
+      post_dir:
+        description: "Post directory to upload (e.g. 2026-05-28_metabolites). Leave blank to upload nothing."
+        required: false
+        default: ""
   push:
     branches: main
+    paths:
+      - 'docs/announcements/posts/**'
+
+# Uploading a .qmd to s3://cgmartini-library/2_Announcements/ fires an
+# ObjectCreated event that makes the sendAnnouncement Lambda email EVERY
+# subscriber. Uploads must therefore be limited to genuinely new posts.
+concurrency:
+  group: upload-announcements
+  cancel-in-progress: false
 
 jobs:
   upload:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Need the previous commit to diff against.
+          fetch-depth: 2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ca-central-1
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-    - name: Sync announcements to S3
-      run: |
-        aws s3 sync docs/announcements/posts/ s3://cgmartini-library/2_Announcements/ --exclude "*" --include "*/*.qmd" --size-only
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      # An invalid post must never reach the mailing list. This is the same
+      # validator that runs on the pull request, re-run here as the final gate
+      # on the email path.
+      - name: Validate announcements before upload
+        run: python -m scripts.validate --only announcements --format console
+
+      # Only directories ADDED by this push are uploaded. Edits to an existing
+      # post deliberately do NOT re-upload: re-uploading would re-trigger the
+      # Lambda and re-email subscribers an announcement they already received.
+      - name: Determine newly added announcement posts
+        id: added
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            DIRS="${{ github.event.inputs.post_dir }}"
+          else
+            DIRS=$(git diff --name-status --diff-filter=A ${{ github.event.before }} ${{ github.sha }} \
+                   -- 'docs/announcements/posts/*/*.qmd' \
+                   | awk '{print $2}' | xargs -r -n1 dirname | xargs -r -n1 basename | sort -u)
+          fi
+          {
+            echo "dirs<<EOF"
+            echo "$DIRS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+          if [ -z "$DIRS" ]; then
+            echo "No new announcement posts; nothing to upload." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "New announcement posts to upload:" >> "$GITHUB_STEP_SUMMARY"
+            echo "$DIRS" | sed 's/^/- /' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Configure AWS credentials
+        if: steps.added.outputs.dirs != ''
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ca-central-1
+
+      - name: Upload new announcements to S3
+        if: steps.added.outputs.dirs != ''
+        run: |
+          echo "${{ steps.added.outputs.dirs }}" | while read -r d; do
+            [ -z "$d" ] && continue
+            if [ ! -d "docs/announcements/posts/$d" ]; then
+              echo "::error::Post directory not found: $d"
+              exit 1
+            fi
+            echo "Uploading $d"
+            aws s3 cp "docs/announcements/posts/$d/" \
+              "s3://cgmartini-library/2_Announcements/$d/" \
+              --recursive --exclude "*" --include "*.qmd"
+          done

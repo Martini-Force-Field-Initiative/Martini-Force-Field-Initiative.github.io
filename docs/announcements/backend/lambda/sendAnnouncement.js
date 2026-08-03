@@ -3,6 +3,8 @@ const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { DynamoDBClient, ScanCommand } = require("@aws-sdk/client-dynamodb");
 const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses");
 const { stringify } = require("querystring");
+// Pure parsing logic, kept separate so CI can exercise it without the AWS SDK.
+const { extractTitleAndContent } = require("./parseAnnouncement");
 
 // Initialize AWS SDK v3 clients
 const s3 = new S3Client({});
@@ -77,24 +79,3 @@ const streamToString = async (stream) => {
   }
   return Buffer.concat(chunks);
 };
-
-// function to extract title and content from markdown content
-function extractTitleAndContent(markdownContent) {
-  const frontMatterMatch = markdownContent.match(/---([\s\S]*?)---/);
-  if (!frontMatterMatch) {
-    throw new Error('Invalid markdown format: Missing front matter');
-  }
-  const frontMatter = frontMatterMatch[1];
-  const titleMatch = frontMatter.match(/title: ["']?([\s\S]*?)["']?(?=\n\S|$)/);
-  if (!titleMatch) {
-    throw new Error('Invalid markdown format: Missing title');
-  }
-  const title = titleMatch[1].trim();
-  const descriptionMatch = frontMatter.match(/description:\s*(\|)?\s*([\s\S]*?)(?=\n\S|$)/);
-  if (!descriptionMatch) {
-    throw new Error('Invalid markdown format: Missing description');
-  }
-  const description = descriptionMatch[2].trim();
-
-  return { title, description };
-}
