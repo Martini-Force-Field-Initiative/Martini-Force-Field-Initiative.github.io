@@ -352,29 +352,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>
 <ul>
-<li><a href="#part-I.-Protein-complexes-at-equilibrium"><code>Part I. Protein complexes at equilibrium</code></a>
+<li><a href="#part-i.-protein-complexes-at-equilibrium"><code>Part I. Protein complexes at equilibrium</code></a>
 <ul>
 <li><a href="#protein-complex-preparation"><code>Protein complex preparation</code></a></li>
 <li><a href="#protein-complex-without-a-structural-bias"><code>Protein complex without a structural bias</code></a>
 <ul>
-<li><a href="#step-1-generate-coarse-grained-topology"><code>Step 1. Generate coarse grained topology</code></a></li>
-<li><a href="#step-2-set-up-the-simulation-box"><code>Step 2. Set up the simulation box</code></a></li>
-<li><a href="#step-3-solvate-the-system"><code>Step 3. Solvate the system</code></a></li>
-<li><a href="#step-4-add-ions"><code>Step 4. Add ions</code></a></li>
-<li><a href="#step-5-energy-minimization"><code>Step 5. Energy minimization</code></a></li>
-<li><a href="#step-6-equilibration-under-npt-conditions"><code>Step 6. Equilibration under NPT conditions</code></a></li>
-<li><a href="#step-7-production-simulation"><code>Step 7. Production simulation</code></a></li>
+<li><a href="#step-1.-generate-coarse-grained-topology"><code>Step 1. Generate coarse grained topology</code></a></li>
+<li><a href="#step-2.-set-up-the-simulation-box"><code>Step 2. Set up the simulation box</code></a></li>
+<li><a href="#step-3.-solvate-the-system"><code>Step 3. Solvate the system</code></a></li>
+<li><a href="#step-4.-add-ions"><code>Step 4. Add ions</code></a></li>
+<li><a href="#step-5.-energy-minimization"><code>Step 5. Energy minimization</code></a></li>
+<li><a href="#step-6.-equilibration-under-npt-conditions"><code>Step 6. Equilibration under NPT conditions</code></a></li>
+<li><a href="#step-7.-production-simulation"><code>Step 7. Production simulation</code></a></li>
 </ul></li>
 <li><a href="#protein-complex-with-elastic-network"><code>Protein complex with elastic network</code></a></li>
-<li><a href="#protein-complex-with-OLIVES"><code>Protein complex with OLIVES</code></a></li>
-<li><a href="#protein-complex-with-GōMartini3"><code>Protein complex with GōMartini 3</code></a></li>
-<li><a href="#comparison-between-Martini-3-protein-complex-models"><code>Comparison between Martini 3 protein complex models</code></a></li>
+<li><a href="#protein-complex-with-olives"><code>Protein complex with OLIVES</code></a></li>
+<li><a href="#protein-complex-with-gōmartini-3"><code>Protein complex with GōMartini 3</code></a></li>
+<li><a href="#comparison-between-martini-3-protein-complex-models"><code>Comparison between Martini 3 protein complex models</code></a></li>
 </ul></li>
-<li><a href="#part-ii-protein-complex-under-conformational-changes-a-nanomechanical-study"><code>Part II. Protein complex under conformational changes: A nanomechanical study</code></a>
+<li><a href="#part-ii.-protein-complex-under-conformational-changes-a-nanomechanical-study"><code>Part II. Protein complex under conformational changes: A nanomechanical study</code></a>
 <ul>
-<li><a href="#AFM-SMFS-modelled-by-SMD"><code>AFM-SMFS modelled by SMD</code></a></li>
-<li><a href="#SMD-with-GōMartini3"><code>SMD with GōMartini 3</code></a></li>
-<li><a href="#SMD-with-optimized-GōMartini-3"><code>SMD with optimized GōMartini 3</code></a></li>
+<li><a href="#afm-smfs-captured-by-steered-molecular-dynamics-smd-simulation"><code>AFM-SMFS captured by Steered Molecular Dynamics (SMD) simulation</code></a>
+<ul>
+<li><a href="#protein-alignment-along-the-z-axis"><code>Protein alignment along the Z-axis</code></a></li>
+<li><a href="#step-2.-set-up-the-simulation-with-a-large-box"><code>Step 2. Set up the simulation with a large box</code></a></li>
+<li><a href="#run-the-production-simulation"><code>Run the production simulation</code></a></li>
+</ul></li>
+<li><a href="#protein-complex-with-optimized-gōmartini-3"><code>Protein complex with optimized GōMartini 3</code></a></li>
 </ul></li>
 <li><a href="#tools-and-scripts-used-in-this-tutorial"><code>Tools and scripts used in this tutorial</code></a></li>
 <li><a href="#references"><code>References</code></a></li>
@@ -384,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="part-i.-protein-complexes-at-equilibrium">Part I. Protein complexes at equilibrium</h2>
 <hr>
 <p>The global spread of SARS-CoV-2 has made clear the need to characterize spike protein dynamics and binding stability at scale. Understanding how mutations affect both overall fold and specific receptor or nanobody interfaces under near-physiological conditions is essential for predicting variant infectivity and guiding therapeutic design. In this tutorial, we’ll implement and compare equilibrium coarse-grained (CG) strategies using the Martini 3 force field <sup><a href="#references">[1]</a></sup> to extend sampling to microsecond time scales without sacrificing key structural features. We then benchmark these approaches against full atomistic simulations to assess which approximation most faithfully reproduces protein flexibility at binding interfaces. We’ll need a GROMACS version &gt;= 2023.5 <sup><a href="#references">[2]</a></sup>.</p>
-<p>This section is not intended to capture large conformational changes. If you plan to to do so, please go to <a href="#part-II.-Protein-complexes-under-conformational-changes:-A-nanomechanical-study">Part II - Protein complex under conformational changes: A nanomechanical study</a></p>
+<p>This section is not intended to capture large conformational changes. If you plan to to do so, please go to <a href="#part-ii.-protein-complex-under-conformational-changes-a-nanomechanical-study">Part II - Protein complex under conformational changes: A nanomechanical study</a></p>
 </section>
 <section id="protein-complex-preparation" class="level2">
 <h2 class="anchored" data-anchor-id="protein-complex-preparation">Protein complex preparation</h2>
@@ -537,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this step, we convert the atomistic structure of the protein complex into a coarse-grained representation using the Martini 3.0.0 force field, with the addition of an elastic network model (ENM). The elastic network is a set of harmonic springs applied between backbone beads within a defined cutoff range. It preserves the native tertiary and quaternary structure by maintaining the relative distances between residues, effectively stabilizing the folded conformation during the simulation. This is particularly important for large protein complexes, where thermal fluctuations can otherwise lead to partial unfolding or loss of structural integrity in CG models <sup><a href="#references">[14]</a></sup>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-f</span> 6ZH9_clean.pdb <span class="at">-o</span> topol.top <span class="at">-x</span> 6ZH9_CG.pdb <span class="at">-dssp</span> /path/to/dssp <span class="at">-p</span> backbone <span class="at">-ff</span> martini3001 <span class="at">-elastic</span> <span class="at">-ef</span> 700.0 <span class="at">-el</span> 0.5 <span class="at">-eu</span> 0.9 <span class="at">-ea</span> 0 <span class="at">-ep</span> 0 <span class="at">-merge</span> all <span class="at">-ignh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Overwrite or modify the topology as stated above. Also modify the POSRES_FC place holder with the <code>sed</code> command previously stated.</p>
-<p>Proceed with <a href="#step-2-set-up-the-simulation-box">steps 2 to 7</a> as described in the <em>Protein complex without a structure bias</em> section. These include box setup, solvation, ion addition, energy minimization, NPT equilibration, production run, trajectory alignment, and topology preparation for visualization.</p>
+<p>Proceed with <a href="#step-2.-set-up-the-simulation-box">steps 2 to 7</a> as described in the <em>Protein complex without a structure bias</em> section. These include box setup, solvation, ion addition, energy minimization, NPT equilibration, production run, trajectory alignment, and topology preparation for visualization.</p>
 <p><img src="EN_crystal.gif" title="Title" class="img-fluid" alt="alt text"> Figure 2. Licorice representation of the RBD/H11-H4 backbone showing the elastic network model. Intra-chain harmonic restraints are depicted in black, and inter-chain restraints in green. Figure generated with ChimeraX <sup><a href="#references">[11]</a></sup>.</p>
 </section>
 <section id="protein-complex-with-olives" class="level2">
@@ -547,16 +551,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>OLIVES improves structural fidelity by recovering missing hydrogen bond contributions in the CG representation and eliminates the need for DSSP-based secondary structure restraints. It also allows stabilizing both tertiary and quaternary structures without extensive biasing, thus enabling more realistic folding, unfolding, and complex formation events. This approach is particularly valuable for protein–protein interfaces where standard CG models may underestimate stability without additional restraints .</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">martinize2</span> <span class="at">-f</span> 6ZH9_clean.pdb <span class="at">-o</span> topol.top <span class="at">-x</span> 6ZH9_CG.pdb <span class="at">-dssp</span> /path/to/dssp <span class="at">-p</span> backbone <span class="at">-ff</span> martini3001 <span class="at">-merge</span> all <span class="at">-ignh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> OLIVES_v2.0.1_M3.0.0.py <span class="at">-c</span> 6ZH9_CG.pdb <span class="at">-i</span> molecule_0.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Continue with <a href="step-2-set-up-the-simulation-box">step 2</a>. Then, run the following:</p>
+<p>Continue with <a href="#step-2.-set-up-the-simulation-box">step 2</a>. Then, run the following:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> 6ZH9_CG.gro <span class="at">-o</span> BB.ndx <span class="op">&lt;&lt;&lt;</span> <span class="st">'del 0-19</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">a BB</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">q</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> genrestr <span class="at">-f</span> 6ZH9_CG.gro <span class="at">-n</span> BB.ndx <span class="at">-o</span> posre_BB.itp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Edit the topology as stated in <a href="#step-1-generate-coarse-grained-topology">step1</a>. Also modify the POSRES_FC with the command <code>sed</code> stated in the same step.</p>
+<p>Edit the topology as stated in <a href="#step-1.-generate-coarse-grained-topology">step1</a>. Also modify the POSRES_FC with the command <code>sed</code> stated in the same step.</p>
 <p>Create a copy of the topology</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> topol.top system.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Proceed with <a href="#step-3-solvate-the-system">steps 3 to 7</a> as described in the <em>Protein complex without a structure bias</em> section.</p>
+<p>Proceed with <a href="#step-3.-solvate-the-system">steps 3 to 7</a> as described in the <em>Protein complex without a structure bias</em> section.</p>
 <p><img src="OLIVES_crystal.gif" title="Title" class="img-fluid" alt="alt text"> Figure 3. Licorice representation of the RBD/H11-H4 backbone showing the OLIVES model. Intra-chain harmonic restraints are depicted in black, and inter-chain restraints in green. Figure generated with ChimeraX <sup><a href="#references">[11]</a></sup>.</p>
 </section>
 <section id="protein-complex-with-gōmartini-3" class="level2">
@@ -603,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> molecules <span class="bu">]</span></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ex">molecule_0</span>    1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will ensure that the virtual site definitions and Gō-like nonbonded interactions are properly included in the simulation.</p>
-<p>Proceed with <a href="#step-2-setup-the-simulation-box">steps 2 to 7</a> as described in the <em>Protein complex without a structural bias</em> section.</p>
+<p>Proceed with <a href="#step-2.-set-up-the-simulation-box">steps 2 to 7</a> as described in the <em>Protein complex without a structural bias</em> section.</p>
 <p><img src="Go_crystal.gif" title="Title" class="img-fluid" alt="alt text"> Figure 4. Licorice representation of the RBD/H11-H4 backbone illustrating the GōMartini 3 model. Intra-chain native contacts are shown in black, while inter-chain contacts are shown in green. Figure generated with ChimeraX<sup><a href="#references">[11]</a></sup>.</p>
 </section>
 <section id="comparison-between-martini-3-protein-complex-models" class="level2">
@@ -669,7 +673,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> align_pdb.py <span class="op">&lt;</span>input_pdb<span class="op">&gt;</span> <span class="op">&lt;</span>output_pdb<span class="op">&gt;</span> <span class="op">&lt;</span>chain1<span class="op">&gt;</span> <span class="op">&lt;</span>res1<span class="op">&gt;</span> <span class="op">&lt;</span>chain2<span class="op">&gt;</span> <span class="op">&lt;</span>res2<span class="op">&gt;</span> --axis</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> align_pdb_.py 6ZH9_clean.pdb 6ZH9_aligned.pdb E 195 F 128 <span class="at">--axis</span> Z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This reads 6ZH9_clean.pdb, locates the two CA atoms you specified, computes the rotation that brings their connecting line onto the Z‑axis, applies that transform to every atom, and writes the result to 6ZH9_aligned.pdb.</p>
-<p>To generate the Martini 3/GoMartini 3 model, please follow the instructions in the <a href="#protein-complex-with-GōMartini3">Protein complex with GōMartini 3</a> section using the <code>6ZH9_aligned.pdb</code> file. From <code>martinize2</code> you’ll get the new <code>6ZH9_CG.pdb</code> file.</p>
+<p>To generate the Martini 3/GoMartini 3 model, please follow the instructions in the <a href="#protein-complex-with-gōmartini-3">Protein complex with GōMartini 3</a> section using the <code>6ZH9_aligned.pdb</code> file. From <code>martinize2</code> you’ll get the new <code>6ZH9_CG.pdb</code> file.</p>
 </section>
 <section id="step-2.-set-up-the-simulation-with-a-large-box" class="level3">
 <h3 class="anchored" data-anchor-id="step-2.-set-up-the-simulation-with-a-large-box">Step 2. Set up the simulation with a large box</h3>
@@ -677,7 +681,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> editconf <span class="at">-f</span> 6ZH9_CG.pdb <span class="at">-center</span> 5.000 5.000 6.000 <span class="at">-box</span> 10.000 10.000 60.000 <span class="at">-o</span> 6ZH9_WT_pull_CG.gro</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Copy the topology and rename it as system.top</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> topol.top system.top</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Proceed with <a href="#3-solvate-the-system">steps 3 to 6</a> as described in the <em>Protein complex without a structural bias</em> section.</p>
+<p>Proceed with <a href="#step-3.-solvate-the-system">steps 3 to 6</a> as described in the <em>Protein complex without a structural bias</em> section.</p>
 <p>After step 6, we need to create an index file to apply the freeze protocol and to perform the CG-SDM:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gmx</span> make_ndx <span class="at">-f</span> npt.gro <span class="at">-o</span> index.ndx</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -723,7 +727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>In this case, the file with the most contacts was frame_0095. Then, we need to align it to the Z-axis using the <code>align_pdb.py</code> script:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> align_pdb.py frame_0095_CG.pdb frame_0095_CG_aligned.pdb A 195 B 323 <span class="at">--axis</span> Z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Procees with Step 2. Set up the simulation with a large box as described above. Then proceed with <a href="#3-solvate-the-system">steps 3 to 6</a> as described in the <em>Protein complex without a structural bias</em> section. After that, run step 7 as stated above.</p>
+<p>Procees with Step 2. Set up the simulation with a large box as described above. Then proceed with <a href="#step-3.-solvate-the-system">steps 3 to 6</a> as described in the <em>Protein complex without a structural bias</em> section. After that, run step 7 as stated above.</p>
 <p><img src="SMD.gif" title="Title" class="img-fluid" alt="alt text"> Figure 7. Licorice representation of the RBD/H11-H4 complex during pulling under constant velocity. Figure generated with ChimeraX <sup><a href="#references">[11]</a></sup>.</p>
 </section>
 <section id="tools-and-scripts-used-in-this-tutorial" class="level2">

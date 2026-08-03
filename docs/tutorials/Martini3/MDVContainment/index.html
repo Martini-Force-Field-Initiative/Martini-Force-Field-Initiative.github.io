@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – Martini Force Field Initiative</title>
+<title>MDVContainment – Tutorial 1 (MartiniWorkshop 2025) – Martini Force Field Initiative</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -137,13 +137,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Martini Force Field Initiative">
+<meta property="og:title" content="MDVContainment – Tutorial 1 (MartiniWorkshop 2025) – Martini Force Field Initiative">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://cgmartini.nl/docs/tutorials/Martini3/MDVContainment/containment_examples.png">
 <meta property="og:site_name" content="Martini Force Field Initiative">
 <meta property="og:image:height" content="755">
 <meta property="og:image:width" content="776">
-<meta name="twitter:title" content="Martini Force Field Initiative">
+<meta name="twitter:title" content="MDVContainment – Tutorial 1 (MartiniWorkshop 2025) – Martini Force Field Initiative">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://cgmartini.nl/docs/tutorials/Martini3/MDVContainment/containment_examples.png">
 <meta name="twitter:image-height" content="755">
@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">MDVContainment – Tutorial 1 (MartiniWorkshop 2025)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -290,16 +290,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mdvcontainment-tutorial-1-martiniworkshop-2025" id="toc-mdvcontainment-tutorial-1-martiniworkshop-2025" class="nav-link active" data-scroll-target="#mdvcontainment-tutorial-1-martiniworkshop-2025">MDVContainment – Tutorial 1 (MartiniWorkshop 2025)</a>
-  <ul class="collapse">
-  <li><a href="#what-is-containment" id="toc-what-is-containment" class="nav-link" data-scroll-target="#what-is-containment">What is Containment</a>
+  <li><a href="#what-is-containment" id="toc-what-is-containment" class="nav-link active" data-scroll-target="#what-is-containment">What is Containment</a>
   <ul class="collapse">
   <li><a href="#theory" id="toc-theory" class="nav-link" data-scroll-target="#theory">Theory</a></li>
   <li><a href="#goal-axioms" id="toc-goal-axioms" class="nav-link" data-scroll-target="#goal-axioms">Goal &amp; Axioms</a></li>
   <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
   </ul></li>
   <li><a href="#content-of-this-tutorial" id="toc-content-of-this-tutorial" class="nav-link" data-scroll-target="#content-of-this-tutorial">Content of this Tutorial</a></li>
-  </ul></li>
   <li><a href="#bicelle-vesicle-containment" id="toc-bicelle-vesicle-containment" class="nav-link" data-scroll-target="#bicelle-vesicle-containment">Bicelle Vesicle Containment</a>
   <ul class="collapse">
   <li><a href="#imports" id="toc-imports" class="nav-link" data-scroll-target="#imports">Imports</a></li>
@@ -352,13 +349,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MDVContainment – Tutorial 1 (MartiniWorkshop 2025)</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="mdvcontainment-tutorial-1-martiniworkshop-2025" class="level1">
-<h1>MDVContainment – Tutorial 1 (MartiniWorkshop 2025)</h1>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>This tutorial makes use of the <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/MDVContainment/helper_tutorial_01.py">helper_tutorial_01.py</a> and the <a href="https://cgmartini-library.s3.ca-central-1.amazonaws.com/0_Tutorials/m3_tutorials/MDVContainment/bicelle.gro">bicelle.gro</a> structure, which can be downloaded by clicking on their respective link. Make sure to put these files in the same folder as you use to run this tutorial. To install MDVContainment, please take a look at the the project’s github page: <a href="https://github.com/BartBruininks/mdvcontainment">https://github.com/BartBruininks/mdvcontainment</a>.</p>
 <section id="what-is-containment" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-containment">What is Containment</h2>
@@ -470,7 +481,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Conclusion</li>
 <li>Answers to the question</li>
 </ol>
-</section>
 </section>
 <section id="bicelle-vesicle-containment" class="level1">
 <h1>Bicelle Vesicle Containment</h1>
