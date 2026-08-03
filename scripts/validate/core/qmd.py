@@ -119,20 +119,27 @@ class QmdDoc:
         embed a several-hundred-line ```{=HTML} CSS blob that would otherwise
         poison div and link detection.
         """
-        in_fence = False
-        fence_marker = ""
+        fence_char = ""
+        fence_length = 0
         for lineno, text in self.body_lines():
             stripped = text.lstrip()
-            if not in_fence:
+            if not fence_char:
                 match = re.match(r"^(`{3,}|~{3,})", stripped)
                 if match:
-                    in_fence = True
-                    fence_marker = match.group(1)[0] * 3
+                    fence_char = match.group(1)[0]
+                    fence_length = len(match.group(1))
                     continue
                 yield lineno, text
             else:
-                if stripped.startswith(fence_marker):
-                    in_fence = False
+                # CommonMark: a closing fence is the marker alone, at least as
+                # long as the opener, with nothing after it. Matching any line
+                # that merely *starts* with the marker ends the block early on
+                # the next ```bash, which flips every later fence and can hide
+                # the whole tail of a document.
+                close = re.match(rf"^{re.escape(fence_char)}{{{fence_length},}}\s*$", stripped)
+                if close:
+                    fence_char = ""
+                    fence_length = 0
 
 
 def parse_qmd(path: Path, repo_root: Path) -> QmdDoc:

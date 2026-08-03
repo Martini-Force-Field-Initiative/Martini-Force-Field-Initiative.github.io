@@ -43,10 +43,6 @@ SCHEMA_DIR = Path(__file__).resolve().parent / "schemas"
 # because it validates relationships between files rather than fields.
 SITE_CHECK = "site"
 
-# Pseudo-type for the contrib/parameters/ staging area, where .itp files
-# are submitted for linting before they reach the download library.
-PARAMETERS_CHECK = "parameters"
-
 # Pseudo-type for tutorials and tool cards, whose contract is the shape of
 # their fenced divs rather than a set of front-matter fields.
 STRUCTURE_CHECK = "structure"
@@ -135,13 +131,12 @@ def main(argv: list[str] | None = None) -> int:
         for schema in schemas.values():
             print(f"{schema.id:<16} {schema.label}")
         print(f"{SITE_CHECK:<16} Site-wide structure (navigation, links, assets)")
-        print(f"{PARAMETERS_CHECK:<16} Force-field parameter submissions (.itp linting)")
         print(f"{STRUCTURE_CHECK:<16} Tutorials and tool cards (fenced-div structure)")
         return 0
 
     # "site" is not a contribution type with a schema; it is the cross-cutting
     # structural pass (navigation, links, assets, repository hygiene).
-    available = set(schemas) | {SITE_CHECK, PARAMETERS_CHECK, STRUCTURE_CHECK}
+    available = set(schemas) | {SITE_CHECK, STRUCTURE_CHECK}
 
     requested = set(args.only) if args.only else available
     unknown = requested - available
@@ -155,7 +150,6 @@ def main(argv: list[str] | None = None) -> int:
 
     selected = requested & set(schemas)
     run_site_checks = SITE_CHECK in requested
-    run_parameter_checks = PARAMETERS_CHECK in requested
     run_structure_checks = STRUCTURE_CHECK in requested
 
     changed: set[str] | None = None
@@ -210,17 +204,6 @@ def main(argv: list[str] | None = None) -> int:
         checked["Tutorials and tool cards"] = len(
             list((ctx.root / "docs" / "downloads" / "tools").glob("*.qmd"))
         )
-
-    if run_parameter_checks:
-        from .rules.parameters import check_parameters
-        param_findings = check_parameters(ctx)
-        findings.extend(param_findings)
-        staging = ctx.root / "contrib" / "parameters"
-        submissions = [
-            d for d in staging.iterdir()
-            if staging.is_dir() and d.is_dir() and not d.name.startswith((".", "_"))
-        ] if staging.is_dir() else []
-        checked["Parameter submissions"] = len(submissions)
 
     if changed is not None and not any(checked.values()):
         findings.append(notice(

@@ -69,7 +69,7 @@ All these line will be applied to the molecule with the `VMD`-defined ID 0 (or "
 ### martinize
 
 ::: callout
-This version of `Martinize` is no longer maintained. For the latest version, see [[Martinize2]](./topology-structure-generation.qmd#martinize2).
+This version of `Martinize` is no longer maintained. For the latest version, see [[Martinize2]](./topology-structure-generation.qmd#martinize2vermouth).
 :::
 
 Martinize is a python script to generate Martini protein topology and structure files based on an atomistic structure file. It replaces the old [seq2itp](#seq2itp), [atom2cg](#atom2cg) and [ElNeDyn](#elnedyn) scripts. The produced topology and structure files are in a format suitable for Gromacs.

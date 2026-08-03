@@ -44,7 +44,7 @@ jobs:
       # validator that runs on the pull request, re-run here as the final gate
       # on the email path.
       - name: Validate announcements before upload
-        run: python -m scripts.validate --only announcements --format console
+        run: python -m scripts.validate --only announcement --format console
 
       # Only directories ADDED by this push are uploaded. Edits to an existing
       # post deliberately do NOT re-upload: re-uploading would re-trigger the

@@ -1,7 +1,13 @@
+// Parse an MM/DD/YYYY date string into a Date. Returns an invalid Date if the
+// string does not match, so callers can detect malformed input.
+function parseDate(dateStr) {
+    const [month, day, year] = String(dateStr || '').split('/');
+    return new Date(Number(year), Number(month) - 1, Number(day));
+}
+
 // Function to format date from MM/DD/YYYY to a more readable format
 function formatDate(dateStr) {
-    const [month, day, year] = dateStr.split('/');
-    const date = new Date(year, month - 1, day);
+    const date = parseDate(dateStr);
     return date.toLocaleDateString('en-US', { 
         year: 'numeric',
         month: 'long',
@@ -19,7 +25,9 @@ function createNewsCard(announcement, isFeatured = false) {
     imageContainer.className = 'news-image-container';
     
     const img = document.createElement('img');
-    img.src = announcement.image || 'images/default-news.jpg';
+    // Matches the fallback used by scripts/generate-announcements-metadata.py
+    // and the image-placeholder in docs/announcements/index.qmd.
+    img.src = announcement.image || '/images/cell1.jpg';
     img.alt = announcement.title;
     img.className = 'news-image';
     imageContainer.appendChild(img);
@@ -131,12 +139,10 @@ async function loadAnnouncements() {
         // Parse the YAML metadata
         const announcements = parseYAML(metadata);
         
-        // Sort announcements by date (newest first)
-        announcements.sort((a, b) => {
-            const dateA = new Date(a.date.split('/').reverse().join('-'));
-            const dateB = new Date(b.date.split('/').reverse().join('-'));
-            return dateB - dateA;
-        });
+        // Sort announcements by date (newest first).
+        // Dates are MM/DD/YYYY. Reversing the parts would yield YYYY-DD-MM,
+        // which silently mis-orders every post whose day and month differ.
+        announcements.sort((a, b) => parseDate(b.date) - parseDate(a.date));
 
         // Get the news grid container
         const newsGrid = document.querySelector('.news-grid');
@@ -190,8 +196,44 @@ async function loadAnnouncements() {
 }
 
 // Simple YAML parser for metadata
+// Split "key: value" at the FIRST colon only. Returns null when the line is
+// not a key/value pair.
+//
+// The previous implementation used `line.split(':')[1]`, which truncated any
+// value containing a colon, so "New tool: Bentopy" reached the homepage as
+// "New tool". Field dispatch used `line.includes('date:')`, which was worse: a
+// description mentioning "date:" was stored as the announcement's date,
+// because `date:` was tested before `description:`.
+function splitKeyValue(line) {
+    const trimmed = line.trim().replace(/^-\s+/, '');
+    const colon = trimmed.indexOf(':');
+    if (colon === -1) return null;
+
+    const key = trimmed.slice(0, colon).trim();
+    // A key is a bare identifier. Anything else means this colon belonged to
+    // a value rather than starting a field.
+    if (!/^[A-Za-z_][A-Za-z0-9_-]*$/.test(key)) return null;
+
+    return [key, unquote(trimmed.slice(colon + 1).trim())];
+}
+
+// Strip one layer of matching surrounding quotes, leaving inner quotes intact.
+function unquote(value) {
+    if (value.length >= 2) {
+        const first = value[0];
+        if ((first === '"' || first === "'") && value[value.length - 1] === first) {
+            return value.slice(1, -1);
+        }
+    }
+    return value;
+}
+
+const FEED_FIELDS = new Set([
+    'title', 'description', 'date', 'image', 'url',
+    'author', 'authorAvatar', 'category'
+]);
+
 function parseYAML(yamlText) {
-    // This is a simple implementation - you might want to use a proper YAML parser
     const announcements = [];
     const lines = yamlText.split('\n');
     let currentAnnouncement = null;
@@ -202,36 +244,31 @@ function parseYAML(yamlText) {
             inAnnouncements = true;
             continue;
         }
-
         if (!inAnnouncements) continue;
 
-        if (line.trim().startsWith('- title:')) {
+        const pair = splitKeyValue(line);
+        if (!pair) continue;
+        const [key, value] = pair;
+
+        // Each list item begins with "- title:".
+        if (/^\s*-\s/.test(line) && key === 'title') {
             if (currentAnnouncement) {
                 announcements.push(currentAnnouncement);
             }
-            currentAnnouncement = {
-                title: line.split(':')[1].trim().replace(/"/g, ''),
-                tags: []
-            };
-        } else if (currentAnnouncement) {
-            if (line.includes('date:')) {
-                currentAnnouncement.date = line.split(':')[1].trim().replace(/"/g, '');
-            } else if (line.includes('description:')) {
-                currentAnnouncement.description = line.split(':')[1].trim().replace(/"/g, '');
-            } else if (line.includes('image:')) {
-                currentAnnouncement.image = line.split(':')[1].trim().replace(/"/g, '');
-            } else if (line.includes('category:')) {
-                currentAnnouncement.category = line.split(':')[1].trim().replace(/"/g, '');
-            } else if (line.includes('tags:')) {
-                const tags = line.split(':')[1].trim().replace(/[\[\]]/g, '').split(',').map(tag => tag.trim());
-                currentAnnouncement.tags = tags;
-            } else if (line.includes('url:')) {
-                currentAnnouncement.url = line.split(':')[1].trim().replace(/"/g, '');
-            } else if (line.includes('author:')) {
-                currentAnnouncement.author = line.split(':')[1].trim().replace(/"/g, '');
-            } else if (line.includes('authorAvatar:')) {
-                currentAnnouncement.authorAvatar = line.split(':')[1].trim().replace(/"/g, '');
-            }
+            currentAnnouncement = { title: value, tags: [] };
+            continue;
+        }
+
+        if (!currentAnnouncement) continue;
+
+        if (key === 'tags') {
+            currentAnnouncement.tags = value
+                .replace(/[[\]]/g, '')
+                .split(',')
+                .map(tag => tag.trim())
+                .filter(Boolean);
+        } else if (FEED_FIELDS.has(key)) {
+            currentAnnouncement[key] = value;
         }
     }
 
@@ -243,4 +280,13 @@ function parseYAML(yamlText) {
 }
 
 // Load announcements when the page loads
-document.addEventListener('DOMContentLoaded', loadAnnouncements); 
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', loadAnnouncements);
+}
+
+// Exported so the CI consumer-contract tests can exercise the *real* parser
+// used by the homepage rather than a re-implementation that could drift.
+// No-op in the browser.
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { parseYAML, formatDate, parseDate, splitKeyValue, unquote };
+} 

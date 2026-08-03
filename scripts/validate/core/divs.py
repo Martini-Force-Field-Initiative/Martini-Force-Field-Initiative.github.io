@@ -169,25 +169,51 @@ def slugify(heading_text: str) -> str:
     if match:
         text = text[match.start():]
     text = re.sub(r"[^\w\s.\-]", "", text, flags=re.UNICODE)
-    text = re.sub(r"\s+", "-", text)
+    # One hyphen per space, not per run of spaces. Pandoc deletes punctuation
+    # in place and only then substitutes, so "Martini + elastic network" loses
+    # the '+' and keeps both surrounding spaces: martini--elastic-network.
+    text = re.sub(r"\s", "-", text)
     return text.strip("-")
 
 
 def explicit_id(heading_text: str) -> str | None:
-    """An author-supplied ``{#custom-id}`` overrides the generated slug."""
-    match = re.search(r"\{#([A-Za-z][\w-]*)[^}]*\}\s*$", heading_text)
+    """An author-supplied ``{#custom-id}`` overrides the generated slug.
+
+    ``.`` is part of the identifier, not the start of a class: Pandoc only
+    begins a class when a ``.`` follows whitespace. Stopping at the first dot
+    turns ``{#part-i.-protein-complexes-at-equilibrium}`` into ``part-i`` and
+    makes every link to the real anchor look broken.
+    """
+    match = re.search(r"\{#([A-Za-z][\w.-]*)[^}]*\}\s*$", heading_text)
     return match.group(1) if match else None
 
 
 def heading_slugs(lines) -> dict[str, int]:
-    """Map anchor slug -> line number for every heading in the given lines."""
+    """Map anchor slug -> line number for every heading in the given lines.
+
+    Pandoc guarantees identifiers are unique: the second heading that slugifies
+    to ``analysis`` anchors as ``analysis-1``, the third as ``analysis-2``.
+    Tutorials with repeated section names link to those suffixed forms, and
+    they are correct -- recording only the first would report them broken.
+
+    An author-supplied ``{#id}`` is emitted verbatim and never renumbered, so
+    only generated slugs take part in the disambiguation.
+    """
     slugs: dict[str, int] = {}
     for lineno, text in lines:
         match = HEADING_RE.match(text.strip())
         if not match:
             continue
         raw = match.group("text")
-        slug = explicit_id(raw) or slugify(raw)
-        if slug:
-            slugs.setdefault(slug, lineno)
+        explicit = explicit_id(raw)
+        slug = explicit or slugify(raw)
+        if not slug:
+            continue
+        if explicit is None:
+            base = slug
+            suffix = 1
+            while slug in slugs:
+                slug = f"{base}-{suffix}"
+                suffix += 1
+        slugs.setdefault(slug, lineno)
     return slugs
