@@ -37,6 +37,18 @@ jobs:
       - name: Regenerate the homepage news feed
         run: python scripts/generate-announcements-metadata.py
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      # Rebuilds docs/announcements/posts/_metadata.yml 
+      - name: Generate announcements metadata
+        run: python scripts/generate-announcements-metadata.py
+
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
