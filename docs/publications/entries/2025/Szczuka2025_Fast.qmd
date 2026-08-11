@@ -1,0 +1,34 @@
+---
+title: "Fast Parametrization of Martini3 Models for Fragments and Small Molecules"          # Paper title (required)
+type: "article"    # do not change
+sidebar: false     # do not change
+toc: false         # do not change
+author: "Magdalena Szczuka, Gilberto P. Pereira, Luis J. Walter, Marc Gueroult, Pierre Poulain, Tristan Bereau, Paulo C. T. Souza, Matthieu Chavent"         # Paper authors (required)
+year: "2025"           # Publication year (required)
+publication: "Journal of Chemical Theory and Computation"    # Journal or similar (required)
+preprint: ""       # URL to prepint page (optional)  
+doi: "https://doi.org/10.1021/acs.jctc.5c01178"            # URL of DOI (required)  
+materials: "https://zenodo.org/records/17790588"      # URL to suplementary info (optional)
+categories:        # (required) these keywords will create tags for further filtering. 
+  - Journal article
+  - Proteins
+  - Small molecules
+  - Parametrization
+  - Drug design
+---
+
+<!-- 
+The info below is just an example. 
+
+Both fields are required and they have to be replaced with the respective info for each paper. 
+
+Please notice the `> ` symbol before the citation, it gives it additional styling.  
+-->
+
+## Citation (APA 7)      
+
+> Szczuka, M., Pereira, G. P., Walter, L. J., Gueroult, M., Poulain, P., Bereau, T., Souza, P. C. T., & Chavent, M. (2026). Fast Parametrization of Martini3 Models for Fragments and Small Molecules. Journal of Chemical Theory and Computation, 22(1), 610–623. https://doi.org/10.1021/acs.jctc.5c01178
+
+## Abstract
+
+Coarse-grained molecular dynamics simulations, such as those performed with the recently parametrized Martini 3 force field, simplify molecular models and enable the study of larger systems over longer time scales. With this new implementation, Martini 3 allows more bead types and sizes, becoming more amenable to studying dynamical phenomena involving small molecules such as protein–ligand interactions and membrane permeation. However, while solutions existed to automatically model small molecules using the previous iteration of the Martini force field, there is no simple way to generate such molecules for Martini 3 yet. Here, we introduce Auto-MartiniM3, an advanced and updated version of the Auto-Martini program designed to automate the coarse-graining of small molecules to be used with the Martini 3 force field. We validated our approach by modeling 81 simple molecules from the Martini Database and comparing their structural and thermodynamic properties with those obtained from models designed by Martini experts. Additionally, we assessed the behavior of Auto-MartiniM3-generated models by calculating solute translocation and free energy across lipid bilayers. We also evaluated more complex molecules such as caffeine by testing its binding to the adenosine A2A receptor. Finally, our results from deploying Auto-MartiniM3 on a large data set of molecular fragments demonstrate that this program can become a tool of choice for fast, high-throughput creation of coarse-grained models of small molecules, offering a good balance between automation and accuracy. Auto-MartiniM3 source code is freely available at https://github.com/Martini-Force-Field-Initiative/Automartini_M3.
