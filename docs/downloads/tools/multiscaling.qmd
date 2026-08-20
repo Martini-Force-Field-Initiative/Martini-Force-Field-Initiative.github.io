@@ -55,3 +55,17 @@ More extensive information and a tutorial can be found [\[here\]](../../tutorial
 
 - The script for gromacs versions 5 and higher and the mapping files for the amino acid residues and nucleobases are combined into a single zip file, which can be downloaded [[here]](https://cgmartini-library.s3.ca-central-1.amazonaws.com/1_Downloads/tools/resolution_transformation/backward-v5.zip).
 :::
+
+::: software-card
+### CG2AT2-lite
+
+`CG2AT-lite` converts a coarse-grained (CG) structure to an atomistic (AT) level of detail, but a knowledge of the arrangements of atoms that correspond to the particle is needed. `CG2AT-lite` is a updated version of `CG2AT`, a programme that uses a fragment-based methodology that contains all the chemical and stereochemical information required to assemble the system.
+
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/pstansfeld/cg2at-lite).
+
+When using this method, please cite:
+
+**CG2AT2: an Enhanced Fragment-Based Approach for Serial Multi-scale Molecular Dynamics Simulations** *Owen N. Vickery and Phillip J. Stansfeld* J. Chem. Theory Comput., 2021, 17, 10, 6472–6482 [DOI: 10.1021/acs.jctc.1c00295](https://pubs.acs.org/doi/10.1021/acs.jctc.1c00295)
+
+More extensive information and a tutorial on `CG2AT2` can be found [\[here\]](../../tutorials/Martini3/cg2at/index.qmd).
+:::
