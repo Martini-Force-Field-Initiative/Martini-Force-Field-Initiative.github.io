@@ -15,7 +15,36 @@
 <link>https://cgmartini.nl/docs/announcements/</link>
 </image>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Thu, 06 Aug 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 21 Aug 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Fast-Forward</title>
+  <dc:creator>Marieke Westendorp</dc:creator>
+  <link>https://cgmartini.nl/docs/announcements/posts/2026-08-21_fast-forward/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>We are very happy to announce the publication of <em>Fast-Forward</em>. With <em>Fast-Forward</em>, you can parameterize Martini models for systems of any size and in any environment. The package features subprograms for trajectory mapping, parameter generation, and model validation. Atomistic reference trajectories and mapping data is used to generate pseudo-CG trajectories. From these, an initial CG topology is constructed. This topology is successively improved by comparing and fitting the distributions from trial runs with the reference distributions. The tools offered by <em>Fast-Forward</em> were designed to make use of common file formats within the Martini ecosystem.</p>
+<center>
+<img src="https://cgmartini.nl/docs/announcements/posts/2026-08-21_fast-forward/visual_abstract.png" class="img-fluid">
+</center>
+<blockquote class="blockquote">
+<p>Christopher Brasnett, Maximilian Fidlin, Thilo Duve, Sebastian Thallmair, Siewert J. Marrink, Fabian Grünewald. Fast-Forward: Automatic Assignment and Assessment of Bonded Parameters for the Martini Force Field. <em>Journal of Chemical Information and Modeling</em>. 2026. <a href="https://doi.org/10.1021/acs.jcim.6c01107" class="uri">https://doi.org/10.1021/acs.jcim.6c01107</a></p>
+</blockquote>
+<ul>
+<li>Read the paper at <a href="https://doi.org/10.1021/acs.jcim.6c01107">Brasnett et al.&nbsp;<em>J. Chem. Inf. Model.</em> (2026)</a>.</li>
+<li><em>Fast-Forward</em> is developed on the <a href="https://github.com/Martini-Force-Field-Initiative/fast_forward">Martini Force Field Initiative GitHub</a> and can be installed through <code>pip</code>.</li>
+</ul>
+
+
+
+ ]]></description>
+  <guid>https://cgmartini.nl/docs/announcements/posts/2026-08-21_fast-forward/</guid>
+  <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+  <media:content url="https://cgmartini.nl/docs/announcements/posts/2026-08-21_fast-forward/fast-forward-figure-1.png" medium="image" type="image/png" height="83" width="144"/>
+</item>
 <item>
   <title>Martini 3 - IDP condensates</title>
   <dc:creator>Siewert J. Marrink</dc:creator>
