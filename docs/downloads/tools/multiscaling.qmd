@@ -37,6 +37,24 @@ For more details and to download the latest version, visit the [[GitHub reposito
 :::
 
 ::: software-card
+### CG2AT2
+
+CG2AT2 is a fragment based conversion of Coarse-Grained systems (e.g. Martini) to an atomistic resolution. CG2AT2 generates a selection of outputs for allowing further refinements and analysis via atomistic simulations.
+
+For more details and to download the latest version, visit the [[GitHub repository]](https://github.com/pstansfeld/cg2at). CG2AT2 does not require compilation and can be downloaded, ready to run from either Github or Zenodo, however, it is also available from pip:
+
+```sh
+pip install cg2at
+```
+
+More extensive information and a tutorial can be found [\[here\]](../../tutorials/Martini3/cg2at/index.qmd).
+
+When using this method, please cite:
+
+> Vickery, O. N., & Stansfeld, P. J. (2021). CG2AT2: an enhanced fragment-based approach for serial multi-scale molecular dynamics simulations. _Journal of Chemical Theory and Computation_, _17_(10), 6472. , https://doi.org/10.1021/acs.jctc.1c00295>
+:::
+
+::: software-card
 ### Backward
 
 Backward is a tool to convert a coarse-grained system to united-atom or all-atom resolution. The mapping is done using a library of mapping definitions, which encode the geometric reconstruction. The tool consists of three scripts and a number of CG to fine-grained mapping definition files.
